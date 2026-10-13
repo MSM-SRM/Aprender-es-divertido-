@@ -1,0 +1,15 @@
+MI MUNDO DE APRENDIZAJE — primera versión
+1. Entra en https://github.com/ y crea una cuenta o inicia sesión.
+2. Pulsa el + de arriba y elige New repository.
+3. Nombre: mundo-mellis
+4. Elige Public y activa Add a README file. Pulsa Create repository.
+5. Dentro del repositorio: Add file > Upload files.
+6. Sube index.html (puedes extraerlo de este ZIP en el móvil).
+7. Pulsa Commit changes.
+8. Ve a Settings > Pages.
+9. En Build and deployment, Source: Deploy from a branch.
+10. Branch: main; carpeta: /(root). Pulsa Save.
+11. Espera unos minutos y vuelve a Settings > Pages; pulsa Visit site.
+Tu web tendrá una dirección parecida a https://TUUSUARIO.github.io/mundo-mellis/
+La web no tiene cuentas ni envía datos. Las estrellas se guardan solo en el navegador y dispositivo usados.
+Para cambiar los archivos en el futuro, abre index.html en GitHub, pulsa el lápiz, edita y confirma los cambios.
