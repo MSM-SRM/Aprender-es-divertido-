@@ -9,7 +9,18 @@
 <style>
 :root{--ink:#28213d;--muted:#655b77;--purple:#6558d3;--paper:#fffdf9}
 *{box-sizing:border-box}
-body{margin:0;background:linear-gradient(160deg,#fffaf0,#f9f4ff 55%,#f1fbff);font-family:"Comic Sans MS","Trebuchet MS",system-ui,sans-serif;color:var(--ink)}
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #f6cbd9;
+  background-image: url("./imagenes/fpbg.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: "Comic Sans MS", "Trebuchet MS", system-ui, sans-serif;
+  color: var(--ink);
+}
 button,select{font:inherit}
 button{cursor:pointer;border:0;border-radius:16px;padding:12px 16px;font-weight:800;touch-action:manipulation}
 .app{max-width:960px;margin:auto;padding:16px 14px 40px}
