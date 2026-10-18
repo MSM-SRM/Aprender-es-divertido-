@@ -1,0 +1,958 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#8b45dc">
+<title>Mi Mundo de Aprendizaje</title>
+<style>
+:root{--ink:#28213d;--muted:#655b77;--purple:#6558d3;--paper:#fffdf9}
+*{box-sizing:border-box}
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #f6cbd9;
+  background-image: url("./imagenes/fpbg.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: "Comic Sans MS", "Trebuchet MS", system-ui, sans-serif;
+  color: var(--ink);
+}
+button,select{font:inherit}
+button{cursor:pointer;border:0;border-radius:16px;padding:12px 16px;font-weight:800;touch-action:manipulation}
+.app{max-width:960px;margin:auto;padding:16px 14px 40px}
+.hide{display:none!important}
+
+/* Pantalla inicial: blanco brillante, sin sombras */
+.profile-intro{text-align:center;margin:12px 0 22px}
+.profile-intro h1{
+  font-size:clamp(1.65rem,5vw,2.35rem);
+  margin:0 0 7px;
+  font-style:italic;
+  color:#fff;
+  text-shadow:none;
+}
+.profile-intro p{
+  margin:0;
+  color:#fff;
+  font-size:1rem;
+  text-shadow:none;
+}
+.profiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:820px;margin:0 auto 18px}
+.profile-wrap{display:flex;flex-direction:column;align-items:center;min-width:0}
+.profile-card{position:relative;width:100%;max-width:350px;aspect-ratio:1;border-radius:50%;padding:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;overflow:hidden;color:white;border:4px solid rgba(255,255,255,.85);box-shadow:0 10px 28px #45325a28}
+.profile-card.mireia{background:linear-gradient(140deg,#fff0a3 0%,#ffd966 27%,#e6ad32 56%,#fff1b8 76%,#c99119 100%);box-shadow:0 10px 28px #c9911938}
+.profile-card.sofia{background:linear-gradient(140deg,#c06bff 0%,#b45cff 28%,#8200ff 58%,#5100c9 100%);box-shadow:0 10px 28px #8200ff30}
+.profile-card img{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:82%;height:82%;max-height:none;object-fit:contain;object-position:center;border-radius:50%;border:3px solid rgba(255,255,255,.92);background:transparent;flex:0 0 auto;pointer-events:none}
+.profile-details{position:absolute;z-index:2;left:50%;bottom:9%;transform:translateX(-50%);width:88%;padding:7px 5px;border-radius:14px;background:rgba(40,25,65,.72);text-align:center;line-height:1.18;flex:0 0 auto;pointer-events:none}
+.profile-details strong{display:block;font-size:clamp(.83rem,2.6vw,1.15rem);color:#fff}
+.profile-details span{display:block;font-size:clamp(.65rem,1.8vw,.82rem);color:#fff;margin-top:4px}
+.birthday-countdown{
+  text-align:center;
+  min-height:42px;
+  padding:8px 2px 0;
+  font-size:clamp(.68rem,2vw,.9rem);
+  font-weight:800;
+  line-height:1.25;
+  color:#fff;
+  text-shadow:none;
+}
+.profile-footer{
+  text-align:center;
+  color:#fff;
+  font-size:.9rem;
+  margin:8px 0 22px;
+  text-shadow:none;
+}
+.jokes{max-width:740px;margin:25px auto 0;padding:20px;border-radius:25px;background:linear-gradient(135deg,#fff0f7,#fff8d9);text-align:center;box-shadow:0 7px 22px #4b315410}
+.jokes h2{margin:0 0 7px;font-size:1.35rem}
+.jokes p{margin:8px 0 14px}
+.joke-face{font-size:3rem}
+.controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:16px 0 20px}
+.controls label{font-weight:800}
+.controls select{border:2px solid #e7e3ff;background:#fff;border-radius:13px;padding:10px 12px;color:var(--ink);font-weight:700}
+.top{display:flex;align-items:center;justify-content:flex-end;margin:0 0 12px}
+.pill{background:white;padding:8px 12px;border-radius:999px;font-weight:800;font-size:.9rem;box-shadow:0 4px 14px #4a3c8410}
+.hero{background:linear-gradient(120deg,#6558d3,#897ce9);color:white;border-radius:28px;padding:23px 21px;position:relative;overflow:hidden;box-shadow:0 12px 28px #6558d326}
+.hero h1{font-size:clamp(1.65rem,5vw,2.5rem);line-height:1.08;margin:0 0 10px;max-width:520px}
+.hero p{margin:0;max-width:520px;line-height:1.5;color:#f1efff}
+.section-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:23px 2px 12px}
+.section-title h2{font-size:1.2rem;margin:0}
+.section-title small{color:var(--muted)}
+.games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.game{padding:17px 15px;text-align:left;min-height:158px;display:flex;flex-direction:column;align-items:flex-start;gap:7px;border:2px solid #fff;background:#fff;border-radius:23px;box-shadow:0 7px 20px #3b32700c}
+.game .emoji{font-size:2.25rem}
+.game strong{font-size:1.05rem}
+.game span:last-child{font-size:.9rem;color:var(--muted);line-height:1.35}
+.game:nth-child(1){background:#fff3c9}
+.game:nth-child(2){background:#ffe5f0}
+.game:nth-child(3){background:#e4f5ff}
+.game:nth-child(4){background:#e1f8e9}
+.progress{background:#fff;border-radius:23px;padding:17px;box-shadow:0 7px 20px #3b32700c}
+.progress-head{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:800}
+.bar{height:12px;background:#eeeefa;border-radius:99px;overflow:hidden;margin:12px 0 8px}
+.bar>div{height:100%;width:0;background:linear-gradient(90deg,#6558d3,#f08ab8);border-radius:99px;transition:width .3s}
+.muted{color:var(--muted);font-size:.9rem}
+.foot{text-align:center;color:var(--muted);font-size:.8rem;margin-top:24px}
+.screen{display:none;background:white;border-radius:26px;padding:20px 16px;box-shadow:0 10px 30px #3b327014;margin-top:14px}
+.screen.active{display:block}
+.back{background:#f0edff;color:#5145b7;padding:9px 13px}
+.screen h2{margin:15px 0 6px;font-size:1.55rem}
+.question{font-size:clamp(1.8rem,8vw,3rem);font-weight:900;text-align:center;margin:22px 0}
+.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.answer{background:#f3f1ff;color:#39305f;font-size:1.45rem;min-height:65px;border:2px solid transparent}
+.answer:focus-visible,.game:focus-visible,button:focus-visible{outline:3px solid #29205e;outline-offset:3px}
+.feedback{text-align:center;font-size:1.15rem;font-weight:850;min-height:34px;margin:16px 0 8px}
+.primary{background:var(--purple);color:white}
+.secondary{background:#f3f1ff;color:#5145b7}
+.action-row{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:10px}
+.bigword{text-align:center;font-size:clamp(2.5rem,12vw,4.5rem);font-weight:950;margin:20px 0}
+.memory{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:18px}
+.memcard{min-height:68px;padding:4px;font-size:1.8rem;background:#eeeaff;color:#5145b7;border:2px solid white}
+.memcard.open{background:#fff3c9}
+.memcard.done{background:#e1f8e9}
+@media(max-width:380px){
+  .app{padding-left:8px;padding-right:8px}
+  .profiles{gap:6px}
+  .profile-card{padding:4px;border-width:3px}
+  .profile-card img{width:80%;height:80%}
+  .profile-details{bottom:7%;width:90%;padding:5px 3px}
+  .profile-details strong{font-size:.76rem}
+  .profile-details span{font-size:.61rem}
+  .birthday-countdown{font-size:.65rem}
+  .jokes{padding:15px}
+  .action-row button{max-width:100%}
+}
+@media(min-width:620px){
+  .app{padding:24px}
+  .games{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .game{min-height:190px;padding:19px}
+  .memory{max-width:520px;margin:20px auto}
+  .screen{padding:26px}
+  .hero{padding:30px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important}
+}
+
+/* Selector de idioma: siempre visible arriba a la derecha */
+.language-bar{position:sticky;top:0;z-index:1000;display:flex;justify-content:flex-end;gap:6px;padding:8px 0 12px;background:linear-gradient(to bottom,rgba(246,203,217,.96),rgba(246,203,217,.72));backdrop-filter:blur(8px)}
+.language-button{padding:5px 6px;border:2px solid transparent;border-radius:12px;background:#fff;line-height:1;box-shadow:0 3px 10px #3b327014;display:flex;align-items:center;justify-content:center}.language-button img{display:block;width:30px;height:21px;object-fit:cover;border-radius:3px}
+.language-button[aria-pressed="true"]{border-color:#6558d3;box-shadow:0 0 0 2px #6558d333}
+.language-button:focus-visible{outline:3px solid #29205e;outline-offset:2px}
+
+</style>
+</head>
+<body>
+<div class="app">
+<nav class="language-bar" aria-label="Language / Idioma" id="languageBar">
+  <button type="button" class="language-button" data-language="es" aria-label="Español" title="Español" aria-pressed="true"><img src="./imagenes/espflag.PNG" alt="Español"></button>
+  <button type="button" class="language-button" data-language="en" aria-label="English" title="English" aria-pressed="false"><img src="./imagenes/ukflag.PNG" alt="English"></button>
+  <button type="button" class="language-button" data-language="ca" aria-label="Català" title="Català" aria-pressed="false"><img src="./imagenes/catflag.PNG" alt="Català"></button>
+  <button type="button" class="language-button" data-language="de" aria-label="Deutsch" title="Deutsch" aria-pressed="false"><img src="./imagenes/deuflag.PNG" alt="Deutsch"></button>
+</nav>
+<section id="profileChooser">
+  <div class="profile-intro">
+    <h1>¿Quién va a jugar hoy? ✨</h1>
+    <p>Elige tu perfil para entrar en tu mundo de aprendizaje.</p>
+  </div>
+  <div class="profiles">
+    <div class="profile-wrap">
+      <button class="profile-card mireia" data-profile="mireia" aria-label="Entrar en el perfil de Mireia">
+        <img src="imagenes/mireia.png" alt="Foto de Mireia Sonali">
+        <div class="profile-details">
+          <strong>Mireia Sonali</strong>
+          <span id="age-mireia"></span>
+        </div>
+      </button>
+      <div class="birthday-countdown" id="birthday-mireia"></div>
+    </div>
+    <div class="profile-wrap">
+      <button class="profile-card sofia" data-profile="sofia" aria-label="Entrar en el perfil de Sofía Raveena">
+        <img src="imagenes/sofia.png" alt="Foto de Sofía Raveena">
+        <div class="profile-details">
+          <strong>Sofía Raveena</strong>
+          <span id="age-sofia"></span>
+        </div>
+      </button>
+      <div class="birthday-countdown" id="birthday-sofia"></div>
+    </div>
+  </div>
+  <p class="profile-footer">Podéis continuar con vuestro progreso al entrar. 💜 Pasadlo genial mis queridas 💜</p>
+  <section class="jokes">
+    <div class="joke-face">🤡</div>
+    <h2>¡Rincón de chistes!</h2>
+    <p id="jokeText">¿Qué hace una abeja en el gimnasio? ¡Zum-ba! 🐝</p>
+    <div class="action-row">
+      <button class="primary" id="hearJoke">🔊 Escuchar chiste</button>
+      <button class="secondary" id="repeatJoke">🔁 Repetir chiste</button>
+      <button class="secondary" id="anotherJoke">😄 Otro chiste</button>
+    </div>
+  </section>
+</section>
+
+<div id="appContent" class="hide">
+<header class="top"><div class="pill" id="starPill">⭐ 0 estrellas</div></header>
+<section class="hero">
+  <h1>¡Aprender puede ser una aventura!</h1>
+  <p>Pequeños retos, grandes descubrimientos. Elige un juego y consigue estrellas a tu ritmo.</p>
+</section>
+<div class="controls">
+  <button class="secondary" id="switchProfile">👧 Cambiar perfil</button>
+  <label for="age">Nivel:</label>
+  <select id="age">
+    <option value="3">Nivel 3 años · Descubrir</option>
+    <option value="7">Nivel 7 años · Practicar</option>
+  </select>
+  <button class="secondary" id="speakWelcome">🔊 Escuchar</button>
+</div>
+<div id="home">
+  <div class="section-title"><h2>🎮 Elige una actividad</h2><small id="levelText">Nivel descubrir</small></div>
+  <div class="games">
+    <button class="game" data-game="math"><span class="emoji">🔢</span><strong id="mathTitle">Contar objetos</strong><span id="mathDesc">Cuenta y elige el número.</span></button>
+    <button class="game" data-game="words"><span class="emoji">🔤</span><strong>Palabras mágicas</strong><span id="wordsDesc">Escucha y reconoce palabras.</span></button>
+    <button class="game" data-game="memory"><span class="emoji">🧠</span><strong>Memoria divertida</strong><span>Encuentra las parejas iguales.</span></button>
+    <button class="game" data-game="listen"><span class="emoji">👂</span><strong>Escucha y aprende</strong><span>Oye una palabra y repítela.</span></button>
+  </div>
+  <div class="section-title"><h2>🏆 Mi progreso</h2><small>Se guarda en este dispositivo</small></div>
+  <div class="progress">
+    <div class="progress-head"><span id="progressLabel">¡Cada intento cuenta!</span><span id="progressCount">0 retos</span></div>
+    <div class="bar"><div id="progressBar"></div></div>
+    <div class="muted" id="progressNote">Juega para ganar tus primeras estrellas.</div>
+    <div class="action-row"><button class="secondary" id="resetProgress">Reiniciar progreso</button></div>
+  </div>
+</div>
+<section class="screen" id="screen">
+  <button class="back" id="back">← Volver al menú</button>
+  <h2 id="gameTitle">Juego</h2>
+  <p class="muted" id="gameInstruction">¡Vamos allá!</p>
+  <div id="gameArea"></div>
+  <div class="feedback" id="feedback" aria-live="polite"></div>
+  <div class="action-row"><button class="primary hide" id="next">Siguiente reto →</button><button class="secondary" id="hear">🔊 Escuchar</button></div>
+</section>
+<p class="foot">Hecho con cariño para aprender jugando 💜 · Cada perfil tiene su propio progreso.</p>
+</div>
+</div>
+
+<script>
+const API_URL = "https://mi-mundo-aprendizaje-api.paguerapiso.workers.dev";
+const $ = id => document.getElementById(id);
+const state = {age:3,game:null,round:0,score:0,answered:false,wordIndex:0,memFirst:null,memLock:false,memPairs:0};
+const STORE = "mundoAprendizajeProgressV1";
+let currentProfile = null;
+let progress = {stars:0,rounds:0,byGame:{}};
+let lastJoke = 0;
+let currentSessionToken = null;
+
+function emptyProgress() {
+  return {stars:0,rounds:0,byGame:{}};
+}
+
+function loadProgress() {
+  try {
+    return JSON.parse(localStorage.getItem(STORE + "_" + currentProfile)) || emptyProgress();
+  } catch(e) {
+    return emptyProgress();
+  }
+}
+
+function saveProgress() {
+  try {
+    if(currentProfile) localStorage.setItem(STORE + "_" + currentProfile,JSON.stringify(progress));
+  } catch(e) {}
+  renderProgress();
+}
+
+function renderProgress() {
+  $("starPill").textContent = "⭐ " + progress.stars + " estrellas";
+  $("progressCount").textContent = progress.rounds + " retos";
+  $("progressBar").style.width = Math.min(100,progress.rounds * 5) + "%";
+  $("progressNote").textContent = progress.rounds ? "Has completado retos en " + Object.keys(progress.byGame).length + " actividades. ¡Sigue así!" : "Juega para ganar tus primeras estrellas.";
+  $("progressLabel").textContent = progress.rounds ? "¡Buen trabajo!" : "¡Cada intento cuenta!";
+}
+
+function speak(text) {
+  if(!("speechSynthesis" in window)) {
+    if($("feedback")) setFeedback("Este navegador no tiene voz disponible.");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  let u = new SpeechSynthesisUtterance(text);
+  const speechLanguages = {es:"es-ES",en:"en-GB",ca:"ca-ES",de:"de-DE"};
+   const selectedLanguage = localStorage.getItem("mundoAprendizajeLanguage") || "es";
+   u.lang = speechLanguages[selectedLanguage] || "es-ES";
+   const spokenWords = {
+     gato:{en:"cat",ca:"gat",de:"Katze"}, sol:{en:"sun",ca:"sol",de:"Sonne"},
+     casa:{en:"house",ca:"casa",de:"Haus"}, flor:{en:"flower",ca:"flor",de:"Blume"},
+     perro:{en:"dog",ca:"gos",de:"Hund"}, luna:{en:"moon",ca:"lluna",de:"Mond"},
+     libro:{en:"book",ca:"llibre",de:"Buch"}, manzana:{en:"apple",ca:"poma",de:"Apfel"}
+   };
+   if(spokenWords[text] && spokenWords[text][selectedLanguage]) text = spokenWords[text][selectedLanguage];
+  u.rate = state.age === 3 ? .78 : .9;
+  window.speechSynthesis.speak(u);
+}
+
+function setFeedback(t) {
+  $("feedback").textContent = t;
+}
+
+function setAge() {
+  state.age = Number($("age").value);
+  $("levelText").textContent = state.age === 3 ? "Nivel descubrir" : "Nivel practicar";
+  $("mathTitle").textContent = state.age === 3 ? "Contar objetos" : "Retos matemáticos";
+  $("mathDesc").textContent = state.age === 3 ? "Cuenta y elige el número." : "Sumas y restas sencillas.";
+  $("wordsDesc").textContent = state.age === 3 ? "Escucha y reconoce palabras." : "Lee y reconoce palabras.";
+}
+
+function updateBirthdays() {
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const children = [
+    {id:"mireia",birth:new Date(2019,11,9)},
+    {id:"sofia",birth:new Date(2024,4,24)}
+  ];
+
+  for(const c of children) {
+    let years = today.getFullYear() - c.birth.getFullYear();
+    let birthdayThisYear = new Date(today.getFullYear(),c.birth.getMonth(),c.birth.getDate());
+    if(today < birthdayThisYear) years--;
+
+    let lastBirthday = new Date(c.birth.getFullYear() + Math.max(0,years),c.birth.getMonth(),c.birth.getDate());
+    let months = 0;
+    let cur = new Date(lastBirthday);
+
+    while(true) {
+      let next = new Date(cur);
+      next.setMonth(next.getMonth() + 1);
+      if(next <= today) {
+        cur = next;
+        months++;
+      } else break;
+    }
+
+    let days = Math.floor((today - cur) / 86400000);
+    $("age-" + c.id).textContent = `${years} años, ${months} meses, ${days} días`;
+
+    let nextBday = new Date(today.getFullYear(),c.birth.getMonth(),c.birth.getDate());
+    if(nextBday < today) nextBday = new Date(today.getFullYear() + 1,c.birth.getMonth(),c.birth.getDate());
+
+    const diff = Math.round((nextBday - today) / 86400000);
+    $("birthday-" + c.id).textContent = diff === 0 ? "🎉 ¡FELICIDADES, hoy es tu cumple! 🎂" : `${String(diff).padStart(3,"0")} días para tu ${years + 1}º cumple.`;
+  }
+}
+
+async function loginWithPin(profile) {
+  const name = profile === "mireia" ? "Mireia" : "Sofía";
+  const pin = window.prompt("🔐 Introduce el PIN de " + name + ":");
+  if(pin === null) return false;
+
+  const cleanPin = String(pin).trim();
+  if(!/^\d{4,5}$/.test(cleanPin)) {
+    window.alert("El PIN debe tener 4 o 5 números.");
+    return false;
+  }
+
+  try {
+    const response = await fetch(API_URL,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({action:"login",profile:profile,pin:cleanPin})
+    });
+    const data = await response.json();
+
+    if(!response.ok) {
+      if(data.error === "incorrect_pin") window.alert("❌ PIN incorrecto.");
+      else if(data.error === "locked") window.alert("🔒 Demasiados intentos. Espera " + data.retryAfter + " segundos.");
+      else if(data.error === "master_required") window.alert("🔐 Este perfil necesita ser desbloqueado con el PIN maestro.");
+      else window.alert("No se ha podido iniciar sesión.\n\n" + (data.error || "Error desconocido."));
+      return false;
+    }
+
+    if(!data.ok || !data.token) {
+      window.alert("El servidor no ha devuelto una sesión válida.");
+      return false;
+    }
+
+    currentSessionToken = data.token;
+    try {
+      localStorage.setItem("mundoAprendizajeSession_" + profile,JSON.stringify({token:data.token,expiresAt:data.expiresAt,profile:data.profile}));
+    } catch(e) {}
+    return true;
+  } catch(error) {
+    console.error("Error al conectar con el Worker:",error);
+    window.alert("⚠️ No se ha podido conectar con el servidor.\n\nComprueba que tienes conexión a Internet e inténtalo de nuevo.");
+    return false;
+  }
+}
+
+async function checkSavedSession(profile) {
+  try {
+    const saved = localStorage.getItem("mundoAprendizajeSession_" + profile);
+    if(!saved) return false;
+
+    const session = JSON.parse(saved);
+    if(!session.token || !session.expiresAt || session.expiresAt <= Math.floor(Date.now()/1000)) {
+      localStorage.removeItem("mundoAprendizajeSession_" + profile);
+      return false;
+    }
+
+    const response = await fetch(API_URL,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({action:"check_session",token:session.token})
+    });
+    const data = await response.json();
+
+    if(response.ok && data.ok) {
+      currentSessionToken = session.token;
+      return true;
+    }
+
+    localStorage.removeItem("mundoAprendizajeSession_" + profile);
+    return false;
+  } catch(error) {
+    console.error("Error comprobando sesión:",error);
+    return false;
+  }
+}
+
+async function selectProfile(profile) {
+  const loginOK = await loginWithPin(profile);
+  if(!loginOK) return;
+
+  currentProfile = profile;
+  $("age").value = profile === "mireia" ? "7" : "3";
+  setAge();
+  progress = loadProgress();
+  renderProgress();
+
+  $("profileChooser").classList.add("hide");
+  $("appContent").classList.remove("hide");
+  $("home").classList.remove("hide");
+  $("screen").classList.remove("active");
+  state.game = null;
+
+  if("speechSynthesis" in window) window.speechSynthesis.cancel();
+}
+
+function switchProfile() {
+  if("speechSynthesis" in window) window.speechSynthesis.cancel();
+  currentProfile = null;
+  currentSessionToken = null;
+  $("appContent").classList.add("hide");
+  $("profileChooser").classList.remove("hide");
+}
+
+$("age").addEventListener("change",setAge);
+document.querySelectorAll("[data-profile]").forEach(b => {
+  b.addEventListener("click",() => selectProfile(b.dataset.profile));
+});
+$("switchProfile").onclick = switchProfile;
+setAge();
+updateBirthdays();
+
+document.querySelectorAll("[data-game]").forEach(b => {
+  b.addEventListener("click",() => startGame(b.dataset.game));
+});
+
+$("speakWelcome").onclick = () => speak(state.age === 3 ? "¡Hola! Vamos a aprender jugando. Elige una actividad." : "¡Hola! Elige un reto y gana estrellas aprendiendo.");
+
+$("back").onclick = () => {
+  $("screen").classList.remove("active");
+  $("home").classList.remove("hide");
+  state.game = null;
+  if("speechSynthesis" in window) window.speechSynthesis.cancel();
+};
+
+$("resetProgress").onclick = () => {
+  if(confirm("¿Quieres borrar las estrellas y los retos guardados en este dispositivo?")) {
+    progress = emptyProgress();
+    saveProgress();
+  }
+};
+
+$("next").onclick = () => {
+  if(state.game === "memory") startMemory();
+  else startGame(state.game,true);
+};
+
+$("hear").onclick = () => {
+  if(state.game === "math") speak(state.questionText || "Cuenta los objetos.");
+  else if(state.game === "words" || state.game === "listen") speak(state.currentWord || "Escucha y aprende.");
+  else speak("Encuentra las parejas iguales.");
+};
+
+const jokes = [
+  "¿Qué hace una abeja en el gimnasio? ¡Zum-ba! 🐝",
+  "¿Qué le dice un pez a otro? ¡Nada, nada! 🐟",
+  "¿Cuál es el colmo de un jardinero? Que siempre lo dejen plantado. 🌱",
+  "¿Qué hace una vaca cuando sale el sol? ¡Sombra! 🐮",
+  "¿Qué le dice una pared a otra? Nos vemos en la esquina. 🧱",
+  "¿Qué animal tiene más dientes? ¡El ratoncito Pérez! 🐭"
+];
+
+function tellJoke() {
+  speak($("jokeText").textContent);
+}
+
+$("hearJoke").onclick = tellJoke;
+$("repeatJoke").onclick = tellJoke;
+$("anotherJoke").onclick = () => {
+  lastJoke = (lastJoke + 1 + Math.floor(Math.random() * (jokes.length - 1))) % jokes.length;
+  $("jokeText").textContent = jokes[lastJoke];
+  tellJoke();
+};
+
+function startGame(game) {
+  state.game = game;
+  state.answered = false;
+  state.score = 0;
+  $("home").classList.add("hide");
+  $("screen").classList.add("active");
+  $("feedback").textContent = "";
+  $("next").classList.add("hide");
+  $("gameArea").innerHTML = "";
+
+  if(game === "math") mathGame();
+  if(game === "words") wordsGame();
+  if(game === "listen") listenGame();
+  if(game === "memory") startMemory();
+}
+
+function reward() {
+  if(state.answered) return;
+  state.answered = true;
+  progress.stars++;
+  progress.rounds++;
+  progress.byGame[state.game] = (progress.byGame[state.game] || 0) + 1;
+  saveProgress();
+  $("next").classList.remove("hide");
+}
+
+function mathGame() {
+  let n;
+  let answers;
+  let correct;
+
+  if(state.age === 3) {
+    n = 1 + Math.floor(Math.random() * 5);
+    correct = String(n);
+    answers = new Set([n]);
+    while(answers.size < 4) answers.add(1 + Math.floor(Math.random() * 6));
+  } else {
+    let a = 1 + Math.floor(Math.random() * 10);
+    let b = 1 + Math.floor(Math.random() * 9);
+    let subtract = Math.random() > .55;
+    correct = String(subtract ? Math.max(a,b) - Math.min(a,b) : a + b);
+    state.mathA = subtract ? Math.max(a,b) : a;
+    state.mathB = subtract ? Math.min(a,b) : b;
+    state.mathOp = subtract ? "−" : "+";
+    answers = new Set([Number(correct)]);
+    while(answers.size < 4) answers.add(Math.max(0,Number(correct) + Math.floor(Math.random() * 7) - 3));
+    n = null;
+  }
+
+  answers = [...answers].sort(() => Math.random() - .5);
+  state.correct = correct;
+  state.questionText = state.age === 3 ? `Cuenta ${n} ${n === 1 ? "estrella" : "estrellas"}.` : `¿Cuánto es ${state.mathA} ${state.mathOp} ${state.mathB}?`;
+  $("gameTitle").textContent = state.age === 3 ? "Contar objetos" : "Retos matemáticos";
+  $("gameInstruction").textContent = state.age === 3 ? "Cuenta los dibujos y toca el número correcto." : "Resuelve la operación y elige el resultado.";
+  $("gameArea").innerHTML = `<div class="question">${state.age === 3 ? "⭐ ".repeat(n) : `${state.mathA} ${state.mathOp} ${state.mathB} = ?`}</div><div class="answers">${answers.map(x => `<button class="answer" data-answer="${x}">${x}</button>`).join("")}</div>`;
+
+  document.querySelectorAll("[data-answer]").forEach(b => {
+    b.onclick = () => {
+      if(state.answered) return;
+      if(b.dataset.answer === correct) {
+        setFeedback("¡Muy bien! ⭐ ¡Has ganado una estrella!");
+        reward();
+      } else setFeedback("¡Buen intento! Prueba otra vez 😊");
+    };
+  });
+}
+
+const words = [
+  {w:"gato",e:"🐱"},
+  {w:"sol",e:"☀️"},
+  {w:"casa",e:"🏠"},
+  {w:"flor",e:"🌸"},
+  {w:"perro",e:"🐶"},
+  {w:"luna",e:"🌙"},
+  {w:"libro",e:"📚"},
+  {w:"manzana",e:"🍎"}
+];
+
+function wordsGame() {
+  let item = words[Math.floor(Math.random() * words.length)];
+  state.currentWord = item.w;
+  $("gameTitle").textContent = "Palabras mágicas";
+  $("gameInstruction").textContent = state.age === 3 ? "Escucha la palabra y encuentra el dibujo." : "Lee la palabra y elige el dibujo correcto.";
+
+  let opts = [item];
+  while(opts.length < 4) {
+    let x = words[Math.floor(Math.random() * words.length)];
+    if(!opts.includes(x)) opts.push(x);
+  }
+  opts.sort(() => Math.random() - .5);
+
+  $("gameArea").innerHTML = `<div class="bigword">${state.age === 3 ? "🔊" : item.w}</div><div class="answers">${opts.map(x => `<button class="answer" data-word="${x.w}" aria-label="${x.w}">${x.e}${state.age === 7 ? `<br><small>${x.w}</small>` : ""}</button>`).join("")}</div>`;
+  if(state.age === 3) speak(item.w);
+
+  document.querySelectorAll("[data-word]").forEach(b => {
+    b.onclick = () => {
+      if(state.answered) return;
+      if(b.dataset.word === item.w) {
+        setFeedback("¡Correcto! Era " + item.w + " 🎉");
+        reward();
+      } else setFeedback("¡Casi! Escucha otra vez y prueba 😊");
+    };
+  });
+}
+
+function listenGame() {
+  let item = words[Math.floor(Math.random() * words.length)];
+  state.currentWord = item.w;
+  $("gameTitle").textContent = "Escucha y aprende";
+  $("gameInstruction").textContent = "Pulsa el altavoz, escucha la palabra y toca su dibujo.";
+
+  $("gameArea").innerHTML = `<div class="bigword">🔊</div><div class="answers">${[item,...words.filter(x => x.w !== item.w).sort(() => Math.random() - .5).slice(0,3)].sort(() => Math.random() - .5).map(x => `<button class="answer" data-listen="${x.w}">${x.e}</button>`).join("")}</div>`;
+  speak(item.w);
+
+  document.querySelectorAll("[data-listen]").forEach(b => {
+    b.onclick = () => {
+      if(state.answered) return;
+      if(b.dataset.listen === item.w) {
+        setFeedback("¡Muy bien! Has escuchado con atención.");
+        reward();
+      } else setFeedback("Prueba otra vez. Pulsa 🔊 para escuchar de nuevo.");
+    };
+  });
+}
+
+function startMemory() {
+  state.game = "memory";
+  state.answered = false;
+  state.memFirst = null;
+  state.memLock = false;
+  state.memPairs = 0;
+  $("next").classList.add("hide");
+  $("feedback").textContent = "";
+  $("gameTitle").textContent = "Memoria divertida";
+  $("gameInstruction").textContent = "Toca dos cartas y busca los dibujos iguales.";
+
+  const deck = ["🐶","🐱","🍎","🌟",...(state.age === 7 ? ["🚗","🌈"] : [])].flatMap((x,i) => [{id:i+"a",v:x},{id:i+"b",v:x}]).sort(() => Math.random() - .5);
+  state.deck = deck;
+
+  $("gameArea").innerHTML = `<div class="memory">${deck.map((x,i) => `<button class="memcard" data-card="${i}" aria-label="Carta ${i+1}">❔</button>`).join("")}</div>`;
+  document.querySelectorAll("[data-card]").forEach(b => {
+    b.onclick = () => flipCard(Number(b.dataset.card),b);
+  });
+}
+
+function flipCard(i,b) {
+  if(state.memLock || b.classList.contains("done") || b.classList.contains("open")) return;
+
+  const card = state.deck[i];
+  b.textContent = card.v;
+  b.classList.add("open");
+
+  if(state.memFirst === null) {
+    state.memFirst = {i,b,card};
+    return;
+  }
+
+  let first = state.memFirst;
+  state.memFirst = null;
+
+  if(first.card.v === card.v) {
+    first.b.classList.remove("open");
+    first.b.classList.add("done");
+    b.classList.remove("open");
+    b.classList.add("done");
+    state.memPairs++;
+
+    if(state.memPairs === state.deck.length / 2) {
+      setFeedback("¡Lo has conseguido! Todas las parejas 🎉");
+      reward();
+    } else setFeedback("¡Pareja encontrada! ⭐");
+  } else {
+    state.memLock = true;
+    setFeedback("No son iguales. ¡Inténtalo de nuevo!");
+
+    setTimeout(() => {
+      first.b.textContent = "❔";
+      b.textContent = "❔";
+      first.b.classList.remove("open");
+      b.classList.remove("open");
+      state.memLock = false;
+    },750);
+  }
+}
+</script>
+
+<script>
+(function(){
+  "use strict";
+  const STORAGE_KEY = "mundoAprendizajeLanguage";
+  const languageNames = {es:"Español",en:"English",ca:"Català",de:"Deutsch"};
+  const dictionaries = {
+    en: {
+      "¿Quién va a jugar hoy? ✨":"Who's playing today? ✨",
+      "Elige tu perfil para entrar en tu mundo de aprendizaje.":"Choose your profile to enter your learning world.",
+      "Podéis continuar con vuestro progreso al entrar. 💜 Pasadlo genial mis queridas 💜":"You can continue your progress when you sign in. 💜 Have fun, my dears! 💜",
+      "¡Rincón de chistes!":"Joke corner!",
+      "🔊 Escuchar chiste":"🔊 Hear joke","🔁 Repetir chiste":"🔁 Repeat joke","😄 Otro chiste":"😄 Another joke",
+      "⭐ 0 estrellas":"⭐ 0 stars","¡Aprender puede ser una aventura!":"Learning can be an adventure!",
+      "Pequeños retos, grandes descubrimientos. Elige un juego y consigue estrellas a tu ritmo.":"Small challenges, big discoveries. Choose a game and earn stars at your own pace.",
+      "👧 Cambiar perfil":"👧 Change profile","Nivel:":"Level:",
+      "Nivel 3 años · Descubrir":"Level age 3 · Discover","Nivel 7 años · Practicar":"Level age 7 · Practise",
+      "🔊 Escuchar":"🔊 Listen","🎮 Elige una actividad":"🎮 Choose an activity","Nivel descubrir":"Discover level","Nivel practicar":"Practice level",
+      "Contar objetos":"Count objects","Retos matemáticos":"Math challenges","Cuenta y elige el número.":"Count and choose the number.",
+      "Sumas y restas sencillas.":"Simple addition and subtraction.","Palabras mágicas":"Magic words","Escucha y reconoce palabras.":"Listen and recognise words.",
+      "Lee y reconoce palabras.":"Read and recognise words.","Memoria divertida":"Fun memory","Encuentra las parejas iguales.":"Find the matching pairs.",
+      "Escucha y aprende":"Listen and learn","Oye una palabra y repítela.":"Hear a word and repeat it.",
+      "🏆 Mi progreso":"🏆 My progress","Se guarda en este dispositivo":"Saved on this device","¡Cada intento cuenta!":"Every try counts!",
+      "0 retos":"0 challenges","Juega para ganar tus primeras estrellas.":"Play to earn your first stars.",
+      "Reiniciar progreso":"Reset progress","← Volver al menú":"← Back to menu","Juego":"Game","¡Vamos allá!":"Let's go!",
+      "Siguiente reto →":"Next challenge →","Hecho con cariño para aprender jugando 💜 · Cada perfil tiene su propio progreso.":"Made with love for learning through play 💜 · Each profile has its own progress.",
+      "Cuenta los dibujos y toca el número correcto.":"Count the pictures and tap the right number.",
+      "Resuelve la operación y elige el resultado.":"Solve the problem and choose the answer.",
+      "¡Muy bien! ⭐ ¡Has ganado una estrella!":"Great job! ⭐ You earned a star!",
+      "¡Buen intento! Prueba otra vez 😊":"Good try! Try again 😊",
+      "Escucha la palabra y encuentra el dibujo.":"Listen to the word and find the picture.",
+      "Lee la palabra y elige el dibujo correcto.":"Read the word and choose the correct picture.",
+      "¡Correcto! Era ":"Correct! It was "," 🎉":" 🎉","¡Casi! Escucha otra vez y prueba 😊":"Almost! Listen again and try 😊",
+      "Pulsa el altavoz, escucha la palabra y toca su dibujo.":"Tap the speaker, listen to the word, and tap its picture.",
+      "¡Muy bien! Has escuchado con atención.":"Great job! You listened carefully.",
+      "Prueba otra vez. Pulsa 🔊 para escuchar de nuevo.":"Try again. Tap 🔊 to listen again.",
+      "Toca dos cartas y busca los dibujos iguales.":"Turn over two cards and find matching pictures.",
+      "¡Lo has conseguido! Todas las parejas 🎉":"You did it! All the pairs 🎉","¡Pareja encontrada! ⭐":"A pair found! ⭐",
+      "No son iguales. ¡Inténtalo de nuevo!":"They don't match. Try again!",
+      "Este navegador no tiene voz disponible.":"This browser does not support speech.",
+      "Introduce el PIN de ":"Enter the PIN for ","El PIN debe tener 4 o 5 números.":"The PIN must contain 4 or 5 digits.",
+      "❌ PIN incorrecto.":"❌ Incorrect PIN.","🔒 Demasiados intentos. Espera ":"🔒 Too many attempts. Wait ",
+      " segundos.":" seconds.","🔐 Este perfil necesita ser desbloqueado con el PIN maestro.":"🔐 This profile must be unlocked with the master PIN.",
+      "No se ha podido iniciar sesión.":"Unable to sign in.","Error desconocido.":"Unknown error.",
+      "El servidor no ha devuelto una sesión válida.":"The server did not return a valid session.",
+      "⚠️ No se ha podido conectar con el servidor.":"⚠️ Could not connect to the server.",
+      "Comprueba que tienes conexión a Internet e inténtalo de nuevo.":"Check your internet connection and try again.",
+      "¿Quieres borrar las estrellas y los retos guardados en este dispositivo?":"Do you want to delete the stars and challenges saved on this device?",
+      "¿Cuánto es ":"How much is ","Cuenta ":"Count "," estrella.":" star."," estrellas.":" stars.",
+      "¡Hola! Vamos a aprender jugando. Elige una actividad.":"Hello! Let's learn through play. Choose an activity.",
+      "¡Hola! Elige un reto y gana estrellas aprendiendo.":"Hello! Choose a challenge and earn stars as you learn.",
+      "Encuentra las parejas iguales.":"Find the matching pairs.","Carta ":"Card "
+    },
+    ca: {
+      "¿Quién va a jugar hoy? ✨":"Qui jugarà avui? ✨",
+      "Elige tu perfil para entrar en tu mundo de aprendizaje.":"Tria el teu perfil per entrar al teu món d'aprenentatge.",
+      "Podéis continuar con vuestro progreso al entrar. 💜 Pasadlo genial mis queridas 💜":"Podeu continuar el vostre progrés quan entreu. 💜 Que us ho passeu molt bé, estimades! 💜",
+      "¡Rincón de chistes!":"Racó d'acudits!","🔊 Escuchar chiste":"🔊 Escolta l'acudit","🔁 Repetir chiste":"🔁 Repeteix l'acudit","😄 Otro chiste":"😄 Un altre acudit",
+      "⭐ 0 estrellas":"⭐ 0 estrelles","¡Aprender puede ser una aventura!":"Aprendre pot ser una aventura!",
+      "Pequeños retos, grandes descubrimientos. Elige un juego y consigue estrellas a tu ritmo.":"Petits reptes, grans descobriments. Tria un joc i aconsegueix estrelles al teu ritme.",
+      "👧 Cambiar perfil":"👧 Canvia de perfil","Nivel:":"Nivell:",
+      "Nivel 3 años · Descubrir":"Nivell 3 anys · Descobrir","Nivel 7 años · Practicar":"Nivell 7 anys · Practicar",
+      "🔊 Escuchar":"🔊 Escolta","🎮 Elige una actividad":"🎮 Tria una activitat","Nivel descubrir":"Nivell descobrir","Nivel practicar":"Nivell practicar",
+      "Contar objetos":"Comptar objectes","Retos matemáticos":"Reptes matemàtics","Cuenta y elige el número.":"Compta i tria el número.",
+      "Sumas y restas sencillas.":"Sumes i restes senzilles.","Palabras mágicas":"Paraules màgiques","Escucha y reconoce palabras.":"Escolta i reconeix paraules.",
+      "Lee y reconoce palabras.":"Llegeix i reconeix paraules.","Memoria divertida":"Memòria divertida","Encuentra las parejas iguales.":"Troba les parelles iguals.",
+      "Escucha y aprende":"Escolta i aprèn","Oye una palabra y repítela.":"Escolta una paraula i repeteix-la.",
+      "🏆 Mi progreso":"🏆 El meu progrés","Se guarda en este dispositivo":"Es desa en aquest dispositiu","¡Cada intento cuenta!":"Cada intent compta!",
+      "0 retos":"0 reptes","Juega para ganar tus primeras estrellas.":"Juga per guanyar les teves primeres estrelles.",
+      "Reiniciar progreso":"Reinicia el progrés","← Volver al menú":"← Torna al menú","Juego":"Joc","¡Vamos allá!":"Som-hi!",
+      "Siguiente reto →":"Repte següent →","Hecho con cariño para aprender jugando 💜 · Cada perfil tiene su propio progreso.":"Fet amb estima per aprendre jugant 💜 · Cada perfil té el seu propi progrés.",
+      "Cuenta los dibujos y toca el número correcto.":"Compta els dibuixos i toca el número correcte.",
+      "Resuelve la operación y elige el resultado.":"Resol l'operació i tria el resultat.",
+      "¡Muy bien! ⭐ ¡Has ganado una estrella!":"Molt bé! ⭐ Has guanyat una estrella!",
+      "¡Buen intento! Prueba otra vez 😊":"Bon intent! Torna-ho a provar 😊",
+      "Escucha la palabra y encuentra el dibujo.":"Escolta la paraula i troba el dibuix.",
+      "Lee la palabra y elige el dibujo correcto.":"Llegeix la paraula i tria el dibuix correcte.",
+      "¡Correcto! Era ":"Correcte! Era ","¡Casi! Escucha otra vez y prueba 😊":"Gairebé! Escolta una altra vegada i prova-ho 😊",
+      "Pulsa el altavoz, escucha la palabra y toca su dibujo.":"Prem l'altaveu, escolta la paraula i toca el seu dibuix.",
+      "¡Muy bien! Has escuchado con atención.":"Molt bé! Has escoltat amb atenció.",
+      "Prueba otra vez. Pulsa 🔊 para escuchar de nuevo.":"Torna-ho a provar. Prem 🔊 per escoltar de nou.",
+      "Toca dos cartas y busca los dibujos iguales.":"Gira dues cartes i busca els dibuixos iguals.",
+      "¡Lo has conseguido! Todas las parejas 🎉":"Ho has aconseguit! Totes les parelles 🎉","¡Pareja encontrada! ⭐":"Has trobat una parella! ⭐",
+      "No son iguales. ¡Inténtalo de nuevo!":"No són iguals. Torna-ho a provar!",
+      "Este navegador no tiene voz disponible.":"Aquest navegador no té veu disponible.",
+      "Introduce el PIN de ":"Introdueix el PIN de ","El PIN debe tener 4 o 5 números.":"El PIN ha de tenir 4 o 5 números.",
+      "❌ PIN incorrecto.":"❌ PIN incorrecte.","🔒 Demasiados intentos. Espera ":"🔒 Massa intents. Espera ",
+      " segundos.":" segons.","🔐 Este perfil necesita ser desbloqueado con el PIN maestro.":"🔐 Aquest perfil s'ha de desbloquejar amb el PIN mestre.",
+      "No se ha podido iniciar sesión.":"No s'ha pogut iniciar la sessió.","Error desconocido.":"Error desconegut.",
+      "El servidor no ha devuelto una sesión válida.":"El servidor no ha retornat una sessió vàlida.",
+      "⚠️ No se ha podido conectar con el servidor.":"⚠️ No s'ha pogut connectar amb el servidor.",
+      "Comprueba que tienes conexión a Internet e inténtalo de nuevo.":"Comprova la connexió a Internet i torna-ho a provar.",
+      "¿Quieres borrar las estrellas y los retos guardados en este dispositivo?":"Vols esborrar les estrelles i els reptes desats en aquest dispositiu?",
+      "¿Cuánto es ":"Quant fa ","Cuenta ":"Compta "," estrella.":" estrella."," estrellas.":" estrelles.",
+      "¡Hola! Vamos a aprender jugando. Elige una actividad.":"Hola! Aprendrem jugant. Tria una activitat.",
+      "¡Hola! Elige un reto y gana estrellas aprendiendo.":"Hola! Tria un repte i guanya estrelles mentre aprens.",
+      "Encuentra las parejas iguales.":"Troba les parelles iguals.","Carta ":"Carta "
+    },
+    de: {
+      "¿Quién va a jugar hoy? ✨":"Wer spielt heute? ✨",
+      "Elige tu perfil para entrar en tu mundo de aprendizaje.":"Wähle dein Profil, um deine Lernwelt zu betreten.",
+      "Podéis continuar con vuestro progreso al entrar. 💜 Pasadlo genial mis queridas 💜":"Ihr könnt euren Fortschritt nach der Anmeldung fortsetzen. 💜 Viel Spaß, ihr Lieben! 💜",
+      "¡Rincón de chistes!":"Witze-Ecke!","🔊 Escuchar chiste":"🔊 Witz anhören","🔁 Repetir chiste":"🔁 Witz wiederholen","😄 Otro chiste":"😄 Noch ein Witz",
+      "⭐ 0 estrellas":"⭐ 0 Sterne","¡Aprender puede ser una aventura!":"Lernen kann ein Abenteuer sein!",
+      "Pequeños retos, grandes descubrimientos. Elige un juego y consigue estrellas a tu ritmo.":"Kleine Herausforderungen, große Entdeckungen. Wähle ein Spiel und sammle Sterne in deinem Tempo.",
+      "👧 Cambiar perfil":"👧 Profil wechseln","Nivel:":"Stufe:",
+      "Nivel 3 años · Descubrir":"Stufe 3 Jahre · Entdecken","Nivel 7 años · Practicar":"Stufe 7 Jahre · Üben",
+      "🔊 Escuchar":"🔊 Anhören","🎮 Elige una actividad":"🎮 Wähle eine Aktivität","Nivel descubrir":"Entdeckerstufe","Nivel practicar":"Übungsstufe",
+      "Contar objetos":"Objekte zählen","Retos matemáticos":"Mathe-Aufgaben","Cuenta y elige el número.":"Zähle und wähle die Zahl.",
+      "Sumas y restas sencillas.":"Einfache Addition und Subtraktion.","Palabras mágicas":"Zauberwörter","Escucha y reconoce palabras.":"Höre Wörter und erkenne sie.",
+      "Lee y reconoce palabras.":"Lies Wörter und erkenne sie.","Memoria divertida":"Lustiges Gedächtnisspiel","Encuentra las parejas iguales.":"Finde die passenden Paare.",
+      "Escucha y aprende":"Hören und lernen","Oye una palabra y repítela.":"Höre ein Wort und wiederhole es.",
+      "🏆 Mi progreso":"🏆 Mein Fortschritt","Se guarda en este dispositivo":"Auf diesem Gerät gespeichert","¡Cada intento cuenta!":"Jeder Versuch zählt!",
+      "0 retos":"0 Aufgaben","Juega para ganar tus primeras estrellas.":"Spiele und verdiene deine ersten Sterne.",
+      "Reiniciar progreso":"Fortschritt zurücksetzen","← Volver al menú":"← Zurück zum Menü","Juego":"Spiel","¡Vamos allá!":"Los geht's!",
+      "Siguiente reto →":"Nächste Aufgabe →","Hecho con cariño para aprender jugando 💜 · Cada perfil tiene su propio progreso.":"Mit Liebe gemacht, damit Lernen Spaß macht 💜 · Jedes Profil hat eigenen Fortschritt.",
+      "Cuenta los dibujos y toca el número correcto.":"Zähle die Bilder und tippe auf die richtige Zahl.",
+      "Resuelve la operación y elige el resultado.":"Löse die Aufgabe und wähle das Ergebnis.",
+      "¡Muy bien! ⭐ ¡Has ganado una estrella!":"Sehr gut! ⭐ Du hast einen Stern verdient!",
+      "¡Buen intento! Prueba otra vez 😊":"Guter Versuch! Probiere es noch einmal 😊",
+      "Escucha la palabra y encuentra el dibujo.":"Höre das Wort und finde das Bild.",
+      "Lee la palabra y elige el dibujo correcto.":"Lies das Wort und wähle das richtige Bild.",
+      "¡Correcto! Era ":"Richtig! Es war ","¡Casi! Escucha otra vez y prueba 😊":"Fast! Höre noch einmal zu und versuche es 😊",
+      "Pulsa el altavoz, escucha la palabra y toca su dibujo.":"Tippe auf den Lautsprecher, höre das Wort und wähle das Bild.",
+      "¡Muy bien! Has escuchado con atención.":"Sehr gut! Du hast aufmerksam zugehört.",
+      "Prueba otra vez. Pulsa 🔊 para escuchar de nuevo.":"Versuche es noch einmal. Tippe auf 🔊, um erneut zu hören.",
+      "Toca dos cartas y busca los dibujos iguales.":"Decke zwei Karten auf und finde gleiche Bilder.",
+      "¡Lo has conseguido! Todas las parejas 🎉":"Geschafft! Alle Paare gefunden 🎉","¡Pareja encontrada! ⭐":"Ein Paar gefunden! ⭐",
+      "No son iguales. ¡Inténtalo de nuevo!":"Sie passen nicht zusammen. Versuche es erneut!",
+      "Este navegador no tiene voz disponible.":"Dieser Browser unterstützt keine Sprachausgabe.",
+      "Introduce el PIN de ":"Gib die PIN ein für ","El PIN debe tener 4 o 5 números.":"Die PIN muss aus 4 oder 5 Ziffern bestehen.",
+      "❌ PIN incorrecto.":"❌ Falsche PIN.","🔒 Demasiados intentos. Espera ":"🔒 Zu viele Versuche. Warte ",
+      " segundos.":" Sekunden.","🔐 Este perfil necesita ser desbloqueado con el PIN maestro.":"🔐 Dieses Profil muss mit der Master-PIN entsperrt werden.",
+      "No se ha podido iniciar sesión.":"Anmeldung nicht möglich.","Error desconocido.":"Unbekannter Fehler.",
+      "El servidor no ha devuelto una sesión válida.":"Der Server hat keine gültige Sitzung zurückgegeben.",
+      "⚠️ No se ha podido conectar con el servidor.":"⚠️ Verbindung zum Server nicht möglich.",
+      "Comprueba que tienes conexión a Internet e inténtalo de nuevo.":"Prüfe deine Internetverbindung und versuche es erneut.",
+      "¿Quieres borrar las estrellas y los retos guardados en este dispositivo?":"Möchtest du die auf diesem Gerät gespeicherten Sterne und Aufgaben löschen?",
+      "¿Cuánto es ":"Wie viel ist ","Cuenta ":"Zähle "," estrella.":" Stern."," estrellas.":" Sterne.",
+      "¡Hola! Vamos a aprender jugando. Elige una actividad.":"Hallo! Wir lernen spielerisch. Wähle eine Aktivität.",
+      "¡Hola! Elige un reto y gana estrellas aprendiendo.":"Hallo! Wähle eine Aufgabe und verdiene Sterne beim Lernen.",
+      "Encuentra las parejas iguales.":"Finde die passenden Paare.","Carta ":"Karte "
+    }
+  };
+  const wordMap = {
+    gato:{en:"cat",ca:"gat",de:"Katze"}, sol:{en:"sun",ca:"sol",de:"Sonne"},
+    casa:{en:"house",ca:"casa",de:"Haus"}, flor:{en:"flower",ca:"flor",de:"Blume"},
+    perro:{en:"dog",ca:"gos",de:"Hund"}, luna:{en:"moon",ca:"lluna",de:"Mond"},
+    libro:{en:"book",ca:"llibre",de:"Buch"}, manzana:{en:"apple",ca:"poma",de:"Apfel"}
+  };
+  let language = localStorage.getItem(STORAGE_KEY) || "es";
+  const originalTexts = new WeakMap();
+  function translateText(value, lang) {
+    if (!value || lang === "es") return value;
+    let text = value;
+    for (const [source, target] of Object.entries(dictionaries[lang] || {})) {
+      if (text === source) return target;
+    }
+    // Dynamic phrases
+    let m;
+    if ((m=text.match(/^⭐ (\d+) estrellas$/))) return `⭐ ${m[1]} ${lang==="en"?"stars":lang==="ca"?"estrelles":"Sterne"}`;
+    if ((m=text.match(/^(\d+) retos$/))) return `${m[1]} ${lang==="en"?"challenges":lang==="ca"?"reptes":"Aufgaben"}`;
+    if ((m=text.match(/^(\d+) años, (\d+) meses, (\d+) días$/))) {
+      return lang==="en" ? `${m[1]} years, ${m[2]} months, ${m[3]} days` : lang==="ca" ? `${m[1]} anys, ${m[2]} mesos, ${m[3]} dies` : `${m[1]} Jahre, ${m[2]} Monate, ${m[3]} Tage`;
+    }
+    if ((m=text.match(/^(\d{3}) días para tu (\d+)º cumple\.$/))) {
+      return lang==="en" ? `${m[1]} days until your ${m[2]}th birthday.` : lang==="ca" ? `${m[1]} dies per al teu ${m[2]}è aniversari.` : `${m[1]} Tage bis zu deinem ${m[2]}. Geburtstag.`;
+    }
+    if (text.startsWith("¡Correcto! Era ")) return (lang==="en"?"Correct! It was ":lang==="ca"?"Correcte! Era ":"Richtig! Es war ")+text.slice("¡Correcto! Era ".length);
+    if (text.startsWith("🔒 Demasiados intentos. Espera ")) return (lang==="en"?"🔒 Too many attempts. Wait ":lang==="ca"?"🔒 Massa intents. Espera ":"🔒 Zu viele Versuche. Warte ")+text.slice("🔒 Demasiados intentos. Espera ".length).replace(" segundos.",lang==="en"?" seconds.":lang==="ca"?" segons.":" Sekunden.");
+    if (text.startsWith("Cuenta ")) {
+      const n=text.slice(7).replace(/\.$/,"");
+      return lang==="en" ? `Count ${n}.` : lang==="ca" ? `Compta ${n}.` : `Zähle ${n}.`;
+    }
+    if (wordMap[text] && wordMap[text][lang]) return wordMap[text][lang];
+    return text;
+  }
+  function translateNode(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      if (!originalTexts.has(node)) originalTexts.set(node,node.nodeValue);
+      const original = originalTexts.get(node);
+      // If application code has replaced a translated value, use its new value as source.
+      if (node.nodeValue !== translateText(original,language) && node.nodeValue !== original) originalTexts.set(node,node.nodeValue);
+      const source = originalTexts.get(node);
+      const translated = translateText(source,language);
+      if (node.nodeValue !== translated) node.nodeValue = translated;
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      ["aria-label","title","placeholder"].forEach(attr=>{
+        if(node.hasAttribute(attr)) {
+          const marker="data-original-"+attr;
+          if(!node.hasAttribute(marker)) node.setAttribute(marker,node.getAttribute(attr));
+          node.setAttribute(attr,translateText(node.getAttribute(marker),language));
+        }
+      });
+      node.childNodes.forEach(translateNode);
+    }
+  }
+  function applyLanguage(lang) {
+    language = lang;
+    localStorage.setItem(STORAGE_KEY,lang);
+    document.documentElement.lang = lang;
+    document.querySelectorAll(".language-button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.language===lang)));
+    translateNode(document.querySelector(".app"));
+    document.querySelectorAll("[data-profile]").forEach(b=>{
+      const name=b.dataset.profile==="mireia"?"Mireia":"Sofía";
+      b.setAttribute("aria-label", translateText("Entrar en el perfil de "+name,lang));
+    });
+    loadDailyJokes();
+  }
+  document.querySelectorAll(".language-button").forEach(b=>b.addEventListener("click",()=>applyLanguage(b.dataset.language)));
+  // Observe game screens and messages created after the initial page load.
+  const observer = new MutationObserver(records=>{
+    records.forEach(record=>{
+      if(record.type==="characterData") {
+        if(!originalTexts.has(record.target)) originalTexts.set(record.target,record.target.nodeValue);
+        else {
+          const known=originalTexts.get(record.target);
+          if(record.target.nodeValue !== translateText(known,language) && record.target.nodeValue !== known) {
+            originalTexts.set(record.target,record.target.nodeValue);
+          }
+        }
+        const original=originalTexts.get(record.target);
+        const translated=translateText(original,language);
+        if(record.target.nodeValue !== translated) record.target.nodeValue=translated;
+      }
+      record.addedNodes && record.addedNodes.forEach(n=>translateNode(n));
+    });
+  });
+  observer.observe(document.querySelector(".app"),{subtree:true,childList:true,characterData:true});
+  // Translate browser prompts/alerts used by the PIN and progress controls.
+  const originalAlert=window.alert.bind(window), originalConfirm=window.confirm.bind(window), originalPrompt=window.prompt.bind(window);
+  window.alert=(message)=>originalAlert(translateText(String(message),language));
+  window.confirm=(message)=>originalConfirm(translateText(String(message),language));
+  window.prompt=(message,defaultValue)=>originalPrompt(translateText(String(message),language),defaultValue);
+  let jokesData = null;
+  async function loadDailyJokes() {
+    try {
+      if(!jokesData) {
+        const response=await fetch("./chistes.json",{cache:"no-store"});
+        if(response.ok) jokesData=await response.json();
+      }
+      if(!jokesData) return;
+      const list=Array.isArray(jokesData[language])?jokesData[language]:jokesData.jokes;
+      if(!Array.isArray(list)||!list.length) return;
+      const day=Math.floor(Date.now()/86400000);
+      let idx=((day % list.length)+list.length)%list.length;
+      const show=()=>{document.getElementById("jokeText").textContent=list[idx];};
+      show();
+      const hear=()=>{if(typeof window.speak==="function") window.speak(document.getElementById("jokeText").textContent);};
+      const another=document.getElementById("anotherJoke");
+      const repeat=document.getElementById("repeatJoke");
+      const hearButton=document.getElementById("hearJoke");
+      another.onclick=()=>{idx=(idx+1)%list.length;show();hear();};
+      repeat.onclick=hear;
+      hearButton.onclick=hear;
+    } catch(error) {
+      console.warn("Could not load chistes.json; using the built-in jokes.",error);
+    }
+  }
+  // Load language on start. The Spanish interface remains the default.
+  applyLanguage(language);
+})();
+</script>
+
+</body>
+</html>
