@@ -189,7 +189,7 @@ Las 12 zonas educativas y el punto futuro son:
 
 Ideas visuales específicas: un palacio inspirado en el Taj Mahal para Mitología India; un barco visible en un puerto dentro del mar; un avión F/A-18 en maniobra de izquierda a derecha, inclinado y con las dos alas visibles, para Ciencias. Inventar hitos visuales memorables para las demás zonas, manteniendo la coherencia del mapa.
 
-Título de trabajo: **EL MUNDO MÁGICO DE MIREIA**. El mapa de referencia generado el 19/10/2026 se encuentra en la sesión de ChatGPT; aún debe incorporarse como archivo al repositorio para que quede versionado junto al código.
+Título de trabajo: **EL MUNDO MÁGICO DE MIREIA**. La referencia visual elegida por la usuaria está versionada en `peques/imagenes/fondomundomireia.webp`; el PNG original se conserva en la carpeta de entregables local.
 
 ## Interfaz de la pantalla del mapa
 
