@@ -160,3 +160,93 @@ Cuando la web y la sincronización estén probadas, preparar una versión instal
 ## 10. Estado actual
 
 El proyecto web inicial existe en la carpeta `peques/`. La siguiente tarea es comprobar que Codespaces abre correctamente, que los perfiles funcionan y que los juegos originales siguen operativos antes de comenzar las modificaciones de la PWA.
+
+
+---
+
+# Plan maestro actualizado — 19/10/2026
+
+## Prioridad actual: mundo de aventuras de Mireia
+
+Desarrollar primero el mundo de Mireia; adaptar más adelante una experiencia apropiada para Sofía. El objetivo visual es un videojuego educativo infantil con una isla de aventuras, mapa conectado por caminos, acabado 3D de juguete y colores vibrantes. La composición debe conservar la idea de isla de aventura y los puntos de interés deben ser grandes, equilibrados, fáciles de reconocer y con nombres muy legibles.
+
+### Mapa principal: 13 puntos
+
+Las 12 zonas educativas y el punto futuro son:
+1. Mi Mates.
+2. Mi Lectura.
+3. Mi Escritura.
+4. Mi Inglés.
+5. Mi Catalán.
+6. Mi Alemán.
+7. Ciencias.
+8. Música.
+9. Biblioteca de Cuentos.
+10. Mitología Griega.
+11. Mitología India.
+12. Juegos.
+13. Área en construcción.
+
+Ideas visuales específicas: un palacio inspirado en el Taj Mahal para Mitología India; un barco visible en un puerto dentro del mar; un avión F/A-18 en maniobra de izquierda a derecha, inclinado y con las dos alas visibles, para Ciencias. Inventar hitos visuales memorables para las demás zonas, manteniendo la coherencia del mapa.
+
+Título de trabajo: **EL MUNDO MÁGICO DE MIREIA**. El mapa de referencia generado el 19/10/2026 se encuentra en la sesión de ChatGPT; aún debe incorporarse como archivo al repositorio para que quede versionado junto al código.
+
+## Interfaz de la pantalla del mapa
+
+### Barra superior
+- Foto/ avatar de Mireia en tamaño pequeño, arriba a la izquierda, manteniendo la identidad visual de la página actual.
+- En la parte superior derecha: banderas para Español, Inglés, Catalán y Alemán.
+- Mostrar fecha como DD/MM/AAAA y hora como HH:MM.
+- Mostrar los contadores de estrellas doradas, plateadas y de bronce por separado.
+- Añadir un botón **Salir** que vuelva a la pantalla de selección de perfil.
+- Cambiar el idioma no debe reiniciar la actividad, exigir el PIN de nuevo ni borrar el progreso de la sesión.
+
+### Elementos que se pueden retirar de la pantalla principal
+- Selector «Nivel».
+- Etiquetas «Practicar» y «Elige una actividad».
+- Bloques actuales «Mi progreso» y «Buen trabajo» y otros resúmenes que recarguen la pantalla.
+- Conservar las funciones de perfiles, PIN, idiomas, juegos y progreso existentes; revisar el código antes de eliminar cualquier función y no tocar datos guardados sin una estrategia de migración.
+
+## Panel separado de fiestas y temporadas
+
+La zona de fiestas debe ser una caja/panel independiente del mapa, ubicada abajo a la derecha. No debe formar parte de los puntos educativos de la isla. Cada evento tendrá exactamente las mismas dimensiones y una identidad de color propia. Eventos inactivos: icono/logo en blanco y negro; el evento activo tendrá el icono iluminado y sus colores estacionales. El panel y la lógica deben poder reutilizarse cambiando tema, icono y actividades sin rediseñar el mapa.
+
+Paletas iniciales:
+- Halloween: naranja, negro y marrón, con ambiente otoñal.
+- Navidad: rojo, verde y blanco.
+- Verano: azul, amarillo y blanco.
+- Semana Santa: violeta, oro y blanco.
+- Sant Joan, San Sebastián, San Patricio y otras celebraciones apropiadas: colores e iconos propios.
+
+El lanzamiento inicial debe estar tematizado para Halloween. La temporada activa se destacará en el panel; el resto permanecerá visualmente atenuado.
+
+## Sistema de estrellas y registro
+
+Para actividades internas, la idea inicial de recompensa es:
+- 100% de respuestas correctas: una estrella dorada.
+- Más del 75% y menos del 100%: una estrella plateada.
+- Del 60% al 75%, ambos incluidos: una estrella de bronce.
+- Menos del 60%: sin estrella todavía y opción de repetir.
+
+Para actividades externas, no afirmar que se conoce la puntuación del sitio externo. Se puede registrar una misión completada mediante confirmación manual y conceder una estrella por sesión/objetivo, no por cada pregunta individual. Guardar, cuando sea posible, fecha, actividad/zona, idioma, puntuación, intentos, duración y estrellas. La sincronización entre dispositivos no debe darse por existente hasta verificarla; actualmente el almacenamiento conocido usa localStorage y puede ser específico del navegador/dispositivo.
+
+Para el quiz de cuentos de cinco preguntas: cuatro opciones por pregunta; no revelar inmediatamente cuál era la respuesta correcta. Mostrar el resultado total al final. Regla provisional para confirmar al implementarlo: 5/5 = 2 estrellas; 3–4 correctas = 1 estrella; 0–2 correctas = repetir sin premio. Esta interpretación evita la contradicción entre «una estrella si hay algún error» y «repetir si hay tres o más errores».
+
+## Recursos educativos y desarrollo incremental
+
+- Aprovechar recursos educativos externos para no tener que producir todas las historias, imágenes y audios desde cero.
+- «Cuentos 1»: enlace a https://www.mundoprimaria.com/cuentos-infantiles-cortos.
+- «Cuentos 2»: quizzes propios de cinco preguntas asociados a cuentos concretos.
+- En «Mi Mates», priorizar juegos externos adecuados y registrar la misión/sesión completada manualmente cuando no exista integración verificable.
+- No dar a Mireia la respuesta correcta después de cada pregunta; presentar el resultado agregado al terminar.
+
+## Orden de trabajo acordado
+1. Revisar la aplicación y su estructura actual sin modificarla inicialmente.
+2. Conservar perfiles, PIN, idiomas, juegos y progreso funcionales.
+3. Integrar el mapa de aventuras como pantalla principal y los 13 puntos.
+4. Crear el panel separado de fiestas/temporadas.
+5. Implementar estrellas, registro de misiones y pruebas internas de forma gradual.
+6. Incorporar recursos externos y quizzes de cuentos.
+7. Aplicar el tema Halloween, probar en móvil y ordenador y solo entonces publicar.
+8. Hacer copias de seguridad antes de cambios importantes; no sobrescribir ni borrar el stash de Git sin necesidad.
+
