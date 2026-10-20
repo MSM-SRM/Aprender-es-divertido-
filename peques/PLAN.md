@@ -286,6 +286,7 @@ Al abrir una tarjeta, Mireia verá:
 | Sant Antoni y Sant Sebastià | Sant Antoni Abat: 16–17 de enero; Sant Sebastià: 18–20 de enero | 11–25 de enero |
 | Carnaval & Jaia Corema | Enero–febrero; fechas variables | 26 de enero–14 de febrero |
 | Diada de Baleares | 1 de marzo | 25 de febrero–5 de marzo |
+| St. Jordi y Mamá | 23 de abril | 21–29 de abril |
 | San Patricio | 17 de marzo | 10–20 de marzo |
 | Semana Santa y Lunes de Pascua | Marzo–abril; fechas variables | 21 de marzo–21 de abril |
 | Nit de Sant Joan | 23–24 de junio | 20–25 de junio |
@@ -296,4 +297,4 @@ Al abrir una tarjeta, Mireia verá:
 | Navidad & Año Nuevo | 24 de diciembre–1 de enero | 15 de diciembre–2 de enero |
 | Los Reyes Magos | 5–6 de enero | 3–10 de enero |
 
-Los periodos anteriores son los acordados para la disponibilidad especial; no mostrar numeración en las tarjetas. La primera implementación conservará los doce eventos y estos nombres. Cualquier celebración adicional será una propuesta pendiente de valoración, no se añadirá automáticamente.
+Los periodos anteriores son los acordados para la disponibilidad especial; no mostrar numeración en las tarjetas. La primera implementación conservará los trece eventos y estos nombres. Cualquier celebración adicional será una propuesta pendiente de valoración, no se añadirá automáticamente.
