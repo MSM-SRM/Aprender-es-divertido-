@@ -335,7 +335,10 @@ function saveProgress() {
 }
 
 function renderProgress() {
-  const totals = areaStarTotals(progress);\n  const total = Object.values(totals).reduce((sum,count)=>sum+count,0);\n  $("starPill").textContent = "⭐ " + total + " estrellas";\n  $("starPill").title = `Mates ${(progress.byArea.mates?.gold||0)+(progress.byArea.mates?.silver||0)+(progress.byArea.mates?.bronze||0)} · Lectura ${(progress.byArea.lectura?.gold||0)+(progress.byArea.lectura?.silver||0)+(progress.byArea.lectura?.bronze||0)} · Juegos ${(progress.byArea.juegos?.gold||0)+(progress.byArea.juegos?.silver||0)+(progress.byArea.juegos?.bronze||0)} · Total ${total}`;
+  const totals = areaStarTotals(progress);
+  const total = Object.values(totals).reduce((sum,count)=>sum+count,0);
+  $("starPill").textContent = "⭐ " + total + " estrellas";
+  $("starPill").title = `Mates ${(progress.byArea.mates?.gold||0)+(progress.byArea.mates?.silver||0)+(progress.byArea.mates?.bronze||0)} · Lectura ${(progress.byArea.lectura?.gold||0)+(progress.byArea.lectura?.silver||0)+(progress.byArea.lectura?.bronze||0)} · Juegos ${(progress.byArea.juegos?.gold||0)+(progress.byArea.juegos?.silver||0)+(progress.byArea.juegos?.bronze||0)} · Total ${total}`;
   $("progressCount").textContent = progress.rounds + " retos";
   $("progressBar").style.width = Math.min(100,progress.rounds * 5) + "%";
   $("progressNote").textContent = progress.rounds ? "Has completado retos en " + Object.keys(progress.byGame).length + " actividades. ¡Sigue así!" : "Juega para ganar tus primeras estrellas.";
@@ -593,7 +596,10 @@ function startGame(game) {
 function reward() {
   if(state.answered) return;
   state.answered = true;
-  const area = GAME_AREAS[state.game] || "otros";\n  progress.byArea[area] ||= {gold:0,silver:0,bronze:0};\n  progress.byArea[area].gold++;\n  progress.stars = totalProfileStars(progress);
+  const area = GAME_AREAS[state.game] || "otros";
+  progress.byArea[area] ||= {gold:0,silver:0,bronze:0};
+  progress.byArea[area].gold++;
+  progress.stars = totalProfileStars(progress);
   progress.rounds++;
   progress.byGame[state.game] = (progress.byGame[state.game] || 0) + 1;
   saveProgress();
