@@ -260,3 +260,40 @@ Para el quiz de cuentos de cinco preguntas: cuatro opciones por pregunta; no rev
 7. Aplicar el tema Halloween, probar en móvil y ordenador y solo entonces publicar.
 8. Hacer copias de seguridad antes de cambios importantes; no sobrescribir ni borrar el stash de Git sin necesidad.
 
+
+
+## Calendario y experiencia de eventos especiales
+
+### Apariencia y ventanas de activación
+
+La página principal mostrará una tarjeta por evento con el nombre acordado y una imagen o portada. Cada tarjeta estará en blanco y negro cuando su periodo especial no esté activo y se iluminará con sus colores cuando la fecha actual entre en la ventana indicada. Las ventanas se repiten cada año. Para Navidad y Año Nuevo, cuyo periodo cruza el cambio de año, se considerarán activos los días desde el 15 de diciembre hasta el 2 de enero.
+
+La fecha de activación visual es una ventana de disponibilidad educativa; no sustituye ni modifica las fechas reales de la celebración. En la ficha interior se mostrarán las fechas de la fiesta tal como se celebran (las fechas móviles, como Semana Santa, deberán indicarse según el año cuando se implemente).
+
+### Fichas interiores
+
+Al abrir una tarjeta, Mireia verá:
+- El nombre del evento centrado en la parte superior.
+- Las fechas de celebración.
+- Una explicación breve y adecuada a su edad sobre la fiesta.
+- Juegos y actividades relacionados, que pueden incluir fondos temáticos, cuentos, relatos u otros materiales.
+- Se podrán reutilizar actividades propias ya existentes o enlazar recursos externos apropiados. Si no hay un recurso atractivo que encaje, se creará material propio.
+
+### Eventos y ventanas acordadas
+
+| Nombre de la tarjeta | Fechas de celebración de referencia | Ventana en que la tarjeta está activa |
+|---|---|---|
+| Sant Antoni y Sant Sebastià | Sant Antoni Abat: 16–17 de enero; Sant Sebastià: 18–20 de enero | 11–25 de enero |
+| Carnaval & Jaia Corema | Enero–febrero; fechas variables | 26 de enero–14 de febrero |
+| Diada de Baleares | 1 de marzo | 25 de febrero–5 de marzo |
+| San Patricio | 17 de marzo | 10–20 de marzo |
+| Semana Santa y Lunes de Pascua | Marzo–abril; fechas variables | 21 de marzo–21 de abril |
+| Nit de Sant Joan | 23–24 de junio | 20–25 de junio |
+| Vacaciones de Verano | Junio–septiembre | 1 de julio–7 de septiembre |
+| Fiesta nacional de España | 12 de octubre | 7–14 de octubre |
+| Halloween | 31 de octubre | 15 de octubre–5 de noviembre |
+| Puente de la Inmaculada | 6–8 de diciembre | 1–12 de diciembre |
+| Navidad & Año Nuevo | 24 de diciembre–1 de enero | 15 de diciembre–2 de enero |
+| Los Reyes Magos | 5–6 de enero | 3–10 de enero |
+
+Los periodos anteriores son los acordados para la disponibilidad especial; no mostrar numeración en las tarjetas. La primera implementación conservará los doce eventos y estos nombres. Cualquier celebración adicional será una propuesta pendiente de valoración, no se añadirá automáticamente.
