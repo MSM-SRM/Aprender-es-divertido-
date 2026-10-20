@@ -600,6 +600,7 @@ function reward() {
   state.answered = true;
   const area = GAME_AREAS[state.game] || "otros";
   progress.byArea[area] ||= {gold:0,silver:0,bronze:0};
+  // These activities are single-question rounds, so a correct finish is 100%.
   progress.byArea[area].gold++;
   progress.stars = totalProfileStars(progress);
   progress.rounds++;
