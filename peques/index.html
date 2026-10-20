@@ -328,6 +328,7 @@ function loadProgress() {
 }
 
 function saveProgress() {
+  progress = normalizeProgress(progress);
   try {
     if(currentProfile) localStorage.setItem(STORE + "_" + currentProfile,JSON.stringify(progress));
   } catch(e) {}
@@ -335,6 +336,7 @@ function saveProgress() {
 }
 
 function renderProgress() {
+  progress = normalizeProgress(progress);
   const totals = areaStarTotals(progress);
   const total = Object.values(totals).reduce((sum,count)=>sum+count,0);
   $("starPill").textContent = "⭐ " + total + " estrellas";
