@@ -262,17 +262,66 @@ const $ = id => document.getElementById(id);
 const state = {age:3,game:null,round:0,score:0,answered:false,wordIndex:0,memFirst:null,memLock:false,memPairs:0};
 const STORE = "mundoAprendizajeProgressV1";
 let currentProfile = null;
-let progress = {stars:0,rounds:0,byGame:{}};
+let progress = emptyProgress();
 let lastJoke = 0;
 let currentSessionToken = null;
 
+const STAR_TYPES = ["gold","silver","bronze"];
+const GAME_AREAS = {math:"mates",words:"lectura",listen:"lectura",memory:"juegos"};
+
 function emptyProgress() {
-  return {stars:0,rounds:0,byGame:{}};
+  return {stars:0,rounds:0,byGame:{},byArea:{}};
+}
+
+function areaStarTotals(data = progress) {
+  const totals = {gold:0,silver:0,bronze:0};
+  for(const area of Object.values(data.byArea || {})) {
+    for(const type of STAR_TYPES) totals[type] += Math.max(0,Number(area?.[type]) || 0);
+  }
+  return totals;
+}
+
+function totalProfileStars(data = progress) {
+  return Object.values(areaStarTotals(data)).reduce((sum,count)=>sum+count,0);
+}
+
+function normalizeProgress(raw) {
+  const source = raw && typeof raw === "object" ? raw : emptyProgress();
+  const normalized = {
+    ...emptyProgress(),
+    ...source,
+    byGame: source.byGame && typeof source.byGame === "object" ? {...source.byGame} : {},
+    byArea: source.byArea && typeof source.byArea === "object" ? {...source.byArea} : {}
+  };
+  for(const [area,counts] of Object.entries(normalized.byArea)) {
+    normalized.byArea[area] = Object.fromEntries(STAR_TYPES.map(type=>[type,Math.max(0,Number(counts?.[type])||0)]));
+  }
+
+  // Migrate the old flat total into its areas using the saved game counts.
+  // Any unmatched stars remain visible under "anteriores" instead of being lost.
+  if(totalProfileStars(normalized) === 0 && Number(source.stars) > 0) {
+    let remaining = Math.max(0,Number(source.stars)||0);
+    for(const [game,count] of Object.entries(normalized.byGame)) {
+      const amount = Math.min(remaining,Math.max(0,Number(count)||0));
+      if(!amount) continue;
+      const area = GAME_AREAS[game] || "anteriores";
+      normalized.byArea[area] ||= {gold:0,silver:0,bronze:0};
+      normalized.byArea[area].gold += amount;
+      remaining -= amount;
+      if(!remaining) break;
+    }
+    if(remaining) {
+      normalized.byArea.anteriores ||= {gold:0,silver:0,bronze:0};
+      normalized.byArea.anteriores.gold += remaining;
+    }
+  }
+  normalized.stars = totalProfileStars(normalized);
+  return normalized;
 }
 
 function loadProgress() {
   try {
-    return JSON.parse(localStorage.getItem(STORE + "_" + currentProfile)) || emptyProgress();
+    return normalizeProgress(JSON.parse(localStorage.getItem(STORE + "_" + currentProfile)) || emptyProgress());
   } catch(e) {
     return emptyProgress();
   }
@@ -286,7 +335,7 @@ function saveProgress() {
 }
 
 function renderProgress() {
-  $("starPill").textContent = "⭐ " + progress.stars + " estrellas";
+  const totals = areaStarTotals(progress);\n  const total = Object.values(totals).reduce((sum,count)=>sum+count,0);\n  $("starPill").textContent = "⭐ " + total + " estrellas";\n  $("starPill").title = `Mates ${(progress.byArea.mates?.gold||0)+(progress.byArea.mates?.silver||0)+(progress.byArea.mates?.bronze||0)} · Lectura ${(progress.byArea.lectura?.gold||0)+(progress.byArea.lectura?.silver||0)+(progress.byArea.lectura?.bronze||0)} · Juegos ${(progress.byArea.juegos?.gold||0)+(progress.byArea.juegos?.silver||0)+(progress.byArea.juegos?.bronze||0)} · Total ${total}`;
   $("progressCount").textContent = progress.rounds + " retos";
   $("progressBar").style.width = Math.min(100,progress.rounds * 5) + "%";
   $("progressNote").textContent = progress.rounds ? "Has completado retos en " + Object.keys(progress.byGame).length + " actividades. ¡Sigue así!" : "Juega para ganar tus primeras estrellas.";
@@ -544,7 +593,7 @@ function startGame(game) {
 function reward() {
   if(state.answered) return;
   state.answered = true;
-  progress.stars++;
+  const area = GAME_AREAS[state.game] || "otros";\n  progress.byArea[area] ||= {gold:0,silver:0,bronze:0};\n  progress.byArea[area].gold++;\n  progress.stars = totalProfileStars(progress);
   progress.rounds++;
   progress.byGame[state.game] = (progress.byGame[state.game] || 0) + 1;
   saveProgress();
