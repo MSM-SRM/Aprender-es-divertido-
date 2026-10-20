@@ -222,6 +222,15 @@ El lanzamiento inicial debe estar tematizado para Halloween. La temporada activa
 
 ## Sistema de estrellas y registro
 
+### Agregación de estrellas por área y perfil
+
+- Cada perfil conserva contadores independientes por área: `byArea[area].gold`, `byArea[area].silver` y `byArea[area].bronze`.
+- El marcador del perfil se calcula sumando los contadores de todas sus áreas; no se guarda como un total independiente que pueda desincronizarse.
+- Cada actividad actualiza el contador del área a la que pertenece. La relación inicial es: Matemáticas → Mi Mates; Palabras y Escucha → Mi Lectura; Memoria → Juegos.
+- Los perfiles siguen aislados por su clave de almacenamiento.
+- El futuro registro de actividad guardará área, módulo, fecha, idioma, nivel, resultado y estrellas para mostrar qué áreas practica más y dónde obtiene mejores resultados.
+- Al migrar el progreso antiguo, las estrellas se repartirán según los juegos ya guardados; cualquier resto sin área identificable se conservará bajo «Actividades anteriores».
+
 Para actividades internas, la idea inicial de recompensa es:
 - 100% de respuestas correctas: una estrella dorada.
 - Más del 75% y menos del 100%: una estrella plateada.
