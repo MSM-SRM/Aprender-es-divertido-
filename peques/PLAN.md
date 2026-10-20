@@ -225,6 +225,7 @@ El lanzamiento inicial debe estar tematizado para Halloween. La temporada activa
 ### Agregación de estrellas por área y perfil
 
 - Cada perfil conserva contadores independientes por área: `byArea[area].gold`, `byArea[area].silver` y `byArea[area].bronze`.
+- Los colores reflejan la calidad del resultado, no el nombre del área: dorada, plateada y bronce siguen los umbrales de acierto definidos abajo. Las actividades de una sola pregunta correctas al primer o último intento cuentan como 100% y suman dorada; las pruebas de varias preguntas asignan el color al resultado final.
 - El marcador del perfil se calcula sumando los contadores de todas sus áreas; no se guarda como un total independiente que pueda desincronizarse.
 - Cada actividad actualiza el contador del área a la que pertenece. La relación inicial es: Matemáticas → Mi Mates; Palabras y Escucha → Mi Lectura; Memoria → Juegos.
 - Los perfiles siguen aislados por su clave de almacenamiento.
