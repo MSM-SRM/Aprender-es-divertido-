@@ -209,7 +209,7 @@ Título de trabajo: **EL MUNDO MÁGICO DE MIREIA**. La referencia visual elegida
 
 ## Panel separado de fiestas y temporadas
 
-La zona de fiestas debe ser un panel independiente de las áreas educativas, situado en el borde derecho, debajo de los marcadores de estrellas y del botón Salir. Tendrá fondo negro opaco para sustituir visualmente el panel de fiestas incrustado en la imagen de referencia. La columna incluirá los trece eventos, con tarjetas de las mismas dimensiones y una identidad de color propia. Los eventos inactivos se verán en blanco y negro; el evento activo se iluminará con sus colores estacionales. La zona «Área en construcción» debe quedar fuera del panel y visible. El panel y su lógica deben poder reutilizarse cambiando tema, icono y actividades sin rediseñar el mapa.
+La zona de «Eventos Especiales» debe ir en una columna negra independiente, a la derecha del mapa y debajo de la fila superior de marcadores y del botón Salir. No debe cubrir la isla ni las etiquetas de áreas educativas. La imagen de fondo de la isla debe guardarse sin el panel viejo incrustado: para la vista previa se conserva la parte izquierda de 1280 × 1024 px, que mantiene la etiqueta de Lengua Alemán, y se reserva a su lado una columna negra para la interfaz de eventos. La columna incluirá los trece eventos con tarjetas de las mismas dimensiones e identidad de color propia. Los eventos inactivos se verán en blanco y negro; el evento activo se iluminará con sus colores estacionales. La zona «Área en construcción» debe quedar dentro del mapa, fuera del panel y visible. El panel y su lógica deben poder reutilizarse cambiando tema, icono y actividades sin rediseñar el mapa.
 
 Paletas iniciales:
 - Halloween: naranja, negro y marrón, con ambiente otoñal.
