@@ -12,6 +12,13 @@
     try { localStorage.removeItem(sessionKey); } catch(e) {}
   };
 
+  // Perfil invitado: modo visita. Se abre sin PIN y sin sesión.
+  // Su progreso vive en su propia clave (mundoAprendizajeProgressV3_guest).
+  if(profile === "guest") {
+    showPage();
+    return;
+  }
+
   // En local se permite abrir las páginas para revisarlas sin depender del Worker.
   if(location.protocol === "file:" || ["localhost","127.0.0.1"].includes(location.hostname)) {
     showPage();

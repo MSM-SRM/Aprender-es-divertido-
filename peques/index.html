@@ -45,7 +45,10 @@ button{cursor:pointer;border:0;border-radius:16px;padding:12px 16px;font-weight:
 .profile-card{position:relative;width:100%;max-width:350px;aspect-ratio:1;border-radius:50%;padding:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;overflow:hidden;color:white;border:4px solid rgba(255,255,255,.85);box-shadow:0 10px 28px #45325a28}
 .profile-card.mireia{background:linear-gradient(140deg,#fff0a3 0%,#ffd966 27%,#e6ad32 56%,#fff1b8 76%,#c99119 100%);box-shadow:0 10px 28px #c9911938}
 .profile-card.sofia{background:linear-gradient(140deg,#c06bff 0%,#b45cff 28%,#8200ff 58%,#5100c9 100%);box-shadow:0 10px 28px #8200ff30}
+.profile-card.guest{background:linear-gradient(140deg,#fff0a3 0%,#ffd966 27%,#e6ad32 56%,#fff1b8 76%,#c99119 100%);box-shadow:0 10px 28px #c9911938;padding:5px;border-width:3px}
+.profile-wrap.guest-wrap{grid-column:1/-1;justify-self:center;width:calc(25% - 3px);max-width:175px;margin-top:2px}
 .profile-card img{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:82%;height:82%;max-height:none;object-fit:contain;object-position:center;border-radius:50%;border:3px solid rgba(255,255,255,.92);background:transparent;flex:0 0 auto;pointer-events:none}
+.profile-card.guest img{width:84%;height:84%;border-width:2px}
 .profile-details{position:absolute;z-index:2;left:50%;bottom:9%;transform:translateX(-50%);width:88%;padding:7px 5px;border-radius:14px;background:rgba(40,25,65,.72);text-align:center;line-height:1.18;flex:0 0 auto;pointer-events:none}
 .profile-details strong{display:block;font-size:clamp(.83rem,2.6vw,1.15rem);color:#fff}
 .profile-details span{display:block;font-size:clamp(.65rem,1.8vw,.82rem);color:#fff;margin-top:4px}
@@ -202,6 +205,11 @@ body.language-changing .app{animation:languageTumble .82s cubic-bezier(.22,.72,.
         </div>
       </button>
       <div class="birthday-countdown" id="birthday-sofia"></div>
+    </div>
+    <div class="profile-wrap guest-wrap">
+      <button class="profile-card guest" data-profile="guest" aria-label="Entrar como invitado" title="Guest">
+        <img src="imagenes/guest.svg" alt="Guest">
+      </button>
     </div>
   </div>
   <p class="profile-footer">Podéis continuar con vuestro progreso al entrar. 💜 Pasadlo genial mis queridas 💜</p>
@@ -518,7 +526,14 @@ function switchProfile() {
 
 $("age").addEventListener("change",setAge);
 document.querySelectorAll("[data-profile]").forEach(b => {
-  b.addEventListener("click",() => selectProfile(b.dataset.profile));
+  b.addEventListener("click",() => {
+    // El perfil invitado entra en modo visita: sin PIN y con progreso propio.
+    if(b.dataset.profile === "guest") {
+      location.href = "mundo-mireia.html?profile=guest";
+      return;
+    }
+    selectProfile(b.dataset.profile);
+  });
 });
 $("switchProfile").onclick = switchProfile;
 setAge();
@@ -778,6 +793,7 @@ function flipCard(i,b) {
     en: {
       "¿Quién va a jugar hoy? ✨":"Who's playing today? ✨",
       "Elige tu perfil para entrar en tu mundo de aprendizaje.":"Choose your profile to enter your learning world.",
+      "Entrar como invitado":"Enter as guest",
       "Podéis continuar con vuestro progreso al entrar. 💜 Pasadlo genial mis queridas 💜":"You can continue your progress when you sign in. 💜 Have fun, my dears! 💜",
       "¡Rincón de chistes!":"Joke corner!",
       "🔊 Escuchar chiste":"🔊 Hear joke","🔁 Repetir chiste":"🔁 Repeat joke","😄 Otro chiste":"😄 Another joke",
@@ -825,6 +841,7 @@ function flipCard(i,b) {
     ca: {
       "¿Quién va a jugar hoy? ✨":"Qui jugarà avui? ✨",
       "Elige tu perfil para entrar en tu mundo de aprendizaje.":"Tria el teu perfil per entrar al teu món d'aprenentatge.",
+      "Entrar como invitado":"Entra com a convidat",
       "Podéis continuar con vuestro progreso al entrar. 💜 Pasadlo genial mis queridas 💜":"Podeu continuar el vostre progrés quan entreu. 💜 Que us ho passeu molt bé, estimades! 💜",
       "¡Rincón de chistes!":"Racó d'acudits!","🔊 Escuchar chiste":"🔊 Escolta l'acudit","🔁 Repetir chiste":"🔁 Repeteix l'acudit","😄 Otro chiste":"😄 Un altre acudit",
       "⭐ 0 estrellas":"⭐ 0 estrelles","¡Aprender puede ser una aventura!":"Aprendre pot ser una aventura!",
@@ -871,6 +888,7 @@ function flipCard(i,b) {
     de: {
       "¿Quién va a jugar hoy? ✨":"Wer spielt heute? ✨",
       "Elige tu perfil para entrar en tu mundo de aprendizaje.":"Wähle dein Profil, um deine Lernwelt zu betreten.",
+      "Entrar como invitado":"Als Gast beitreten",
       "Podéis continuar con vuestro progreso al entrar. 💜 Pasadlo genial mis queridas 💜":"Ihr könnt euren Fortschritt nach der Anmeldung fortsetzen. 💜 Viel Spaß, ihr Lieben! 💜",
       "¡Rincón de chistes!":"Witze-Ecke!","🔊 Escuchar chiste":"🔊 Witz anhören","🔁 Repetir chiste":"🔁 Witz wiederholen","😄 Otro chiste":"😄 Noch ein Witz",
       "⭐ 0 estrellas":"⭐ 0 Sterne","¡Aprender puede ser una aventura!":"Lernen kann ein Abenteuer sein!",
@@ -986,8 +1004,8 @@ function flipCard(i,b) {
     document.querySelectorAll(".language-button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.language===lang)));
     translateNode(document.querySelector(".app"),true);
     document.querySelectorAll("[data-profile]").forEach(b=>{
-      const name=b.dataset.profile==="mireia"?"Mireia":"Sofía";
-      b.setAttribute("aria-label", translateText("Entrar en el perfil de "+name,lang));
+      const label=b.dataset.profile==="guest"?"Entrar como invitado":b.dataset.profile==="mireia"?"Entrar en el perfil de Mireia":"Entrar en el perfil de Sofía";
+      b.setAttribute("aria-label", translateText(label,lang));
     });
     loadDailyJokes();
   }
