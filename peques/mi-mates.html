@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mi Mates · El mundo mágico de Mireia</title>
+<script src="auth-guard.js"></script>
 <style>
 *{box-sizing:border-box}
 :root{font-family:"Trebuchet MS",system-ui,sans-serif;color:#18365e;background:#eaf7ff}
@@ -18,7 +19,7 @@ h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1;margin:0;color:#1557a3;text-sh
 .modules{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:15px;margin-top:clamp(18px,3vw,28px)}
 .module{min-height:215px;text-align:center;padding:26px 18px;border:3px solid #fff;border-radius:24px;background:linear-gradient(145deg,#fff,#e7f4ff);box-shadow:0 9px 23px #23456b18;color:#193e69;transition:transform .16s,box-shadow .16s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
 .module:hover,.module:focus-visible{transform:translateY(-3px);box-shadow:0 14px 27px #23456b26;outline:3px solid #5aa9ee;outline-offset:2px}
-.test-badge{display:inline-flex;align-items:center;justify-content:center;margin-top:3px;padding:4px 10px;border:1px solid #9c7aeb;border-radius:999px;background:#f1eaff;color:#6540a8;font-size:.68rem;font-weight:1000;letter-spacing:.09em}
+
 .module:nth-child(1){background:linear-gradient(145deg,#fff8d9,#ffe9a5)}.module:nth-child(2){background:linear-gradient(145deg,#e9fff0,#c9f0d5)}.module:nth-child(3){background:linear-gradient(145deg,#f2ebff,#dcd0ff)}
 .emoji{display:block;font-size:clamp(3.4rem,8vw,5rem);line-height:1}.module strong{display:block;font-size:clamp(1.45rem,3vw,1.9rem)}
 .play{display:none;margin-top:22px;padding:clamp(18px,4vw,30px);border:3px solid #fff;border-radius:28px;background:#ffffffd9;box-shadow:0 10px 28px #23456b18}.play.active{display:block}
@@ -67,7 +68,7 @@ const $=id=>document.getElementById(id);let mode='sumas',answered=false;
 // Lista de módulos TEST: retirar una entrada elimina esa tarjeta sin tocar el resto del área.
 const testModules=[{mode:'sumas',title:'Sumas',emoji:'➕'},{mode:'restas',title:'Restas',emoji:'➖'},{mode:'mixtos',title:'Retos mixtos',emoji:'🧮'},{mode:'partido',title:'Partido de sumas y restas',emoji:'⚽'}];
 function renderModules(){
-  $('modules').innerHTML=testModules.map(module=>`<button class="module" data-mode="${module.mode}"><span class="emoji" aria-hidden="true">${module.emoji}</span><strong>${module.title}</strong><span class="test-badge">TEST</span></button>`).join('');
+  $('modules').innerHTML=testModules.map(module=>`<button class="module" data-mode="${module.mode}"><span class="emoji" aria-hidden="true">${module.emoji}</span><strong>${module.title}</strong></button>`).join('');
   document.querySelectorAll('#modules [data-mode]').forEach(button=>button.addEventListener('click',()=>{mode=button.dataset.mode;if(mode==='partido'){openMatchLevels();return}$('matchWrap').classList.remove('active');$('play').classList.add('active');makeQuestion();$('play').scrollIntoView({behavior:'smooth',block:'nearest'})}));
 }
 renderModules();

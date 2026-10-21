@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>El mundo mágico de Mireia</title>
+<script src="auth-guard.js"></script>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#071d37;color:#fff;font-family:"Trebuchet MS",system-ui,sans-serif;min-height:100vh;display:grid;place-items:start center;overflow-x:hidden;overflow-y:auto}
@@ -62,7 +63,7 @@ body{margin:0;background:#071d37;color:#fff;font-family:"Trebuchet MS",system-ui
   <button class="zone" aria-label="Mi Escritura" title="Mi Escritura" style="left:67.2%;top:31%;width:14.4%" onclick="location.href='mi-escritura.html?profile='+encodeURIComponent(profileId)"></button>
   <button class="zone" aria-label="Lengua Inglés" title="Lengua Inglés" style="left:85.2%;top:23%;width:16.8%" onclick="location.href='idiomas.html?lang=en&profile='+encodeURIComponent(profileId)"></button>
   <button class="zone" aria-label="Lengua Catalán" title="Lengua Catalán" style="left:79.2%;top:42%;width:16.8%" onclick="location.href='idiomas.html?lang=ca&profile='+encodeURIComponent(profileId)"></button>
-  <button class="zone" aria-label="Lengua Alemán" title="Lengua Alemán" style="left:92.4%;top:52%;width:14.4%" onclick="location.href='idiomas.html?lang=de&profile='+encodeURIComponent(profileId)"></button>
+  <button class="zone" aria-label="Alemán" title="Alemán" style="left:92.4%;top:52%;width:14.4%" onclick="location.href='idiomas.html?lang=de&profile='+encodeURIComponent(profileId)"></button>
   <button class="zone" aria-label="Ciencias" title="Ciencias" style="left:15.6%;top:49%;width:14.4%" onclick="location.href='areas-test.html?area=ciencias&profile='+encodeURIComponent(profileId)"></button>
   <button class="zone" aria-label="Música" title="Música" style="left:40.8%;top:51%;width:14.4%" onclick="location.href='areas-test.html?area=musica&profile='+encodeURIComponent(profileId)"></button>
   <button class="zone" aria-label="Biblioteca Cuentos" title="Biblioteca Cuentos" style="left:56.4%;top:60%;width:18.0%" onclick="location.href='areas-test.html?area=biblioteca&profile='+encodeURIComponent(profileId)"></button>
@@ -104,7 +105,7 @@ body{margin:0;background:#071d37;color:#fff;font-family:"Trebuchet MS",system-ui
     </div>
   </aside>
  </div>
- <button class="logout" onclick="location.href='index.html'">⇦ Salir</button>
+ <button class="logout" onclick="logoutProfile()">⇦ Salir</button>
   <div id="notice" class="notice" role="status"></div>
 </main>
 <script>
@@ -114,6 +115,7 @@ tick();setInterval(tick,15000);window.addEventListener('mundo:ui-language',tick)
 function updateMireiaAge(){const now=new Date();let age=now.getFullYear()-2019;if(now<new Date(now.getFullYear(),11,9,0,1))age--;document.getElementById('mireiaAge').textContent=String(age)}
 updateMireiaAge();setInterval(updateMireiaAge,1000);
 const profileId=new URLSearchParams(location.search).get('profile')||'mireia';
+window.logoutProfile=()=>{try{localStorage.removeItem('mundoAprendizajeSession_'+profileId)}catch(e){}location.href='index.html'};
 const progressKey='mundoAprendizajeProgressV3_'+profileId;
 function updateProfileScores(){
   let data={byArea:{}};try{data=JSON.parse(localStorage.getItem('mundoAprendizajeProgressV3_'+profileId))||data}catch(e){}

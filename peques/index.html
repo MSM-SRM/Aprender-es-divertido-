@@ -265,7 +265,7 @@ body.language-changing .app{animation:languageTumble .82s cubic-bezier(.22,.72,.
 const API_URL = "https://mi-mundo-aprendizaje-api.paguerapiso.workers.dev";
 const $ = id => document.getElementById(id);
 const state = {age:3,game:null,round:0,score:0,answered:false,wordIndex:0,memFirst:null,memLock:false,memPairs:0};
-const STORE = "mundoAprendizajeProgressV1";
+const STORE = "mundoAprendizajeProgressV3";
 let currentProfile = null;
 let progress = emptyProgress();
 let lastJoke = 0;
@@ -502,22 +502,14 @@ async function selectProfile(profile) {
   if(!loginOK) return;
 
   currentProfile = profile;
-  $("age").value = profile === "mireia" ? "7" : "3";
-  setAge();
-  progress = loadProgress();
-  renderProgress();
-
-  $("profileChooser").classList.add("hide");
-  $("appContent").classList.remove("hide");
-  $("home").classList.remove("hide");
-  $("screen").classList.remove("active");
-  state.game = null;
-
-  if("speechSynthesis" in window) window.speechSynthesis.cancel();
+  location.href = "preview-mapa-mireia.html?profile=" + encodeURIComponent(profile);
 }
 
 function switchProfile() {
   if("speechSynthesis" in window) window.speechSynthesis.cancel();
+  if(currentProfile) {
+    try { localStorage.removeItem("mundoAprendizajeSession_" + currentProfile); } catch(e) {}
+  }
   currentProfile = null;
   currentSessionToken = null;
   $("appContent").classList.add("hide");
