@@ -23,7 +23,7 @@ const languages={
  de:{key:'aleman',title:'Alemán',short:'alemán',speech:'de-DE',words:[['gato','Katze','🐱'],['sol','Sonne','☀️'],['casa','Haus','🏠'],['perro','Hund','🐶'],['luna','Mond','🌙'],['libro','Buch','📚'],['flor','Blume','🌸'],['manzana','Apfel','🍎']],phrases:[['Ich habe eine Katze.','Tengo un gato.'],['Die Sonne ist gelb.','El sol es amarillo.'],['Guten Morgen!','¡Buenos días!']]}
 };
 const language=languages[params.get('lang')]||languages.en,progressKey=`mundoAprendizajeProgressV3_${profileId}`;
-document.title=`${language.title} · El mundo mágico de Mireia`;$('areaTitle').textContent=language.title;$('backToMap').onclick=()=>location.href=`preview-mapa-mireia.html?avatar=restored&profile=${encodeURIComponent(profileId)}`;
+document.title=`${language.title} · El mundo mágico de Mireia`;$('areaTitle').textContent=language.title;$('backToMap').onclick=()=>location.href=`mundo-mireia.html?avatar=restored&profile=${encodeURIComponent(profileId)}`;
 // Lista de módulos TEST: retirar una entrada elimina esa tarjeta en los tres idiomas.
 const testModules=[{mode:'words',title:'Palabras',emoji:'🔤'},{mode:'listen',title:'Escucha',emoji:'🔊'},{mode:'phrases',title:'Frases',emoji:'💬'}];
 let progress={stars:0,rounds:0,byGame:{},byArea:{}};try{progress=JSON.parse(localStorage.getItem(progressKey))||progress}catch(e){}progress.byGame||={};progress.byArea||={};progress.byArea[language.key]||={gold:0,silver:0,bronze:0};const scores=progress.byArea[language.key];for(const k of ['gold','silver','bronze'])scores[k]=Math.max(0,Number(scores[k])||0);

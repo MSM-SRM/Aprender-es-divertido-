@@ -71,7 +71,7 @@ const areaCatalog={
  ]}
 };
 const slug=params.get('area')||'ciencias',area=areaCatalog[slug]||areaCatalog.ciencias,progressKey=`mundoAprendizajeProgressV3_${profileId}`;
-document.title=`${area.title} · El mundo mágico de Mireia`;$('areaTitle').textContent=area.title;$('backToMap').onclick=()=>location.href=`preview-mapa-mireia.html?avatar=restored&profile=${encodeURIComponent(profileId)}`;
+document.title=`${area.title} · El mundo mágico de Mireia`;$('areaTitle').textContent=area.title;$('backToMap').onclick=()=>location.href=`mundo-mireia.html?avatar=restored&profile=${encodeURIComponent(profileId)}`;
 let progress={stars:0,rounds:0,byGame:{},byArea:{}};try{progress=JSON.parse(localStorage.getItem(progressKey))||progress}catch(e){}progress.byGame||={};progress.byArea||={};progress.byArea[area.key]||={gold:0,silver:0,bronze:0};const scores=progress.byArea[area.key];for(const k of ['gold','silver','bronze'])scores[k]=Math.max(0,Number(scores[k])||0);
 function renderScores(){for(const k of ['gold','silver','bronze'])$(k+'Score').textContent=String(scores[k]%1000).padStart(3,'0')}
 function saveProgress(module){progress.rounds=(Number(progress.rounds)||0)+1;progress.byGame[`${area.key}_${module.mode}`]=(Number(progress.byGame[`${area.key}_${module.mode}`])||0)+1;progress.stars=Object.values(progress.byArea).reduce((sum,item)=>sum+['gold','silver','bronze'].reduce((n,k)=>n+(Number(item?.[k])||0),0),0);localStorage.setItem(progressKey,JSON.stringify(progress));renderScores()}

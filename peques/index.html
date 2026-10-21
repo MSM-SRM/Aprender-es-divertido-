@@ -502,7 +502,7 @@ async function selectProfile(profile) {
   if(!loginOK) return;
 
   currentProfile = profile;
-  location.href = "preview-mapa-mireia.html?profile=" + encodeURIComponent(profile);
+  location.href = "mundo-mireia.html?profile=" + encodeURIComponent(profile);
 }
 
 function switchProfile() {
@@ -528,7 +528,7 @@ document.querySelectorAll("[data-game]").forEach(b => {
   b.addEventListener("click",() => startGame(b.dataset.game));
 });
 document.querySelector("[data-map]").onclick = () => {
-  if(currentProfile) location.href = "preview-mapa-mireia.html?profile=" + encodeURIComponent(currentProfile);
+  if(currentProfile) location.href = "mundo-mireia.html?profile=" + encodeURIComponent(currentProfile);
 };
 
 $("speakWelcome").onclick = () => speak(state.age === 3 ? "¡Hola! Vamos a aprender jugando. Elige una actividad." : "¡Hola! Elige un reto y gana estrellas aprendiendo.");

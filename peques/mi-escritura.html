@@ -32,7 +32,7 @@ const $=id=>document.getElementById(id);
 // Lista de módulos TEST: retirar una entrada elimina esa tarjeta sin tocar el resto del área.
 const testModules=[{mode:'trace',title:'Trazar letras',emoji:'✍️'},{mode:'complete',title:'Completa palabras',emoji:'🔠'},{mode:'order',title:'Ordena letras',emoji:'🧩'}];
 const params=new URLSearchParams(location.search),profileId=params.get('profile')||'mireia',progressKey=`mundoAprendizajeProgressV3_${profileId}`;
-document.getElementById('backToMap').onclick=()=>location.href=`preview-mapa-mireia.html?avatar=restored&profile=${encodeURIComponent(profileId)}`;
+document.getElementById('backToMap').onclick=()=>location.href=`mundo-mireia.html?avatar=restored&profile=${encodeURIComponent(profileId)}`;
 let progress={stars:0,rounds:0,byGame:{},byArea:{}};try{progress=JSON.parse(localStorage.getItem(progressKey))||progress}catch(e){}progress.byGame||={};progress.byArea||={};progress.byArea.escritura||={gold:0,silver:0,bronze:0};
 const scores=progress.byArea.escritura;for(const key of ['gold','silver','bronze'])scores[key]=Math.max(0,Number(scores[key])||0);
 function renderScores(){for(const key of ['gold','silver','bronze'])$(key+'Score').textContent=String(scores[key]%1000).padStart(3,'0')}

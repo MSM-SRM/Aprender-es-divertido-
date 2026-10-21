@@ -45,7 +45,7 @@ function renderModules(){
 }
 renderModules();
 const params=new URLSearchParams(location.search),profileId=params.get('profile')||'mireia',progressKey=`mundoAprendizajeProgressV3_${profileId}`;
-document.getElementById('backToMap').onclick=()=>location.href=`preview-mapa-mireia.html?avatar=restored&profile=${encodeURIComponent(profileId)}`;
+document.getElementById('backToMap').onclick=()=>location.href=`mundo-mireia.html?avatar=restored&profile=${encodeURIComponent(profileId)}`;
 let progress={stars:0,rounds:0,byGame:{},byArea:{}};
 try{progress=JSON.parse(localStorage.getItem(progressKey))||progress}catch(e){}
 progress.byGame||={};progress.byArea||={};progress.byArea.lectura||={gold:0,silver:0,bronze:0};
