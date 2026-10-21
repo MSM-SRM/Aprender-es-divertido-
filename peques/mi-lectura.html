@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mi Lectura · El mundo mágico de Mireia</title>
+<style>
+*{box-sizing:border-box}
+:root{font-family:"Trebuchet MS",system-ui,sans-serif;color:#18365e;background:#eaf7ff}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 20% 5%,#fff 0,transparent 42%),linear-gradient(145deg,#e2f7ef,#f7f0ff 55%,#fff4dd);padding:clamp(14px,4vw,42px)}
+button{font:inherit;touch-action:manipulation;cursor:pointer}
+.wrap{width:min(100%,920px);margin:auto}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:clamp(18px,4vw,32px)}
+.back{border:2px solid #b9d9f5;border-radius:999px;background:#fff;color:#24558d;padding:10px 16px;font-weight:800;box-shadow:0 4px 12px #24558d18}
+.scores{display:flex;align-items:center;gap:7px}.score{display:flex;align-items:center;gap:5px;border:2px solid;border-radius:999px;background:#fff;padding:8px 11px;font-weight:900;white-space:nowrap;box-shadow:0 4px 12px #24558d12}.score .star{font-size:1.25rem;line-height:1}.score.gold{border-color:#ffd967;background:#fff9df;color:#735515}.score.silver{border-color:#c4d3e2;background:#f5f9ff;color:#52677c}.score.bronze{border-color:#d9a27c;background:#fff3eb;color:#86502d}
+h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1;margin:0;color:#157352;text-shadow:0 2px #fff}.intro{font-size:clamp(1rem,2.4vw,1.2rem);line-height:1.5;color:#4c6684;max-width:650px;margin:12px 0 24px}
+.modules{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:15px;margin-top:clamp(18px,3vw,28px)}.module{min-height:215px;text-align:center;padding:26px 18px;border:3px solid #fff;border-radius:24px;background:linear-gradient(145deg,#fff,#e7f4ff);box-shadow:0 9px 23px #23456b18;color:#193e69;transition:transform .16s,box-shadow .16s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}.module:hover,.module:focus-visible{transform:translateY(-3px);box-shadow:0 14px 27px #23456b26;outline:3px solid #5aa9ee;outline-offset:2px}.module:nth-child(1){background:linear-gradient(145deg,#fff8d9,#ffe9a5)}.module:nth-child(2){background:linear-gradient(145deg,#e9fff0,#c9f0d5)}.module:nth-child(3){background:linear-gradient(145deg,#f2ebff,#dcd0ff)}.emoji{display:block;font-size:clamp(3.4rem,8vw,5rem);line-height:1}.module strong{display:block;font-size:clamp(1.35rem,3vw,1.8rem)}
+.test-badge{display:inline-flex;align-items:center;justify-content:center;margin-top:3px;padding:4px 10px;border:1px solid #9c7aeb;border-radius:999px;background:#f1eaff;color:#6540a8;font-size:.68rem;font-weight:1000;letter-spacing:.09em}
+.play{display:none;margin-top:22px;padding:clamp(18px,4vw,30px);border:3px solid #fff;border-radius:28px;background:#ffffffdf;box-shadow:0 10px 28px #23456b18}.play.active{display:block}.play h2{font-size:clamp(1.3rem,4vw,1.8rem);margin:0}.hint{color:#526c89}.prompt{max-width:680px;margin:20px auto;padding:clamp(18px,4vw,32px);border-radius:24px;background:linear-gradient(145deg,#f0fff7,#e0f3ff);text-align:center;color:#1d5c56}.word{font-size:clamp(2.8rem,11vw,5rem);font-weight:1000;line-height:1.05}.story{font-size:clamp(1.15rem,3vw,1.45rem);line-height:1.65;text-align:left;max-width:670px;margin:auto}.story strong{color:#157352}.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:620px;margin:18px auto}.answer{min-height:78px;border:3px solid #d8e9f8;border-radius:18px;background:#fff;color:#1c4c83;font-size:clamp(1.2rem,4vw,1.7rem);font-weight:900;padding:10px}.answer:hover,.answer:focus-visible{border-color:#4798e3;outline:3px solid #4798e355}.answer small{font-size:.55em}.feedback{text-align:center;font-size:1.15rem;font-weight:900;min-height:34px;margin:20px 0 8px}.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}.action{border:0;border-radius:999px;padding:11px 18px;background:#228058;color:#fff;font-weight:900}.action.alt{background:#edf4fb;color:#31577e}.action:disabled{opacity:.5;cursor:default}.foot{text-align:center;color:#617790;font-size:.85rem;margin-top:24px}
+@media(max-width:520px){.top{align-items:flex-start;gap:7px}.back{padding:9px 10px;font-size:.9rem}.scores{gap:4px}.score{padding:7px 8px;gap:3px;font-size:.85rem}.score .star{font-size:1rem}.module{min-height:170px}.answers{gap:8px}.answer{min-height:65px}}
+.resource-box{margin:26px 0 8px}.resource-box h2{font-size:1.15rem;color:#31577e;margin:0 0 10px}.resource-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px}.resource-link{display:flex;align-items:center;gap:12px;padding:13px 16px;border:2px solid #d8e9f8;border-radius:18px;background:#ffffffd9;color:#24558d;text-decoration:none;font-weight:800;box-shadow:0 4px 12px #23456b10}.resource-link:hover,.resource-link:focus-visible{border-color:#4798e3;outline:3px solid #4798e355}.resource-link span:first-child{font-size:1.8rem}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="top"><button class="back" id="backToMap">← Volver al mapa</button><div class="scores" aria-label="Estrellas acumuladas en Mi Lectura"><div class="score gold" aria-label="Estrellas doradas"><span class="star">★</span><span id="goldScore">000</span></div><div class="score silver" aria-label="Estrellas plateadas"><span class="star">★</span><span id="silverScore">000</span></div><div class="score bronze" aria-label="Estrellas de bronce"><span class="star">★</span><span id="bronzeScore">000</span></div></div></header>
+  <h1>📚 Mi Lectura</h1>
+  <section class="modules" id="modules" aria-label="Juegos de lectura"></section>
+  <section class="resource-box" aria-label="Recursos externos"><h2>Más lecturas para explorar</h2><div class="resource-links"><a class="resource-link" href="https://arbolabc.com/lecturas-cortas-para-ni%C3%B1os" target="_blank" rel="noopener noreferrer"><span>🌳</span><span>Lecturas cortas · Árbol ABC<br><small>Recurso externo</small></span></a><a class="resource-link" href="https://www.mundoprimaria.com/cuentos-infantiles-cortos" target="_blank" rel="noopener noreferrer"><span>📚</span><span>Cuentos clásicos · Mundo Primaria<br><small>Recurso externo</small></span></a><a class="resource-link" href="https://www.cristic.com/portfolio_category/lectura-castellano-1o-y-2o-de-primaria/" target="_blank" rel="noopener noreferrer"><span>🔎</span><span>Juegos de comprensión lectora · Cristic<br><small>Selección para 1.º y 2.º</small></span></a></div></section>
+  <section class="play" id="play" aria-live="polite">
+    <h2 id="title">Actividad</h2><p class="hint" id="hint">Elige una respuesta.</p>
+    <div id="activity"></div><div class="feedback" id="feedback" role="status"></div>
+    <div class="actions"><button class="action alt" id="change">Cambiar juego</button><button class="action" id="next" disabled>Siguiente reto →</button></div>
+  </section>
+  <p class="foot">El progreso de Lectura se guarda en este dispositivo para el perfil activo.</p>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+// Lista de módulos TEST: retirar una entrada elimina esa tarjeta sin tocar el resto del área.
+const testModules=[{mode:'words',title:'Palabras mágicas',emoji:'🔤'},{mode:'repeat',title:'Leer y repetir',emoji:'🗣️'},{mode:'stories',title:'Cuentos cortos',emoji:'🐉'}];
+function renderModules(){
+  $('modules').innerHTML=testModules.map(module=>`<button class="module" data-mode="${module.mode}"><span class="emoji" aria-hidden="true">${module.emoji}</span><strong>${module.title}</strong><span class="test-badge">TEST</span></button>`).join('');
+  document.querySelectorAll('[data-mode]').forEach(button=>button.addEventListener('click',()=>{mode=button.dataset.mode;$('play').classList.add('active');startRound();$('play').scrollIntoView({behavior:'smooth',block:'nearest'})}));
+}
+renderModules();
+const params=new URLSearchParams(location.search),profileId=params.get('profile')||'mireia',progressKey=`mundoAprendizajeProgressV3_${profileId}`;
+document.getElementById('backToMap').onclick=()=>location.href=`preview-mapa-mireia.html?avatar=restored&profile=${encodeURIComponent(profileId)}`;
+let progress={stars:0,rounds:0,byGame:{},byArea:{}};
+try{progress=JSON.parse(localStorage.getItem(progressKey))||progress}catch(e){}
+progress.byGame||={};progress.byArea||={};progress.byArea.lectura||={gold:0,silver:0,bronze:0};
+const scores=progress.byArea.lectura;for(const key of ['gold','silver','bronze'])scores[key]=Math.max(0,Number(scores[key])||0);
+function renderScores(){for(const key of ['gold','silver','bronze'])$(key+'Score').textContent=String(scores[key]%1000).padStart(3,'0')}
+function saveProgress(){progress.stars=Object.values(progress.byArea).reduce((sum,area)=>sum+['gold','silver','bronze'].reduce((inner,key)=>inner+(Number(area?.[key])||0),0),0);localStorage.setItem(progressKey,JSON.stringify(progress));renderScores()}
+renderScores();
+const words=[{word:'gato',emoji:'🐱'},{word:'sol',emoji:'☀️'},{word:'casa',emoji:'🏠'},{word:'flor',emoji:'🌸'},{word:'perro',emoji:'🐶'},{word:'luna',emoji:'🌙'},{word:'libro',emoji:'📚'},{word:'manzana',emoji:'🍎'},{word:'mariposa',emoji:'🦋'},{word:'estrella',emoji:'⭐'},{word:'tortuga',emoji:'🐢'},{word:'montaña',emoji:'⛰️'}];
+const stories=[
+ {title:'La semilla valiente',text:'Lola plantó una semilla junto a la ventana. Cada mañana le daba agua y saludaba al pequeño brote. Un día apareció una flor amarilla que miraba al sol.',q:'¿De qué color era la flor?',options:['Amarilla','Azul','Roja','Morada'],answer:'Amarilla'},
+ {title:'El barco de papel',text:'Nico hizo un barco de papel y lo puso en un charco después de la lluvia. Su barco navegó despacio hasta una hoja grande, que parecía una isla verde.',q:'¿Dónde navegó el barco?',options:['En un charco','En la bañera','En el mar','En un río'],answer:'En un charco'},
+ {title:'La merienda de la ardilla',text:'Una ardilla encontró tres avellanas debajo de un árbol. Guardó dos para el invierno y compartió la otra con su amiga, una pequeña rana.',q:'¿Con quién compartió la ardilla?',options:['Con una rana','Con un gato','Con un pájaro','Con un conejo'],answer:'Con una rana'}
+];
+let mode='words',answered=false,currentWord=null,currentStory=null;
+function speak(text){if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(text);utterance.lang='es-ES';utterance.rate=.82;window.speechSynthesis.speak(utterance)}
+function award(game){if(answered)return;answered=true;scores.gold++;progress.rounds=(Number(progress.rounds)||0)+1;progress.byGame[game]=(Number(progress.byGame[game])||0)+1;saveProgress();$('feedback').textContent='¡Muy bien! Respuesta correcta 😊';$('next').disabled=false}
+function setupAnswers(items,correct,game){$('activity').insertAdjacentHTML('beforeend',`<div class="answers">${items.map(item=>`<button class="answer" data-answer="${item.value}">${item.content}</button>`).join('')}</div>`);$('activity').querySelectorAll('[data-answer]').forEach(button=>button.addEventListener('click',()=>{if(answered)return;if(button.dataset.answer===correct){$('feedback').textContent='¡Lo has conseguido! 🎉';award(game)}else $('feedback').textContent='¡Casi! Inténtalo otra vez 😊'}))}
+function startRound(){answered=false;$('feedback').textContent='';$('next').disabled=true;$('activity').innerHTML='';if(mode==='words')wordRound();else if(mode==='repeat')repeatRound();else storyRound()}
+function wordRound(){currentWord=words[Math.floor(Math.random()*words.length)];$('title').textContent='Palabras mágicas';$('hint').textContent='Lee la palabra y encuentra el dibujo correcto.';$('activity').innerHTML=`<div class="prompt"><div class="word">${currentWord.word}</div><button class="action alt" id="hearWord" type="button">🔊 Escuchar palabra</button></div>`;$('hearWord').onclick=()=>speak(currentWord.word);const choices=[currentWord,...words.filter(x=>x!==currentWord).sort(()=>Math.random()-.5).slice(0,3)].sort(()=>Math.random()-.5);setupAnswers(choices.map(x=>({value:x.word,content:`${x.emoji}<br><small>${x.word}</small>`})),currentWord.word,'words')}
+function repeatRound(){currentWord=words[Math.floor(Math.random()*words.length)];$('title').textContent='Leer y repetir';$('hint').textContent='Lee la palabra en voz alta. Después toca “Ya la repetí”.';$('activity').innerHTML=`<div class="prompt"><div class="word">${currentWord.word}</div><button class="action alt" id="hearWord" type="button">🔊 Escuchar</button><p>Pronuncia la palabra tú también.</p><button class="action" id="repeatDone" type="button">Ya la repetí</button></div>`;$('hearWord').onclick=()=>speak(currentWord.word);$('repeatDone').onclick=()=>award('repeat')}
+function storyRound(){currentStory=stories[Math.floor(Math.random()*stories.length)];$('title').textContent=currentStory.title;$('hint').textContent='Lee el cuento y elige la respuesta.';$('activity').innerHTML=`<div class="prompt"><div class="story">${currentStory.text}</div></div><h3 style="text-align:center">${currentStory.q}</h3>`;setupAnswers(currentStory.options.map(option=>({value:option,content:option})),currentStory.answer,'stories')}
+$('next').addEventListener('click',startRound);$('change').addEventListener('click',()=>{$('play').classList.remove('active');$('modules').scrollIntoView({behavior:'smooth',block:'start'})});
+</script>
+<script src="ui-language.js"></script>
+</body>
+</html>

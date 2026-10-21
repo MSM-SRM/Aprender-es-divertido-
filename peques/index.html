@@ -90,6 +90,7 @@ button{cursor:pointer;border:0;border-radius:16px;padding:12px 16px;font-weight:
 .game:nth-child(2){background:#ffe5f0}
 .game:nth-child(3){background:#e4f5ff}
 .game:nth-child(4){background:#e1f8e9}
+.game:nth-child(5){background:#efe6ff}
 .progress{background:#fff;border-radius:23px;padding:17px;box-shadow:0 7px 20px #3b32700c}
 .progress-head{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:800}
 .bar{height:12px;background:#eeeefa;border-radius:99px;overflow:hidden;margin:12px 0 8px}
@@ -235,6 +236,7 @@ body.language-changing .app{animation:languageTumble .82s cubic-bezier(.22,.72,.
     <button class="game" data-game="words"><span class="emoji">🔤</span><strong>Palabras mágicas</strong><span id="wordsDesc">Escucha y reconoce palabras.</span></button>
     <button class="game" data-game="memory"><span class="emoji">🧠</span><strong>Memoria divertida</strong><span>Encuentra las parejas iguales.</span></button>
     <button class="game" data-game="listen"><span class="emoji">👂</span><strong>Escucha y aprende</strong><span>Oye una palabra y repítela.</span></button>
+    <button class="game" data-map><span class="emoji">🗺️</span><strong>Mapa de aventuras</strong><span>Explora el mundo mágico y sus zonas.</span></button>
   </div>
   <div class="section-title"><h2>🏆 Mi progreso</h2><small>Se guarda en este dispositivo</small></div>
   <div class="progress">
@@ -530,6 +532,9 @@ updateBirthdays();
 document.querySelectorAll("[data-game]").forEach(b => {
   b.addEventListener("click",() => startGame(b.dataset.game));
 });
+document.querySelector("[data-map]").onclick = () => {
+  if(currentProfile) location.href = "preview-mapa-mireia.html?profile=" + encodeURIComponent(currentProfile);
+};
 
 $("speakWelcome").onclick = () => speak(state.age === 3 ? "¡Hola! Vamos a aprender jugando. Elige una actividad." : "¡Hola! Elige un reto y gana estrellas aprendiendo.");
 

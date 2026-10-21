@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>El mundo mágico de Mireia</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#071d37;color:#fff;font-family:"Trebuchet MS",system-ui,sans-serif;min-height:100vh;display:grid;place-items:start center;overflow-x:hidden;overflow-y:auto}
+.stage{position:relative;width:min(100vw,177.78vh);min-height:100vh;display:grid;grid-template-rows:auto 1fr auto;overflow:hidden;isolation:isolate;box-shadow:0 20px 80px #0009;background:#0878b8}
+.scene{min-width:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,28%);grid-template-rows:auto auto;align-items:stretch}
+.map-area{grid-column:1;grid-row:2;position:relative;z-index:1;width:100%;aspect-ratio:5/4;overflow:hidden;isolation:isolate}
+.map{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.shade{position:absolute;inset:0;background:linear-gradient(180deg,#061d4b1c,transparent 19%,transparent 84%,#031d3c24);z-index:-1;pointer-events:none}
+.hud{grid-column:1/-1;grid-row:1;position:relative;z-index:4;width:100%;min-height:62px;padding:8px 1.2%;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:clamp(8px,1.2vw,20px);background:linear-gradient(90deg,#167dbd,#e9f5ff 18%,#e9f5ff 82%,#167dbd);border:0;border-radius:0;box-shadow:0 3px 12px #0005;color:#113c79;font-weight:900;font-size:clamp(12px,1.2vw,18px);white-space:nowrap}
+.hud-group{height:100%;min-height:100%;display:flex;align-items:center;gap:.42em;padding:.4% .8%;background:linear-gradient(#fff,#eaf3ff);border:2px solid #1676d1;border-radius:999px;box-shadow:0 4px 10px #10274f55}.langs{display:flex;align-items:center;gap:.6em}.langs button{display:grid;place-items:center;width:clamp(22px,2.55vw,36px);line-height:1;border:0;background:transparent;padding:1px;cursor:pointer;filter:drop-shadow(0 1px 1px #0003)}.flag{display:block;width:100%;height:auto;border:1px solid #777;border-radius:3px;overflow:hidden}
+.flag-ca{display:inline-block;width:1.15em;height:.76em;vertical-align:middle;border-radius:2px;border:1px solid #b5b5b5;background:repeating-linear-gradient(to bottom,#f6d647 0 12%,#d8252d 12% 24%)}
+.divider{height:70%;width:1px;background:#94abc6}.hud-divider{align-self:stretch;height:72%;margin:0 .35em}.hud-item{display:flex;align-items:center;gap:.25em}.datetime-group{gap:.45em;padding:0 .3em}.score-group{gap:.6em;padding:0 .3em}.star-count{font-variant-numeric:tabular-nums;gap:.18em}.star{font-size:1.35em;line-height:1;-webkit-text-stroke:.45px #8b6310;text-shadow:0 1px 1px #6341008a}.gold{color:#ffc928}.silver{color:#becbdc;-webkit-text-stroke:.45px #62758d;text-shadow:0 1px 1px #2339528a}.bronze{color:#c97b46;-webkit-text-stroke:.45px #79401f;text-shadow:0 1px 1px #4323138a}.green{color:#30bd68;-webkit-text-stroke:.45px #147039;text-shadow:0 1px 1px #123b258a}.logout{justify-self:start;align-self:center;margin:5px 0 6px 1.2%;padding:6px 12px;border-radius:99px;border:2px solid #b792ff;background:linear-gradient(#7840ce,#421489);color:white;font-weight:900;font-size:clamp(11px,1vw,15px);box-shadow:0 4px 12px #1d164b88;cursor:pointer}
+.score-group.show-overflow #greenOverflow{display:flex!important}
+.zone{position:absolute;z-index:2;transform:translate(-50%,-50%);width:12%;height:7%;border-radius:999px;border:2px solid transparent;background:transparent;color:transparent;font-size:0;box-shadow:none;cursor:pointer;transition:transform .16s,filter .16s;text-shadow:none}
+.zone:hover,.zone:focus-visible{z-index:4;transform:translate(-50%,-50%) scale(1.04);outline:3px solid #fff9;box-shadow:0 0 0 5px #2678ffe0,0 4px 12px #001f5f88}
+.avatar-photo{position:absolute;z-index:1;left:.85%;top:.45%;width:8.9%;aspect-ratio:1;border-radius:50%;object-fit:cover;object-position:53% 48%;border:3px solid #f4f8ff;outline:3px solid #2476ca;box-shadow:0 2px 7px #001c5c99;pointer-events:none}
+.avatar-age{position:absolute;z-index:2;left:14.35%;top:6.85%;width:3.35%;height:2.25%;display:grid;place-items:center;border-radius:3px;background:#0753b5;color:#ffdc30;font-size:clamp(7px,1.12vw,16px);font-weight:1000;line-height:1;text-shadow:0 1px 1px #573c00;pointer-events:none;font-variant-numeric:tabular-nums}
+.event-rail{grid-column:2;grid-row:2;position:relative;z-index:3;min-width:0;min-height:0;background:#07080d;overflow:hidden}
+.events{position:absolute;inset:0;width:100%;height:100%;padding:2.5%;border-left:2px solid #42424d;background:#07080d;display:flex;flex-direction:column;gap:1%;overflow:hidden}
+.events-title{text-align:center;font-size:clamp(13px,1.35vw,19px);font-weight:1000;line-height:1.05;text-shadow:0 2px 3px #000;padding:2% 0 3%;color:#ffe398;background:linear-gradient(110deg,#45251d,#17141a 45%,#312044);border:1px solid #aa7b46;border-radius:12px;box-shadow:0 3px 9px #0009,inset 0 0 0 1px #ffe2a055;flex:none}
+.events-title small{display:block;margin-top:4px;color:#f5e8d2;font-size:.62em;font-weight:700;letter-spacing:.03em}
+.event-list{min-height:0;flex:1;display:grid;grid-template-rows:repeat(13,minmax(0,1fr));gap:1%;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#d89544 #37231d}
+.event{position:relative;isolation:isolate;min-height:0;width:100%;border:2px solid #fff0c1;border-radius:12px;background:radial-gradient(ellipse at 92% 20%,#ffffff38 0 9%,transparent 31%),linear-gradient(115deg,var(--event-light,#73bce9),var(--event-main,#4289c5) 58%,var(--event-dark,#244c86));color:#fff;font-weight:1000;font-size:clamp(8px,.98vw,14px);line-height:1.05;display:flex;align-items:center;justify-content:flex-start;gap:5%;padding:1.5% 22% 1.5% 4%;text-align:left;text-shadow:0 1px 3px #173257;cursor:pointer;box-shadow:inset 0 0 0 2px #fff8,0 3px 8px #0007;transition:filter .2s,transform .2s}
+.event .ico{display:grid;place-items:center;border-radius:50%;width:2.05em;height:2.05em;font-size:1.2em;flex:none;background:linear-gradient(#fff,#ffefc7);border:2px solid #fff9;box-shadow:0 2px 5px #10244288}
+.event::after{content:attr(data-art);position:absolute;z-index:-1;right:5%;top:50%;transform:translateY(-50%);font-size:clamp(22px,2vw,32px);line-height:1;opacity:.72;filter:drop-shadow(0 2px 2px #15233b88);pointer-events:none}
+.event.inactive{filter:grayscale(1);opacity:.93}.event.active{color:white;border-color:var(--event-border,#ffd069);background:linear-gradient(110deg,var(--event-light,#f68c20),var(--event-main,#d53111) 54%,var(--event-dark,#411223));box-shadow:0 0 13px var(--event-glow,#ffa927),inset 0 0 0 2px #ffe2a0}.event.active .ico{background:var(--event-icon,#ffbb29)}.event:hover{transform:scale(1.015)}
+.event[data-event="Navidad"],.event[data-event="Navidad & Año Nuevo"]{--event-light:#55a94a;--event-main:#d92f34;--event-dark:#6f1228;--event-border:#f9df78;--event-glow:#62dc65;--event-icon:#fff2bf}
+.event[data-event="Semana Santa y Lunes de Pascua"]{--event-light:#a45fd1;--event-main:#7242bc;--event-dark:#392064;--event-border:#ffe184;--event-glow:#bb78ff;--event-icon:#fff0ba}
+.event[data-event="Nit de Sant Joan"]{--event-light:#187abb;--event-main:#163e88;--event-dark:#221c57;--event-border:#ffe77b;--event-glow:#51d9ff;--event-icon:#ffe58a}
+.event[data-event="Vacaciones de Verano"]{--event-light:#31bde2;--event-main:#1487c6;--event-dark:#10518d;--event-border:#fff28b;--event-glow:#67e7ff;--event-icon:#ffdf54}
+.event[data-event="San Patricio"]{--event-light:#46be58;--event-main:#168443;--event-dark:#08532e;--event-border:#b6ff9c;--event-glow:#6df783;--event-icon:#dbffd1}
+.event[data-event="St. Jordi y Mamá"]{--event-light:#f3a1ae;--event-main:#d73654;--event-dark:#85284d;--event-border:#ffe79a;--event-glow:#ff91aa;--event-icon:#ffe9a8}
+.event[data-event="Diada de Baleares"]{--event-light:#f8dc6a;--event-main:#d33439;--event-dark:#71354d;--event-border:#fff1a6;--event-glow:#ffca4e;--event-icon:#fff1a6}
+.event[data-event="Sant Antoni y Sant Sebastià"]{--event-light:#dc6329;--event-main:#8f292d;--event-dark:#452039;--event-border:#ffdd82;--event-glow:#ff8a3d;--event-icon:#ffdb83}
+.event[data-event="Carnaval & Jaia Corema"]{--event-light:#ea53a4;--event-main:#8f38c6;--event-dark:#4b2778;--event-border:#ffe589;--event-glow:#fa6beb;--event-icon:#fff0a6}
+.event[data-event="Fiesta nacional de España"]{--event-light:#f5ca43;--event-main:#d83a34;--event-dark:#781d33;--event-border:#fff0a0;--event-glow:#ff9b40;--event-icon:#fff0a0}
+.event[data-event="Halloween"]{--event-light:#f68c20;--event-main:#d53111;--event-dark:#411223;--event-border:#ffd069;--event-glow:#ffa927;--event-icon:#ffbb29}
+.event[data-event="Puente de la Inmaculada"]{--event-light:#d5efff;--event-main:#4783c2;--event-dark:#334b91;--event-border:#fff0b0;--event-glow:#8dd7ff;--event-icon:#fff1b2}
+.event[data-event="Los Reyes Magos"]{--event-light:#9869db;--event-main:#4f3d9d;--event-dark:#28235f;--event-border:#ffe586;--event-glow:#c2a3ff;--event-icon:#ffeaa2}
+.notice{position:absolute;left:50%;bottom:2%;transform:translateX(-50%);padding:.5em 1em;border-radius:99px;background:#10244ddd;border:1px solid #ffffff90;font-weight:800;font-size:clamp(10px,1.05vw,15px);opacity:0;transition:opacity .2s;pointer-events:none}.notice.show{opacity:1}
+.zone-future{left:72%;top:91%;width:12.5%;height:5.5%;font-size:clamp(7px,1vw,14px);font-weight:1000;color:#573700;border-color:#ffde79;background:linear-gradient(#fff5cb,#ffc64b);box-shadow:0 4px 9px #08295066;text-shadow:0 1px 0 #fff;border-radius:999px}.zone-future:hover{filter:brightness(1.08)}
+@media(max-width:850px){.stage{width:100%;min-height:100vh}.hud{order:-1;min-height:0;padding:8px 6px;gap:6px}.hud-divider{display:none}.hud-group{gap:.35em;border-width:1px;padding:5px 8px}.langs{gap:.55em}.langs button{width:clamp(20px,4vw,30px)}.datetime-group,.score-group{padding:5px 8px}.scene{display:flex;flex-direction:column}.map-area{order:0;width:100%;flex:none}.event-rail{order:1;width:100%;height:390px;flex:none}.events{padding:2%;gap:.8%;border-left:0;border-top:2px solid #42424d}.events-title{font-size:clamp(11px,2.5vw,16px)}.event-list{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(7,minmax(36px,1fr));gap:1%}.event{font-size:clamp(9px,1.5vw,13px);border-radius:7px;border-width:1px;padding:1% 17% 1% 3%}.logout{margin:5px 0 6px 8px;padding:6px 12px;font-size:12px}}
+@media(max-width:600px){.scene{display:flex;flex-direction:column}.map-area{width:100%;flex:none}.event-rail{width:100%;height:470px;flex:none}.events{padding:2%;border-left:0;border-top:2px solid #42424d}.events-title{font-size:clamp(12px,3vw,16px)}.event-list{grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-auto-rows:42px;gap:5px}.event{font-size:12px;border-radius:8px;border-width:1px;padding:1% 15% 1% 3%}.event::after{font-size:23px}.event .ico{font-size:1em}.logout{margin:5px 0 6px 8px}}
+</style>
+</head>
+<body>
+<main class="stage" aria-label="Mapa de El mundo mágico de Mireia">
+ <div class="scene">
+ <section class="map-area" aria-label="Isla y zonas educativas">
+  <img class="map" src="fondomundomireia-limpia.png" alt="Isla de aventuras educativas">
+  <div class="shade"></div>
+  <img class="avatar-photo" src="images/mireia-avatar.jpeg" alt="Mireia" aria-label="Foto de Mireia">
+  <span class="avatar-age" id="mireiaAge" aria-label="Edad de Mireia">6</span>
+  <button class="zone" aria-label="Mi Mates" title="Mi Mates" style="left:26.4%;top:28%;width:14.4%" onclick="location.href='mi-mates.html?profile='+encodeURIComponent(profileId)"></button>
+  <button class="zone" aria-label="Mi Lectura" title="Mi Lectura" style="left:49.2%;top:28%;width:14.4%" onclick="location.href='mi-lectura.html?profile='+encodeURIComponent(profileId)"></button>
+  <button class="zone" aria-label="Mi Escritura" title="Mi Escritura" style="left:67.2%;top:31%;width:14.4%" onclick="location.href='mi-escritura.html?profile='+encodeURIComponent(profileId)"></button>
+  <button class="zone" aria-label="Lengua Inglés" title="Lengua Inglés" style="left:85.2%;top:23%;width:16.8%" onclick="location.href='idiomas.html?lang=en&profile='+encodeURIComponent(profileId)"></button>
+  <button class="zone" aria-label="Lengua Catalán" title="Lengua Catalán" style="left:79.2%;top:42%;width:16.8%" onclick="location.href='idiomas.html?lang=ca&profile='+encodeURIComponent(profileId)"></button>
+  <button class="zone" aria-label="Lengua Alemán" title="Lengua Alemán" style="left:92.4%;top:52%;width:14.4%" onclick="location.href='idiomas.html?lang=de&profile='+encodeURIComponent(profileId)"></button>
+  <button class="zone" aria-label="Ciencias" title="Ciencias" style="left:15.6%;top:49%;width:14.4%" onclick="location.href='areas-test.html?area=ciencias&profile='+encodeURIComponent(profileId)"></button>
+  <button class="zone" aria-label="Música" title="Música" style="left:40.8%;top:51%;width:14.4%" onclick="location.href='areas-test.html?area=musica&profile='+encodeURIComponent(profileId)"></button>
+  <button class="zone" aria-label="Biblioteca Cuentos" title="Biblioteca Cuentos" style="left:56.4%;top:60%;width:18.0%" onclick="location.href='areas-test.html?area=biblioteca&profile='+encodeURIComponent(profileId)"></button>
+  <button class="zone" aria-label="Mitología Griega" title="Mitología Griega" style="left:34.8%;top:72%;width:19.2%" onclick="location.href='areas-test.html?area=mitologia-griega&profile='+encodeURIComponent(profileId)"></button>
+  <button class="zone" aria-label="Mitología India" title="Mitología India" style="left:63.6%;top:83%;width:19.2%" onclick="location.href='areas-test.html?area=mitologia-india&profile='+encodeURIComponent(profileId)"></button>
+  <button class="zone" aria-label="Juegos" title="Juegos" style="left:84.0%;top:61%;width:14.4%" onclick="location.href='areas-test.html?area=juegos&profile='+encodeURIComponent(profileId)"></button>
+  <button class="zone zone-future" aria-label="Área en construcción" title="Área en construcción" style="left:86.4%;top:91%;width:15%;height:5.5%" onclick="notice('Área en construcción: nuevos mundos pronto')">🔨 Área en construcción</button>
+ </section>
+  <header class="hud" aria-label="Información de la jugadora">
+    <nav class="langs hud-group" aria-label="Cambiar idioma">
+      <button title="Español" aria-label="Español"><svg class="flag" viewBox="0 0 18 12" aria-hidden="true"><rect width="18" height="12" fill="#c92332"/><rect y="3" width="18" height="6" fill="#ffda3b"/></svg></button>
+      <button title="English" aria-label="English"><svg class="flag" viewBox="0 0 18 12" aria-hidden="true"><rect width="18" height="12" fill="#24488e"/><path d="M0 0 18 12M18 0 0 12" stroke="white" stroke-width="3"/><path d="M0 0 18 12M18 0 0 12" stroke="#d92338" stroke-width="1.1"/><path d="M9 0v12M0 6h18" stroke="white" stroke-width="4"/><path d="M9 0v12M0 6h18" stroke="#d92338" stroke-width="2"/></svg></button>
+      <button title="Català" aria-label="Català"><svg class="flag" viewBox="0 0 18 12" aria-hidden="true"><rect width="18" height="12" fill="#f4d33c"/><path d="M0 1.3h18M0 3.7h18M0 6.1h18M0 8.5h18M0 10.9h18" stroke="#d62c35" stroke-width="1.2"/></svg></button>
+      <button title="Deutsch" aria-label="Deutsch"><svg class="flag" viewBox="0 0 18 12" aria-hidden="true"><rect width="18" height="4" fill="#171717"/><rect y="4" width="18" height="4" fill="#d82131"/><rect y="8" width="18" height="4" fill="#f6cc36"/></svg></button>
+    </nav>
+    <span class="divider hud-divider"></span>
+    <div class="datetime-group hud-group" aria-label="Fecha y hora"><span class="hud-item"><span class="hud-icon">📅</span><span id="date"></span></span><span class="divider"></span><span class="hud-item"><span class="hud-icon">🕒</span><span id="time"></span></span></div>
+    <span class="divider hud-divider"></span>
+    <div class="score-group hud-group" aria-label="Marcador total del perfil"><span class="hud-item star-count" aria-label="Estrellas doradas"><span class="star gold">★</span><span id="profileGold">000</span></span><span class="hud-item star-count" aria-label="Estrellas plateadas"><span class="star silver">★</span><span id="profileSilver">000</span></span><span class="hud-item star-count" aria-label="Estrellas de bronce"><span class="star bronze">★</span><span id="profileBronze">000</span></span><span id="greenOverflow" class="hud-item star-count" aria-label="Estrellas verdes de desbordamiento" style="display:none"><span class="star green">★</span><span id="profileGreen">000</span></span></div>
+  </header>
+  <aside class="event-rail" aria-label="Eventos temporales">
+    <div class="events">
+    <div class="events-title">🎉 Eventos especiales<small>Fiestas y aventuras todo el año</small></div>
+    <div class="event-list">
+      <button class="event" data-event="Sant Antoni y Sant Sebastià" data-art="🔥"><span class="ico">🔥</span>Sant Antoni y Sant Sebastià</button>
+      <button class="event" data-event="Carnaval & Jaia Corema" data-art="🎭"><span class="ico">🎭</span>Carnaval &amp; Jaia Corema</button>
+      <button class="event" data-event="Diada de Baleares" data-art="🏝️"><span class="ico">🏝️</span>Diada de Baleares</button>
+      <button class="event" data-event="San Patricio" data-art="☘️"><span class="ico">☘️</span>San Patricio</button>
+      <button class="event" data-event="Semana Santa y Lunes de Pascua" data-art="✝️"><span class="ico">✝️</span>Semana Santa y Lunes de Pascua</button>
+      <button class="event" data-event="St. Jordi y Mamá" data-art="🌹"><span class="ico">🌹</span>St. Jordi y Mamá</button>
+      <button class="event" data-event="Nit de Sant Joan" data-art="🎆"><span class="ico">🔥</span>Nit de Sant Joan</button>
+      <button class="event" data-event="Vacaciones de Verano" data-art="🌞"><span class="ico">☀️</span>Vacaciones de Verano</button>
+      <button class="event" data-event="Fiesta nacional de España" data-art="🇪🇸"><span class="ico">🇪🇸</span>Fiesta nacional de España</button>
+      <button class="event" data-event="Halloween" data-art="🎃"><span class="ico">🎃</span>Halloween</button>
+      <button class="event" data-event="Puente de la Inmaculada" data-art="❄️"><span class="ico">❄️</span>Puente de la Inmaculada</button>
+      <button class="event" data-event="Navidad & Año Nuevo" data-art="🎄"><span class="ico">🎄</span>Navidad &amp; Año Nuevo</button>
+      <button class="event" data-event="Los Reyes Magos" data-art="👑"><span class="ico">👑</span>Los Reyes Magos</button>
+    </div>
+    </div>
+  </aside>
+ </div>
+ <button class="logout" onclick="location.href='index.html'">⇦ Salir</button>
+  <div id="notice" class="notice" role="status"></div>
+</main>
+<script>
+const dateNode=document.getElementById('date'),timeNode=document.getElementById('time');
+function tick(){const d=new Date(),locale=({es:'es-ES',en:'en-GB',ca:'ca-ES',de:'de-DE'})[document.documentElement.lang]||'es-ES';dateNode.textContent=new Intl.DateTimeFormat(locale,{day:'2-digit',month:'2-digit',year:'numeric'}).format(d);timeNode.textContent=new Intl.DateTimeFormat(locale,{hour:'2-digit',minute:'2-digit',hour12:false}).format(d)}
+tick();setInterval(tick,15000);window.addEventListener('mundo:ui-language',tick);
+function updateMireiaAge(){const now=new Date();let age=now.getFullYear()-2019;if(now<new Date(now.getFullYear(),11,9,0,1))age--;document.getElementById('mireiaAge').textContent=String(age)}
+updateMireiaAge();setInterval(updateMireiaAge,1000);
+const profileId=new URLSearchParams(location.search).get('profile')||'mireia';
+const progressKey='mundoAprendizajeProgressV3_'+profileId;const freshStartKey='mundoAprendizajeFreshStartV1_'+profileId;if(profileId==='mireia'&&!localStorage.getItem(freshStartKey)){localStorage.removeItem(progressKey);localStorage.setItem(freshStartKey,'1')}
+function updateProfileScores(){
+  let data={byArea:{}};try{data=JSON.parse(localStorage.getItem('mundoAprendizajeProgressV3_'+profileId))||data}catch(e){}
+  const totals={gold:0,silver:0,bronze:0};
+  for(const area of Object.values(data.byArea||{}))for(const type of Object.keys(totals))totals[type]+=Math.max(0,Number(area?.[type])||0);
+  const overflow=Math.floor(totals.gold/1000)+Math.floor(totals.silver/1000)+Math.floor(totals.bronze/1000);
+  document.getElementById('profileGold').textContent=String(totals.gold%1000).padStart(3,'0');
+  document.getElementById('profileSilver').textContent=String(totals.silver%1000).padStart(3,'0');
+  document.getElementById('profileBronze').textContent=String(totals.bronze%1000).padStart(3,'0');
+  document.getElementById('profileGreen').textContent=String(overflow%1000).padStart(3,'0');
+  document.getElementById('greenOverflow').style.display=overflow?'flex':'none';
+}
+updateProfileScores();window.addEventListener('storage',event=>{if(!event.key||event.key==='mundoAprendizajeProgressV3_'+profileId)updateProfileScores()});
+function easterDate(year){const a=year%19,b=Math.floor(year/100),c=year%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),month=Math.floor((h+l-7*m+114)/31),day=(h+l-7*m+114)%31+1;return new Date(year,month-1,day)}
+const eventWindows=[
+  {name:'Sant Antoni y Sant Sebastià',start:[1,11],end:[1,25]},
+  {name:'Carnaval & Jaia Corema',start:[1,26],end:[2,14]},
+  {name:'Diada de Baleares',start:[2,25],end:[3,5]},
+  {name:'San Patricio',start:[3,10],end:[3,20]},
+  {name:'Semana Santa y Lunes de Pascua',start:[3,21],end:[4,21]},
+  {name:'St. Jordi y Mamá',start:[4,21],end:[4,29]},
+  {name:'Nit de Sant Joan',start:[6,20],end:[6,25]},
+  {name:'Vacaciones de Verano',start:[7,1],end:[9,7]},
+  {name:'Fiesta nacional de España',start:[10,7],end:[10,14]},
+  {name:'Halloween',start:[10,15],end:[11,5]},
+  {name:'Puente de la Inmaculada',start:[12,1],end:[12,12]},
+  {name:'Navidad & Año Nuevo',start:[12,15],end:[1,2]},
+  {name:'Los Reyes Magos',start:[1,3],end:[1,10]}
+];
+function activeEvents(now){const m=now.getMonth()+1,d=now.getDate();return eventWindows.filter(e=>{const [sm,sd]=e.start,[em,ed]=e.end;const current=m*100+d,start=sm*100+sd,end=em*100+ed;return start<=end?current>=start&&current<=end:current>=start||current<=end}).map(e=>e.name)}
+const eventRoutes={'Sant Antoni y Sant Sebastià':'sant-antoni-sant-sebastia','Carnaval & Jaia Corema':'carnaval-jaia-corema','Diada de Baleares':'diada-baleares','San Patricio':'san-patricio','Semana Santa y Lunes de Pascua':'semana-santa-pascua','St. Jordi y Mamá':'st-jordi-mama','Nit de Sant Joan':'nit-sant-joan','Vacaciones de Verano':'vacaciones-verano','Fiesta nacional de España':'fiesta-nacional-espana','Halloween':'halloween','Puente de la Inmaculada':'puente-inmaculada','Navidad & Año Nuevo':'navidad-ano-nuevo','Los Reyes Magos':'reyes-magos'};
+const currentEvents=activeEvents(new Date());document.querySelectorAll('.event').forEach(b=>{const active=currentEvents.includes(b.dataset.event);b.classList.add(active?'active':'inactive');b.setAttribute('aria-pressed',String(active));b.onclick=()=>{if(active)location.href='evento-especial.html?event='+encodeURIComponent(eventRoutes[b.dataset.event])+'&profile='+encodeURIComponent(profileId);else notice(`${b.dataset.event} aparecerá en su temporada.`)}});
+let timer;function notice(text){const node=document.getElementById('notice');node.textContent=text;node.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>node.classList.remove('show'),2200)}
+</script>
+<script src="ui-language.js"></script>
+</body>
+</html>
+
