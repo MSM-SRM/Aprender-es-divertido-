@@ -510,6 +510,23 @@ async function selectProfile(profile) {
   if(!loginOK) return;
 
   currentProfile = profile;
+
+  // Sofía conserva su página básica con juegos dentro de index.html.
+  // Mireia entra al mapa nuevo.
+  if(profile === "sofia") {
+    $("age").value = "3";
+    setAge();
+    $("profileChooser").classList.add("hide");
+    $("appContent").classList.remove("hide");
+    $("home").classList.remove("hide");
+    $("screen").classList.remove("active");
+    state.game = null;
+    progress = loadProgress();
+    renderProgress();
+    if("speechSynthesis" in window) window.speechSynthesis.cancel();
+    return;
+  }
+
   location.href = "mundo-mireia.html?profile=" + encodeURIComponent(profile);
 }
 
