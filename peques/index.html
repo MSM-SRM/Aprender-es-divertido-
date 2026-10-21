@@ -90,7 +90,10 @@ button{cursor:pointer;border:0;border-radius:16px;padding:12px 16px;font-weight:
 .game:nth-child(2){background:#ffe5f0}
 .game:nth-child(3){background:#e4f5ff}
 .game:nth-child(4){background:#e1f8e9}
-.game:nth-child(5){background:#efe6ff}
+.game[data-map]{grid-column:1/-1;min-height:0;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;text-align:center;padding:16px;background:#efe6ff}
+.game[data-map] .emoji{font-size:2rem}
+.game[data-map] strong{font-size:1.1rem}
+.game[data-map] span:last-child{font-size:.9rem;color:var(--muted)}
 .progress{background:#fff;border-radius:23px;padding:17px;box-shadow:0 7px 20px #3b32700c}
 .progress-head{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:800}
 .bar{height:12px;background:#eeeefa;border-radius:99px;overflow:hidden;margin:12px 0 8px}
@@ -792,6 +795,7 @@ function flipCard(i,b) {
       "Nivel 3 años · Descubrir":"Level age 3 · Discover","Nivel 7 años · Practicar":"Level age 7 · Practise",
       "🔊 Escuchar":"🔊 Listen","🎮 Elige una actividad":"🎮 Choose an activity","Nivel descubrir":"Discover level","Nivel practicar":"Practice level",
       "Contar objetos":"Count objects","Retos matemáticos":"Math challenges","Cuenta y elige el número.":"Count and choose the number.",
+      "Mapa de aventuras":"Adventure map","Explora el mundo mágico y sus zonas.":"Explore the magical world and its zones.",
       "Sumas y restas sencillas.":"Simple addition and subtraction.","Palabras mágicas":"Magic words","Escucha y reconoce palabras.":"Listen and recognise words.",
       "Lee y reconoce palabras.":"Read and recognise words.","Memoria divertida":"Fun memory","Encuentra las parejas iguales.":"Find the matching pairs.",
       "Escucha y aprende":"Listen and learn","Oye una palabra y repítela.":"Hear a word and repeat it.",
@@ -837,6 +841,7 @@ function flipCard(i,b) {
       "Nivel 3 años · Descubrir":"Nivell 3 anys · Descobrir","Nivel 7 años · Practicar":"Nivell 7 anys · Practicar",
       "🔊 Escuchar":"🔊 Escolta","🎮 Elige una actividad":"🎮 Tria una activitat","Nivel descubrir":"Nivell descobrir","Nivel practicar":"Nivell practicar",
       "Contar objetos":"Comptar objectes","Retos matemáticos":"Reptes matemàtics","Cuenta y elige el número.":"Compta i tria el número.",
+      "Mapa de aventuras":"Mapa d'aventures","Explora el mundo mágico y sus zonas.":"Explora el món màgic i les seves zones.",
       "Sumas y restas sencillas.":"Sumes i restes senzilles.","Palabras mágicas":"Paraules màgiques","Escucha y reconoce palabras.":"Escolta i reconeix paraules.",
       "Lee y reconoce palabras.":"Llegeix i reconeix paraules.","Memoria divertida":"Memòria divertida","Encuentra las parejas iguales.":"Troba les parelles iguals.",
       "Escucha y aprende":"Escolta i aprèn","Oye una palabra y repítela.":"Escolta una paraula i repeteix-la.",
@@ -882,6 +887,7 @@ function flipCard(i,b) {
       "Nivel 3 años · Descubrir":"Stufe 3 Jahre · Entdecken","Nivel 7 años · Practicar":"Stufe 7 Jahre · Üben",
       "🔊 Escuchar":"🔊 Anhören","🎮 Elige una actividad":"🎮 Wähle eine Aktivität","Nivel descubrir":"Entdeckerstufe","Nivel practicar":"Übungsstufe",
       "Contar objetos":"Objekte zählen","Retos matemáticos":"Mathe-Aufgaben","Cuenta y elige el número.":"Zähle und wähle die Zahl.",
+      "Mapa de aventuras":"Abenteuerkarte","Explora el mundo mágico y sus zonas.":"Entdecke die magische Welt und ihre Zonen.",
       "Sumas y restas sencillas.":"Einfache Addition und Subtraktion.","Palabras mágicas":"Zauberwörter","Escucha y reconoce palabras.":"Höre Wörter und erkenne sie.",
       "Lee y reconoce palabras.":"Lies Wörter und erkenne sie.","Memoria divertida":"Lustiges Gedächtnisspiel","Encuentra las parejas iguales.":"Finde die passenden Paare.",
       "Escucha y aprende":"Hören und lernen","Oye una palabra y repítela.":"Höre ein Wort und wiederhole es.",
