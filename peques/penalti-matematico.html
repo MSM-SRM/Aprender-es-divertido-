@@ -154,10 +154,84 @@
             flex-shrink: 0;
         }
 
+        .mode-block {
+            margin: 0 0 clamp(12px, 2.5vw, 20px);
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: clamp(10px, 2.5vw, 15px);
+        }
+
+        .mode-label {
+            margin: 0 0 clamp(6px, 1.5vw, 10px);
+            font-size: clamp(0.85rem, 2.3vw, 1.05rem);
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 1px 1px 3px #000;
+        }
+
+        .mode-selector {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: clamp(6px, 1.5vw, 12px);
+        }
+
+        button.mode-btn {
+            min-height: 48px;
+            min-width: 0;
+            padding: 8px 4px;
+            font-size: clamp(0.88rem, 2.3vw, 1.05rem);
+            background: rgba(255,255,255,0.18);
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.75);
+            border-radius: 10px;
+            box-shadow: 0 3px 0 rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+        }
+
+        button.mode-btn.is-selected {
+            background: #f1c40f;
+            color: #1a1a1a;
+            border-color: #fff;
+            text-shadow: none;
+            box-shadow: 0 3px 0 rgba(0,0,0,0.45), inset 0 0 0 2px rgba(0,0,0,0.15);
+        }
+
+        button.mode-btn.is-selected::before {
+            content: "✓ ";
+        }
+
         .btn-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: clamp(9px, 2.2vw, 20px);
+        }
+
+        .btn-grid button {
+            font-size: clamp(0.85rem, 2.1vw, 1.15rem);
+            padding-left: 6px;
+            padding-right: 6px;
+            min-width: 0;
+        }
+
+        .btn-lvl5 {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #9b59b6, #6c3483);
+            color: #fff;
+            border-color: #f1c40f;
+        }
+
+        .mode-btn:focus-visible,
+        .btn-grid button:focus-visible,
+        .ball-btn:focus-visible,
+        .back-btn:focus-visible,
+        .result-actions button:focus-visible {
+            outline: 3px solid #f1c40f;
+            outline-offset: 2px;
+        }
+
+        @media (min-width: 720px) {
+            .btn-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+            .btn-lvl5 { grid-column: auto; }
         }
 
         button {
@@ -322,6 +396,108 @@
             border: 2px solid #fff;
         }
 
+        .hud-status {
+            display: inline-flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px 8px;
+            min-width: 0;
+        }
+
+        /* PANTALLA DE RESULTADO */
+        #result-screen {
+            padding: clamp(4px, 1.5vw, 12px) 0 clamp(2px, 1vw, 8px);
+        }
+
+        .result-star {
+            font-size: clamp(3.2rem, 16vw, 5.4rem);
+            line-height: 1.1;
+            margin: clamp(4px, 1.5vw, 10px) 0 clamp(2px, 1vw, 6px);
+            filter: drop-shadow(0 6px 10px rgba(0,0,0,0.45));
+            animation: star-pop 0.45s ease-out;
+        }
+
+        @keyframes star-pop {
+            from { transform: scale(0.4); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .result-star { animation: none; }
+        }
+
+        #result-title {
+            margin: 0 0 clamp(6px, 2vw, 12px);
+            color: #f1c40f;
+            font-size: clamp(1.25rem, 5vw, 2rem);
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        #result-copy {
+            margin: 0 auto clamp(8px, 2vw, 14px);
+            max-width: 520px;
+            color: #fff;
+            font-size: clamp(0.95rem, 2.8vw, 1.15rem);
+            line-height: 1.45;
+            text-shadow: 1px 1px 3px #000;
+        }
+
+        .result-meta {
+            display: inline-block;
+            max-width: 100%;
+            margin: 0 0 clamp(6px, 1.8vw, 10px);
+            padding: 6px 14px;
+            border: 2px solid rgba(255,255,255,0.35);
+            border-radius: 999px;
+            background: rgba(0,0,0,0.3);
+            color: #fff;
+            font-size: clamp(0.8rem, 2.4vw, 0.95rem);
+            font-weight: bold;
+            line-height: 1.3;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        #result-total {
+            margin: 0 auto clamp(6px, 2vw, 12px);
+            max-width: 520px;
+            color: #fff;
+            font-size: clamp(0.9rem, 2.6vw, 1.05rem);
+            font-weight: bold;
+            line-height: 1.4;
+            text-shadow: 1px 1px 3px #000;
+        }
+
+        .result-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: clamp(8px, 2.5vw, 14px);
+            margin-top: clamp(10px, 3vw, 18px);
+        }
+
+        .result-actions button {
+            flex: 1 1 240px;
+            max-width: 300px;
+            min-height: 52px;
+            font-size: clamp(0.95rem, 2.6vw, 1.1rem);
+            padding: 12px 16px;
+        }
+
+        .result-actions .btn-primary {
+            background: #2ecc71;
+            color: #10240f;
+            border-color: #fff;
+            text-shadow: none;
+        }
+
+        .result-actions .btn-secondary {
+            background: rgba(0,0,0,0.4);
+            color: #fff;
+            border-color: #fff;
+        }
+
         @media (max-width: 760px) {
             #game-layout { flex-direction: column; }
             #board-container { max-width: 100%; }
@@ -350,7 +526,7 @@
             <h1>⚽ El Gran Clásico: Penalti Matemático ⚽</h1>
             
             <div class="intro-header-block">
-                <p class="intro-text">¡Ayuda a Cristiano Ronaldo a meterle un golazo al Barça!<br>Resuelve la operación para marcar gol.</p>
+                <p class="intro-text">¡Ayuda a Cristiano Ronaldo a meterle un golazo al Barça!<br>Primero elige Sumas, Restas o Mixtos y después el nivel. Resuelve la operación para marcar gol.<br><strong>Cada partida son 10 penaltis:</strong> con 6 aciertos ganas bronce, con 8 plata y con 10 oro.</p>
                 
                 <!-- Avatar de CR7 con pelo castaño -->
                 <div class="cr7-avatar">
@@ -371,19 +547,33 @@
                 </div>
             </div>
             
+            <div class="mode-block">
+                <p class="mode-label" id="mode-label">Tipo de operación</p>
+                <div class="mode-selector" role="group" aria-labelledby="mode-label">
+                    <button type="button" class="mode-btn is-selected" data-mode="sumas" aria-pressed="true">Sumas</button>
+                    <button type="button" class="mode-btn" data-mode="restas" aria-pressed="false">Restas</button>
+                    <button type="button" class="mode-btn" data-mode="mixtos" aria-pressed="false">Mixtos</button>
+                </div>
+            </div>
+
             <div class="btn-grid">
-                <button class="btn-lvl1" onclick="startGame(1)">Fácil</button>
-                <button class="btn-lvl2" onclick="startGame(2)">Medio</button>
-                <button class="btn-lvl3" onclick="startGame(3)">Alto</button>
-                <button class="btn-lvl4" onclick="startGame(4)">Experto</button>
+                <button class="btn-lvl1" onclick="startGame(1)">Muy fácil</button>
+                <button class="btn-lvl2" onclick="startGame(2)">Fácil</button>
+                <button class="btn-lvl3" onclick="startGame(3)">Medio</button>
+                <button class="btn-lvl4" onclick="startGame(4)">Difícil</button>
+                <button class="btn-lvl5" onclick="startGame(5)">Élite</button>
             </div>
         </div>
 
         <!-- PANTALLA DE JUEGO -->
         <div id="game-screen" class="screen">
             <div id="hud">
-                <span id="hud-level">Nivel: Fácil</span>
-                <span id="hud-score">Goles: 0</span>
+                <span id="hud-level">Sumas · Muy fácil</span>
+                <span class="hud-status">
+                    <span id="hud-progress">Tiro 1/10</span>
+                    <span aria-hidden="true">·</span>
+                    <span id="hud-score">Goles: 0</span>
+                </span>
             </div>
 
             <div id="game-layout">
@@ -423,16 +613,46 @@
 
             <button class="back-btn" onclick="showSetup()">Volver al Menú</button>
         </div>
+
+        <!-- PANTALLA DE RESULTADO -->
+        <div id="result-screen" class="screen" aria-live="polite">
+            <div class="result-star" id="result-star" aria-hidden="true">⚽</div>
+            <h2 id="result-title">¡Partido terminado!</h2>
+            <p id="result-copy"></p>
+            <p class="result-meta" id="result-meta"></p>
+            <p id="result-total"></p>
+            <div class="result-actions">
+                <button type="button" class="btn-primary" id="replay-btn" onclick="startGame(currentLevel)">Jugar otra vez</button>
+                <button type="button" class="btn-secondary" id="change-level-btn" onclick="showSetup()">Cambiar nivel</button>
+            </div>
+        </div>
     </div>
 
     <script>
         document.getElementById('backToMates').href = 'mi-mates.html?profile=' + encodeURIComponent(profileId);
+
+        // Progreso V3 compartido con Mi Mates
+        const progressKey = `mundoAprendizajeProgressV3_${profileId}`;
+        let profileProgress;
+        try { profileProgress = JSON.parse(localStorage.getItem(progressKey)); } catch (e) { profileProgress = null; }
+        if (!profileProgress || typeof profileProgress !== 'object') profileProgress = { stars: 0, rounds: 0, byGame: {}, byArea: {} };
+        profileProgress.byGame ||= {};
+        profileProgress.byArea ||= {};
+        if (!profileProgress.byArea.mates) profileProgress.byArea.mates = { gold: 0, silver: 0, bronze: 0 };
+        const areaScores = profileProgress.byArea.mates;
+        for (const starType of ['gold', 'silver', 'bronze']) areaScores[starType] = Number(areaScores[starType] || 0);
 
         let currentLevel = 1;
         let score = 0;
         let num1 = 0, num2 = 0, correctAnswer = 0, isAddition = true;
         let options = [];
         let gameState = "idle"; 
+
+        const TOTAL_SHOTS = 10;
+        let matchShots = 0;       // penaltis respondidos en la partida actual
+        let matchFinished = false; // evita guardar dos veces la misma partida
+        let lastShotGoal = false;
+        let nextShotTimer = null;
 
         const canvas = document.getElementById('field');
         const ctx = canvas.getContext('2d');
@@ -444,26 +664,79 @@
         let targetKeeperX = 250;
         let animationFrame;
 
-        const levelNames = { 1: "Fácil", 2: "Medio", 3: "Alto", 4: "Experto" };
+        const LEVELS = {
+            1: { name: "Muy fácil", min: 0, max: 10 },
+            2: { name: "Fácil", min: 0, max: 50 },
+            3: { name: "Medio", min: 11, max: 99 },
+            4: { name: "Difícil", min: 100, max: 499 },
+            5: { name: "Élite", min: 500, max: 1000 }
+        };
+
+        const MODES = { sumas: "Sumas", restas: "Restas", mixtos: "Mixtos" };
+        let operationMode = "sumas";
+
+        function randomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function applyMode(mode) {
+            if (!MODES[mode]) return;
+            operationMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                const selected = btn.dataset.mode === mode;
+                btn.classList.toggle('is-selected', selected);
+                btn.setAttribute('aria-pressed', String(selected));
+            });
+        }
+
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            btn.addEventListener('click', () => applyMode(btn.dataset.mode));
+        });
+
+        applyMode(operationMode);
+
+        function updateHud() {
+            document.getElementById('hud-level').innerText =
+                MODES[operationMode] + " · " + LEVELS[currentLevel].name;
+            document.getElementById('hud-progress').innerText =
+                "Tiro " + Math.min(matchShots + 1, TOTAL_SHOTS) + "/" + TOTAL_SHOTS;
+            document.getElementById('hud-score').innerText = "Goles: " + score;
+        }
 
         function startGame(level) {
             currentLevel = level;
             score = 0;
-            document.getElementById('hud-level').innerText = "Nivel: " + levelNames[level];
-            document.getElementById('hud-score').innerText = "Goles: " + score;
+            matchShots = 0;
+            matchFinished = false;
+            lastShotGoal = false;
+            gameState = "idle";
+            clearTimeout(nextShotTimer);
+            nextShotTimer = null;
+
             document.getElementById('setup-screen').classList.remove('active');
+            document.getElementById('result-screen').classList.remove('active');
             document.getElementById('game-screen').classList.add('active');
+
+            updateHud();
             generateOperation();
             resetAnimationPositions();
-            
+
             cancelAnimationFrame(animationFrame);
             animate();
         }
 
         function showSetup() {
             cancelAnimationFrame(animationFrame);
+            clearTimeout(nextShotTimer);
+            nextShotTimer = null;
+            matchFinished = true; // salir a mitad de partida no concede estrella
+            gameState = "idle";
+
             document.getElementById('game-screen').classList.remove('active');
+            document.getElementById('result-screen').classList.remove('active');
             document.getElementById('setup-screen').classList.add('active');
+            updateHud();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function generateOperation() {
@@ -472,28 +745,21 @@
             document.getElementById('feedback').style.color = "white";
             resetAnimationPositions();
 
-            isAddition = Math.random() > 0.5;
+            isAddition = operationMode === "mixtos"
+                ? Math.random() < 0.5
+                : operationMode === "sumas";
 
-            if (currentLevel === 1) {
-                num1 = Math.floor(Math.random() * 21) + 5; 
-                num2 = Math.floor(Math.random() * 6) + 1;   
-                if (!isAddition && num1 < num2) { let t = num1; num1 = num2; num2 = t; }
-                correctAnswer = isAddition ? num1 + num2 : num1 - num2;
-            } else if (currentLevel === 2) {
-                num1 = Math.floor(Math.random() * 89) + 11;
-                num2 = Math.floor(Math.random() * (num1 - 11 + 1)) + 11; 
-                if (isAddition) num2 = Math.floor(Math.random() * 40) + 11; 
-                correctAnswer = isAddition ? num1 + num2 : num1 - num2;
-            } else if (currentLevel === 3) {
-                num1 = Math.floor(Math.random() * 400) + 100;
-                num2 = Math.floor(Math.random() * (num1 - 100 + 1)) + 100;
-                correctAnswer = isAddition ? num1 + num2 : num1 - num2;
+            const level = LEVELS[currentLevel];
+
+            if (isAddition) {
+                num1 = randomInt(level.min, level.max);
+                num2 = randomInt(level.min, level.max);
             } else {
-                num1 = Math.floor(Math.random() * 401) + 500; 
-                num2 = Math.floor(Math.random() * 300) + 100; 
-                if (!isAddition && num1 < num2) { let t = num1; num1 = num2; num2 = t; }
-                correctAnswer = isAddition ? num1 + num2 : num1 - num2;
+                num1 = randomInt(level.min, level.max);
+                num2 = randomInt(level.min, num1);
             }
+
+            correctAnswer = isAddition ? num1 + num2 : num1 - num2;
 
             const sign = isAddition ? "+" : "-";
             
@@ -508,12 +774,20 @@
             document.getElementById('math-board').innerText = paddedNum1 + "\n" + paddedNum2 + "\n" + line;
 
             options = [correctAnswer];
-            while(options.length < 3) {
-                let dev = (Math.floor(Math.random() * 5) + 1) * (Math.random() > 0.5 ? 1 : -1);
-                let wrong = correctAnswer + dev;
+            const spread = Math.max(4, Math.round(Math.max(correctAnswer, 10) * 0.15));
+            let guard = 0;
+            while (options.length < 3 && guard < 200) {
+                guard++;
+                const dev = randomInt(1, spread) * (Math.random() < 0.5 ? 1 : -1);
+                const wrong = correctAnswer + dev;
                 if (wrong >= 0 && !options.includes(wrong)) {
                     options.push(wrong);
                 }
+            }
+            let filler = correctAnswer + 1;
+            while (options.length < 3) {
+                if (!options.includes(filler)) options.push(filler);
+                filler++;
             }
             options.sort(() => Math.random() - 0.5);
 
@@ -532,12 +806,15 @@
         }
 
         function checkAnswer(index) {
-            if (gameState !== "idle") return; 
+            if (gameState !== "idle" || matchFinished) return;
+            if (matchShots >= TOTAL_SHOTS) return;
+
+            matchShots++;
 
             if (options[index] === correctAnswer) {
                 gameState = "kicking";
+                lastShotGoal = true;
                 score++;
-                document.getElementById('hud-score').innerText = "Goles: " + score;
                 document.getElementById('feedback').innerText = "¡SÍ! ¡GOLAZO DE CR7! ⚪🔥";
                 document.getElementById('feedback').style.color = "#2ecc71";
                 
@@ -546,6 +823,7 @@
                 targetKeeperX = targetBallX > 250 ? 190 : 310; 
             } else {
                 gameState = "kicking";
+                lastShotGoal = false;
                 document.getElementById('feedback').innerText = "¡El portero del Barça lo ha parado!";
                 document.getElementById('feedback').style.color = "#e74c3c";
                 
@@ -553,6 +831,8 @@
                 targetBallY = 75;
                 targetKeeperX = targetBallX;
             }
+
+            updateHud();
         }
 
         function drawField() {
@@ -721,19 +1001,86 @@
                     ballX += dx * 0.20;
                     ballY += dy * 0.20;
                 } else {
-                    if (document.getElementById('feedback').innerText.includes("GOLAZO")) {
+                    if (lastShotGoal) {
                         gameState = "goal";
                     } else {
                         gameState = "saved";
                     }
-                    
-                    setTimeout(() => {
-                        generateOperation();
-                    }, 2500);
+
+                    scheduleNextShot();
                 }
             }
 
             animationFrame = requestAnimationFrame(animate);
+        }
+
+        function scheduleNextShot() {
+            clearTimeout(nextShotTimer);
+            nextShotTimer = setTimeout(() => {
+                nextShotTimer = null;
+                if (matchFinished) return;
+                if (!document.getElementById('game-screen').classList.contains('active')) return;
+
+                if (matchShots >= TOTAL_SHOTS) {
+                    finishMatch();
+                } else {
+                    generateOperation();
+                }
+            }, 2500);
+        }
+
+        function finishMatch() {
+            if (matchFinished) return;
+            matchFinished = true;
+            clearTimeout(nextShotTimer);
+            nextShotTimer = null;
+            cancelAnimationFrame(animationFrame);
+            gameState = "idle";
+
+            const grade = score === TOTAL_SHOTS ? 'gold' : score >= 8 ? 'silver' : score >= 6 ? 'bronze' : null;
+            const starIcons = { gold: '🌟', silver: '⭐', bronze: '🥉' };
+
+            profileProgress.rounds = (Number(profileProgress.rounds) || 0) + 1;
+            const gameKey = 'mates_penalti_' + currentLevel;
+            profileProgress.byGame[gameKey] = (Number(profileProgress.byGame[gameKey]) || 0) + 1;
+            if (grade) areaScores[grade] = (Number(areaScores[grade]) || 0) + 1;
+            profileProgress.stars = Object.values(profileProgress.byArea).reduce(
+                (sum, area) => sum + ['gold', 'silver', 'bronze'].reduce(
+                    (subtotal, type) => subtotal + (Number(area?.[type]) || 0), 0), 0);
+            try { localStorage.setItem(progressKey, JSON.stringify(profileProgress)); } catch (e) {}
+
+            const starEl = document.getElementById('result-star');
+            starEl.textContent = grade ? starIcons[grade] : '⚽';
+            starEl.style.color = grade === 'gold' ? '#ffd93d'
+                : grade === 'silver' ? '#dfe6ee'
+                : grade === 'bronze' ? '#e0a370'
+                : '#7ec8ff';
+
+            document.getElementById('result-title').textContent =
+                grade === 'gold' ? '¡Partido perfecto!' :
+                grade === 'silver' ? '¡Gran partido!' :
+                grade === 'bronze' ? '¡Buen partido!' : '¡Sigue entrenando!';
+
+            let resultCopy = "Has marcado " + score + " de " + TOTAL_SHOTS + " penaltis. ";
+            if (grade === 'gold') resultCopy += "¡Has ganado una estrella de oro!";
+            else if (grade === 'silver') resultCopy += "¡Has ganado una estrella de plata!";
+            else if (grade === 'bronze') resultCopy += "¡Has ganado una estrella de bronce!";
+            else resultCopy += "Con 6 aciertos consigues bronce. Puedes repetir el nivel o elegir otro.";
+            document.getElementById('result-copy').textContent = resultCopy;
+
+            document.getElementById('result-meta').textContent =
+                MODES[operationMode] + " · " + LEVELS[currentLevel].name + " · " + TOTAL_SHOTS + " penaltis";
+
+            document.getElementById('result-total').textContent =
+                "Estrellas de Mates: 🌟 " + areaScores.gold +
+                " · ⭐ " + areaScores.silver +
+                " · 🥉 " + areaScores.bronze +
+                " (" + (areaScores.gold + areaScores.silver + areaScores.bronze) + " en total)";
+
+            document.getElementById('game-screen').classList.remove('active');
+            document.getElementById('setup-screen').classList.remove('active');
+            document.getElementById('result-screen').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
