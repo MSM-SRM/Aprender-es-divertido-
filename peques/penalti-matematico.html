@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Gran Clásico: Penalti Matemático</title>
+    <script src="auth-guard.js"></script>
+    <script>
+        const profileId = new URLSearchParams(location.search).get('profile') || 'mireia';
+    </script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: clamp(8px, 2.5vw, 24px);
+            background: linear-gradient(90deg, 
+                #1e7e34 0%, #1e7e34 10%, 
+                #28a745 10%, #28a745 20%,
+                #1e7e34 20%, #1e7e34 30%, 
+                #28a745 30%, #28a745 40%,
+                #1e7e34 40%, #1e7e34 50%, 
+                #28a745 50%, #28a745 60%,
+                #1e7e34 60%, #1e7e34 70%, 
+                #28a745 70%, #28a745 80%,
+                #1e7e34 80%, #1e7e34 90%, 
+                #28a745 90%, #28a745 100%
+            );
+            font-family: 'Arial Rounded MT Bold', 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            min-height: 100svh;
+            color: white;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .bg-lines {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            border: 15px solid rgba(255,255,255,0.15);
+            box-sizing: border-box;
+        }
+        .bg-line-center {
+            position: absolute;
+            left: 50%; top: 0; bottom: 0;
+            width: 4px;
+            background: rgba(255,255,255,0.15);
+        }
+        .bg-circle-center {
+            position: absolute;
+            left: 50%; top: 50%;
+            width: 260px; height: 260px;
+            border: 4px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #game-container {
+            width: min(100%, 840px);
+            margin: auto;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 5px solid #f1c40f;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            padding: clamp(12px, 3vw, 25px);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .back-row {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: clamp(8px, 2vw, 14px);
+        }
+
+        .back-mates {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 9px 16px;
+            border: 2px solid #fff;
+            border-radius: 999px;
+            background: rgba(0,0,0,0.35);
+            color: #fff;
+            font-size: clamp(0.88rem, 2.4vw, 1rem);
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            touch-action: manipulation;
+        }
+
+        .back-mates:hover,
+        .back-mates:focus-visible {
+            background: rgba(0,0,0,0.55);
+            outline: 3px solid #f1c40f;
+            outline-offset: 2px;
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #f1c40f;
+            text-shadow: 2px 2px 4px #000;
+            font-size: clamp(1.3rem, 5.2vw, 34px);
+            line-height: 1.2;
+        }
+
+        .screen {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .intro-header-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(10px, 2.5vw, 20px);
+            margin: clamp(8px, 2vw, 15px) 0 clamp(12px, 3vw, 25px) 0;
+            background: rgba(0,0,0,0.3);
+            padding: clamp(10px, 2.5vw, 15px);
+            border-radius: 12px;
+        }
+
+        .intro-text {
+            font-size: clamp(0.95rem, 2.5vw, 21px);
+            color: #fff;
+            text-shadow: 1px 1px 3px #000;
+            line-height: 1.4;
+            text-align: left;
+            margin: 0;
+            max-width: 550px;
+        }
+
+        .cr7-avatar {
+            width: clamp(56px, 14vw, 90px);
+            height: clamp(59px, 14.8vw, 95px);
+            filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.4));
+            flex-shrink: 0;
+        }
+
+        .btn-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(9px, 2.2vw, 20px);
+        }
+
+        button {
+            padding: clamp(12px, 3vw, 16px) clamp(8px, 2vw, 20px);
+            font-size: clamp(1rem, 3vw, 22px);
+            font-weight: bold;
+            border: 3px solid #fff;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 5px 0px rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+            min-height: 44px;
+            touch-action: manipulation;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 0px rgba(0,0,0,0.3);
+        }
+
+        button:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0px rgba(0,0,0,0.3);
+        }
+
+        .btn-lvl1 { background: #2ecc71; color: white; }
+        .btn-lvl2 { background: #3498db; color: white; }
+        .btn-lvl3 { background: #e67e22; color: white; }
+        .btn-lvl4 { background: #e74c3c; color: white; }
+
+        #hud {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+            margin-bottom: clamp(10px, 2vw, 15px);
+            font-size: clamp(0.9rem, 2.7vw, 22px);
+            font-weight: bold;
+            background: rgba(0,0,0,0.4);
+            padding: clamp(8px, 2vw, 10px) clamp(10px, 3vw, 25px);
+            border-radius: 10px;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        #game-layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(10px, 2.5vw, 20px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        #board-container {
+            flex: 0 1 240px;
+            width: 100%;
+            max-width: 240px;
+            background: rgba(0,0,0,0.85);
+            border: 5px solid #f1c40f;
+            border-radius: 12px;
+            padding: clamp(12px, 3vw, 25px) clamp(10px, 2vw, 15px);
+            box-shadow: inset 0 0 30px rgba(0,255,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: clamp(110px, 20vw, 160px);
+        }
+
+        #math-board {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: clamp(1.5rem, 7vw, 48px);
+            font-weight: bold;
+            color: #00ff00;
+            text-align: right;
+            white-space: pre;
+            line-height: 1.3;
+            letter-spacing: clamp(0.5px, 0.35vw, 2px);
+            max-width: 100%;
+        }
+
+        #canvas-container {
+            flex: 1 1 320px;
+            min-width: 0;
+            max-width: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            background: #27ae60;
+            border: 5px solid #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+        }
+
+        #options-container {
+            display: flex;
+            justify-content: center;
+            gap: clamp(6px, 3vw, 40px);
+            margin-top: clamp(12px, 3vw, 25px);
+        }
+
+        .ball-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            width: clamp(64px, 20vw, 100px);
+            height: clamp(64px, 20vw, 100px);
+            min-width: 64px;
+            min-height: 64px;
+            transition: transform 0.2s;
+            padding: 0;
+            touch-action: manipulation;
+        }
+
+        .ball-btn:hover {
+            transform: scale(1.15) rotate(10deg);
+        }
+
+        .ball-btn svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0px 5px 4px rgba(0,0,0,0.4));
+        }
+
+        .ball-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: clamp(1rem, 5.4vw, 28px);
+            font-weight: bold;
+            color: #000;
+            text-shadow: 1px 1px 0px #fff;
+            max-width: 100%;
+            white-space: nowrap;
+        }
+
+        #feedback {
+            font-size: clamp(0.98rem, 3.2vw, 26px);
+            font-weight: bold;
+            margin-top: clamp(8px, 2vw, 15px);
+            min-height: 2.2em;
+            line-height: 1.25;
+            text-shadow: 2px 2px 3px #000;
+        }
+
+        .back-btn {
+            margin-top: clamp(12px, 2.5vw, 20px);
+            background: rgba(255,255,255,0.2);
+            color: white;
+            font-size: clamp(0.85rem, 2.4vw, 16px);
+            padding: 10px 20px;
+            min-height: 44px;
+            border: 2px solid #fff;
+        }
+
+        @media (max-width: 760px) {
+            #game-layout { flex-direction: column; }
+            #board-container { max-width: 100%; }
+            #canvas-container { flex: 0 0 auto; width: 100%; }
+        }
+
+        @media (max-width: 430px) {
+            .intro-header-block { flex-direction: column; text-align: center; }
+            .intro-text { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-lines">
+        <div class="bg-line-center"></div>
+        <div class="bg-circle-center"></div>
+    </div>
+
+    <div id="game-container">
+        <div class="back-row">
+            <a class="back-mates" id="backToMates" href="mi-mates.html?profile=mireia">← Volver a Mi Mates</a>
+        </div>
+        <!-- PANTALLA DE SELECCIÓN -->
+        <div id="setup-screen" class="screen active">
+            <h1>⚽ El Gran Clásico: Penalti Matemático ⚽</h1>
+            
+            <div class="intro-header-block">
+                <p class="intro-text">¡Ayuda a Cristiano Ronaldo a meterle un golazo al Barça!<br>Resuelve la operación para marcar gol.</p>
+                
+                <!-- Avatar de CR7 con pelo castaño -->
+                <div class="cr7-avatar">
+                    <svg viewBox="0 0 100 105" width="100%" height="100%">
+                        <path d="M12,85 L22,60 L28,63 L22,90 Z" fill="#101b3a"/>
+                        <path d="M88,85 L78,60 L72,63 L78,90 Z" fill="#101b3a"/>
+                        <path d="M20,95 Q20,42 50,42 Q80,42 80,95 Z" fill="#ffffff"/>
+                        <path d="M32,44 L50,58 L68,44 L50,48 Z" fill="#ffffff" stroke="#ddd" stroke-width="1"/>
+                        <ellipse cx="50" cy="26" rx="13" ry="14" fill="#f3c192"/>
+                        <!-- Pelo Castaño Lindo -->
+                        <path d="M35,24 Q50,6 65,24 Q50,15 35,24 Z" fill="#5a3d28"/> 
+                        <path id="textPath" d="M 28 50 Q 50 44 72 50" fill="none" display="none"/>
+                        <text font-family="Arial" font-size="7" font-weight="bold" fill="#101b3a" text-anchor="middle">
+                            <textPath href="#textPath" startOffset="50%">RONALDO</textPath>
+                        </text>
+                        <path d="M43,58 L57,58 L47,84" fill="none" stroke="#ff007f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="btn-grid">
+                <button class="btn-lvl1" onclick="startGame(1)">Fácil</button>
+                <button class="btn-lvl2" onclick="startGame(2)">Medio</button>
+                <button class="btn-lvl3" onclick="startGame(3)">Alto</button>
+                <button class="btn-lvl4" onclick="startGame(4)">Experto</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA DE JUEGO -->
+        <div id="game-screen" class="screen">
+            <div id="hud">
+                <span id="hud-level">Nivel: Fácil</span>
+                <span id="hud-score">Goles: 0</span>
+            </div>
+
+            <div id="game-layout">
+                <div id="board-container">
+                    <div id="math-board"></div>
+                </div>
+                <div id="canvas-container">
+                    <canvas id="field" width="500" height="320"></canvas>
+                </div>
+            </div>
+
+            <div id="feedback" role="status" aria-live="polite"></div>
+
+            <div id="options-container">
+                <button class="ball-btn" onclick="checkAnswer(0)">
+                    <svg viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="#fff" stroke="#000" stroke-width="3"/>
+                        <path d="M25,25 Q35,15 50,25 Q65,15 75,25 M25,75 Q35,85 50,75 Q65,85 75,75 M25,25 Q15,35 25,50 Q15,65 25,75 M75,25 Q85,35 75,50 Q85,65 75,75" fill="none" stroke="#000" stroke-width="2"/>
+                    </svg>
+                    <div class="ball-text" id="opt0">--</div>
+                </button>
+                <button class="ball-btn" onclick="checkAnswer(1)">
+                    <svg viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="#fff" stroke="#000" stroke-width="3"/>
+                        <path d="M25,25 Q35,15 50,25 Q65,15 75,25 M25,75 Q35,85 50,75 Q65,85 75,75 M25,25 Q15,35 25,50 Q15,65 25,75 M75,25 Q85,35 75,50 Q85,65 75,75" fill="none" stroke="#000" stroke-width="2"/>
+                    </svg>
+                    <div class="ball-text" id="opt1">--</div>
+                </button>
+                <button class="ball-btn" onclick="checkAnswer(2)">
+                    <svg viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="#fff" stroke="#000" stroke-width="3"/>
+                        <path d="M25,25 Q35,15 50,25 Q65,15 75,25 M25,75 Q35,85 50,75 Q65,85 75,75 M25,25 Q15,35 25,50 Q15,65 25,75 M75,25 Q85,35 75,50 Q85,65 75,75" fill="none" stroke="#000" stroke-width="2"/>
+                    </svg>
+                    <div class="ball-text" id="opt2">--</div>
+                </button>
+            </div>
+
+            <button class="back-btn" onclick="showSetup()">Volver al Menú</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('backToMates').href = 'mi-mates.html?profile=' + encodeURIComponent(profileId);
+
+        let currentLevel = 1;
+        let score = 0;
+        let num1 = 0, num2 = 0, correctAnswer = 0, isAddition = true;
+        let options = [];
+        let gameState = "idle"; 
+
+        const canvas = document.getElementById('field');
+        const ctx = canvas.getContext('2d');
+
+        let playerX = 140, playerY = 250;
+        let keeperX = 250, keeperY = 85;
+        let ballX = 250, ballY = 240;
+        let targetBallX = 250, targetBallY = 240;
+        let targetKeeperX = 250;
+        let animationFrame;
+
+        const levelNames = { 1: "Fácil", 2: "Medio", 3: "Alto", 4: "Experto" };
+
+        function startGame(level) {
+            currentLevel = level;
+            score = 0;
+            document.getElementById('hud-level').innerText = "Nivel: " + levelNames[level];
+            document.getElementById('hud-score').innerText = "Goles: " + score;
+            document.getElementById('setup-screen').classList.remove('active');
+            document.getElementById('game-screen').classList.add('active');
+            generateOperation();
+            resetAnimationPositions();
+            
+            cancelAnimationFrame(animationFrame);
+            animate();
+        }
+
+        function showSetup() {
+            cancelAnimationFrame(animationFrame);
+            document.getElementById('game-screen').classList.remove('active');
+            document.getElementById('setup-screen').classList.add('active');
+        }
+
+        function generateOperation() {
+            gameState = "idle";
+            document.getElementById('feedback').innerText = "";
+            document.getElementById('feedback').style.color = "white";
+            resetAnimationPositions();
+
+            isAddition = Math.random() > 0.5;
+
+            if (currentLevel === 1) {
+                num1 = Math.floor(Math.random() * 21) + 5; 
+                num2 = Math.floor(Math.random() * 6) + 1;   
+                if (!isAddition && num1 < num2) { let t = num1; num1 = num2; num2 = t; }
+                correctAnswer = isAddition ? num1 + num2 : num1 - num2;
+            } else if (currentLevel === 2) {
+                num1 = Math.floor(Math.random() * 89) + 11;
+                num2 = Math.floor(Math.random() * (num1 - 11 + 1)) + 11; 
+                if (isAddition) num2 = Math.floor(Math.random() * 40) + 11; 
+                correctAnswer = isAddition ? num1 + num2 : num1 - num2;
+            } else if (currentLevel === 3) {
+                num1 = Math.floor(Math.random() * 400) + 100;
+                num2 = Math.floor(Math.random() * (num1 - 100 + 1)) + 100;
+                correctAnswer = isAddition ? num1 + num2 : num1 - num2;
+            } else {
+                num1 = Math.floor(Math.random() * 401) + 500; 
+                num2 = Math.floor(Math.random() * 300) + 100; 
+                if (!isAddition && num1 < num2) { let t = num1; num1 = num2; num2 = t; }
+                correctAnswer = isAddition ? num1 + num2 : num1 - num2;
+            }
+
+            const sign = isAddition ? "+" : "-";
+            
+            const strNum1 = num1.toString();
+            const strNum2 = sign + num2.toString();
+            const maxLen = Math.max(strNum1.length, strNum2.length);
+            
+            const paddedNum1 = strNum1.padStart(maxLen, " ");
+            const paddedNum2 = strNum2.padStart(maxLen, " ");
+            const line = "-".repeat(maxLen);
+            
+            document.getElementById('math-board').innerText = paddedNum1 + "\n" + paddedNum2 + "\n" + line;
+
+            options = [correctAnswer];
+            while(options.length < 3) {
+                let dev = (Math.floor(Math.random() * 5) + 1) * (Math.random() > 0.5 ? 1 : -1);
+                let wrong = correctAnswer + dev;
+                if (wrong >= 0 && !options.includes(wrong)) {
+                    options.push(wrong);
+                }
+            }
+            options.sort(() => Math.random() - 0.5);
+
+            // CORRECCIÓN CLAVE: Asignar cada elemento del array por separado
+            document.getElementById('opt0').innerText = options[0];
+            document.getElementById('opt1').innerText = options[1];
+            document.getElementById('opt2').innerText = options[2];
+        }
+
+        function resetAnimationPositions() {
+            playerX = 140; playerY = 250;
+            keeperX = 250; keeperY = 85;
+            ballX = 250; ballY = 240;
+            targetBallX = 250; targetBallY = 240;
+            targetKeeperX = 250;
+        }
+
+        function checkAnswer(index) {
+            if (gameState !== "idle") return; 
+
+            if (options[index] === correctAnswer) {
+                gameState = "kicking";
+                score++;
+                document.getElementById('hud-score').innerText = "Goles: " + score;
+                document.getElementById('feedback').innerText = "¡SÍ! ¡GOLAZO DE CR7! ⚪🔥";
+                document.getElementById('feedback').style.color = "#2ecc71";
+                
+                targetBallX = Math.random() > 0.5 ? 190 : 310;
+                targetBallY = 65;
+                targetKeeperX = targetBallX > 250 ? 190 : 310; 
+            } else {
+                gameState = "kicking";
+                document.getElementById('feedback').innerText = "¡El portero del Barça lo ha parado!";
+                document.getElementById('feedback').style.color = "#e74c3c";
+                
+                targetBallX = 240 + Math.random() * 20;
+                targetBallY = 75;
+                targetKeeperX = targetBallX;
+            }
+        }
+
+        function drawField() {
+            ctx.fillStyle = '#2ecc71';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#27ae60';
+            for (let i = 0; i < canvas.width; i += 50) {
+                if ((i / 50) % 2 === 0) {
+                    ctx.fillRect(i, 0, 25, canvas.height);
+                }
+            }
+
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(20, 40, canvas.width - 40, canvas.height - 60);
+            ctx.strokeRect(110, 40, 280, 90); 
+            ctx.strokeRect(165, 40, 170, 35); 
+
+            ctx.beginPath();
+            ctx.arc(250, 130, 40, 0, Math.PI);
+            ctx.stroke();
+
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.arc(250, 240, 5, 0, Math.PI*2);
+            ctx.fill();
+
+            // RED DE PORTERÍA
+            ctx.fillStyle = 'rgba(14, 36, 82, 0.2)'; 
+            ctx.fillRect(175, 10, 150, 30);
+            
+            ctx.strokeStyle = 'rgba(255,255,255,0.4)';
+            ctx.lineWidth = 1;
+            for (let x = 175; x <= 325; x += 10) {
+                ctx.beginPath(); ctx.moveTo(x, 10); ctx.lineTo(x, 40); ctx.stroke();
+            }
+            for (let y = 10; y <= 40; y += 6) {
+                ctx.beginPath(); ctx.moveTo(175, y); ctx.lineTo(325, y); ctx.stroke();
+            }
+
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.moveTo(175, 40);
+            ctx.lineTo(175, 10);
+            ctx.lineTo(325, 10);
+            ctx.lineTo(325, 40);
+            ctx.stroke();
+        }
+
+        function drawPlayer() {
+            ctx.save();
+            ctx.translate(playerX, playerY);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(-6, 10, 4, 12);
+            ctx.fillRect(2, 10, 4, 12);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.arc(0, 0, 13, 0, Math.PI*2);
+            ctx.fill();
+            ctx.fillRect(-13, 0, 26, 12);
+
+            ctx.fillStyle = '#ff007f';
+            ctx.font = 'bold 14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('7', 0, 9);
+
+            ctx.fillStyle = '#f3c192';
+            ctx.beginPath();
+            ctx.arc(0, -15, 7, 0, Math.PI*2);
+            ctx.fill();
+            
+            // Pelo castaño de CR7 jugando
+            ctx.fillStyle = '#5a3d28';
+            ctx.beginPath();
+            ctx.arc(0, -18, 5, Math.PI, 0);
+            ctx.fill();
+
+            ctx.restore();
+        }
+
+        function drawKeeper() {
+            ctx.save();
+            ctx.translate(keeperX, keeperY);
+
+            // Brazos abiertos
+            ctx.strokeStyle = '#7a1122';
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.moveTo(-22, -2);
+            ctx.lineTo(22, -2);
+            ctx.stroke();
+
+            // Cuerpo Franjas Barça (Azul y Grana vertical)
+            ctx.fillStyle = '#0e2452'; // Azul
+            ctx.fillRect(-11, -5, 22, 15);
+            ctx.fillStyle = '#7a1122'; // Grana
+            ctx.fillRect(-5, -5, 10, 15);
+            ctx.fillStyle = '#0e2452'; // Azul centro
+            ctx.fillRect(-2, -5, 4, 15);
+
+            // Pantalón Azul Barça
+            ctx.fillStyle = '#0e2452';
+            ctx.fillRect(-6, 10, 4, 10);
+            ctx.fillRect(2, 10, 4, 10);
+
+            // Cabeza
+            ctx.fillStyle = '#f3c192';
+            ctx.beginPath();
+            ctx.arc(0, -13, 6, 0, Math.PI*2);
+            ctx.fill();
+
+            ctx.restore();
+        }
+
+        function drawBall() {
+            ctx.save();
+            ctx.translate(ballX, ballY);
+            
+            ctx.fillStyle = 'rgba(0,0,0,0.25)';
+            ctx.beginPath();
+            ctx.arc(0, 5, 10, 0, Math.PI*2);
+            ctx.fill();
+
+            ctx.fillStyle = '#ffffff';
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.arc(0, 0, 9, 0, Math.PI*2);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.fillStyle = '#000000';
+            ctx.beginPath();
+            ctx.arc(0, 0, 3, 0, Math.PI*2);
+            ctx.fill();
+            
+            ctx.restore();
+        }
+
+        function animate() {
+            drawField();
+            drawKeeper();
+            drawPlayer();
+            drawBall();
+
+            if (gameState === "kicking") {
+                if (playerY > ballY + 12) {
+                    playerY -= 5;
+                    if(playerX < ballX) playerX += 2;
+                } else {
+                    gameState = "ball_flying";
+                }
+            } else if (gameState === "ball_flying") {
+                let dx = targetBallX - ballX;
+                let dy = targetBallY - ballY;
+                let dist = Math.sqrt(dx*dx + dy*dy);
+
+                let kx = targetKeeperX - keeperX;
+                if (Math.abs(kx) > 2) keeperX += kx * 0.15;
+
+                if (dist > 5) {
+                    ballX += dx * 0.20;
+                    ballY += dy * 0.20;
+                } else {
+                    if (document.getElementById('feedback').innerText.includes("GOLAZO")) {
+                        gameState = "goal";
+                    } else {
+                        gameState = "saved";
+                    }
+                    
+                    setTimeout(() => {
+                        generateOperation();
+                    }, 2500);
+                }
+            }
+
+            animationFrame = requestAnimationFrame(animate);
+        }
+    </script>
+</body>
+</html>

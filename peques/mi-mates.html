@@ -17,10 +17,10 @@ button{font:inherit;touch-action:manipulation;cursor:pointer}
 h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1;margin:0;color:#1557a3;text-shadow:0 2px #fff}
 .intro{font-size:clamp(1rem,2.4vw,1.2rem);line-height:1.5;color:#4c6684;max-width:650px;margin:12px 0 24px}
 .modules{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:15px;margin-top:clamp(18px,3vw,28px)}
-.module{min-height:215px;text-align:center;padding:26px 18px;border:3px solid #fff;border-radius:24px;background:linear-gradient(145deg,#fff,#e7f4ff);box-shadow:0 9px 23px #23456b18;color:#193e69;transition:transform .16s,box-shadow .16s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.module{min-height:215px;text-align:center;padding:26px 18px;border:3px solid #fff;border-radius:24px;background:linear-gradient(145deg,#fff,#e7f4ff);box-shadow:0 9px 23px #23456b18;color:#193e69;transition:transform .16s,box-shadow .16s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-decoration:none;cursor:pointer}
 .module:hover,.module:focus-visible{transform:translateY(-3px);box-shadow:0 14px 27px #23456b26;outline:3px solid #5aa9ee;outline-offset:2px}
 
-.module:nth-child(1){background:linear-gradient(145deg,#fff8d9,#ffe9a5)}.module:nth-child(2){background:linear-gradient(145deg,#e9fff0,#c9f0d5)}.module:nth-child(3){background:linear-gradient(145deg,#f2ebff,#dcd0ff)}
+.module:nth-child(1){background:linear-gradient(145deg,#fff8d9,#ffe9a5)}.module:nth-child(2){background:linear-gradient(145deg,#e9fff0,#c9f0d5)}.module:nth-child(3){background:linear-gradient(145deg,#f2ebff,#dcd0ff)}.module:nth-child(5){background:linear-gradient(145deg,#e8fff5,#c7f3dc)}
 .emoji{display:block;font-size:clamp(3.4rem,8vw,5rem);line-height:1}.module strong{display:block;font-size:clamp(1.45rem,3vw,1.9rem)}
 .play{display:none;margin-top:22px;padding:clamp(18px,4vw,30px);border:3px solid #fff;border-radius:28px;background:#ffffffd9;box-shadow:0 10px 28px #23456b18}.play.active{display:block}
 .play h2{font-size:clamp(1.3rem,4vw,1.8rem);margin:0}.hint{color:#526c89}.question{font-size:clamp(2.5rem,10vw,5rem);font-weight:1000;text-align:center;margin:24px 0;color:#1856a0}.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:540px;margin:auto}.answer{min-height:68px;border:3px solid #d8e9f8;border-radius:18px;background:#fff;color:#1c4c83;font-size:clamp(1.4rem,5vw,2rem);font-weight:900}.answer:hover,.answer:focus-visible{border-color:#4798e3;outline:3px solid #4798e355}.feedback{text-align:center;font-size:1.15rem;font-weight:900;min-height:34px;margin:20px 0 8px}.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}.action{border:0;border-radius:999px;padding:11px 18px;background:#226dc0;color:#fff;font-weight:900}.action.alt{background:#edf4fb;color:#31577e}.action:disabled{opacity:.5;cursor:default}.foot{text-align:center;color:#617790;font-size:.85rem;margin-top:24px}
@@ -82,14 +82,16 @@ h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1;margin:0;color:#1557a3;text-sh
 </main>
 <script>
 const $=id=>document.getElementById(id);let mode='sumas',answered=false;
+const profileId=new URLSearchParams(location.search).get('profile')||'mireia';
 // Lista de módulos TEST: retirar una entrada elimina esa tarjeta sin tocar el resto del área.
-const testModules=[{mode:'sumas',title:'Sumas',emoji:'➕'},{mode:'restas',title:'Restas',emoji:'➖'},{mode:'mixtos',title:'Retos mixtos',emoji:'🧮'},{mode:'partido',title:'Partido de sumas y restas',emoji:'⚽'}];
+const testModules=[{mode:'sumas',title:'Sumas',emoji:'➕'},{mode:'restas',title:'Restas',emoji:'➖'},{mode:'mixtos',title:'Retos mixtos',emoji:'🧮'},{mode:'partido',title:'Partido de sumas y restas',emoji:'⚽'},{mode:'penalti',title:'Penalti matemático',emoji:'🥅',href:'penalti-matematico.html'}];
 function renderModules(){
-  $('modules').innerHTML=testModules.map(module=>`<button class="module" data-mode="${module.mode}"><span class="emoji" aria-hidden="true">${module.emoji}</span><strong>${module.title}</strong></button>`).join('');
-  document.querySelectorAll('#modules [data-mode]').forEach(button=>button.addEventListener('click',()=>{mode=button.dataset.mode;$('practiceLevels').classList.remove('active');if(mode==='partido'){openMatchLevels();return}$('matchWrap').classList.remove('active');openPracticeLevels()}));
+  $('modules').innerHTML=testModules.map(module=>module.href
+    ?`<a class="module" data-mode="${module.mode}" href="${module.href}?profile=${encodeURIComponent(profileId)}"><span class="emoji" aria-hidden="true">${module.emoji}</span><strong>${module.title}</strong></a>`
+    :`<button class="module" data-mode="${module.mode}"><span class="emoji" aria-hidden="true">${module.emoji}</span><strong>${module.title}</strong></button>`).join('');
+  document.querySelectorAll('#modules button[data-mode]').forEach(button=>button.addEventListener('click',()=>{mode=button.dataset.mode;$('practiceLevels').classList.remove('active');if(mode==='partido'){openMatchLevels();return}$('matchWrap').classList.remove('active');openPracticeLevels()}));
 }
 renderModules();
-const profileId=new URLSearchParams(location.search).get('profile')||'mireia';
 const progressKey=`mundoAprendizajeProgressV3_${profileId}`;
 let profileProgress;
 try{profileProgress=JSON.parse(localStorage.getItem(progressKey))}catch(e){profileProgress=null}
