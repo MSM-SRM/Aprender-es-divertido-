@@ -698,7 +698,10 @@
 
         const canvas = document.getElementById('field');
         const ctx = canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = false;
         const goalCelebration = document.getElementById('goal-celebration');
+        const ronaldoFrontImage = new Image();
+        ronaldoFrontImage.src = 'imagenes/ronaldo-8bit.svg';
 
         function showGoalCelebration() {
             goalCelebration.classList.add('is-visible');
@@ -942,6 +945,14 @@
             ctx.save();
             ctx.translate(playerX, playerY);
 
+            if (ronaldoFrontImage.complete && ronaldoFrontImage.naturalWidth > 0) {
+                // Ronaldo en pixel art, con los pies apoyados en playerY + 22.
+                ctx.drawImage(ronaldoFrontImage, -13.5, -32, 27, 54);
+                ctx.restore();
+                return;
+            }
+
+            // Respaldo mientras carga la imagen.
             ctx.fillStyle = '#ffffff';
             ctx.fillRect(-6, 10, 4, 12);
             ctx.fillRect(2, 10, 4, 12);
