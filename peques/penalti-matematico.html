@@ -396,6 +396,16 @@
             border: 2px solid #fff;
         }
 
+        .game-note {
+            margin: clamp(8px, 2vw, 14px) auto 0;
+            max-width: 620px;
+            color: #fff;
+            font-size: clamp(0.8rem, 2.2vw, 0.95rem);
+            line-height: 1.35;
+            text-shadow: 1px 1px 3px #000;
+            opacity: 0.96;
+        }
+
         .hud-status {
             display: inline-flex;
             align-items: baseline;
@@ -526,7 +536,7 @@
             <h1>⚽ El Gran Clásico: Penalti Matemático ⚽</h1>
             
             <div class="intro-header-block">
-                <p class="intro-text">¡Ayuda a Cristiano Ronaldo a meterle un golazo al Barça!<br>Primero elige Sumas, Restas o Mixtos y después el nivel. Resuelve la operación para marcar gol.<br><strong>Cada partida son 10 penaltis:</strong> con 6 aciertos ganas bronce, con 8 plata y con 10 oro.</p>
+                <p class="intro-text">¡Ayuda a Cristiano Ronaldo a meterle un golazo al Barça!<br>Primero elige Sumas, Restas o Mixtos y después el nivel. Resuelve la operación para marcar gol.</p>
                 
                 <!-- Avatar de CR7 con pelo castaño -->
                 <div class="cr7-avatar">
@@ -612,6 +622,7 @@
             </div>
 
             <button class="back-btn" onclick="showSetup()">Volver al Menú</button>
+            <p class="game-note">Cada partida son 10 penaltis: con 6 aciertos ganas bronce, con 8 plata y con 10 oro.</p>
         </div>
 
         <!-- PANTALLA DE RESULTADO -->
