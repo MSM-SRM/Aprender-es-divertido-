@@ -161,7 +161,8 @@
             padding: clamp(10px, 2.5vw, 15px);
         }
 
-        .mode-label {
+        .mode-label,
+        .level-label {
             margin: 0 0 clamp(6px, 1.5vw, 10px);
             font-size: clamp(0.85rem, 2.3vw, 1.05rem);
             font-weight: bold;
@@ -566,7 +567,8 @@
                 </div>
             </div>
 
-            <div class="btn-grid">
+            <p class="level-label" id="level-label">Escoge Nivel</p>
+            <div class="btn-grid" role="group" aria-labelledby="level-label">
                 <button class="btn-lvl1" onclick="startGame(1)">Muy fácil</button>
                 <button class="btn-lvl2" onclick="startGame(2)">Fácil</button>
                 <button class="btn-lvl3" onclick="startGame(3)">Medio</button>
