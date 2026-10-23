@@ -138,17 +138,28 @@
         }
 
         .intro-text {
-            font-size: clamp(0.95rem, 2.5vw, 21px);
+            font-size: clamp(1.425rem, 3.75vw, 31.5px);
             color: #fff;
             text-shadow: 1px 1px 3px #000;
-            line-height: 1.4;
+            line-height: 1.35;
             text-align: left;
             margin: 0;
             max-width: 550px;
         }
 
+        .intro-line {
+            display: block;
+        }
+
+        .intro-separator {
+            display: block;
+            height: 1px;
+            margin: 0.5em 0;
+            background: rgba(255, 255, 255, 0.55);
+        }
+
         .cr7-avatar {
-            width: clamp(64px, 15vw, 92px);
+            width: clamp(45px, 10.5vw, 64px);
             height: auto;
             filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.4));
             flex-shrink: 0;
@@ -546,11 +557,15 @@
             <h1>⚽ El Gran Clásico: Penalti Matemático ⚽</h1>
             
             <div class="intro-header-block">
-                <p class="intro-text">¡Ayuda a Cristiano Ronaldo a meterle un golazo al Barça!<br>Resuelve la operación para marcar gol.</p>
+                <p class="intro-text">
+                    <span class="intro-line">¡Ayuda a Cristiano Ronaldo a meterle un golazo al Barça!</span>
+                    <span class="intro-separator" aria-hidden="true"></span>
+                    <span class="intro-line">Resuelve la operación para marcar gol.</span>
+                </p>
                 
-                <!-- Avatar de CR7 en pixel art de 8 bits -->
+                <!-- Retrato de CR7 en pixel art de 8 bits -->
                 <div class="cr7-avatar">
-                    <img src="imagenes/ronaldo-8bit.svg" width="48" height="96" alt="Ronaldo de 8 bits con la camiseta blanca del Real Madrid" draggable="false">
+                    <img src="imagenes/ronaldo-avatar-8bit.png" width="138" height="277" alt="Retrato de Cristiano Ronaldo de 8 bits con la camiseta blanca del Real Madrid" draggable="false">
                 </div>
             </div>
             
@@ -620,7 +635,7 @@
             </div>
 
             <button class="back-btn" onclick="showSetup()">Volver al Menú</button>
-            <p class="game-note">Cada partida son 10 penaltis: con 6 aciertos ganas bronce, con 8 plata y con 10 oro.</p>
+            <p class="game-note">Cada partida son 10 penaltis: 6 aciertos = bronce, 8 = plata y 10 = oro. En Difícil y Élite, 9 aciertos también son oro.</p>
         </div>
 
         <!-- PANTALLA DE RESULTADO -->
@@ -662,6 +677,9 @@
         let matchFinished = false; // evita guardar dos veces la misma partida
         let lastShotGoal = false;
         let nextShotTimer = null;
+        let wrongAnswerCount = 0; // fallos en la partida actual
+        let wrongSoundTimer = null;
+        let pendingWrongSound = null;
 
         const canvas = document.getElementById('field');
         const ctx = canvas.getContext('2d');
@@ -674,6 +692,23 @@
         ronaldoRunImage.src = 'imagenes/ronaldo-run-8bit.svg';
         const ronaldoSiuuImage = new Image();
         ronaldoSiuuImage.src = 'imagenes/ronaldo-siuu-8bit.svg';
+
+        function createAudio(src, volume) {
+            const audio = new Audio(src);
+            audio.preload = 'auto';
+            audio.volume = volume;
+            return audio;
+        }
+
+        const siuuAudio = createAudio('audios/siuuuu.mp3', 0.8);
+        const hahaAudio = createAudio('audios/haha.mp3', 0.55);
+        const wrongAudio = createAudio('audios/wrong.mp3', 0.8);
+        const victoryAudio = createAudio('audios/victory.mp3', 0.65);
+        const introAudio = createAudio('audios/hala-madrid.mp3', 0.9);
+        let siuuAudioUnlocked = false;
+        let introTimer = null;
+        let introPlayed = false;
+        let introRetryArmed = false;
 
         const PLAYER_W = 33;
         const PLAYER_H = 66;
@@ -747,7 +782,9 @@
             matchShots = 0;
             matchFinished = false;
             lastShotGoal = false;
+            wrongAnswerCount = 0;
             gameState = "idle";
+            stopAllGameAudio();
             clearTimeout(nextShotTimer);
             nextShotTimer = null;
 
@@ -769,6 +806,7 @@
             nextShotTimer = null;
             matchFinished = true; // salir a mitad de partida no concede estrella
             gameState = "idle";
+            stopAllGameAudio();
 
             document.getElementById('game-screen').classList.remove('active');
             document.getElementById('result-screen').classList.remove('active');
@@ -847,10 +885,147 @@
             targetKeeperX = 250;
         }
 
+        function unlockSiuuuAudio() {
+            if (siuuAudioUnlocked) return;
+            siuuAudioUnlocked = true;
+
+            // Desbloquea el audio en el primer toque, sin que suene todavía.
+            siuuAudio.muted = true;
+            siuuAudio.volume = 0.8;
+            const attempt = siuuAudio.play();
+            if (attempt && typeof attempt.then === "function") {
+                attempt.then(() => {
+                    setTimeout(() => {
+                        siuuAudio.pause();
+                        siuuAudio.currentTime = 0;
+                        siuuAudio.muted = false;
+                    }, 80);
+                }).catch(() => {
+                    siuuAudio.muted = false;
+                    siuuAudioUnlocked = false;
+                });
+            } else {
+                siuuAudio.pause();
+                siuuAudio.currentTime = 0;
+                siuuAudio.muted = false;
+            }
+        }
+
+        function playAudio(audio) {
+            try {
+                audio.pause();
+                audio.currentTime = 0;
+                audio.muted = false;
+                const attempt = audio.play();
+                if (attempt && typeof attempt.catch === "function") {
+                    attempt.catch(() => {});
+                }
+            } catch (e) {}
+        }
+
+        function stopAudio(audio) {
+            try {
+                audio.pause();
+                audio.currentTime = 0;
+            } catch (e) {}
+        }
+
+        function playSiuuu() {
+            playAudio(siuuAudio);
+        }
+
+        function stopSiuuu() {
+            stopAudio(siuuAudio);
+            siuuAudio.muted = false;
+        }
+
+        function stopIntroAudio() {
+            if (introTimer) {
+                clearTimeout(introTimer);
+                introTimer = null;
+            }
+            stopAudio(introAudio);
+        }
+
+        function stopGameSounds() {
+            if (wrongSoundTimer) {
+                clearTimeout(wrongSoundTimer);
+                wrongSoundTimer = null;
+            }
+            pendingWrongSound = null;
+            stopSiuuu();
+            stopAudio(hahaAudio);
+            stopAudio(wrongAudio);
+            stopAudio(victoryAudio);
+        }
+
+        function scheduleWrongSound() {
+            if (!pendingWrongSound) return;
+            if (wrongSoundTimer) clearTimeout(wrongSoundTimer);
+
+            wrongSoundTimer = setTimeout(() => {
+                wrongSoundTimer = null;
+                if (!pendingWrongSound) return;
+                if (matchFinished) return;
+                if (!document.getElementById('game-screen').classList.contains('active')) return;
+                playAudio(pendingWrongSound);
+                pendingWrongSound = null;
+            }, 1000);
+        }
+
+        function stopAllGameAudio() {
+            stopGameSounds();
+            stopIntroAudio();
+        }
+
+        function armIntroRetry() {
+            if (introRetryArmed) return;
+            introRetryArmed = true;
+
+            const retry = () => {
+                document.removeEventListener('click', retry, false);
+                introRetryArmed = false;
+                if (introPlayed) return;
+                playIntroAudio();
+            };
+            document.addEventListener('click', retry, false);
+        }
+
+        function playIntroAudio() {
+            if (introPlayed) return;
+            introPlayed = true;
+
+            try {
+                introAudio.pause();
+                introAudio.currentTime = 0;
+                introAudio.muted = false;
+                const attempt = introAudio.play();
+                if (attempt && typeof attempt.catch === "function") {
+                    attempt.catch(() => {
+                        introPlayed = false;
+                        armIntroRetry();
+                    });
+                }
+            } catch (e) {
+                introPlayed = false;
+                armIntroRetry();
+            }
+        }
+
+        function scheduleIntroAudio() {
+            if (introPlayed || introTimer) return;
+            introTimer = setTimeout(() => {
+                introTimer = null;
+                playIntroAudio();
+            }, 1000);
+        }
+
         function checkAnswer(index) {
             if (gameState !== "idle" || matchFinished) return;
             if (matchShots >= TOTAL_SHOTS) return;
 
+            stopIntroAudio();
+            unlockSiuuuAudio();
             matchShots++;
 
             gameState = "running";
@@ -869,6 +1044,8 @@
                 targetKeeperX = targetBallX > 250 ? 190 : 310; 
             } else {
                 lastShotGoal = false;
+                wrongAnswerCount++;
+                pendingWrongSound = wrongAnswerCount % 2 === 1 ? hahaAudio : wrongAudio;
                 document.getElementById('feedback').innerText = "¡El portero del Barça lo ha parado!";
                 document.getElementById('feedback').style.color = "#e74c3c";
                 
@@ -1209,8 +1386,10 @@
                     if (lastShotGoal) {
                         gameState = "goal";
                         goalStartedAt = now;
+                        playSiuuu();
                     } else {
                         gameState = "saved";
+                        scheduleWrongSound();
                     }
 
                     scheduleNextShot();
@@ -1251,7 +1430,8 @@
             cancelAnimationFrame(animationFrame);
             gameState = "idle";
 
-            const grade = score === TOTAL_SHOTS ? 'gold' : score >= 8 ? 'silver' : score >= 6 ? 'bronze' : null;
+            const goldThreshold = (currentLevel === 4 || currentLevel === 5) ? 9 : TOTAL_SHOTS;
+            const grade = score >= goldThreshold ? 'gold' : score >= 8 ? 'silver' : score >= 6 ? 'bronze' : null;
             const starIcons = { gold: '🌟', silver: '⭐', bronze: '🥉' };
 
             profileProgress.rounds = (Number(profileProgress.rounds) || 0) + 1;
@@ -1271,7 +1451,7 @@
                 : '#7ec8ff';
 
             document.getElementById('result-title').textContent =
-                grade === 'gold' ? '¡Partido perfecto!' :
+                grade === 'gold' ? (score === TOTAL_SHOTS ? '¡Partido perfecto!' : '¡Partido excelente!') :
                 grade === 'silver' ? '¡Gran partido!' :
                 grade === 'bronze' ? '¡Buen partido!' : '¡Sigue entrenando!';
 
@@ -1294,8 +1474,14 @@
             document.getElementById('game-screen').classList.remove('active');
             document.getElementById('setup-screen').classList.remove('active');
             document.getElementById('result-screen').classList.add('active');
+
+            // En Difícil y Élite, 9/10 también concede oro; en el resto, 10/10.
+            if (grade === 'gold') playAudio(victoryAudio);
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        scheduleIntroAudio();
     </script>
 </body>
 </html>
