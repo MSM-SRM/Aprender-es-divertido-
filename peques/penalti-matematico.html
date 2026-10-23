@@ -332,36 +332,6 @@
             align-items: center;
         }
 
-        .goal-celebration {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: none;
-            opacity: 0;
-            transform: scale(0.82);
-            transition: opacity 0.16s ease, transform 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.25);
-            z-index: 3;
-        }
-
-        .goal-celebration.is-visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .goal-celebration img {
-            width: clamp(76px, 30%, 122px);
-            max-height: 82%;
-            height: auto;
-            image-rendering: pixelated;
-            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.45));
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .goal-celebration { transition: none; }
-        }
-
         canvas {
             display: block;
             width: 100%;
@@ -620,9 +590,6 @@
                 </div>
                 <div id="canvas-container">
                     <canvas id="field" width="500" height="320"></canvas>
-                    <div id="goal-celebration" class="goal-celebration" aria-hidden="true">
-                        <img src="imagenes/ronaldo-siuu-8bit.svg" width="64" height="128" alt="" draggable="false">
-                    </div>
                 </div>
             </div>
 
@@ -699,23 +666,40 @@
         const canvas = document.getElementById('field');
         const ctx = canvas.getContext('2d');
         ctx.imageSmoothingEnabled = false;
-        const goalCelebration = document.getElementById('goal-celebration');
         const ronaldoFrontImage = new Image();
         ronaldoFrontImage.src = 'imagenes/ronaldo-8bit.svg';
+        const ronaldoKickImage = new Image();
+        ronaldoKickImage.src = 'imagenes/ronaldo-kick-8bit.svg';
+        const ronaldoRunImage = new Image();
+        ronaldoRunImage.src = 'imagenes/ronaldo-run-8bit.svg';
+        const ronaldoSiuuImage = new Image();
+        ronaldoSiuuImage.src = 'imagenes/ronaldo-siuu-8bit.svg';
 
-        function showGoalCelebration() {
-            goalCelebration.classList.add('is-visible');
-        }
-
-        function hideGoalCelebration() {
-            goalCelebration.classList.remove('is-visible');
-        }
+        const PLAYER_W = 33;
+        const PLAYER_H = 66;
+        const RUN_MS = 430;
+        const KICK_MS = 170;
+        const GOAL_FADE_MS = 200;
+        const CELEBRATION_JUMP_MS = 380;
+        const CELEBRATION_JUMP_HEIGHT = 8;
+        const CELEBRATION_HOLD_MS = 1900;
+        const RETURN_MS = 600;
+        const RETURN_FADE_MS = 220;
+        const RUN_TARGET_X = 210;
+        const RUN_TARGET_Y = 230;
+        const SHOOTING_X = 140;
+        const SHOOTING_Y = 250;
 
         let playerX = 140, playerY = 250;
         let keeperX = 250, keeperY = 85;
         let ballX = 250, ballY = 240;
         let targetBallX = 250, targetBallY = 240;
         let targetKeeperX = 250;
+        let runStartedAt = 0;
+        let runFromX = 140;
+        let runFromY = 250;
+        let kickStartedAt = 0;
+        let goalStartedAt = 0;
         let animationFrame;
 
         const LEVELS = {
@@ -764,7 +748,6 @@
             matchFinished = false;
             lastShotGoal = false;
             gameState = "idle";
-            hideGoalCelebration();
             clearTimeout(nextShotTimer);
             nextShotTimer = null;
 
@@ -786,7 +769,6 @@
             nextShotTimer = null;
             matchFinished = true; // salir a mitad de partida no concede estrella
             gameState = "idle";
-            hideGoalCelebration();
 
             document.getElementById('game-screen').classList.remove('active');
             document.getElementById('result-screen').classList.remove('active');
@@ -797,7 +779,6 @@
 
         function generateOperation() {
             gameState = "idle";
-            hideGoalCelebration();
             document.getElementById('feedback').innerText = "";
             document.getElementById('feedback').style.color = "white";
             resetAnimationPositions();
@@ -856,6 +837,10 @@
 
         function resetAnimationPositions() {
             playerX = 140; playerY = 250;
+            runFromX = playerX; runFromY = playerY;
+            runStartedAt = 0;
+            kickStartedAt = 0;
+            goalStartedAt = 0;
             keeperX = 250; keeperY = 85;
             ballX = 250; ballY = 240;
             targetBallX = 250; targetBallY = 240;
@@ -868,8 +853,12 @@
 
             matchShots++;
 
+            gameState = "running";
+            runStartedAt = performance.now();
+            runFromX = playerX;
+            runFromY = playerY;
+
             if (options[index] === correctAnswer) {
-                gameState = "kicking";
                 lastShotGoal = true;
                 score++;
                 document.getElementById('feedback').innerText = "¡SÍ! ¡GOLAZO DE CR7! ⚪🔥";
@@ -879,7 +868,6 @@
                 targetBallY = 65;
                 targetKeeperX = targetBallX > 250 ? 190 : 310; 
             } else {
-                gameState = "kicking";
                 lastShotGoal = false;
                 document.getElementById('feedback').innerText = "¡El portero del Barça lo ha parado!";
                 document.getElementById('feedback').style.color = "#e74c3c";
@@ -913,9 +901,9 @@
             ctx.arc(250, 130, 40, 0, Math.PI);
             ctx.stroke();
 
-            ctx.fillStyle = '#ffffff';
+            ctx.fillStyle = 'rgba(255,255,255,0.45)';
             ctx.beginPath();
-            ctx.arc(250, 240, 5, 0, Math.PI*2);
+            ctx.arc(250, 240, 4, 0, Math.PI*2);
             ctx.fill();
 
             // RED DE PORTERÍA
@@ -941,43 +929,115 @@
             ctx.stroke();
         }
 
+        function isImageReady(image) {
+            return image.complete && image.naturalWidth > 0;
+        }
+
+        function drawPlayerSprite(image, alpha, offsetX, offsetY) {
+            if (!isImageReady(image) || alpha <= 0.001) return;
+            ctx.globalAlpha = Math.max(0, Math.min(1, alpha));
+            // La base de los pies queda en playerY + 22; así el sprite no cambia de tamaño.
+            ctx.drawImage(
+                image,
+                -PLAYER_W / 2 + offsetX,
+                -PLAYER_H + 22 + offsetY,
+                PLAYER_W,
+                PLAYER_H
+            );
+            ctx.globalAlpha = 1;
+        }
+
+        function drawFallbackPlayer(alpha) {
+            ctx.globalAlpha = Math.max(0, Math.min(1, alpha));
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(-7, -10, 5, 18);
+            ctx.fillRect(2, -10, 5, 18);
+
+            ctx.beginPath();
+            ctx.arc(0, -2, 15, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillRect(-15, -2, 30, 14);
+
+            ctx.fillStyle = '#ff007f';
+            ctx.font = 'bold 16px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('7', 0, 8);
+
+            ctx.fillStyle = '#f3c192';
+            ctx.beginPath();
+            ctx.arc(0, -19, 8, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = '#5a3d28';
+            ctx.beginPath();
+            ctx.arc(0, -22, 6, Math.PI, 0);
+            ctx.fill();
+            ctx.globalAlpha = 1;
+        }
+
         function drawPlayer() {
             ctx.save();
             ctx.translate(playerX, playerY);
 
-            if (ronaldoFrontImage.complete && ronaldoFrontImage.naturalWidth > 0) {
-                // Ronaldo en pixel art, con los pies apoyados en playerY + 22.
-                ctx.drawImage(ronaldoFrontImage, -13.5, -32, 27, 54);
+            const now = performance.now();
+
+            // Celebración: fundido de la pose de tiro al Siuu, salto pequeño y vuelta a la pose inicial.
+            if (gameState === "goal") {
+                const elapsed = Math.max(0, now - goalStartedAt);
+                const fadeIn = Math.min(1, elapsed / GOAL_FADE_MS);
+                const jumpProgress = Math.min(1, elapsed / CELEBRATION_JUMP_MS);
+                let jump = -Math.sin(jumpProgress * Math.PI) * CELEBRATION_JUMP_HEIGHT;
+                let frontAlpha = 1 - fadeIn;
+                let siuuAlpha = fadeIn;
+
+                if (elapsed >= CELEBRATION_HOLD_MS) {
+                    const returnProgress = Math.min(1, (elapsed - CELEBRATION_HOLD_MS) / RETURN_MS);
+                    const easedReturn = 1 - Math.pow(1 - returnProgress, 3);
+                    playerX = RUN_TARGET_X + (SHOOTING_X - RUN_TARGET_X) * easedReturn;
+                    playerY = RUN_TARGET_Y + (SHOOTING_Y - RUN_TARGET_Y) * easedReturn;
+
+                    const returnFade = Math.min(1, (elapsed - CELEBRATION_HOLD_MS) / RETURN_FADE_MS);
+                    frontAlpha = returnFade;
+                    siuuAlpha = 1 - returnFade;
+                    jump = 0;
+                }
+
+                if (isImageReady(ronaldoFrontImage)) {
+                    drawPlayerSprite(ronaldoFrontImage, frontAlpha, 0, jump);
+                }
+                if (isImageReady(ronaldoSiuuImage)) {
+                    drawPlayerSprite(ronaldoSiuuImage, siuuAlpha, 0, jump);
+                }
+                if (!isImageReady(ronaldoFrontImage) && !isImageReady(ronaldoSiuuImage)) {
+                    drawFallbackPlayer(Math.max(frontAlpha, siuuAlpha));
+                }
+
                 ctx.restore();
                 return;
             }
 
-            // Respaldo mientras carga la imagen.
-            ctx.fillStyle = '#ffffff';
-            ctx.fillRect(-6, 10, 4, 12);
-            ctx.fillRect(2, 10, 4, 12);
+            let sprite = ronaldoFrontImage;
+            if (gameState === "kicking" && isImageReady(ronaldoKickImage)) {
+                sprite = ronaldoKickImage;
+            }
 
-            ctx.fillStyle = '#ffffff';
-            ctx.beginPath();
-            ctx.arc(0, 0, 13, 0, Math.PI*2);
-            ctx.fill();
-            ctx.fillRect(-13, 0, 26, 12);
+            let bob = 0;
+            if (gameState === "running") {
+                const runProgress = Math.min(1, (now - runStartedAt) / RUN_MS);
+                bob = Math.sin(runProgress * Math.PI * 6) * 1.3;
 
-            ctx.fillStyle = '#ff007f';
-            ctx.font = 'bold 14px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('7', 0, 9);
+                // Ciclo de zancada: alterna apoyo y rodilla levantada.
+                const strideFrame = Math.floor((now - runStartedAt) / 105) % 2;
+                if (strideFrame === 1 && isImageReady(ronaldoRunImage)) {
+                    sprite = ronaldoRunImage;
+                }
+            }
 
-            ctx.fillStyle = '#f3c192';
-            ctx.beginPath();
-            ctx.arc(0, -15, 7, 0, Math.PI*2);
-            ctx.fill();
-            
-            // Pelo castaño de CR7 jugando
-            ctx.fillStyle = '#5a3d28';
-            ctx.beginPath();
-            ctx.arc(0, -18, 5, Math.PI, 0);
-            ctx.fill();
+            if (isImageReady(sprite)) {
+                drawPlayerSprite(sprite, 1, 0, bob);
+            } else {
+                drawFallbackPlayer(1);
+            }
 
             ctx.restore();
         }
@@ -1041,17 +1101,97 @@
             ctx.restore();
         }
 
-        function animate() {
-            drawField();
-            drawKeeper();
-            drawPlayer();
-            drawBall();
+        function drawRunEffects() {
+            if (gameState !== "running") return;
 
-            if (gameState === "kicking") {
-                if (playerY > ballY + 12) {
-                    playerY -= 5;
-                    if(playerX < ballX) playerX += 2;
-                } else {
+            const now = performance.now();
+            const progress = Math.min(1, (now - runStartedAt) / RUN_MS);
+            if (progress >= 0.96) return;
+
+            const fade = 1 - progress;
+            ctx.save();
+            ctx.strokeStyle = "rgba(255,255,255," + (0.34 * fade) + ")";
+            ctx.lineWidth = 2;
+            for (let i = 0; i < 3; i++) {
+                const y = playerY + 10 - i * 7;
+                const x = playerX - 17 - i * 8;
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                ctx.lineTo(x - 15 - i * 4, y);
+                ctx.stroke();
+            }
+
+            ctx.fillStyle = "rgba(255,255,255," + (0.24 * fade) + ")";
+            ctx.fillRect(playerX - 13, playerY + 19, 4, 2);
+            ctx.fillRect(playerX - 21, playerY + 16, 3, 2);
+            ctx.restore();
+        }
+
+        function drawKickEffects() {
+            if (gameState !== "kicking") return;
+
+            const elapsed = performance.now() - kickStartedAt;
+            if (elapsed > KICK_MS) return;
+
+            const fade = 1 - elapsed / KICK_MS;
+            ctx.save();
+            ctx.strokeStyle = "rgba(255,235,130," + fade + ")";
+            ctx.lineWidth = 2;
+            for (let i = 0; i < 6; i++) {
+                const angle = -Math.PI / 2 + i * Math.PI / 3;
+                const inner = 10 + elapsed * 0.035;
+                const outer = inner + 6 + elapsed * 0.02;
+                ctx.beginPath();
+                ctx.moveTo(ballX + Math.cos(angle) * inner, ballY + Math.sin(angle) * inner);
+                ctx.lineTo(ballX + Math.cos(angle) * outer, ballY + Math.sin(angle) * outer);
+                ctx.stroke();
+            }
+            ctx.restore();
+        }
+
+        function drawCelebrationEffects() {
+            if (gameState !== "goal") return;
+
+            const elapsed = performance.now() - goalStartedAt;
+            if (elapsed < 120 || elapsed > CELEBRATION_HOLD_MS) return;
+
+            const fadeIn = Math.min(1, (elapsed - 120) / 180);
+            const fadeOut = Math.min(1, (CELEBRATION_HOLD_MS - elapsed) / 250);
+            const alpha = Math.min(fadeIn, fadeOut);
+            if (alpha <= 0) return;
+
+            const baseY = playerY - 24;
+            ctx.save();
+            for (let i = 0; i < 9; i++) {
+                const phase = (elapsed * 0.00035 + i * 0.17) % 1;
+                const x = playerX + Math.cos(i * 2.1) * (18 + (i % 3) * 7);
+                const y = baseY - 12 - phase * 36;
+                const size = i % 3 === 0 ? 3 : 2;
+                ctx.fillStyle = i % 2
+                    ? "rgba(255,214,64," + alpha + ")"
+                    : "rgba(255,255,255," + alpha + ")";
+                ctx.fillRect(Math.round(x), Math.round(y), size, size);
+            }
+            ctx.restore();
+        }
+
+        function animate() {
+            const now = performance.now();
+
+            if (gameState === "running") {
+                const progress = Math.min(1, (now - runStartedAt) / RUN_MS);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                playerX = runFromX + (RUN_TARGET_X - runFromX) * eased;
+                playerY = runFromY + (RUN_TARGET_Y - runFromY) * eased;
+
+                if (progress >= 1) {
+                    playerX = RUN_TARGET_X;
+                    playerY = RUN_TARGET_Y;
+                    gameState = "kicking";
+                    kickStartedAt = now;
+                }
+            } else if (gameState === "kicking") {
+                if (now - kickStartedAt >= KICK_MS) {
                     gameState = "ball_flying";
                 }
             } else if (gameState === "ball_flying") {
@@ -1068,7 +1208,7 @@
                 } else {
                     if (lastShotGoal) {
                         gameState = "goal";
-                        showGoalCelebration();
+                        goalStartedAt = now;
                     } else {
                         gameState = "saved";
                     }
@@ -1076,6 +1216,14 @@
                     scheduleNextShot();
                 }
             }
+
+            drawField();
+            drawKeeper();
+            drawRunEffects();
+            drawPlayer();
+            drawBall();
+            drawKickEffects();
+            drawCelebrationEffects();
 
             animationFrame = requestAnimationFrame(animate);
         }
@@ -1102,7 +1250,6 @@
             nextShotTimer = null;
             cancelAnimationFrame(animationFrame);
             gameState = "idle";
-            hideGoalCelebration();
 
             const grade = score === TOTAL_SHOTS ? 'gold' : score >= 8 ? 'silver' : score >= 6 ? 'bronze' : null;
             const starIcons = { gold: '🌟', silver: '⭐', bronze: '🥉' };
