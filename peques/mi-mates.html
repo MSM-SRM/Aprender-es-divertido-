@@ -20,7 +20,7 @@ h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1;margin:0;color:#1557a3;text-sh
 .module{min-height:215px;text-align:center;padding:26px 18px;border:3px solid #fff;border-radius:24px;background:linear-gradient(145deg,#fff,#e7f4ff);box-shadow:0 9px 23px #23456b18;color:#193e69;transition:transform .16s,box-shadow .16s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-decoration:none;cursor:pointer}
 .module:hover,.module:focus-visible{transform:translateY(-3px);box-shadow:0 14px 27px #23456b26;outline:3px solid #5aa9ee;outline-offset:2px}
 
-.module:nth-child(1){background:linear-gradient(145deg,#fff8d9,#ffe9a5)}.module:nth-child(2){background:linear-gradient(145deg,#e9fff0,#c9f0d5)}.module:nth-child(3){background:linear-gradient(145deg,#f2ebff,#dcd0ff)}.module:nth-child(5){background:linear-gradient(145deg,#e8fff5,#c7f3dc)}
+.module:nth-child(1){background:linear-gradient(145deg,#fff8d9,#ffe9a5)}.module:nth-child(2){background:linear-gradient(145deg,#e9fff0,#c9f0d5)}.module:nth-child(3){background:linear-gradient(145deg,#f2ebff,#dcd0ff)}.module[data-mode="penalti"]{background:linear-gradient(145deg,#e8fff5,#c7f3dc)}.module[data-mode="naruto"]{background:linear-gradient(145deg,#fff7e8,#ffd9b0);border-color:#ffb27a;color:#7a2f00;box-shadow:0 9px 23px #f26b2130}.module[data-mode="naruto"]:hover,.module[data-mode="naruto"]:focus-visible{outline-color:#f26b21}
 .emoji{display:block;font-size:clamp(3.4rem,8vw,5rem);line-height:1}.module strong{display:block;font-size:clamp(1.45rem,3vw,1.9rem)}
 .play{display:none;margin-top:22px;padding:clamp(18px,4vw,30px);border:3px solid #fff;border-radius:28px;background:#ffffffd9;box-shadow:0 10px 28px #23456b18}.play.active{display:block}
 .play h2{font-size:clamp(1.3rem,4vw,1.8rem);margin:0}.hint{color:#526c89}.question{font-size:clamp(2.5rem,10vw,5rem);font-weight:1000;text-align:center;margin:24px 0;color:#1856a0}.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:540px;margin:auto}.answer{min-height:68px;border:3px solid #d8e9f8;border-radius:18px;background:#fff;color:#1c4c83;font-size:clamp(1.4rem,5vw,2rem);font-weight:900}.answer:hover,.answer:focus-visible{border-color:#4798e3;outline:3px solid #4798e355}.feedback{text-align:center;font-size:1.15rem;font-weight:900;min-height:34px;margin:20px 0 8px}.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}.action{border:0;border-radius:999px;padding:11px 18px;background:#226dc0;color:#fff;font-weight:900}.action.alt{background:#edf4fb;color:#31577e}.action:disabled{opacity:.5;cursor:default}.foot{text-align:center;color:#617790;font-size:.85rem;margin-top:24px}
@@ -60,36 +60,18 @@ h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1;margin:0;color:#1557a3;text-sh
     <div class="feedback" id="feedback"></div>
     <div class="actions"><button class="action alt" id="changeLevel" type="button">Cambiar nivel</button><button class="action alt" id="change" type="button">Cambiar juego</button><button class="action" id="next" disabled>Siguiente reto →</button></div>
   </section>
-  <section class="match-wrap" id="matchWrap" aria-live="polite">
-    <div id="levelScreen"><h2>⚽ Partido de sumas y restas</h2><p class="match-instructions">Elige nivel. Resuelve 10 retos y marca gol con el balón correcto.</p><div class="level-grid" id="levelGrid"></div><div class="match-actions match-exit"><button class="action alt" id="closeMatch" type="button">Volver a los juegos</button></div></div>
-    <div id="gameScreen" class="match-hidden">
-      <div class="match-topline"><span id="levelName">Nivel</span><span id="questionCount">Pregunta 1 de 10</span><span id="goalCount">⚽ 0</span></div><div class="match-progress"><span id="matchProgress"></span></div>
-      <div class="question" id="matchQuestion">8 + 1 = ?</div>
-      <div class="stadium" id="stadium" aria-label="Campo de fútbol visto desde detrás de la jugadora">
-        <div class="sky"><div class="cloud"></div><div class="stand"></div><div class="banner">HALA MADRID</div></div>
-        <div class="goal"><div class="keeper" aria-label="Portero con camiseta azul y granate"><span class="keeper-face" aria-hidden="true"><i></i><i></i></span></div></div>
-        <div class="pitch"></div>
-        <div class="answer-balls" id="answerBalls"></div>
-        <div class="striker" id="striker" aria-label="Jugador con dorsal 7 visto de espaldas"><svg class="player-art" viewBox="0 0 100 190" role="img" aria-label="Espalda de una camiseta blanca con el número 7"><defs><linearGradient id="kit" x1="0" x2="1"><stop stop-color="#dce5f0"/><stop offset=".22" stop-color="#fff"/><stop offset=".78" stop-color="#fff"/><stop offset="1" stop-color="#d5dfed"/></linearGradient><linearGradient id="skin" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#f2c9a3"/><stop offset="1" stop-color="#bd805f"/></linearGradient><linearGradient id="shorts" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#344166"/><stop offset="1" stop-color="#1c2748"/></linearGradient></defs><ellipse cx="50" cy="181" rx="34" ry="6" fill="#176a2a" opacity=".35"/><path d="M31 31 16 39 6 74l10 4 11-24 4 42h38l4-42 11 24 10-4-10-35-15-8c-5 7-10 10-19 10s-14-3-19-10Z" fill="url(#kit)" stroke="#bac8d9" stroke-width="2.5" stroke-linejoin="round"/><path d="M32 31c4 7 10 11 18 11s14-4 18-11" fill="none" stroke="#8797b4" stroke-width="3"/><path d="M28 93h44l5 26-12 9H35l-12-9Z" fill="url(#shorts)" stroke="#19233e" stroke-width="2"/><path d="m36 123-2 42-12 3-4-4 3-43Zm28 0 15-2 3 43-4 4-12-3Z" fill="#f5f7fb" stroke="#d1dae6" stroke-width="2"/><path d="m18 163 17 1-1 12c-7 6-19 7-25 1-2-5 2-10 9-14Zm48 1 17-1 9 14c-6 6-18 5-25-1Z" fill="#26304e" stroke="#17213c" stroke-width="2"/><path d="M18 70 9 76l3 15c2 5 7 4 8 0l4-12Zm64 0 9 6-3 15c-2 5-7 4-8 0l-4-12Z" fill="url(#skin)" stroke="#a66e54" stroke-width="2"/><path d="M39 28c-1-12 4-21 12-21 11 0 16 9 14 22l-4 8H43Z" fill="#3f2a25" stroke="#261b1a" stroke-width="2"/><path d="M42 9c6-8 19-6 23 3-6-2-11-3-16 0l-7 8Z" fill="#51352d"/><path d="M44 58h13v26H44z" fill="#233451"/><text x="50" y="81" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" font-weight="900" fill="#28334f" stroke="#fff" stroke-width=".7" paint-order="stroke">7</text><path d="M27 39 19 45M73 39l8 6" stroke="#d5a52a" stroke-width="2"/></svg></div>
-        <div class="shot-trail"></div><div class="flying-ball"></div><div class="goal-flash"></div>
-      </div>
-      <div class="match-feedback" id="matchFeedback" role="status"></div>
-      <div class="match-actions"><button class="action alt" id="exitMatch" type="button">Salir del partido</button><button class="action" id="nextMatchQuestion" type="button" disabled>Siguiente jugada →</button></div>
-    </div>
-    <div id="resultScreen" class="match-hidden match-result" aria-live="polite"><div class="result-star" id="resultStar">★</div><h3 id="resultTitle">¡Partido terminado!</h3><p id="resultCopy"></p><div class="match-actions"><button class="action alt" id="exitResult" type="button">Salir</button><button class="action alt" id="resultLevels" type="button">Elegir nivel</button><button class="action" id="replayMatch" type="button">Repetir nivel</button></div></div>
-  </section>
   <p class="foot">Mi Mundo de Aprendizaje · Los avances se guardan en este navegador para el perfil activo.</p>
 </main>
 <script>
 const $=id=>document.getElementById(id);let mode='sumas',answered=false;
 const profileId=new URLSearchParams(location.search).get('profile')||'mireia';
 // Lista de módulos TEST: retirar una entrada elimina esa tarjeta sin tocar el resto del área.
-const testModules=[{mode:'sumas',title:'Sumas',emoji:'➕'},{mode:'restas',title:'Restas',emoji:'➖'},{mode:'mixtos',title:'Retos mixtos',emoji:'🧮'},{mode:'partido',title:'Partido de sumas y restas',emoji:'⚽'},{mode:'penalti',title:'Penalti matemático',emoji:'🥅',href:'penalti-matematico.html'}];
+const testModules=[{mode:'sumas',title:'Sumas',emoji:'➕'},{mode:'restas',title:'Restas',emoji:'➖'},{mode:'mixtos',title:'Retos mixtos',emoji:'🧮'},{mode:'penalti',title:'Penalti matemático',emoji:'🥅',href:'penalti-matematico.html'},{mode:'naruto',title:'Naruto: desafío ninja',emoji:'🍥',href:'naruto-matematico.html'}];
 function renderModules(){
   $('modules').innerHTML=testModules.map(module=>module.href
     ?`<a class="module" data-mode="${module.mode}" href="${module.href}?profile=${encodeURIComponent(profileId)}"><span class="emoji" aria-hidden="true">${module.emoji}</span><strong>${module.title}</strong></a>`
     :`<button class="module" data-mode="${module.mode}"><span class="emoji" aria-hidden="true">${module.emoji}</span><strong>${module.title}</strong></button>`).join('');
-  document.querySelectorAll('#modules button[data-mode]').forEach(button=>button.addEventListener('click',()=>{mode=button.dataset.mode;$('practiceLevels').classList.remove('active');if(mode==='partido'){openMatchLevels();return}$('matchWrap').classList.remove('active');openPracticeLevels()}));
+  document.querySelectorAll('#modules button[data-mode]').forEach(button=>button.addEventListener('click',()=>{mode=button.dataset.mode;openPracticeLevels()}));
 }
 renderModules();
 const progressKey=`mundoAprendizajeProgressV3_${profileId}`;
@@ -102,45 +84,7 @@ let scores=profileProgress.byArea.mates;
 for(const key of ['gold','silver','bronze'])scores[key]=Number(scores[key]||0);
 function renderScores(){$('goldScore').textContent=String(scores.gold%1000).padStart(3,'0');$('silverScore').textContent=String(scores.silver%1000).padStart(3,'0');$('bronzeScore').textContent=String(scores.bronze%1000).padStart(3,'0')}
 renderScores();
-const matchLevels=[
- {id:'facil',name:'Fácil',range:'1–9 · sumas y restas de 1 cifra',min:1,max:9},
- {id:'medio50',name:'Medio',range:'10–50 · operaciones de 2 cifras',min:10,max:50},
- {id:'medio99',name:'Medio avanzado',range:'10–99 · operaciones de 2 cifras',min:10,max:99},
- {id:'dificil100',name:'Difícil',range:'Hasta 100',min:1,max:100},
- {id:'dificil200',name:'Difícil · reto 200',range:'Hasta 200',min:1,max:200},
- {id:'dificil500',name:'Difícil · reto 500',range:'Hasta 500',min:1,max:500},
- {id:'elite1000',name:'Élite',range:'Hasta 1.000',min:1,max:1000}
-];
-let activeLevel=null,matchIndex=0,matchGoals=0,matchAnswered=false;
-function openMatchLevels(){
- $('play').classList.remove('active');$('matchWrap').classList.add('active');$('levelScreen').classList.remove('match-hidden');$('gameScreen').classList.add('match-hidden');$('resultScreen').classList.add('match-hidden');
- $('levelGrid').innerHTML=matchLevels.map((level,index)=>`<button class="level-choice" data-level="${level.id}" type="button"><span>${index<1?'⭐':index<3?'⚽':index<6?'🔥':'👑'} ${level.name}</span><small>${level.range}</small></button>`).join('');
- $('levelGrid').querySelectorAll('[data-level]').forEach(button=>button.addEventListener('click',()=>startMatch(matchLevels.find(level=>level.id===button.dataset.level))));$('matchWrap').scrollIntoView({behavior:'smooth',block:'start'});
-}
-function startMatch(level){activeLevel=level;matchIndex=0;matchGoals=0;$('levelScreen').classList.add('match-hidden');$('resultScreen').classList.add('match-hidden');$('gameScreen').classList.remove('match-hidden');$('levelName').textContent=`${level.name} · ${level.range}`;makeMatchQuestion();}
 function randomInt(min,max){return Math.floor(Math.random()*(max-min+1))+min}
-function makeMatchQuestion(){
- matchAnswered=false;$('nextMatchQuestion').disabled=true;$('matchFeedback').textContent='';$('stadium').className='stadium';$('striker').className='striker';
- const add=Math.random()<.5,min=activeLevel.min,max=activeLevel.max;let a,b,op,result;
- if(add){a=randomInt(min,Math.max(min,max-min));b=randomInt(min,Math.max(min,max-a));op='+';result=a+b;}
- else{a=randomInt(min+1,max);b=randomInt(min,a-1);op='−';result=a-b;}
- $('matchQuestion').textContent=`${a} ${op} ${b} = ?`;$('questionCount').textContent=`Pregunta ${matchIndex+1} de 10`;$('goalCount').textContent=`⚽ ${matchGoals}`;$('matchProgress').style.width=`${matchIndex*10}%`;
- const choices=new Set([result]);while(choices.size<3){const delta=randomInt(1,Math.min(12,max||12))*(Math.random()<.5?-1:1),candidate=result+delta;if(candidate>=0&&candidate<=max)choices.add(candidate);else{const fallback=randomInt(0,max);choices.add(fallback)}}
- const shuffled=[...choices].sort(()=>Math.random()-.5);const ballSvg='<svg class="ball-icon classic-ball" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="#fff" stroke="#14202d" stroke-width="4"/><path d="M50 31 67 43 61 63 39 63 33 43Z" fill="#111820" stroke="#111820" stroke-width="2" stroke-linejoin="round"/><path d="m50 31 1-22M67 43l22-7M61 63l13 22M39 63 26 85M33 43 11 36" fill="none" stroke="#18212a" stroke-width="3" stroke-linecap="round"/><path d="m50 9 12 3 7 11-2 12-17-4-17 4-2-12 7-11Zm39 27 5 11-2 13-10 9-11-6 6-20ZM74 85 63 94H37L26 85l13-22h22ZM11 36l8-10 14 5 6 12-6 20-11 6-10-9-2-13Zm39 58" fill="#111820" stroke="#111820" stroke-width="2" stroke-linejoin="round"/></svg>';const iconBall=ballSvg.replace('ball-icon classic-ball','classic-ball');$('stadium').querySelector('.flying-ball').innerHTML=iconBall;$('answerBalls').innerHTML=shuffled.map((value,index)=>`<button class="answer-ball" type="button" data-value="${value}" data-position="${index}" aria-label="Balón ${index===0?'izquierdo':index===1?'central':'derecho'}, respuesta ${value}">${ballSvg}<strong>${value}</strong></button>`).join('');
- $('answerBalls').querySelectorAll('.answer-ball').forEach(button=>button.addEventListener('click',()=>chooseMatchBall(button,result)));
-}
-function chooseMatchBall(button,correct){if(matchAnswered)return;if(Number(button.dataset.value)!==correct){$('matchFeedback').textContent='¡Buen intento! Prueba con otro balón 😊';button.animate([{transform:'translateX(0)'},{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'translateX(0)'}],{duration:240});return;}
- matchAnswered=true;matchGoals++;document.querySelectorAll('.answer-ball').forEach(ball=>ball.disabled=true);const action=['chilena','cabezazo','tiro a la escuadra'][Number(button.dataset.position)];const pose=['left','center','right'][Number(button.dataset.position)];$('stadium').className=`stadium scoring pose-${pose}`;$('striker').className=`striker pose-${pose}`;$('matchFeedback').textContent=`¡${action==='chilena'?'Chilena':action==='cabezazo'?'Cabezazo potente':'Tiro a la escuadra'}! ¡Gol! 🔥`;$('goalCount').textContent=`⚽ ${matchGoals}`;$('matchProgress').style.width=`${(matchIndex+1)*10}%`;
- window.setTimeout(()=>{if(matchIndex===9)finishMatch();else $('nextMatchQuestion').disabled=false;},900);
-}
-function finishMatch(){
- $('gameScreen').classList.add('match-hidden');$('resultScreen').classList.remove('match-hidden');const grade=matchGoals===10?'gold':matchGoals>=8?'silver':matchGoals>=6?'bronze':null;const stars={gold:'🌟',silver:'⭐',bronze:'🥉'};
- profileProgress.rounds=(Number(profileProgress.rounds)||0)+1;profileProgress.byGame[`mates_partido_${activeLevel.id}`]=(Number(profileProgress.byGame[`mates_partido_${activeLevel.id}`])||0)+1;if(grade)scores[grade]++;profileProgress.stars=Object.values(profileProgress.byArea).reduce((sum,area)=>sum+['gold','silver','bronze'].reduce((subtotal,type)=>subtotal+(Number(area?.[type])||0),0),0);localStorage.setItem(progressKey,JSON.stringify(profileProgress));renderScores();
- $('resultStar').textContent=grade?stars[grade]:'⚽';$('resultTitle').textContent=grade==='gold'?'¡Partido perfecto!':grade==='silver'?'¡Gran partido!':grade==='bronze'?'¡Buen partido!':'¡Sigue entrenando!';$('resultCopy').textContent=grade?`Has marcado ${matchGoals} de 10 goles. ¡Has ganado una estrella ${grade==='gold'?'de oro':grade==='silver'?'de plata':'de bronce'}!`:`Has marcado ${matchGoals} de 10 goles. Con 6 aciertos consigues bronce. Puedes repetir el nivel o elegir otro.`;
- $('resultStar').style.color=grade==='gold'?'#e4aa00':grade==='silver'?'#778da5':grade==='bronze'?'#a76532':'#3579b7';
-}
-function leaveMatch(){openMatchLevels()}
-$('closeMatch').addEventListener('click',()=>{$('matchWrap').classList.remove('active');$('modules').scrollIntoView({behavior:'smooth',block:'start'})});$('exitMatch').addEventListener('click',leaveMatch);$('nextMatchQuestion').addEventListener('click',()=>{matchIndex++;makeMatchQuestion()});$('exitResult').addEventListener('click',()=>{$('matchWrap').classList.remove('active');$('modules').scrollIntoView({behavior:'smooth',block:'start'})});$('resultLevels').addEventListener('click',openMatchLevels);$('replayMatch').addEventListener('click',()=>startMatch(activeLevel));
 const practiceLevels=[
   {id:'facil',name:'Fácil',range:'0–30 · sumas hasta 30 y restas sin negativos',min:0,max:30,vertical:false},
   {id:'medio',name:'Medio',range:'11–99 · operaciones de dos cifras',min:11,max:99,vertical:true},
@@ -150,7 +94,7 @@ const practiceLevels=[
 let practiceLevel=practiceLevels[0];
 const gameNames={sumas:'Sumas',restas:'Restas',mixtos:'Retos mixtos'};
 function openPracticeLevels(){
-  $('play').classList.remove('active');$('matchWrap').classList.remove('active');$('practiceLevels').classList.add('active');
+  $('play').classList.remove('active');$('practiceLevels').classList.add('active');
   $('practiceTitle').textContent=gameNames[mode]||'Reto';
   $('practiceLevelGrid').innerHTML=practiceLevels.map(level=>`<button class="level-choice" type="button" data-level="${level.id}"><span>${level.name}</span><small>${level.range}</small></button>`).join('');
   $('practiceLevelGrid').querySelectorAll('[data-level]').forEach(button=>button.addEventListener('click',()=>{practiceLevel=practiceLevels.find(level=>level.id===button.dataset.level)||practiceLevels[0];$('practiceLevels').classList.remove('active');$('play').classList.add('active');makeQuestion();$('play').scrollIntoView({behavior:'smooth',block:'nearest'})}));

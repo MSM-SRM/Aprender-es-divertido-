@@ -298,3 +298,43 @@ Al abrir una tarjeta, Mireia verá:
 | Los Reyes Magos | 5–6 de enero | 3–10 de enero |
 
 Los periodos anteriores son los acordados para la disponibilidad especial; no mostrar numeración en las tarjetas. La primera implementación conservará los trece eventos y estos nombres. Cualquier celebración adicional será una propuesta pendiente de valoración, no se añadirá automáticamente.
+
+---
+
+## Actualización 25/10/2026 — Naruto: desafío ninja
+
+### Estado
+
+- Nuevo juego `peques/naruto-matematico.html` terminado y probado en local.
+- 5 niveles: Muy fácil, Fácil, Medio, Difícil y Élite.
+- 3 modos: Sumas, Restas y Mixtos.
+- 10 retos por partida, estrellas, resultado, sonidos Web Audio y progreso V3.
+- Fondo de Konoha, Naruto animado y Gaara en pixel art.
+- Tarjeta nueva en `peques/mi-mates.html` y acceso desde `peques/index.html` para el nivel 7.
+- QA responsive a 320, 390 y 1000 px sin overflow horizontal.
+- Informe completo en `qa/naruto-2026-10-23/INFORME.md`.
+
+### Pendiente
+
+- Hacer commit de los archivos del sitio.
+- Hacer push a `origin/main`.
+- Verificar GitHub Pages.
+- Probar el flujo real de Mireia con PIN.
+- Actualizar el resumen con el hash del commit publicado.
+
+### Reglas que se mantienen
+
+- No subir `qa/`, `AGENTS.md`, `.opencode/` ni `*.antes-niveles.*`.
+- Mantener las reglas de estrellas de Penalti Matemático.
+- Usar las claves V3 compartidas; no crear un progreso paralelo.
+- Conservar el estilo, los colores y el idioma existentes.
+---
+
+## Actualización 25/10/2026 — retirada de «Partido de sumas y restas»
+
+- Eliminado de Mi Mates para Guest y Mireia.
+- Retiradas la tarjeta, la pantalla de juego, los balones y la lógica JavaScript del partido.
+- Se mantienen Sumas, Restas, Retos mixtos, Penalti matemático y Naruto.
+- Se retiraron de `ui-language.js` las traducciones específicas del título y las instrucciones del partido.
+- QA responsive a 320, 390 y 892 px sin overflow horizontal; consola limpia.
+- Informe: `qa/mi-mates-2026-10-25/INFORME.md`.

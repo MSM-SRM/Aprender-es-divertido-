@@ -1,0 +1,2219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naruto · Desafío Ninja Matemático</title>
+<script src="auth-guard.js"></script>
+<script>
+    const profileId = new URLSearchParams(location.search).get('profile') || 'mireia';
+</script>
+<style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+        --orange: #f26b21;
+        --orange-soft: #ff9b57;
+        --orange-dark: #a13d08;
+        --night: #101a2b;
+        --night-deep: #070d18;
+        --cream: #fff7e8;
+        --chakra: #24c7b8;
+        --gold: #ffd34d;
+        --danger: #ff5a5a;
+        --ok: #43e08f;
+        --stage-max: 980px;
+        --font-body: "Trebuchet MS", "Segoe UI", system-ui, -apple-system, sans-serif;
+        --font-mono: "Courier New", Courier, monospace;
+    }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        min-height: 100svh;
+        color: var(--cream);
+        font-family: var(--font-body);
+        background: var(--night-deep);
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    /* Fondo panorámico de Konoha + capa de legibilidad */
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -3;
+        background-image: url("imagenes/konoha-bg.jpg");
+        background-size: cover;
+        background-position: center 38%;
+        background-repeat: no-repeat;
+    }
+
+    body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        pointer-events: none;
+        background:
+            radial-gradient(ellipse at 50% 38%, rgba(8, 14, 26, 0.04) 0%, rgba(8, 14, 26, 0.32) 52%, rgba(5, 9, 18, 0.9) 100%),
+            linear-gradient(180deg, rgba(16, 26, 43, 0.78) 0%, rgba(16, 26, 43, 0.4) 34%, rgba(10, 16, 28, 0.82) 100%);
+    }
+
+    a { color: inherit; }
+    button { font-family: inherit; }
+
+    .sr-only {
+        position: absolute;
+        width: 1px; height: 1px;
+        padding: 0; margin: -1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    /* Hojas ambientales de fondo */
+    .sky-leaves {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .leaf {
+        position: absolute;
+        top: -8%;
+        left: var(--x, 50%);
+        width: var(--s, 10px);
+        height: calc(var(--s, 10px) * 0.62);
+        border-radius: 62% 12% 62% 12%;
+        background: linear-gradient(145deg, #a8ef7d, #42b356 58%, #1f6b30);
+        box-shadow: 0 0 7px rgba(120, 255, 160, 0.35);
+        opacity: 0.8;
+        animation: leaf-fall var(--dur, 11s) linear infinite;
+        animation-delay: var(--delay, 0s);
+        will-change: top, transform;
+    }
+
+    @keyframes leaf-fall {
+        0%   { top: -8%; transform: translateX(0) rotate(0deg); opacity: 0; }
+        8%   { opacity: 0.85; }
+        45%  { transform: translateX(var(--drift, 20px)) rotate(200deg); }
+        75%  { opacity: 0.8; }
+        100% { top: 108%; transform: translateX(calc(var(--drift, 20px) * -0.6)) rotate(520deg); opacity: 0; }
+    }
+
+    .shell {
+        position: relative;
+        z-index: 2;
+        width: min(100%, 1080px);
+        margin: 0 auto;
+        padding: clamp(10px, 2.4vw, 26px) clamp(10px, 3vw, 28px) 44px;
+    }
+
+    /* Barra superior */
+    .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: clamp(10px, 2vw, 18px);
+    }
+
+    .topbar-right {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        min-width: 0;
+    }
+
+    .topbar-tag {
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.2em;
+        color: rgba(255, 247, 232, 0.62);
+        white-space: nowrap;
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 8px 15px;
+        border: 2px solid rgba(255, 247, 232, 0.55);
+        border-radius: 999px;
+        background: rgba(6, 12, 24, 0.62);
+        color: var(--cream);
+        font-size: clamp(0.82rem, 2.2vw, 0.95rem);
+        font-weight: 800;
+        text-decoration: none;
+        box-shadow: 0 5px 14px rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        touch-action: manipulation;
+        white-space: nowrap;
+    }
+
+    .back-link:hover,
+    .back-link:focus-visible {
+        border-color: var(--gold);
+        color: var(--gold);
+        outline: 3px solid rgba(255, 211, 77, 0.45);
+        outline-offset: 2px;
+    }
+
+    .icon-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        flex: 0 0 44px;
+        border: 2px solid rgba(255, 247, 232, 0.45);
+        border-radius: 50%;
+        background: rgba(6, 12, 24, 0.62);
+        color: var(--cream);
+        font-size: 1.1rem;
+        line-height: 1;
+        cursor: pointer;
+        box-shadow: 0 5px 14px rgba(0, 0, 0, 0.4);
+        touch-action: manipulation;
+    }
+
+    .icon-btn:hover,
+    .icon-btn:focus-visible {
+        border-color: var(--gold);
+        outline: 3px solid rgba(255, 211, 77, 0.45);
+        outline-offset: 2px;
+    }
+
+    .icon-btn[aria-pressed="false"] { opacity: 0.6; }
+
+    /* Pantallas */
+    .screen { display: none; }
+    .screen.active { display: block; animation: screen-in 0.28s ease-out; }
+
+    @keyframes screen-in {
+        from { opacity: 0; transform: translateY(8px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* HERO */
+    .hero {
+        text-align: center;
+        margin: 0 auto clamp(14px, 2.6vw, 24px);
+    }
+
+    .hero-copy {
+        max-width: 780px;
+        margin: 0 auto;
+    }
+
+    .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0 0 8px;
+        font-family: var(--font-mono);
+        font-size: clamp(0.6rem, 1.6vw, 0.78rem);
+        font-weight: 700;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--chakra);
+        text-shadow: 0 0 14px rgba(36, 199, 184, 0.65);
+    }
+
+    .kicker::before,
+    .kicker::after {
+        content: "";
+        width: clamp(14px, 4vw, 42px);
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--chakra));
+    }
+
+    .kicker::after { transform: scaleX(-1); }
+
+    .hero-title {
+        margin: 0;
+        font-weight: 900;
+        text-transform: uppercase;
+        line-height: 0.94;
+        letter-spacing: 0.01em;
+        font-size: clamp(1.55rem, 4.6vw, 3.15rem);
+    }
+
+    .hero-title span { display: block; }
+
+    .hero-title .t1 {
+        font-size: 0.7em;
+        letter-spacing: 0.24em;
+        color: var(--orange-soft);
+        text-shadow: 0 0 20px rgba(242, 107, 33, 0.75), 0 2px 0 #08101c;
+    }
+
+    .hero-title .t2 {
+        color: var(--cream);
+        text-shadow: 0 3px 0 #0a1220, 0 0 26px rgba(36, 199, 184, 0.4);
+    }
+
+    .hero-title .t3 {
+        font-size: 1.08em;
+        background: linear-gradient(180deg, #ffe98d 0%, #ffc21f 62%, #e58a06 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        filter: drop-shadow(0 3px 0 rgba(8, 16, 28, 0.85)) drop-shadow(0 0 18px rgba(255, 196, 50, 0.4));
+    }
+
+    .subtitle {
+        max-width: 640px;
+        margin: clamp(8px, 1.6vw, 14px) auto 0;
+        color: #d9e6f5;
+        font-size: clamp(0.92rem, 2.3vw, 1.08rem);
+        line-height: 1.45;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    .subtitle strong { color: var(--gold); }
+
+    .hero-hint {
+        display: inline-block;
+        margin: 8px auto 0;
+        padding: 5px 12px;
+        border: 1px dashed rgba(255, 247, 232, 0.35);
+        border-radius: 999px;
+        background: rgba(6, 12, 24, 0.45);
+        color: rgba(255, 247, 232, 0.82);
+        font-size: clamp(0.72rem, 1.9vw, 0.85rem);
+        line-height: 1.3;
+    }
+
+    .duel {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: end;
+        gap: clamp(2px, 1.4vw, 16px);
+        max-width: 840px;
+        margin: clamp(6px, 1.8vw, 14px) auto 0;
+    }
+
+    .hero-fighter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+        position: relative;
+        isolation: isolate;
+        filter: drop-shadow(0 16px 18px rgba(0, 0, 0, 0.55));
+    }
+
+    .hero-fighter::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        left: 2%;
+        right: 2%;
+        bottom: 8%;
+        height: 72%;
+        border-radius: 50%;
+        background: radial-gradient(ellipse at center, rgba(5, 9, 18, 0.62) 0%, rgba(5, 9, 18, 0.22) 56%, rgba(5, 9, 18, 0) 76%);
+        filter: blur(9px);
+        pointer-events: none;
+    }
+
+    .naruto-hero { justify-self: start; width: clamp(108px, 20vw, 256px); }
+    .gaara-hero  { justify-self: end;   width: clamp(74px, 13.5vw, 176px); }
+
+    .hero-fighter .sprite {
+        display: block;
+        width: 100%;
+        height: auto;
+        image-rendering: pixelated;
+    }
+
+    .hero-fighter .sprite img,
+    .fighter .sprite img {
+        display: block;
+        width: 100%;
+        height: auto;
+        image-rendering: pixelated;
+    }
+
+    .naruto-hero .sprite { animation: bob 3.2s ease-in-out infinite; }
+    .gaara-hero .sprite  { animation: bob 4.2s ease-in-out infinite reverse; }
+
+    @keyframes bob {
+        0%, 100% { transform: translateY(0); }
+        50%      { transform: translateY(-7px); }
+    }
+
+    .hero-tag {
+        font-family: var(--font-mono);
+        font-weight: 900;
+        font-size: clamp(0.52rem, 1.4vw, 0.76rem);
+        letter-spacing: 0.18em;
+        padding: 4px 9px;
+        border-radius: 3px;
+        background: rgba(6, 12, 24, 0.82);
+        border: 2px solid;
+        box-shadow: 0 3px 0 rgba(0, 0, 0, 0.55);
+    }
+
+    .tag-naruto { color: #ffb27a; border-color: var(--orange); }
+    .tag-gaara  { color: #8ff5ec; border-color: var(--chakra); }
+
+    .vs-badge {
+        align-self: center;
+        justify-self: center;
+        display: grid;
+        place-items: center;
+        width: clamp(42px, 6vw, 68px);
+        aspect-ratio: 1;
+        margin-bottom: clamp(10px, 2.4vw, 26px);
+        border: 3px solid var(--gold);
+        border-radius: 50%;
+        background: radial-gradient(circle at 38% 32%, #24364f, #0a1322 70%);
+        color: var(--gold);
+        font-family: var(--font-mono);
+        font-size: clamp(0.85rem, 2.2vw, 1.35rem);
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        transform: rotate(-8deg);
+        box-shadow: 0 0 0 4px rgba(7, 13, 24, 0.75), 0 0 28px rgba(255, 211, 77, 0.45), inset 0 0 14px rgba(255, 140, 40, 0.4);
+        text-shadow: 0 0 12px rgba(255, 211, 77, 0.9);
+    }
+
+    /* Paneles */
+    .panel {
+        position: relative;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: clamp(14px, 2.4vw, 24px);
+        border: 2px solid rgba(255, 211, 77, 0.5);
+        border-radius: 18px;
+        background:
+            linear-gradient(180deg, rgba(15, 27, 45, 0.94) 0%, rgba(8, 15, 28, 0.96) 100%);
+        box-shadow:
+            0 0 0 3px rgba(7, 13, 24, 0.75),
+            0 0 0 6px rgba(242, 107, 33, 0.38),
+            0 22px 46px rgba(0, 0, 0, 0.55),
+            inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    .panel::after {
+        content: "";
+        position: absolute;
+        inset: 7px;
+        border: 1px solid rgba(255, 247, 232, 0.08);
+        border-radius: 11px;
+        pointer-events: none;
+    }
+
+    .section-head {
+        display: flex;
+        align-items: baseline;
+        gap: 9px;
+        flex-wrap: wrap;
+        margin: 0 0 clamp(8px, 1.6vw, 12px);
+    }
+
+    .section-head:not(:first-child) { margin-top: clamp(16px, 3vw, 22px); }
+
+    .section-head h2 {
+        margin: 0;
+        font-size: clamp(1rem, 2.4vw, 1.25rem);
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--cream);
+        text-shadow: 0 2px 0 #050a12;
+    }
+
+    .section-kicker {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        font-weight: 900;
+        color: var(--orange);
+        border: 1px solid rgba(242, 107, 33, 0.7);
+        border-radius: 3px;
+        padding: 1px 5px;
+        background: rgba(242, 107, 33, 0.14);
+    }
+
+    .section-note {
+        margin-left: auto;
+        font-size: clamp(0.68rem, 1.8vw, 0.8rem);
+        color: rgba(216, 230, 245, 0.7);
+        letter-spacing: 0.03em;
+    }
+
+    /* Selector de modo */
+    .mode-tabs {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+        padding: 6px;
+        border: 2px solid rgba(255, 247, 232, 0.14);
+        border-radius: 13px;
+        background: rgba(3, 8, 16, 0.55);
+    }
+
+    .mode-btn {
+        min-height: 48px;
+        min-width: 0;
+        padding: 9px 6px;
+        border: 2px solid transparent;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--cream);
+        font-size: clamp(0.86rem, 2.2vw, 1.02rem);
+        font-weight: 800;
+        letter-spacing: 0.03em;
+        cursor: pointer;
+        touch-action: manipulation;
+        transition: background 0.15s, border-color 0.15s, transform 0.12s, box-shadow 0.12s;
+    }
+
+    .mode-btn:hover { background: rgba(255, 255, 255, 0.11); }
+    .mode-btn:active { transform: translateY(1px); }
+
+    .mode-btn[aria-pressed="true"] {
+        background: linear-gradient(180deg, #ff9149 0%, var(--orange) 100%);
+        border-color: #ffd6b8;
+        color: #2a1000;
+        box-shadow: 0 4px 0 var(--orange-dark), 0 0 24px rgba(242, 107, 33, 0.5);
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+    }
+
+    .mode-btn[aria-pressed="true"]::before {
+        content: "✓ ";
+        font-family: var(--font-mono);
+    }
+
+    .mode-btn:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 2px;
+    }
+
+    .setup-foot {
+        margin: clamp(12px, 2.4vw, 18px) 0 0;
+        text-align: center;
+        color: rgba(216, 230, 245, 0.62);
+        font-size: clamp(0.72rem, 1.9vw, 0.84rem);
+    }
+
+    /* Tarjetas de nivel */
+    .levels {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: clamp(7px, 1.3vw, 11px);
+    }
+
+    .level-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1px;
+        min-height: 116px;
+        min-width: 0;
+        padding: 13px 12px 14px;
+        border: 2px solid rgba(36, 199, 184, 0.42);
+        border-radius: 12px;
+        background: linear-gradient(165deg, rgba(24, 42, 66, 0.96) 0%, rgba(10, 18, 32, 0.98) 100%);
+        color: var(--cream);
+        text-align: left;
+        cursor: pointer;
+        box-shadow: 0 6px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        transition: transform 0.14s, box-shadow 0.14s, border-color 0.14s;
+        touch-action: manipulation;
+        overflow: hidden;
+    }
+
+    .level-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--orange), var(--gold), var(--chakra));
+        opacity: 0.55;
+    }
+
+    .level-card:hover,
+    .level-card:focus-visible {
+        transform: translateY(-4px);
+        border-color: var(--gold);
+        box-shadow: 0 10px 0 rgba(0, 0, 0, 0.42), 0 0 28px rgba(255, 211, 77, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        outline: none;
+    }
+
+    .level-card:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .level-card:active { transform: translateY(1px); }
+    .level-card[data-level="5"] { border-color: rgba(255, 211, 77, 0.55); }
+
+    .lv-icon {
+        font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+        line-height: 1.1;
+        margin-bottom: 2px;
+        filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
+    }
+
+    .lv-name {
+        font-size: clamp(0.92rem, 1.8vw, 1.08rem);
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        line-height: 1.1;
+    }
+
+    .lv-range {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: clamp(0.8rem, 1.6vw, 0.95rem);
+        color: var(--chakra);
+    }
+
+    .lv-go {
+        margin-top: auto;
+        padding-top: 6px;
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        letter-spacing: 0.14em;
+        color: rgba(255, 247, 232, 0.5);
+    }
+
+    /* HUD */
+    .hud {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: clamp(8px, 1.6vw, 16px);
+        width: 100%;
+        max-width: var(--stage-max);
+        margin: 0 auto 10px;
+        padding: 9px clamp(10px, 2vw, 16px);
+        border: 2px solid rgba(255, 211, 77, 0.4);
+        border-radius: 12px;
+        background: linear-gradient(180deg, rgba(10, 18, 32, 0.94), rgba(6, 11, 21, 0.96));
+        box-shadow: 0 0 0 3px rgba(7, 13, 24, 0.6), 0 8px 22px rgba(0, 0, 0, 0.42);
+    }
+
+    .hud-item {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        min-width: 0;
+    }
+
+    .hud-item.level { flex: 1 1 118px; }
+
+    .hud-label {
+        font-family: var(--font-mono);
+        font-size: 0.56rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        color: #93a9c2;
+    }
+
+    .hud-value {
+        font-family: var(--font-mono);
+        font-size: clamp(0.84rem, 2.2vw, 1.02rem);
+        font-weight: 900;
+        color: var(--cream);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .hud-value.accent { color: var(--gold); }
+
+    .hud-bar {
+        flex: 1 1 210px;
+        display: grid;
+        grid-template-columns: repeat(10, minmax(0, 1fr));
+        gap: 3px;
+        height: 16px;
+        min-width: 0;
+        align-items: stretch;
+    }
+
+    .seg {
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+        transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .seg.ok {
+        background: var(--chakra);
+        border-color: #7af3e8;
+        box-shadow: 0 0 9px rgba(36, 199, 184, 0.8);
+    }
+
+    .seg.miss {
+        background: var(--danger);
+        border-color: #ffb0b0;
+        box-shadow: 0 0 9px rgba(255, 90, 90, 0.6);
+    }
+
+    /* Escenario */
+    .stage {
+        position: relative;
+        isolation: isolate;
+        width: 100%;
+        max-width: var(--stage-max);
+        margin: 0 auto;
+        aspect-ratio: 16 / 7.4;
+        border: 3px solid rgba(255, 211, 77, 0.6);
+        border-radius: 16px;
+        overflow: hidden;
+        background: #123;
+        box-shadow:
+            0 0 0 3px rgba(7, 13, 24, 0.85),
+            0 0 0 6px rgba(242, 107, 33, 0.42),
+            0 18px 38px rgba(0, 0, 0, 0.55);
+    }
+
+    .stage-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 38%;
+        filter: saturate(1.08) contrast(1.03);
+    }
+
+    .stage-shade {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background:
+            linear-gradient(180deg, rgba(6, 12, 24, 0.52) 0%, rgba(6, 12, 24, 0) 26%, rgba(6, 12, 24, 0.06) 55%, rgba(5, 9, 18, 0.72) 100%),
+            radial-gradient(ellipse at 50% 46%, rgba(5, 10, 20, 0) 42%, rgba(5, 10, 20, 0.55) 100%);
+    }
+
+    .stage-shade::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.09) 0 1px, transparent 1px 4px);
+        opacity: 0.3;
+    }
+
+    .stage-floor {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 21%;
+        z-index: 1;
+        pointer-events: none;
+        background: linear-gradient(180deg, rgba(16, 26, 43, 0) 0%, rgba(9, 16, 29, 0.5) 38%, rgba(5, 9, 18, 0.88) 100%);
+    }
+
+    .stage-floor::before {
+        content: "";
+        position: absolute;
+        left: 2%;
+        right: 2%;
+        top: 24%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba(255, 211, 77, 0.7), rgba(36, 199, 184, 0.55), transparent);
+    }
+
+    .leaf-field {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        overflow: hidden;
+        pointer-events: none;
+    }
+
+    .leaf-field .leaf { opacity: 0.72; }
+
+    .nameplate {
+        position: absolute;
+        top: 6%;
+        z-index: 4;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 9px;
+        border: 2px solid;
+        border-radius: 4px;
+        background: rgba(5, 10, 20, 0.8);
+        font-family: var(--font-mono);
+        font-size: clamp(0.55rem, 1.5vw, 0.8rem);
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        box-shadow: 0 3px 0 rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+    }
+
+    .nameplate::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 1px;
+        background: currentColor;
+        box-shadow: 0 0 8px currentColor;
+    }
+
+    .nameplate.naruto { left: 4%; color: #ffb27a; border-color: var(--orange); }
+    .nameplate.gaara  { right: 4%; color: #8ff5ec; border-color: var(--chakra); }
+
+    .fighter {
+        position: absolute;
+        bottom: 8.5%;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        pointer-events: none;
+    }
+
+    .fighter-naruto { left: 4.5%; width: clamp(96px, 28%, 300px); }
+    .fighter-gaara  { right: 5%;   width: clamp(62px, 16.5%, 160px); }
+
+    .sprite-wrap {
+        width: 100%;
+        display: block;
+        will-change: transform;
+    }
+
+    .fighter .sprite {
+        display: block;
+        width: 100%;
+        height: auto;
+        image-rendering: pixelated;
+        filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.5));
+        animation: bob 3.4s ease-in-out infinite;
+    }
+
+    .fighter-gaara .sprite {
+        animation: bob 4.3s ease-in-out infinite reverse;
+        filter: drop-shadow(0 5px 7px rgba(0, 0, 0, 0.55));
+    }
+
+    .ground-shadow {
+        display: block;
+        width: 82%;
+        height: clamp(6px, 1.2vw, 13px);
+        margin-top: clamp(-10px, -1.2vw, -5px);
+        border-radius: 50%;
+        background: radial-gradient(ellipse, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 48%, rgba(0, 0, 0, 0) 72%);
+        filter: blur(1px);
+    }
+
+    .is-dash { animation: dash 0.72s cubic-bezier(0.22, 0.9, 0.3, 1) both; }
+
+    @keyframes dash {
+        0%   { transform: translateX(0) rotate(0deg); }
+        35%  { transform: translateX(7%) rotate(-2.5deg); }
+        62%  { transform: translateX(2.5%) rotate(1deg); }
+        100% { transform: translateX(0) rotate(0deg); }
+    }
+
+    .is-hit { animation: hit-shake 0.5s ease-in-out both; }
+
+    @keyframes hit-shake {
+        0%, 100% { transform: translateX(0) rotate(0); }
+        18% { transform: translateX(-6px) rotate(-2deg); }
+        38% { transform: translateX(5px) rotate(2deg); }
+        58% { transform: translateX(-4px) rotate(-1deg); }
+        78% { transform: translateX(3px) rotate(1deg); }
+    }
+
+    .is-shake { animation: gaara-shake 0.55s ease-in-out both; }
+
+    @keyframes gaara-shake {
+        0%, 100% { transform: translateX(0) rotate(0); }
+        20% { transform: translateX(-5px) rotate(-1.5deg); }
+        42% { transform: translateX(4px) rotate(1.5deg); }
+        64% { transform: translateX(-3px) rotate(-1deg); }
+        82% { transform: translateX(2px) rotate(0.6deg); }
+    }
+
+    .fx-anchor {
+        position: absolute;
+        z-index: 8;
+        width: 0;
+        height: 0;
+        pointer-events: none;
+    }
+
+    .sand-shield {
+        display: block;
+        width: clamp(84px, 17vw, 182px);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        border: 3px solid rgba(240, 209, 152, 0.9);
+        background:
+            radial-gradient(circle at 42% 38%, rgba(255, 250, 230, 0.55), rgba(240, 205, 145, 0.42) 42%, rgba(188, 134, 66, 0.55) 72%, rgba(140, 95, 40, 0.25) 100%);
+        box-shadow: 0 0 34px rgba(255, 220, 150, 0.85), inset 0 0 22px rgba(255, 255, 255, 0.45);
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+
+    .sand-shield.is-active { animation: sand-blast 0.72s ease-out both; }
+
+    @keyframes sand-blast {
+        0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.45); }
+        22%  { opacity: 1; transform: translate(-50%, -50%) scale(0.96); }
+        55%  { opacity: 0.85; transform: translate(-50%, -50%) scale(1.06); }
+        100% { opacity: 0; transform: translate(-50%, -50%) scale(1.35); }
+    }
+
+    .impact {
+        display: block;
+        width: clamp(72px, 12vw, 132px);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background:
+            radial-gradient(circle, #fff 0 15%, #ffe98d 30%, rgba(255, 150, 40, 0.68) 52%, rgba(255, 120, 20, 0) 72%);
+        box-shadow: 0 0 46px rgba(255, 205, 90, 0.95);
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.3);
+    }
+
+    .impact.is-active { animation: impact-pop 0.55s ease-out both; }
+
+    @keyframes impact-pop {
+        0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.3) rotate(0deg); }
+        24%  { opacity: 1; transform: translate(-50%, -50%) scale(1.05) rotate(22deg); }
+        100% { opacity: 0; transform: translate(-50%, -50%) scale(1.8) rotate(70deg); }
+    }
+
+    .shuriken {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 9;
+        width: clamp(30px, 4.6vw, 48px);
+        height: auto;
+        opacity: 0;
+        pointer-events: none;
+        filter: drop-shadow(0 0 10px rgba(255, 211, 77, 0.9));
+        will-change: transform, opacity;
+    }
+
+    .score-pop {
+        position: absolute;
+        z-index: 9;
+        left: 20%;
+        top: 40%;
+        font-family: var(--font-mono);
+        font-size: clamp(1.2rem, 3vw, 2.1rem);
+        font-weight: 900;
+        color: var(--chakra);
+        text-shadow: 0 0 16px rgba(36, 199, 184, 0.95), 0 3px 0 #06121c;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .score-pop.is-active { animation: score-pop 0.95s ease-out both; }
+
+    @keyframes score-pop {
+        0%   { opacity: 0; transform: translateY(10px) scale(0.7); }
+        25%  { opacity: 1; transform: translateY(-6px) scale(1.12); }
+        100% { opacity: 0; transform: translateY(-48px) scale(0.92); }
+    }
+
+    /* Panel de pregunta */
+    .quiz {
+        position: relative;
+        width: 100%;
+        max-width: var(--stage-max);
+        margin: clamp(12px, 2vw, 18px) auto 0;
+        padding: clamp(13px, 2.4vw, 22px);
+        border: 2px solid #e6c88f;
+        border-radius: 16px;
+        background: linear-gradient(180deg, #fffdf7 0%, #fff6e4 55%, #f5e2c0 100%);
+        color: #1b2740;
+        box-shadow:
+            0 0 0 4px rgba(7, 13, 24, 0.7),
+            0 18px 34px rgba(0, 0, 0, 0.48),
+            inset 0 1px 0 #fff;
+    }
+
+    .quiz::before {
+        content: "";
+        position: absolute;
+        inset: 6px;
+        border: 1px dashed rgba(185, 133, 54, 0.45);
+        border-radius: 10px;
+        pointer-events: none;
+    }
+
+    .q-kicker {
+        position: relative;
+        margin: 0 0 2px;
+        text-align: center;
+        font-family: var(--font-mono);
+        font-size: clamp(0.56rem, 1.5vw, 0.68rem);
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        color: #9a7335;
+    }
+
+    .question {
+        position: relative;
+        margin: 0;
+        text-align: center;
+        font-family: var(--font-mono);
+        font-size: clamp(1.9rem, 6.2vw, 3.5rem);
+        font-weight: 900;
+        line-height: 1.12;
+        color: #17233a;
+        font-variant-numeric: tabular-nums;
+        text-shadow: 0 2px 0 rgba(255, 255, 255, 0.85);
+        overflow-wrap: anywhere;
+    }
+
+    .question .op { color: var(--orange); }
+    .question .eq { color: #9a7335; }
+    .question .q-mark {
+        display: inline-block;
+        color: var(--orange);
+        animation: q-pulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes q-pulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50%      { transform: scale(1.09); opacity: 0.82; }
+    }
+
+    .answers {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(8px, 1.6vw, 14px);
+        margin-top: clamp(10px, 2vw, 16px);
+    }
+
+    .answer {
+        position: relative;
+        min-width: 0;
+        min-height: clamp(58px, 8vw, 84px);
+        padding: 12px 8px 13px;
+        border: 3px solid #d9a95e;
+        border-radius: 12px;
+        background: linear-gradient(180deg, #fffdf7 0%, #fbeccd 72%, #f2ddb3 100%);
+        color: #1b2a44;
+        font-family: var(--font-mono);
+        font-size: clamp(1.45rem, 4.4vw, 2.4rem);
+        font-weight: 900;
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+        cursor: pointer;
+        touch-action: manipulation;
+        box-shadow:
+            0 6px 0 #b07a33,
+            0 12px 20px rgba(80, 45, 0, 0.22),
+            inset 0 1px 0 #fff;
+        transition: transform 0.12s, box-shadow 0.12s, background 0.12s, border-color 0.12s;
+    }
+
+    .answer::after {
+        content: "";
+        position: absolute;
+        right: 7px;
+        bottom: 7px;
+        width: 0;
+        height: 0;
+        border-left: 9px solid transparent;
+        border-bottom: 9px solid rgba(176, 122, 51, 0.4);
+        transition: border-color 0.12s;
+    }
+
+    .answer:hover:not(:disabled):not(.is-correct):not(.is-wrong) {
+        transform: translateY(-3px);
+        border-color: var(--orange);
+        background: linear-gradient(180deg, #fffef9 0%, #ffeccb 72%, #f3d79d 100%);
+        box-shadow: 0 9px 0 #b07a33, 0 15px 24px rgba(80, 45, 0, 0.26), inset 0 1px 0 #fff;
+    }
+
+    .answer:hover:not(:disabled)::after { border-bottom-color: var(--orange); }
+    .answer:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 2px 0 #b07a33, 0 6px 12px rgba(80, 45, 0, 0.2); }
+
+    .answer:focus-visible {
+        outline: 3px solid #d98316;
+        outline-offset: 3px;
+    }
+
+    .answer:disabled { cursor: default; }
+
+    .answer .key {
+        position: absolute;
+        top: 4px;
+        left: 7px;
+        font-family: var(--font-body);
+        font-size: 0.55rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        color: #a07a44;
+    }
+
+    .answer.is-correct {
+        border-color: #1f9e63;
+        background: linear-gradient(180deg, #e6fff2 0%, #a9f5cd 70%, #7ce3ac 100%);
+        color: #073a20;
+        box-shadow: 0 6px 0 #107a49, 0 0 28px rgba(36, 199, 184, 0.65), inset 0 1px 0 #fff;
+        animation: answer-pop 0.32s ease-out;
+    }
+
+    .answer.is-correct::after { border-bottom-color: rgba(16, 122, 73, 0.5); }
+
+    .answer.is-wrong {
+        border-color: #c53030;
+        background: linear-gradient(180deg, #ffe4e4 0%, #ffb0b0 70%, #ff8f8f 100%);
+        color: #4a0b0b;
+        box-shadow: 0 6px 0 #8d1d1d, 0 0 24px rgba(255, 90, 90, 0.55), inset 0 1px 0 #fff;
+        animation: answer-shake 0.42s ease-in-out;
+    }
+
+    .answer.is-wrong::after { border-bottom-color: rgba(141, 29, 29, 0.5); }
+
+    @keyframes answer-pop {
+        0% { transform: scale(0.96); }
+        60% { transform: scale(1.04); }
+        100% { transform: scale(1); }
+    }
+
+    @keyframes answer-shake {
+        0%, 100% { transform: translateX(0); }
+        20% { transform: translateX(-5px); }
+        40% { transform: translateX(4px); }
+        60% { transform: translateX(-3px); }
+        80% { transform: translateX(2px); }
+    }
+
+    .feedback {
+        position: relative;
+        min-height: 1.55em;
+        margin: 9px 0 0;
+        text-align: center;
+        font-size: clamp(0.9rem, 2.2vw, 1.05rem);
+        font-weight: 900;
+        line-height: 1.3;
+        color: #5a6b82;
+    }
+
+    .feedback.ok { color: #0b7a47; }
+    .feedback.bad { color: #a61b1b; }
+    .feedback.hint { color: #7c6234; font-weight: 700; }
+
+    /* Resultado */
+    .result-card {
+        max-width: 780px;
+        text-align: center;
+        padding: clamp(22px, 4vw, 38px) clamp(16px, 3vw, 30px);
+        animation: result-in 0.4s ease-out;
+    }
+
+    @keyframes result-in {
+        from { opacity: 0; transform: translateY(14px) scale(0.98); }
+        to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .result-star-wrap {
+        position: relative;
+        display: inline-grid;
+        place-items: center;
+        margin-bottom: 2px;
+    }
+
+    .result-star-wrap::before {
+        content: "";
+        position: absolute;
+        width: clamp(150px, 26vw, 260px);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 211, 77, 0.32) 0%, rgba(255, 211, 77, 0.08) 48%, transparent 70%);
+        animation: star-glow 3s ease-in-out infinite;
+    }
+
+    @keyframes star-glow {
+        0%, 100% { transform: scale(0.92); opacity: 0.7; }
+        50%      { transform: scale(1.08); opacity: 1; }
+    }
+
+    .result-star {
+        position: relative;
+        font-size: clamp(4.6rem, 15vw, 8rem);
+        line-height: 1;
+        color: var(--gold);
+        text-shadow:
+            0 0 18px currentColor,
+            0 0 52px currentColor,
+            0 7px 0 rgba(0, 0, 0, 0.35);
+        animation: star-in 0.65s cubic-bezier(0.2, 1.2, 0.4, 1) both;
+    }
+
+    @keyframes star-in {
+        0%   { opacity: 0; transform: scale(0.3) rotate(-28deg); }
+        62%  { opacity: 1; transform: scale(1.14) rotate(6deg); }
+        100% { opacity: 1; transform: scale(1) rotate(0); }
+    }
+
+    .result-card[data-grade="silver"] .result-star { color: #dfe6ee; }
+    .result-card[data-grade="bronze"] .result-star { color: #e0a370; }
+    .result-card[data-grade="none"] .result-star {
+        color: #6d8098;
+        text-shadow: 0 4px 0 rgba(0, 0, 0, 0.35);
+        animation: none;
+    }
+
+    .result-card[data-grade="none"] .result-star-wrap::before { display: none; }
+
+    .result-grade {
+        position: relative;
+        display: inline-block;
+        margin-top: 4px;
+        padding: 3px 12px;
+        border: 2px solid currentColor;
+        border-radius: 999px;
+        font-family: var(--font-mono);
+        font-size: clamp(0.66rem, 1.8vw, 0.8rem);
+        font-weight: 900;
+        letter-spacing: 0.22em;
+        color: var(--gold);
+        background: rgba(0, 0, 0, 0.25);
+    }
+
+    .result-card[data-grade="silver"] .result-grade { color: #dfe6ee; }
+    .result-card[data-grade="bronze"] .result-grade { color: #e0a370; }
+    .result-card[data-grade="none"] .result-grade { color: #8ca0b8; }
+
+    .result-card h2 {
+        margin: clamp(10px, 2vw, 16px) 0 0;
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        font-weight: 900;
+        line-height: 1.08;
+        text-transform: uppercase;
+        color: var(--cream);
+        text-shadow: 0 3px 0 #050a12, 0 0 24px rgba(255, 211, 77, 0.25);
+    }
+
+    .result-copy {
+        margin: 10px auto 0;
+        max-width: 560px;
+        color: #d8e4f2;
+        font-size: clamp(0.95rem, 2.3vw, 1.08rem);
+        line-height: 1.5;
+    }
+
+    .result-meta {
+        margin: 8px auto 0;
+        font-family: var(--font-mono);
+        font-size: clamp(0.72rem, 1.9vw, 0.85rem);
+        letter-spacing: 0.06em;
+        color: var(--chakra);
+    }
+
+    .result-total {
+        margin: 10px auto 0;
+        padding: 8px 12px;
+        max-width: 520px;
+        border: 1px dashed rgba(255, 211, 77, 0.4);
+        border-radius: 9px;
+        background: rgba(255, 211, 77, 0.07);
+        font-size: clamp(0.82rem, 2.1vw, 0.95rem);
+        line-height: 1.4;
+        color: #e9d9a8;
+    }
+
+    .result-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: clamp(8px, 1.6vw, 12px);
+        margin-top: clamp(16px, 3vw, 24px);
+    }
+
+    .rbtn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 11px 18px;
+        border-radius: 10px;
+        font-size: clamp(0.86rem, 2.2vw, 0.98rem);
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        cursor: pointer;
+        touch-action: manipulation;
+        transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
+    }
+
+    .rbtn.primary {
+        border: 2px solid #ffd6b8;
+        background: linear-gradient(180deg, #ff9448 0%, var(--orange) 100%);
+        color: #2a1000;
+        box-shadow: 0 5px 0 var(--orange-dark), 0 0 26px rgba(242, 107, 33, 0.4);
+    }
+
+    .rbtn.ghost {
+        border: 2px solid rgba(255, 247, 232, 0.4);
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--cream);
+        box-shadow: 0 5px 0 rgba(0, 0, 0, 0.45);
+    }
+
+    .rbtn:hover { transform: translateY(-2px); }
+    .rbtn:active { transform: translateY(2px); }
+    .rbtn.primary:active { box-shadow: 0 2px 0 var(--orange-dark); }
+    .rbtn.ghost:active { box-shadow: 0 2px 0 rgba(0, 0, 0, 0.45); }
+
+    .rbtn:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+    }
+
+    .sr-only-focusable:focus {
+        position: static;
+        width: auto;
+        height: auto;
+        margin: 0;
+        clip: auto;
+    }
+
+    /* Tablet */
+    @media (max-width: 860px) {
+        .levels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .level-card:last-child { grid-column: 1 / -1; }
+        .level-card:last-child .lv-go { display: none; }
+    }
+
+    /* Móvil */
+    @media (max-width: 720px) {
+        .shell { padding: 10px 10px 34px; }
+        .topbar-tag { display: none; }
+
+        .hero { margin-bottom: 14px; }
+        .hero-title { font-size: clamp(1.5rem, 8vw, 2.5rem); }
+        .subtitle { font-size: 0.9rem; padding: 0 4px; }
+        .hero-hint { font-size: 0.72rem; max-width: 96%; }
+
+        .duel { max-width: 100%; margin-top: 8px; gap: 2px; }
+        .naruto-hero { width: clamp(100px, 34vw, 160px); }
+        .gaara-hero  { width: clamp(68px, 24vw, 112px); }
+        .vs-badge { width: clamp(38px, 12vw, 54px); font-size: 0.82rem; margin-bottom: 10px; }
+        .hero-tag { font-size: 0.5rem; letter-spacing: 0.12em; padding: 3px 6px; }
+
+        .panel { padding: 13px 12px; border-radius: 14px; }
+        .section-note { margin-left: 0; flex-basis: 100%; }
+        .mode-btn { min-height: 46px; font-size: 0.86rem; padding: 8px 3px; }
+        .level-card { min-height: 108px; padding: 11px 10px 12px; }
+        .lv-name { font-size: 0.95rem; }
+        .lv-go { font-size: 0.55rem; }
+
+        .hud { gap: 8px 12px; padding: 8px 10px; }
+        .hud-item.level { flex: 1 1 100%; }
+        .hud-item.level .hud-value { font-size: 0.86rem; }
+        .hud-bar { flex: 1 1 100%; height: 14px; }
+        .hud-value { font-size: 0.85rem; }
+
+        .stage { aspect-ratio: 16 / 10.4; border-radius: 12px; }
+        .nameplate { top: 5%; padding: 3px 7px; letter-spacing: 0.1em; }
+        .fighter-naruto { left: 3.5%; width: clamp(94px, 34%, 190px); }
+        .fighter-gaara  { right: 4%;   width: clamp(60px, 21%, 112px); }
+        .fighter { bottom: 7.5%; }
+        .ground-shadow { margin-top: -6px; }
+
+        .quiz { padding: 12px 11px 13px; border-radius: 13px; }
+        .q-kicker { font-size: 0.55rem; letter-spacing: 0.2em; }
+        .question { font-size: clamp(1.55rem, 7.2vw, 2.4rem); }
+        .answers { gap: 7px; margin-top: 9px; }
+        .answer { min-height: 56px; padding: 11px 4px 12px; font-size: clamp(1.32rem, 6vw, 2rem); }
+        .answer .key { display: none; }
+        .feedback { font-size: 0.88rem; }
+    }
+
+    /* Móvil pequeño */
+    @media (max-width: 430px) {
+        .back-link { padding: 8px 11px; font-size: 0.78rem; }
+        .topbar { gap: 6px; }
+        .hero-title { font-size: clamp(1.32rem, 8.4vw, 1.9rem); }
+        .kicker { letter-spacing: 0.18em; font-size: 0.54rem; }
+        .subtitle { font-size: 0.84rem; }
+        .hero-hint { font-size: 0.68rem; padding: 4px 9px; }
+        .naruto-hero { width: clamp(94px, 32vw, 126px); }
+        .gaara-hero  { width: clamp(64px, 22vw, 90px); }
+        .vs-badge { width: 38px; font-size: 0.74rem; border-width: 2px; }
+        .section-head h2 { font-size: 0.95rem; }
+        .mode-btn { font-size: 0.8rem; min-height: 44px; }
+        .level-card { min-height: 100px; }
+        .stage { aspect-ratio: 16 / 11; }
+        .nameplate { font-size: 0.5rem; }
+        .question { font-size: clamp(1.45rem, 7.8vw, 1.9rem); }
+        .answer { font-size: clamp(1.2rem, 6.6vw, 1.6rem); min-height: 54px; }
+        .result-actions .rbtn { flex: 1 1 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.001s !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.001s !important;
+            scroll-behavior: auto !important;
+        }
+        .leaf, .leaf-field { display: none !important; }
+        .screen.active { animation: none; }
+        .question .q-mark { animation: none; }
+        .result-star-wrap::before { animation: none; }
+    }
+</style>
+</head>
+<body>
+
+<div class="sky-leaves" id="sky-leaves" aria-hidden="true"></div>
+
+<main class="shell">
+    <div class="topbar">
+        <a class="back-link" id="backToMates" href="mi-mates.html">← Volver a Mi Mates</a>
+        <div class="topbar-right">
+            <span class="topbar-tag" aria-hidden="true">ACADEMIA NINJA</span>
+            <button class="icon-btn" id="sound-toggle" type="button" aria-pressed="true" aria-label="Desactivar sonido" title="Activar o desactivar el sonido">
+                <span id="sound-icon" aria-hidden="true">🔊</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ============ PANTALLA INICIAL ============ -->
+    <section id="setup-screen" class="screen active" aria-labelledby="game-title">
+        <header class="hero">
+            <div class="hero-copy">
+                <p class="kicker">Academia ninja · Matemáticas</p>
+                <h1 class="hero-title" id="game-title">
+                    <span class="t1">Naruto ·</span>
+                    <span class="t2">Desafío ninja</span>
+                    <span class="t3">Matemático</span>
+                </h1>
+                <p class="subtitle">10 retos, 5 niveles y 3 modos. <strong>Un solo shuriken por respuesta:</strong> si fallas, Gaara bloquea el ataque.</p>
+                <p class="hero-hint">Elige modo y nivel: el combate empieza al instante.</p>
+            </div>
+            <div class="duel">
+                <div class="hero-fighter naruto-hero">
+                    <picture class="sprite">
+                        <source srcset="imagenes/naruto-run.webp" type="image/webp">
+                        <img src="imagenes/naruto-idle.png" alt="Naruto" width="417" height="365">
+                    </picture>
+                    <span class="hero-tag tag-naruto">NARUTO</span>
+                </div>
+                <div class="vs-badge" aria-hidden="true"><span>VS</span></div>
+                <div class="hero-fighter gaara-hero">
+                    <picture class="sprite">
+                        <img src="imagenes/gaara-8bit.png" alt="Gaara" width="173" height="215">
+                    </picture>
+                    <span class="hero-tag tag-gaara">GAARA</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="panel setup-card">
+            <div class="section-head">
+                <span class="section-kicker">01</span>
+                <h2>Elige tu modo</h2>
+                <span class="section-note">Sumas, restas o ambos</span>
+            </div>
+            <div class="mode-tabs" role="group" aria-label="Modo de cálculo">
+                <button class="mode-btn" type="button" data-mode="sumas" aria-pressed="true">Sumas</button>
+                <button class="mode-btn" type="button" data-mode="restas" aria-pressed="false">Restas</button>
+                <button class="mode-btn" type="button" data-mode="mixtos" aria-pressed="false">Mixtos</button>
+            </div>
+
+            <div class="section-head">
+                <span class="section-kicker">02</span>
+                <h2>Elige tu nivel</h2>
+                <span class="section-note">10 retos · una respuesta por reto</span>
+            </div>
+            <div class="levels" id="levels" role="group" aria-label="Niveles de dificultad"></div>
+            <p class="setup-foot">Pulsa una tarjeta para empezar. Tu progreso se guarda en este navegador.</p>
+        </div>
+    </section>
+
+    <!-- ============ PANTALLA DE JUEGO ============ -->
+    <section id="game-screen" class="screen" aria-labelledby="game-title">
+        <div class="hud" role="group" aria-label="Estado de la partida">
+            <div class="hud-item level">
+                <span class="hud-label">NIVEL</span>
+                <span class="hud-value" id="hud-level">Sumas · Muy fácil</span>
+            </div>
+            <div class="hud-item">
+                <span class="hud-label">RETO</span>
+                <span class="hud-value" id="hud-progress">1/10</span>
+            </div>
+            <div class="hud-item">
+                <span class="hud-label">ACIERTOS</span>
+                <span class="hud-value accent" id="hud-score">0</span>
+            </div>
+            <div class="hud-bar" id="hud-bar" role="progressbar" aria-label="Retos completados" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"></div>
+        </div>
+
+        <div class="stage" id="stage">
+            <img class="stage-bg" src="imagenes/konoha-bg.jpg" alt="" aria-hidden="true" decoding="async">
+            <div class="stage-shade" aria-hidden="true"></div>
+            <div class="stage-floor" aria-hidden="true"></div>
+            <div class="leaf-field" id="stage-leaves" aria-hidden="true"></div>
+
+            <span class="nameplate naruto">NARUTO</span>
+            <span class="nameplate gaara">GAARA</span>
+
+            <div class="fighter fighter-naruto" aria-hidden="true">
+                <div class="sprite-wrap" id="naruto-move">
+                    <picture class="sprite">
+                        <source srcset="imagenes/naruto-run.webp" type="image/webp">
+                        <img id="naruto-sprite" src="imagenes/naruto-idle.png" alt="Naruto" width="417" height="365">
+                    </picture>
+                </div>
+                <span class="ground-shadow"></span>
+            </div>
+
+            <div class="fighter fighter-gaara" aria-hidden="true">
+                <div class="sprite-wrap" id="gaara-move">
+                    <img class="sprite" id="gaara-sprite" src="imagenes/gaara-8bit.png" alt="Gaara" width="173" height="215">
+                </div>
+                <span class="ground-shadow"></span>
+            </div>
+
+            <div class="fx-anchor" id="shield-anchor" aria-hidden="true">
+                <span class="sand-shield" id="sand-shield"></span>
+            </div>
+            <div class="fx-anchor" id="impact-anchor" aria-hidden="true">
+                <span class="impact" id="impact"></span>
+            </div>
+
+            <svg class="shuriken" id="shuriken" viewBox="0 0 64 64" aria-hidden="true">
+                <defs>
+                    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#fbfdff"></stop>
+                        <stop offset="0.48" stop-color="#a9bbcd"></stop>
+                        <stop offset="1" stop-color="#5b728b"></stop>
+                    </linearGradient>
+                </defs>
+                <path d="M32 2 L40 24 L62 32 L40 40 L32 62 L24 40 L2 32 L24 24 Z" fill="url(#steel)" stroke="#22303f" stroke-width="2.2" stroke-linejoin="round"></path>
+                <circle cx="32" cy="32" r="6" fill="#0c1624" stroke="#ffd34d" stroke-width="2.4"></circle>
+                <circle cx="32" cy="32" r="1.7" fill="#ffd34d"></circle>
+            </svg>
+
+            <div class="score-pop" id="score-pop" aria-hidden="true">+1</div>
+        </div>
+
+        <div class="quiz">
+            <p class="q-kicker">RESUELVE EL RETO</p>
+            <div class="question" id="question" aria-live="off">0 + 0 = <span class="q-mark">?</span></div>
+            <div class="answers" id="answers" role="group" aria-label="Opciones de respuesta">
+                <button class="answer" type="button" data-index="0">
+                    <span class="key" aria-hidden="true">1</span>
+                    <span id="opt0">0</span>
+                </button>
+                <button class="answer" type="button" data-index="1">
+                    <span class="key" aria-hidden="true">2</span>
+                    <span id="opt1">0</span>
+                </button>
+                <button class="answer" type="button" data-index="2">
+                    <span class="key" aria-hidden="true">3</span>
+                    <span id="opt2">0</span>
+                </button>
+            </div>
+            <p class="feedback" id="feedback" role="status" aria-live="polite"></p>
+        </div>
+    </section>
+
+    <!-- ============ PANTALLA DE RESULTADO ============ -->
+    <section id="result-screen" class="screen" aria-live="polite">
+        <div class="panel result-card" id="result-card" data-grade="none">
+            <div class="result-star-wrap">
+                <div class="result-star" id="result-star" aria-hidden="true">★</div>
+            </div>
+            <div class="result-grade" id="result-grade">SIN ESTRELLA</div>
+            <h2 id="result-title">¡Sigue entrenando!</h2>
+            <p class="result-copy" id="result-copy"></p>
+            <p class="result-meta" id="result-meta"></p>
+            <p class="result-total" id="result-total"></p>
+            <div class="result-actions">
+                <button class="rbtn primary" id="replay-btn" type="button">Jugar otra vez</button>
+                <button class="rbtn ghost" id="change-level-btn" type="button">Cambiar nivel</button>
+                <a class="rbtn ghost" id="back-mates-result" href="mi-mates.html">Volver a Mi Mates</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+(function () {
+    'use strict';
+
+    /* ---------- Enlaces con perfil ---------- */
+    const backHref = 'mi-mates.html?profile=' + encodeURIComponent(profileId);
+    ['backToMates', 'back-mates-result'].forEach(function (id) {
+        const el = document.getElementById(id);
+        if (el) el.href = backHref;
+    });
+
+    /* ---------- Progreso V3 compartido con Mi Mates ---------- */
+    const progressKey = 'mundoAprendizajeProgressV3_' + profileId;
+    let profileProgress;
+    try { profileProgress = JSON.parse(localStorage.getItem(progressKey)); } catch (e) { profileProgress = null; }
+    if (!profileProgress || typeof profileProgress !== 'object') {
+        profileProgress = { stars: 0, rounds: 0, byGame: {}, byArea: {} };
+    }
+    profileProgress.byGame ||= {};
+    profileProgress.byArea ||= {};
+    if (!profileProgress.byArea.mates) profileProgress.byArea.mates = { gold: 0, silver: 0, bronze: 0 };
+    const areaScores = profileProgress.byArea.mates;
+    ['gold', 'silver', 'bronze'].forEach(function (type) {
+        areaScores[type] = Number(areaScores[type] || 0);
+    });
+
+    /* ---------- Datos del juego ---------- */
+    const TOTAL = 10;
+    const LEVELS = {
+        1: { name: 'Muy fácil', min: 0, max: 10, icon: '🌱' },
+        2: { name: 'Fácil', min: 0, max: 50, icon: '🍃' },
+        3: { name: 'Medio', min: 11, max: 99, icon: '⚔️' },
+        4: { name: 'Difícil', min: 100, max: 499, icon: '🔥' },
+        5: { name: 'Élite', min: 500, max: 1000, icon: '👑' }
+    };
+    const MODES = { sumas: 'Sumas', restas: 'Restas', mixtos: 'Mixtos' };
+    const GRADE_LABEL = { gold: 'ORO', silver: 'PLATA', bronze: 'BRONCE' };
+
+    const stage = document.getElementById('stage');
+    const narutoSprite = document.getElementById('naruto-sprite');
+    const gaaraSprite = document.getElementById('gaara-sprite');
+    const narutoMove = document.getElementById('naruto-move');
+    const gaaraMove = document.getElementById('gaara-move');
+    const shuriken = document.getElementById('shuriken');
+    const shieldAnchor = document.getElementById('shield-anchor');
+    const sandShield = document.getElementById('sand-shield');
+    const impactAnchor = document.getElementById('impact-anchor');
+    const impact = document.getElementById('impact');
+    const scorePop = document.getElementById('score-pop');
+    const feedback = document.getElementById('feedback');
+    const questionEl = document.getElementById('question');
+    const answerButtons = Array.prototype.slice.call(document.querySelectorAll('.answer'));
+    const optionSpans = [
+        document.getElementById('opt0'),
+        document.getElementById('opt1'),
+        document.getElementById('opt2')
+    ];
+    const hudLevel = document.getElementById('hud-level');
+    const hudProgress = document.getElementById('hud-progress');
+    const hudScore = document.getElementById('hud-score');
+    const hudBar = document.getElementById('hud-bar');
+    const setupScreen = document.getElementById('setup-screen');
+    const gameScreen = document.getElementById('game-screen');
+    const resultScreen = document.getElementById('result-screen');
+    const resultCard = document.getElementById('result-card');
+    const resultStar = document.getElementById('result-star');
+    const resultGrade = document.getElementById('result-grade');
+    const resultTitle = document.getElementById('result-title');
+    const resultCopy = document.getElementById('result-copy');
+    const resultMeta = document.getElementById('result-meta');
+    const resultTotal = document.getElementById('result-total');
+
+    const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let reduceMotion = reduceMotionQuery.matches;
+    if (typeof reduceMotionQuery.addEventListener === 'function') {
+        reduceMotionQuery.addEventListener('change', function (event) { reduceMotion = event.matches; });
+    }
+
+    /* ---------- Estado ---------- */
+    let operationMode = 'sumas';
+    let currentLevel = 1;
+    let score = 0;
+    let answeredCount = 0;
+    let answered = false;
+    let active = false;
+    let roundFinished = false;
+    let num1 = 0;
+    let num2 = 0;
+    let correctAnswer = 0;
+    let isAddition = true;
+    let options = [];
+    let advanceTimer = null;
+
+    const segments = [];
+    for (let i = 0; i < TOTAL; i++) {
+        const seg = document.createElement('span');
+        seg.className = 'seg';
+        seg.setAttribute('aria-hidden', 'true');
+        hudBar.appendChild(seg);
+        segments.push(seg);
+    }
+
+    /* ---------- Sonido opcional (Web Audio, sin archivos) ---------- */
+    let soundOn = true;
+    let audioCtx = null;
+
+    function getAudio() {
+        if (!soundOn) return null;
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (!Ctx) return null;
+        try {
+            if (!audioCtx) audioCtx = new Ctx();
+            if (audioCtx.state === 'suspended') audioCtx.resume().catch(function () {});
+            return audioCtx;
+        } catch (e) {
+            return null;
+        }
+    }
+
+    function tone(freq, delay, duration, type, volume, slideTo) {
+        const ctx = getAudio();
+        if (!ctx) return;
+        try {
+            const start = ctx.currentTime + delay;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = type || 'triangle';
+            osc.frequency.setValueAtTime(freq, start);
+            if (slideTo) osc.frequency.exponentialRampToValueAtTime(slideTo, start + duration);
+            gain.gain.setValueAtTime(0.0001, start);
+            gain.gain.linearRampToValueAtTime(volume || 0.04, start + 0.015);
+            gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(start);
+            osc.stop(start + duration + 0.03);
+        } catch (e) { /* silencio */ }
+    }
+
+    function sfxCorrect() {
+        tone(520, 0, 0.12, 'triangle', 0.045);
+        tone(780, 0.09, 0.16, 'triangle', 0.04);
+    }
+
+    function sfxWrong() {
+        tone(190, 0, 0.22, 'sawtooth', 0.028, 110);
+    }
+
+    function sfxFinish(grade) {
+        if (grade === 'gold') {
+            [523, 659, 784, 1047].forEach(function (f, i) { tone(f, i * 0.12, 0.2, 'triangle', 0.04); });
+        } else if (grade === 'silver') {
+            [523, 659, 784].forEach(function (f, i) { tone(f, i * 0.12, 0.18, 'triangle', 0.038); });
+        } else if (grade === 'bronze') {
+            [440, 554].forEach(function (f, i) { tone(f, i * 0.12, 0.18, 'triangle', 0.035); });
+        } else {
+            tone(330, 0, 0.18, 'sine', 0.03, 220);
+            tone(247, 0.13, 0.24, 'sine', 0.028, 165);
+        }
+    }
+
+    const soundToggle = document.getElementById('sound-toggle');
+    const soundIcon = document.getElementById('sound-icon');
+    soundToggle.addEventListener('click', function () {
+        soundOn = !soundOn;
+        soundToggle.setAttribute('aria-pressed', String(soundOn));
+        soundToggle.setAttribute('aria-label', soundOn ? 'Desactivar sonido' : 'Activar sonido');
+        soundIcon.textContent = soundOn ? '🔊' : '🔇';
+        if (soundOn) tone(660, 0, 0.08, 'triangle', 0.03);
+    });
+
+    /* ---------- Hojas flotantes ---------- */
+    function spawnLeaves(container, count) {
+        if (!container || reduceMotion) return;
+        let seed = 1;
+        const rand = function () {
+            seed = (seed * 9301 + 49297) % 233280;
+            return seed / 233280;
+        };
+        for (let i = 0; i < count; i++) {
+            const leaf = document.createElement('span');
+            leaf.className = 'leaf';
+            leaf.style.setProperty('--x', (rand() * 96 + 2).toFixed(1) + '%');
+            leaf.style.setProperty('--s', (7 + rand() * 9).toFixed(1) + 'px');
+            leaf.style.setProperty('--drift', (rand() * 70 - 35).toFixed(0) + 'px');
+            leaf.style.setProperty('--dur', (7 + rand() * 9).toFixed(1) + 's');
+            leaf.style.setProperty('--delay', (-rand() * 14).toFixed(1) + 's');
+            container.appendChild(leaf);
+        }
+    }
+
+    spawnLeaves(document.getElementById('sky-leaves'), 7);
+    spawnLeaves(document.getElementById('stage-leaves'), 10);
+
+    /* ---------- Modos y niveles ---------- */
+    function applyMode(mode) {
+        if (!MODES[mode]) return;
+        operationMode = mode;
+        document.querySelectorAll('.mode-btn').forEach(function (btn) {
+            const selected = btn.dataset.mode === mode;
+            btn.classList.toggle('is-selected', selected);
+            btn.setAttribute('aria-pressed', String(selected));
+        });
+        updateHud();
+    }
+
+    document.querySelectorAll('.mode-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () { applyMode(btn.dataset.mode); });
+    });
+
+    function renderLevels() {
+        const container = document.getElementById('levels');
+        container.innerHTML = Object.keys(LEVELS).map(function (key) {
+            const level = LEVELS[key];
+            return '<button class="level-card" type="button" data-level="' + key + '" ' +
+                'aria-label="Jugar nivel ' + level.name + ', del ' + level.min + ' al ' + level.max + '">' +
+                '<span class="lv-icon" aria-hidden="true">' + level.icon + '</span>' +
+                '<span class="lv-name">' + level.name + '</span>' +
+                '<span class="lv-range">' + level.min + ' – ' + level.max + '</span>' +
+                '<span class="lv-go" aria-hidden="true">JUGAR →</span>' +
+                '</button>';
+        }).join('');
+        container.querySelectorAll('.level-card').forEach(function (card) {
+            card.addEventListener('click', function () { startGame(Number(card.dataset.level)); });
+        });
+    }
+
+    /* ---------- HUD ---------- */
+    function updateHud() {
+        const level = LEVELS[currentLevel];
+        hudLevel.textContent = MODES[operationMode] + ' · ' + level.name;
+        hudProgress.textContent = Math.min(answeredCount + 1, TOTAL) + '/' + TOTAL;
+        hudScore.textContent = String(score);
+        hudBar.setAttribute('aria-valuenow', String(answeredCount));
+        hudBar.setAttribute('aria-valuetext', answeredCount + ' de ' + TOTAL + ' retos completados');
+    }
+
+    function resetSegments() {
+        segments.forEach(function (seg) { seg.classList.remove('ok', 'miss'); });
+    }
+
+    function markSegment(index, isOk) {
+        const seg = segments[index];
+        if (!seg) return;
+        seg.classList.remove('ok', 'miss');
+        seg.classList.add(isOk ? 'ok' : 'miss');
+    }
+
+    function clearFeedback() {
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+    }
+
+    /* ---------- Pantallas ---------- */
+    function showSetup() {
+        active = false;
+        roundFinished = true;
+        clearTimeout(advanceTimer);
+        advanceTimer = null;
+        gameScreen.classList.remove('active');
+        resultScreen.classList.remove('active');
+        setupScreen.classList.add('active');
+        resetFx();
+        window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
+
+    function startGame(levelId) {
+        currentLevel = LEVELS[levelId] ? Number(levelId) : 1;
+        score = 0;
+        answeredCount = 0;
+        answered = false;
+        active = true;
+        roundFinished = false;
+        options = [];
+        clearTimeout(advanceTimer);
+        advanceTimer = null;
+
+        resetSegments();
+        resetFx();
+        clearFeedback();
+        answerButtons.forEach(function (btn) {
+            btn.disabled = false;
+            btn.classList.remove('is-correct', 'is-wrong');
+        });
+
+        setupScreen.classList.remove('active');
+        resultScreen.classList.remove('active');
+        gameScreen.classList.add('active');
+
+        updateHud();
+        nextReto();
+        window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
+
+    function randomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function shuffle(list) {
+        for (let i = list.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            const tmp = list[i];
+            list[i] = list[j];
+            list[j] = tmp;
+        }
+        return list;
+    }
+
+    function nextReto() {
+        if (answeredCount >= TOTAL) {
+            finishGame();
+            return;
+        }
+        answered = false;
+        resetFx();
+        clearFeedback();
+
+        answerButtons.forEach(function (btn) {
+            btn.disabled = false;
+            btn.classList.remove('is-correct', 'is-wrong');
+        });
+
+        const level = LEVELS[currentLevel];
+
+        isAddition = operationMode === 'mixtos'
+            ? Math.random() < 0.5
+            : operationMode === 'sumas';
+
+        if (isAddition) {
+            num1 = randomInt(level.min, level.max);
+            num2 = randomInt(level.min, level.max);
+            correctAnswer = num1 + num2;
+        } else {
+            num1 = randomInt(level.min, level.max);
+            num2 = randomInt(level.min, num1);
+            correctAnswer = num1 - num2;
+        }
+
+        const sign = isAddition ? '+' : '−';
+        questionEl.innerHTML = num1 + ' <span class="op">' + sign + '</span> ' + num2 +
+            ' <span class="eq">=</span> <span class="q-mark">?</span>';
+
+        const spread = Math.max(4, Math.round(Math.max(correctAnswer, 10) * 0.15));
+        const unique = new Set([correctAnswer]);
+        let guard = 0;
+        while (unique.size < 3 && guard < 300) {
+            guard++;
+            const dev = randomInt(1, spread) * (Math.random() < 0.5 ? 1 : -1);
+            const wrong = correctAnswer + dev;
+            if (wrong >= 0 && !unique.has(wrong)) unique.add(wrong);
+        }
+        let extra = 1;
+        while (unique.size < 3) {
+            if (!unique.has(correctAnswer + extra)) unique.add(correctAnswer + extra);
+            extra++;
+        }
+
+        options = shuffle(Array.from(unique));
+        optionSpans.forEach(function (span, i) { span.textContent = String(options[i]); });
+
+        updateHud();
+    }
+
+    /* ---------- Efectos visuales ---------- */
+    function reflow(el) { void el.offsetWidth; }
+
+    function resetFx() {
+        if (!stage) return;
+        narutoMove.classList.remove('is-dash', 'is-hit');
+        gaaraMove.classList.remove('is-shake');
+        sandShield.classList.remove('is-active');
+        impact.classList.remove('is-active');
+        scorePop.classList.remove('is-active');
+        try {
+            if (shuriken.getAnimations) {
+                shuriken.getAnimations().forEach(function (anim) { anim.cancel(); });
+            }
+        } catch (e) {}
+        shuriken.style.opacity = '0';
+        shuriken.style.transform = 'none';
+    }
+
+    function placeAnchor(anchor, sprite, xFactor, yFactor) {
+        const stageRect = stage.getBoundingClientRect();
+        const rect = sprite.getBoundingClientRect();
+        anchor.style.left = (rect.left - stageRect.left + rect.width * xFactor) + 'px';
+        anchor.style.top = (rect.top - stageRect.top + rect.height * yFactor) + 'px';
+    }
+
+    function flashImpact() {
+        placeAnchor(impactAnchor, gaaraSprite, 0.5, 0.42);
+        impact.classList.remove('is-active');
+        reflow(impact);
+        impact.classList.add('is-active');
+    }
+
+    function flashShield() {
+        placeAnchor(shieldAnchor, gaaraSprite, 0.42, 0.46);
+        sandShield.classList.remove('is-active');
+        reflow(sandShield);
+        sandShield.classList.add('is-active');
+    }
+
+    function shakeGaara() {
+        gaaraMove.classList.remove('is-shake');
+        reflow(gaaraMove);
+        gaaraMove.classList.add('is-shake');
+    }
+
+    function dashNaruto() {
+        narutoMove.classList.remove('is-dash');
+        reflow(narutoMove);
+        narutoMove.classList.add('is-dash');
+    }
+
+    function hitNaruto() {
+        narutoMove.classList.remove('is-hit');
+        reflow(narutoMove);
+        narutoMove.classList.add('is-hit');
+    }
+
+    function showScorePop() {
+        const stageRect = stage.getBoundingClientRect();
+        const rect = narutoSprite.getBoundingClientRect();
+        scorePop.style.left = Math.max(8, rect.left - stageRect.left + rect.width * 0.62) + 'px';
+        scorePop.style.top = Math.max(8, rect.top - stageRect.top + rect.height * 0.18) + 'px';
+        scorePop.classList.remove('is-active');
+        reflow(scorePop);
+        scorePop.classList.add('is-active');
+    }
+
+    function launchShuriken(hit) {
+        const fallback = function () {
+            shuriken.style.opacity = '0';
+            flashImpact();
+            if (hit) shakeGaara();
+        };
+
+        if (reduceMotion || typeof shuriken.animate !== 'function') {
+            fallback();
+            return;
+        }
+
+        const stageRect = stage.getBoundingClientRect();
+        const narutoRect = narutoSprite.getBoundingClientRect();
+        const gaaraRect = gaaraSprite.getBoundingClientRect();
+        const startX = narutoRect.left - stageRect.left + narutoRect.width * 0.7;
+        const startY = narutoRect.top - stageRect.top + narutoRect.height * 0.34;
+        const endX = gaaraRect.left - stageRect.left + gaaraRect.width * 0.5;
+        const endY = gaaraRect.top - stageRect.top + gaaraRect.height * 0.42;
+        const size = shuriken.offsetWidth || 38;
+
+        shuriken.style.left = (startX - size / 2) + 'px';
+        shuriken.style.top = (startY - size / 2) + 'px';
+        shuriken.style.opacity = '1';
+
+        const dx = endX - startX;
+        const dy = endY - startY;
+        let frames;
+        let duration;
+
+        if (hit) {
+            frames = [
+                { transform: 'translate(0, 0) rotate(0deg) scale(0.7)', opacity: 0 },
+                { transform: 'translate(0, 0) rotate(40deg) scale(1)', opacity: 1, offset: 0.1 },
+                { transform: 'translate(' + (dx * 0.55) + 'px, ' + (dy * 0.55 - 26) + 'px) rotate(400deg) scale(1)', offset: 0.62 },
+                { transform: 'translate(' + dx + 'px, ' + dy + 'px) rotate(720deg) scale(1.25)', opacity: 1 }
+            ];
+            duration = 470;
+        } else {
+            frames = [
+                { transform: 'translate(0, 0) rotate(0deg) scale(0.7)', opacity: 0 },
+                { transform: 'translate(0, 0) rotate(40deg) scale(1)', opacity: 1, offset: 0.08 },
+                { transform: 'translate(' + (dx * 0.45) + 'px, ' + (dy * 0.5 - 30) + 'px) rotate(210deg) scale(1)', offset: 0.5 },
+                { transform: 'translate(' + (dx * 0.55) + 'px, ' + (dy - 120) + 'px) rotate(340deg) scale(0.8)', opacity: 0 }
+            ];
+            duration = 520;
+        }
+
+        try {
+            const anim = shuriken.animate(frames, {
+                duration: duration,
+                easing: 'cubic-bezier(0.3, 0.05, 0.55, 1)',
+                fill: 'forwards'
+            });
+            anim.onfinish = function () {
+                shuriken.style.opacity = '0';
+                if (hit) {
+                    flashImpact();
+                    shakeGaara();
+                } else {
+                    flashShield();
+                }
+            };
+        } catch (e) {
+            fallback();
+        }
+    }
+
+    function animateCorrect() {
+        dashNaruto();
+        launchShuriken(true);
+        window.setTimeout(function () {
+            if (!active) return;
+            showScorePop();
+        }, 400);
+    }
+
+    function animateWrong() {
+        hitNaruto();
+        launchShuriken(false);
+        window.setTimeout(function () {
+            if (!active) return;
+            flashShield();
+        }, 280);
+    }
+
+    /* ---------- Responder ---------- */
+    const OK_MESSAGES = [
+        '¡Acierto! Rasengan matemático directo.',
+        '¡Bien! El shuriken da en el blanco.',
+        '¡Correcto! Chakra matemático al máximo.',
+        '¡Gran lanzamiento! Gaara no lo vio venir.'
+    ];
+
+    function handleAnswer(index) {
+        if (!active || answered || roundFinished) return;
+        if (index < 0 || index > 2 || options.length < 3) return;
+
+        answered = true;
+        const chosen = options[index];
+        const isRight = chosen === correctAnswer;
+
+        answerButtons.forEach(function (btn) { btn.disabled = true; });
+        const chosenButton = answerButtons[index];
+
+        if (isRight) {
+            score++;
+            chosenButton.classList.add('is-correct');
+            markSegment(answeredCount, true);
+            feedback.textContent = OK_MESSAGES[Math.floor(Math.random() * OK_MESSAGES.length)];
+            feedback.className = 'feedback ok';
+            animateCorrect();
+            sfxCorrect();
+        } else {
+            chosenButton.classList.add('is-wrong');
+            markSegment(answeredCount, false);
+            feedback.textContent = '¡Gaara bloqueó el ataque! La respuesta era ' + correctAnswer + '.';
+            feedback.className = 'feedback bad';
+            animateWrong();
+            sfxWrong();
+        }
+
+        answeredCount++;
+        updateHud();
+
+        clearTimeout(advanceTimer);
+        advanceTimer = window.setTimeout(function () {
+            if (!active) return;
+            if (answeredCount >= TOTAL) finishGame();
+            else nextReto();
+        }, 2500);
+    }
+
+    answerButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            handleAnswer(Number(btn.dataset.index));
+        });
+    });
+
+    /* ---------- Final de partida ---------- */
+    function finishGame() {
+        if (roundFinished) return;
+        roundFinished = true;
+        active = false;
+        answered = true;
+        clearTimeout(advanceTimer);
+        advanceTimer = null;
+        resetFx();
+        answerButtons.forEach(function (btn) { btn.disabled = true; });
+
+        const goldThreshold = (currentLevel === 4 || currentLevel === 5) ? 9 : TOTAL;
+        const grade = score >= goldThreshold ? 'gold'
+            : score >= 8 ? 'silver'
+            : score >= 6 ? 'bronze'
+            : null;
+
+        // Guardado V3: una sola vez por partida terminada.
+        profileProgress.rounds = (Number(profileProgress.rounds) || 0) + 1;
+        const gameKey = 'mates_naruto_' + currentLevel;
+        profileProgress.byGame[gameKey] = (Number(profileProgress.byGame[gameKey]) || 0) + 1;
+        if (grade) areaScores[grade] = (Number(areaScores[grade]) || 0) + 1;
+        profileProgress.stars = Object.values(profileProgress.byArea).reduce(function (sum, area) {
+            return sum + ['gold', 'silver', 'bronze'].reduce(function (subtotal, type) {
+                return subtotal + (Number(area && area[type]) || 0);
+            }, 0);
+        }, 0);
+        try {
+            localStorage.setItem(progressKey, JSON.stringify(profileProgress));
+        } catch (e) {}
+
+        resultCard.dataset.grade = grade || 'none';
+        resultStar.textContent = '★';
+        resultGrade.textContent = grade ? GRADE_LABEL[grade] : 'SIN ESTRELLA';
+
+        resultTitle.textContent =
+            grade === 'gold' ? (score === TOTAL ? '¡Misión perfecta!' : '¡Misión excelente!')
+            : grade === 'silver' ? '¡Gran misión!'
+            : grade === 'bronze' ? '¡Misión cumplida!'
+            : '¡Sigue entrenando!';
+
+        let copy = 'Has acertado ' + score + ' de ' + TOTAL + ' retos. ';
+        if (grade === 'gold') {
+            copy += '¡Has ganado una estrella de oro!';
+        } else if (grade === 'silver') {
+            copy += '¡Has ganado una estrella de plata! El oro se consigue con ' + goldThreshold + ' aciertos.';
+        } else if (grade === 'bronze') {
+            copy += '¡Has ganado una estrella de bronce! El oro se consigue con ' + goldThreshold + ' aciertos.';
+        } else {
+            copy += 'Con 6 aciertos consigues bronce. Repite el nivel o elige otro.';
+        }
+        resultCopy.textContent = copy;
+
+        resultMeta.textContent = MODES[operationMode] + ' · ' + LEVELS[currentLevel].name + ' · ' + TOTAL + ' retos';
+
+        const totalStars = areaScores.gold + areaScores.silver + areaScores.bronze;
+        resultTotal.textContent = 'Estrellas de Mates: 🌟 ' + areaScores.gold +
+            ' · ⭐ ' + areaScores.silver +
+            ' · 🥉 ' + areaScores.bronze +
+            ' (' + totalStars + ' en total)';
+
+        gameScreen.classList.remove('active');
+        setupScreen.classList.remove('active');
+        resultScreen.classList.add('active');
+
+        sfxFinish(grade);
+        window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
+
+    /* ---------- Acciones de resultado ---------- */
+    document.getElementById('replay-btn').addEventListener('click', function () {
+        startGame(currentLevel);
+    });
+    document.getElementById('change-level-btn').addEventListener('click', showSetup);
+
+    /* ---------- Teclado 1 / 2 / 3 ---------- */
+    document.addEventListener('keydown', function (event) {
+        if (!active || answered || roundFinished) return;
+        if (!gameScreen.classList.contains('active')) return;
+        if (event.key === '1' || event.key === '2' || event.key === '3') {
+            event.preventDefault();
+            handleAnswer(Number(event.key) - 1);
+        }
+    });
+
+    /* ---------- Arranque ---------- */
+    renderLevels();
+    applyMode(operationMode);
+    updateHud();
+})();
+</script>
+</body>
+</html>

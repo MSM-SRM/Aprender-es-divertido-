@@ -265,6 +265,7 @@ body.language-changing .app{animation:languageTumble .82s cubic-bezier(.22,.72,.
     <button class="game" data-game="words"><span class="emoji">🔤</span><strong>Palabras mágicas</strong><span id="wordsDesc">Escucha y reconoce palabras.</span></button>
     <button class="game" data-game="memory"><span class="emoji">🧠</span><strong>Memoria divertida</strong><span>Encuentra las parejas iguales.</span></button>
     <button class="game" data-game="listen"><span class="emoji">👂</span><strong>Escucha y aprende</strong><span>Oye una palabra y repítela.</span></button>
+    <button class="game" data-naruto id="narutoGame" style="display:none"><span class="emoji">🍥</span><strong>Naruto: desafío ninja</strong><span>10 retos de cálculo con Naruto y Gaara.</span></button>
     <button class="game" data-map><span class="emoji">🗺️</span><strong>Mapa de aventuras</strong><span>Explora el mundo mágico y sus zonas.</span></button>
   </div>
   <div class="section-title"><h2>🏆 Mi progreso</h2><small>Se guarda en este dispositivo</small></div>
@@ -409,6 +410,7 @@ function setAge() {
   $("mathTitle").textContent = state.age === 3 ? "Contar objetos" : "Retos matemáticos";
   $("mathDesc").textContent = state.age === 3 ? "Cuenta y elige el número." : "Sumas y restas sencillas.";
   $("wordsDesc").textContent = state.age === 3 ? "Escucha y reconoce palabras." : "Lee y reconoce palabras.";
+  $("narutoGame").style.display = state.age === 3 ? "none" : "";
 }
 
 function updateBirthdays() {
@@ -577,6 +579,10 @@ updateBirthdays();
 document.querySelectorAll("[data-game]").forEach(b => {
   b.addEventListener("click",() => startGame(b.dataset.game));
 });
+document.querySelector("[data-naruto]").onclick = () => {
+  if(currentProfile) location.href = "naruto-matematico.html?profile=" + encodeURIComponent(currentProfile);
+};
+
 document.querySelector("[data-map]").onclick = () => {
   if(currentProfile) location.href = "mundo-mireia.html?profile=" + encodeURIComponent(currentProfile);
 };
@@ -839,6 +845,7 @@ function flipCard(i,b) {
       "🔊 Escuchar":"🔊 Listen","🎮 Elige una actividad":"🎮 Choose an activity","Nivel descubrir":"Discover level","Nivel practicar":"Practice level",
       "Contar objetos":"Count objects","Retos matemáticos":"Math challenges","Cuenta y elige el número.":"Count and choose the number.",
       "Mapa de aventuras":"Adventure map","Explora el mundo mágico y sus zonas.":"Explore the magical world and its zones.",
+      "Naruto: desafío ninja":"Naruto: ninja challenge","10 retos de cálculo con Naruto y Gaara.":"10 maths challenges with Naruto and Gaara.",
       "Sumas y restas sencillas.":"Simple addition and subtraction.","Palabras mágicas":"Magic words","Escucha y reconoce palabras.":"Listen and recognise words.",
       "Lee y reconoce palabras.":"Read and recognise words.","Memoria divertida":"Fun memory","Encuentra las parejas iguales.":"Find the matching pairs.",
       "Escucha y aprende":"Listen and learn","Oye una palabra y repítela.":"Hear a word and repeat it.",
@@ -886,6 +893,7 @@ function flipCard(i,b) {
       "🔊 Escuchar":"🔊 Escolta","🎮 Elige una actividad":"🎮 Tria una activitat","Nivel descubrir":"Nivell descobrir","Nivel practicar":"Nivell practicar",
       "Contar objetos":"Comptar objectes","Retos matemáticos":"Reptes matemàtics","Cuenta y elige el número.":"Compta i tria el número.",
       "Mapa de aventuras":"Mapa d'aventures","Explora el mundo mágico y sus zonas.":"Explora el món màgic i les seves zones.",
+      "Naruto: desafío ninja":"Naruto: desafiament ninja","10 retos de cálculo con Naruto y Gaara.":"10 reptes de càlcul amb Naruto i Gaara.",
       "Sumas y restas sencillas.":"Sumes i restes senzilles.","Palabras mágicas":"Paraules màgiques","Escucha y reconoce palabras.":"Escolta i reconeix paraules.",
       "Lee y reconoce palabras.":"Llegeix i reconeix paraules.","Memoria divertida":"Memòria divertida","Encuentra las parejas iguales.":"Troba les parelles iguals.",
       "Escucha y aprende":"Escolta i aprèn","Oye una palabra y repítela.":"Escolta una paraula i repeteix-la.",
@@ -933,6 +941,7 @@ function flipCard(i,b) {
       "🔊 Escuchar":"🔊 Anhören","🎮 Elige una actividad":"🎮 Wähle eine Aktivität","Nivel descubrir":"Entdeckerstufe","Nivel practicar":"Übungsstufe",
       "Contar objetos":"Objekte zählen","Retos matemáticos":"Mathe-Aufgaben","Cuenta y elige el número.":"Zähle und wähle die Zahl.",
       "Mapa de aventuras":"Abenteuerkarte","Explora el mundo mágico y sus zonas.":"Entdecke die magische Welt und ihre Zonen.",
+      "Naruto: desafío ninja":"Naruto: Ninja-Herausforderung","10 retos de cálculo con Naruto y Gaara.":"10 Rechenaufgaben mit Naruto und Gaara.",
       "Sumas y restas sencillas.":"Einfache Addition und Subtraktion.","Palabras mágicas":"Zauberwörter","Escucha y reconoce palabras.":"Höre Wörter und erkenne sie.",
       "Lee y reconoce palabras.":"Lies Wörter und erkenne sie.","Memoria divertida":"Lustiges Gedächtnisspiel","Encuentra las parejas iguales.":"Finde die passenden Paare.",
       "Escucha y aprende":"Hören und lernen","Oye una palabra y repítela.":"Höre ein Wort und wiederhole es.",
