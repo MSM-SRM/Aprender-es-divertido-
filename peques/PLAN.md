@@ -314,13 +314,15 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - QA responsive a 320, 390 y 1000 px sin overflow horizontal.
 - Informe completo en `qa/naruto-2026-10-23/INFORME.md`.
 
+### Publicación
+
+- Publicado en GitHub Pages el 25/10/2026.
+- Verificado en producción con Guest: índice, Mi Mates y juego de Naruto.
+- Retirada de «Partido de sumas y restas» publicada también para Guest y Mireia.
+
 ### Pendiente
 
-- Hacer commit de los archivos del sitio.
-- Hacer push a `origin/main`.
-- Verificar GitHub Pages.
-- Probar el flujo real de Mireia con PIN.
-- Actualizar el resumen con el hash del commit publicado.
+- Probar el flujo real de Mireia con PIN en producción.
 
 ### Reglas que se mantienen
 
