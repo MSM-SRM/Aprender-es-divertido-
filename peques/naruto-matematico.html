@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naruto · Desafío Ninja Matemático</title>
+<title>Naruto · Academia Ninja Matemáticas</title>
+<link rel="preload" as="image" href="imagenes/gaara-fallen.gif">
+<link rel="preload" as="image" href="imagenes/gaara-kunai.png">
 <script src="auth-guard.js"></script>
 <script>
     const profileId = new URLSearchParams(location.search).get('profile') || 'mireia';
@@ -211,28 +213,34 @@
     }
 
     .hero-copy {
-        max-width: 780px;
+        max-width: 920px;
         margin: 0 auto;
     }
 
+    /* Línea teal superior: ACADEMIA NINJA · MATEMÁTICAS (con líneas a los lados) */
     .kicker {
         display: inline-flex;
         align-items: center;
-        gap: 9px;
-        margin: 0 0 8px;
+        justify-content: center;
+        gap: clamp(3px, 0.8vw, 10px);
+        max-width: 100%;
+        margin: 0 0 6px;
         font-family: var(--font-mono);
-        font-size: clamp(0.6rem, 1.6vw, 0.78rem);
+        font-size: clamp(0.9rem, 4.8vw, 2.5rem);
         font-weight: 700;
-        letter-spacing: 0.32em;
+        letter-spacing: 0.005em;
+        line-height: 1.1;
         text-transform: uppercase;
         color: var(--chakra);
         text-shadow: 0 0 14px rgba(36, 199, 184, 0.65);
+        white-space: nowrap;
     }
 
     .kicker::before,
     .kicker::after {
         content: "";
-        width: clamp(14px, 4vw, 42px);
+        flex: 0 0 auto;
+        width: clamp(10px, 3.2vw, 50px);
         height: 2px;
         background: linear-gradient(90deg, transparent, var(--chakra));
     }
@@ -243,32 +251,16 @@
         margin: 0;
         font-weight: 900;
         text-transform: uppercase;
-        line-height: 0.94;
+        line-height: 1;
         letter-spacing: 0.01em;
-        font-size: clamp(1.55rem, 4.6vw, 3.15rem);
+        font-size: clamp(1rem, 5.2vw, 2.5rem);
     }
 
-    .hero-title span { display: block; }
-
-    .hero-title .t1 {
-        font-size: 0.7em;
-        letter-spacing: 0.24em;
+    .hero-title span {
+        display: block;
+        font-size: 1em;
         color: var(--orange-soft);
-        text-shadow: 0 0 20px rgba(242, 107, 33, 0.75), 0 2px 0 #08101c;
-    }
-
-    .hero-title .t2 {
-        color: var(--cream);
-        text-shadow: 0 3px 0 #0a1220, 0 0 26px rgba(36, 199, 184, 0.4);
-    }
-
-    .hero-title .t3 {
-        font-size: 1.08em;
-        background: linear-gradient(180deg, #ffe98d 0%, #ffc21f 62%, #e58a06 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        filter: drop-shadow(0 3px 0 rgba(8, 16, 28, 0.85)) drop-shadow(0 0 18px rgba(255, 196, 50, 0.4));
+        text-shadow: 0 0 20px rgba(242, 107, 33, 0.7), 0 2px 0 #08101c;
     }
 
     .subtitle {
@@ -281,18 +273,6 @@
     }
 
     .subtitle strong { color: var(--gold); }
-
-    .hero-hint {
-        display: inline-block;
-        margin: 8px auto 0;
-        padding: 5px 12px;
-        border: 1px dashed rgba(255, 247, 232, 0.35);
-        border-radius: 999px;
-        background: rgba(6, 12, 24, 0.45);
-        color: rgba(255, 247, 232, 0.82);
-        font-size: clamp(0.72rem, 1.9vw, 0.85rem);
-        line-height: 1.3;
-    }
 
     .duel {
         display: grid;
@@ -328,7 +308,7 @@
     }
 
     .naruto-hero { justify-self: start; width: clamp(108px, 20vw, 256px); }
-    .gaara-hero  { justify-self: end;   width: clamp(74px, 13.5vw, 176px); }
+    .gaara-hero  { justify-self: end;   width: clamp(110px, 22vw, 300px); }
 
     .hero-fighter .sprite {
         display: block;
@@ -663,6 +643,22 @@
         box-shadow: 0 0 9px rgba(255, 90, 90, 0.6);
     }
 
+    /* Escenario + pregunta (dos columnas en tablet/landscape) */
+    .arena {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: clamp(10px, 2vw, 18px);
+        width: 100%;
+        max-width: var(--stage-max);
+        margin: 0 auto;
+    }
+
+    .arena .stage,
+    .arena .quiz {
+        max-width: none;
+        margin: 0;
+    }
+
     /* Escenario */
     .stage {
         position: relative;
@@ -785,7 +781,7 @@
     }
 
     .fighter-naruto { left: 4.5%; width: clamp(96px, 28%, 300px); }
-    .fighter-gaara  { right: 5%;   width: clamp(62px, 16.5%, 160px); }
+    .fighter-gaara  { right: 5%;   width: clamp(120px, 34%, 300px); }
 
     .sprite-wrap {
         width: 100%;
@@ -805,6 +801,101 @@
     .fighter-gaara .sprite {
         animation: bob 4.3s ease-in-out infinite reverse;
         filter: drop-shadow(0 5px 7px rgba(0, 0, 0, 0.55));
+    }
+
+    /* Gaara en capas: de pie -> kunai clavado -> caído (fundido sin parpadeo) */
+    .gaara-wrap {
+        position: relative;
+        aspect-ratio: 1 / 1;
+        transition: width 0.28s ease, margin-left 0.28s ease;
+    }
+
+    .gaara-wrap .sprite {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .gaara-wrap .gaara-main { transition: opacity 0.22s ease; }
+
+    .gaara-wrap .gaara-layer {
+        animation: none;
+        opacity: 0;
+        transition: opacity 0.28s ease;
+        pointer-events: none;
+    }
+
+    .gaara-wrap .gaara-layer.is-visible { opacity: 1; }
+
+    /* El GIF de caída es más ancho (279x156): se le da su propia caja */
+    .gaara-wrap.is-fallen {
+        width: 132%;
+        margin-left: -16%;
+        aspect-ratio: 279 / 156;
+    }
+
+    .gaara-wrap.is-falling { animation: gaara-fall 0.62s ease-in both; }
+
+    @keyframes gaara-fall {
+        0%   { transform: rotate(0deg) translateY(0); }
+        45%  { transform: rotate(-10deg) translateY(3%); }
+        100% { transform: rotate(0deg) translateY(0); }
+    }
+
+    /* Brazo de Naruto: oculto salvo en el lanzamiento */
+    .naruto-arm {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 6;
+        display: block;
+        width: clamp(34px, 4.6vw, 56px);
+        height: clamp(9px, 1.1vw, 14px);
+        transform-origin: 0 50%;
+        opacity: 0;
+        pointer-events: none;
+        filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
+    }
+
+    .naruto-arm .arm-sleeve {
+        position: absolute;
+        inset: 0;
+        border: 2px solid #2a1000;
+        border-radius: 3px 2px 2px 3px;
+        background: linear-gradient(180deg, #ffb066 0%, var(--orange) 48%, #b8480d 100%);
+        box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.28);
+    }
+
+    .naruto-arm .arm-hand {
+        position: absolute;
+        right: -6px;
+        top: 50%;
+        width: clamp(10px, 1.3vw, 15px);
+        aspect-ratio: 1;
+        border: 2px solid #2a1000;
+        border-radius: 50%;
+        background: radial-gradient(circle at 38% 32%, #ffe0c4, #f0b184 58%, #c98a5c 100%);
+        transform: translateY(-50%);
+    }
+
+    .naruto-arm.is-throw { animation: arm-throw 0.52s ease-out both; }
+    .naruto-arm.is-up    { animation: arm-up 0.52s ease-out both; }
+
+    @keyframes arm-throw {
+        0%   { opacity: 0; transform: rotate(34deg) scaleX(0.35); }
+        18%  { opacity: 1; transform: rotate(24deg) scaleX(0.82); }
+        42%  { opacity: 1; transform: rotate(-6deg) scaleX(1.06); }
+        72%  { opacity: 1; transform: rotate(0deg) scaleX(1); }
+        100% { opacity: 0; transform: rotate(0deg) scaleX(0.55); }
+    }
+
+    @keyframes arm-up {
+        0%   { opacity: 0; transform: rotate(48deg) scaleX(0.4); }
+        22%  { opacity: 1; transform: rotate(-58deg) scaleX(0.9); }
+        58%  { opacity: 1; transform: rotate(-76deg) scaleX(1); }
+        100% { opacity: 0; transform: rotate(-82deg) scaleX(0.6); }
     }
 
     .ground-shadow {
@@ -896,17 +987,43 @@
         100% { opacity: 0; transform: translate(-50%, -50%) scale(1.8) rotate(70deg); }
     }
 
-    .shuriken {
+    .kunai-projectile {
         position: absolute;
         left: 0;
         top: 0;
         z-index: 9;
-        width: clamp(30px, 4.6vw, 48px);
+        width: clamp(38px, 5.2vw, 60px);
         height: auto;
         opacity: 0;
         pointer-events: none;
-        filter: drop-shadow(0 0 10px rgba(255, 211, 77, 0.9));
+        transform-origin: 50% 50%;
+        filter: drop-shadow(0 0 8px rgba(255, 211, 77, 0.7)) drop-shadow(0 3px 4px rgba(0, 0, 0, 0.5));
         will-change: transform, opacity;
+    }
+
+    .kunai-projectile.is-special {
+        z-index: 10;
+        width: clamp(52px, 7vw, 82px);
+        filter: drop-shadow(0 0 14px rgba(255, 211, 77, 0.95)) drop-shadow(0 0 28px rgba(255, 140, 40, 0.8));
+    }
+
+    /* Kunais clavados en el suelo: se acumulan durante la partida */
+    .kunai-ground-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+        pointer-events: none;
+    }
+
+    .kunai-ground {
+        position: absolute;
+        z-index: 5;
+        width: clamp(30px, 4.4vw, 50px);
+        height: auto;
+        opacity: 0.96;
+        pointer-events: none;
+        transform-origin: 50% 50%;
+        filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.55));
     }
 
     .score-pop {
@@ -1298,19 +1415,32 @@
         .level-card:last-child .lv-go { display: none; }
     }
 
+    /* Tablet / landscape: escenario y pregunta en dos columnas */
+    @media (min-width: 760px) and (orientation: landscape), (min-width: 900px) {
+        .arena {
+            grid-template-columns: minmax(0, 1.28fr) minmax(300px, 0.92fr);
+            align-items: start;
+            gap: clamp(12px, 1.8vw, 18px);
+        }
+
+        .arena .stage { aspect-ratio: 4 / 3; }
+        .arena .quiz { padding: clamp(12px, 1.6vw, 18px); }
+        .arena .question { font-size: clamp(1.6rem, 3.6vw, 2.9rem); }
+        .arena .answer { min-height: clamp(54px, 6vw, 74px); }
+    }
+
     /* Móvil */
     @media (max-width: 720px) {
         .shell { padding: 10px 10px 34px; }
         .topbar-tag { display: none; }
 
         .hero { margin-bottom: 14px; }
-        .hero-title { font-size: clamp(1.5rem, 8vw, 2.5rem); }
+        .hero-title { font-size: clamp(0.98rem, 5.4vw, 2rem); }
         .subtitle { font-size: 0.9rem; padding: 0 4px; }
-        .hero-hint { font-size: 0.72rem; max-width: 96%; }
 
         .duel { max-width: 100%; margin-top: 8px; gap: 2px; }
         .naruto-hero { width: clamp(100px, 34vw, 160px); }
-        .gaara-hero  { width: clamp(68px, 24vw, 112px); }
+        .gaara-hero  { width: clamp(100px, 30vw, 170px); }
         .vs-badge { width: clamp(38px, 12vw, 54px); font-size: 0.82rem; margin-bottom: 10px; }
         .hero-tag { font-size: 0.5rem; letter-spacing: 0.12em; padding: 3px 6px; }
 
@@ -1330,7 +1460,7 @@
         .stage { aspect-ratio: 16 / 10.4; border-radius: 12px; }
         .nameplate { top: 5%; padding: 3px 7px; letter-spacing: 0.1em; }
         .fighter-naruto { left: 3.5%; width: clamp(94px, 34%, 190px); }
-        .fighter-gaara  { right: 4%;   width: clamp(60px, 21%, 112px); }
+        .fighter-gaara  { right: 4%;   width: clamp(110px, 34%, 190px); }
         .fighter { bottom: 7.5%; }
         .ground-shadow { margin-top: -6px; }
 
@@ -1347,12 +1477,10 @@
     @media (max-width: 430px) {
         .back-link { padding: 8px 11px; font-size: 0.78rem; }
         .topbar { gap: 6px; }
-        .hero-title { font-size: clamp(1.32rem, 8.4vw, 1.9rem); }
-        .kicker { letter-spacing: 0.18em; font-size: 0.54rem; }
+        .hero-title { font-size: clamp(0.92rem, 5.4vw, 1.45rem); }
         .subtitle { font-size: 0.84rem; }
-        .hero-hint { font-size: 0.68rem; padding: 4px 9px; }
         .naruto-hero { width: clamp(94px, 32vw, 126px); }
-        .gaara-hero  { width: clamp(64px, 22vw, 90px); }
+        .gaara-hero  { width: clamp(96px, 28vw, 140px); }
         .vs-badge { width: 38px; font-size: 0.74rem; border-width: 2px; }
         .section-head h2 { font-size: 0.95rem; }
         .mode-btn { font-size: 0.8rem; min-height: 44px; }
@@ -1362,6 +1490,38 @@
         .question { font-size: clamp(1.45rem, 7.8vw, 1.9rem); }
         .answer { font-size: clamp(1.2rem, 6.6vw, 1.6rem); min-height: 54px; }
         .result-actions .rbtn { flex: 1 1 100%; }
+    }
+
+    /* Landscape bajo (568x320, 844x390): todo cabe sin scroll vertical */
+    @media (orientation: landscape) and (max-height: 520px) {
+        .shell { padding: 8px 10px 16px; }
+        .topbar { margin-bottom: 6px; }
+        .back-link { min-height: 38px; padding: 6px 12px; font-size: 0.78rem; }
+        .icon-btn { width: 38px; height: 38px; flex: 0 0 38px; font-size: 1rem; }
+
+        .hud { padding: 5px 9px; margin-bottom: 7px; gap: 4px 10px; }
+        .hud-label { font-size: 0.5rem; letter-spacing: 0.12em; }
+        .hud-value { font-size: 0.8rem; }
+        .hud-item.level { flex: 1 1 96px; }
+        .hud-bar { height: 11px; flex: 1 1 110px; }
+
+        .arena {
+            grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+            align-items: start;
+            gap: 10px;
+        }
+
+        .arena .stage { aspect-ratio: 16 / 9; border-radius: 10px; }
+        .arena .quiz { padding: 8px 9px 9px; border-radius: 11px; }
+        .q-kicker { display: none; }
+        .question { font-size: clamp(1.25rem, 3.4vw, 1.8rem); }
+        .answers { gap: 6px; margin-top: 6px; }
+        .answer { min-height: 44px; padding: 6px 4px; font-size: clamp(1.1rem, 2.6vw, 1.5rem); }
+        .answer .key { display: none; }
+        .feedback { margin-top: 4px; font-size: 0.78rem; min-height: 1.3em; }
+
+        .fighter-naruto { width: clamp(80px, 30%, 180px); }
+        .fighter-gaara  { width: clamp(100px, 32%, 190px); }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1397,14 +1557,11 @@
     <section id="setup-screen" class="screen active" aria-labelledby="game-title">
         <header class="hero">
             <div class="hero-copy">
-                <p class="kicker">Academia ninja · Matemáticas</p>
+                <p class="kicker">Academia Ninja · Matemáticas</p>
                 <h1 class="hero-title" id="game-title">
-                    <span class="t1">Naruto ·</span>
-                    <span class="t2">Desafío ninja</span>
-                    <span class="t3">Matemático</span>
+                    <span class="t1">Naruto</span>
                 </h1>
-                <p class="subtitle">10 retos, 5 niveles y 3 modos. <strong>Un solo shuriken por respuesta:</strong> si fallas, Gaara bloquea el ataque.</p>
-                <p class="hero-hint">Elige modo y nivel: el combate empieza al instante.</p>
+                <p class="subtitle">10 retos, 5 niveles y 3 modos.</p>
             </div>
             <div class="duel">
                 <div class="hero-fighter naruto-hero">
@@ -1416,9 +1573,7 @@
                 </div>
                 <div class="vs-badge" aria-hidden="true"><span>VS</span></div>
                 <div class="hero-fighter gaara-hero">
-                    <picture class="sprite">
-                        <img src="imagenes/gaara-8bit.png" alt="Gaara" width="173" height="215">
-                    </picture>
+                    <img class="sprite" src="imagenes/gaara-sand.gif" alt="Gaara" width="128" height="128">
                     <span class="hero-tag tag-gaara">GAARA</span>
                 </div>
             </div>
@@ -1464,6 +1619,7 @@
             <div class="hud-bar" id="hud-bar" role="progressbar" aria-label="Retos completados" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"></div>
         </div>
 
+        <div class="arena" id="arena">
         <div class="stage" id="stage">
             <img class="stage-bg" src="imagenes/konoha-bg.jpg" alt="" aria-hidden="true" decoding="async">
             <div class="stage-shade" aria-hidden="true"></div>
@@ -1484,10 +1640,19 @@
             </div>
 
             <div class="fighter fighter-gaara" aria-hidden="true">
-                <div class="sprite-wrap" id="gaara-move">
-                    <img class="sprite" id="gaara-sprite" src="imagenes/gaara-8bit.png" alt="Gaara" width="173" height="215">
+                <div class="sprite-wrap gaara-wrap" id="gaara-move">
+                    <img class="sprite gaara-main" id="gaara-sprite" src="imagenes/gaara-sand.gif" alt="Gaara" width="128" height="128">
+                    <img class="sprite gaara-layer" id="gaara-kunai-layer" src="imagenes/gaara-kunai.png" alt="" aria-hidden="true" width="128" height="128" decoding="async">
+                    <img class="sprite gaara-layer gaara-fallen" id="gaara-fallen-layer" src="imagenes/gaara-fallen.gif" alt="" aria-hidden="true" width="279" height="156" decoding="async">
                 </div>
                 <span class="ground-shadow"></span>
+            </div>
+
+            <div class="fx-anchor" id="arm-anchor" aria-hidden="true">
+                <span class="naruto-arm" id="naruto-arm">
+                    <span class="arm-sleeve"></span>
+                    <span class="arm-hand"></span>
+                </span>
             </div>
 
             <div class="fx-anchor" id="shield-anchor" aria-hidden="true">
@@ -1497,18 +1662,9 @@
                 <span class="impact" id="impact"></span>
             </div>
 
-            <svg class="shuriken" id="shuriken" viewBox="0 0 64 64" aria-hidden="true">
-                <defs>
-                    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0" stop-color="#fbfdff"></stop>
-                        <stop offset="0.48" stop-color="#a9bbcd"></stop>
-                        <stop offset="1" stop-color="#5b728b"></stop>
-                    </linearGradient>
-                </defs>
-                <path d="M32 2 L40 24 L62 32 L40 40 L32 62 L24 40 L2 32 L24 24 Z" fill="url(#steel)" stroke="#22303f" stroke-width="2.2" stroke-linejoin="round"></path>
-                <circle cx="32" cy="32" r="6" fill="#0c1624" stroke="#ffd34d" stroke-width="2.4"></circle>
-                <circle cx="32" cy="32" r="1.7" fill="#ffd34d"></circle>
-            </svg>
+            <div class="kunai-ground-layer" id="kunai-ground-layer" aria-hidden="true"></div>
+
+            <img class="kunai-projectile" id="kunai" src="imagenes/kunai.png" alt="" aria-hidden="true" width="555" height="181" decoding="async">
 
             <div class="score-pop" id="score-pop" aria-hidden="true">+1</div>
         </div>
@@ -1531,6 +1687,7 @@
                 </button>
             </div>
             <p class="feedback" id="feedback" role="status" aria-live="polite"></p>
+        </div>
         </div>
     </section>
 
@@ -1597,7 +1754,12 @@
     const gaaraSprite = document.getElementById('gaara-sprite');
     const narutoMove = document.getElementById('naruto-move');
     const gaaraMove = document.getElementById('gaara-move');
-    const shuriken = document.getElementById('shuriken');
+    const gaaraKunaiLayer = document.getElementById('gaara-kunai-layer');
+    const gaaraFallenLayer = document.getElementById('gaara-fallen-layer');
+    const kunaiEl = document.getElementById('kunai');
+    const groundLayer = document.getElementById('kunai-ground-layer');
+    const narutoArm = document.getElementById('naruto-arm');
+    const armAnchor = document.getElementById('arm-anchor');
     const shieldAnchor = document.getElementById('shield-anchor');
     const sandShield = document.getElementById('sand-shield');
     const impactAnchor = document.getElementById('impact-anchor');
@@ -1656,9 +1818,81 @@
         segments.push(seg);
     }
 
-    /* ---------- Sonido opcional (Web Audio, sin archivos) ---------- */
+    /* ---------- Audio: música de fondo + kunai ---------- */
+    const MUSIC_VOLUME = 0.32;
+    const KUNAI_VOLUME = 0.95;
     let soundOn = true;
+    let musicWanted = false;   // true mientras el jugador está en setup o en partida
     let audioCtx = null;
+
+    const bgMusic = new Audio('audios/naruto-theme.mp3');
+    bgMusic.loop = true;
+    bgMusic.preload = 'auto';
+    bgMusic.volume = MUSIC_VOLUME;
+
+    const kunaiSfx = new Audio('audios/kunai-throw.mp3');
+    kunaiSfx.preload = 'auto';
+    kunaiSfx.volume = KUNAI_VOLUME;
+
+    // Precarga de las imágenes del remate (evita parpadeos en la transición)
+    ['imagenes/gaara-fallen.gif', 'imagenes/gaara-kunai.png'].forEach(function (src) {
+        const pre = new Image();
+        pre.src = src;
+    });
+
+    function playMusic() {
+        if (!soundOn || !musicWanted) return;
+        try {
+            const attempt = bgMusic.play();
+            if (attempt && typeof attempt.then === 'function') {
+                attempt.then(function () {
+                    ['pointerdown', 'keydown', 'touchstart'].forEach(function (type) {
+                        document.removeEventListener(type, unlockAudio);
+                    });
+                }).catch(function () { /* autoplay bloqueado: se reintenta con el primer gesto */ });
+            }
+        } catch (e) {}
+    }
+
+    function startMusic(restart) {
+        musicWanted = true;
+        if (restart) {
+            try { bgMusic.currentTime = 0; } catch (e) {}
+        }
+        playMusic();
+    }
+
+    function stopMusic() {
+        musicWanted = false;
+        try { bgMusic.pause(); } catch (e) {}
+        try { bgMusic.currentTime = 0; } catch (e) {}
+    }
+
+    function playKunaiSound() {
+        if (!soundOn) return;
+        try {
+            kunaiSfx.currentTime = 0;
+            const attempt = kunaiSfx.play();
+            if (attempt && typeof attempt.catch === 'function') attempt.catch(function () {});
+        } catch (e) {}
+    }
+
+    // Fallback de autoplay: primer gesto del usuario
+    function unlockAudio() {
+        if (soundOn && musicWanted) playMusic();
+    }
+    ['pointerdown', 'keydown', 'touchstart'].forEach(function (type) {
+        document.addEventListener(type, unlockAudio, { passive: true });
+    });
+
+    // Al salir de la página no debe quedar música sonando
+    window.addEventListener('pagehide', function () {
+        musicWanted = false;
+        try { bgMusic.pause(); } catch (e) {}
+        try { kunaiSfx.pause(); } catch (e) {}
+    });
+
+    /* ---------- Sonido opcional (Web Audio, sin archivos) ---------- */
 
     function getAudio() {
         if (!soundOn) return null;
@@ -1722,7 +1956,13 @@
         soundToggle.setAttribute('aria-pressed', String(soundOn));
         soundToggle.setAttribute('aria-label', soundOn ? 'Desactivar sonido' : 'Activar sonido');
         soundIcon.textContent = soundOn ? '🔊' : '🔇';
-        if (soundOn) tone(660, 0, 0.08, 'triangle', 0.03);
+        if (soundOn) {
+            if (musicWanted) playMusic();
+            tone(660, 0, 0.08, 'triangle', 0.03);
+        } else {
+            try { bgMusic.pause(); } catch (e) {}
+            try { kunaiSfx.pause(); } catch (e) {}
+        }
     });
 
     /* ---------- Hojas flotantes ---------- */
@@ -1817,6 +2057,8 @@
         resultScreen.classList.remove('active');
         setupScreen.classList.add('active');
         resetFx();
+        clearGroundKunais();
+        startMusic(true);
         window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
     }
 
@@ -1833,6 +2075,7 @@
 
         resetSegments();
         resetFx();
+        clearGroundKunais();
         clearFeedback();
         answerButtons.forEach(function (btn) {
             btn.disabled = false;
@@ -1843,6 +2086,7 @@
         resultScreen.classList.remove('active');
         gameScreen.classList.add('active');
 
+        startMusic(true);
         updateHud();
         nextReto();
         window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
@@ -1923,17 +2167,29 @@
     function resetFx() {
         if (!stage) return;
         narutoMove.classList.remove('is-dash', 'is-hit');
-        gaaraMove.classList.remove('is-shake');
+        gaaraMove.classList.remove('is-shake', 'is-falling');
         sandShield.classList.remove('is-active');
         impact.classList.remove('is-active');
         scorePop.classList.remove('is-active');
+        narutoArm.classList.remove('is-throw', 'is-up');
         try {
-            if (shuriken.getAnimations) {
-                shuriken.getAnimations().forEach(function (anim) { anim.cancel(); });
+            if (kunaiEl.getAnimations) {
+                kunaiEl.getAnimations().forEach(function (anim) { anim.cancel(); });
             }
         } catch (e) {}
-        shuriken.style.opacity = '0';
-        shuriken.style.transform = 'none';
+        kunaiEl.style.opacity = '0';
+        kunaiEl.style.transform = 'none';
+        kunaiEl.classList.remove('is-special');
+        // Gaara vuelve a su estado de pie (sin capas del remate)
+        gaaraKunaiLayer.classList.remove('is-visible');
+        gaaraFallenLayer.classList.remove('is-visible');
+        gaaraMove.classList.remove('is-fallen');
+        gaaraSprite.style.opacity = '1';
+    }
+
+    function clearGroundKunais() {
+        if (!groundLayer) return;
+        while (groundLayer.firstChild) groundLayer.removeChild(groundLayer.firstChild);
     }
 
     function placeAnchor(anchor, sprite, xFactor, yFactor) {
@@ -1985,98 +2241,247 @@
         scorePop.classList.add('is-active');
     }
 
-    function launchShuriken(hit) {
-        const fallback = function () {
-            shuriken.style.opacity = '0';
-            flashImpact();
-            if (hit) shakeGaara();
-        };
+    /* 9 variantes de caída al suelo. Cambian rotación final, desplazamiento y rebotes:
+       0 vertical punta abajo (90) · 1 vertical punta arriba (-90) · 2 horizontal (0)
+       3 horizontal invertido (180) · 4 diagonal (45) · 5 diagonal (-45)
+       6 vertical inclinado (75) · 7 vertical inclinado (-75) · 8 casi horizontal (15) */
+    const DROP_VARIANTS = [
+        { rot:  90, dx:   0, bounce: 18, bounces: 1 },
+        { rot: -90, dx:  14, bounce: 12, bounces: 0 },
+        { rot:   0, dx:  28, bounce: 24, bounces: 2 },
+        { rot: 180, dx: -16, bounce: 14, bounces: 1 },
+        { rot:  45, dx:  42, bounce: 20, bounces: 1 },
+        { rot: -45, dx: -28, bounce: 16, bounces: 0 },
+        { rot:  75, dx:  56, bounce: 26, bounces: 2 },
+        { rot: -75, dx: -40, bounce: 10, bounces: 1 },
+        { rot:  15, dx:  70, bounce: 22, bounces: 3 }
+    ];
 
-        if (reduceMotion || typeof shuriken.animate !== 'function') {
-            fallback();
-            return;
-        }
+    function kunaiTransform(x, y, rot) {
+        return 'translate(calc(-50% + ' + x.toFixed(1) + 'px), calc(-50% + ' + y.toFixed(1) + 'px)) rotate(' + rot.toFixed(1) + 'deg)';
+    }
 
+    /* Crea un kunai clavado en el suelo y lo anima desde el punto de impacto. */
+    function spawnGroundKunai(variant, fromX, fromY) {
+        if (!groundLayer) return Promise.resolve();
+        const v = DROP_VARIANTS[variant % DROP_VARIANTS.length];
         const stageRect = stage.getBoundingClientRect();
-        const narutoRect = narutoSprite.getBoundingClientRect();
-        const gaaraRect = gaaraSprite.getBoundingClientRect();
-        const startX = narutoRect.left - stageRect.left + narutoRect.width * 0.7;
-        const startY = narutoRect.top - stageRect.top + narutoRect.height * 0.34;
-        const endX = gaaraRect.left - stageRect.left + gaaraRect.width * 0.5;
-        const endY = gaaraRect.top - stageRect.top + gaaraRect.height * 0.42;
-        const size = shuriken.offsetWidth || 38;
+        const finalX = stageRect.width * (0.54 + (variant % 9) * 0.038);
+        const finalY = stageRect.height * 0.9;
+        const size = kunaiEl.offsetWidth || 44;
 
-        shuriken.style.left = (startX - size / 2) + 'px';
-        shuriken.style.top = (startY - size / 2) + 'px';
-        shuriken.style.opacity = '1';
+        const img = document.createElement('img');
+        img.className = 'kunai-ground';
+        img.src = 'imagenes/kunai.png';
+        img.alt = '';
+        img.setAttribute('aria-hidden', 'true');
+        img.width = 555;
+        img.height = 181;
+        img.style.width = size + 'px';
+        img.style.left = finalX + 'px';
+        img.style.top = finalY + 'px';
+        img.style.opacity = '0';
+        img.style.transform = 'translate(-50%, -50%) rotate(' + v.rot + 'deg)';
+        groundLayer.appendChild(img);
 
-        const dx = endX - startX;
-        const dy = endY - startY;
-        let frames;
-        let duration;
-
-        if (hit) {
-            frames = [
-                { transform: 'translate(0, 0) rotate(0deg) scale(0.7)', opacity: 0 },
-                { transform: 'translate(0, 0) rotate(40deg) scale(1)', opacity: 1, offset: 0.1 },
-                { transform: 'translate(' + (dx * 0.55) + 'px, ' + (dy * 0.55 - 26) + 'px) rotate(400deg) scale(1)', offset: 0.62 },
-                { transform: 'translate(' + dx + 'px, ' + dy + 'px) rotate(720deg) scale(1.25)', opacity: 1 }
-            ];
-            duration = 470;
-        } else {
-            frames = [
-                { transform: 'translate(0, 0) rotate(0deg) scale(0.7)', opacity: 0 },
-                { transform: 'translate(0, 0) rotate(40deg) scale(1)', opacity: 1, offset: 0.08 },
-                { transform: 'translate(' + (dx * 0.45) + 'px, ' + (dy * 0.5 - 30) + 'px) rotate(210deg) scale(1)', offset: 0.5 },
-                { transform: 'translate(' + (dx * 0.55) + 'px, ' + (dy - 120) + 'px) rotate(340deg) scale(0.8)', opacity: 0 }
-            ];
-            duration = 520;
+        if (reduceMotion || typeof img.animate !== 'function') {
+            img.style.opacity = '1';
+            return Promise.resolve();
         }
+
+        const dx0 = fromX - finalX;
+        const dy0 = fromY - finalY;
+        const frames = [
+            { transform: kunaiTransform(dx0, dy0, v.rot - 120), opacity: 1, offset: 0 },
+            { transform: kunaiTransform(dx0 * 0.35, 0, v.rot - 30), opacity: 1, offset: 0.45 }
+        ];
+        if (v.bounces > 0) {
+            const span = 0.53 / v.bounces;
+            for (let b = 0; b < v.bounces; b++) {
+                const peak = 0.45 + span * (b + 0.5);
+                const land = Math.min(0.98, 0.45 + span * (b + 1));
+                const h = v.bounce * (1 - b / (v.bounces + 1));
+                frames.push({
+                    transform: kunaiTransform(dx0 * (0.35 - 0.35 * (b + 0.5) / v.bounces), -h, v.rot + 25 * (b + 1)),
+                    opacity: 1,
+                    offset: peak
+                });
+                frames.push({
+                    transform: kunaiTransform(dx0 * (0.35 - 0.35 * (b + 1) / v.bounces), 0, v.rot + 25 * (b + 1)),
+                    opacity: 1,
+                    offset: land
+                });
+            }
+        }
+        frames.push({ transform: 'translate(-50%, -50%) rotate(' + v.rot + 'deg)', opacity: 1, offset: 1 });
 
         try {
-            const anim = shuriken.animate(frames, {
-                duration: duration,
-                easing: 'cubic-bezier(0.3, 0.05, 0.55, 1)',
+            const anim = img.animate(frames, {
+                duration: 520,
+                easing: 'cubic-bezier(0.35, 0.05, 0.6, 1)',
                 fill: 'forwards'
             });
             anim.onfinish = function () {
-                shuriken.style.opacity = '0';
-                if (hit) {
-                    flashImpact();
-                    shakeGaara();
-                } else {
-                    flashShield();
-                }
+                img.style.opacity = '1';
+                img.style.transform = 'translate(-50%, -50%) rotate(' + v.rot + 'deg)';
             };
         } catch (e) {
-            fallback();
+            img.style.opacity = '1';
         }
+        // Red de seguridad (animación cancelada o pestaña en segundo plano)
+        window.setTimeout(function () {
+            img.style.opacity = '1';
+            img.style.transform = 'translate(-50%, -50%) rotate(' + v.rot + 'deg)';
+        }, 600);
+        return Promise.resolve();
+    }
+
+    function setGaaraFallenInstant() {
+        gaaraSprite.style.opacity = '0';
+        gaaraKunaiLayer.classList.remove('is-visible');
+        gaaraFallenLayer.classList.add('is-visible');
+        gaaraMove.classList.add('is-fallen');
+    }
+
+    /* Lanza un kunai. hit = acierto, special = remate final. Devuelve una Promise. */
+    function launchKunai(hit, special, variant) {
+        return new Promise(function (resolve) {
+            playKunaiSound();
+            try {
+                if (kunaiEl.getAnimations) {
+                    kunaiEl.getAnimations().forEach(function (anim) { anim.cancel(); });
+                }
+            } catch (e) {}
+
+            placeAnchor(armAnchor, narutoSprite, 0.74, 0.36);
+            narutoArm.classList.remove('is-throw', 'is-up');
+            reflow(narutoArm);
+            narutoArm.classList.add(hit || special ? 'is-throw' : 'is-up');
+            window.setTimeout(function () {
+                narutoArm.classList.remove('is-throw', 'is-up');
+            }, 560);
+
+            const stageRect = stage.getBoundingClientRect();
+            const narutoRect = narutoSprite.getBoundingClientRect();
+            const gaaraRect = gaaraSprite.getBoundingClientRect();
+            const w = kunaiEl.offsetWidth || 44;
+            const h = kunaiEl.offsetHeight || 14;
+
+            const startX = narutoRect.left - stageRect.left + narutoRect.width * 0.74;
+            const startY = narutoRect.top - stageRect.top + narutoRect.height * 0.38;
+            const endX = gaaraRect.left - stageRect.left + gaaraRect.width * 0.5;
+            const endY = gaaraRect.top - stageRect.top + gaaraRect.height * (special ? 0.46 : 0.42);
+
+            kunaiEl.classList.toggle('is-special', !!special);
+            kunaiEl.style.left = (startX - w / 2) + 'px';
+            kunaiEl.style.top = (startY - h / 2) + 'px';
+            kunaiEl.style.opacity = '1';
+
+            const dx = endX - startX;
+            const dy = endY - startY;
+            const done = function () { resolve(); };
+
+            if (reduceMotion || typeof kunaiEl.animate !== 'function') {
+                kunaiEl.style.opacity = '0';
+                if (special) {
+                    setGaaraFallenInstant();
+                } else if (hit) {
+                    flashShield();
+                    shakeGaara();
+                    spawnGroundKunai((variant || 0) % 9, endX, endY);
+                }
+                done();
+                return;
+            }
+
+            let frames;
+            let duration;
+            if (special) {
+                frames = [
+                    { transform: 'translate(0, 0) rotate(-15deg) scale(0.6)', opacity: 0, offset: 0 },
+                    { transform: 'translate(0, 0) rotate(0deg) scale(1)', opacity: 1, offset: 0.08 },
+                    { transform: 'translate(' + (dx * 0.5) + 'px, ' + (dy * 0.5 - 40) + 'px) rotate(260deg) scale(1.15)', opacity: 1, offset: 0.55 },
+                    { transform: 'translate(' + dx + 'px, ' + dy + 'px) rotate(430deg) scale(1)', opacity: 1, offset: 1 }
+                ];
+                duration = 1000;
+            } else if (hit) {
+                frames = [
+                    { transform: 'translate(0, 0) rotate(-15deg) scale(0.6)', opacity: 0, offset: 0 },
+                    { transform: 'translate(0, 0) rotate(0deg) scale(1)', opacity: 1, offset: 0.08 },
+                    { transform: 'translate(' + (dx * 0.55) + 'px, ' + (dy * 0.55 - 26) + 'px) rotate(300deg) scale(1)', opacity: 1, offset: 0.62 },
+                    { transform: 'translate(' + dx + 'px, ' + dy + 'px) rotate(540deg) scale(1)', opacity: 1, offset: 1 }
+                ];
+                duration = 900;
+            } else {
+                frames = [
+                    { transform: 'translate(0, 0) rotate(-15deg) scale(0.6)', opacity: 0, offset: 0 },
+                    { transform: 'translate(0, 0) rotate(0deg) scale(1)', opacity: 1, offset: 0.07 },
+                    { transform: 'translate(' + (dx * 0.35) + 'px, ' + (dy * 0.4 - 90) + 'px) rotate(220deg) scale(1)', opacity: 1, offset: 0.5 },
+                    { transform: 'translate(' + (dx * 0.45) + 'px, ' + (dy - 420) + 'px) rotate(400deg) scale(0.75)', opacity: 0, offset: 1 }
+                ];
+                duration = 950;
+            }
+
+            let throwEnded = false;
+            const onThrowEnd = function () {
+                if (throwEnded) return;
+                throwEnded = true;
+                kunaiEl.style.opacity = '0';
+                if (special) {
+                    flashImpact();
+                    shakeGaara();
+                    gaaraSprite.style.opacity = '0';
+                    gaaraKunaiLayer.classList.add('is-visible');
+                    window.setTimeout(function () {
+                        gaaraKunaiLayer.classList.remove('is-visible');
+                        gaaraFallenLayer.classList.add('is-visible');
+                        gaaraMove.classList.add('is-fallen', 'is-falling');
+                        window.setTimeout(done, 1700);
+                    }, 650);
+                } else if (hit) {
+                    flashShield();
+                    shakeGaara();
+                    spawnGroundKunai((variant || 0) % 9, endX, endY);
+                    done();
+                } else {
+                    done();
+                }
+            };
+
+            try {
+                const anim = kunaiEl.animate(frames, {
+                    duration: duration,
+                    easing: 'cubic-bezier(0.3, 0.05, 0.55, 1)',
+                    fill: 'forwards'
+                });
+                anim.onfinish = onThrowEnd;
+            } catch (e) {
+                onThrowEnd();
+            }
+            // Red de seguridad: si onfinish no llega (animación cancelada o pestaña oculta)
+            window.setTimeout(onThrowEnd, duration + 150);
+        });
     }
 
     function animateCorrect() {
         dashNaruto();
-        launchShuriken(true);
+        launchKunai(true, false, (score - 1) % 9);
         window.setTimeout(function () {
             if (!active) return;
             showScorePop();
-        }, 400);
+        }, 420);
     }
 
     function animateWrong() {
-        hitNaruto();
-        launchShuriken(false);
-        window.setTimeout(function () {
-            if (!active) return;
-            flashShield();
-        }, 280);
+        launchKunai(false, false);
     }
 
     /* ---------- Responder ---------- */
     const OK_MESSAGES = [
-        '¡Acierto! Rasengan matemático directo.',
-        '¡Bien! El shuriken da en el blanco.',
-        '¡Correcto! Chakra matemático al máximo.',
-        '¡Gran lanzamiento! Gaara no lo vio venir.'
+        '¡Acierto! El kunai choca contra la arena de Gaara.',
+        '¡Bien! Kunai directo a la arena protectora.',
+        '¡Correcto! La arena detiene el kunai.',
+        '¡Gran lanzamiento! El kunai cae junto a Gaara.'
     ];
 
     function handleAnswer(index) {
@@ -2101,7 +2506,7 @@
         } else {
             chosenButton.classList.add('is-wrong');
             markSegment(answeredCount, false);
-            feedback.textContent = '¡Gaara bloqueó el ataque! La respuesta era ' + correctAnswer + '.';
+            feedback.textContent = '¡El kunai se fue al cielo! La respuesta era ' + correctAnswer + '.';
             feedback.className = 'feedback bad';
             animateWrong();
             sfxWrong();
@@ -2112,10 +2517,10 @@
 
         clearTimeout(advanceTimer);
         advanceTimer = window.setTimeout(function () {
-            if (!active) return;
+            if (!active || roundFinished) return;
             if (answeredCount >= TOTAL) finishGame();
             else nextReto();
-        }, 2500);
+        }, answeredCount >= TOTAL ? 1400 : 2500);
     }
 
     answerButtons.forEach(function (btn) {
@@ -2132,7 +2537,6 @@
         answered = true;
         clearTimeout(advanceTimer);
         advanceTimer = null;
-        resetFx();
         answerButtons.forEach(function (btn) { btn.disabled = true; });
 
         const goldThreshold = (currentLevel === 4 || currentLevel === 5) ? 9 : TOTAL;
@@ -2155,6 +2559,24 @@
             localStorage.setItem(progressKey, JSON.stringify(profileProgress));
         } catch (e) {}
 
+        // Remate final con 9+ aciertos: la caída ocurre antes del resultado.
+        if (score >= 9) {
+            if (reduceMotion) {
+                setGaaraFallenInstant();
+                showResult(grade, goldThreshold);
+            } else {
+                launchKunai(true, true).then(function () {
+                    showResult(grade, goldThreshold);
+                });
+            }
+            return;
+        }
+
+        resetFx();
+        showResult(grade, goldThreshold);
+    }
+
+    function showResult(grade, goldThreshold) {
         resultCard.dataset.grade = grade || 'none';
         resultStar.textContent = '★';
         resultGrade.textContent = grade ? GRADE_LABEL[grade] : 'SIN ESTRELLA';
@@ -2189,6 +2611,7 @@
         setupScreen.classList.remove('active');
         resultScreen.classList.add('active');
 
+        stopMusic();
         sfxFinish(grade);
         window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
     }
@@ -2213,6 +2636,7 @@
     renderLevels();
     applyMode(operationMode);
     updateHud();
+    startMusic(true);
 })();
 </script>
 </body>
