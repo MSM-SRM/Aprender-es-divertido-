@@ -376,8 +376,19 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 ### Publicación
 
-- Cambios locales pendientes de commit y push en el momento de escribir esta sección.
+- Commit `5215fdc` («Naruto: quita el brazo, kunais en carteles y musica de partida») publicado en `origin/main`.
+- GitHub Pages construyó correctamente el commit `5215fdc`.
+- Verificado en producción con Guest:
+  - `naruto-arm` ausente.
+  - `naruto-guitar-cover.mp3` carga con HTTP 200 y 123.983 bytes.
+  - Setup reproduce `naruto-theme`; al entrar al juego se pausa y suena `naruto-guitar-cover`; sin errores de consola.
 - La copia de seguridad se creará después de publicar, conservando las copias anteriores.
+
+### Copia de seguridad
+
+- Carpeta: `C:\Users\Usuario\Downloads\MiMundo_backup_2026-10-26_naruto-sin-brazo`.
+- ZIP: `C:\Users\Usuario\Downloads\MiMundo_backup_2026-10-26_naruto-sin-brazo.zip`.
+- Se conservan `MiMundo_backup_2026-10-25_sin-partido` y las copias anteriores.
 
 ### Pendiente
 
