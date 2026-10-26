@@ -340,3 +340,46 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - Se retiraron de `ui-language.js` las traducciones específicas del título y las instrucciones del partido.
 - QA responsive a 320, 390 y 892 px sin overflow horizontal; consola limpia.
 - Informe: `qa/mi-mates-2026-10-25/INFORME.md`.
+
+---
+
+## Actualización 26/10/2026 — Naruto: sin brazo, kunais en los carteles y música de partida
+
+### Cambios
+
+- Eliminado por completo el brazo animado de Naruto: HTML, CSS y JavaScript. El lanzamiento sale de la zona de la mano izquierda.
+- Los fallos ya no lanzan el kunai al suelo: se clava en el cartel del nombre.
+  - 1.er fallo: cartel de Gaara.
+  - 2.º fallo: cartel de Naruto.
+  - 3.er fallo: cartel de Gaara.
+  - 4.º y siguientes: Gaara o Naruto al azar.
+- Los kunais de los carteles se acumulan y solo se limpian al empezar partida o volver al setup.
+- Los aciertos siguen dejando el kunai en el suelo, junto a la arena de Gaara, con 9 variantes.
+- Tiempo de vuelo del kunai: 1–2 s según el tamaño de pantalla.
+- La pantalla de resultado espera 6,5 s desde la última respuesta; el remate final de 9+ aciertos ocurre dentro de ese margen.
+- Gaara un 25 % más grande y Naruto un 10 % más grande, con el kunai ajustado.
+- Música separada:
+  - Setup: `audios/naruto-theme.mp3`.
+  - Partida: `audios/naruto-guitar-cover.mp3` (123.983 bytes).
+  - La música de setup se detiene al entrar al juego; la de partida se detiene en el resultado; al reintentar vuelve la de partida y al cambiar de nivel vuelve la de setup.
+  - El botón de sonido silencia y reanuda la pista de la pantalla actual, sin solapar ambas.
+
+### Pruebas
+
+- Brazo eliminado: 0 referencias a `naruto-arm`; `noArm=True` en las cuatro partidas de prueba.
+- Secuencia de fallos comprobada: Gaara → Naruto → Gaara → aleatorio; contadores 1, 2, 3 y 4; sin kunais de suelo en los fallos.
+- Resultados: 10/10 oro, 9/10 plata, 8/10 plata; 6/10 bronce con cuatro fallos.
+- Tiempo de resultado medido: 6516–6603 ms en movimiento normal y 6503–6559 ms con movimiento reducido.
+- Música comprobada en setup, partida, resultado, reintento y cambio de nivel; sin solape y sin errores de consola.
+- Responsive: 320×568, 390×844, 568×320, 844×390, 768×1024, 1024×768 y 1180×820; sin overflow horizontal y respuestas visibles. Se mantiene un scroll vertical de 21 px en 320×568 y un solape leve Gaara–cartel en 768×1024, con el cartel por encima y legible.
+- QA: `qa/naruto-mejoras-2026-10-25/ADENDA-2026-10-25-brazo-musica.md` y capturas en `qa/naruto-mejoras-2026-10-25/shots6/`.
+
+### Publicación
+
+- Cambios locales pendientes de commit y push en el momento de escribir esta sección.
+- La copia de seguridad se creará después de publicar, conservando las copias anteriores.
+
+### Pendiente
+
+- Probar el flujo real de Mireia con PIN en producción.
+- Revisar una partida completa en un móvil real.

@@ -307,8 +307,8 @@
         pointer-events: none;
     }
 
-    .naruto-hero { justify-self: start; width: clamp(108px, 20vw, 256px); }
-    .gaara-hero  { justify-self: end;   width: clamp(110px, 22vw, 300px); }
+    .naruto-hero { justify-self: start; width: clamp(119px, 22vw, 282px); }
+    .gaara-hero  { justify-self: end;   width: clamp(138px, 27.5vw, 375px); }
 
     .hero-fighter .sprite {
         display: block;
@@ -666,7 +666,7 @@
         width: 100%;
         max-width: var(--stage-max);
         margin: 0 auto;
-        aspect-ratio: 16 / 7.4;
+        aspect-ratio: 16 / 8.2;
         border: 3px solid rgba(255, 211, 77, 0.6);
         border-radius: 16px;
         overflow: hidden;
@@ -780,8 +780,8 @@
         pointer-events: none;
     }
 
-    .fighter-naruto { left: 4.5%; width: clamp(96px, 28%, 300px); }
-    .fighter-gaara  { right: 5%;   width: clamp(120px, 34%, 300px); }
+    .fighter-naruto { left: 4.5%; width: clamp(106px, 30.8%, 330px); }
+    .fighter-gaara  { right: 5%;   width: clamp(150px, 42.5%, 375px); }
 
     .sprite-wrap {
         width: 100%;
@@ -842,60 +842,6 @@
         0%   { transform: rotate(0deg) translateY(0); }
         45%  { transform: rotate(-10deg) translateY(3%); }
         100% { transform: rotate(0deg) translateY(0); }
-    }
-
-    /* Brazo de Naruto: oculto salvo en el lanzamiento */
-    .naruto-arm {
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 6;
-        display: block;
-        width: clamp(34px, 4.6vw, 56px);
-        height: clamp(9px, 1.1vw, 14px);
-        transform-origin: 0 50%;
-        opacity: 0;
-        pointer-events: none;
-        filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
-    }
-
-    .naruto-arm .arm-sleeve {
-        position: absolute;
-        inset: 0;
-        border: 2px solid #2a1000;
-        border-radius: 3px 2px 2px 3px;
-        background: linear-gradient(180deg, #ffb066 0%, var(--orange) 48%, #b8480d 100%);
-        box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.28);
-    }
-
-    .naruto-arm .arm-hand {
-        position: absolute;
-        right: -6px;
-        top: 50%;
-        width: clamp(10px, 1.3vw, 15px);
-        aspect-ratio: 1;
-        border: 2px solid #2a1000;
-        border-radius: 50%;
-        background: radial-gradient(circle at 38% 32%, #ffe0c4, #f0b184 58%, #c98a5c 100%);
-        transform: translateY(-50%);
-    }
-
-    .naruto-arm.is-throw { animation: arm-throw 0.52s ease-out both; }
-    .naruto-arm.is-up    { animation: arm-up 0.52s ease-out both; }
-
-    @keyframes arm-throw {
-        0%   { opacity: 0; transform: rotate(34deg) scaleX(0.35); }
-        18%  { opacity: 1; transform: rotate(24deg) scaleX(0.82); }
-        42%  { opacity: 1; transform: rotate(-6deg) scaleX(1.06); }
-        72%  { opacity: 1; transform: rotate(0deg) scaleX(1); }
-        100% { opacity: 0; transform: rotate(0deg) scaleX(0.55); }
-    }
-
-    @keyframes arm-up {
-        0%   { opacity: 0; transform: rotate(48deg) scaleX(0.4); }
-        22%  { opacity: 1; transform: rotate(-58deg) scaleX(0.9); }
-        58%  { opacity: 1; transform: rotate(-76deg) scaleX(1); }
-        100% { opacity: 0; transform: rotate(-82deg) scaleX(0.6); }
     }
 
     .ground-shadow {
@@ -992,7 +938,7 @@
         left: 0;
         top: 0;
         z-index: 9;
-        width: clamp(38px, 5.2vw, 60px);
+        width: clamp(45px, 6.1vw, 71px);
         height: auto;
         opacity: 0;
         pointer-events: none;
@@ -1003,7 +949,7 @@
 
     .kunai-projectile.is-special {
         z-index: 10;
-        width: clamp(52px, 7vw, 82px);
+        width: clamp(61px, 8.3vw, 97px);
         filter: drop-shadow(0 0 14px rgba(255, 211, 77, 0.95)) drop-shadow(0 0 28px rgba(255, 140, 40, 0.8));
     }
 
@@ -1018,12 +964,39 @@
     .kunai-ground {
         position: absolute;
         z-index: 5;
-        width: clamp(30px, 4.4vw, 50px);
+        width: clamp(35px, 5.2vw, 59px);
         height: auto;
         opacity: 0.96;
         pointer-events: none;
         transform-origin: 50% 50%;
         filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.55));
+    }
+
+    /* Kunais clavados en los carteles de nombre: por encima de los nameplates */
+    .kunai-name-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 7;
+        pointer-events: none;
+    }
+
+    .kunai-name {
+        position: absolute;
+        width: clamp(28px, 3.6vw, 46px);
+        height: auto;
+        pointer-events: none;
+        transform-origin: 50% 50%;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.65));
+    }
+
+    .nameplate.is-hit { animation: plate-shake 0.42s ease-out both; }
+
+    @keyframes plate-shake {
+        0%   { transform: translate(0, 0) rotate(0deg); }
+        22%  { transform: translate(-2px, 1px) rotate(-2.2deg); }
+        48%  { transform: translate(2px, -1px) rotate(2deg); }
+        72%  { transform: translate(-1px, 0) rotate(-1deg); }
+        100% { transform: translate(0, 0) rotate(0deg); }
     }
 
     .score-pop {
@@ -1439,8 +1412,8 @@
         .subtitle { font-size: 0.9rem; padding: 0 4px; }
 
         .duel { max-width: 100%; margin-top: 8px; gap: 2px; }
-        .naruto-hero { width: clamp(100px, 34vw, 160px); }
-        .gaara-hero  { width: clamp(100px, 30vw, 170px); }
+        .naruto-hero { width: clamp(110px, 37.4vw, 176px); }
+        .gaara-hero  { width: clamp(125px, 37.5vw, 213px); }
         .vs-badge { width: clamp(38px, 12vw, 54px); font-size: 0.82rem; margin-bottom: 10px; }
         .hero-tag { font-size: 0.5rem; letter-spacing: 0.12em; padding: 3px 6px; }
 
@@ -1459,8 +1432,8 @@
 
         .stage { aspect-ratio: 16 / 10.4; border-radius: 12px; }
         .nameplate { top: 5%; padding: 3px 7px; letter-spacing: 0.1em; }
-        .fighter-naruto { left: 3.5%; width: clamp(94px, 34%, 190px); }
-        .fighter-gaara  { right: 4%;   width: clamp(110px, 34%, 190px); }
+        .fighter-naruto { left: 3.5%; width: clamp(103px, 37.4%, 209px); }
+        .fighter-gaara  { right: 4%;   width: clamp(138px, 42.5%, 238px); }
         .fighter { bottom: 7.5%; }
         .ground-shadow { margin-top: -6px; }
 
@@ -1479,8 +1452,8 @@
         .topbar { gap: 6px; }
         .hero-title { font-size: clamp(0.92rem, 5.4vw, 1.45rem); }
         .subtitle { font-size: 0.84rem; }
-        .naruto-hero { width: clamp(94px, 32vw, 126px); }
-        .gaara-hero  { width: clamp(96px, 28vw, 140px); }
+        .naruto-hero { width: clamp(103px, 35.2vw, 139px); }
+        .gaara-hero  { width: clamp(120px, 35vw, 175px); }
         .vs-badge { width: 38px; font-size: 0.74rem; border-width: 2px; }
         .section-head h2 { font-size: 0.95rem; }
         .mode-btn { font-size: 0.8rem; min-height: 44px; }
@@ -1520,8 +1493,8 @@
         .answer .key { display: none; }
         .feedback { margin-top: 4px; font-size: 0.78rem; min-height: 1.3em; }
 
-        .fighter-naruto { width: clamp(80px, 30%, 180px); }
-        .fighter-gaara  { width: clamp(100px, 32%, 190px); }
+        .fighter-naruto { width: clamp(88px, 33%, 198px); }
+        .fighter-gaara  { width: clamp(125px, 40%, 238px); }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1628,6 +1601,7 @@
 
             <span class="nameplate naruto">NARUTO</span>
             <span class="nameplate gaara">GAARA</span>
+            <div class="kunai-name-layer" id="kunai-name-layer" aria-hidden="true"></div>
 
             <div class="fighter fighter-naruto" aria-hidden="true">
                 <div class="sprite-wrap" id="naruto-move">
@@ -1646,13 +1620,6 @@
                     <img class="sprite gaara-layer gaara-fallen" id="gaara-fallen-layer" src="imagenes/gaara-fallen.gif" alt="" aria-hidden="true" width="279" height="156" decoding="async">
                 </div>
                 <span class="ground-shadow"></span>
-            </div>
-
-            <div class="fx-anchor" id="arm-anchor" aria-hidden="true">
-                <span class="naruto-arm" id="naruto-arm">
-                    <span class="arm-sleeve"></span>
-                    <span class="arm-hand"></span>
-                </span>
             </div>
 
             <div class="fx-anchor" id="shield-anchor" aria-hidden="true">
@@ -1758,8 +1725,9 @@
     const gaaraFallenLayer = document.getElementById('gaara-fallen-layer');
     const kunaiEl = document.getElementById('kunai');
     const groundLayer = document.getElementById('kunai-ground-layer');
-    const narutoArm = document.getElementById('naruto-arm');
-    const armAnchor = document.getElementById('arm-anchor');
+    const nameLayer = document.getElementById('kunai-name-layer');
+    const narutoPlate = document.querySelector('.nameplate.naruto');
+    const gaaraPlate = document.querySelector('.nameplate.gaara');
     const shieldAnchor = document.getElementById('shield-anchor');
     const sandShield = document.getElementById('sand-shield');
     const impactAnchor = document.getElementById('impact-anchor');
@@ -1808,6 +1776,9 @@
     let isAddition = true;
     let options = [];
     let advanceTimer = null;
+    let lastAnswerAt = 0;
+    let missCount = 0;
+    let nameKunaiCount = 0;
 
     const segments = [];
     for (let i = 0; i < TOTAL; i++) {
@@ -1818,17 +1789,24 @@
         segments.push(seg);
     }
 
-    /* ---------- Audio: música de fondo + kunai ---------- */
+    /* ---------- Audio: música de fondo (setup / partida) + kunai ---------- */
     const MUSIC_VOLUME = 0.32;
     const KUNAI_VOLUME = 0.95;
     let soundOn = true;
     let musicWanted = false;   // true mientras el jugador está en setup o en partida
+    let musicTrack = null;     // 'setup' | 'game'
     let audioCtx = null;
 
-    const bgMusic = new Audio('audios/naruto-theme.mp3');
-    bgMusic.loop = true;
-    bgMusic.preload = 'auto';
-    bgMusic.volume = MUSIC_VOLUME;
+    const musicTracks = {
+        setup: new Audio('audios/naruto-theme.mp3'),
+        game: new Audio('audios/naruto-guitar-cover.mp3')
+    };
+    Object.keys(musicTracks).forEach(function (key) {
+        const track = musicTracks[key];
+        track.loop = true;
+        track.preload = 'auto';
+        track.volume = MUSIC_VOLUME;
+    });
 
     const kunaiSfx = new Audio('audios/kunai-throw.mp3');
     kunaiSfx.preload = 'auto';
@@ -1840,10 +1818,20 @@
         pre.src = src;
     });
 
+    /* Pausa todas las pistas menos la indicada: nunca suenan las dos a la vez. */
+    function pauseMusicExcept(key) {
+        Object.keys(musicTracks).forEach(function (k) {
+            if (k === key) return;
+            try { musicTracks[k].pause(); } catch (e) {}
+            try { musicTracks[k].currentTime = 0; } catch (e) {}
+        });
+    }
+
     function playMusic() {
-        if (!soundOn || !musicWanted) return;
+        if (!soundOn || !musicWanted || !musicTrack) return;
+        pauseMusicExcept(musicTrack);
         try {
-            const attempt = bgMusic.play();
+            const attempt = musicTracks[musicTrack].play();
             if (attempt && typeof attempt.then === 'function') {
                 attempt.then(function () {
                     ['pointerdown', 'keydown', 'touchstart'].forEach(function (type) {
@@ -1854,18 +1842,26 @@
         } catch (e) {}
     }
 
-    function startMusic(restart) {
+    /* which: 'setup' o 'game'. restart: la pista elegida empieza desde el principio. */
+    function startMusic(which, restart) {
+        const next = which === 'game' ? 'game' : 'setup';
         musicWanted = true;
+        if (musicTrack !== next) {
+            pauseMusicExcept(next);
+            musicTrack = next;
+        }
         if (restart) {
-            try { bgMusic.currentTime = 0; } catch (e) {}
+            try { musicTracks[next].currentTime = 0; } catch (e) {}
         }
         playMusic();
     }
 
     function stopMusic() {
         musicWanted = false;
-        try { bgMusic.pause(); } catch (e) {}
-        try { bgMusic.currentTime = 0; } catch (e) {}
+        Object.keys(musicTracks).forEach(function (k) {
+            try { musicTracks[k].pause(); } catch (e) {}
+            try { musicTracks[k].currentTime = 0; } catch (e) {}
+        });
     }
 
     function playKunaiSound() {
@@ -1888,7 +1884,9 @@
     // Al salir de la página no debe quedar música sonando
     window.addEventListener('pagehide', function () {
         musicWanted = false;
-        try { bgMusic.pause(); } catch (e) {}
+        Object.keys(musicTracks).forEach(function (k) {
+            try { musicTracks[k].pause(); } catch (e) {}
+        });
         try { kunaiSfx.pause(); } catch (e) {}
     });
 
@@ -1960,7 +1958,9 @@
             if (musicWanted) playMusic();
             tone(660, 0, 0.08, 'triangle', 0.03);
         } else {
-            try { bgMusic.pause(); } catch (e) {}
+            Object.keys(musicTracks).forEach(function (k) {
+                try { musicTracks[k].pause(); } catch (e) {}
+            });
             try { kunaiSfx.pause(); } catch (e) {}
         }
     });
@@ -2053,12 +2053,15 @@
         roundFinished = true;
         clearTimeout(advanceTimer);
         advanceTimer = null;
+        lastAnswerAt = 0;
         gameScreen.classList.remove('active');
         resultScreen.classList.remove('active');
         setupScreen.classList.add('active');
         resetFx();
         clearGroundKunais();
-        startMusic(true);
+        clearNameKunais();
+        missCount = 0;
+        startMusic('setup', true);
         window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
     }
 
@@ -2072,10 +2075,13 @@
         options = [];
         clearTimeout(advanceTimer);
         advanceTimer = null;
+        lastAnswerAt = 0;
 
         resetSegments();
         resetFx();
         clearGroundKunais();
+        clearNameKunais();
+        missCount = 0;
         clearFeedback();
         answerButtons.forEach(function (btn) {
             btn.disabled = false;
@@ -2086,7 +2092,7 @@
         resultScreen.classList.remove('active');
         gameScreen.classList.add('active');
 
-        startMusic(true);
+        startMusic('game', true);
         updateHud();
         nextReto();
         window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
@@ -2171,7 +2177,6 @@
         sandShield.classList.remove('is-active');
         impact.classList.remove('is-active');
         scorePop.classList.remove('is-active');
-        narutoArm.classList.remove('is-throw', 'is-up');
         try {
             if (kunaiEl.getAnimations) {
                 kunaiEl.getAnimations().forEach(function (anim) { anim.cancel(); });
@@ -2185,11 +2190,19 @@
         gaaraFallenLayer.classList.remove('is-visible');
         gaaraMove.classList.remove('is-fallen');
         gaaraSprite.style.opacity = '1';
+        if (narutoPlate) narutoPlate.classList.remove('is-hit');
+        if (gaaraPlate) gaaraPlate.classList.remove('is-hit');
     }
 
     function clearGroundKunais() {
         if (!groundLayer) return;
         while (groundLayer.firstChild) groundLayer.removeChild(groundLayer.firstChild);
+    }
+
+    function clearNameKunais() {
+        if (!nameLayer) return;
+        while (nameLayer.firstChild) nameLayer.removeChild(nameLayer.firstChild);
+        nameKunaiCount = 0;
     }
 
     function placeAnchor(anchor, sprite, xFactor, yFactor) {
@@ -2241,6 +2254,56 @@
         scorePop.classList.add('is-active');
     }
 
+    /* ---------- Fallo: kunai clavado en el cartel del nombre ---------- */
+    function nextMissTarget() {
+        const n = missCount++;
+        if (n === 0) return 'gaara';
+        if (n === 1) return 'naruto';
+        if (n === 2) return 'gaara';
+        return Math.random() < 0.5 ? 'gaara' : 'naruto';
+    }
+
+    /* Punto de impacto dentro del cartel; se reparte para que los kunais se acumulen. */
+    function nameKunaiSpot(target) {
+        const plate = target === 'naruto' ? narutoPlate : gaaraPlate;
+        const stageRect = stage.getBoundingClientRect();
+        const r = plate.getBoundingClientRect();
+        const i = nameKunaiCount;
+        const fx = 0.2 + ((i * 0.29) % 0.6);
+        const fy = 0.6 + ((i * 0.47) % 0.35);
+        const rot = [-30, 22, -12, 34, -38, 10, 28, -20, 16][i % 9];
+        const x = Math.min(Math.max(r.left - stageRect.left + r.width * fx, 26), stageRect.width - 26);
+        const y = Math.min(Math.max(r.top - stageRect.top + r.height * fy, 16), stageRect.height - 16);
+        return { x: x, y: y, rot: rot };
+    }
+
+    function shakePlate(plate) {
+        if (!plate) return;
+        plate.classList.remove('is-hit');
+        reflow(plate);
+        plate.classList.add('is-hit');
+        window.setTimeout(function () { plate.classList.remove('is-hit'); }, 480);
+    }
+
+    function addNameKunai(target, spot, width) {
+        if (!nameLayer) return;
+        const s = spot || nameKunaiSpot(target);
+        nameKunaiCount++;
+        const img = document.createElement('img');
+        img.className = 'kunai-name';
+        img.src = 'imagenes/kunai.png';
+        img.alt = '';
+        img.setAttribute('aria-hidden', 'true');
+        img.width = 555;
+        img.height = 181;
+        if (width) img.style.width = Math.round(width) + 'px';
+        img.style.left = s.x + 'px';
+        img.style.top = s.y + 'px';
+        img.style.transform = 'translate(-50%, -50%) rotate(' + s.rot + 'deg)';
+        nameLayer.appendChild(img);
+        shakePlate(target === 'naruto' ? narutoPlate : gaaraPlate);
+    }
+
     /* 9 variantes de caída al suelo. Cambian rotación final, desplazamiento y rebotes:
        0 vertical punta abajo (90) · 1 vertical punta arriba (-90) · 2 horizontal (0)
        3 horizontal invertido (180) · 4 diagonal (45) · 5 diagonal (-45)
@@ -2264,10 +2327,13 @@
     /* Crea un kunai clavado en el suelo y lo anima desde el punto de impacto. */
     function spawnGroundKunai(variant, fromX, fromY) {
         if (!groundLayer) return Promise.resolve();
-        const v = DROP_VARIANTS[variant % DROP_VARIANTS.length];
+        const idx = variant % 9;
+        const v = DROP_VARIANTS[idx];
         const stageRect = stage.getBoundingClientRect();
-        const finalX = stageRect.width * (0.54 + (variant % 9) * 0.038);
-        const finalY = stageRect.height * 0.9;
+        const gaaraRect = gaaraSprite.getBoundingClientRect();
+        // Los 9 kunais se reparten alrededor de la base/arena de Gaara (12%..76% de su ancho).
+        const finalX = (gaaraRect.left - stageRect.left) + gaaraRect.width * (0.12 + (idx / 8) * 0.64);
+        const finalY = Math.min(stageRect.height * 0.88, stageRect.height - 24);
         const size = kunaiEl.offsetWidth || 44;
 
         const img = document.createElement('img');
@@ -2315,9 +2381,10 @@
         }
         frames.push({ transform: 'translate(-50%, -50%) rotate(' + v.rot + 'deg)', opacity: 1, offset: 1 });
 
+        let anim = null;
         try {
-            const anim = img.animate(frames, {
-                duration: 520,
+            anim = img.animate(frames, {
+                duration: 620,
                 easing: 'cubic-bezier(0.35, 0.05, 0.6, 1)',
                 fill: 'forwards'
             });
@@ -2330,9 +2397,10 @@
         }
         // Red de seguridad (animación cancelada o pestaña en segundo plano)
         window.setTimeout(function () {
+            if (anim) { try { anim.cancel(); } catch (e) {} }
             img.style.opacity = '1';
             img.style.transform = 'translate(-50%, -50%) rotate(' + v.rot + 'deg)';
-        }, 600);
+        }, 700);
         return Promise.resolve();
     }
 
@@ -2343,8 +2411,8 @@
         gaaraMove.classList.add('is-fallen');
     }
 
-    /* Lanza un kunai. hit = acierto, special = remate final. Devuelve una Promise. */
-    function launchKunai(hit, special, variant) {
+    /* Lanza un kunai. hit = acierto, special = remate final, missTarget = cartel del fallo. */
+    function launchKunai(hit, special, variant, missTarget) {
         return new Promise(function (resolve) {
             playKunaiSound();
             try {
@@ -2353,24 +2421,26 @@
                 }
             } catch (e) {}
 
-            placeAnchor(armAnchor, narutoSprite, 0.74, 0.36);
-            narutoArm.classList.remove('is-throw', 'is-up');
-            reflow(narutoArm);
-            narutoArm.classList.add(hit || special ? 'is-throw' : 'is-up');
-            window.setTimeout(function () {
-                narutoArm.classList.remove('is-throw', 'is-up');
-            }, 560);
-
             const stageRect = stage.getBoundingClientRect();
             const narutoRect = narutoSprite.getBoundingClientRect();
             const gaaraRect = gaaraSprite.getBoundingClientRect();
             const w = kunaiEl.offsetWidth || 44;
             const h = kunaiEl.offsetHeight || 14;
 
-            const startX = narutoRect.left - stageRect.left + narutoRect.width * 0.74;
-            const startY = narutoRect.top - stageRect.top + narutoRect.height * 0.38;
-            const endX = gaaraRect.left - stageRect.left + gaaraRect.width * 0.5;
-            const endY = gaaraRect.top - stageRect.top + gaaraRect.height * (special ? 0.46 : 0.42);
+            // Punto de salida: zona de la mano izquierda de Naruto (sin brazo animado).
+            const anchorX = narutoRect.left - stageRect.left + narutoRect.width * 0.28;
+            const startX = Math.max(anchorX, w / 2 + 3);
+            const startY = narutoRect.top - stageRect.top + narutoRect.height * 0.43;
+
+            // Fallo: el kunai vuela al cartel del nombre. Acierto/remate: a Gaara.
+            const toName = !hit && !special;
+            const nameSpot = toName ? nameKunaiSpot(missTarget || 'gaara') : null;
+            const endX = toName
+                ? nameSpot.x
+                : gaaraRect.left - stageRect.left + gaaraRect.width * 0.5;
+            const endY = toName
+                ? nameSpot.y
+                : gaaraRect.top - stageRect.top + gaaraRect.height * (special ? 0.46 : 0.42);
 
             kunaiEl.classList.toggle('is-special', !!special);
             kunaiEl.style.left = (startX - w / 2) + 'px';
@@ -2389,11 +2459,15 @@
                     flashShield();
                     shakeGaara();
                     spawnGroundKunai((variant || 0) % 9, endX, endY);
+                } else {
+                    addNameKunai(missTarget || 'gaara', nameSpot, Math.round(w * 0.8));
                 }
                 done();
                 return;
             }
 
+            // Vuelo de 1-2 s escalado con el tamaño de pantalla.
+            const screenScale = Math.min(1, stageRect.width / 700);
             let frames;
             let duration;
             if (special) {
@@ -2403,7 +2477,7 @@
                     { transform: 'translate(' + (dx * 0.5) + 'px, ' + (dy * 0.5 - 40) + 'px) rotate(260deg) scale(1.15)', opacity: 1, offset: 0.55 },
                     { transform: 'translate(' + dx + 'px, ' + dy + 'px) rotate(430deg) scale(1)', opacity: 1, offset: 1 }
                 ];
-                duration = 1000;
+                duration = Math.round(1100 + 750 * screenScale);
             } else if (hit) {
                 frames = [
                     { transform: 'translate(0, 0) rotate(-15deg) scale(0.6)', opacity: 0, offset: 0 },
@@ -2411,15 +2485,17 @@
                     { transform: 'translate(' + (dx * 0.55) + 'px, ' + (dy * 0.55 - 26) + 'px) rotate(300deg) scale(1)', opacity: 1, offset: 0.62 },
                     { transform: 'translate(' + dx + 'px, ' + dy + 'px) rotate(540deg) scale(1)', opacity: 1, offset: 1 }
                 ];
-                duration = 900;
+                duration = Math.round(1000 + 700 * screenScale);
             } else {
+                // Termina con el mismo tamaño y giro que el kunai clavado, para que el relevo no salte.
+                const endRot = nameSpot.rot;
                 frames = [
                     { transform: 'translate(0, 0) rotate(-15deg) scale(0.6)', opacity: 0, offset: 0 },
-                    { transform: 'translate(0, 0) rotate(0deg) scale(1)', opacity: 1, offset: 0.07 },
-                    { transform: 'translate(' + (dx * 0.35) + 'px, ' + (dy * 0.4 - 90) + 'px) rotate(220deg) scale(1)', opacity: 1, offset: 0.5 },
-                    { transform: 'translate(' + (dx * 0.45) + 'px, ' + (dy - 420) + 'px) rotate(400deg) scale(0.75)', opacity: 0, offset: 1 }
+                    { transform: 'translate(0, 0) rotate(0deg) scale(1)', opacity: 1, offset: 0.08 },
+                    { transform: 'translate(' + (dx * 0.5) + 'px, ' + (dy * 0.5 - 55) + 'px) rotate(' + (endRot + 200) + 'deg) scale(1)', opacity: 1, offset: 0.55 },
+                    { transform: 'translate(' + dx + 'px, ' + dy + 'px) rotate(' + (endRot + 360) + 'deg) scale(0.8)', opacity: 1, offset: 1 }
                 ];
-                duration = 950;
+                duration = Math.round(1000 + 500 * screenScale);
             }
 
             let throwEnded = false;
@@ -2444,6 +2520,7 @@
                     spawnGroundKunai((variant || 0) % 9, endX, endY);
                     done();
                 } else {
+                    addNameKunai(missTarget || 'gaara', nameSpot, Math.round(w * 0.8));
                     done();
                 }
             };
@@ -2472,8 +2549,8 @@
         }, 420);
     }
 
-    function animateWrong() {
-        launchKunai(false, false);
+    function animateWrong(target) {
+        launchKunai(false, false, null, target);
     }
 
     /* ---------- Responder ---------- */
@@ -2488,6 +2565,7 @@
         if (!active || answered || roundFinished) return;
         if (index < 0 || index > 2 || options.length < 3) return;
 
+        lastAnswerAt = Date.now();
         answered = true;
         const chosen = options[index];
         const isRight = chosen === correctAnswer;
@@ -2504,11 +2582,14 @@
             animateCorrect();
             sfxCorrect();
         } else {
+            const missTarget = nextMissTarget();
             chosenButton.classList.add('is-wrong');
             markSegment(answeredCount, false);
-            feedback.textContent = '¡El kunai se fue al cielo! La respuesta era ' + correctAnswer + '.';
+            feedback.textContent = '¡El kunai se clavó en el nombre de ' +
+                (missTarget === 'gaara' ? 'Gaara' : 'Naruto') +
+                '! La respuesta era ' + correctAnswer + '.';
             feedback.className = 'feedback bad';
-            animateWrong();
+            animateWrong(missTarget);
             sfxWrong();
         }
 
@@ -2520,7 +2601,7 @@
             if (!active || roundFinished) return;
             if (answeredCount >= TOTAL) finishGame();
             else nextReto();
-        }, answeredCount >= TOTAL ? 1400 : 2500);
+        }, answeredCount >= TOTAL ? 2600 : 3000);
     }
 
     answerButtons.forEach(function (btn) {
@@ -2559,21 +2640,27 @@
             localStorage.setItem(progressKey, JSON.stringify(profileProgress));
         } catch (e) {}
 
-        // Remate final con 9+ aciertos: la caída ocurre antes del resultado.
+        // El resultado no debe aparecer antes de 6,5 s desde la última respuesta.
+        const finish = function () {
+            const remaining = Math.max(0, 6500 - (Date.now() - lastAnswerAt));
+            window.setTimeout(function () {
+                showResult(grade, goldThreshold);
+            }, remaining);
+        };
+
+        // Remate final con 9+ aciertos: la caída ocurre dentro de ese margen.
         if (score >= 9) {
             if (reduceMotion) {
                 setGaaraFallenInstant();
-                showResult(grade, goldThreshold);
+                finish();
             } else {
-                launchKunai(true, true).then(function () {
-                    showResult(grade, goldThreshold);
-                });
+                launchKunai(true, true).then(finish);
             }
             return;
         }
 
         resetFx();
-        showResult(grade, goldThreshold);
+        finish();
     }
 
     function showResult(grade, goldThreshold) {
@@ -2636,7 +2723,7 @@
     renderLevels();
     applyMode(operationMode);
     updateHud();
-    startMusic(true);
+    startMusic('setup', true);
 })();
 </script>
 </body>
