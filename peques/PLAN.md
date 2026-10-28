@@ -453,12 +453,11 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 ### Publicación
 
-- **Pendiente de aprobación del usuario.** No se ha hecho commit ni push; la producción sigue en `5215fdc`.
+- Publicado junto con la pausa final en `52dabb8` (28/10/2026).
 - La copia de seguridad se creará después de publicar, conservando las copias anteriores.
 
 ### Pendiente
 
-- Aprobación del usuario y publicación.
 - Probar el flujo real de Mireia con PIN en producción.
 - Revisar una partida completa en un móvil real.
 
@@ -481,11 +480,12 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 ### Publicación
 
-- Pendiente de commit y push en el momento de escribir esta sección; se publicará junto con la acción de Naruto y el ajuste de tamaños del 28/10.
+- Publicado en `52dabb8` (`Naruto: accion, sonido, tamanos y pausa final con Gaara caido`) en `origin/main`; GitHub Pages sirvió el cambio.
+- Verificado en producción con Guest 10/10 a 500×805: respuesta→resultado **11 681,5 ms**, espera tras la caída **5 050,3 ms**, ORO y `errors=[]`. La hoja de acción responde HTTP 200 con 328.448 bytes.
+- Mireia en producción redirige al login sin sesión (protección por PIN), como estaba diseñado; el smoke test local de Mireia 0/10 pasó con 6 560,7 ms y `errors=[]`.
 - La copia de seguridad se creará después de publicar, conservando las copias anteriores.
 
 ### Pendiente
 
-- Publicar y verificar en producción con Guest y Mireia.
 - Probar el flujo real de Mireia con PIN en producción.
 - Revisar una partida completa en un móvil real.
