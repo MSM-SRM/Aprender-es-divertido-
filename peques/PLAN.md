@@ -394,3 +394,98 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 - Probar el flujo real de Mireia con PIN en producción.
 - Revisar una partida completa en un móvil real.
+
+---
+
+## Actualización 28/10/2026 — Naruto: acción, sonido, kunai en la base, reparto aleatorio y movimiento reducido
+
+### Cambios
+
+- Nueva animación de acción de Naruto (`peques/imagenes/naruto-action-sheet.png`, 11 frames, 150 ms por frame, 1,65 s) que sustituye temporalmente a `naruto-run.webp` en cada respuesta.
+- La acción se mantiene hasta que el kunai llega a Gaara o al cartel del nombre; después vuelve el sprite de carrera antes de que aparezca el siguiente reto.
+- Fondo de la acción transparente (PNG con alfa), sin caja negra.
+- Altura de Naruto en la acción ajustada a la del sprite de carrera: 112,9 px frente a 113,1 px (ratio 1,002).
+- Sonido `audios/kunai-throw.mp3` sincronizado con el frame de lanzamiento (1500 ms; frame 10 de la acción).
+- Kunai de fallo: la punta se clava en el color de la base del cartel del nombre (borde inferior), con el mango colgando por debajo; ya no cruza las letras ni flota.
+- Los kunais de cartel se acumulan y solo se limpian al empezar partida o volver al setup.
+- Reparto de carteles aleatorio y equilibrado: `nextMissTarget()` usa bolsas de 4 (2 Gaara + 2 Naruto) barajadas; en 8 fallos, 4 y 4, sin acumular todos en el mismo cartel.
+- Tiempos de vuelo ajustados para que el kunai aterrice antes de los 3000 ms del siguiente reto: acierto `950 + 450 * escala`, fallo `900 + 450 * escala`, remate final `1100 + 750 * escala`.
+- Movimiento reducido: la acción y el vuelo del kunai son feedback esencial y se mantienen aunque el sistema pida reducir movimiento; el resto de animaciones decorativas sigue respetándose. El remate final también se ejecuta.
+- Cache-busting del nuevo asset: `naruto-action-sheet.png?v=20261028a`.
+
+### Pruebas
+
+- Guest 10/10: ORO, suma 1 estrella (15 → 16 en la última pasada), resultado a 6,5 s, `errors=[]`.
+- Acción visible a 1500 ms y 2500 ms; oculta a 2900 ms en móvil y a 3100 ms en escritorio, con la carrera visible y el siguiente reto ya en pantalla.
+- Fallo móvil: acción visible a 2500 ms con el kunai en vuelo; a 3100 ms la carrera ha vuelto y el kunai está clavado (`nameKunais=1`).
+- Punta del kunai dentro del borde inferior del cartel a 390×844 y 1024×768; capturas `mobile8-*` y `desktop8-*`.
+- 8 fallos seguidos: 4 Gaara / 4 Naruto; cada kunai aterrizó en el cartel anunciado (`miss-target-random.json`, `miss-target-random-final.png`).
+- Movimiento reducido: acción visible a 800 ms y 2500 ms (frame 10), carrera a 2900 ms; fallo con kunai en vuelo a 2500 ms y `nameKunais=1` a 3100 ms; `errors=[]` (`reduced-motion.json`, `reduced-flight.json`, capturas `reduced-*`).
+- Offline local con HTTPS/WSS bloqueados y `file://`: solo recursos locales, acción visible a 800 ms, carrera y siguiente reto a 2,9 s, sin errores.
+- QA: `qa/naruto-mejoras-2026-10-25/ADENDA-2026-10-25-brazo-musica.md`, sección 8.
+
+### Publicación
+
+- **Pendiente de aprobación del usuario.** No se ha hecho commit ni push; la producción sigue en `5215fdc`.
+- La copia de seguridad se creará después de publicar, conservando las copias anteriores.
+
+### Pendiente
+
+- Aprobación del usuario y publicación.
+- Probar el flujo real de Mireia con PIN en producción.
+- Revisar una partida completa en un móvil real.
+
+## Actualización 28/10/2026 — Naruto: acción +50 %, Gaara −15 % y ajuste del recorte en 500 px
+
+### Cambios
+
+- La animación de acción de Naruto (`.naruto-action`) es un 50 % más grande: `height: 146.25%` (antes 97,5 %) y `left: calc(50% + max(12px, 10%))` para no recortar el fotograma más ancho en el borde izquierdo del stage. Se mantienen duración, keyframes, proporción 288:268, posición inferior y sprite de carrera.
+- Gaara es un 15 % más pequeño en general: las tres anchuras de `.fighter-gaara` pasan al 85 % (base `clamp(127.5px, 36.125%, 318.75px)`, móvil `clamp(117.3px, 36.125%, 202.3px)`, landscape bajo `clamp(106.25px, 34%, 202.3px)`). No cambian nameplates, escudo de arena, posiciones ni el resto del layout.
+- Sin cambios en reparto aleatorio, tiempos, sonido, kunai en la base, movimiento reducido, Guest/offline ni cache-busting.
+
+### Pruebas
+
+- Medidas en 320×568, 390×844, 500×805, 568×320, 720×900, 768×1024, 1024×768 y 1180×820: acción ×1,50 (1,4998–1,5001); Gaara ×0,85 (0,8500).
+- A 390×844 la acción mide 187,23×174,23 px y Gaara 131,48 px (antes 154,69 px). El margen izquierdo mínimo es +0,79 px a 390 y +1,02 px a 500; ya no hay solape ni recorte en ningún viewport medido. El fix también corrigió 720×900, que antes quedaba a −2,96 px.
+- Acción visible a 800 y 2500 ms; oculta y carrera visible a ~3050 ms. Fallo con kunai en vuelo a 2500 ms y `nameKunais=1` a 3100–3150 ms.
+- Guest 10/10: ORO, +1 estrella, `errors=[]`; también a 500×805 (19→20). 8 fallos 4 Gaara / 4 Naruto y `match=true`; movimiento reducido y `file://` sin errores; escudo de arena dentro del stage y sin solapar carteles.
+- QA: `qa/naruto-mejoras-2026-10-25/ADENDA-2026-10-25-brazo-musica.md`, sección 9; datos `qa-size-*` en `qa/naruto-mejoras-2026-10-25/shots6/`.
+
+### Publicación
+
+- **Pendiente de aprobación del usuario.** No se ha hecho commit ni push; la producción sigue en `5215fdc`.
+- La copia de seguridad se creará después de publicar, conservando las copias anteriores.
+
+### Pendiente
+
+- Aprobación del usuario y publicación.
+- Probar el flujo real de Mireia con PIN en producción.
+- Revisar una partida completa en un móvil real.
+
+## Actualización 28/10/2026 — Naruto: pausa de 5 s con Gaara caído antes del resultado
+
+### Cambios
+
+- En `finishGame()` se añade `const FINISHER_HOLD_MS = 5000;` y el helper `finish(extraHoldMs)` suma esa espera solo en el remate final (`score >= 9`): `launchKunai(true, true).then(function () { finish(FINISHER_HOLD_MS); })`.
+- La pausa empieza cuando termina la caída de Gaara, no al lanzar el kunai. El resto de caminos mantiene el mínimo de 6,5 s desde la última respuesta.
+- Sin cambios en animaciones, sonido, kunai, reparto aleatorio, movimiento reducido ni layout.
+
+### Pruebas
+
+- 500×805: respuesta→caída 4 930,5 ms; caída→resultado 6 763,2 ms; respuesta→resultado **11 693,7 ms**; espera tras la caída **5 051,8 ms**.
+- 390×844: 4 829,5 / 6 754,8 / **11 584,3** / **5 052,0** ms.
+- A los ~9 s la pantalla de juego sigue activa, Gaara caído visible y el resultado no ha aparecido.
+- 8/10: 6 554,1 ms (PLATA); 0/10: 6 553,6 ms; Mireia 0/10: 6 560,7 ms. Sin espera extra.
+- Guest 10/10: ORO, +1 estrella, `errors=[]`; clic bloqueado durante la espera; acción/kunai/sonido y movimiento reducido sin errores.
+- QA: `qa/naruto-mejoras-2026-10-25/ADENDA-2026-10-25-brazo-musica.md`, sección 10; datos `qa-hold-qa-*` en `qa/naruto-mejoras-2026-10-25/shots6/`.
+
+### Publicación
+
+- Pendiente de commit y push en el momento de escribir esta sección; se publicará junto con la acción de Naruto y el ajuste de tamaños del 28/10.
+- La copia de seguridad se creará después de publicar, conservando las copias anteriores.
+
+### Pendiente
+
+- Publicar y verificar en producción con Guest y Mireia.
+- Probar el flujo real de Mireia con PIN en producción.
+- Revisar una partida completa en un móvil real.
