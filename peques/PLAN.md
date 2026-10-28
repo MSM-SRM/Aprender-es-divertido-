@@ -454,7 +454,7 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 ### Publicación
 
 - Publicado junto con la pausa final en `52dabb8` (28/10/2026).
-- La copia de seguridad se creará después de publicar, conservando las copias anteriores.
+- Copia creada en `C:\Users\Usuario\Downloads\MiMundo_backup_2026-10-28_naruto-accion` (ZIP de 10,2 MB; sin `.git` ni `qa/` completa), conservando las copias anteriores.
 
 ### Pendiente
 
@@ -483,7 +483,7 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - Publicado en `52dabb8` (`Naruto: accion, sonido, tamanos y pausa final con Gaara caido`) en `origin/main`; GitHub Pages sirvió el cambio.
 - Verificado en producción con Guest 10/10 a 500×805: respuesta→resultado **11 681,5 ms**, espera tras la caída **5 050,3 ms**, ORO y `errors=[]`. La hoja de acción responde HTTP 200 con 328.448 bytes.
 - Mireia en producción redirige al login sin sesión (protección por PIN), como estaba diseñado; el smoke test local de Mireia 0/10 pasó con 6 560,7 ms y `errors=[]`.
-- La copia de seguridad se creará después de publicar, conservando las copias anteriores.
+- Copia creada en `C:\Users\Usuario\Downloads\MiMundo_backup_2026-10-28_naruto-accion` (ZIP de 10,2 MB; sin `.git` ni `qa/` completa), conservando las copias anteriores.
 
 ### Pendiente
 
