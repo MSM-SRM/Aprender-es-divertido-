@@ -20,35 +20,35 @@
 <div id="halloweenGames" style="display:none; margin:18px 0;">
   <h2 style="color:#fff;text-align:center;margin:0 0 12px;">Más juegos de Halloween</h2>
   <div class="cards">
-    <section class="card" aria-labelledby="paintTitle">
-      <h2 id="paintTitle">🎨 Pinta y descubre</h2>
-      <p>Resuelve cuentas, elige colores y descubre una imagen sorpresa de Halloween.</p>
-      <div class="actions" style="margin-top:12px;"><a class="back" id="paintLink" href="#">Jugar →</a></div>
+    <section class="card" aria-labelledby="broomTitle">
+      <h2 id="broomTitle">Room on the Broom</h2>
+      <p>by Julia Donaldson (Author), Axel Scheffler (Illustrator)</p>
+      <div style="margin-top:12px;"><a href="https://www.youtube.com/watch?v=VKbOKlA6yfk" target="_blank" rel="noopener noreferrer"><img src="imagenes/halloween/room-on-the-broom.jpg" alt="Room on the Broom" style="width:100%;border-radius:14px;display:block;"></a></div>
     </section>
-    <section class="card" aria-labelledby="addamsTitle">
-      <h2 id="addamsTitle">🧛 Memoria: familia Addams</h2>
-      <p>Encuentra las parejas y despierta a toda la familia. Practica la memoria y la atención.</p>
-      <div class="actions" style="margin-top:12px;"><a class="back" id="addamsLink" href="#">Jugar →</a></div>
-    </section>
-    <section class="card" aria-labelledby="storyGameTitle">
-      <h2 id="storyGameTitle">📖 Cuento de miedo</h2>
-      <p>Lee un cuento de miedo divertido con imágenes y responde una pregunta al final.</p>
-      <div class="actions" style="margin-top:12px;"><a class="back" id="storyLink" href="#">Leer →</a></div>
+    <section class="card" aria-labelledby="bookOrigTitle">
+      <h2 id="bookOrigTitle">🔗 Libro original: My First Halloween</h2>
+      <p>Abre directamente el PDF original en Free Kids Books.</p>
+      <div class="actions" style="margin-top:12px;"><a class="back" id="bookOrigLink" href="#">Abrir original →</a></div>
     </section>
     <section class="card" aria-labelledby="bookTitle">
       <h2 id="bookTitle">📚 Libro: Once Upon a Halloween</h2>
       <p>Libro ilustrado para leer pasando páginas con las flechas, en móvil o tablet.</p>
       <div class="actions" style="margin-top:12px;"><a class="back" id="bookLink" href="#">Leer libro →</a></div>
     </section>
-    <section class="card" aria-labelledby="book2Title">
-      <h2 id="book2Title">📚 Libro: My First Halloween (nuestro)</h2>
-      <p>Versión propia del cuento, con imágenes y flechas para pasar páginas.</p>
-      <div class="actions" style="margin-top:12px;"><a class="back" id="book2Link" href="#">Leer libro →</a></div>
+    <section class="card" aria-labelledby="storyGameTitle">
+      <h2 id="storyGameTitle">📖 Cuento de miedo</h2>
+      <p>Lee un cuento de miedo divertido con imágenes y responde una pregunta al final.</p>
+      <div class="actions" style="margin-top:12px;"><a class="back" id="storyLink" href="#">Leer →</a></div>
     </section>
-    <section class="card" aria-labelledby="bookOrigTitle">
-      <h2 id="bookOrigTitle">🔗 Libro original: My First Halloween</h2>
-      <p>Abre directamente el libro original en Free Kids Books para comparar.</p>
-      <div class="actions" style="margin-top:12px;"><a class="back" id="bookOrigLink" href="#">Abrir original →</a></div>
+    <section class="card" aria-labelledby="addamsTitle">
+      <h2 id="addamsTitle">🧛 Memoria: familia Addams</h2>
+      <p>Encuentra las parejas y despierta a toda la familia. Practica la memoria y la atención.</p>
+      <div class="actions" style="margin-top:12px;"><a class="back" id="addamsLink" href="#">Jugar →</a></div>
+    </section>
+    <section class="card" aria-labelledby="paintTitle">
+      <h2 id="paintTitle">🎨 Pinta y descubre</h2>
+      <p>Resuelve cuentas, elige colores y descubre una imagen sorpresa de Halloween.</p>
+      <div class="actions" style="margin-top:12px;"><a class="back" id="paintLink" href="#">Jugar →</a></div>
     </section>
   </div>
 </div>
@@ -90,10 +90,8 @@ if (eventKey === 'halloween') {
   if (storyLink) storyLink.href = 'halloween-cuento-miedo.html?profile=' + encodeURIComponent(profile);
   const bookLink = document.getElementById('bookLink');
   if (bookLink) bookLink.href = 'halloween-libro.html?profile=' + encodeURIComponent(profile);
-  const book2Link = document.getElementById('book2Link');
-  if (book2Link) book2Link.href = 'halloween-libro2.html?profile=' + encodeURIComponent(profile);
   const bookOrigLink = document.getElementById('bookOrigLink');
-  if (bookOrigLink) bookOrigLink.href = 'halloween-libro-original.html?profile=' + encodeURIComponent(profile);
+  if (bookOrigLink) bookOrigLink.href = 'https://freekidsbooks.org/wp-content/uploads/2025/10/2510-My_First_Halloween-FKB.pdf';
 }
 let index=0,done=false,completed=false;const question=document.getElementById('question'),answers=document.getElementById('answers'),feedback=document.getElementById('feedback'),next=document.getElementById('next'),finish=document.getElementById('finish');
 function showQuestion(){done=false;finish.classList.remove('show');feedback.textContent='';next.disabled=true;next.textContent='Siguiente pregunta →';const item=event.questions[index];question.textContent=item[0];answers.innerHTML='';[...item[1]].sort(()=>Math.random()-.5).forEach(answer=>{const button=document.createElement('button');button.className='answer';button.textContent=answer;button.onclick=()=>{if(done)return;if(answer===item[2]){done=true;feedback.textContent='¡Muy bien! Respuesta correcta 😊';next.disabled=false}else{feedback.textContent='Prueba otra vez 😊'}};answers.append(button)})}
