@@ -35,6 +35,11 @@
       <p>Lee un cuento de miedo divertido con imágenes y responde una pregunta al final.</p>
       <div class="actions" style="margin-top:12px;"><a class="back" id="storyLink" href="#">Leer →</a></div>
     </section>
+    <section class="card" aria-labelledby="bookTitle">
+      <h2 id="bookTitle">📚 Libro: Once Upon a Halloween</h2>
+      <p>Libro ilustrado para leer pasando páginas con las flechas, en móvil o tablet.</p>
+      <div class="actions" style="margin-top:12px;"><a class="back" id="bookLink" href="#">Leer libro →</a></div>
+    </section>
   </div>
 </div>
 
@@ -73,6 +78,8 @@ if (eventKey === 'halloween') {
   if (paintLink) paintLink.href = 'halloween-pinta-descubre.html?profile=' + encodeURIComponent(profile);
   if (addamsLink) addamsLink.href = 'halloween-familia-addams.html?profile=' + encodeURIComponent(profile);
   if (storyLink) storyLink.href = 'halloween-cuento-miedo.html?profile=' + encodeURIComponent(profile);
+  const bookLink = document.getElementById('bookLink');
+  if (bookLink) bookLink.href = 'halloween-libro.html?profile=' + encodeURIComponent(profile);
 }
 let index=0,done=false,completed=false;const question=document.getElementById('question'),answers=document.getElementById('answers'),feedback=document.getElementById('feedback'),next=document.getElementById('next'),finish=document.getElementById('finish');
 function showQuestion(){done=false;finish.classList.remove('show');feedback.textContent='';next.disabled=true;next.textContent='Siguiente pregunta →';const item=event.questions[index];question.textContent=item[0];answers.innerHTML='';[...item[1]].sort(()=>Math.random()-.5).forEach(answer=>{const button=document.createElement('button');button.className='answer';button.textContent=answer;button.onclick=()=>{if(done)return;if(answer===item[2]){done=true;feedback.textContent='¡Muy bien! Respuesta correcta 😊';next.disabled=false}else{feedback.textContent='Prueba otra vez 😊'}};answers.append(button)})}
