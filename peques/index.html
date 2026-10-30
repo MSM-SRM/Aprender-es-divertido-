@@ -532,7 +532,9 @@ async function selectProfile(profile) {
   currentProfile = profile;
 
   // Sofía conserva su página básica con juegos dentro de index.html.
-  // Mireia entra al mapa nuevo.
+  // Mireia entra al mapa nuevo. El mapa de Mireia no debe mostrarse a Sofía.
+  const mapButton = document.querySelector("[data-map]");
+  if(mapButton) mapButton.style.display = profile === "sofia" ? "none" : "";
   if(profile === "sofia") {
     $("age").value = "3";
     setAge();

@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>El mundo mágico de Mireia</title>
 <script src="auth-guard.js"></script>
+<script>
+(function () {
+  try {
+    if (new URLSearchParams(location.search).get("profile") === "sofia") {
+      location.replace("index.html");
+    }
+  } catch (e) {}
+})();
+</script>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#071d37;color:#fff;font-family:"Trebuchet MS",system-ui,sans-serif;min-height:100vh;display:grid;place-items:start center;overflow-x:hidden;overflow-y:auto}
