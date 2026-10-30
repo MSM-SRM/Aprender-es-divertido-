@@ -17,9 +17,27 @@
   <section class="card" aria-labelledby="quizTitle"><h2 id="quizTitle">🎯 Reto del evento</h2><p>Lee la pregunta y elige una respuesta.</p><div class="quiz-question" id="question"></div><div class="answers" id="answers"></div><div class="feedback" id="feedback" role="status" aria-live="polite"></div><button class="next" id="next" disabled>Siguiente pregunta →</button><div class="finish" id="finish">¡Reto terminado! Puedes volver a jugarlo.</div></section>
   <section class="card" aria-labelledby="storyTitle"><h2 id="storyTitle">📖 Un cuento de la fiesta</h2><p class="story" id="story"></p></section>
 </div>
-<div id="extraGame" style="display:none; margin:18px 0; text-align:center;">
-  <a class="back" id="extraGameLink" href="#">🎃 Jugar: pinta y descubre</a>
+<div id="halloweenGames" style="display:none; margin:18px 0;">
+  <h2 style="color:#fff;text-align:center;margin:0 0 12px;">Más juegos de Halloween</h2>
+  <div class="cards">
+    <section class="card" aria-labelledby="paintTitle">
+      <h2 id="paintTitle">🎨 Pinta y descubre</h2>
+      <p>Resuelve cuentas, elige colores y descubre una imagen sorpresa de Halloween.</p>
+      <div class="actions" style="margin-top:12px;"><a class="back" id="paintLink" href="#">Jugar →</a></div>
+    </section>
+    <section class="card" aria-labelledby="addamsTitle">
+      <h2 id="addamsTitle">🧛 Memoria: familia Addams</h2>
+      <p>Encuentra las parejas y despierta a toda la familia. Practica la memoria y la atención.</p>
+      <div class="actions" style="margin-top:12px;"><a class="back" id="addamsLink" href="#">Jugar →</a></div>
+    </section>
+    <section class="card" aria-labelledby="storyGameTitle">
+      <h2 id="storyGameTitle">📖 Cuento de miedo</h2>
+      <p>Lee un cuento de miedo divertido con imágenes y responde una pregunta al final.</p>
+      <div class="actions" style="margin-top:12px;"><a class="back" id="storyLink" href="#">Leer →</a></div>
+    </section>
+  </div>
 </div>
+
 <p class="credit">Estas actividades son una primera versión; iremos creando más juegos y cuentos para cada celebración. <a href="https://www.cristic.com/1o-y-2o-de-primaria/dias-especiales/" target="_blank" rel="noopener noreferrer">Ver más juegos de días especiales para 6–8 años en Cristic</a>.</p>
 </main>
 <script>
@@ -47,12 +65,14 @@ document.title=event.title+' · Mundo Mireia';document.getElementById('icon').te
 document.getElementById('back').onclick=()=>location.href='mundo-mireia.html?avatar=restored&profile='+encodeURIComponent(profile);
 const eventKey = params.get('event') || 'halloween';
 if (eventKey === 'halloween') {
-  const extraGame = document.getElementById('extraGame');
-  const extraGameLink = document.getElementById('extraGameLink');
-  if (extraGame && extraGameLink) {
-    extraGameLink.href = 'halloween-pinta-descubre.html?profile=' + encodeURIComponent(profile);
-    extraGame.style.display = 'block';
-  }
+  const games = document.getElementById('halloweenGames');
+  if (games) games.style.display = 'block';
+  const paintLink = document.getElementById('paintLink');
+  const addamsLink = document.getElementById('addamsLink');
+  const storyLink = document.getElementById('storyLink');
+  if (paintLink) paintLink.href = 'halloween-pinta-descubre.html?profile=' + encodeURIComponent(profile);
+  if (addamsLink) addamsLink.href = 'halloween-familia-addams.html?profile=' + encodeURIComponent(profile);
+  if (storyLink) storyLink.href = 'halloween-cuento-miedo.html?profile=' + encodeURIComponent(profile);
 }
 let index=0,done=false,completed=false;const question=document.getElementById('question'),answers=document.getElementById('answers'),feedback=document.getElementById('feedback'),next=document.getElementById('next'),finish=document.getElementById('finish');
 function showQuestion(){done=false;finish.classList.remove('show');feedback.textContent='';next.disabled=true;next.textContent='Siguiente pregunta →';const item=event.questions[index];question.textContent=item[0];answers.innerHTML='';[...item[1]].sort(()=>Math.random()-.5).forEach(answer=>{const button=document.createElement('button');button.className='answer';button.textContent=answer;button.onclick=()=>{if(done)return;if(answer===item[2]){done=true;feedback.textContent='¡Muy bien! Respuesta correcta 😊';next.disabled=false}else{feedback.textContent='Prueba otra vez 😊'}};answers.append(button)})}

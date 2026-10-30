@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="auth-guard.js"></script>
+<title>Halloween: cuento de miedo divertido</title>
+<style>
+:root{--ink:#241b35;--purple:#492365;--orange:#ff9b28;--paper:#fffaf0}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(circle at top,#fff4d9,#f0e7ff 70%,#e5daf7);min-height:100vh}
+header{background:var(--purple);color:#fff;text-align:center;padding:17px 14px;border-bottom:5px solid var(--orange)}h1{font-size:clamp(1.45rem,4vw,2.2rem);margin:0}header p{margin:5px 0 0;color:#f6eaff}
+main{max-width:900px;margin:18px auto;padding:0 12px 30px}.panel{background:#ffffffdf;border:2px solid #e0d3f0;border-radius:17px;padding:18px;box-shadow:0 8px 24px #3a225018}
+.scene{display:grid;grid-template-columns:1fr;gap:14px;align-items:center}.art{font-size:clamp(4rem,12vw,7rem);text-align:center;line-height:1;filter:drop-shadow(0 6px 10px #3a225033)}
+.text{font-size:clamp(1.05rem,2.6vw,1.35rem);line-height:1.65;color:#3a2a55}
+.title{font-size:1.35rem;font-weight:900;color:#4b286b;margin:0 0 8px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;justify-content:space-between}
+button{font:inherit;color:var(--ink);border:2px solid #d6c5e7;border-radius:11px;padding:9px 14px;background:#fff;cursor:pointer;min-height:44px}button.primary{background:var(--orange);border-color:#e78915;font-weight:850}
+.dots{display:flex;gap:6px;justify-content:center;margin-top:10px}.dot{width:10px;height:10px;border-radius:50%;background:#d9cde6}.dot.active{background:#492365}
+.question{margin-top:16px;padding:14px;border-radius:14px;background:#fff8e7}.q{font-weight:900;color:#4b286b;margin:0 0 10px}
+.answers{display:grid;gap:8px}.answer{min-height:44px;text-align:left}.answer.correct{background:#e8ffe8;border-color:#69c96b}.answer.wrong{background:#ffe8e8;border-color:#e65353}
+.result{display:none;margin-top:12px;padding:13px;border-radius:13px;background:#f1ffef;border:2px solid #8ad67b}.result.show{display:block}
+.footer{text-align:center;color:#665778;font-size:.84rem;margin-top:13px}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important}}
+</style>
+</head>
+<body>
+<header><h1>📖 Halloween: el cuento de la casa del bosque 👻</h1><p>Un cuento de miedo divertido para leer antes de dormir.</p></header>
+<main><section class="panel">
+<div class="scene">
+  <div class="art" id="art">🌲</div>
+  <div>
+    <h2 class="title" id="title"></h2>
+    <p class="text" id="text"></p>
+  </div>
+</div>
+<div class="dots" id="dots"></div>
+<div class="actions">
+  <button id="prevBtn">← Anterior</button>
+  <button id="nextBtn" class="primary">Siguiente →</button>
+</div>
+<div id="questionBox" class="question" style="display:none">
+  <p class="q" id="qText"></p>
+  <div class="answers" id="qAnswers"></div>
+  <div id="qFeedback" aria-live="polite" style="margin-top:8px;font-weight:750;color:#4b286b"></div>
+</div>
+<div id="result" class="result" aria-live="polite"></div>
+</section><p class="footer">Leer ayuda a imaginar, recordar y comprender. ¡Y los sustos aquí son siempre amables!</p></main>
+<script>
+const pages=[
+ {art:"🌲",title:"La casa del bosque",text:"En un bosque de árboles altos había una casa pequeña con una puerta azul. Nadie la usaba desde hacía mucho tiempo... hasta que la familia Martínez decidió pasar allí el fin de semana."},
+ {art:"🚪",title:"La puerta que se movía",text:"Al llegar, la puerta azul se abrió sola con un crujido. Mamá dijo: «El viento es muy fuerte aquí». Papá sonrió y entraron con las maletas. Dentro olía a madera y a manzanas."},
+ {art:"🕯️",title:"Luces en la ventana",text:"Por la noche, desde el jardín se veían luces que se encendían y apagaban. No eran fantasmas: eran luciérnagas. Las niñas las siguieron y descubrieron un jardín secreto lleno de flores luminosas."},
+ {art:"👻",title:"El fantasma simpático",text:"En el ático apareció un fantasma pequeño y tembloroso. No quería asustar a nadie; solo buscaba su sombrero perdido. Las niñas le ayudaron a buscarlo y el fantasma les dio las gracias con una reverencia."},
+ {art:"📦",title:"El cofre del ático",text:"Detrás de una viga encontraron un cofre viejo. Dentro había fotos antiguas de una familia que había vivido allí hace muchos años. El fantasma sonrió: «Esa es mi familia»."},
+ {art:"🌙",title:"Fin",text:"Antes de irse, la familia Martínez prometió volver a visitar la casa azul. El fantasma se quedó contento, con su sombrero y sus recuerdos. Y el bosque, por una noche, dejó de parecer tan oscuro."}
+];
+const question={q:"¿Por qué las luces del jardín no eran fantasmas?",answers:["Porque eran luciérnagas","Porque era el sol","Porque era una linterna"],correct:0};
+let i=0;const art=document.getElementById("art"),title=document.getElementById("title"),text=document.getElementById("text"),dots=document.getElementById("dots"),prev=document.getElementById("prevBtn"),next=document.getElementById("nextBtn"),qBox=document.getElementById("questionBox"),qText=document.getElementById("qText"),qAnswers=document.getElementById("qAnswers"),qFeedback=document.getElementById("qFeedback"),result=document.getElementById("result");
+function render(){art.textContent=pages[i].art;title.textContent=pages[i].title;text.textContent=pages[i].text;dots.innerHTML=pages.map((_,idx)=>`<span class="dot${idx===i?" active":""}"></span>`).join("");prev.disabled=i===0;next.textContent=i===pages.length-1?"Terminar":"Siguiente →";if(i===pages.length-1){qBox.style.display="block";showQuestion();}else{qBox.style.display="none";result.classList.remove("show");result.style.display="none";}}
+function showQuestion(){qText.textContent=question.q;qAnswers.innerHTML="";question.answers.forEach((a,idx)=>{const b=document.createElement("button");b.className="answer";b.textContent=a;b.onclick=()=>{qAnswers.querySelectorAll("button").forEach(x=>x.disabled=true);if(idx===question.correct){b.classList.add("correct");qFeedback.textContent="¡Muy bien! Respuesta correcta 😊";result.style.display="block";result.classList.add("show");result.innerHTML="<strong>🎉 ¡Has terminado el cuento!</strong><p>Has comprendido muy bien la historia. Puedes volver a leerla cuando quieras.</p>";}else{b.classList.add("wrong");qFeedback.textContent="Prueba otra vez 😊";setTimeout(()=>{qAnswers.querySelectorAll("button").forEach(x=>{x.disabled=false;x.classList.remove("wrong");});},900);}};qAnswers.append(b);});}
+prev.onclick=()=>{if(i>0){i--;render();}};next.onclick=()=>{if(i<pages.length-1){i++;render();}else{result.scrollIntoView({behavior:"smooth",block:"nearest"});}};
+render();
+</script><script src="ui-language.js"></script></body></html>
