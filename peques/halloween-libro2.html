@@ -14,7 +14,7 @@
 .counter{font-size:.9rem;opacity:.85}
 .book{display:grid;grid-template-columns:1fr 1fr;gap:12px;min-height:0;align-items:stretch}
 .page{background:linear-gradient(180deg,#fffaf0,#f3ead7);color:#2b1d3a;border-radius:18px;overflow:hidden;box-shadow:0 12px 30px #0008;display:grid;min-height:0}
-.page.image{place-items:center;background:#0a0612}.page.image img{max-width:100%;max-height:100%;object-fit:contain}
+.page.image{place-items:center;background:#0a0612}.page.image img{max-width:100%;max-height:100%;object-fit:contain}.emoji-art{font-size:clamp(5rem,18vw,10rem);line-height:1}
 .page.text{padding:clamp(14px,3vw,34px);align-content:center;text-align:center}
 .page.text h2{margin:0 0 12px;font-size:clamp(1.2rem,3vw,2rem);color:#523726}
 .page.text p{margin:0;font-size:clamp(1rem,2.2vw,1.5rem);line-height:1.55}
@@ -29,7 +29,10 @@
 <div class="wrap">
   <div class="top"><span class="title">🎃 My First Halloween</span><span class="counter" id="counter"></span></div>
   <div class="book">
-    <section class="page image" aria-label="Imagen de la página"><img id="pageImage" src="" alt=""></section>
+    <section class="page image" aria-label="Imagen de la página">
+      <img id="pageImg" src="" alt="" style="display:none">
+      <div id="pageEmoji" class="emoji-art" style="display:none"></div>
+    </section>
     <section class="page text" aria-live="polite"><h2 id="pageTitle"></h2><p id="pageText"></p></section>
   </div>
 </div>
@@ -37,21 +40,21 @@
 <button class="arrow right" id="nextBtn" aria-label="Página siguiente">›</button>
 <script>
 const pages=[
- {cover:true,title:"My First Halloween",image:"imagenes/halloween-libro2/img1.jpg",text:"Tonight is Halloween!"},
- {title:"Boo!",image:"imagenes/halloween-libro2/img3.jpg",text:"The moon says, “Boo!” The moon says, “Boo!” Boo! Boo!"},
- {title:"Witch hat",image:"imagenes/halloween-libro2/img4.jpg",text:"I put on my witch hat. I put on my witch hat."},
- {title:"Candy basket",image:"imagenes/halloween-libro2/img5.jpg",text:"I take my candy basket. I take my candy basket."},
- {title:"Bat",image:"imagenes/halloween-libro2/img6.jpg",text:"A bat flaps, “Flap, flap!” A bat flaps, “Flap, flap!” Flap! Flap! Flap! Flap!"},
- {title:"Cat",image:"imagenes/halloween-libro2/img8.jpg",text:"A cat jumps, “Meow, meow!” A cat jumps, “Meow, meow!” Meow! Meow! Meow! Meow!"},
- {title:"Ghost",image:"imagenes/halloween-libro2/img11.jpg",text:"A ghost goes, “Ooo-ooo!” A ghost goes, “Ooo-ooo!” Ooo-ooo! Ooo-ooo!"},
- {title:"Peek-a-boo",image:"imagenes/halloween-libro2/img12.jpg",text:"Two more ghosts dance, “Peek-a-boo!” Two more ghosts dance, “Peek-a-boo!” Peek-a-boo! Peek-a-boo!"},
- {title:"Vampire",image:"imagenes/halloween-libro2/img13.jpg",text:"A vampire waves, “Hello, friend!” A vampire waves, “Hello, friend!” We laugh and march together."},
- {title:"Trick or treat",image:"imagenes/halloween-libro2/img14.jpg",text:"“Trick or treat!” we cheer. “Trick or treat!” we cheer."},
- {title:"Ta-da!",image:"imagenes/halloween-libro2/img16.jpg",text:"Ta-da! My first Halloween! Ta-da! My first Halloween!"}
+ {cover:true,title:"My First Halloween",image:"imagenes/halloween-libro2/cover.jpg",text:"Tonight is Halloween!"},
+ {title:"Boo!",emoji:"🌙",text:"The moon says, “Boo!” The moon says, “Boo!” Boo! Boo!"},
+ {title:"Witch hat",emoji:"🧙‍♀️",text:"I put on my witch hat. I put on my witch hat."},
+ {title:"Candy basket",emoji:"🧺",text:"I take my candy basket. I take my candy basket."},
+ {title:"Bat",emoji:"🦇",text:"A bat flaps, “Flap, flap!” A bat flaps, “Flap, flap!” Flap! Flap! Flap! Flap!"},
+ {title:"Cat",emoji:"🐱",text:"A cat jumps, “Meow, meow!” A cat jumps, “Meow, meow!” Meow! Meow! Meow! Meow!"},
+ {title:"Ghost",emoji:"👻",text:"A ghost goes, “Ooo-ooo!” A ghost goes, “Ooo-ooo!” Ooo-ooo! Ooo-ooo!"},
+ {title:"Peek-a-boo",emoji:"👻👻",text:"Two more ghosts dance, “Peek-a-boo!” Two more ghosts dance, “Peek-a-boo!” Peek-a-boo! Peek-a-boo!"},
+ {title:"Vampire",emoji:"🧛",text:"A vampire waves, “Hello, friend!” A vampire waves, “Hello, friend!” We laugh and march together."},
+ {title:"Trick or treat",emoji:"🍬",text:"“Trick or treat!” we cheer. “Trick or treat!” we cheer."},
+ {title:"Ta-da!",emoji:"🎉",text:"Ta-da! My first Halloween! Ta-da! My first Halloween!"}
 ];
 let index=0;
-const img=document.getElementById("pageImage"),title=document.getElementById("pageTitle"),text=document.getElementById("pageText"),counter=document.getElementById("counter"),prev=document.getElementById("prevBtn"),next=document.getElementById("nextBtn");
-function render(){const p=pages[index];img.src=p.image;img.alt=p.title;title.textContent=p.title;text.textContent=p.text;counter.textContent="Página "+(index+1)+" de "+pages.length;prev.disabled=index===0;next.disabled=index===pages.length-1;if(p.cover){title.parentElement.classList.add("cover")}else{title.parentElement.classList.remove("cover")}}
+const img=document.getElementById("pageImg"),emoji=document.getElementById("pageEmoji"),title=document.getElementById("pageTitle"),text=document.getElementById("pageText"),counter=document.getElementById("counter"),prev=document.getElementById("prevBtn"),next=document.getElementById("nextBtn");
+function render(){const p=pages[index];if(p.image){img.style.display="block";emoji.style.display="none";img.src=p.image;img.alt=p.title;}else{img.style.display="none";emoji.style.display="grid";emoji.textContent=p.emoji;}title.textContent=p.title;text.textContent=p.text;counter.textContent="Página "+(index+1)+" de "+pages.length;prev.disabled=index===0;next.disabled=index===pages.length-1;if(p.cover){title.parentElement.classList.add("cover")}else{title.parentElement.classList.remove("cover")}}
 prev.onclick=()=>{if(index>0){index--;render();}};
 next.onclick=()=>{if(index<pages.length-1){index++;render();}};
 document.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")prev.click();if(e.key==="ArrowRight")next.click();});
