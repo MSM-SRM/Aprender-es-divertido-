@@ -11,11 +11,12 @@
 header{background:var(--purple);color:#fff;text-align:center;padding:17px 14px;border-bottom:5px solid var(--orange)}h1{font-size:clamp(1.45rem,4vw,2.2rem);margin:0}header p{margin:5px 0 0;color:#f6eaff}
 main{max-width:980px;margin:18px auto;padding:0 12px 30px}.panel{background:#ffffffdf;border:2px solid #e0d3f0;border-radius:17px;padding:14px;box-shadow:0 8px 24px #3a225018}
 .controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between}.stats{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0}.stat{background:#f3edff;padding:7px 10px;border-radius:10px;font-weight:750;font-size:.93rem}
-.board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}
-.card{aspect-ratio:1;border:0;border-radius:14px;background:linear-gradient(145deg,#fff,#efe7ff);box-shadow:0 6px 14px #3a225018;cursor:pointer;font-size:clamp(1.5rem,4vw,2.4rem);display:grid;place-items:center;position:relative;overflow:hidden;transition:transform .18s}
+.board{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:12px}
+.card{width:92px;height:92px;border:0;border-radius:14px;background:linear-gradient(145deg,#fff,#efe7ff);box-shadow:0 6px 14px #3a225018;cursor:pointer;display:grid;place-items:center;position:relative;overflow:hidden;transition:transform .18s}
 .card:hover{transform:translateY(-3px)}.card:disabled{cursor:default;transform:none}
 .card .back{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(145deg,#6b3fa0,#3a1f5c);color:#fff;font-size:1.6rem}
 .card .face{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transform:scale(.8);transition:opacity .18s,transform .18s}
+.card .face img{width:100%;height:100%;object-fit:cover;border-radius:12px}
 .card.flipped .back{opacity:0}.card.flipped .face{opacity:1;transform:scale(1)}
 .card.matched{background:linear-gradient(145deg,#e8ffe8,#c9f3c9);box-shadow:0 6px 14px #2a7a2a22}
 .message{min-height:42px;padding:8px 2px;font-weight:750;color:#4b286b}
@@ -31,35 +32,38 @@ button{font:inherit;color:var(--ink);border:2px solid #d6c5e7;border-radius:11px
 <header><h1>🧛 Halloween: memoria de la familia Addams 👻</h1><p>Encuentra las parejas y despierta a toda la familia.</p></header>
 <main><section class="panel">
 <div class="controls"><div><strong>Memoria</strong><div class="mini">Gira dos cartas. Si coinciden, se quedan descubiertas.</div></div><div class="actions"><button id="newBtn">🎲 Nueva partida</button><button id="resetBtn">↻ Reiniciar</button></div></div>
-<div class="stats"><div class="stat">Movimientos: <span id="moves">0</span></div><div class="stat">Parejas: <span id="pairs">0/8</span></div><div class="stat">Tiempo: <span id="time">0 s</span></div></div>
+<div class="stats"><div class="stat">Movimientos: <span id="moves">0</span></div><div class="stat">Parejas: <span id="pairs">0/11</span></div><div class="stat">Tiempo: <span id="time">0 s</span></div></div>
 <div id="board" class="board" aria-label="Tablero de memoria"></div>
 <div id="message" class="message" aria-live="polite">Toca una carta para empezar.</div>
 <div id="result" class="result" aria-live="polite"></div>
 </section><p class="footer">Un juego de memoria para practicar la atención y recordar personajes de Halloween.</p></main>
 <script>
 const PAIRS=[
- {id:"morticia",emoji:"🖤",name:"Morticia"},
- {id:"gomez",emoji:"🤵",name:"Gómez"},
- {id:"wednesday",emoji:"👧",name:"Wednesday"},
- {id:"pugsley",emoji:"👦",name:"Pugsley"},
- {id:"fester",emoji:"💡",name:"Tío Fester"},
- {id:"lurch",emoji:"🧟",name:"Lurch"},
- {id:"thing",emoji:"✋",name:"La Cosa"},
- {id:"cousin",emoji:"🧶",name:"Primo Eso"}
+ {id:"morticia",src:"morticia.jpg",name:"Morticia"},
+ {id:"gomez",src:"gomez.jpg",name:"Gómez"},
+ {id:"wednesday",src:"wednesday.jpg",name:"Miércoles"},
+ {id:"wednesday2",src:"wednesday2.jpg",name:"Wednesday"},
+ {id:"pugsley",src:"pugsley.jpg",name:"Pugsley"},
+ {id:"fester",src:"fester.jpg",name:"Tío Fester"},
+ {id:"fester2",src:"fester2.jpg",name:"Uncle Fester"},
+ {id:"lurch",src:"lurch.jpg",name:"Lurch"},
+ {id:"thing",src:"thing.jpg",name:"Thing"},
+ {id:"cousin",src:"cousin-itt.jpg",name:"Primo Eso"},
+ {id:"grandma",src:"grandma.jpg",name:"Abuela"}
 ];
 const board=document.getElementById("board"),movesEl=document.getElementById("moves"),pairsEl=document.getElementById("pairs"),timeEl=document.getElementById("time"),message=document.getElementById("message"),result=document.getElementById("result");
 let cards=[],flipped=[],matched=0,moves=0,locked=false,timer=null,seconds=0,started=false;
 function shuffle(list){for(let i=list.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[list[i],list[j]]=[list[j],list[i]];}return list;}
-function start(){cards=[];flipped=[];matched=0;moves=0;locked=false;started=false;seconds=0;if(timer){clearInterval(timer);timer=null;}movesEl.textContent="0";pairsEl.textContent="0/8";timeEl.textContent="0 s";message.textContent="Toca una carta para empezar.";result.style.display="none";result.classList.remove("celebration");
- PAIRS.forEach(p=>{cards.push({id:p.id,emoji:p.emoji,name:p.name});cards.push({id:p.id,emoji:p.emoji,name:p.name});});
+function start(){cards=[];flipped=[];matched=0;moves=0;locked=false;started=false;seconds=0;if(timer){clearInterval(timer);timer=null;}movesEl.textContent="0";pairsEl.textContent="0/11";timeEl.textContent="0 s";message.textContent="Toca una carta para empezar.";result.style.display="none";result.classList.remove("celebration");
+ PAIRS.forEach(p=>{cards.push({id:p.id,src:p.src,name:p.name});cards.push({id:p.id,src:p.src,name:p.name});});
  shuffle(cards);
- board.innerHTML=cards.map((c,i)=>`<button class="card" data-i="${i}" aria-label="Carta ${i+1}"><span class="back">❓</span><span class="face">${c.emoji}<br><small style="font-size:.45em">${c.name}</small></span></button>`).join("");
+ board.innerHTML=cards.map((c,i)=>`<button class="card" data-i="${i}" aria-label="Carta ${i+1} de ${cards.length}"><span class="back">❓</span><span class="face"><img src="imagenes/addams/${c.src}" alt="${c.name}"></span></button>`).join("");
  board.querySelectorAll(".card").forEach(btn=>btn.addEventListener("click",()=>flip(Number(btn.dataset.i))));
 }
 function flip(i){const card=cards[i];const el=board.querySelector(`[data-i="${i}"]`);if(locked||el.classList.contains("flipped")||el.classList.contains("matched"))return;if(!started){started=true;timer=setInterval(()=>{seconds++;timeEl.textContent=seconds+" s";},1000);}
  el.classList.add("flipped");flipped.push(i);
  if(flipped.length===2){locked=true;moves++;movesEl.textContent=moves;const a=cards[flipped[0]],b=cards[flipped[1]];
- setTimeout(()=>{if(a.id===b.id){flipped.forEach(x=>board.querySelector(`[data-i="${x}"]`).classList.add("matched"));matched++;pairsEl.textContent=matched+"/8";message.textContent="¡Pareja encontrada!";if(matched===8){clearInterval(timer);result.style.display="block";result.classList.add("celebration");result.innerHTML="<h3>🎉 ¡Toda la familia Addams está aquí!</h3><p>Lo has conseguido en "+moves+" movimientos y "+seconds+" segundos.</p>";}}
+ setTimeout(()=>{if(a.id===b.id){flipped.forEach(x=>board.querySelector(`[data-i="${x}"]`).classList.add("matched"));matched++;pairsEl.textContent=matched+"/11";message.textContent="¡Pareja encontrada!";if(matched===11){clearInterval(timer);result.style.display="block";result.classList.add("celebration");result.innerHTML="<h3>🎉 ¡Toda la familia Addams está aquí!</h3><p>Lo has conseguido en "+moves+" movimientos y "+seconds+" segundos.</p>";}}
  else{flipped.forEach(x=>board.querySelector(`[data-i="${x}"]`).classList.remove("flipped"));message.textContent="No coinciden. ¡Sigue intentándolo!";}
  flipped=[];locked=false;},700);}
 }
