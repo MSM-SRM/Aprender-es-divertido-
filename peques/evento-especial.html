@@ -40,6 +40,16 @@
       <p>Libro ilustrado para leer pasando páginas con las flechas, en móvil o tablet.</p>
       <div class="actions" style="margin-top:12px;"><a class="back" id="bookLink" href="#">Leer libro →</a></div>
     </section>
+    <section class="card" aria-labelledby="book2Title">
+      <h2 id="book2Title">📚 Libro: My First Halloween (nuestro)</h2>
+      <p>Versión propia del cuento, con imágenes y flechas para pasar páginas.</p>
+      <div class="actions" style="margin-top:12px;"><a class="back" id="book2Link" href="#">Leer libro →</a></div>
+    </section>
+    <section class="card" aria-labelledby="bookOrigTitle">
+      <h2 id="bookOrigTitle">🔗 Libro original: My First Halloween</h2>
+      <p>Abre directamente el libro original en Free Kids Books para comparar.</p>
+      <div class="actions" style="margin-top:12px;"><a class="back" id="bookOrigLink" href="#">Abrir original →</a></div>
+    </section>
   </div>
 </div>
 
@@ -80,6 +90,10 @@ if (eventKey === 'halloween') {
   if (storyLink) storyLink.href = 'halloween-cuento-miedo.html?profile=' + encodeURIComponent(profile);
   const bookLink = document.getElementById('bookLink');
   if (bookLink) bookLink.href = 'halloween-libro.html?profile=' + encodeURIComponent(profile);
+  const book2Link = document.getElementById('book2Link');
+  if (book2Link) book2Link.href = 'halloween-libro2.html?profile=' + encodeURIComponent(profile);
+  const bookOrigLink = document.getElementById('bookOrigLink');
+  if (bookOrigLink) bookOrigLink.href = 'halloween-libro-original.html?profile=' + encodeURIComponent(profile);
 }
 let index=0,done=false,completed=false;const question=document.getElementById('question'),answers=document.getElementById('answers'),feedback=document.getElementById('feedback'),next=document.getElementById('next'),finish=document.getElementById('finish');
 function showQuestion(){done=false;finish.classList.remove('show');feedback.textContent='';next.disabled=true;next.textContent='Siguiente pregunta →';const item=event.questions[index];question.textContent=item[0];answers.innerHTML='';[...item[1]].sort(()=>Math.random()-.5).forEach(answer=>{const button=document.createElement('button');button.className='answer';button.textContent=answer;button.onclick=()=>{if(done)return;if(answer===item[2]){done=true;feedback.textContent='¡Muy bien! Respuesta correcta 😊';next.disabled=false}else{feedback.textContent='Prueba otra vez 😊'}};answers.append(button)})}
