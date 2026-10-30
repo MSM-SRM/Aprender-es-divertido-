@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="auth-guard.js"></script>
+<title>Halloween: pinta y descubre</title>
+<style>
+:root{--ink:#241b35;--purple:#492365;--orange:#ff9b28;--paper:#fffaf0;--line:#d9cde6}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(circle at top,#fff4d9,#f0e7ff 70%,#e5daf7);min-height:100vh}
+header{background:var(--purple);color:#fff;text-align:center;padding:17px 14px;border-bottom:5px solid var(--orange)}h1{font-size:clamp(1.45rem,4vw,2.2rem);margin:0}header p{margin:5px 0 0;color:#f6eaff}
+main{max-width:1120px;margin:18px auto;padding:0 12px 30px}.panel{background:#ffffffdf;border:2px solid #e0d3f0;border-radius:17px;padding:14px;box-shadow:0 8px 24px #3a225018}
+.controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between}.pickers{display:flex;gap:10px;flex-wrap:wrap}label{font-size:.94rem;font-weight:800}select,button{font:inherit;color:var(--ink);border:2px solid #d6c5e7;border-radius:11px;padding:9px 11px;background:#fff;cursor:pointer}select{display:block;margin-top:4px;max-width:100%}button:focus-visible,select:focus-visible{outline:3px solid #469cff;outline-offset:2px}.primary{background:var(--orange);border-color:#e78915;font-weight:850}
+.stats{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0}.stat{background:#f3edff;padding:7px 10px;border-radius:10px;font-weight:750;font-size:.93rem}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:16px;align-items:start}.board{display:grid;gap:3px;background:#b9acc9;border:3px solid #b9acc9;border-radius:8px;overflow:hidden;touch-action:manipulation}.cell{min-width:0;aspect-ratio:1;padding:1px;border:0;border-radius:2px;background:#fffdf8;display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:clamp(.48rem,1.25vw,.83rem);font-weight:800;line-height:1;box-shadow:inset 0 0 0 1px #e6ddeb}.cell.selected{outline:3px solid #21162d;outline-offset:-3px;z-index:1}.cell:disabled{cursor:default}.eqstack{display:flex;flex-direction:column;align-items:stretch;justify-content:center;white-space:nowrap;line-height:1.04;font-variant-numeric:tabular-nums;letter-spacing:-.04em}.eqbottom{display:flex;gap:1px;align-items:center;border-bottom:1px solid currentColor;padding-bottom:1px}.eqsign{font-size:.92em}.side{display:flex;flex-direction:column;gap:11px}.side .panel{padding:12px}.side h2{font-size:1.02rem;margin:0 0 9px}.palette{display:grid;grid-template-columns:1fr;gap:7px}.swatch{display:flex;align-items:center;gap:8px;text-align:left;padding:7px 9px;border-radius:10px;background:#fff;font-weight:800}.chip{width:25px;height:25px;border:2px solid #382a47;border-radius:6px;flex-shrink:0}.swatch.active{outline:3px solid #5b3a83}.help{font-size:.9rem;line-height:1.45;background:#fff8e7;border-radius:11px;padding:11px}.message{min-height:42px;padding:8px 2px;font-weight:750;color:#4b286b}.result{display:none;margin-top:10px;padding:13px;border-radius:13px;background:#f1ffef;border:2px solid #8ad67b}.result h3{margin:0 0 5px}.result p{margin:5px 0}.mini{font-size:.85rem;color:#685977}.actions{display:grid;gap:8px}.footer{text-align:center;color:#665778;font-size:.84rem;margin-top:13px}
+.progressBox{background:#f8f2ff;border:1px solid #dfd0f0;border-radius:12px;padding:10px;font-size:.9rem}
+.progressBox strong{display:block;margin-bottom:5px}
+.medals{display:flex;gap:6px;flex-wrap:wrap}
+.medalPill{border-radius:8px;background:#fff;padding:5px 7px;font-weight:800}
+.celebration{position:relative;overflow:hidden;animation:popIn .55s cubic-bezier(.2,.9,.2,1.2) both}
+.celebration:before,.celebration:after{content:"🎉 ✨ 🎃 ⭐ 🦇 ✨ 🎉";position:absolute;left:-5%;right:-5%;top:-2px;font-size:1.1rem;letter-spacing:.35rem;white-space:nowrap;pointer-events:none;animation:confetti 1.8s ease-out both}
+.celebration:after{top:auto;bottom:0;animation-delay:.15s;opacity:.7}
+@keyframes popIn{0%{transform:scale(.86);opacity:.25}65%{transform:scale(1.035)}100%{transform:scale(1);opacity:1}}
+@keyframes confetti{0%{transform:translateY(-18px) rotate(-5deg);opacity:0}20%{opacity:1}100%{transform:translateY(24px) rotate(4deg);opacity:0}}
+.cell.reveal{animation:pixelReveal .36s ease-out both}
+@keyframes pixelReveal{0%{transform:scale(.65);filter:brightness(1.7)}70%{transform:scale(1.08)}100%{transform:scale(1);filter:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+@media(max-width:720px){.layout{grid-template-columns:1fr}.side{display:grid;grid-template-columns:1fr}.palette{grid-template-columns:repeat(2,minmax(0,1fr))}.cell{font-size:clamp(.46rem,2.15vw,.78rem)}.controls{align-items:stretch}.pickers{width:100%}.pickers label{flex:1;min-width:130px}select{width:100%}}
+</style>
+</head>
+<body>
+<header><h1>🎃 Halloween: pinta y descubre 👻</h1><p>Resuelve las cuentas, elige el color y descubre una imagen sorpresa.</p></header>
+<main><section id="fatalError" class="panel" style="display:none;border-color:#d9534f;background:#fff0ef;margin-bottom:12px" role="alert"><strong>El juego ha encontrado un error.</strong><p id="fatalErrorText"></p><p>Recarga la página. Si continúa, comparte este mensaje para poder corregirlo.</p></section><section class="panel">
+<div class="controls"><div class="pickers">
+<label for="levelSelect">Nivel<select id="levelSelect">
+<option value="0">Muy fácil · 0–20</option><option value="1">Fácil · 0–50</option><option value="2">Normal · 10–100</option><option value="3">Difícil · 50–500</option><option value="4">Experto · 100–1000</option>
+</select></label>
+<label for="opSelect">Tipo de juego<select id="opSelect"><option value="add">Solo sumas</option><option value="sub">Solo restas</option><option value="mix">Sumas y restas</option></select></label>
+</div><div class="actions" style="display:flex;flex-direction:row;flex-wrap:wrap"><button id="newBtn">🎲 Nuevo dibujo</button><button id="resetBtn">↻ Reiniciar</button></div></div>
+<div class="stats"><div class="stat">Juego <span id="gameLabel">1/15</span></div><div class="stat">Aciertos: <span id="correctCount">0</span></div><div class="stat">Intentos: <span id="attemptCount">0</span></div><div class="stat">Casillas: <span id="doneCount">0/64</span></div></div>
+<div class="layout"><div><div id="board" class="board" aria-label="Cuadrícula de colorear"></div><div id="message" class="message" aria-live="polite">Toca una casilla con una cuenta.</div><div id="result" class="result" aria-live="polite"></div></div>
+<aside class="side"><section class="panel"><h2>🎨 Resultados y colores</h2><div id="palette" class="palette"></div></section>
+<div class="help"><strong>Cómo jugar</strong><br>1. Toca una casilla con una cuenta.<br>2. Resuelve la operación.<br>3. Elige el color con ese resultado.<br><br>En las operaciones de dos cifras, los números se muestran en vertical, como en el colegio.</div>
+<div class="actions"><button id="checkBtn" class="primary">Verificar resultado</button><button id="nextBtn" style="display:none">Jugar otro dibujo →</button></div><section class="progressBox"><strong>⭐ Progreso de este perfil</strong><div id="profileLabel" class="mini"></div><div id="savedProgress" class="medals"></div><button id="clearProgressBtn" style="margin-top:8px;font-size:.8rem;padding:6px 8px">Borrar progreso de este perfil</button></section></aside></div>
+<p class="footer">Cada vez que empiezas un dibujo se genera una combinación nueva de imagen, operaciones y resultados.</p>
+</section></main>
+<script>
+window.addEventListener("error", function(event){
+ const box=document.getElementById("fatalError"), msg=document.getElementById("fatalErrorText");
+ if(box && msg){box.style.display="block";msg.textContent=(event.message||"Error de JavaScript") + (event.lineno ? " (línea "+event.lineno+")" : "");}
+});
+window.addEventListener("unhandledrejection", function(event){
+ const box=document.getElementById("fatalError"), msg=document.getElementById("fatalErrorText");
+ if(box && msg){box.style.display="block";msg.textContent="Error interno: "+String(event.reason||"promesa rechazada");}
+});
+const PAINTS=[
+ {name:"Naranja",hex:"#ff922e"},{name:"Negro",hex:"#292532"},{name:"Morado",hex:"#8b5ac2"},
+ {name:"Verde monstruo",hex:"#69c96b"},{name:"Azul noche",hex:"#548bd0"},{name:"Marrón",hex:"#99502f"},
+ {name:"Amarillo luna",hex:"#ffd84d"},{name:"Rojo",hex:"#e65353"}
+];
+// 8x8 pixel-art patterns. Digits 1..8 select a paint colour; 0 is unpainted background.
+const ART={
+easy:[
+ {name:"Calabaza tallada",p:["00011100","00133310","01333331","13444431","13666631","13444431","01333310","00111100"]},
+ {name:"Gato negro",p:["10000001","11000011","12100121","12222221","12262221","01222210","00100100","01000010"]},
+ {name:"Fantasma",p:["00111100","01333310","13333331","13262631","13333331","13313131","01313110","00111100"]},
+ {name:"Murciélago",p:["10000001","21000012","22111122","22555522","02666220","00222200","00022000","00000000"]},
+ {name:"Poción mágica",p:["00011000","00055000","00155100","00166100","01222210","12233321","12244421","01111110"]}
+],
+normal:[
+ {name:"Bruja con escoba",p:["00011000","00111100","01222210","00133310","01233321","11111111","00111100","01001010"]},
+ {name:"Esqueletos bailarines",p:["01000010","12100121","12100121","03111130","00111100","01011010","10011001","00000000"]},
+ {name:"Niña calabaza",p:["00111100","01333310","13333331","13344431","13333331","01333310","00111100","00100100"]},
+ {name:"Araña y telaraña",p:["11111111","10010001","10111001","01111110","00122100","01222210","00122100","00011000"]},
+ {name:"Casa encantada",p:["00011000","00111100","01111110","11555111","11266211","11255211","11333311","11111111"]}
+],
+hard:[
+ {name:"Drácula",p:["00111100","01333310","13333331","13262631","13333331","01355510","00111100","01011010"]},
+ {name:"Frankenstein",p:["01111110","13555531","13555531","12222221","12262621","12222221","01222210","01111110"]},
+ {name:"Momia y fantasma",p:["11111111","10222201","12222221","12262621","12222221","01222210","00111100","01333310"]}
+],
+expert:[
+ {name:"Monstruos mezclados",p:["01111110","13555531","12222221","13262631","12222221","01333310","01111110","10000001"]},
+ {name:"Bruja y esqueleto",p:["00122200","01222210","01133310","00111100","12100021","13111031","00111000","01000010"]},
+ {name:"Bats y arañas",p:["10000001","21000012","22111122","22555522","02666220","00222200","00111000","01010100"]}
+]
+};
+const LEVELS=[
+ {name:"Muy fácil",size:8,min:0,max:20,colors:5,images:5,art:ART.easy},
+ {name:"Fácil",size:8,min:0,max:50,colors:6,images:5,art:ART.easy},
+ {name:"Normal",size:9,min:10,max:100,colors:6,images:5,art:ART.normal},
+ {name:"Difícil",size:10,min:50,max:500,colors:8,images:3,art:ART.hard},
+ {name:"Experto",size:10,min:100,max:1000,colors:8,images:3,art:ART.expert}
+];
+const $=id=>document.getElementById(id);
+let cells=[], selected=-1, attempts=0, correct=0, done=0, finished=false, gameArt=null, palette=[], level=LEVELS[0], operation="add", totalPlayable=0, serial=0;
+const urlParams = new URLSearchParams(window.location.search);
+const profileId = (urlParams.get("profile") || "guest").trim().slice(0,80) || "guest";
+const progressKey = "halloweenPaintDiscover:v2:" + profileId;
+function readProgress(){
+ try { return JSON.parse(localStorage.getItem(progressKey) || "{}") || {}; }
+ catch(e){ return {}; }
+}
+function writeProgress(data){
+ try { localStorage.setItem(progressKey, JSON.stringify(data)); }
+ catch(e){ $("message").textContent = "No se pudo guardar el progreso en este navegador."; }
+}
+function gameKey(){ return `${$("levelSelect").value}:${$("opSelect").value}`; }
+function renderProgress(){
+ $("profileLabel").textContent = `Perfil: ${profileId} · Guardado en este navegador`;
+ const data=readProgress(); const marks=[];
+ for(let li=0;li<LEVELS.length;li++){
+   for(const op of ["add","sub","mix"]){
+     const k=`${li}:${op}`,r=data[k];
+     if(r) marks.push(`<span class="medalPill" title="${LEVELS[li].name} · ${op}: ${r.best}%">${r.medal} ${["S","R","M"][["add","sub","mix"].indexOf(op)]}${li+1}</span>`);
+   }
+ }
+ $("savedProgress").innerHTML=marks.length?marks.join(""):'<span class="mini">Aún no hay medallas guardadas.</span>';
+}
+const rand=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+function shuffled(arr){return [...arr].sort(()=>Math.random()-.5)}
+function resizePattern(pattern,size){
+ // Nearest-neighbour scale the compact pixel-art to the selected board size.
+ return Array.from({length:size},(_,y)=>Array.from({length:size},(_,x)=>Number(pattern[Math.min(7,Math.floor(y*8/size))][Math.min(7,Math.floor(x*8/size))])));
+}
+function makePalette(){
+ const l=level, chosen=shuffled(PAINTS).slice(0,l.colors);
+ const results=new Set();
+ while(results.size<l.colors){
+   let n=rand(l.min,l.max);
+   if(operation==="sub" && l.min===0)n=rand(1,l.max);
+   results.add(n);
+ }
+ return chosen.map((p,i)=>({...p,result:[...results][i],id:i+1}));
+}
+function makeEquation(result){
+ let mode=operation==="mix"?(Math.random()<.5?"add":"sub"):operation;
+ let a,b,sign;
+ if(mode==="add"){
+   // Generate operands whose sum is exactly the palette result.
+   a=rand(0,result);b=result-a;sign="+";
+ }else{
+   // Non-negative school-style subtraction with a non-negative answer.
+   a=rand(result,Math.max(result,level.max));b=a-result;sign="−";
+ }
+ // Encourage two-digit column arithmetic once the level permits it.
+ if(level.max>=50 && result>=10 && Math.random()<.68){
+   if(mode==="add"){
+     a=rand(10,Math.max(10,result));b=result-a;
+     if(b<0 || b>level.max){a=result;b=0}
+   }else{a=rand(Math.max(result,10),level.max);b=a-result}
+ }
+ return {a,b,sign,result};
+}
+function verticalMarkup(eq){
+ if(eq.a>=10 || eq.b>=10 || eq.result>=10){
+   return `<span class="eqstack"><span>${eq.a}</span><span class="eqbottom"><b class="eqsign">${eq.sign}</b><span>${eq.b}</span></span></span>`;
+ }
+ return `${eq.a}${eq.sign}${eq.b}`;
+}
+function startGame(){
+ level=LEVELS[Number($("levelSelect").value)];operation=$("opSelect").value;
+ const pool=level.art;gameArt=pool[rand(0,pool.length-1)];palette=makePalette();
+ // Remap the motif's colour indices to the random palette for replay variety.
+ const pattern=resizePattern(gameArt.p,level.size);
+ const used=[...new Set(pattern.flat().filter(n=>n>0))];
+ const mapping={};shuffled(used).forEach((old,i)=>mapping[old]=palette[i%palette.length].id);
+ const target=pattern.flat().map(n=>n===0?0:mapping[n]);
+ cells=target.map((paintId,i)=>{
+   if(!paintId)return {blank:true,painted:false,expected:0};
+   const paint=palette.find(p=>p.id===paintId)||palette[0];
+   return {...makeEquation(paint.result),painted:false,expected:paint.result,paintId};
+ });
+ // A few pattern slots may map to same result by design; every equation is still answerable.
+ selected=-1;attempts=0;correct=0;done=0;finished=false;totalPlayable=cells.filter(c=>!c.blank).length;serial++;
+ $("gameLabel").textContent=`${Number($("levelSelect").value)*3+({add:1,sub:2,mix:3}[operation])}/15`;
+ $("message").textContent=`Dibujo sorpresa: ${gameArt.name}. Toca una casilla con una cuenta.`;
+ $("result").style.display="none";$("nextBtn").style.display="none";$("checkBtn").disabled=false;
+ const board=$("board");board.innerHTML="";board.style.gridTemplateColumns=`repeat(${level.size},minmax(0,1fr))`;board.setAttribute("aria-label",`Cuadrícula de ${level.size} por ${level.size}`);
+ cells.forEach((c,i)=>{
+   const el=document.createElement("button");el.type="button";el.className="cell";
+   if(c.blank){el.textContent="";el.disabled=true;el.style.background="#f9f5ff";el.setAttribute("aria-label","Fondo del dibujo")}
+   else{el.innerHTML=verticalMarkup(c);el.setAttribute("aria-label",`Casilla ${i+1}: ${c.a} ${c.sign} ${c.b}`);el.addEventListener("click",()=>selectCell(i))}
+   c.el=el;board.appendChild(el);
+ });
+ const pal=$("palette");pal.innerHTML="";
+ palette.forEach(p=>{
+   const b=document.createElement("button");b.type="button";b.className="swatch";
+   b.innerHTML=`<span class="chip" style="background:${p.hex}"></span><span>${p.result} · ${p.name}</span>`;
+   b.addEventListener("click",()=>chooseColor(p.result));pal.appendChild(b);
+ });
+ updateStats();renderProgress();
+}
+function selectCell(i){
+ if(finished||cells[i].painted)return;
+ selected=i;cells.forEach((c,j)=>c.el.classList.toggle("selected",j===i));
+ $("message").textContent=`¿Cuánto da la operación de la casilla seleccionada?`;
+}
+function chooseColor(result){
+ if(finished)return;
+ if(selected<0){$("message").textContent="Primero toca una casilla con una cuenta.";return}
+ const c=cells[selected];attempts++;
+ if(c.result===result){
+   c.painted=true;done++;correct++;c.el.textContent="";c.el.style.background=palette.find(p=>p.result===result).hex;c.el.classList.remove("selected");c.el.classList.add("reveal");c.el.disabled=true;c.el.setAttribute("aria-label",`Correcto: ${result}`);selected=-1;
+   $("message").textContent="¡Correcto! 🎉 Sigue descubriendo el dibujo.";
+ }else{
+   $("message").textContent=`Casi: la operación no da ${result}. ¡Prueba otra vez!`;c.el.classList.remove("selected");selected=-1;
+ }
+ updateStats();
+ if(done===totalPlayable){$("message").textContent="¡Dibujo completo! Pulsa «Verificar resultado»."}
+}
+function updateStats(){$("correctCount").textContent=correct;$("attemptCount").textContent=attempts;$("doneCount").textContent=`${done}/${totalPlayable}`}
+function verify(){
+ if(done<totalPlayable){$("message").textContent=`¡Sigue coloreando! Quedan ${totalPlayable-done} casillas.`;return}
+ finished=true;
+ const pct=attempts?Math.round(correct/attempts*100):0;let medal,title;
+ if(pct>=90){medal="🥇";title="¡Estrella de oro!"}else if(pct>=75){medal="🥈";title="¡Estrella de plata!"}else if(pct>=66){medal="🥉";title="¡Estrella de bronce!"}else{medal="🔁";title="¡Inténtalo de nuevo!"}
+ const data=readProgress(), key=gameKey(), old=data[key];
+ const medalRank={"🔁":0,"🥉":1,"🥈":2,"🥇":3};
+ if(!old || pct>old.best || medalRank[medal]>medalRank[old.medal]){
+   data[key]={best:Math.max(pct,old?old.best:0),medal:medal,attempts:attempts,correct:correct,lastPlayed:new Date().toISOString(),image:gameArt.name};
+ }else{
+   data[key]={...old,lastPlayed:new Date().toISOString(),image:gameArt.name};
+ }
+ writeProgress(data);renderProgress();
+ $("result").style.display="block";$("result").classList.remove("celebration");void $("result").offsetWidth;$("result").classList.add("celebration");
+ $("result").innerHTML=`<h3>${medal} ${title}</h3><p>¡Imagen descubierta: <strong>${gameArt.name}</strong>!</p><p>Precisión: <strong>${pct}%</strong> (${correct} aciertos de ${attempts} intentos).</p><p>${pct<66?"¡Un nuevo intento te ayudará a mejorar!":"¡Sigue así, cada dibujo es un nuevo reto!"}</p>`;
+ $("message").textContent="🎉 ¡Dibujo completo! ¡Buen trabajo!";
+ $("checkBtn").disabled=true;$("nextBtn").style.display="block";
+}
+$("clearProgressBtn").addEventListener("click",()=>{
+ if(confirm(`¿Borrar todas las medallas guardadas para el perfil "${profileId}" en este navegador?`)){
+   try{localStorage.removeItem(progressKey)}catch(e){}
+   renderProgress();
+   $("message").textContent="Se ha borrado el progreso guardado de este perfil.";
+ }
+});
+$("levelSelect").addEventListener("change",startGame);$("opSelect").addEventListener("change",startGame);
+$("newBtn").addEventListener("click",startGame);$("resetBtn").addEventListener("click",startGame);$("checkBtn").addEventListener("click",verify);$("nextBtn").addEventListener("click",startGame);
+startGame();
+</script>
+</body></html>
