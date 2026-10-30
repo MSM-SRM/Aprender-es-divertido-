@@ -4,58 +4,104 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Evento especial · Mundo Mireia</title>
 <script src="auth-guard.js"></script>
+<script src="halloween-new.js"></script>
 <style>
 *{box-sizing:border-box} :root{font-family:"Trebuchet MS",system-ui,sans-serif;color:#18365e;background:#07111f} body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -10%,#315a8b 0,transparent 55%),linear-gradient(160deg,#101c32,#080b14 65%);padding:clamp(14px,4vw,42px)}button{font:inherit;touch-action:manipulation;cursor:pointer}.wrap{width:min(100%,900px);margin:auto}.back{border:2px solid #a9c8f1;border-radius:999px;background:#fff;color:#24558d;padding:10px 16px;font-weight:900;box-shadow:0 4px 12px #0005}.hero{margin:18px 0 22px;padding:clamp(24px,6vw,48px) 20px;text-align:center;border:2px solid #f3d080;border-radius:28px;background:linear-gradient(145deg,#fff6dc,#f6dc9e 48%,#fff1d2);box-shadow:0 12px 32px #0008,inset 0 0 0 4px #fff9}.hero .icon{font-size:clamp(3.2rem,10vw,6rem);line-height:1}.hero h1{font-size:clamp(1.8rem,6vw,3.2rem);line-height:1.08;margin:10px 0 8px;color:#523726}.dates{display:inline-flex;align-items:center;gap:8px;margin-top:6px;padding:8px 14px;border-radius:999px;background:#fff;color:#66451e;font-weight:900;box-shadow:0 3px 9px #754b2633}.season{margin:12px 0 0;color:#795b38;font-weight:700}.intro{max-width:740px;margin:0 auto 20px;padding:0 8px;text-align:center;color:#fff;font-size:clamp(1.05rem,2.5vw,1.3rem);line-height:1.55}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{min-width:0;padding:clamp(18px,4vw,28px);border:2px solid #d8e7fa;border-radius:24px;background:linear-gradient(150deg,#fff,#e8f4ff);box-shadow:0 8px 22px #0007}.card h2{margin:0 0 10px;font-size:clamp(1.3rem,3.5vw,1.8rem);color:#215887}.card p{line-height:1.55;color:#405d7c}.story{padding:14px;border-radius:16px;background:#fff6d7;color:#553c20;line-height:1.65}.quiz-question{font-size:1.15rem;font-weight:900;color:#244c77;min-height:56px}.answers{display:grid;gap:9px;margin-top:14px}.answer{min-height:48px;padding:10px 14px;border:2px solid #c9def4;border-radius:14px;background:#fff;color:#244c77;font-weight:800;text-align:left}.answer:hover,.answer:focus-visible{border-color:#548ec4;outline:3px solid #548ec433}.feedback{min-height:28px;margin:12px 0 0;font-weight:900;color:#235e3d}.next{margin-top:10px;border:0;border-radius:999px;background:#236ca7;color:#fff;padding:11px 18px;font-weight:900}
 #next{min-height:44px}.next:disabled{opacity:.45;cursor:default}.finish{display:none;margin-top:14px;padding:12px;border-radius:14px;background:#e7f8e9;color:#26583a;font-weight:900}.finish.show{display:block}.credit{margin:18px 0 0;text-align:center;color:#c8d3e3;font-size:.8rem}.credit a{color:#d8eaff;display:inline-flex;align-items:center;min-height:44px;padding:6px 0}@media(max-width:650px){.cards{grid-template-columns:1fr}.hero{border-radius:22px}.card{border-radius:20px}.back{padding:9px 13px}.credit a{display:inline-flex;align-items:center;min-height:44px;padding:6px 0}}@media(max-width:850px){.credit a{display:inline-flex;align-items:center;min-height:44px;padding:6px 0}}
 </style>
+<style>
+@font-face { font-family:'HalloweenParty'; src:url('halloween-assets/HalloweenParty.ttf') format('truetype'); font-weight:normal; font-style:normal; }
+body.halloween { background:url('halloween-assets/bg.png') center/cover no-repeat fixed; }
+body.halloween .hero { display:none !important; }
+/* Tarjetas uniformes de Halloween */
+.card{position:relative}
+#halloweenGames .cards{align-items:stretch}
+.halloween-card{display:flex;flex-direction:column;height:100%}
+.halloween-card h2{margin:0 0 4px}
+.new-badge + h2{padding-right:52px}
+.halloween-card .cover-by{margin:0 0 12px;line-height:1.45;color:#405d7c;font-size:clamp(.92rem,2.4vw,1.02rem)}
+.card-media{position:relative;display:grid;place-items:center;width:100%;aspect-ratio:16/10;border-radius:16px;overflow:hidden;background:radial-gradient(circle at 50% 35%,#2b2452,#0a1022 72%);box-shadow:inset 0 0 0 1px #ffffff1f,0 8px 20px #0006;margin:0 0 14px}
+.card-media img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .28s ease}
+.card-media .media-emoji{font-size:clamp(4rem,9vw,6rem);line-height:1;filter:drop-shadow(0 8px 14px #0009);transform:translateY(2px)}
+.media-story{background:radial-gradient(circle at 50% 38%,#5b2a7a,#190d2b 72%)}
+.media-paint{background:radial-gradient(circle at 50% 38%,#1d7f92,#0b1730 72%)}
+.cover-link{display:block;width:100%;line-height:0;text-decoration:none}
+.cover-link:hover img{transform:scale(1.04)}
+.cover-link:focus-visible{outline:3px solid #ffd069;outline-offset:3px}
+.halloween-card .card-desc{margin:0;line-height:1.5;color:#405d7c;font-size:clamp(.95rem,2.3vw,1.05rem)}
+.halloween-card .card-action{margin-top:auto;padding-top:14px}
+.new-badge{position:absolute;z-index:2;top:12px;right:12px;display:inline-flex;align-items:center;justify-content:center;padding:4px 10px;border-radius:999px;border:2px solid #fff;background:linear-gradient(#ff5252,#d81717);color:#fff;font-size:.7rem;font-weight:1000;letter-spacing:.09em;line-height:1.1;text-shadow:0 1px 2px #6b0000;box-shadow:0 3px 10px #d81f1f99;animation:newBadgePulse 1.9s ease-in-out infinite;pointer-events:none}
+.new-badge[hidden]{display:none}
+@keyframes newBadgePulse{0%,100%{transform:scale(1);box-shadow:0 3px 10px #d81f1f99}50%{transform:scale(1.09);box-shadow:0 4px 16px #ff2d2dcc}}
+@media(prefers-reduced-motion:reduce){.new-badge{animation:none}.card-media img,.cover-link{transition:none}.cover-link:hover img,.cover-link:focus-visible img{transform:none}}
+</style>
+<audio id="halloweenMusic" src="halloween-assets/halloweenBGmusic.mp3?v=2" loop preload="auto" style="display:none;"></audio>
 </head>
 <body><main class="wrap">
 <button class="back" id="back">← Volver al mapa</button>
-<header class="hero"><div class="icon" id="icon" aria-hidden="true">🎉</div><h1 id="title">Evento especial</h1><div class="dates" id="dates"></div><p class="season" id="season"></p></header>
+<header class="hero" id="heroBox"><div class="icon" id="icon" aria-hidden="true">🎉</div><h1 id="title">Evento especial</h1><div class="dates" id="dates"></div><p class="season" id="season"></p></header>
+<section id="halloweenHero" style="display:none; text-align:center; margin:18px 0 24px;">
+  <video id="halloweenVideo" src="halloween-assets/evilpumpkinlaugh.mp4" autoplay muted loop playsinline style="width:min(90vw,432px); border-radius:18px; box-shadow:0 12px 30px #0008; display:block; margin:0 auto;"></video>
+  <h1 style="font-family:'HalloweenParty', cursive; font-size:clamp(2.2rem,7vw,4.2rem); color:#ff9b28; text-shadow:0 4px 14px #000; margin:14px 0 8px;">Halloween</h1>
+  <div class="dates" id="halloweenDates" style="display:inline-flex;"></div>
+  <p class="season" id="halloweenSeason" style="margin:10px 0 0; color:#ffe7b8; font-weight:700;"></p>
+</section>
 <p class="intro" id="description"></p>
-<div class="cards">
-  <section class="card" aria-labelledby="quizTitle"><h2 id="quizTitle">🎯 Reto del evento</h2><p>Lee la pregunta y elige una respuesta.</p><div class="quiz-question" id="question"></div><div class="answers" id="answers"></div><div class="feedback" id="feedback" role="status" aria-live="polite"></div><button class="next" id="next" disabled>Siguiente pregunta →</button><div class="finish" id="finish">¡Reto terminado! Puedes volver a jugarlo.</div></section>
-  <section class="card" aria-labelledby="storyTitle"><h2 id="storyTitle">📖 Un cuento de la fiesta</h2><p class="story" id="story"></p></section>
-</div>
 <div id="halloweenGames" style="display:none; margin:18px 0;">
   <h2 style="color:#fff;text-align:center;margin:0 0 12px;">Más juegos de Halloween</h2>
   <div class="cards">
-    <section class="card" aria-labelledby="book2Title">
-      <h2 id="book2Title">📚 Libro: My First Halloween (nuestro)</h2>
-      <p>Libro con portada real e ilustraciones, para leer pasando páginas.</p>
-      <div class="actions" style="margin-top:12px;"><a class="back" id="book2Link" href="#">Leer libro →</a></div>
-    </section>
-    <section class="card" aria-labelledby="broomTitle">
+    <section class="card halloween-card" aria-labelledby="broomTitle">
+      <span class="new-badge" data-new-for="room-on-the-broom">NEW</span>
       <h2 id="broomTitle">Room on the Broom</h2>
-      <p>by Julia Donaldson (Author), Axel Scheffler (Illustrator)</p>
-      <div style="margin-top:12px;"><a href="https://www.youtube.com/watch?v=VKbOKlA6yfk" target="_blank" rel="noopener noreferrer"><img src="imagenes/halloween/room-on-the-broom.jpg" alt="Room on the Broom" style="width:100%;border-radius:14px;display:block;"></a></div>
+      <p class="cover-by">by Julia Donaldson (Author), Axel Scheffler (Illustrator)</p>
+      <a class="card-media cover-link" href="https://www.youtube.com/watch?v=VKbOKlA6yfk" target="_blank" rel="noopener noreferrer" data-new-for="room-on-the-broom" aria-label="Room on the Broom: ver el cuento en YouTube (se abre en una pestaña nueva)">
+        <img src="imagenes/halloween/room-on-the-broom.jpg" alt="Portada del cuento Room on the Broom" width="732" height="455" loading="lazy" decoding="async">
+      </a>
+      <p class="card-desc">Un cuento en inglés lleno de rimas, una bruja y sus amigos.</p>
     </section>
-    <section class="card" aria-labelledby="bookOrigTitle">
-      <h2 id="bookOrigTitle">🔗 Libro original: My First Halloween</h2>
-      <p>Abre directamente el PDF original en Free Kids Books.</p>
-      <div class="actions" style="margin-top:12px;"><a class="back" id="bookOrigLink" href="#">Abrir original →</a></div>
+    <section class="card halloween-card" aria-labelledby="myFirstTitle">
+      <span class="new-badge" data-new-for="my-first-halloween">NEW</span>
+      <h2 id="myFirstTitle">My First Halloween</h2>
+      <p class="cover-by">by Rayane Meghriche (author)</p>
+      <a class="card-media cover-link" href="https://freekidsbooks.org/wp-content/uploads/2025/10/2510-My_First_Halloween-FKB.pdf" target="_blank" rel="noopener noreferrer" data-new-for="my-first-halloween" aria-label="My First Halloween: abrir el PDF en Free Kids Books (se abre en una pestaña nueva)">
+        <img src="imagenes/halloween/my-first-halloween.jpg" alt="Portada del libro My First Halloween" width="537" height="528" loading="lazy" decoding="async">
+      </a>
+      <p class="card-desc">Un libro en inglés para descubrir las primeras palabras de Halloween.</p>
     </section>
-    <section class="card" aria-labelledby="bookTitle">
-      <h2 id="bookTitle">📚 Libro: Once Upon a Halloween</h2>
-      <p>Libro ilustrado para leer pasando páginas con las flechas, en móvil o tablet.</p>
-      <div class="actions" style="margin-top:12px;"><a class="back" id="bookLink" href="#">Leer libro →</a></div>
+    <section class="card halloween-card" aria-labelledby="onceUponTitle">
+      <span class="new-badge" data-new-for="once-upon-a-halloween">NEW</span>
+      <h2 id="onceUponTitle">Once Upon a Halloween</h2>
+      <p class="cover-by">by Free Kids Books</p>
+      <a class="card-media cover-link" href="https://freekidsbooks.org/wp-content/uploads/2025/10/2510_Once_Upon_a_Halloween-FKB.pdf" target="_blank" rel="noopener noreferrer" data-new-for="once-upon-a-halloween" aria-label="Once Upon a Halloween: abrir el PDF en Free Kids Books (se abre en una pestaña nueva)">
+        <img src="imagenes/halloween/once-upon-a-halloween.jpg" alt="Portada del libro Once Upon a Halloween" width="426" height="531" loading="lazy" decoding="async">
+      </a>
+      <p class="card-desc">Un cuento en inglés con ilustraciones y magia de Halloween.</p>
     </section>
-    <section class="card" aria-labelledby="storyGameTitle">
+    <section class="card halloween-card" aria-labelledby="addamsTitle">
+      <h2 id="addamsTitle">Memoria: Familia Addams</h2>
+      <a class="card-media cover-link" id="addamsLink" href="#" aria-label="Jugar a la memoria de la familia Addams">
+        <img src="imagenes/halloween/addams-family.jpg" alt="Portada de la memoria de la familia Addams" width="515" height="388" loading="lazy" decoding="async">
+      </a>
+      <p class="card-desc">Encuentra las parejas y despierta a toda la familia para ¡un Halloween de miedo!</p>
+    </section>
+    <section class="card halloween-card" aria-labelledby="storyGameTitle">
       <h2 id="storyGameTitle">📖 Cuento de miedo</h2>
-      <p>Lee un cuento de miedo divertido con imágenes y responde una pregunta al final.</p>
-      <div class="actions" style="margin-top:12px;"><a class="back" id="storyLink" href="#">Leer →</a></div>
+      <div class="card-media media-story" aria-hidden="true"><span class="media-emoji">📖</span></div>
+      <p class="card-desc">Lee un cuento de miedo divertido con imágenes y responde una pregunta al final.</p>
+      <div class="card-action"><a class="back" id="storyLink" href="#">Leer →</a></div>
     </section>
-    <section class="card" aria-labelledby="addamsTitle">
-      <h2 id="addamsTitle">🧛 Memoria: familia Addams</h2>
-      <p>Encuentra las parejas y despierta a toda la familia. Practica la memoria y la atención.</p>
-      <div class="actions" style="margin-top:12px;"><a class="back" id="addamsLink" href="#">Jugar →</a></div>
-    </section>
-    <section class="card" aria-labelledby="paintTitle">
+    <section class="card halloween-card" aria-labelledby="paintTitle">
       <h2 id="paintTitle">🎨 Pinta y descubre</h2>
-      <p>Resuelve cuentas, elige colores y descubre una imagen sorpresa de Halloween.</p>
-      <div class="actions" style="margin-top:12px;"><a class="back" id="paintLink" href="#">Jugar →</a></div>
+      <div class="card-media media-paint" aria-hidden="true"><span class="media-emoji">🎨</span></div>
+      <p class="card-desc">Resuelve cuentas, elige colores y descubre una imagen sorpresa de Halloween.</p>
+      <div class="card-action"><a class="back" id="paintLink" href="#">Jugar →</a></div>
     </section>
   </div>
+</div>
+
+<div class="cards">
+  <section class="card" aria-labelledby="quizTitle"><h2 id="quizTitle">🎯 Reto del evento</h2><p>Lee la pregunta y elige una respuesta.</p><div class="quiz-question" id="question"></div><div class="answers" id="answers"></div><div class="feedback" id="feedback" role="status" aria-live="polite"></div><button class="next" id="next" disabled>Siguiente pregunta →</button><div class="finish" id="finish">¡Reto terminado! Puedes volver a jugarlo.</div></section>
+  <section class="card" aria-labelledby="storyTitle"><h2 id="storyTitle">📖 Un cuento de la fiesta</h2><p class="story" id="story"></p></section>
 </div>
 
 <p class="credit">Estas actividades son una primera versión; iremos creando más juegos y cuentos para cada celebración. <a href="https://www.cristic.com/1o-y-2o-de-primaria/dias-especiales/" target="_blank" rel="noopener noreferrer">Ver más juegos de días especiales para 6–8 años en Cristic</a>.</p>
@@ -84,6 +130,27 @@ const params=new URLSearchParams(location.search),event=events[params.get('event
 document.title=event.title+' · Mundo Mireia';document.getElementById('icon').textContent=event.icon;document.getElementById('title').textContent=event.title;document.getElementById('dates').textContent='📅 '+event.dates;document.getElementById('season').textContent=event.season;document.getElementById('description').textContent=event.description;document.getElementById('story').textContent=event.story;
 document.getElementById('back').onclick=()=>location.href='mundo-mireia.html?avatar=restored&profile='+encodeURIComponent(profile);
 const eventKey = params.get('event') || 'halloween';
+const isHalloween = eventKey === 'halloween';
+if (isHalloween) {
+  document.body.classList.add('halloween');
+  const heroBox = document.getElementById('heroBox');
+  if (heroBox) heroBox.style.display = 'none';
+  const hHero = document.getElementById('halloweenHero');
+  if (hHero) hHero.style.display = 'block';
+  const hDates = document.getElementById('halloweenDates');
+  const hSeason = document.getElementById('halloweenSeason');
+  if (hDates) hDates.textContent = '📅 ' + event.dates;
+  if (hSeason) hSeason.textContent = event.season;
+  const music = document.getElementById('halloweenMusic');
+  if (music) {
+    const tryPlay = () => { music.play().catch(()=>{}); };
+    tryPlay();
+    document.addEventListener('click', tryPlay, { once:true });
+    document.querySelectorAll('#halloweenGames a, .back, .answer').forEach(el => {
+      el.addEventListener('click', () => { try { music.pause(); } catch(e) {} });
+    });
+  }
+}
 if (eventKey === 'halloween') {
   const games = document.getElementById('halloweenGames');
   if (games) games.style.display = 'block';
@@ -93,15 +160,41 @@ if (eventKey === 'halloween') {
   if (paintLink) paintLink.href = 'halloween-pinta-descubre.html?profile=' + encodeURIComponent(profile);
   if (addamsLink) addamsLink.href = 'halloween-familia-addams.html?profile=' + encodeURIComponent(profile);
   if (storyLink) storyLink.href = 'halloween-cuento-miedo.html?profile=' + encodeURIComponent(profile);
-  const book2Link = document.getElementById('book2Link');
-  if (book2Link) book2Link.href = 'halloween-libro2.html?profile=' + encodeURIComponent(profile);
-  const bookLink = document.getElementById('bookLink');
-  if (bookLink) bookLink.href = 'halloween-libro.html?profile=' + encodeURIComponent(profile);
-  const bookOrigLink = document.getElementById('bookOrigLink');
-  if (bookOrigLink) bookOrigLink.href = 'https://freekidsbooks.org/wp-content/uploads/2025/10/2510-My_First_Halloween-FKB.pdf';
+  // Novedades: oculta los badges ya vistos y los marca al entrar en la actividad.
+  const newApi = window.HalloweenNew;
+  const hideBadge = id => {
+    document.querySelectorAll('.new-badge[data-new-for="' + id + '"]').forEach(badge => { badge.hidden = true; });
+  };
+  if (newApi) {
+    try { newApi.getSeen(profile).forEach(hideBadge); } catch (e) {}
+    document.querySelectorAll('#halloweenGames a[data-new-for]').forEach(link => {
+      link.addEventListener('click', () => {
+        const id = link.getAttribute('data-new-for');
+        try { newApi.markSeen(id, profile); } catch (e) {}
+        hideBadge(id);
+      });
+    });
+  }
 }
 let index=0,done=false,completed=false;const question=document.getElementById('question'),answers=document.getElementById('answers'),feedback=document.getElementById('feedback'),next=document.getElementById('next'),finish=document.getElementById('finish');
 function showQuestion(){done=false;finish.classList.remove('show');feedback.textContent='';next.disabled=true;next.textContent='Siguiente pregunta →';const item=event.questions[index];question.textContent=item[0];answers.innerHTML='';[...item[1]].sort(()=>Math.random()-.5).forEach(answer=>{const button=document.createElement('button');button.className='answer';button.textContent=answer;button.onclick=()=>{if(done)return;if(answer===item[2]){done=true;feedback.textContent='¡Muy bien! Respuesta correcta 😊';next.disabled=false}else{feedback.textContent='Prueba otra vez 😊'}};answers.append(button)})}
 function handleNext(){if(completed){completed=false;index=0;showQuestion();return}if(index<event.questions.length-1){index++;showQuestion();return}completed=true;finish.classList.add('show');feedback.textContent='¡Has completado el reto!';next.textContent='Jugar otra vez';next.disabled=false}
 next.onclick=handleNext;showQuestion();
+function equalizeHalloweenCards(){
+  const grid=document.getElementById('halloweenGames');
+  if(!grid||getComputedStyle(grid).display==='none')return;
+  const cards=[...grid.querySelectorAll('.halloween-card')];
+  if(!cards.length)return;
+  cards.forEach(card=>{card.style.minHeight=''});
+  const cardsGrid=grid.querySelector('.cards');
+  if(!cardsGrid)return;
+  const columns=getComputedStyle(cardsGrid).gridTemplateColumns.split(' ').filter(Boolean).length;
+  if(columns<2)return;
+  const tallest=Math.max(...cards.map(card=>card.getBoundingClientRect().height));
+  if(tallest>0)cards.forEach(card=>{card.style.minHeight=tallest+'px'});
+}
+window.addEventListener('load',equalizeHalloweenCards);
+window.addEventListener('resize',equalizeHalloweenCards);
+window.addEventListener('mundo:ui-language',equalizeHalloweenCards);
+equalizeHalloweenCards();
 </script><script src="ui-language.js"></script></body></html>

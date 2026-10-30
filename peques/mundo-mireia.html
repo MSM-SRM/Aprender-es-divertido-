@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>El mundo mágico de Mireia</title>
 <script src="auth-guard.js"></script>
+<script src="halloween-new.js"></script>
 <script>
 (function () {
   try {
@@ -43,6 +44,10 @@ body{margin:0;background:#071d37;color:#fff;font-family:"Trebuchet MS",system-ui
 .event{position:relative;isolation:isolate;min-height:0;width:100%;border:2px solid #fff0c1;border-radius:12px;background:radial-gradient(ellipse at 92% 20%,#ffffff38 0 9%,transparent 31%),linear-gradient(115deg,var(--event-light,#73bce9),var(--event-main,#4289c5) 58%,var(--event-dark,#244c86));color:#fff;font-weight:1000;font-size:clamp(8px,.98vw,14px);line-height:1.05;display:flex;align-items:center;justify-content:flex-start;gap:5%;padding:1.5% 22% 1.5% 4%;text-align:left;text-shadow:0 1px 3px #173257;cursor:pointer;box-shadow:inset 0 0 0 2px #fff8,0 3px 8px #0007;transition:filter .2s,transform .2s}
 .event .ico{display:grid;place-items:center;border-radius:50%;width:2.05em;height:2.05em;font-size:1.2em;flex:none;background:linear-gradient(#fff,#ffefc7);border:2px solid #fff9;box-shadow:0 2px 5px #10244288}
 .event::after{content:attr(data-art);position:absolute;z-index:-1;right:5%;top:50%;transform:translateY(-50%);font-size:clamp(22px,2vw,32px);line-height:1;opacity:.72;filter:drop-shadow(0 2px 2px #15233b88);pointer-events:none}
+/* Punto rojo de novedades (el ::after ya se usa para data-art) */
+.event.has-new::before{content:"";position:absolute;z-index:3;top:4px;right:4px;width:clamp(9px,1.1vw,14px);height:clamp(9px,1.1vw,14px);border-radius:50%;border:2px solid #fff;background:radial-gradient(circle at 34% 30%,#ff9a9a,#e00d0d 72%);box-shadow:0 0 0 2px #ff2d2d55,0 0 10px 3px #ff2d2dcc;animation:eventNewPulse 1.8s ease-in-out infinite;pointer-events:none}
+@keyframes eventNewPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 2px #ff2d2d44,0 0 8px 2px #ff2d2d99}50%{transform:scale(1.2);box-shadow:0 0 0 4px #ff2d2d22,0 0 15px 5px #ff2d2dcc}}
+@media(prefers-reduced-motion:reduce){.event.has-new::before{animation:none}}
 .event.inactive{filter:grayscale(1);opacity:.93}.event.active{color:white;border-color:var(--event-border,#ffd069);background:linear-gradient(110deg,var(--event-light,#f68c20),var(--event-main,#d53111) 54%,var(--event-dark,#411223));box-shadow:0 0 13px var(--event-glow,#ffa927),inset 0 0 0 2px #ffe2a0}.event.active .ico{background:var(--event-icon,#ffbb29)}.event:hover{transform:scale(1.015)}
 .event[data-event="Navidad"],.event[data-event="Navidad & Año Nuevo"]{--event-light:#55a94a;--event-main:#d92f34;--event-dark:#6f1228;--event-border:#f9df78;--event-glow:#62dc65;--event-icon:#fff2bf}
 .event[data-event="Semana Santa y Lunes de Pascua"]{--event-light:#a45fd1;--event-main:#7242bc;--event-dark:#392064;--event-border:#ffe184;--event-glow:#bb78ff;--event-icon:#fff0ba}
@@ -180,6 +185,19 @@ const eventWindows=[
 function activeEvents(now){const m=now.getMonth()+1,d=now.getDate();return eventWindows.filter(e=>{const [sm,sd]=e.start,[em,ed]=e.end;const current=m*100+d,start=sm*100+sd,end=em*100+ed;return start<=end?current>=start&&current<=end:current>=start||current<=end}).map(e=>e.name)}
 const eventRoutes={'Sant Antoni y Sant Sebastià':'sant-antoni-sant-sebastia','Carnaval & Jaia Corema':'carnaval-jaia-corema','Diada de Baleares':'diada-baleares','San Patricio':'san-patricio','Semana Santa y Lunes de Pascua':'semana-santa-pascua','St. Jordi y Mamá':'st-jordi-mama','Nit de Sant Joan':'nit-sant-joan','Vacaciones de Verano':'vacaciones-verano','Fiesta nacional de España':'fiesta-nacional-espana','Halloween':'halloween','Puente de la Inmaculada':'puente-inmaculada','Navidad & Año Nuevo':'navidad-ano-nuevo','Los Reyes Magos':'reyes-magos'};
 const currentEvents=activeEvents(new Date());document.querySelectorAll('.event').forEach(b=>{const active=currentEvents.includes(b.dataset.event);b.classList.add(active?'active':'inactive');b.setAttribute('aria-pressed',String(active));b.onclick=()=>{if(active)location.href='evento-especial.html?event='+encodeURIComponent(eventRoutes[b.dataset.event])+'&profile='+encodeURIComponent(profileId);else notice(`${b.dataset.event} aparecerá en su temporada.`)}});
+// Punto rojo de novedades de Halloween (se oculta al abrir las tres actividades nuevas)
+function updateHalloweenNewBadge(){
+  const button=document.querySelector('.event[data-event="Halloween"]');
+  if(!button)return;
+  const api=window.HalloweenNew;
+  const show=!!(api&&typeof api.hasNew==='function'&&button.classList.contains('active')&&api.hasNew(profileId));
+  button.classList.toggle('has-new',show);
+  if(show)button.setAttribute('aria-label','Halloween: hay actividades nuevas');
+  else button.removeAttribute('aria-label');
+}
+updateHalloweenNewBadge();
+window.addEventListener('storage',event=>{const api=window.HalloweenNew;if(!event.key||(api&&event.key===api.key(profileId)))updateHalloweenNewBadge()});
+window.addEventListener('pageshow',updateHalloweenNewBadge);
 let timer;function notice(text){const node=document.getElementById('notice');node.textContent=text;node.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>node.classList.remove('show'),2200)}
 // Lista móvil de zonas: se genera desde las zonas del mapa para no duplicar URLs
 const mobileZones=document.getElementById('mobileZones');
