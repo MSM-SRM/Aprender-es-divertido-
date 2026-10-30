@@ -560,6 +560,13 @@
         color: var(--chakra);
     }
 
+    .lv-range.lv-add {
+        margin-top: 1px;
+        font-size: clamp(0.66rem, 1.3vw, 0.78rem);
+        font-weight: 700;
+        color: rgba(255, 247, 232, 0.72);
+    }
+
     .lv-go {
         margin-top: auto;
         padding-top: 6px;
@@ -1125,6 +1132,53 @@
         display: inline-block;
         color: var(--orange);
         animation: q-pulse 1.6s ease-in-out infinite;
+    }
+
+    /* Operación en vertical (niveles 2-5): cifras a la derecha, signo a la izquierda
+       y línea inferior. Debajo queda el hueco en blanco para escribir el resultado. */
+    .question .vertical-op {
+        display: inline-grid;
+        grid-template-columns: auto auto;
+        column-gap: 0.34em;
+        align-items: center;
+        justify-items: end;
+        justify-content: center;
+        max-width: 100%;
+        margin: 4px auto 12px;
+        font-family: var(--font-mono);
+        font-size: clamp(1.8rem, 6vw, 3.2rem);
+        font-weight: 900;
+        line-height: 1.16;
+        color: #17233a;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "tnum" 1;
+        text-shadow: none;
+    }
+
+    .question .vertical-op .v-num {
+        grid-column: 2;
+        min-width: 0;
+        text-align: right;
+        white-space: nowrap;
+    }
+
+    .question .vertical-op .v-sign {
+        grid-column: 1;
+        color: var(--orange);
+        text-align: center;
+    }
+
+    .question .vertical-op .v-blank { grid-column: 1; }
+
+    .question .vertical-op .v-line {
+        grid-column: 1 / -1;
+        align-self: end;
+        width: 100%;
+        height: 0;
+        margin-top: 0.12em;
+        border-top: 4px solid #17233a;
+        border-radius: 4px;
     }
 
     @keyframes q-pulse {
@@ -1761,11 +1815,11 @@
     /* ---------- Datos del juego ---------- */
     const TOTAL = 10;
     const LEVELS = {
-        1: { name: 'Muy fácil', min: 0, max: 10, icon: '🌱' },
-        2: { name: 'Fácil', min: 0, max: 50, icon: '🍃' },
-        3: { name: 'Medio', min: 11, max: 99, icon: '⚔️' },
-        4: { name: 'Difícil', min: 100, max: 499, icon: '🔥' },
-        5: { name: 'Élite', min: 500, max: 1000, icon: '👑' }
+        1: { name: 'Muy fácil', min: 0, max: 9, addMin: 0, addMax: 10, icon: '🌱' },
+        2: { name: 'Fácil', min: 0, max: 20, addMin: 0, addMax: 50, icon: '🍃' },
+        3: { name: 'Medio', min: 1, max: 50, addMin: 11, addMax: 99, icon: '⚔️' },
+        4: { name: 'Difícil', min: 1, max: 99, addMin: 100, addMax: 499, icon: '🔥' },
+        5: { name: 'Élite', min: 100, max: 1000, addMin: 500, addMax: 1000, icon: '👑' }
     };
     const MODES = { sumas: 'Sumas', restas: 'Restas', mixtos: 'Mixtos' };
     const GRADE_LABEL = { gold: 'ORO', silver: 'PLATA', bronze: 'BRONCE' };
@@ -2066,10 +2120,12 @@
         container.innerHTML = Object.keys(LEVELS).map(function (key) {
             const level = LEVELS[key];
             return '<button class="level-card" type="button" data-level="' + key + '" ' +
-                'aria-label="Jugar nivel ' + level.name + ', del ' + level.min + ' al ' + level.max + '">' +
+                'aria-label="Jugar nivel ' + level.name + ', restas del ' + level.min + ' al ' + level.max +
+                ' y sumas del ' + level.addMin + ' al ' + level.addMax + '">' +
                 '<span class="lv-icon" aria-hidden="true">' + level.icon + '</span>' +
                 '<span class="lv-name">' + level.name + '</span>' +
-                '<span class="lv-range">' + level.min + ' – ' + level.max + '</span>' +
+                '<span class="lv-range lv-sub">Restas ' + level.min + '–' + level.max + '</span>' +
+                '<span class="lv-range lv-add">Sumas ' + level.addMin + '–' + level.addMax + '</span>' +
                 '<span class="lv-go" aria-hidden="true">JUGAR →</span>' +
                 '</button>';
         }).join('');
@@ -2171,6 +2227,18 @@
         return list;
     }
 
+    function verticalOperation(a, b, addition) {
+        const sign = addition ? '+' : '−';
+        const word = addition ? 'más' : 'menos';
+        return '<div class="vertical-op" role="img" aria-label="' + a + ' ' + word + ' ' + b + '">' +
+            '<span class="v-blank" aria-hidden="true"></span>' +
+            '<span class="v-num" aria-hidden="true">' + a + '</span>' +
+            '<span class="v-sign" aria-hidden="true">' + sign + '</span>' +
+            '<span class="v-num" aria-hidden="true">' + b + '</span>' +
+            '<span class="v-line" aria-hidden="true"></span>' +
+            '</div>';
+    }
+
     function nextReto() {
         if (answeredCount >= TOTAL) {
             finishGame();
@@ -2192,8 +2260,8 @@
             : operationMode === 'sumas';
 
         if (isAddition) {
-            num1 = randomInt(level.min, level.max);
-            num2 = randomInt(level.min, level.max);
+            num1 = randomInt(level.addMin, level.addMax);
+            num2 = randomInt(level.addMin, level.addMax);
             correctAnswer = num1 + num2;
         } else {
             num1 = randomInt(level.min, level.max);
@@ -2202,8 +2270,10 @@
         }
 
         const sign = isAddition ? '+' : '−';
-        questionEl.innerHTML = num1 + ' <span class="op">' + sign + '</span> ' + num2 +
-            ' <span class="eq">=</span> <span class="q-mark">?</span>';
+        questionEl.innerHTML = currentLevel >= 2
+            ? verticalOperation(num1, num2, isAddition)
+            : num1 + ' <span class="op">' + sign + '</span> ' + num2 +
+                ' <span class="eq">=</span> <span class="q-mark">?</span>';
 
         const spread = Math.max(4, Math.round(Math.max(correctAnswer, 10) * 0.15));
         const unique = new Set([correctAnswer]);

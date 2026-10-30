@@ -333,6 +333,14 @@
             max-width: 100%;
         }
 
+        /* Nivel 1: operación horizontal centrada en el marcador. */
+        #math-board.is-horizontal {
+            width: 100%;
+            text-align: center;
+            white-space: normal;
+            letter-spacing: normal;
+        }
+
         #canvas-container {
             position: relative;
             flex: 1 1 320px;
@@ -580,11 +588,11 @@
 
             <p class="level-label" id="level-label">Escoge Nivel</p>
             <div class="btn-grid" role="group" aria-labelledby="level-label">
-                <button class="btn-lvl1" onclick="startGame(1)">Muy fácil</button>
-                <button class="btn-lvl2" onclick="startGame(2)">Fácil</button>
-                <button class="btn-lvl3" onclick="startGame(3)">Medio</button>
-                <button class="btn-lvl4" onclick="startGame(4)">Difícil</button>
-                <button class="btn-lvl5" onclick="startGame(5)">Élite</button>
+                <button class="btn-lvl1" onclick="startGame(1)" title="Restas 0–9 · Sumas 0–10" aria-label="Nivel Muy fácil: restas del 0 al 9 y sumas del 0 al 10">Muy fácil</button>
+                <button class="btn-lvl2" onclick="startGame(2)" title="Restas 0–20 · Sumas 0–50" aria-label="Nivel Fácil: restas del 0 al 20 y sumas del 0 al 50">Fácil</button>
+                <button class="btn-lvl3" onclick="startGame(3)" title="Restas 1–50 · Sumas 11–99" aria-label="Nivel Medio: restas del 1 al 50 y sumas del 11 al 99">Medio</button>
+                <button class="btn-lvl4" onclick="startGame(4)" title="Restas 1–99 · Sumas 100–499" aria-label="Nivel Difícil: restas del 1 al 99 y sumas del 100 al 499">Difícil</button>
+                <button class="btn-lvl5" onclick="startGame(5)" title="Restas 100–1000 · Sumas 500–1000" aria-label="Nivel Élite: restas del 100 al 1000 y sumas del 500 al 1000">Élite</button>
             </div>
         </div>
 
@@ -738,11 +746,11 @@
         let animationFrame;
 
         const LEVELS = {
-            1: { name: "Muy fácil", min: 0, max: 10 },
-            2: { name: "Fácil", min: 0, max: 50 },
-            3: { name: "Medio", min: 11, max: 99 },
-            4: { name: "Difícil", min: 100, max: 499 },
-            5: { name: "Élite", min: 500, max: 1000 }
+            1: { name: "Muy fácil", min: 0, max: 9, addMin: 0, addMax: 10 },
+            2: { name: "Fácil", min: 0, max: 20, addMin: 0, addMax: 50 },
+            3: { name: "Medio", min: 1, max: 50, addMin: 11, addMax: 99 },
+            4: { name: "Difícil", min: 1, max: 99, addMin: 100, addMax: 499 },
+            5: { name: "Élite", min: 100, max: 1000, addMin: 500, addMax: 1000 }
         };
 
         const MODES = { sumas: "Sumas", restas: "Restas", mixtos: "Mixtos" };
@@ -828,8 +836,8 @@
             const level = LEVELS[currentLevel];
 
             if (isAddition) {
-                num1 = randomInt(level.min, level.max);
-                num2 = randomInt(level.min, level.max);
+                num1 = randomInt(level.addMin, level.addMax);
+                num2 = randomInt(level.addMin, level.addMax);
             } else {
                 num1 = randomInt(level.min, level.max);
                 num2 = randomInt(level.min, num1);
@@ -838,16 +846,27 @@
             correctAnswer = isAddition ? num1 + num2 : num1 - num2;
 
             const sign = isAddition ? "+" : "-";
-            
-            const strNum1 = num1.toString();
-            const strNum2 = sign + num2.toString();
-            const maxLen = Math.max(strNum1.length, strNum2.length);
-            
-            const paddedNum1 = strNum1.padStart(maxLen, " ");
-            const paddedNum2 = strNum2.padStart(maxLen, " ");
-            const line = "-".repeat(maxLen);
-            
-            document.getElementById('math-board').innerText = paddedNum1 + "\n" + paddedNum2 + "\n" + line;
+            const word = isAddition ? "más" : "menos";
+            const board = document.getElementById('math-board');
+            board.setAttribute('role', 'img');
+            board.setAttribute('aria-label', num1 + ' ' + word + ' ' + num2);
+
+            if (currentLevel === 1) {
+                // Nivel 1: operación horizontal centrada.
+                board.classList.add('is-horizontal');
+                board.innerText = num1 + ' ' + (isAddition ? '+' : '−') + ' ' + num2 + ' = ?';
+            } else {
+                // Niveles 2-5: formato vertical escolar. La línea mide lo mismo que
+                // la línea más ancha (la segunda incluye signo, espacio y número).
+                board.classList.remove('is-horizontal');
+                const secondLine = sign + " " + String(num2);
+                const width = Math.max(String(num1).length, secondLine.length);
+                const line = "-".repeat(width);
+                board.innerText =
+                    String(num1).padStart(width, " ") + "\n" +
+                    secondLine.padStart(width, " ") + "\n" +
+                    line;
+            }
 
             options = [correctAnswer];
             const spread = Math.max(4, Math.round(Math.max(correctAnswer, 10) * 0.15));
