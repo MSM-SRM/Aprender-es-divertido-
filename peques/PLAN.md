@@ -489,24 +489,3 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 - Probar el flujo real de Mireia con PIN en producción.
 - Revisar una partida completa en un móvil real.
-
-## Actualización 30/10/2026 — Formato vertical escolar y progresión de restas
-
-### Cambios
-
-- peques/naruto-matematico.html: niveles con rangos separados de resta (min/max) y suma (ddMin/addMax): resta 0–9 / 0–20 / 1–50 / 1–99 / 100–1000; suma 0–10 / 0–50 / 11–99 / 100–499 / 500–1000. Añadida erticalOperation() con ole="img" y ria-label; niveles 2–5 en vertical, nivel 1 en horizontal. Tarjetas muestran Restas y Sumas.
-- peques/penalti-matematico.html: mismos rangos; nivel 1 horizontal centrado; niveles 2–5 verticales con línea de guiones del ancho correcto; ole="img" y ria-label; botones de nivel con rangos en 	itle/ria-label.
-- peques/mi-mates.html: 5 niveles (Muy fácil, Fácil, Medio, Alto, Experto) con subMin/subMax, ddMin/addMax y ertical; eliminada la rama especial de acil; tarjetas con Restas y Sumas; ayuda actualizada.
-- Sin cambios en estilo general, animaciones, sonido, kunai, reduced-motion ni FINISHER_HOLD_MS.
-
-### Pruebas
-
-- Local con servidor 8767 y CDP 9222, perfil guest: niveles 1 horizontal y 2–5 verticales; restas no negativas; sumas en rango; 1000 − 999 a 320 px sin desbordar.
-- Tamaños revisados: 320×568, 390×844, 500×805, 1024×768 y 1180×820; sin scroll horizontal.
-- Consola sin errores reales (solo avicon.ico previo).
-- Producción verificada con Guest y con PIN de Mireia: restas y sumas correctas en los tres juegos.
-
-### Publicación
-
-- Commit 8e9aa2 publicado en origin/main; GitHub Pages sirve la nueva versión.
-- Verificado en producción: Naruto, Penalti y Mi Mates con ?profile=guest sin errores de consola; perfil Mireia protegido por PIN como estaba diseñado.
