@@ -531,7 +531,7 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - El módulo abre el juego en la misma pestaña con el perfil en la URL; el juego incluye un enlace «← Volver a Juegos» que conserva el perfil.
 - Se carga `auth-guard.js` en el juego para mantener la protección por PIN del perfil Mireia; Guest entra directamente.
 - Verificado en local y producción: módulo primero, badge NEW solo para Mireia y Guest, enlace y retorno correctos, partida iniciada con 18 piezas, sin errores de consola ni desbordamiento a 390 px.
-- Commit `1818d91` publicado en `origin/main`.
+- Commits `1818d91` y `f7fdb14` (ajuste de la pista en móvil) publicados en `origin/main`.
 - Producción: `https://msm-srm.github.io/Aprender-es-divertido-/peques/areas-test.html?area=juegos&profile=guest` y `https://msm-srm.github.io/Aprender-es-divertido-/peques/puzzles-mireia.html?profile=guest`.
 
 ### Backup
