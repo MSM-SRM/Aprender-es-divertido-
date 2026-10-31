@@ -13,6 +13,20 @@
 @font-face { font-family:'HalloweenParty'; src:url('halloween-assets/HalloweenParty.ttf') format('truetype'); font-weight:normal; font-style:normal; }
 body.halloween { background:url('halloween-assets/bg.png') center/cover no-repeat fixed; }
 body.halloween .hero { display:none !important; }
+/* Cabecera de Halloween */
+#halloweenHero{display:none;text-align:center;margin:18px 0 24px}
+.halloween-title{font-family:'HalloweenParty',cursive;font-size:clamp(4.4rem,14vw,8.4rem);line-height:1;color:#ff9b28;text-shadow:0 4px 14px #000;margin:0 auto 14px;max-width:100%}
+.halloween-video-wrap{position:relative;width:min(90vw,432px);margin:0 auto;border-radius:18px;overflow:hidden;box-shadow:0 12px 30px #0008;background:#000}
+.halloween-video-wrap video{display:block;width:100%;height:auto}
+.halloween-leaf-strip{position:absolute;left:0;right:0;bottom:0;width:100%;height:56px;object-fit:cover;object-position:center top;pointer-events:none;z-index:2;box-shadow:0 -6px 14px #0008}
+.halloween-meta{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:14px}
+.halloween-meta .dates{margin-top:0}
+/* Botón de música */
+.music-toggle{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:8px 14px;border:2px solid #ffd069;border-radius:999px;background:#2a1b4d;color:#fff;font-weight:900;box-shadow:0 4px 12px #0006;cursor:pointer;touch-action:manipulation}
+.music-toggle:hover,.music-toggle:focus-visible{background:#3a2668;outline:3px solid #ffd069;outline-offset:2px}
+.music-toggle[aria-pressed="true"]{background:#fff;color:#4a2b66;border-color:#ff9b28}
+.music-toggle .music-icon{font-size:1.3rem;line-height:1}
+.music-toggle[hidden]{display:none}
 /* Tarjetas uniformes de Halloween */
 .card{position:relative}
 #halloweenGames .cards{align-items:stretch}
@@ -34,16 +48,24 @@ body.halloween .hero { display:none !important; }
 .new-badge[hidden]{display:none}
 @keyframes newBadgePulse{0%,100%{transform:scale(1);box-shadow:0 3px 10px #d81f1f99}50%{transform:scale(1.09);box-shadow:0 4px 16px #ff2d2dcc}}
 @media(prefers-reduced-motion:reduce){.new-badge{animation:none}.card-media img,.cover-link{transition:none}.cover-link:hover img,.cover-link:focus-visible img{transform:none}}
+@media(max-width:480px){.music-toggle{width:44px;height:44px;min-height:44px;padding:0;gap:0}.music-toggle .music-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}}
+@media(max-width:360px){.halloween-title{font-size:3.6rem}}
 </style>
 <audio id="halloweenMusic" src="halloween-assets/halloweenBGmusic.mp3?v=2" loop preload="auto" style="display:none;"></audio>
 </head>
 <body><main class="wrap">
 <button class="back" id="back">← Volver al mapa</button>
 <header class="hero" id="heroBox"><div class="icon" id="icon" aria-hidden="true">🎉</div><h1 id="title">Evento especial</h1><div class="dates" id="dates"></div><p class="season" id="season"></p></header>
-<section id="halloweenHero" style="display:none; text-align:center; margin:18px 0 24px;">
-  <video id="halloweenVideo" src="halloween-assets/evilpumpkinlaugh.mp4" autoplay muted loop playsinline style="width:min(90vw,432px); border-radius:18px; box-shadow:0 12px 30px #0008; display:block; margin:0 auto;"></video>
-  <h1 style="font-family:'HalloweenParty', cursive; font-size:clamp(2.2rem,7vw,4.2rem); color:#ff9b28; text-shadow:0 4px 14px #000; margin:14px 0 8px;">Halloween</h1>
-  <div class="dates" id="halloweenDates" style="display:inline-flex;"></div>
+<section id="halloweenHero">
+  <h1 class="halloween-title">Halloween</h1>
+  <div class="halloween-video-wrap">
+    <video id="halloweenVideo" src="halloween-assets/evilpumpkinlaugh.mp4" autoplay muted loop playsinline></video>
+    <img class="halloween-leaf-strip" src="halloween-assets/hojas-otono.png" alt="" aria-hidden="true">
+  </div>
+  <div class="halloween-meta">
+    <div class="dates" id="halloweenDates"></div>
+    <button class="music-toggle" id="musicToggle" type="button" hidden aria-pressed="false" aria-label="Silenciar la música" title="Silenciar la música"><span class="music-icon" aria-hidden="true">🔊</span><span class="music-label">Música</span></button>
+  </div>
   <p class="season" id="halloweenSeason" style="margin:10px 0 0; color:#ffe7b8; font-weight:700;"></p>
 </section>
 <p class="intro" id="description"></p>
@@ -142,13 +164,37 @@ if (isHalloween) {
   if (hDates) hDates.textContent = '📅 ' + event.dates;
   if (hSeason) hSeason.textContent = event.season;
   const music = document.getElementById('halloweenMusic');
+  const musicToggle = document.getElementById('musicToggle');
+  const musicIcon = musicToggle ? musicToggle.querySelector('.music-icon') : null;
+  const updateMusicButton = muted => {
+    if (!musicToggle) return;
+    musicToggle.setAttribute('aria-pressed', String(muted));
+    const label = muted ? 'Activar la música' : 'Silenciar la música';
+    musicToggle.setAttribute('aria-label', label);
+    musicToggle.title = label;
+    if (musicIcon) musicIcon.textContent = muted ? '🔇' : '🔊';
+  };
+  if (musicToggle) musicToggle.hidden = false;
   if (music) {
+    let storedMuted = false;
+    try { storedMuted = localStorage.getItem('halloweenMusicMuted') === '1'; } catch (e) {}
+    music.muted = storedMuted;
+    updateMusicButton(storedMuted);
     const tryPlay = () => { music.play().catch(()=>{}); };
     tryPlay();
     document.addEventListener('click', tryPlay, { once:true });
     document.querySelectorAll('#halloweenGames a, .back, .answer').forEach(el => {
       el.addEventListener('click', () => { try { music.pause(); } catch(e) {} });
     });
+    if (musicToggle) {
+      musicToggle.addEventListener('click', () => {
+        const muted = !music.muted;
+        music.muted = muted;
+        updateMusicButton(muted);
+        try { localStorage.setItem('halloweenMusicMuted', muted ? '1' : '0'); } catch (e) {}
+        if (!muted) tryPlay();
+      });
+    }
   }
 }
 if (eventKey === 'halloween') {

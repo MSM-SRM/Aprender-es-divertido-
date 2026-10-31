@@ -23,15 +23,20 @@ main{max-width:980px;margin:18px auto;padding:0 12px 30px}.panel{background:#fff
 .result{display:none;margin-top:10px;padding:13px;border-radius:13px;background:#f1ffef;border:2px solid #8ad67b}.result h3{margin:0 0 5px}.result p{margin:5px 0}
 .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 button{font:inherit;color:var(--ink);border:2px solid #d6c5e7;border-radius:11px;padding:9px 11px;background:#fff;cursor:pointer}button.primary{background:var(--orange);border-color:#e78915;font-weight:850}
+.music-toggle{background:var(--purple);border-color:var(--orange);color:#fff;font-weight:850;box-shadow:0 4px 12px #3a225033}
+.music-toggle:hover,.music-toggle:focus-visible{background:#5c2f7d;outline:3px solid var(--orange);outline-offset:2px}
+.music-toggle[aria-pressed="true"]{background:#fff;color:var(--purple);border-color:var(--orange)}
+.music-toggle .music-icon{font-size:1.15rem;line-height:1}
 .footer{text-align:center;color:#665778;font-size:.84rem;margin-top:13px}
 @media(max-width:600px){.board{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.card{font-size:1.35rem}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important}}
 </style>
 </head>
 <body>
+<audio id="addamsMusic" src="halloween-assets/addams-theme.mp3" loop preload="auto" style="display:none;"></audio>
 <header><h1>🧛 Halloween: memoria de la familia Addams 👻</h1><p>Encuentra las parejas y despierta a toda la familia.</p></header>
 <main><section class="panel">
-<div class="controls"><div><strong>Memoria</strong><div class="mini">Gira dos cartas. Si coinciden, se quedan descubiertas.</div></div><div class="actions"><button id="newBtn">🎲 Nueva partida</button><button id="resetBtn">↻ Reiniciar</button></div></div>
+<div class="controls"><div><strong>Memoria</strong><div class="mini">Gira dos cartas. Si coinciden, se quedan descubiertas.</div></div><div class="actions"><button id="musicToggle" class="music-toggle" type="button" aria-pressed="false" aria-label="Silenciar la música" title="Silenciar la música"><span class="music-icon" aria-hidden="true">🔊</span> Música</button><button id="newBtn">🎲 Nueva partida</button><button id="resetBtn">↻ Reiniciar</button></div></div>
 <div class="stats"><div class="stat">Movimientos: <span id="moves">0</span></div><div class="stat">Parejas: <span id="pairs">0/11</span></div><div class="stat">Tiempo: <span id="time">0 s</span></div></div>
 <div id="board" class="board" aria-label="Tablero de memoria"></div>
 <div id="message" class="message" aria-live="polite">Toca una carta para empezar.</div>
@@ -68,4 +73,11 @@ function flip(i){const card=cards[i];const el=board.querySelector(`[data-i="${i}
  flipped=[];locked=false;},700);}
 }
 document.getElementById("newBtn").onclick=start;document.getElementById("resetBtn").onclick=start;start();
+const addamsMusic=document.getElementById("addamsMusic"),musicToggle=document.getElementById("musicToggle"),musicIcon=musicToggle.querySelector(".music-icon");
+function updateMusicButton(muted){musicToggle.setAttribute("aria-pressed",String(muted));const label=muted?"Activar la música":"Silenciar la música";musicToggle.setAttribute("aria-label",label);musicToggle.title=label;musicIcon.textContent=muted?"🔇":"🔊";}
+let storedMuted=false;try{storedMuted=localStorage.getItem("addamsMusicMuted")==="1";}catch(e){}
+addamsMusic.muted=storedMuted;updateMusicButton(storedMuted);
+function tryPlayMusic(){addamsMusic.play().catch(()=>{});}
+tryPlayMusic();document.addEventListener("click",tryPlayMusic,{once:true});
+musicToggle.addEventListener("click",()=>{const muted=!addamsMusic.muted;addamsMusic.muted=muted;updateMusicButton(muted);try{localStorage.setItem("addamsMusicMuted",muted?"1":"0");}catch(e){}if(!muted)tryPlayMusic();});
 </script><script src="ui-language.js"></script></body></html>
