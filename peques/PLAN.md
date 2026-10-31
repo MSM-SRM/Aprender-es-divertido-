@@ -510,3 +510,30 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 - Commit a8e9aa2 publicado en origin/main; GitHub Pages sirve la nueva version.
 - Verificado en produccion: Naruto, Penalti y Mi Mates con ?profile=guest sin errores de consola; perfil Mireia protegido por PIN como estaba disenado.
+
+---
+
+## Actualización 31/10/2026 — Halloween y Puzzles Mireia
+
+### Halloween
+
+- Título «Halloween» al doble de tamaño (`clamp(4.4rem,14vw,8.4rem)`) y colocado encima del vídeo de la calabaza.
+- Tira de hojas de otoño (`peques/halloween-assets/hojas-otono.png`) superpuesta en la parte inferior del vídeo para tapar la marca «Free AI Preview».
+- Botón de música en la cabecera de Halloween, junto a la fecha: silencia o activa `halloweenBGmusic.mp3` y guarda la preferencia en `halloweenMusicMuted`.
+- Juego de memoria de la Familia Addams con `peques/halloween-assets/addams-theme.mp3` y botón propio de silencio; preferencia en `addamsMusicMuted`.
+- Verificado en local a 892×800, 390×844 y 320×700, y en producción con `?profile=guest`: sin desbordamiento horizontal ni errores de consola.
+- Commit `5215ea0` publicado en `origin/main`.
+
+### Juegos: Puzzles Mireia
+
+- Nuevo juego `peques/puzzles-mireia.html` (15 puzzles con imágenes integradas y progreso por perfil en `puzzlesMireiaDone_v1_<perfil>`).
+- Añadido como primer módulo del área `Juegos` (`peques/areas-test.html?area=juegos&profile=...`), con etiqueta NEW visible para los perfiles `mireia` y `guest`.
+- El módulo abre el juego en la misma pestaña con el perfil en la URL; el juego incluye un enlace «← Volver a Juegos» que conserva el perfil.
+- Se carga `auth-guard.js` en el juego para mantener la protección por PIN del perfil Mireia; Guest entra directamente.
+- Verificado en local y producción: módulo primero, badge NEW solo para Mireia y Guest, enlace y retorno correctos, partida iniciada con 18 piezas, sin errores de consola ni desbordamiento a 390 px.
+- Commit `1818d91` publicado en `origin/main`.
+- Producción: `https://msm-srm.github.io/Aprender-es-divertido-/peques/areas-test.html?area=juegos&profile=guest` y `https://msm-srm.github.io/Aprender-es-divertido-/peques/puzzles-mireia.html?profile=guest`.
+
+### Backup
+
+- Copia de seguridad `C:\Users\Usuario\Downloads\MiMundo_backup_2026-10-31.zip` y resumen `C:\Users\Usuario\Downloads\MiMundo_update_chatgpt_2026-10-31.md` generados el 31/10/2026.
