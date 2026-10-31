@@ -85,7 +85,7 @@ if(current){ctx.save();ctx.globalAlpha=.12;ctx.filter='grayscale(1) brightness(.
 for(let p of pieces){if(!p.placed)continue;let x=ix+p.c*p.cellW-p.t,y=iy+p.r*p.cellH-p.t;ctx.drawImage(p.canvas,x,y,p.canvas.width,p.canvas.height)}ctx.restore();
 ctx.save();ctx.beginPath();ctx.rect(tx+3,ty+3,tw-6,th-6);ctx.clip();for(let p of pieces){if(p.placed||drag&&drag.p===p)continue;ctx.save();ctx.shadowColor='#000';ctx.shadowBlur=5;ctx.drawImage(p.canvas,p.x,p.y,p.canvas.width*p.scale,p.canvas.height*p.scale);ctx.restore()}ctx.restore();
 if(drag){let p=drag.p;ctx.save();ctx.shadowColor='#f4d16b';ctx.shadowBlur=22;ctx.drawImage(p.canvas,p.x,p.y,p.canvas.width*p.scale,p.canvas.height*p.scale);ctx.restore()}
-ctx.fillStyle='#9999aa';ctx.font='11px system-ui';ctx.fillText('Arrastra cada pieza hasta su sitio',bx+8,Math.min(h-5,by+bh+17))}
+ctx.fillStyle='#9999aa';ctx.font='11px system-ui';ctx.fillText('Arrastra cada pieza hasta su sitio',bx+8,Math.min(h-5,by+bh+(mobile?11:17)))}
 function pointer(e){let r=canvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}}
 function down(e){if(won||!current)return;let q=pointer(e);for(let i=pieces.length-1;i>=0;i--){let p=pieces[i];if(p.placed)continue;let ww=p.canvas.width*p.scale,hh=p.canvas.height*p.scale;if(q.x>=p.x&&q.x<=p.x+ww&&q.y>=p.y&&q.y<=p.y+hh){drag={p,dx:q.x-p.x,dy:q.y-p.y};canvas.setPointerCapture(e.pointerId);draw();return}}}
 function move(e){if(!drag)return;let q=pointer(e);drag.p.x=q.x-drag.dx;drag.p.y=q.y-drag.dy;draw()}
