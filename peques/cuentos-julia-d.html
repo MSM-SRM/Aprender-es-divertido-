@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cuentos Julia D. · El mundo mágico de Mireia</title>
+<script src="auth-guard.js"></script>
+<meta name="color-scheme" content="light">
+<style>
+*{box-sizing:border-box}
+:root{font-family:"Trebuchet MS",system-ui,sans-serif;color:#18365e;background:#eaf7ff}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 20% 5%,#fff 0,transparent 42%),linear-gradient(145deg,#e2f4ff,#f7f0ff 55%,#fff4dd);padding:clamp(14px,4vw,42px)}
+button{font:inherit;touch-action:manipulation;cursor:pointer}
+.wrap{width:min(100%,920px);margin:auto}
+.head{display:flex;flex-direction:column;gap:14px;margin-bottom:clamp(16px,3.5vw,28px)}
+.back{align-self:flex-start;border:2px solid #b9d9f5;border-radius:999px;background:#fff;color:#24558d;padding:10px 16px;font-weight:800;box-shadow:0 4px 12px #24558d18}
+.back:hover{border-color:#4798e3}
+.back:focus-visible{outline:3px solid #5aa9ee;outline-offset:2px}
+h1{font-size:clamp(1.6rem,7vw,3.4rem);line-height:1;margin:0;color:#205fa2;text-shadow:0 2px #fff}
+.sub{margin:0;font-size:clamp(.98rem,2.6vw,1.12rem);color:#31577e;line-height:1.4;max-width:62ch}
+.cover{display:block;width:100%;max-width:420px;height:auto;margin:0 auto clamp(20px,4vw,32px);border:4px solid #fff;border-radius:22px;box-shadow:0 12px 28px #23456b26}
+.books{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:16px;margin:0}
+.book{display:flex;flex-direction:column;gap:10px;padding:12px 12px 14px;border:3px solid #fff;border-radius:24px;background:linear-gradient(145deg,#fff,#e7f4ff);box-shadow:0 9px 23px #23456b18;color:#18365e;text-decoration:none;transition:transform .16s,box-shadow .16s}
+.book:hover,.book:focus-visible{transform:translate(-3px,-3px);box-shadow:0 14px 27px #23456b26;outline:3px solid #5aa9ee;outline-offset:2px}
+.book .shot{flex:1;display:flex;align-items:center;justify-content:center;padding:6px;border-radius:18px;background:#fffdf5}
+.book img{display:block;width:100%;height:auto;border-radius:12px}
+.book .name{font-size:1.02rem;font-weight:800;line-height:1.25;text-align:center;color:#18365e}
+.book .name small{display:block;font-size:.82rem;font-weight:700;color:#4a6d94;margin-top:2px}
+.foot{margin:clamp(24px,5vw,38px) 0 0;text-align:center;color:#456b90;font-size:.92rem;font-weight:700}
+.tip{margin:6px 0 0;text-align:center;color:#5b7b9c;font-size:.82rem;line-height:1.35}
+@media (max-width:600px){
+  .books{grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr))}
+}
+@media (max-width:390px){
+  .books{gap:10px}
+  .book{padding:10px 10px 12px;border-radius:22px}
+  .book .name{font-size:.95rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .book{transition:none}
+  .book:hover,.book:focus-visible{transform:none}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <button class="back" id="backBtn" type="button">← Volver</button>
+    <h1>📖 Cuentos Julia D.</h1>
+    <p class="sub">Los cuentos de Julia Donaldson en inglés. ¡Toca un cuento para leerlo!</p>
+  </header>
+
+  <img class="cover" src="imagenes/jd-stories/portada.jpg" alt="The Amazing World of Julia Donaldson and Axel Scheffler" width="403" height="496">
+
+  <section class="books" aria-label="Cuentos de Julia Donaldson">
+    <a class="book" href="https://www.read.studio/book/3#Stick%20Man/page1" target="_blank" rel="noopener noreferrer" aria-label="Abrir el cuento Stick Man en pestaña nueva">
+      <span class="shot"><img src="imagenes/jd-stories/stick-man.jpg" alt="Portada del cuento Stick Man" loading="lazy" width="225" height="283"></span>
+      <span class="name">Stick Man</span>
+    </a>
+    <a class="book" href="https://www.read.studio/book/9#The%20Gruffalo/page1" target="_blank" rel="noopener noreferrer" aria-label="Abrir el cuento The Gruffalo en pestaña nueva">
+      <span class="shot"><img src="imagenes/jd-stories/the-gruffalo.jpg" alt="Portada del cuento The Gruffalo" loading="lazy" width="420" height="526"></span>
+      <span class="name">The Gruffalo</span>
+    </a>
+    <a class="book" href="https://www.read.studio/book/17#The%20Gruffalo's%20Child/page1" target="_blank" rel="noopener noreferrer" aria-label="Abrir el cuento The Gruffalo's Child en pestaña nueva">
+      <span class="shot"><img src="imagenes/jd-stories/gruffalos-child.jpg" alt="Portada del cuento The Gruffalo's Child" loading="lazy" width="403" height="521"></span>
+      <span class="name">The Gruffalo's Child</span>
+    </a>
+    <a class="book" href="https://www.read.studio/book/2#Room%20on%20the%20Broom/page1" target="_blank" rel="noopener noreferrer" aria-label="Abrir el cuento Room on the Broom en pestaña nueva">
+      <span class="shot"><img src="imagenes/jd-stories/room-on-the-broom.jpg" alt="Portada del cuento Room on the Broom" loading="lazy" width="537" height="507"></span>
+      <span class="name">Room on the Broom</span>
+    </a>
+    <a class="book" href="https://www.read.studio/book/7#The%20Baddies/page1" target="_blank" rel="noopener noreferrer" aria-label="Abrir el cuento The Baddies en pestaña nueva">
+      <span class="shot"><img src="imagenes/jd-stories/the-baddies.jpg" alt="Portada del cuento The Baddies" loading="lazy" width="584" height="520"></span>
+      <span class="name">The Baddies</span>
+    </a>
+    <a class="book" href="https://www.read.studio/book/14#Jonty%20Gentoo,%20The%20Adventures%20of%20a%20Penguin/page1" target="_blank" rel="noopener noreferrer" aria-label="Abrir el cuento Jonty Gentoo: The Adventures of a Penguin en pestaña nueva">
+      <span class="shot"><img src="imagenes/jd-stories/jonty-gentoo.jpg" alt="Portada del cuento Jonty Gentoo: The Adventures of a Penguin" loading="lazy" width="553" height="499"></span>
+      <span class="name">Jonty Gentoo:<small>The Adventures of a Penguin</small></span>
+    </a>
+    <a class="book" href="https://www.read.studio/book/24765#Oxford%20Reading%20Tree%20Songbirds%20Phonics%20-%20Ron%20Rabbit's%20Big%20Day%20(from%20The%20Trunk%20and%20the%20Skunk%20and%20Other%20Stories)/page1" target="_blank" rel="noopener noreferrer" aria-label="Abrir el cuento The Trunk and the Skunk en pestaña nueva">
+      <span class="shot"><img src="imagenes/jd-stories/trunk-and-skunk.jpg" alt="Portada del cuento The Trunk and the Skunk" loading="lazy" width="416" height="510"></span>
+      <span class="name">The Trunk and the Skunk</span>
+    </a>
+    <a class="book" href="https://www.read.studio/book/16#A%20Squash%20and%20a%20Squeeze/page1" target="_blank" rel="noopener noreferrer" aria-label="Abrir el cuento A Squash and a Squeeze en pestaña nueva">
+      <span class="shot"><img src="imagenes/jd-stories/squash-and-squeeze.jpg" alt="Portada del cuento A Squash and a Squeeze" loading="lazy" width="384" height="499"></span>
+      <span class="name">A Squash and a Squeeze</span>
+    </a>
+  </section>
+
+  <p class="foot">Cuentos externos · Se abren en pestaña nueva</p>
+  <p class="tip">Consejo: activa el altavoz en read.studio para escuchar el cuento</p>
+</main>
+<script>
+const profileId = new URLSearchParams(location.search).get('profile') || 'mireia';
+document.getElementById('backBtn').addEventListener('click', () => {
+  location.href = `mundo-mireia.html?avatar=restored&profile=${encodeURIComponent(profileId)}`;
+});
+</script>
+</body>
+</html>

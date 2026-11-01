@@ -537,3 +537,50 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 ### Backup
 
 - Copia de seguridad `C:\Users\Usuario\Downloads\MiMundo_backup_2026-10-31.zip` y resumen `C:\Users\Usuario\Downloads\MiMundo_update_chatgpt_2026-10-31.md` generados el 31/10/2026.
+
+---
+
+## Actualización 01/11/2026 — Cuentos Julia D. en Lengua Inglés
+
+### Página nueva: Cuentos Julia D.
+
+- Nueva página `peques/cuentos-julia-d.html` (HTML, CSS y JS propios, sin dependencias) con los 8 cuentos de Julia Donaldson en inglés: Stick Man, The Gruffalo, The Gruffalo's Child, Room on the Broom, The Baddies, Jonty Gentoo: The Adventures of a Penguin, The Trunk and the Skunk y A Squash and a Squeeze.
+- Cada portada es un enlace que abre el cuento correspondiente en `read.studio` (los 8 enlaces, en orden, en pestaña nueva con `target="_blank"` y `rel="noopener noreferrer"`).
+- Portada general JDAS arriba (`peques/imagenes/jd-stories/portada.jpg`) y grid responsive de tarjetas: 2 columnas a 390 px, 1 a 320 px y 4 en escritorio.
+- Botón «← Volver» uniforme con el resto del sitio: `mundo-mireia.html?avatar=restored&profile=<perfil>`.
+- Sin `localStorage` propio todavía: la página no guarda progreso ni suma estrellas.
+
+### Imágenes
+
+- Carpeta nueva `peques/imagenes/jd-stories/` con 9 ficheros JPG: `portada.jpg` y las 8 portadas de los cuentos (492.449 bytes en total).
+- Material original en `Downloads\ENGLISH - Julia Donaldson\`; los dos PDF («FINAL JD Big 8 Activity Pack» y «Room on the Broom Activity Sheets») quedan como material futuro, sin usar todavía.
+
+### Tarjeta en Lengua Inglés (`peques/idiomas.html`)
+
+- Cuarta tarjeta del área, colocada en **primera posición**: «Cuentos Julia D.» con la portada JDAS y el subtítulo «Los 8 cuentos para leer en inglés».
+- Solo aparece cuando el idioma activo es inglés (`language.key==='ingles'`, también sin `?lang=` en la URL); en catalán y alemán no se muestra.
+- Badge «NEW» rojo pulsante en la esquina superior derecha (`aria-hidden="true"`), con `@media (prefers-reduced-motion: reduce)` para desactivar la animación.
+- Enlaza a `cuentos-julia-d.html?profile=<perfil>` en la misma pestaña.
+- Grid propio solo en inglés (`#modules.has-jd`, mínimo 190 px) para que quepan las 4 tarjetas; los colores de Palabras, Escucha y Frases se mantienen con `button.module:nth-of-type(...)`.
+
+### Perfiles
+
+- Accesible para `guest` (sin PIN) y `mireia` (con PIN, vía `auth-guard.js`).
+- Sofía no tiene acceso al mapa, así que no llega a esta zona.
+
+### Pruebas
+
+- Local (servidor 8767): 9 recursos a 200, 8 tarjetas con sus imágenes y los 8 enlaces en orden, sin errores de consola.
+- Escritorio 1280, móvil 390×844 y 320×568: sin scroll horizontal, títulos legibles y badge NEW visible dentro del cuadrado.
+- `idiomas.html?lang=en`: 4 tarjetas con «Cuentos Julia D.» en primera posición; `?lang=ca` y `?lang=de`: 3 tarjetas y sin `has-jd`.
+
+### Publicación
+
+- Publicado en `origin/main` el 01/11/2026; GitHub Pages sirve la página y la tarjeta nueva.
+- Copia de seguridad en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\MiMundo_backup_2026-11-01_cuentos-julia-d`.
+
+### Pendiente
+
+- Quitar el badge NEW cuando el juego deje de ser novedad.
+- Sumar el progreso a `byArea.ingles` si se quiere integrar con el marcador del mapa.
+- Posibles actividades con los 2 PDF del material original.
