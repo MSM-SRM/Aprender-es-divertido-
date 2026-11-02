@@ -92,6 +92,7 @@ h1{font-size:clamp(1.6rem,7vw,3.4rem);line-height:1;margin:0;color:#205fa2;text-
 </main>
 <script>
 const profileId = new URLSearchParams(location.search).get('profile') || 'mireia';
+try { const newKey = 'mundoAprendizajeNewSeen_cuentos-julia-d_' + profileId; if (!localStorage.getItem(newKey)) { localStorage.setItem(newKey, String(Date.now())); } } catch (e) {}
 document.getElementById('backBtn').addEventListener('click', () => {
   location.href = `mundo-mireia.html?avatar=restored&profile=${encodeURIComponent(profileId)}`;
 });

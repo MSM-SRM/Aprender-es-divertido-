@@ -581,6 +581,37 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 ### Pendiente
 
-- Quitar el badge NEW cuando el juego deje de ser novedad.
+- El badge NEW ya es automático: se oculta solo a las 24 h de la primera apertura por perfil (ver «Norma NEW 24h»).
 - Sumar el progreso a `byArea.ingles` si se quiere integrar con el marcador del mapa.
 - Posibles actividades con los 2 PDF del material original.
+
+---
+
+## Actualización 02/11/2026 — Norma NEW 24h
+
+### Norma del sitio
+
+- En todo juego o área nueva, la pegatina NEW se muestra mientras el perfil no haya abierto el juego por primera vez o dentro de las 24 h siguientes a esa primera apertura; después desaparece sola.
+- La norma se aplica por perfil: cada perfil tiene su propio estado y puede seguir viendo el badge aunque otro ya haya abierto el juego.
+
+### Clave canónica
+
+- Clave `mundoAprendizajeNewSeen_<slugJuego>_<perfil>` con el timestamp en milisegundos de la primera apertura.
+- El juego la escribe en su carga si todavía no existe; la tarjeta del área la lee para decidir si muestra el badge.
+- `try/catch` obligatorio en lectura y escritura: si `localStorage` falla, el badge se mantiene visible.
+- Una clave por perfil; no se comparte entre `guest`, `mireia` ni futuros perfiles.
+
+### Implementación actual
+
+- `peques/cuentos-julia-d.html` escribe `mundoAprendizajeNewSeen_cuentos-julia-d_<perfil>` al cargar, solo si la clave no existe.
+- `peques/idiomas.html` lee esa clave en `renderModules()` y calcula `showNew`: visible si no hay clave o si han pasado menos de 86.400.000 ms (24 h); si no, la tarjeta se pinta sin `<span class="jd-new">`.
+- El resto de la tarjeta no cambia: sigue en primera posición del área de inglés y el clic abre el juego con el perfil en la URL.
+
+### Para futuros juegos
+
+- Copiar el patrón cambiando `<slugJuego>` en ambos lados: escritura en la carga del juego y lectura en la tarjeta del área.
+- Mantener el umbral de 86.400.000 ms y el valor por defecto visible ante cualquier error.
+
+### Limpieza
+
+- Retirados 2 harness temporales de pruebas `qa/_tmp-*.html`; no afectan al repositorio publicado.
