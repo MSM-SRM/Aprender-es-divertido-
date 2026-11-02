@@ -27,6 +27,10 @@ body{margin:0;background:#071d37;color:#fff;font-family:"Trebuchet MS",system-ui
 .hud-group{height:100%;min-height:100%;display:flex;align-items:center;gap:.42em;padding:.4% .8%;background:linear-gradient(#fff,#eaf3ff);border:2px solid #1676d1;border-radius:999px;box-shadow:0 4px 10px #10274f55}.langs{display:flex;align-items:center;gap:.6em}.langs button{display:grid;place-items:center;width:clamp(22px,2.55vw,36px);line-height:1;border:0;background:transparent;padding:1px;cursor:pointer;filter:drop-shadow(0 1px 1px #0003)}.flag{display:block;width:100%;height:auto;border:1px solid #777;border-radius:3px;overflow:hidden}
 .flag-ca{display:inline-block;width:1.15em;height:.76em;vertical-align:middle;border-radius:2px;border:1px solid #b5b5b5;background:repeating-linear-gradient(to bottom,#f6d647 0 12%,#d8252d 12% 24%)}
 .divider{height:70%;width:1px;background:#94abc6}.hud-divider{align-self:stretch;height:72%;margin:0 .35em}.hud-item{display:flex;align-items:center;gap:.25em}.datetime-group{gap:.45em;padding:0 .3em}.score-group{gap:.6em;padding:0 .3em}.star-count{font-variant-numeric:tabular-nums;gap:.18em}.star{font-size:1.35em;line-height:1;-webkit-text-stroke:.45px #8b6310;text-shadow:0 1px 1px #6341008a}.gold{color:#ffc928}.silver{color:#becbdc;-webkit-text-stroke:.45px #62758d;text-shadow:0 1px 1px #2339528a}.bronze{color:#c97b46;-webkit-text-stroke:.45px #79401f;text-shadow:0 1px 1px #4323138a}.green{color:#30bd68;-webkit-text-stroke:.45px #147039;text-shadow:0 1px 1px #123b258a}.logout{justify-self:start;align-self:center;min-height:44px;display:inline-flex;align-items:center;margin:5px 0 6px 1.2%;padding:6px 12px;border-radius:99px;border:2px solid #b792ff;background:linear-gradient(#7840ce,#421489);color:white;font-weight:900;font-size:clamp(11px,1vw,15px);box-shadow:0 4px 12px #1d164b88;cursor:pointer}
+.progress-link{min-height:44px;padding:6px 12px;border:2px solid #1676d1;background:linear-gradient(#fff,#eaf3ff);border-radius:999px;color:#113c79;font-weight:900;font-size:clamp(12px,1.2vw,16px);text-decoration:none;white-space:nowrap;box-shadow:0 4px 10px #10274f55}
+.progress-link:hover{filter:brightness(1.04)}
+.progress-link:focus-visible{outline:3px solid #2b6fb0;outline-offset:2px}
+@media(max-width:850px){.progress-link{min-height:44px;padding:5px 9px;font-size:12px}}
 .score-group.show-overflow #greenOverflow{display:flex!important}
 .zone{position:absolute;z-index:2;transform:translate(-50%,-50%);width:12%;height:7%;border-radius:999px;border:2px solid transparent;background:transparent;color:transparent;font-size:0;box-shadow:none;cursor:pointer;transition:transform .16s,filter .16s;text-shadow:none}
 .zone:hover,.zone:focus-visible{z-index:4;transform:translate(-50%,-50%) scale(1.04);outline:3px solid #fff9;box-shadow:0 0 0 5px #2678ffe0,0 4px 12px #001f5f88}
@@ -115,6 +119,7 @@ body{margin:0;background:#071d37;color:#fff;font-family:"Trebuchet MS",system-ui
     <div class="datetime-group hud-group" aria-label="Fecha y hora"><span class="hud-item"><span class="hud-icon">📅</span><span id="date"></span></span><span class="divider"></span><span class="hud-item"><span class="hud-icon">🕒</span><span id="time"></span></span></div>
     <span class="divider hud-divider"></span>
     <div class="score-group hud-group" aria-label="Marcador total del perfil"><span class="hud-item star-count" aria-label="Estrellas doradas"><span class="star gold">★</span><span id="profileGold">000</span></span><span class="hud-item star-count" aria-label="Estrellas plateadas"><span class="star silver">★</span><span id="profileSilver">000</span></span><span class="hud-item star-count" aria-label="Estrellas de bronce"><span class="star bronze">★</span><span id="profileBronze">000</span></span><span id="greenOverflow" class="hud-item star-count" aria-label="Estrellas verdes de desbordamiento" style="display:none"><span class="star green">★</span><span id="profileGreen">000</span></span></div>
+    <a class="hud-group progress-link" id="progressLink" href="mi-progreso.html?profile=mireia" aria-label="Abrir mi progreso y la copia de seguridad"><span aria-hidden="true">💾</span><span>Progreso</span></a>
   </header>
   <aside class="event-rail" aria-label="Eventos temporales">
     <div class="events">
@@ -147,6 +152,8 @@ tick();setInterval(tick,15000);window.addEventListener('mundo:ui-language',tick)
 function updateMireiaAge(){const now=new Date();let age=now.getFullYear()-2019;if(now<new Date(now.getFullYear(),11,9,0,1))age--;document.getElementById('mireiaAge').textContent=String(age)}
 updateMireiaAge();setInterval(updateMireiaAge,1000);
 const profileId=new URLSearchParams(location.search).get('profile')||'mireia';
+const progressLink=document.getElementById('progressLink');
+if(progressLink)progressLink.href='mi-progreso.html?profile='+encodeURIComponent(profileId);
 if(profileId==='guest'){
   document.getElementById('guestBadge').classList.add('show');
   document.querySelector('.avatar-photo').style.display='none';

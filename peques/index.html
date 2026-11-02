@@ -181,6 +181,15 @@ body.language-changing .app{animation:languageTumble .82s cubic-bezier(.22,.72,.
   .profile-details span{font-size:12px;line-height:1.15}
   .birthday-countdown{font-size:12px;line-height:1.2}
 }
+/* Acceso discreto a la copia de seguridad del progreso */
+.backup-access{text-align:center;margin:-14px 0 22px}
+.backup-link{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:8px 14px;border-radius:999px;background:rgba(40,25,65,.72);color:#fff;font-weight:800;font-size:.82rem;line-height:1.2;text-decoration:none;box-shadow:0 4px 14px #3b2f5b33}
+.backup-link:hover{background:rgba(40,25,65,.88)}
+.backup-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.backup-link.inline{background:#f3f1ff;color:#5145b7;box-shadow:none;padding:12px 16px;font-size:.95rem;min-height:44px}
+.backup-link.inline:hover{background:#e9e5ff}
+.backup-link.inline:focus-visible{outline:3px solid #29205e;outline-offset:3px}
+@media(max-width:380px){.backup-link{font-size:.76rem;padding:8px 11px}}
 
 </style>
 </head>
@@ -231,6 +240,7 @@ body.language-changing .app{animation:languageTumble .82s cubic-bezier(.22,.72,.
     </div>
   </div>
   <p class="profile-footer">Podéis continuar con vuestro progreso al entrar. 💜 Pasadlo genial mis queridas 💜</p>
+  <p class="backup-access"><a class="backup-link" href="mi-progreso.html?profile=guest" aria-label="Abrir la copia de seguridad del perfil invitado">💾 Copia de seguridad</a></p>
   <section class="jokes">
     <div class="joke-face">🤡</div>
     <h2>¡Rincón de chistes!</h2>
@@ -273,7 +283,7 @@ body.language-changing .app{animation:languageTumble .82s cubic-bezier(.22,.72,.
     <div class="progress-head"><span id="progressLabel">¡Cada intento cuenta!</span><span id="progressCount">0 retos</span></div>
     <div class="bar"><div id="progressBar"></div></div>
     <div class="muted" id="progressNote">Juega para ganar tus primeras estrellas.</div>
-    <div class="action-row"><button class="secondary" id="resetProgress">Reiniciar progreso</button></div>
+    <div class="action-row"><button class="secondary" id="resetProgress">Reiniciar progreso</button><a class="secondary backup-link inline" id="sofiaBackup" href="mi-progreso.html?profile=sofia" aria-label="Abrir la copia de seguridad del perfil de Sofía">💾 Copia de seguridad</a></div>
   </div>
 </div>
 <section class="screen" id="screen">

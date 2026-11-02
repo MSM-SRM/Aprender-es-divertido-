@@ -615,3 +615,73 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 ### Limpieza
 
 - Retirados 2 harness temporales de pruebas `qa/_tmp-*.html`; no afectan al repositorio publicado.
+
+---
+
+## Actualización 02/11/2026 — Copia de seguridad del progreso
+
+### Página nueva: Mi progreso
+
+- Nueva página `peques/mi-progreso.html` (HTML, CSS y JS propios, sin dependencias) con resumen del progreso del perfil, exportación e importación de la copia y zona de borrado.
+- El perfil se elige con `?profile=mireia|sofia|guest`; si el valor no es válido se usa `mireia`. Carga `auth-guard.js` como el resto del sitio (Guest entra sin PIN; en local las páginas se abren sin sesión).
+- Resumen: oro, plata y bronce sumados de `byArea`, puzzles completados `n/15`, retos (`rounds`), actividades distintas (`Object.keys(byGame).length`) y desglose por área con el total de estrellas de cada una.
+- El enlace «← Volver» lleva a `index.html?profile=guest` en Guest y a `mundo-mireia.html?avatar=restored&profile=<perfil>` en Mireia y Sofía.
+
+### Qué guarda la copia (whitelist)
+
+- Solo las claves del perfil abierto:
+  - `mundoAprendizajeProgressV3_<perfil>` (estrellas, retos, `byGame` y `byArea`).
+  - `puzzlesMireiaDone_v1_<perfil>`.
+  - `halloweenPaintDiscover:v2:<perfil>`.
+  - `mundoHalloweenSeenV1_<perfil>`.
+  - `mundoAprendizajeUiLanguageV1_<perfil>`.
+  - `mundoAprendizajeNewSeen_<slugJuego>_<perfil>` (avisos NEW, cualquier slug).
+- Queda fuera la sesión `mundoAprendizajeSession_<perfil>` y cualquier clave de otro perfil. El idioma de la interfaz sí se incluye en la copia (se restaura tal cual); en el borrado total, en cambio, se conserva.
+- Al importar se valida el sobre, se comprueba cada clave contra la whitelist del perfil y se exige JSON válido en las claves que lo son (`Progress`, `puzzles`, `halloweenPaint`, `HalloweenSeen` y `NewSeen`). Las claves ajenas, las que no son texto o las que no parsean se ignoran y se informa del recuento. Si el archivo es de otro perfil se pide confirmación antes de escribir; al terminar se recarga la página.
+
+### Formato del archivo
+
+- JSON con este sobre y un objeto plano `clave → valor` con los valores tal cual están en `localStorage`:
+
+```json
+{
+  "format": "mi-mundo-progreso",
+  "version": 1,
+  "profile": "guest",
+  "exportedAt": "2026-11-02T13:25:14.015Z",
+  "data": { "clave": "valor" }
+}
+```
+
+- Nombre del archivo: `mi-mundo-progreso-<perfil>-AAAA-MM-DD.json`.
+- Se rechaza cualquier archivo con otro `format`, con `version` distinta de 1 o sin bloque `data`.
+
+### Borrado por área
+
+- Un botón por área con progreso (los de 0 estrellas aparecen desactivados). Pide una confirmación y, si se acepta:
+  - pone a cero `byArea[área]` (`{gold:0,silver:0,bronze:0}`);
+  - elimina de `byGame` los contadores del área: la clave exacta, las que empiezan por `área_` y los alias antiguos (`math` para Mates; `words`, `listen`, `repeat` y `stories` para Lectura; `memory` para Juegos);
+  - recalcula `stars` sumando todas las áreas y vuelve a pintar el resumen.
+- El resto de áreas y sus contadores no se tocan.
+
+### Borrado total
+
+- Doble confirmación: un `confirm` y después escribir `BORRAR` en un `prompt` (se acepta en mayúsculas o minúsculas).
+- Borra todas las claves de la whitelist del perfil menos el idioma; nunca toca la sesión ni claves de otros perfiles. Recarga la página al terminar.
+- Los avisos de resultado se muestran en la propia página (`aria-live`) y en el diálogo final.
+
+### Accesos
+
+- Mapa (`peques/mundo-mireia.html`): botón «💾 Progreso» en el HUD, con el `href` reescrito por JS a `mi-progreso.html?profile=<perfil>`.
+- Inicio (`peques/index.html`): enlace «💾 Copia de seguridad» bajo el selector (perfil `guest`) y otro en la pantalla de Sofía (perfil `sofia`).
+
+### Pruebas
+
+- Local (servidor 8767): 58 comprobaciones automatizadas, todas correctas. Las 3 primeras discrepancias fueron del arnés de pruebas, no del sitio (codificación de acentos en el script y filtro de claves al verificar la importación).
+- Cubierto: resumen a 0 con el perfil limpio, exportación con las 6 claves de la whitelist sin sesión ni otros perfiles, importación que restaura las 6 con los mismos valores, borrado por área y total, y clic real desde el mapa y desde el inicio con el perfil correcto.
+- Sin errores de consola ni respuestas ≥ 400 en `mi-progreso.html`, `mundo-mireia.html` e `index.html`.
+
+### Publicación
+
+- Publicado en `origin/main` el 02/11/2026 y servido por GitHub Pages.
+- Copia de seguridad en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\MiMundo_backup_2026-11-02_progreso`.

@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#eaf7ff">
+<title>Mi progreso · El mundo mágico de Mireia</title>
+<script src="auth-guard.js"></script>
+<style>
+*{box-sizing:border-box}
+:root{font-family:"Trebuchet MS",system-ui,sans-serif;color:#18365e;background:#eaf7ff;--ink:#18365e;--blue:#216eb6;--line:#b9d9f5}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 20% 5%,#fff 0,transparent 42%),linear-gradient(145deg,#e2f4ff,#f7f0ff 55%,#fff4dd);padding:clamp(12px,4vw,40px)}
+button{font:inherit;touch-action:manipulation;cursor:pointer}
+a{color:#1d5794}
+:focus-visible{outline:3px solid #2b6fb0;outline-offset:3px}
+.wrap{width:min(100%,940px);margin:0 auto}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:clamp(14px,3vw,24px)}
+.back{min-height:44px;display:inline-flex;align-items:center;gap:6px;border:2px solid var(--line);border-radius:999px;background:#fff;color:#24558d;padding:10px 16px;font-weight:800;text-decoration:none;box-shadow:0 4px 12px #24558d18}
+.back:hover{filter:brightness(1.02)}
+.scores{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.score{display:flex;align-items:center;gap:5px;border:2px solid;border-radius:999px;background:#fff;padding:8px 10px;font-weight:900;white-space:nowrap;box-shadow:0 4px 12px #24558d12;font-variant-numeric:tabular-nums}
+.score .star{font-size:1.15rem;line-height:1}
+.score.gold{border-color:#ffd967;background:#fff9df;color:#6b4d0e}
+.score.silver{border-color:#c4d3e2;background:#f5f9ff;color:#40566d}
+.score.bronze{border-color:#d9a27c;background:#fff3eb;color:#7a4626}
+.hero{margin:0 0 clamp(16px,3vw,24px)}
+h1{font-size:clamp(1.9rem,7vw,3.1rem);line-height:1.05;margin:0 0 8px;color:#205fa2;text-shadow:0 2px #fff}
+.hero .lead{margin:0;font-size:clamp(1rem,2.6vw,1.18rem);font-weight:800;color:#2c527d}
+.hero .lead strong{color:#173f73}
+.hero .hint{margin:8px 0 0;max-width:640px}
+.hint{color:#526c89;font-size:.9rem;line-height:1.45}
+.panel{margin:0 0 18px;padding:clamp(16px,4vw,26px);border:3px solid #fff;border-radius:24px;background:#fffdf9eb;box-shadow:0 9px 23px #23456b18}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.panel h2{font-size:clamp(1.25rem,4vw,1.6rem);margin:0 0 6px;color:#1d4e83}
+.panel h3{font-size:1.05rem;margin:20px 0 8px;color:#31577e}
+.panel p{margin:0 0 12px;line-height:1.5}
+.panel p:last-child{margin-bottom:0}
+.panel .hint{margin-bottom:12px}
+.pill{display:inline-flex;align-items:center;gap:6px;border:2px solid #cfe3f6;border-radius:999px;background:#f3f9ff;color:#24558d;padding:6px 12px;font-weight:900;font-size:.9rem}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0 10px}
+.stat{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:96px;padding:12px 8px;border:2px solid;border-radius:18px;text-align:center}
+.stat .stat-icon{font-size:1.5rem;line-height:1}
+.stat strong{font-size:clamp(1.4rem,4vw,1.8rem);line-height:1.1;font-variant-numeric:tabular-nums}
+.stat small{font-weight:800;font-size:.82rem}
+.stat.gold{border-color:#ffd967;background:#fff9df;color:#6b4d0e}
+.stat.silver{border-color:#c4d3e2;background:#f5f9ff;color:#40566d}
+.stat.bronze{border-color:#d9a27c;background:#fff3eb;color:#7a4626}
+.stat.puzzles{border-color:#b7e4c7;background:#eefbf1;color:#14603a}
+.meta{margin:6px 0 0;color:#526c89;font-size:.9rem;font-weight:700}
+.meta strong{color:#24558d}
+.area-list{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.area-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border:2px solid #e2eefa;border-radius:16px;background:#fff}
+.area-name{display:flex;align-items:center;gap:8px;flex:1 1 140px;min-width:0;font-weight:900;color:#24558d}
+.area-name .ico{font-size:1.25em;line-height:1}
+.stars-mini{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:3px;border:1px solid;border-radius:999px;padding:3px 8px;font-size:.82rem;font-weight:900;white-space:nowrap;font-variant-numeric:tabular-nums}
+.chip.gold{border-color:#ffd967;background:#fff9df;color:#6b4d0e}
+.chip.silver{border-color:#c4d3e2;background:#f5f9ff;color:#40566d}
+.chip.bronze{border-color:#d9a27c;background:#fff3eb;color:#7a4626}
+.area-total{font-weight:900;white-space:nowrap;color:#1d4e83;font-variant-numeric:tabular-nums}
+.area-row .btn{width:100%;margin-top:2px}
+.empty{margin:0;padding:12px 14px;border:2px dashed #cfe3f6;border-radius:14px;background:#f8fcff;color:#526c89;font-weight:700;text-align:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 18px;border:2px solid transparent;border-radius:999px;background:#eaf4fd;color:#24558d;font-weight:900;line-height:1.15;text-align:center;text-decoration:none}
+.btn.primary{background:linear-gradient(#3a8fdc,#216eb6);color:#fff;box-shadow:0 5px 14px #216eb63d}
+.btn.big{font-size:clamp(.98rem,2.6vw,1.08rem);width:100%}
+.btn.small{min-height:44px;padding:9px 14px;font-size:.9rem}
+.btn.danger{background:#fff1f0;color:#9b2620;border-color:#f0b0aa}
+.btn.danger-solid{background:linear-gradient(#d94b43,#a9221c);color:#fff;border-color:#8f1a15;box-shadow:0 5px 14px #a9221c3d}
+.btn:hover{filter:brightness(1.03)}
+.btn:disabled{opacity:.5;cursor:default;filter:none;box-shadow:none}
+.backup-actions{display:flex;flex-direction:column;gap:10px;margin:14px 0 10px}
+.file-btn{position:relative;cursor:pointer;background:#fff;border-color:#b9d9f5}
+.file-btn:focus-within{outline:3px solid #2b6fb0;outline-offset:3px}
+.file-input{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.file-name{margin:0 0 8px;font-weight:800;color:#31577e;overflow-wrap:anywhere}
+.feedback{min-height:0;margin:0 0 14px;padding:0;border:0;border-radius:14px;font-weight:900;line-height:1.4;overflow-wrap:anywhere}
+.feedback:not(:empty){padding:11px 14px;border:2px solid #b9d9f5;background:#ffffffe6;color:#31577e}
+.feedback[data-tone="ok"]:not(:empty){border-color:#7bc99b;background:#eefbf1;color:#14603a}
+.feedback[data-tone="warn"]:not(:empty){border-color:#f0c36d;background:#fffaeb;color:#6b4a05}
+.feedback[data-tone="error"]:not(:empty){border-color:#eda19a;background:#fff1f0;color:#8f1f19}
+.danger{background:#fff8f7f0;border-color:#ffd9d5}
+.danger h2,.danger h3{color:#8f2a23}
+.danger code{padding:1px 4px;border-radius:5px;background:#ffe9e6;color:#7d1d17;font-size:.88em}
+hr{border:0;border-top:2px dashed #f3c4bf;margin:20px 0 4px}
+.foot{text-align:center;color:#617790;font-size:.85rem;margin:20px 0 0;padding-bottom:8px}
+@media(min-width:560px){
+ .stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .backup-actions{flex-direction:row;flex-wrap:wrap;align-items:stretch}
+ .backup-actions .btn{flex:1 1 220px;width:auto}
+ .area-row .btn{width:auto;margin-top:0;margin-left:auto}
+ .stat{min-height:104px}
+}
+@media(min-width:760px){
+ .panel{padding:28px}
+ .area-name{flex:1 1 200px}
+}
+@media(prefers-reduced-motion:reduce){
+ *{transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="top">
+    <a class="back" id="backLink" href="mundo-mireia.html?avatar=restored&amp;profile=mireia">← Volver</a>
+    <div class="scores" aria-label="Estrellas acumuladas">
+      <div class="score gold" aria-label="Estrellas doradas"><span class="star" aria-hidden="true">★</span><span id="hudGold">0</span></div>
+      <div class="score silver" aria-label="Estrellas plateadas"><span class="star" aria-hidden="true">★</span><span id="hudSilver">0</span></div>
+      <div class="score bronze" aria-label="Estrellas de bronce"><span class="star" aria-hidden="true">★</span><span id="hudBronze">0</span></div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <h1>💾 Mi progreso</h1>
+    <p class="lead">El mundo mágico de Mireia · Perfil: <strong id="profileName">Mireia</strong></p>
+    <p class="hint">Este progreso se guarda solo en este dispositivo. Descarga una copia de vez en cuando para no perderlo si cambias de navegador o borras los datos.</p>
+  </div>
+
+  <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+
+  <section class="panel" aria-labelledby="summaryTitle">
+    <div class="panel-head">
+      <h2 id="summaryTitle">📊 Resumen</h2>
+      <span class="pill" id="profilePill">Perfil: Mireia</span>
+    </div>
+    <div class="stats">
+      <div class="stat gold" role="group" aria-label="Estrellas de oro"><span class="stat-icon" aria-hidden="true">🥇</span><strong id="totalGold">0</strong><small>Oro</small></div>
+      <div class="stat silver" role="group" aria-label="Estrellas de plata"><span class="stat-icon" aria-hidden="true">🥈</span><strong id="totalSilver">0</strong><small>Plata</small></div>
+      <div class="stat bronze" role="group" aria-label="Estrellas de bronce"><span class="stat-icon" aria-hidden="true">🥉</span><strong id="totalBronze">0</strong><small>Bronce</small></div>
+      <div class="stat puzzles" role="group" aria-label="Puzzles completados"><span class="stat-icon" aria-hidden="true">🧩</span><strong id="puzzleCount">0/15</strong><small>Puzzles</small></div>
+    </div>
+    <p class="meta">Retos completados: <strong id="roundsCount">0</strong> · Actividades distintas: <strong id="gamesCount">0</strong></p>
+    <h3>Desglose por área</h3>
+    <ul class="area-list" id="areaList" aria-label="Estrellas por área"></ul>
+  </section>
+
+  <section class="panel" aria-labelledby="backupTitle">
+    <h2 id="backupTitle">💾 Copia de seguridad</h2>
+    <p>Descarga un archivo con el progreso de <strong id="backupProfileName">Mireia</strong> o restaura una copia anterior. La copia incluye estrellas, puzzles, Halloween, avisos NEW e idioma de la interfaz.</p>
+    <div class="backup-actions">
+      <button type="button" class="btn primary big" id="exportBtn"><span aria-hidden="true">⬇️</span> Descargar copia de seguridad</button>
+      <label class="btn file-btn" for="importFile"><span aria-hidden="true">📄</span> Elegir archivo
+        <input class="file-input" type="file" id="importFile" accept=".json,application/json" aria-label="Elegir archivo de copia de seguridad JSON">
+      </label>
+      <button type="button" class="btn big" id="importBtn"><span aria-hidden="true">⬆️</span> Restaurar copia</button>
+    </div>
+    <p class="file-name" id="fileName">Ningún archivo seleccionado.</p>
+    <p class="hint">Nunca se incluye la sesión (<code>mundoAprendizajeSession_*</code>) ni el progreso de otros perfiles. Antes de escribir se valida el archivo y cada dato JSON; si una clave no es válida se ignora y se avisa al terminar.</p>
+  </section>
+
+  <section class="panel danger" aria-labelledby="deleteTitle">
+    <h2 id="deleteTitle" tabindex="-1">🧨 Zona de borrado</h2>
+    <p>Estas acciones no se pueden deshacer. Si quieres conservar el progreso, descarga antes una copia de seguridad.</p>
+    <h3>Borrar un área</h3>
+    <p class="hint">Al borrar un área se ponen a 0 sus estrellas y se eliminan sus contadores de juego: las claves con prefijo <code>área_</code> y los contadores antiguos equivalentes (<code>math</code> para Mates; <code>words</code>, <code>listen</code>, <code>repeat</code> y <code>stories</code> para Lectura; <code>memory</code> para Juegos). Las demás áreas y sus contadores se conservan, y las estrellas totales se recalculan.</p>
+    <ul class="area-list" id="deleteList" aria-label="Áreas con progreso para borrar"></ul>
+    <hr>
+    <h3>Borrar todo el perfil</h3>
+    <p>Elimina todas las claves de progreso de <strong id="dangerProfileName">Mireia</strong>: estrellas, retos, puzzles, Halloween, avisos NEW e idioma guardado. <strong>No borra la sesión</strong> ni el progreso de otros perfiles.</p>
+    <button type="button" class="btn danger-solid big" id="deleteAll">🗑️ Borrar TODO el progreso de este perfil</button>
+    <p class="hint" style="margin-top:12px">Se pedirá confirmar dos veces y escribir <strong>BORRAR</strong>.</p>
+  </section>
+
+  <p class="foot">Copia de seguridad local · El mundo mágico de Mireia</p>
+</main>
+<script>
+(function () {
+  'use strict';
+
+  var params = new URLSearchParams(location.search);
+  var KNOWN_PROFILES = ['mireia', 'sofia', 'guest'];
+  var requested = params.get('profile') || 'mireia';
+  var profile = KNOWN_PROFILES.indexOf(requested) !== -1 ? requested : 'mireia';
+  var NAMES = { mireia: 'Mireia', sofia: 'Sofía', guest: 'Invitado' };
+  var STAR_TYPES = ['gold', 'silver', 'bronze'];
+  var STAR_LABELS = { gold: 'Oro', silver: 'Plata', bronze: 'Bronce' };
+  var STAR_SYMBOLS = { gold: '🥇', silver: '🥈', bronze: '🥉' };
+
+  var PROGRESS_PREFIX = 'mundoAprendizajeProgressV3_';
+  var PUZZLES_PREFIX = 'puzzlesMireiaDone_v1_';
+  var PAINT_PREFIX = 'halloweenPaintDiscover:v2:';
+  var HALLOWEEN_PREFIX = 'mundoHalloweenSeenV1_';
+  var NEW_PREFIX = 'mundoAprendizajeNewSeen_';
+  var LANG_PREFIX = 'mundoAprendizajeUiLanguageV1_';
+  var SESSION_PREFIX = 'mundoAprendizajeSession_';
+
+  var PROGRESS_KEY = PROGRESS_PREFIX + profile;
+  var PUZZLES_KEY = PUZZLES_PREFIX + profile;
+  var PAINT_KEY = PAINT_PREFIX + profile;
+  var HALLOWEEN_KEY = HALLOWEEN_PREFIX + profile;
+  var LANG_KEY = LANG_PREFIX + profile;
+
+  var AREA_ORDER = ['mates', 'lectura', 'escritura', 'ingles', 'catalan', 'aleman', 'ciencias', 'musica', 'biblioteca', 'mitologia_griega', 'mitologia_india', 'juegos', 'anteriores'];
+  var AREA_LABELS = {
+    mates: 'Mates',
+    lectura: 'Lectura',
+    escritura: 'Escritura',
+    ingles: 'Inglés',
+    catalan: 'Catalán',
+    aleman: 'Alemán',
+    ciencias: 'Ciencias',
+    musica: 'Música',
+    biblioteca: 'Biblioteca',
+    mitologia_griega: 'Mitología griega',
+    mitologia_india: 'Mitología india',
+    juegos: 'Juegos',
+    anteriores: 'Progreso anterior'
+  };
+  var AREA_ICONS = {
+    mates: '🔢',
+    lectura: '📖',
+    escritura: '✍️',
+    ingles: '🇬🇧',
+    catalan: '🟨',
+    aleman: '🇩🇪',
+    ciencias: '🔬',
+    musica: '🎵',
+    biblioteca: '📚',
+    mitologia_griega: '🏛️',
+    mitologia_india: '🕉️',
+    juegos: '🎲',
+    anteriores: '⭐'
+  };
+  var PUZZLE_TOTAL = 15;
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  function displayName(id) {
+    if (typeof id !== 'string' || !id) return 'perfil desconocido';
+    return NAMES[id] || id;
+  }
+
+  function areaLabel(key) {
+    if (AREA_LABELS[key]) return AREA_LABELS[key];
+    var text = String(key).replace(/[_-]+/g, ' ').trim();
+    return text ? text.charAt(0).toUpperCase() + text.slice(1) : 'Área';
+  }
+
+  function count(value) {
+    var number = Number(value);
+    return Number.isFinite(number) && number > 0 ? Math.floor(number) : 0;
+  }
+
+  function emptyProgress() {
+    return { stars: 0, rounds: 0, byGame: {}, byArea: {} };
+  }
+
+  function loadProgress() {
+    var raw;
+    try {
+      raw = localStorage.getItem(PROGRESS_KEY);
+    } catch (e) {
+      return { data: emptyProgress(), error: 'No se pudo leer el almacenamiento del navegador. Revisa los permisos del sitio.' };
+    }
+    if (!raw) return { data: emptyProgress(), error: '' };
+    try {
+      var parsed = JSON.parse(raw);
+      if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) throw new Error('formato');
+      return { data: parsed, error: '' };
+    } catch (e) {
+      return { data: emptyProgress(), error: 'El progreso guardado no se pudo leer (datos dañados). Se muestran 0 estrellas; puedes restaurar una copia de seguridad.' };
+    }
+  }
+
+  function puzzleCount() {
+    try {
+      var raw = localStorage.getItem(PUZZLES_KEY);
+      if (!raw) return 0;
+      var list = JSON.parse(raw);
+      if (!Array.isArray(list)) return 0;
+      var unique = {};
+      var total = 0;
+      list.forEach(function (item) {
+        if (typeof item === 'string' && item && !unique[item]) {
+          unique[item] = true;
+          total += 1;
+        }
+      });
+      return Math.min(total, PUZZLE_TOTAL);
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  function areaTotals(area) {
+    var totals = { gold: 0, silver: 0, bronze: 0, all: 0 };
+    if (!area || typeof area !== 'object') return totals;
+    STAR_TYPES.forEach(function (type) {
+      totals[type] = count(area[type]);
+      totals.all += totals[type];
+    });
+    return totals;
+  }
+
+  function sortedAreas(keys) {
+    return keys.slice().sort(function (a, b) {
+      var ia = AREA_ORDER.indexOf(a);
+      var ib = AREA_ORDER.indexOf(b);
+      if (ia === -1 && ib === -1) return String(a).localeCompare(String(b), 'es');
+      if (ia === -1) return 1;
+      if (ib === -1) return -1;
+      return ia - ib;
+    });
+  }
+
+  function setFeedback(text, tone) {
+    var node = $('feedback');
+    node.textContent = text || '';
+    if (tone) node.setAttribute('data-tone', tone);
+    else node.removeAttribute('data-tone');
+  }
+
+  function safeKeys() {
+    try {
+      return Object.keys(localStorage);
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function isWhitelistedKey(key) {
+    if (typeof key !== 'string') return false;
+    if (key === PROGRESS_KEY || key === PUZZLES_KEY || key === PAINT_KEY || key === HALLOWEEN_KEY || key === LANG_KEY) return true;
+    var suffix = '_' + profile;
+    if (key.indexOf(NEW_PREFIX) === 0 && key.slice(-suffix.length) === suffix) {
+      var slug = key.slice(NEW_PREFIX.length, key.length - suffix.length);
+      return slug.length > 0;
+    }
+    return false;
+  }
+
+  function requiresJsonCheck(key) {
+    return key === PROGRESS_KEY || key === PUZZLES_KEY || key === PAINT_KEY || key === HALLOWEEN_KEY || key.indexOf(NEW_PREFIX) === 0;
+  }
+
+  function isValidJson(value) {
+    try {
+      JSON.parse(value);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function buildAreaRow(key, withButton) {
+    var totals = areaTotals(currentAreas[key]);
+    var label = areaLabel(key);
+    var li = document.createElement('li');
+    li.className = 'area-row';
+
+    var name = document.createElement('div');
+    name.className = 'area-name';
+    var icon = document.createElement('span');
+    icon.className = 'ico';
+    icon.setAttribute('aria-hidden', 'true');
+    icon.textContent = AREA_ICONS[key] || '⭐';
+    var text = document.createElement('span');
+    text.textContent = label;
+    name.appendChild(icon);
+    name.appendChild(text);
+
+    var chips = document.createElement('div');
+    chips.className = 'stars-mini';
+    STAR_TYPES.forEach(function (type) {
+      var chip = document.createElement('span');
+      chip.className = 'chip ' + type;
+      chip.setAttribute('aria-label', label + ': ' + STAR_LABELS[type] + ' ' + totals[type]);
+      chip.textContent = STAR_SYMBOLS[type] + ' ' + totals[type];
+      chips.appendChild(chip);
+    });
+
+    var total = document.createElement('div');
+    total.className = 'area-total';
+    total.setAttribute('aria-label', label + ': ' + totals.all + ' estrellas en total');
+    total.textContent = totals.all + ' ★';
+
+    li.appendChild(name);
+    li.appendChild(chips);
+    li.appendChild(total);
+
+    if (withButton) {
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'btn small danger';
+      button.dataset.area = key;
+      button.textContent = 'Borrar';
+      button.setAttribute('aria-label', 'Borrar el progreso del área ' + label);
+      button.disabled = totals.all === 0;
+      li.appendChild(button);
+    }
+    return li;
+  }
+
+  var currentAreas = {};
+
+  function renderSummary() {
+    var loaded = loadProgress();
+    var data = loaded.data;
+    var byArea = data.byArea && typeof data.byArea === 'object' && !Array.isArray(data.byArea) ? data.byArea : {};
+    currentAreas = byArea;
+
+    var totals = { gold: 0, silver: 0, bronze: 0 };
+    Object.keys(byArea).forEach(function (key) {
+      var area = areaTotals(byArea[key]);
+      STAR_TYPES.forEach(function (type) { totals[type] += area[type]; });
+    });
+
+    $('totalGold').textContent = String(totals.gold);
+    $('totalSilver').textContent = String(totals.silver);
+    $('totalBronze').textContent = String(totals.bronze);
+    $('hudGold').textContent = String(totals.gold);
+    $('hudSilver').textContent = String(totals.silver);
+    $('hudBronze').textContent = String(totals.bronze);
+    $('puzzleCount').textContent = puzzleCount() + '/' + PUZZLE_TOTAL;
+
+    var byGame = data.byGame && typeof data.byGame === 'object' && !Array.isArray(data.byGame) ? data.byGame : {};
+    $('roundsCount').textContent = String(count(data.rounds));
+    $('gamesCount').textContent = String(Object.keys(byGame).length);
+
+    var areaList = $('areaList');
+    var deleteList = $('deleteList');
+    areaList.textContent = '';
+    deleteList.textContent = '';
+
+    var keys = sortedAreas(Object.keys(byArea));
+    if (!keys.length) {
+      var empty = document.createElement('li');
+      empty.className = 'empty';
+      empty.textContent = 'Todavía no hay estrellas guardadas en este perfil.';
+      areaList.appendChild(empty);
+      var emptyDanger = document.createElement('li');
+      emptyDanger.className = 'empty';
+      emptyDanger.textContent = 'No hay áreas con progreso para borrar.';
+      deleteList.appendChild(emptyDanger);
+    } else {
+      keys.forEach(function (key) {
+        areaList.appendChild(buildAreaRow(key, false));
+        deleteList.appendChild(buildAreaRow(key, true));
+      });
+    }
+
+    if (loaded.error) setFeedback(loaded.error, 'warn');
+  }
+
+  function pad2(value) {
+    return String(value).padStart(2, '0');
+  }
+
+  function localDateStamp() {
+    var now = new Date();
+    return now.getFullYear() + '-' + pad2(now.getMonth() + 1) + '-' + pad2(now.getDate());
+  }
+
+  function exportBackup() {
+    var keys = safeKeys().filter(isWhitelistedKey).sort();
+    if (!keys.length) {
+      var anything;
+      try { anything = localStorage.length; } catch (e) { anything = 0; }
+      if (!anything) {
+        setFeedback('No se puede acceder al almacenamiento del navegador. La copia no se ha podido crear.', 'error');
+        return;
+      }
+    }
+    var data = {};
+    var failed = 0;
+    keys.forEach(function (key) {
+      try {
+        var value = localStorage.getItem(key);
+        if (value !== null) data[key] = value;
+      } catch (e) {
+        failed += 1;
+      }
+    });
+    var payload = {
+      format: 'mi-mundo-progreso',
+      version: 1,
+      profile: profile,
+      exportedAt: new Date().toISOString(),
+      data: data
+    };
+    var json = JSON.stringify(payload, null, 2);
+    var fileName = 'mi-mundo-progreso-' + profile + '-' + localDateStamp() + '.json';
+    try {
+      var blob = new Blob([json], { type: 'application/json;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = fileName;
+      anchor.rel = 'noopener';
+      anchor.style.display = 'none';
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+      var countKeys = Object.keys(data).length;
+      setFeedback('Copia descargada ✅ (' + countKeys + (countKeys === 1 ? ' clave' : ' claves') + '). Archivo: ' + fileName, 'ok');
+    } catch (e) {
+      setFeedback('No se pudo generar la copia de seguridad. Prueba con otro navegador o revisa los permisos de descarga.', 'error');
+    }
+    if (failed) {
+      setFeedback('Copia descargada ✅ con ' + failed + ' clave(s) que no se pudieron leer del almacenamiento.', 'warn');
+    }
+  }
+
+  async function restoreBackup() {
+    var input = $('importFile');
+    var file = input.files && input.files[0];
+    if (!file) {
+      setFeedback('Elige primero un archivo .json con una copia de seguridad.', 'warn');
+      return;
+    }
+
+    var text;
+    try {
+      text = await file.text();
+    } catch (e) {
+      setFeedback('No se pudo leer el archivo seleccionado.', 'error');
+      return;
+    }
+
+    var payload;
+    try {
+      payload = JSON.parse(text);
+    } catch (e) {
+      setFeedback('El archivo no es un JSON válido. No se ha restaurado nada.', 'error');
+      return;
+    }
+    if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
+      setFeedback('El archivo no tiene el formato de una copia de Mi Mundo de Aprendizaje.', 'error');
+      return;
+    }
+    if (payload.format !== 'mi-mundo-progreso') {
+      setFeedback('El archivo no es una copia de "Mi Mundo de Aprendizaje" (falta format: mi-mundo-progreso).', 'error');
+      return;
+    }
+    if (payload.version !== 1) {
+      setFeedback('La versión de la copia no es compatible (se esperaba la versión 1).', 'error');
+      return;
+    }
+    if (!payload.data || typeof payload.data !== 'object' || Array.isArray(payload.data)) {
+      setFeedback('La copia no contiene un bloque "data" válido.', 'error');
+      return;
+    }
+
+    var fileProfile = typeof payload.profile === 'string' ? payload.profile.trim() : '';
+    if (fileProfile && fileProfile !== profile) {
+      var proceed = confirm('Esta copia es de ' + displayName(fileProfile) + ' (' + fileProfile + ').\n¿Restaurar sobre ' + displayName(profile) + ' (' + profile + ')?\n\nSe sobrescribirá el progreso actual de ' + displayName(profile) + '.');
+      if (!proceed) {
+        setFeedback('Restauración cancelada. No se ha cambiado nada.', 'warn');
+        return;
+      }
+    }
+
+    var entries = Object.entries(payload.data);
+    var restored = 0;
+    var ignored = 0;
+    var invalid = 0;
+    var writeErrors = 0;
+
+    entries.forEach(function (entry) {
+      var key = entry[0];
+      var value = entry[1];
+      if (!isWhitelistedKey(key)) { ignored += 1; return; }
+      if (typeof value !== 'string') { invalid += 1; return; }
+      if (requiresJsonCheck(key) && !isValidJson(value)) { invalid += 1; return; }
+      try {
+        localStorage.setItem(key, value);
+        restored += 1;
+      } catch (e) {
+        writeErrors += 1;
+      }
+    });
+
+    var parts = [restored + ' clave(s) restaurada(s)'];
+    if (ignored) parts.push(ignored + ' ignorada(s) por no pertenecer a este perfil');
+    if (invalid) parts.push(invalid + ' con formato no válido');
+    if (writeErrors) parts.push(writeErrors + ' no se pudieron guardar');
+
+    if (!restored) {
+      var message = 'No se restauró ninguna clave. ' + parts.slice(1).join(' · ');
+      setFeedback(message, writeErrors ? 'error' : 'warn');
+      return;
+    }
+
+    if (writeErrors) {
+      setFeedback('Restauración incompleta: ' + parts.join(' · ') + '. Puede que el almacenamiento esté lleno o bloqueado.', 'error');
+      alert('Restauración incompleta:\n' + parts.join('\n') + '\n\nLa página se recargará con lo que se pudo guardar.');
+    } else {
+      setFeedback('Copia restaurada ✅ ' + parts.join(' · ') + '. Recargando…', 'ok');
+      alert('Copia restaurada:\n' + parts.join('\n') + '\n\nLa página se recargará para mostrar el progreso.');
+    }
+    location.reload();
+  }
+
+  function sameAreaGame(gameKey, area) {
+    if (gameKey === area) return true;
+    if (gameKey.indexOf(area + '_') === 0) return true;
+    var aliases = { mates: ['math'], lectura: ['words', 'listen', 'repeat', 'stories'], juegos: ['memory'] };
+    return (aliases[area] || []).indexOf(gameKey) !== -1;
+  }
+
+  function deleteArea(area) {
+    var loaded = loadProgress();
+    if (loaded.error && loaded.error.indexOf('dañados') !== -1) {
+      setFeedback(loaded.error, 'error');
+      return;
+    }
+    var data = loaded.data;
+    var label = areaLabel(area);
+    var proceed = confirm('¿Borrar el progreso de ' + label + '?\n\nSe pondrán a 0 sus estrellas y se borrarán sus contadores de juego. Las demás áreas no cambian. Esta acción no se puede deshacer.');
+    if (!proceed) {
+      setFeedback('Borrado del área cancelado. No se ha cambiado nada.', 'warn');
+      return;
+    }
+
+    var byArea = data.byArea && typeof data.byArea === 'object' && !Array.isArray(data.byArea) ? Object.assign({}, data.byArea) : {};
+    byArea[area] = { gold: 0, silver: 0, bronze: 0 };
+
+    var byGame = data.byGame && typeof data.byGame === 'object' && !Array.isArray(data.byGame) ? Object.assign({}, data.byGame) : {};
+    var removed = 0;
+    Object.keys(byGame).forEach(function (key) {
+      if (sameAreaGame(key, area)) {
+        delete byGame[key];
+        removed += 1;
+      }
+    });
+
+    var total = 0;
+    Object.keys(byArea).forEach(function (key) {
+      total += areaTotals(byArea[key]).all;
+    });
+
+    data.byArea = byArea;
+    data.byGame = byGame;
+    data.stars = total;
+
+    try {
+      localStorage.setItem(PROGRESS_KEY, JSON.stringify(data));
+    } catch (e) {
+      setFeedback('No se pudo guardar el cambio: el almacenamiento está lleno o bloqueado. No se borró nada.', 'error');
+      return;
+    }
+
+    renderSummary();
+    setFeedback('Área "' + label + '" borrada. ' + removed + ' contador(es) de juego eliminados. Estrellas totales recalculadas: ' + total + ' ★.', 'ok');
+    var heading = $('deleteTitle');
+    if (heading) heading.focus();
+  }
+
+  function deleteEverything() {
+    var name = displayName(profile);
+    var first = confirm('¿Borrar TODO el progreso de ' + name + '?\n\nSe borrarán estrellas, retos, puzzles, Halloween, avisos NEW e idioma guardado. La sesión no se borra. Esta acción no se puede deshacer.');
+    if (!first) {
+      setFeedback('Borrado total cancelado. No se ha cambiado nada.', 'warn');
+      return;
+    }
+    var typed = prompt('Escribe BORRAR para confirmar que quieres borrar todo el progreso de ' + name + '.');
+    if (typed === null) {
+      setFeedback('Borrado total cancelado. No se ha cambiado nada.', 'warn');
+      return;
+    }
+    if (typed.trim().toUpperCase() !== 'BORRAR') {
+      setFeedback('No se ha escrito BORRAR. El progreso no se ha borrado.', 'warn');
+      return;
+    }
+
+    var keys = safeKeys().filter(function (key) {
+      return isWhitelistedKey(key) && key !== LANG_KEY && key.indexOf(SESSION_PREFIX) !== 0;
+    });
+    var removed = 0;
+    var failed = 0;
+    keys.forEach(function (key) {
+      try {
+        localStorage.removeItem(key);
+        removed += 1;
+      } catch (e) {
+        failed += 1;
+      }
+    });
+
+    setFeedback('Progreso de ' + name + ' borrado: ' + removed + ' clave(s) eliminada(s). Se conservan la sesión y el idioma.', 'ok');
+    alert('Progreso borrado: ' + removed + ' clave(s).\n' + (failed ? failed + ' no se pudieron borrar.\n' : '') + '\nSe conservan la sesión y el idioma de la interfaz. La página se recargará.');
+    location.reload();
+  }
+
+  function initProfileUi() {
+    var name = displayName(profile);
+    document.documentElement.lang = 'es';
+    $('profileName').textContent = name;
+    $('backupProfileName').textContent = name;
+    $('dangerProfileName').textContent = name;
+    $('profilePill').textContent = 'Perfil: ' + name;
+
+    var back = $('backLink');
+    if (profile === 'guest') {
+      back.href = 'index.html?profile=guest';
+      back.textContent = '← Volver al inicio';
+      back.setAttribute('aria-label', 'Volver al inicio, perfil invitado');
+    } else {
+      back.href = 'mundo-mireia.html?avatar=restored&profile=' + encodeURIComponent(profile);
+      back.textContent = '← Volver al mapa';
+      back.setAttribute('aria-label', 'Volver al mapa, perfil ' + name);
+    }
+
+    var exportButton = $('exportBtn');
+    exportButton.setAttribute('aria-label', 'Descargar copia de seguridad del progreso de ' + name);
+    $('importBtn').setAttribute('aria-label', 'Restaurar una copia de seguridad sobre el perfil ' + name);
+    $('deleteAll').setAttribute('aria-label', 'Borrar todo el progreso del perfil ' + name);
+  }
+
+  initProfileUi();
+  renderSummary();
+
+  $('exportBtn').addEventListener('click', exportBackup);
+  $('importBtn').addEventListener('click', restoreBackup);
+  $('importFile').addEventListener('change', function () {
+    var file = this.files && this.files[0];
+    $('fileName').textContent = file ? 'Archivo elegido: ' + file.name : 'Ningún archivo seleccionado.';
+    if (file) setFeedback('Archivo listo. Pulsa "Restaurar copia" para validarlo y restaurarlo.', '');
+  });
+  $('deleteList').addEventListener('click', function (event) {
+    var button = event.target.closest('button[data-area]');
+    if (!button || button.disabled) return;
+    deleteArea(button.getAttribute('data-area'));
+  });
+  $('deleteAll').addEventListener('click', deleteEverything);
+})();
+</script>
+<script src="ui-language.js"></script>
+</body>
+</html>
