@@ -445,6 +445,89 @@
     }
   };
 
+  // Cadenas de Naruto y Penalti que no estaban en el diccionario general.
+  Object.assign(dictionary.en, {
+    'Academia Ninja · Matemáticas': 'Ninja Academy · Maths', 'Academia Ninja': 'Ninja Academy',
+    'Academia Ninja Matemáticas': 'Ninja Maths Academy',
+    'Naruto · Academia Ninja Matemáticas': 'Naruto · Ninja Maths Academy',
+    '← Volver a Mi Mates': '← Back to My Maths', 'JUGAR →': 'PLAY →',
+    'ACIERTOS': 'CORRECT', 'NIVEL': 'LEVEL', 'RETO': 'CHALLENGE', 'RESUELVE EL RETO': 'SOLVE THE CHALLENGE',
+    'SIN ESTRELLA': 'NO STAR', 'Elige tu nivel': 'Choose your level', 'Elige tu modo': 'Choose your mode',
+    'Mixtos': 'Mixed', 'Difícil': 'Hard', 'Élite': 'Elite',
+    'Sumas, restas o ambos': 'Addition, subtraction or both',
+    'ORO': 'GOLD', 'PLATA': 'SILVER', 'BRONCE': 'BRONZE',
+    '¡Misión perfecta!': 'Perfect mission!', '¡Misión excelente!': 'Excellent mission!',
+    '¡Gran misión!': 'Great mission!', '¡Misión cumplida!': 'Mission complete!', '¡Sigue entrenando!': 'Keep training!',
+    '¡Partido perfecto!': 'Perfect match!', '¡Partido excelente!': 'Excellent match!',
+    '¡Gran partido!': 'Great match!', '¡Buen partido!': 'Good match!',
+    'Cada partida son 10 penaltis: 6 aciertos = bronce, 8 = plata y 10 = oro. En Difícil y Élite, 9 aciertos también son oro.': 'Each match is 10 penalties: 6 correct = bronze, 8 = silver and 10 = gold. On Hard and Elite, 9 correct is also gold.',
+    'JUGAR': 'PLAY', 'Volver a Mi Mates': 'Back to My Maths', 'Volver al Menú': 'Back to the menu',
+    '10 retos · una respuesta por reto': '10 challenges · one answer each',
+    '10 retos, 5 niveles y 3 modos.': '10 challenges, 5 levels and 3 modes.',
+    'Sumas · Muy fácil': 'Addition · Very easy', 'Restas · Muy fácil': 'Subtraction · Very easy',
+    'El Gran Clásico: Penalti Matemático': 'The Great Classic: Maths Penalty',
+    '⚽ El Gran Clásico: Penalti Matemático ⚽': '⚽ The Great Classic: Maths Penalty ⚽',
+    'Escoge Nivel': 'Choose level', 'Tipo de operación': 'Type of operation',
+    'Resuelve la operación para marcar gol.': 'Solve the operation to score.',
+    '¡Partido terminado!': 'Match over!',
+    '¡Ayuda a Cristiano Ronaldo a meterle un golazo al Barça!': 'Help Cristiano Ronaldo score a screamer against Barça!',
+    'Muy fácil': 'Very easy'
+  });
+  Object.assign(dictionary.ca, {
+    'Academia Ninja · Matemáticas': 'Acadèmia Ninja · Matemàtiques', 'Academia Ninja': 'Acadèmia Ninja',
+    'Academia Ninja Matemáticas': 'Acadèmia Ninja Matemàtiques',
+    'Naruto · Academia Ninja Matemáticas': 'Naruto · Acadèmia Ninja Matemàtiques',
+    '← Volver a Mi Mates': '← Torna a Mi Mates', 'JUGAR →': 'JUGAR →',
+    'ACIERTOS': 'ENCERTS', 'NIVEL': 'NIVELL', 'RETO': 'REPTE', 'RESUELVE EL RETO': 'RESOL EL REPTE',
+    'SIN ESTRELLA': 'SENSE ESTRELLA', 'Elige tu nivel': 'Tria el teu nivell', 'Elige tu modo': 'Tria el teu mode',
+    'Mixtos': 'Mixtos', 'Difícil': 'Difícil', 'Élite': 'Elit',
+    'Sumas, restas o ambos': 'Sumes, restes o tots dos',
+    'ORO': 'OR', 'PLATA': 'PLATA', 'BRONCE': 'BRONZE',
+    '¡Misión perfecta!': 'Missió perfecta!', '¡Misión excelente!': 'Missió excel·lent!',
+    '¡Gran misión!': 'Gran missió!', '¡Misión cumplida!': 'Missió complerta!', '¡Sigue entrenando!': 'Continua entrenant!',
+    '¡Partido perfecto!': 'Partit perfecte!', '¡Partido excelente!': 'Partit excel·lent!',
+    '¡Gran partido!': 'Gran partit!', '¡Buen partido!': 'Bon partit!',
+    'Cada partida son 10 penaltis: 6 aciertos = bronce, 8 = plata y 10 = oro. En Difícil y Élite, 9 aciertos también son oro.': 'Cada partida són 10 penals: 6 encerts = bronze, 8 = plata i 10 = or. A Difícil i Elit, 9 encerts també són or.',
+    'JUGAR': 'JUGAR', 'Volver a Mi Mates': 'Torna a Mi Mates', 'Volver al Menú': 'Torna al menú',
+    '10 retos · una respuesta por reto': '10 reptes · una resposta per repte',
+    '10 retos, 5 niveles y 3 modos.': '10 reptes, 5 nivells i 3 modes.',
+    'Sumas · Muy fácil': 'Sumes · Molt fàcil', 'Restas · Muy fácil': 'Restes · Molt fàcil',
+    'El Gran Clásico: Penalti Matemático': 'El Gran Clàssic: Penalti Matemàtic',
+    '⚽ El Gran Clásico: Penalti Matemático ⚽': '⚽ El Gran Clàssic: Penalti Matemàtic ⚽',
+    'Escoge Nivel': 'Tria nivell', 'Tipo de operación': 'Tipus d’operació',
+    'Resuelve la operación para marcar gol.': 'Resol l’operació per marcar gol.',
+    '¡Partido terminado!': 'Partit acabat!',
+    '¡Ayuda a Cristiano Ronaldo a meterle un golazo al Barça!': 'Ajuda en Cristiano Ronaldo a marcar un golàs al Barça!',
+    'Muy fácil': 'Molt fàcil'
+  });
+  Object.assign(dictionary.de, {
+    'Academia Ninja · Matemáticas': 'Ninja-Akademie · Mathematik', 'Academia Ninja': 'Ninja-Akademie',
+    'Academia Ninja Matemáticas': 'Ninja-Mathe-Akademie',
+    'Naruto · Academia Ninja Matemáticas': 'Naruto · Ninja-Mathe-Akademie',
+    '← Volver a Mi Mates': '← Zurück zu Mi Mates', 'JUGAR →': 'SPIELEN →',
+    'ACIERTOS': 'RICHTIG', 'NIVEL': 'STUFE', 'RETO': 'AUFGABE', 'RESUELVE EL RETO': 'LÖSE DIE AUFGABE',
+    'SIN ESTRELLA': 'KEIN STERN', 'Elige tu nivel': 'Wähle deine Stufe', 'Elige tu modo': 'Wähle deinen Modus',
+    'Mixtos': 'Gemischt', 'Difícil': 'Schwer', 'Élite': 'Elite',
+    'Sumas, restas o ambos': 'Addition, Subtraktion oder beides',
+    'ORO': 'GOLD', 'PLATA': 'SILBER', 'BRONCE': 'BRONZE',
+    '¡Misión perfecta!': 'Perfekte Mission!', '¡Misión excelente!': 'Ausgezeichnete Mission!',
+    '¡Gran misión!': 'Tolle Mission!', '¡Misión cumplida!': 'Mission erfüllt!', '¡Sigue entrenando!': 'Trainiere weiter!',
+    '¡Partido perfecto!': 'Perfektes Spiel!', '¡Partido excelente!': 'Ausgezeichnetes Spiel!',
+    '¡Gran partido!': 'Tolles Spiel!', '¡Buen partido!': 'Gutes Spiel!',
+    'Cada partida son 10 penaltis: 6 aciertos = bronce, 8 = plata y 10 = oro. En Difícil y Élite, 9 aciertos también son oro.': 'Jede Partie besteht aus 10 Elfmetern: 6 richtig = Bronze, 8 = Silber und 10 = Gold. Bei Schwer und Elite sind auch 9 richtige Antworten Gold.',
+    'JUGAR': 'SPIELEN', 'Volver a Mi Mates': 'Zurück zu Mi Mates', 'Volver al Menú': 'Zurück zum Menü',
+    '10 retos · una respuesta por reto': '10 Aufgaben · eine Antwort pro Aufgabe',
+    '10 retos, 5 niveles y 3 modos.': '10 Aufgaben, 5 Stufen und 3 Modi.',
+    'Sumas · Muy fácil': 'Addition · Sehr leicht', 'Restas · Muy fácil': 'Subtraktion · Sehr leicht',
+    'El Gran Clásico: Penalti Matemático': 'Der große Klassiker: Mathe-Elfmeter',
+    '⚽ El Gran Clásico: Penalti Matemático ⚽': '⚽ Der große Klassiker: Mathe-Elfmeter ⚽',
+    'Escoge Nivel': 'Stufe wählen', 'Tipo de operación': 'Rechenart',
+    'Resuelve la operación para marcar gol.': 'Löse die Aufgabe und erziele ein Tor.',
+    '¡Partido terminado!': 'Spiel beendet!',
+    '¡Ayuda a Cristiano Ronaldo a meterle un golazo al Barça!': 'Hilf Cristiano Ronaldo, gegen Barça ein Traumtor zu erzielen!',
+    'Muy fácil': 'Sehr leicht'
+  });
+
   const params = new URLSearchParams(location.search);
   const profile = params.get('profile') || 'mireia';
   const storageKey = `mundoAprendizajeUiLanguageV1_${profile}`;
@@ -455,7 +538,7 @@
   const textMap = dictionary;
   let current = 'es';
 
-  function languageValue() { const requested=params.get('uiLang');if(known.includes(requested))return requested;try { return localStorage.getItem(storageKey) || 'es'; } catch { return 'es'; } }
+  function languageValue() { const requested=params.get('uiLang');if(known.includes(requested))return requested;try { return localStorage.getItem(storageKey) || localStorage.getItem('mundoAprendizajeLanguage') || 'es'; } catch { return 'es'; } }
   function renderFlags(nav) {
     nav.classList.add('ui-language');
     nav.setAttribute('aria-label','Cambiar idioma');
@@ -483,12 +566,17 @@
     }
     nav=document.createElement('nav');renderFlags(nav);
     const top=document.querySelector('.top');
-    if(top){const scores=top.querySelector('.scores');top.insertBefore(nav,scores||null);}
-    else {const back=document.querySelector('.back');if(back){const bar=document.createElement('div');bar.className='event-toolbar';back.parentNode.insertBefore(bar,back);bar.append(back,nav);}}
+    if(top){const scores=top.querySelector('.scores');top.insertBefore(nav,scores||null);return nav;}
+    const topbarRight=document.querySelector('.topbar-right');
+    if(topbarRight){topbarRight.insertBefore(nav,topbarRight.querySelector('.icon-btn')||null);return nav;}
+    const backRow=document.querySelector('.back-row');
+    if(backRow){backRow.append(nav);return nav;}
+    const back=document.querySelector('.back');
+    if(back){const bar=document.createElement('div');bar.className='event-toolbar';back.parentNode.insertBefore(bar,back);bar.append(back,nav);return nav;}
     return nav;
   }
   function styleSelector() {
-    const style=document.createElement('style');style.textContent=`.ui-language{display:flex;align-items:center;justify-content:center;gap:clamp(5px,.8vw,10px);padding:4px 7px;border:2px solid #8ec2ef;border-radius:999px;background:#fff;box-shadow:0 3px 9px #16395b33;flex:none}.ui-language button{display:grid;place-items:center;width:44px;height:44px;min-width:44px;padding:3px;border:2px solid transparent;border-radius:50%;background:#fff;cursor:pointer;touch-action:manipulation}.ui-language button:hover,.ui-language button:focus-visible{outline:3px solid #68a9e8;outline-offset:1px}.ui-language button[aria-pressed="true"]{border-color:#286fc0;background:#eaf5ff;box-shadow:0 0 0 2px #286fc033}.ui-language .flag{display:block;width:100%;height:auto;border:1px solid #888;border-radius:3px}.event-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.event-toolbar .back{flex:none}.back{min-height:44px;display:inline-flex;align-items:center;}.action,.action.alt,#change,#next,#exitMatch,#nextMatchQuestion{min-height:44px}@media(max-width:650px){.top{flex-wrap:wrap}.top .ui-language{order:3;flex-basis:100%;width:max-content;margin-inline:auto}.ui-language button{width:44px;height:44px;min-width:44px}.event-toolbar{flex-wrap:wrap}.event-toolbar .ui-language{margin-left:auto}.back{min-height:44px}}`;
+    const style=document.createElement('style');style.textContent=`.ui-language{display:flex;align-items:center;justify-content:center;gap:clamp(5px,.8vw,10px);padding:4px 7px;border:2px solid #8ec2ef;border-radius:999px;background:#fff;box-shadow:0 3px 9px #16395b33;flex:none}.ui-language button{display:grid;place-items:center;width:44px;height:44px;min-width:44px;padding:3px;border:2px solid transparent;border-radius:50%;background:#fff;cursor:pointer;touch-action:manipulation}.ui-language button:hover,.ui-language button:focus-visible{outline:3px solid #68a9e8;outline-offset:1px}.ui-language button[aria-pressed="true"]{border-color:#286fc0;background:#eaf5ff;box-shadow:0 0 0 2px #286fc033}.ui-language .flag{display:block;width:100%;height:auto;border:1px solid #888;border-radius:3px}.event-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.event-toolbar .back{flex:none}.back{min-height:44px;display:inline-flex;align-items:center;}.action,.action.alt,#change,#next,#exitMatch,#nextMatchQuestion{min-height:44px}.back-row .ui-language{margin-left:auto;flex:none}@media(max-width:650px){.top{flex-wrap:wrap}.top .ui-language{order:3;flex-basis:100%;width:max-content;margin-inline:auto}.ui-language button{width:44px;height:44px;min-width:44px}.event-toolbar{flex-wrap:wrap}.event-toolbar .ui-language{margin-left:auto}.back{min-height:44px}.topbar-right{flex-wrap:wrap;justify-content:flex-end}.topbar-right .ui-language{order:3;flex-basis:100%;width:max-content;margin-left:auto}.back-row{flex-wrap:wrap}}`;
     document.head.append(style);
   }
   function sourceForText(node) { if(!originals.has(node)) originals.set(node,node.nodeValue); return originals.get(node); }
@@ -520,9 +608,56 @@
     if(matchResult){const n=matchResult[1],star={en:{'de oro':'gold','de plata':'silver','de bronce':'bronze'},ca:{'de oro':'d’or','de plata':'de plata','de bronce':'de bronze'},de:{'de oro':'in Gold','de plata':'in Silber','de bronce':'in Bronze'}}[locale][matchResult[2]];return locale==='en'?`You scored ${n} out of 10 goals. You earned a ${star} star!`:locale==='ca'?`Has marcat ${n} de 10 gols. Has guanyat una estrella ${star}!`:`Du hast ${n} von 10 Toren erzielt. Du hast einen Stern ${star} gewonnen!`}
     const matchLowResult=clean.match(/^Has marcado (\d+) de 10 goles\. Con 6 aciertos consigues bronce\. Puedes repetirlo o elegir otro\.$/);
     if(matchLowResult){const n=matchLowResult[1];return locale==='en'?`You scored ${n} out of 10 goals. Get 6 right to earn bronze. You can replay this level or choose another.`:locale==='ca'?`Has marcat ${n} de 10 gols. Amb 6 encerts aconsegueixes el bronze. Pots repetir el nivell o triar-ne un altre.`:`Du hast ${n} von 10 Toren erzielt. Mit 6 richtigen Antworten bekommst du Bronze. Du kannst die Stufe wiederholen oder eine andere wählen.`}
+    const narutoResult=clean.match(/^Has acertado (\d+) de (\d+) retos\. (.+)$/);
+    if(narutoResult){
+      const n=narutoResult[1], total=narutoResult[2], tail=narutoResult[3];
+      const win=tail.match(/^¡Has ganado una estrella (de oro|de plata|de bronce)!(?: El oro se consigue con (\d+) aciertos\.)?$/);
+      if(win){
+        const star={en:{'de oro':'gold','de plata':'silver','de bronce':'bronze'},ca:{'de oro':'d’or','de plata':'de plata','de bronce':'de bronze'},de:{'de oro':'in Gold','de plata':'in Silber','de bronce':'in Bronze'}}[locale][win[1]];
+        const thr=win[2];
+        if(locale==='en')return `You got ${n} out of ${total} challenges right. You earned a ${star} star!`+(thr?` Gold is earned with ${thr} correct.`:'');
+        if(locale==='ca')return `Has encertat ${n} de ${total} reptes. Has guanyat una estrella ${star}!`+(thr?` L'or s'aconsegueix amb ${thr} encerts.`:'');
+        return `Du hast ${n} von ${total} Aufgaben richtig gelöst. Du hast einen Stern ${star} gewonnen!`+(thr?` Gold gibt es ab ${thr} richtigen Antworten.`:'');
+      }
+      if(tail==='Con 6 aciertos consigues bronce. Repite el nivel o elige otro.'){
+        return locale==='en'?`You got ${n} out of ${total} challenges right. Get 6 right to earn bronze. Replay the level or choose another.`:locale==='ca'?`Has encertat ${n} de ${total} reptes. Amb 6 encerts aconsegueixes el bronze. Repeteix el nivell o tria'n un altre.`:`Du hast ${n} von ${total} Aufgaben richtig gelöst. Mit 6 richtigen Antworten bekommst du Bronze. Wiederhole die Stufe oder wähle eine andere.`;
+      }
+    }
+    const penaltyResult=clean.match(/^Has marcado (\d+) de (\d+) penaltis\. (.+)$/);
+    if(penaltyResult){
+      const n=penaltyResult[1], total=penaltyResult[2], tail=penaltyResult[3];
+      const win=tail.match(/^¡Has ganado una estrella (de oro|de plata|de bronce)!$/);
+      if(win){
+        const star={en:{'de oro':'gold','de plata':'silver','de bronce':'bronze'},ca:{'de oro':'d’or','de plata':'de plata','de bronce':'de bronze'},de:{'de oro':'in Gold','de plata':'in Silber','de bronce':'in Bronze'}}[locale][win[1]];
+        if(locale==='en')return `You scored ${n} out of ${total} penalties. You earned a ${star} star!`;
+        if(locale==='ca')return `Has marcat ${n} de ${total} penals. Has guanyat una estrella ${star}!`;
+        return `Du hast ${n} von ${total} Elfmetern verwandelt. Du hast einen Stern ${star} gewonnen!`;
+      }
+      if(tail==='Con 6 aciertos consigues bronce. Puedes repetir el nivel o elegir otro.'){
+        return locale==='en'?`You scored ${n} out of ${total} penalties. Get 6 right to earn bronze. You can replay this level or choose another.`:locale==='ca'?`Has marcat ${n} de ${total} penals. Amb 6 encerts aconsegueixes el bronze. Pots repetir el nivell o triar-ne un altre.`:`Du hast ${n} von ${total} Elfmetern verwandelt. Mit 6 richtigen Antworten bekommst du Bronze. Du kannst die Stufe wiederholen oder eine andere wählen.`;
+      }
+    }
+    const gameMeta=clean.match(/^(Sumas|Restas|Mixtos) · (.+) · (\d+) (retos|penaltis)$/);
+    if(gameMeta){
+      const op={en:{Sumas:'Addition',Restas:'Subtraction',Mixtos:'Mixed'},ca:{Sumas:'Sumes',Restas:'Restes',Mixtos:'Mixtos'},de:{Sumas:'Addition',Restas:'Subtraktion',Mixtos:'Gemischt'}}[locale][gameMeta[1]];
+      const level=(textMap[locale]&&textMap[locale][gameMeta[2]])||gameMeta[2];
+      const unit=gameMeta[4]==='retos'?({en:'challenges',ca:'reptes',de:'Aufgaben'}[locale]):({en:'penalties',ca:'penals',de:'Elfmeter'}[locale]);
+      return `${op} · ${level} · ${gameMeta[3]} ${unit}`;
+    }
+    const mathsStars=clean.match(/^Estrellas de Mates: 🌟 (\d+) · ⭐ (\d+) · 🥉 (\d+) \((\d+) en total\)$/);
+    if(mathsStars){
+      const g=mathsStars[1],s=mathsStars[2],b=mathsStars[3],total=mathsStars[4];
+      return locale==='en'?`Maths stars: 🌟 ${g} · ⭐ ${s} · 🥉 ${b} (${total} in total)`:locale==='ca'?`Estrelles de Mates: 🌟 ${g} · ⭐ ${s} · 🥉 ${b} (${total} en total)`:`Mathe-Sterne: 🌟 ${g} · ⭐ ${s} · 🥉 ${b} (${total} insgesamt)`;
+    }
     const suffix=' aparecerá en su temporada.';
     if(clean.endsWith(suffix)){const eventName=clean.slice(0,-suffix.length);const name=(textMap[locale]&&textMap[locale][eventName])||eventName;return locale==='en'?`${name} will return in season.`:locale==='ca'?`${name} tornarà quan sigui temporada.`:`${name} ist zur passenden Jahreszeit wieder da.`}
     if(clean.startsWith('Estrellas acumuladas en ')){const area=clean.slice('Estrellas acumuladas en '.length);const name=(textMap[locale]&&textMap[locale][area])||area;return locale==='en'?`Stars earned in ${name}`:locale==='ca'?`Estrelles acumulades a ${name}`:`Gesammelte Sterne in ${name}`}
+    const sumRange=clean.match(/^(Sumas|Restas) (\d+)[–-](\d+)$/);
+    if(sumRange){const op={en:{Sumas:'Addition',Restas:'Subtraction'},ca:{Sumas:'Sumes',Restas:'Restes'},de:{Sumas:'Addition',Restas:'Subtraktion'}}[locale][sumRange[1]];return `${op} ${sumRange[2]}–${sumRange[3]}`}
+    const shot=clean.match(/^Tiro (\d+)\/(\d+)$/);
+    if(shot)return locale==='en'?`Shot ${shot[1]}/${shot[2]}`:locale==='ca'?`Tir ${shot[1]}/${shot[2]}`:`Schuss ${shot[1]}/${shot[2]}`;
+    const goals=clean.match(/^Goles: (\d+)$/);
+    if(goals)return locale==='en'?`Goals: ${goals[1]}`:locale==='ca'?`Gols: ${goals[1]}`:`Tore: ${goals[1]}`;
     return clean;
   }
   function translateNode(node,locale) {
@@ -534,7 +669,7 @@
   }
   function setLanguage(locale) {
     if(!known.includes(locale))locale='es';current=locale;document.documentElement.lang=locale;
-    try{localStorage.setItem(storageKey,locale)}catch{}
+    try{localStorage.setItem(storageKey,locale);localStorage.setItem('mundoAprendizajeLanguage',locale)}catch{}
     translateNode(document.body,locale);
     if(locale==='es')document.title=window.__uiTitleOriginal||document.title;
     else if(dictionary[locale])document.title=(window.__uiTitleOriginal||document.title).split(' · ').map(part=>translated(part,locale)).join(' · ');
@@ -545,5 +680,6 @@
   styleSelector();ensureSelector();
   const observer=new MutationObserver(records=>{for(const record of records){if(record.type==='characterData')translateNode(record.target,current);for(const node of record.addedNodes||[])translateNode(node,current)}});
   observer.observe(document.body,{subtree:true,childList:true,characterData:true});
+  window.MiIdioma = { apply: setLanguage, current: () => current };
   setLanguage(languageValue());
 })();

@@ -732,3 +732,36 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 ### Publicación
 
 - Commit y push de la fase 1 y de los puzzles publicado el 03/11/2026 (`246ec0f` y el commit de puzzles).
+
+---
+
+## Actualización 03/11/2026 — Idiomas por perfil y limpieza de backups
+
+### Idioma unificado por perfil
+
+- `ui-language.js` usa `mundoAprendizajeUiLanguageV1_<perfil>` y escribe también el espejo `mundoAprendizajeLanguage`; al arrancar, si el perfil no tiene clave, usa el espejo global y después español.
+- `index.html` expone `window.MiIdioma` (`apply`/`current`) desde su sistema de idiomas (que vive en un IIFE) y guarda el idioma del perfil al cambiarlo. Al entrar en un perfil, `selectProfile` aplica su idioma guardado (o el global) antes de mostrar la pantalla; funciona también cuando el perfil aún no tiene clave propia.
+- `naruto-matematico.html` y `penalti-matematico.html` cargan `ui-language.js` al final. El selector se monta en `.topbar-right` (Naruto) y `.back-row` (Penalti), con ajuste responsive a 390 px sin desbordamiento.
+- Diccionario ampliado para Naruto y Penalti: títulos, enlaces de vuelta, niveles (`Muy fácil`…`Élite`), modos (`Mixtos`), ayudas, HUD (`Nivel`, `Reto`, `Aciertos`, `Tiro`, `Goles`) y textos dinámicos de resultado (`Has acertado…`, `Has marcado…`, metadatos y total de estrellas) en EN/CA/DE. Los textos dinámicos se traducen también cuando el juego los inserta después de cargar.
+- `idiomas.js` era huérfano (sin referencias) y se ha retirado.
+
+### Limpieza de backups
+
+- Movidos a `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\MiMundo_backup_2026-11-03_limpieza\peques\` y retirados del repo: `index.antes-perfiles.html`, `index-main back up.html`, `index-backup.v3.html`, `mi-mates.antes-niveles.html`, `naruto-matematico.antes-accion.html`, `ui-language.antes-niveles.js` e `idiomas.js`.
+- Comprobación SHA-256 de las 7 copias antes de borrar: todas idénticas.
+- Se conservan `indexOK.html` y `halloween-libro-original.html` (no estaban en el lote acordado; se revisarán aparte).
+
+### Pruebas
+
+- Local (servidor 8767, Chrome CDP): 21/21 comprobaciones en index, Naruto y Penalti.
+  - Index: EN escribe clave global y de perfil; perfil con CA impone CA sobre global EN; sin clave de perfil usa el global DE; 0 errores JS.
+  - Naruto: EN en título, enlaces, rangos, selector de 4 banderas y HUD; cambio a CA persiste y se recuerda al recargar; 1280 y 390 px sin desbordamiento horizontal; 0 errores JS.
+  - Penalti: DE en título, h1, etiquetas, niveles y HUD (`Schuss`, `Tore`); cambio a EN persiste y se recuerda; emoji ⚽ conservado; 1280 y 390 px sin desbordamiento; 0 errores JS.
+  - Pruebas de cadenas dinámicas de resultado en EN/CA/DE: 11 casos × 3 idiomas correctos.
+  - Smoke test de las otras 8 páginas que cargan `ui-language.js` (`mi-mates`, `mi-lectura`, `mi-escritura`, `areas-test`, `idiomas`, `mi-progreso`, `mundo-mireia`, `evento-especial`): 8/8 con `lang=en`, selector y 0 excepciones.
+- Capturas en `qa/shots-i18n/` (Naruto EN 1280/390 y Penalti DE 1280/390).
+- Arneses reutilizables: `qa/tools/i18n-test.ps1`, `qa/tools/dynamic-i18n-test.ps1` y `qa/tools/smoke-ui-language.ps1`.
+
+### Publicación
+
+- Publicado en `origin/main` el 03/11/2026 y servido por GitHub Pages.

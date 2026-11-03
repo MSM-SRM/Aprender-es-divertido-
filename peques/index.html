@@ -541,6 +541,12 @@ async function selectProfile(profile) {
 
   currentProfile = profile;
 
+  // Cada perfil conserva su idioma; al entrar se aplica el suyo si lo tiene.
+  try {
+    const savedProfileLang = localStorage.getItem("mundoAprendizajeUiLanguageV1_" + profile) || localStorage.getItem("mundoAprendizajeLanguage") || "es";
+    if (window.MiIdioma && savedProfileLang !== window.MiIdioma.current()) window.MiIdioma.apply(savedProfileLang);
+  } catch(e) {}
+
   // Sofía conserva su página básica con juegos dentro de index.html.
   // Mireia entra al mapa nuevo. El mapa de Mireia no debe mostrarse a Sofía.
   const mapButton = document.querySelector("[data-map]");
@@ -1056,6 +1062,7 @@ function flipCard(i,b) {
   function applyLanguage(lang) {
     language = lang;
     localStorage.setItem(STORAGE_KEY,lang);
+    try { if (currentProfile) localStorage.setItem("mundoAprendizajeUiLanguageV1_" + currentProfile, lang); } catch(e) {}
     document.documentElement.lang = lang;
     document.querySelectorAll(".language-button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.language===lang)));
     translateNode(document.querySelector(".app"),true);
@@ -1157,6 +1164,7 @@ function flipCard(i,b) {
     }
   }
   // Load language on start. The Spanish interface remains the default.
+  window.MiIdioma = { apply: applyLanguage, current: () => language };
   applyLanguage(language);
 })();
 </script>
