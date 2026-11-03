@@ -685,3 +685,42 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 - Publicado en `origin/main` el 02/11/2026 y servido por GitHub Pages.
 - Copia de seguridad en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\MiMundo_backup_2026-11-02_progreso`.
+
+---
+
+## Actualización 03/11/2026 — Módulo compartido de progreso (fase 1)
+
+### Motivo
+
+- La carga, el recálculo de estrellas y el guardado estaban copiados en 8 páginas. Un arreglo en una no llegaba a las demás.
+- Fase 1: crear el módulo común y migrar las 5 páginas de área simples. Index, Naruto y Penalti quedan para la fase 2.
+
+### Módulo nuevo: `peques/progress-shared.js`
+
+- Script clásico sin dependencias que expone `window.MiProgreso`.
+- `key(perfil)`: `mundoAprendizajeProgressV3_<perfil>`.
+- `load(perfil)`: lectura tolerante con try/catch; objetos vacíos si no hay datos o el JSON está roto; conserva campos desconocidos.
+- `recalc(datos)`: recalcula `stars` sumando oro, plata y bronce de todas las áreas, con la misma fórmula que había.
+- `persist(perfil, datos)`: recalcula y guarda con try/catch (si la cuota falla, la partida sigue en memoria).
+- `area(datos, clave)`: crea y normaliza el área activa (`gold`, `silver`, `bronze` a números ≥ 0) y devuelve la referencia.
+
+### Páginas migradas
+
+- `mi-mates.html`, `mi-lectura.html`, `mi-escritura.html`, `areas-test.html` e `idiomas.html`.
+- Cada una carga `progress-shared.js` antes de su script y sustituye su carga/guardado duplicado por `MiProgreso.load/persist`; los incrementos de retos, `byGame` y la referencia `scores` se mantienen igual. No cambian textos, estilos, claves ni forma del JSON.
+- `areas-test.html` conserva el bonus de historia (+2/+1 oro) antes de guardar.
+
+### Pruebas
+
+- Local (servidor 8767, perfil guest): se sembró un progreso conocido y se provocó un guardado en cada una de las 5 páginas.
+- Resultado en las 5: `MiProgreso` cargado, marcador sembrado visible, área correcta +1 oro, `rounds` +1, `byGame` con la misma clave que antes, `stars` recalculado (7 → 8) y resto de áreas intactas.
+- JSON corrupto en `mi-lectura.html`: la página arranca en 0 sin errores y el módulo devuelve un objeto válido.
+- `mi-progreso.html` sigue leyendo el mismo esquema.
+
+### Pendiente (fase 2)
+
+- Migrar `index.html`, `naruto-matematico.html` y `penalti-matematico.html` al módulo común, con pruebas equivalentes por página.
+
+### Publicación
+
+- Pendiente de commit y push al cierre de esta entrada.

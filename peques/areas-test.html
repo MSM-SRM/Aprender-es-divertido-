@@ -18,7 +18,7 @@
 <h1 id="areaTitle">Área</h1><section class="modules" id="modules" aria-label="Juegos de aprendizaje"></section>
 <section class="play" id="play" aria-live="polite"><h2 id="title">Actividad</h2><p class="hint" id="hint">Elige una respuesta.</p><div id="activity"></div><div class="feedback" id="feedback" role="status"></div><div class="actions"><button class="action alt" id="change">Cambiar juego</button><button class="action" id="next" disabled>Siguiente reto →</button></div></section>
 <p class="foot">El progreso se guarda por perfil en este dispositivo.</p>
-</main><script>
+</main><script src="progress-shared.js"></script><script>
 const $=id=>document.getElementById(id),params=new URLSearchParams(location.search),profileId=params.get('profile')||'mireia';
 const areaCatalog={
  ciencias:{title:'Ciencias',key:'ciencias',modules:[
@@ -75,11 +75,12 @@ const areaCatalog={
   {mode:'cokitos-siete',kind:'external',title:'Juegos para 7 años · Cokitos',emoji:'🎮',url:'https://www.cokitos.com/category/juegos-para-ninos-de-7-anos/'}
  ]}
 };
-const slug=params.get('area')||'ciencias',area=areaCatalog[slug]||areaCatalog.ciencias,progressKey=`mundoAprendizajeProgressV3_${profileId}`;
+const slug=params.get('area')||'ciencias',area=areaCatalog[slug]||areaCatalog.ciencias;
 document.title=`${area.title} · El mundo mágico de Mireia`;$('areaTitle').textContent=area.title;$('backToMap').onclick=()=>location.href=`mundo-mireia.html?avatar=restored&profile=${encodeURIComponent(profileId)}`;
-let progress={stars:0,rounds:0,byGame:{},byArea:{}};try{progress=JSON.parse(localStorage.getItem(progressKey))||progress}catch(e){}progress.byGame||={};progress.byArea||={};progress.byArea[area.key]||={gold:0,silver:0,bronze:0};const scores=progress.byArea[area.key];for(const k of ['gold','silver','bronze'])scores[k]=Math.max(0,Number(scores[k])||0);
+let progress=MiProgreso.load(profileId);
+const scores=MiProgreso.area(progress,area.key);
 function renderScores(){for(const k of ['gold','silver','bronze'])$(k+'Score').textContent=String(scores[k]%1000).padStart(3,'0')}
-function saveProgress(module){progress.rounds=(Number(progress.rounds)||0)+1;progress.byGame[`${area.key}_${module.mode}`]=(Number(progress.byGame[`${area.key}_${module.mode}`])||0)+1;progress.stars=Object.values(progress.byArea).reduce((sum,item)=>sum+['gold','silver','bronze'].reduce((n,k)=>n+(Number(item?.[k])||0),0),0);localStorage.setItem(progressKey,JSON.stringify(progress));renderScores()}
+function saveProgress(module){progress.rounds=(Number(progress.rounds)||0)+1;progress.byGame[`${area.key}_${module.mode}`]=(Number(progress.byGame[`${area.key}_${module.mode}`])||0)+1;MiProgreso.persist(profileId,progress);renderScores()}
 let currentModule=null,answered=false;
 function renderModules(){
   $('modules').innerHTML=area.modules.map(m=>{

@@ -35,6 +35,7 @@ h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1;margin:0;color:#157352;text-sh
   </section>
   <p class="foot">El progreso de Lectura se guarda en este dispositivo para el perfil activo.</p>
 </main>
+<script src="progress-shared.js"></script>
 <script>
 const $=id=>document.getElementById(id);
 // Lista de módulos TEST: retirar una entrada elimina esa tarjeta sin tocar el resto del área.
@@ -44,14 +45,12 @@ function renderModules(){
   document.querySelectorAll('[data-mode]').forEach(button=>button.addEventListener('click',()=>{mode=button.dataset.mode;$('play').classList.add('active');startRound();$('play').scrollIntoView({behavior:'smooth',block:'nearest'})}));
 }
 renderModules();
-const params=new URLSearchParams(location.search),profileId=params.get('profile')||'mireia',progressKey=`mundoAprendizajeProgressV3_${profileId}`;
+const params=new URLSearchParams(location.search),profileId=params.get('profile')||'mireia';
 document.getElementById('backToMap').onclick=()=>location.href=`mundo-mireia.html?avatar=restored&profile=${encodeURIComponent(profileId)}`;
-let progress={stars:0,rounds:0,byGame:{},byArea:{}};
-try{progress=JSON.parse(localStorage.getItem(progressKey))||progress}catch(e){}
-progress.byGame||={};progress.byArea||={};progress.byArea.lectura||={gold:0,silver:0,bronze:0};
-const scores=progress.byArea.lectura;for(const key of ['gold','silver','bronze'])scores[key]=Math.max(0,Number(scores[key])||0);
+let progress=MiProgreso.load(profileId);
+const scores=MiProgreso.area(progress,'lectura');
 function renderScores(){for(const key of ['gold','silver','bronze'])$(key+'Score').textContent=String(scores[key]%1000).padStart(3,'0')}
-function saveProgress(){progress.stars=Object.values(progress.byArea).reduce((sum,area)=>sum+['gold','silver','bronze'].reduce((inner,key)=>inner+(Number(area?.[key])||0),0),0);localStorage.setItem(progressKey,JSON.stringify(progress));renderScores()}
+function saveProgress(){MiProgreso.persist(profileId,progress);renderScores()}
 renderScores();
 const words=[{word:'gato',emoji:'🐱'},{word:'sol',emoji:'☀️'},{word:'casa',emoji:'🏠'},{word:'flor',emoji:'🌸'},{word:'perro',emoji:'🐶'},{word:'luna',emoji:'🌙'},{word:'libro',emoji:'📚'},{word:'manzana',emoji:'🍎'},{word:'mariposa',emoji:'🦋'},{word:'estrella',emoji:'⭐'},{word:'tortuga',emoji:'🐢'},{word:'montaña',emoji:'⛰️'}];
 const stories=[

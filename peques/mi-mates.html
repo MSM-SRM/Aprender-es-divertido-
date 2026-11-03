@@ -63,6 +63,7 @@ h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1;margin:0;color:#1557a3;text-sh
   </section>
   <p class="foot">Mi Mundo de Aprendizaje · Los avances se guardan en este navegador para el perfil activo.</p>
 </main>
+<script src="progress-shared.js"></script>
 <script>
 const $=id=>document.getElementById(id);let mode='sumas',answered=false;
 const profileId=new URLSearchParams(location.search).get('profile')||'mireia';
@@ -75,14 +76,8 @@ function renderModules(){
   document.querySelectorAll('#modules button[data-mode]').forEach(button=>button.addEventListener('click',()=>{mode=button.dataset.mode;openPracticeLevels()}));
 }
 renderModules();
-const progressKey=`mundoAprendizajeProgressV3_${profileId}`;
-let profileProgress;
-try{profileProgress=JSON.parse(localStorage.getItem(progressKey))}catch(e){profileProgress=null}
-if(!profileProgress||typeof profileProgress!=='object')profileProgress={stars:0,rounds:0,byGame:{},byArea:{}};
-profileProgress.byGame||={};profileProgress.byArea||={};
-if(!profileProgress.byArea.mates)profileProgress.byArea.mates={gold:0,silver:0,bronze:0};
-let scores=profileProgress.byArea.mates;
-for(const key of ['gold','silver','bronze'])scores[key]=Number(scores[key]||0);
+let profileProgress=MiProgreso.load(profileId);
+let scores=MiProgreso.area(profileProgress,'mates');
 function renderScores(){$('goldScore').textContent=String(scores.gold%1000).padStart(3,'0');$('silverScore').textContent=String(scores.silver%1000).padStart(3,'0');$('bronzeScore').textContent=String(scores.bronze%1000).padStart(3,'0')}
 renderScores();
 function randomInt(min,max){return Math.floor(Math.random()*(max-min+1))+min}
@@ -135,7 +130,7 @@ function makeQuestion(){
   $('answers').innerHTML=buildChoices(result).map(n=>`<button class="answer" type="button" data-value="${n}">${n}</button>`).join('');
   $('answers').querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>{
     if(answered)return;
-    if(Number(button.dataset.value)===result){answered=true;const color='gold';scores[color]++;profileProgress.rounds=(Number(profileProgress.rounds)||0)+1;profileProgress.byGame[`mates_${mode}`]=(Number(profileProgress.byGame[`mates_${mode}`])||0)+1;profileProgress.stars=Object.values(profileProgress.byArea).reduce((sum,area)=>sum+['gold','silver','bronze'].reduce((subtotal,type)=>subtotal+(Number(area?.[type])||0),0),0);localStorage.setItem(progressKey,JSON.stringify(profileProgress));renderScores();$('feedback').textContent='¡Muy bien! Respuesta correcta 😊';$('next').disabled=false;}
+    if(Number(button.dataset.value)===result){answered=true;const color='gold';scores[color]++;profileProgress.rounds=(Number(profileProgress.rounds)||0)+1;profileProgress.byGame[`mates_${mode}`]=(Number(profileProgress.byGame[`mates_${mode}`])||0)+1;MiProgreso.persist(profileId,profileProgress);renderScores();$('feedback').textContent='¡Muy bien! Respuesta correcta 😊';$('next').disabled=false;}
     else $('feedback').textContent='¡Buen intento! Prueba otra vez 😊';
   }));
 }
