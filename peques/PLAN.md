@@ -721,6 +721,14 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 - Migrar `index.html`, `naruto-matematico.html` y `penalti-matematico.html` al módulo común, con pruebas equivalentes por página.
 
+### Puzzles Mireia: imágenes fuera del HTML y progreso conectado
+
+- `peques/puzzles-mireia.html` pasa de **1.962.670 bytes a 20.861 bytes**: las 19 imágenes que estaban en base64 (15 puzzles + 4 cajas de regalo) se han extraído a `peques/imagenes/puzzles/` (1.422,6 KB en total, JPG individuales y cacheables).
+- Nombres: `puzzle-NN-<id>.jpg` para los 15 puzzles y `gift-1..4.jpg` para las cajas. El array `PUZZLES` y `GIFT_IMAGES` apuntan a esas rutas relativas.
+- Al completar un puzzle **nuevo** se suma también 1 estrella de oro al área `juegos` de `mundoAprendizajeProgressV3_<perfil>` (`rounds` +1 y `byGame.juegos_puzzles` +1) mediante `progress-shared.js`; el progreso de puzzles (`puzzlesMireiaDone_v1_<perfil>`) se mantiene como estaba.
+- Repetir un puzzle ya completado no vuelve a sumar estrella. Los puzzles completados antes de este cambio no reciben estrella retroactiva.
+- Pruebas locales: 19/19 imágenes a 200, cajas de regalo cargadas, primer `finish()` → 1 oro / 1 reto / `juegos_puzzles`, segundo `finish()` sin cambios, `done` con el id completado.
+
 ### Publicación
 
-- Pendiente de commit y push al cierre de esta entrada.
+- Commit y push de la fase 1 y de los puzzles publicado el 03/11/2026 (`246ec0f` y el commit de puzzles).
