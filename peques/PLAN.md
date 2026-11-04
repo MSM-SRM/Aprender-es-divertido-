@@ -879,7 +879,9 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - PDF oficiales: 200, `application/pdf`.
 - `halloween-libro.html` y `halloween-libro2.html` devuelven 404 en local tras retirarlos.
 - No quedan referencias a los lectores ni a sus carpetas de imágenes.
+- Producción: las dos páginas y las dos carpetas de imágenes devuelven 404; `evento-especial.html?profile=guest` mantiene Halloween activo, las dos tarjetas con portada cargada (537×528 y 426×531), autor, enlace directo a los PDF y 0 errores de consola.
+- `evento-especial.html?profile=mireia` y `?profile=sofia` responden 200 y conservan las tarjetas y el enlace al PDF; sin sesión, `auth-guard.js` redirige al index como en el resto del sitio.
 
 ### Publicación
 
-- Pendiente de publicar en `origin/main`.
+- Publicado en `origin/main` el 04/11/2026 (`ad1ba37`) y verificado en GitHub Pages.
