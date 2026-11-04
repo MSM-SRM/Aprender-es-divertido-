@@ -1786,6 +1786,7 @@
     </section>
 </main>
 
+<script src="progress-shared.js"></script>
 <script>
 (function () {
     'use strict';
@@ -1798,19 +1799,8 @@
     });
 
     /* ---------- Progreso V3 compartido con Mi Mates ---------- */
-    const progressKey = 'mundoAprendizajeProgressV3_' + profileId;
-    let profileProgress;
-    try { profileProgress = JSON.parse(localStorage.getItem(progressKey)); } catch (e) { profileProgress = null; }
-    if (!profileProgress || typeof profileProgress !== 'object') {
-        profileProgress = { stars: 0, rounds: 0, byGame: {}, byArea: {} };
-    }
-    profileProgress.byGame ||= {};
-    profileProgress.byArea ||= {};
-    if (!profileProgress.byArea.mates) profileProgress.byArea.mates = { gold: 0, silver: 0, bronze: 0 };
-    const areaScores = profileProgress.byArea.mates;
-    ['gold', 'silver', 'bronze'].forEach(function (type) {
-        areaScores[type] = Number(areaScores[type] || 0);
-    });
+    const profileProgress = MiProgreso.load(profileId);
+    const areaScores = MiProgreso.area(profileProgress, 'mates');
 
     /* ---------- Datos del juego ---------- */
     const TOTAL = 10;
@@ -2817,14 +2807,7 @@
         const gameKey = 'mates_naruto_' + currentLevel;
         profileProgress.byGame[gameKey] = (Number(profileProgress.byGame[gameKey]) || 0) + 1;
         if (grade) areaScores[grade] = (Number(areaScores[grade]) || 0) + 1;
-        profileProgress.stars = Object.values(profileProgress.byArea).reduce(function (sum, area) {
-            return sum + ['gold', 'silver', 'bronze'].reduce(function (subtotal, type) {
-                return subtotal + (Number(area && area[type]) || 0);
-            }, 0);
-        }, 0);
-        try {
-            localStorage.setItem(progressKey, JSON.stringify(profileProgress));
-        } catch (e) {}
+        MiProgreso.persist(profileId, profileProgress);
 
         // El resultado no debe aparecer antes de 6,5 s desde la última respuesta.
         // El remate final suma una espera extra para que se vea la caída de Gaara.

@@ -717,9 +717,9 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - JSON corrupto en `mi-lectura.html`: la página arranca en 0 sin errores y el módulo devuelve un objeto válido.
 - `mi-progreso.html` sigue leyendo el mismo esquema.
 
-### Pendiente (fase 2)
+### Fase 2 (completada el 04/11/2026)
 
-- Migrar `index.html`, `naruto-matematico.html` y `penalti-matematico.html` al módulo común, con pruebas equivalentes por página.
+- Migradas `index.html`, `naruto-matematico.html` y `penalti-matematico.html` al módulo común (`MiProgreso.load/persist`), con pruebas equivalentes por página.
 
 ### Puzzles Mireia: imágenes fuera del HTML y progreso conectado
 
@@ -765,3 +765,37 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 ### Publicación
 
 - Publicado en `origin/main` el 03/11/2026 y servido por GitHub Pages.
+
+---
+
+## Actualización 04/11/2026 — Fase 2 del módulo de progreso
+
+### Motivo
+
+- Las 3 páginas que aún duplicaban la carga y el guardado del progreso (`index.html`, `naruto-matematico.html` y `penalti-matematico.html`) usan ya `progress-shared.js`. Con esto, las 8 páginas que guardan progreso comparten clave, lectura tolerante y guardado.
+
+### Cambios
+
+- `index.html`: carga `progress-shared.js` antes de su script; `loadProgress()` usa `MiProgreso.load(currentProfile)` y `saveProgress()` usa `MiProgreso.persist(currentProfile, progress)`. Se conserva `normalizeProgress` con la migración legacy de estrellas planas a áreas (`GAME_AREAS` y `anteriores`).
+- `naruto-matematico.html`: `MiProgreso.load(profileId)` y `MiProgreso.area(profileProgress, 'mates')` al arrancar; `MiProgreso.persist` al terminar. Se mantiene una sola escritura por partida, `mates_naruto_<nivel>` y los umbrales.
+- `penalti-matematico.html`: mismo cambio con `mates_penalti_<nivel>` y `matchFinished` para no guardar dos veces.
+- No cambian claves, forma del JSON, textos, estilos, i18n ni tiempos de juego.
+
+### Pruebas
+
+- Index (Sofía): +1 oro en mates, retos 7→8, `byGame.math` 2→3, estrellas 10→11, campo desconocido conservado; migración legacy (5 estrellas → mates 2, lectura 2, juegos 1); JSON corrupto arranca a 0 sin errores.
+- Index (Mireia): retos 2→3, estrellas 3→4, lectura +1 oro, `byGame.words` 1.
+- Naruto (guest, nivel 1): 10/10 → oro, retos 7→8, `mates_naruto_1` 1, estrellas 11→12, resto intacto.
+- Penalti (guest, nivel 1): 10/10 → oro, retos 7→8, `mates_penalti_1` 1, estrellas 11→12; «¡Partido perfecto!».
+- Penalti (Mireia): guardado real con retos 2→3, mates +1 oro y estrellas 4.
+- Regresión fase 1: `qa/progress-fase1-test.html` → `RESULT: TODO OK` (118 líneas, 0 fallos).
+- 0 errores de consola y una sola carga de `progress-shared.js` en las 3 páginas.
+- Informe: `qa/progreso-fase2-2026-11-04.md`.
+
+### Copia de seguridad
+
+- Originales en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\MiMundo_backup_2026-11-03_fase2-progreso\peques\`, con SHA-256 idéntico.
+
+### Publicación
+
+- Publicado en `origin/main` el 04/11/2026 y servido por GitHub Pages.

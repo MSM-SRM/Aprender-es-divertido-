@@ -298,11 +298,11 @@ body.language-changing .app{animation:languageTumble .82s cubic-bezier(.22,.72,.
 </div>
 </div>
 
+<script src="progress-shared.js"></script>
 <script>
 const API_URL = "https://mi-mundo-aprendizaje-api.paguerapiso.workers.dev";
 const $ = id => document.getElementById(id);
 const state = {age:3,game:null,round:0,score:0,answered:false,wordIndex:0,memFirst:null,memLock:false,memPairs:0};
-const STORE = "mundoAprendizajeProgressV3";
 let currentProfile = null;
 let progress = emptyProgress();
 let lastJoke = 0;
@@ -362,18 +362,12 @@ function normalizeProgress(raw) {
 }
 
 function loadProgress() {
-  try {
-    return normalizeProgress(JSON.parse(localStorage.getItem(STORE + "_" + currentProfile)) || emptyProgress());
-  } catch(e) {
-    return emptyProgress();
-  }
+  return normalizeProgress(MiProgreso.load(currentProfile));
 }
 
 function saveProgress() {
   progress = normalizeProgress(progress);
-  try {
-    if(currentProfile) localStorage.setItem(STORE + "_" + currentProfile,JSON.stringify(progress));
-  } catch(e) {}
+  if(currentProfile) MiProgreso.persist(currentProfile,progress);
   renderProgress();
 }
 

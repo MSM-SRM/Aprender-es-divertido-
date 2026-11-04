@@ -660,19 +660,13 @@
         </div>
     </div>
 
+    <script src="progress-shared.js"></script>
     <script>
         document.getElementById('backToMates').href = 'mi-mates.html?profile=' + encodeURIComponent(profileId);
 
         // Progreso V3 compartido con Mi Mates
-        const progressKey = `mundoAprendizajeProgressV3_${profileId}`;
-        let profileProgress;
-        try { profileProgress = JSON.parse(localStorage.getItem(progressKey)); } catch (e) { profileProgress = null; }
-        if (!profileProgress || typeof profileProgress !== 'object') profileProgress = { stars: 0, rounds: 0, byGame: {}, byArea: {} };
-        profileProgress.byGame ||= {};
-        profileProgress.byArea ||= {};
-        if (!profileProgress.byArea.mates) profileProgress.byArea.mates = { gold: 0, silver: 0, bronze: 0 };
-        const areaScores = profileProgress.byArea.mates;
-        for (const starType of ['gold', 'silver', 'bronze']) areaScores[starType] = Number(areaScores[starType] || 0);
+        const profileProgress = MiProgreso.load(profileId);
+        const areaScores = MiProgreso.area(profileProgress, 'mates');
 
         let currentLevel = 1;
         let score = 0;
@@ -1457,10 +1451,7 @@
             const gameKey = 'mates_penalti_' + currentLevel;
             profileProgress.byGame[gameKey] = (Number(profileProgress.byGame[gameKey]) || 0) + 1;
             if (grade) areaScores[grade] = (Number(areaScores[grade]) || 0) + 1;
-            profileProgress.stars = Object.values(profileProgress.byArea).reduce(
-                (sum, area) => sum + ['gold', 'silver', 'bronze'].reduce(
-                    (subtotal, type) => subtotal + (Number(area?.[type]) || 0), 0), 0);
-            try { localStorage.setItem(progressKey, JSON.stringify(profileProgress)); } catch (e) {}
+            MiProgreso.persist(profileId, profileProgress);
 
             const starEl = document.getElementById('result-star');
             starEl.textContent = grade ? starIcons[grade] : '⚽';
