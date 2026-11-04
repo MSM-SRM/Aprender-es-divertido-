@@ -847,8 +847,9 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 - `evento-especial.html?profile=guest`: la tarjeta My First Halloween conserva autor, portada y enlace directo al PDF; imagen 200; 0 errores de consola.
 - `halloween-libro-original.html` devuelve 404 en local tras retirarlo.
+- Producción: la página antigua devuelve 404; la tarjeta conserva «by Rayane Meghriche (author)», la portada 537×528 y el enlace al PDF; 0 errores de consola.
 - `halloween-libro.html` y `halloween-libro2.html` siguen sin enlaces internos y no se tocan en este cambio.
 
 ### Publicación
 
-- Pendiente de publicar en `origin/main`.
+- Publicado en `origin/main` el 04/11/2026 (`2fb505f`) y verificado en GitHub Pages.
