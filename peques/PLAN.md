@@ -790,6 +790,7 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - Penalti (Mireia): guardado real con retos 2→3, mates +1 oro y estrellas 4.
 - Regresión fase 1: `qa/progress-fase1-test.html` → `RESULT: TODO OK` (118 líneas, 0 fallos).
 - 0 errores de consola y una sola carga de `progress-shared.js` en las 3 páginas.
+- Producción: index (perfil temporal) y Penalti (guest) guardan con el módulo; Naruto (guest, nivel 1) 10/10 → estrellas 11→12 y `mates_naruto_1` 1; 0 errores. Los datos de prueba de guest se retiraron al terminar.
 - Informe: `qa/progreso-fase2-2026-11-04.md`.
 
 ### Copia de seguridad
@@ -798,4 +799,4 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 ### Publicación
 
-- Publicado en `origin/main` el 04/11/2026 y servido por GitHub Pages.
+- Publicado en `origin/main` el 04/11/2026 (`ffd86ac`) y verificado en GitHub Pages el mismo día.
