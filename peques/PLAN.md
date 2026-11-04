@@ -749,7 +749,7 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 - Movidos a `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\MiMundo_backup_2026-11-03_limpieza\peques\` y retirados del repo: `index.antes-perfiles.html`, `index-main back up.html`, `index-backup.v3.html`, `mi-mates.antes-niveles.html`, `naruto-matematico.antes-accion.html`, `ui-language.antes-niveles.js` e `idiomas.js`.
 - Comprobación SHA-256 de las 7 copias antes de borrar: todas idénticas.
-- Se conservan `indexOK.html` y `halloween-libro-original.html` (no estaban en el lote acordado). `indexOK.html` se revisó y sustituyó el 04/11/2026; `halloween-libro-original.html` sigue pendiente.
+- Se conservan `indexOK.html` y `halloween-libro-original.html` (no estaban en el lote acordado). Ambos se revisaron el 04/11/2026: `indexOK.html` se sustituyó por una copia fechada y `halloween-libro-original.html` se retiró por ser un redirect sin uso.
 
 ### Pruebas
 
@@ -821,8 +821,34 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 - SHA-256 idéntico entre `index.html` y `Index-ok-04.11.26.html`; idéntico entre el `indexOK.html` original y su copia de seguridad.
 - `Index-ok-04.11.26.html` carga en local con el mismo título, `MiProgreso` y sin errores de consola.
-- `halloween-libro-original.html` no se toca; sigue pendiente de revisión.
+- `halloween-libro-original.html` se revisó y retiró el 04/11/2026 (ver última sección).
 
 ### Publicación
 
 - Publicado en `origin/main` el 04/11/2026 (`d7d9044`) y verificado en GitHub Pages: la copia responde 200 y `indexOK.html` devuelve 404.
+
+---
+
+## Actualización 04/11/2026 — Retirada de halloween-libro-original.html
+
+### Revisión
+
+- `halloween-libro-original.html` (1.309 bytes, 30/10/2026) solo mostraba un botón y redirigía a los 1,2 s al PDF de Free Kids Books; no contenía el cuento ni ilustraciones propias.
+- El área de Halloween (`evento-especial.html`) enlaza la tarjeta «My First Halloween» directamente al PDF y mantiene el crédito «by Rayane Meghriche (author)».
+- No hay ningún enlace interno a `halloween-libro-original.html`; solo aparecía en la documentación.
+
+### Cambios
+
+- Retirado `peques/halloween-libro-original.html`.
+- Copia en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\MiMundo_backup_2026-11-04_halloween-libro-original\peques\` (SHA-256 `FEDBE00A58023C3588F62990A7156067633D27C7A80F49A39C960207050A4C80`).
+- No se toca `evento-especial.html` ni el enlace al PDF.
+
+### Pruebas
+
+- `evento-especial.html?profile=guest`: la tarjeta My First Halloween conserva autor, portada y enlace directo al PDF; imagen 200; 0 errores de consola.
+- `halloween-libro-original.html` devuelve 404 en local tras retirarlo.
+- `halloween-libro.html` y `halloween-libro2.html` siguen sin enlaces internos y no se tocan en este cambio.
+
+### Publicación
+
+- Pendiente de publicar en `origin/main`.
