@@ -749,7 +749,7 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 - Movidos a `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\MiMundo_backup_2026-11-03_limpieza\peques\` y retirados del repo: `index.antes-perfiles.html`, `index-main back up.html`, `index-backup.v3.html`, `mi-mates.antes-niveles.html`, `naruto-matematico.antes-accion.html`, `ui-language.antes-niveles.js` e `idiomas.js`.
 - Comprobación SHA-256 de las 7 copias antes de borrar: todas idénticas.
-- Se conservan `indexOK.html` y `halloween-libro-original.html` (no estaban en el lote acordado; se revisarán aparte).
+- Se conservan `indexOK.html` y `halloween-libro-original.html` (no estaban en el lote acordado). `indexOK.html` se revisó y sustituyó el 04/11/2026; `halloween-libro-original.html` sigue pendiente.
 
 ### Pruebas
 
@@ -800,3 +800,29 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 ### Publicación
 
 - Publicado en `origin/main` el 04/11/2026 (`ffd86ac`) y verificado en GitHub Pages el mismo día.
+
+---
+
+## Actualización 04/11/2026 — Sustitución de indexOK por copia fechada
+
+### Revisión de `indexOK.html`
+
+- Era una copia del 21/10/2026 (28.071 bytes), anterior a los perfiles, el mapa, Naruto, la copia de seguridad, el i18n y la fase 2 del progreso.
+- Comparado con el `index.html` actual (66.123 bytes): todos sus `id`, funciones, `data-game`, enlaces y textos visibles existen ya en el index nuevo; la única diferencia de almacenamiento es la clave antigua `mundoAprendizajeProgressV1`, que ya no se usa.
+- No aporta ninguna página, juego, texto ni enlace que no esté en la versión actual.
+
+### Cambios
+
+- Nuevo `peques/Index-ok-04.11.26.html`: copia byte a byte del `index.html` actual (SHA-256 `8737A26F5346AFF1F3E5429008A9D81DFF47F241AF6ED0640289E96D1DE295D0`).
+- `peques/indexOK.html` retirado del repo. Copia en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\MiMundo_backup_2026-11-04_index-ok\peques\` (SHA-256 `52E2A7A3727CF85CDC324533B462B398D6A835B1E23C1D555E86D44936AEFD8A`).
+- Copia de la nueva backup también en esa carpeta de Descargas.
+
+### Pruebas
+
+- SHA-256 idéntico entre `index.html` y `Index-ok-04.11.26.html`; idéntico entre el `indexOK.html` original y su copia de seguridad.
+- `Index-ok-04.11.26.html` carga en local con el mismo título, `MiProgreso` y sin errores de consola.
+- `halloween-libro-original.html` no se toca; sigue pendiente de revisión.
+
+### Publicación
+
+- Pendiente de publicar en `origin/main`.
