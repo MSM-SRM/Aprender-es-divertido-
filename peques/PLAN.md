@@ -825,4 +825,4 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 ### Publicación
 
-- Pendiente de publicar en `origin/main`.
+- Publicado en `origin/main` el 04/11/2026 (`d7d9044`) y verificado en GitHub Pages: la copia responde 200 y `indexOK.html` devuelve 404.
