@@ -848,8 +848,38 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - `evento-especial.html?profile=guest`: la tarjeta My First Halloween conserva autor, portada y enlace directo al PDF; imagen 200; 0 errores de consola.
 - `halloween-libro-original.html` devuelve 404 en local tras retirarlo.
 - Producción: la página antigua devuelve 404; la tarjeta conserva «by Rayane Meghriche (author)», la portada 537×528 y el enlace al PDF; 0 errores de consola.
-- `halloween-libro.html` y `halloween-libro2.html` siguen sin enlaces internos y no se tocan en este cambio.
+- `halloween-libro.html` y `halloween-libro2.html` se revisaron y retiraron el 04/11/2026 (ver última sección).
 
 ### Publicación
 
 - Publicado en `origin/main` el 04/11/2026 (`2fb505f`) y verificado en GitHub Pages.
+
+---
+
+## Actualización 04/11/2026 — Retirada de los lectores duplicados de Halloween
+
+### Revisión
+
+- `halloween-libro.html` (5.078 bytes) era un lector propio de «Once Upon a Halloween» con 11 páginas e imágenes en `imagenes/halloween-book/` (10,68 MB). No tenía enlaces internos.
+- `halloween-libro2.html` (5.165 bytes) era un lector propio de «My First Halloween» con portada y emojis. Tampoco tenía enlaces internos.
+- El área de Halloween ya ofrece ambos cuentos mediante tarjetas que abren los PDF oficiales de Free Kids Books. Comprobado con los perfiles Mireia y Sofía en local: ambas tarjetas cargan portada y enlace, y los PDF responden 200.
+- Los dos lectores eran alternativas duplicadas que quedaron fuera del flujo al enlazar las tarjetas directamente a los PDF.
+
+### Cambios
+
+- Retirados `peques/halloween-libro.html` y `peques/halloween-libro2.html`.
+- Retiradas sus imágenes exclusivas: `peques/imagenes/halloween-book/` (22 JPG) y `peques/imagenes/halloween-libro2/cover.jpg`.
+- Total: 25 archivos y 10.728.588 bytes.
+- Copia completa en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\MiMundo_backup_2026-11-04_halloween-libros-duplicados\peques\`, con `SHA256.txt`; 25/25 hashes idénticos.
+- No se toca `evento-especial.html` ni los enlaces a los PDF.
+
+### Pruebas
+
+- Local, perfiles Mireia y Sofía: Halloween activo, tarjetas «My First Halloween» y «Once Upon a Halloween» con portada cargada (537×528 y 426×531), enlace directo al PDF y 0 errores de consola.
+- PDF oficiales: 200, `application/pdf`.
+- `halloween-libro.html` y `halloween-libro2.html` devuelven 404 en local tras retirarlos.
+- No quedan referencias a los lectores ni a sus carpetas de imágenes.
+
+### Publicación
+
+- Pendiente de publicar en `origin/main`.
