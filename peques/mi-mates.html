@@ -21,6 +21,13 @@ h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1;margin:0;color:#1557a3;text-sh
 .module:hover,.module:focus-visible{transform:translateY(-3px);box-shadow:0 14px 27px #23456b26;outline:3px solid #5aa9ee;outline-offset:2px}
 
 .module:nth-child(1){background:linear-gradient(145deg,#fff8d9,#ffe9a5)}.module:nth-child(2){background:linear-gradient(145deg,#e9fff0,#c9f0d5)}.module:nth-child(3){background:linear-gradient(145deg,#f2ebff,#dcd0ff)}.module[data-mode="penalti"]{background:linear-gradient(145deg,#e8fff5,#c7f3dc)}.module[data-mode="naruto"]{background:linear-gradient(145deg,#fff7e8,#ffd9b0);border-color:#ffb27a;color:#7a2f00;box-shadow:0 9px 23px #f26b2130}.module[data-mode="naruto"]:hover,.module[data-mode="naruto"]:focus-visible{outline-color:#f26b21}
+.module[data-mode="naruto"].illustrated{position:relative;display:block;min-height:0;aspect-ratio:1;padding:0;overflow:hidden;text-align:center}
+.ninja-game-link{position:absolute;inset:0;display:block;color:inherit;text-decoration:none}
+.ninja-cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%}
+.ninja-band{position:absolute;inset:auto 0 42px;padding:26px 10px 9px;background:linear-gradient(to top,#fffffff0 50%,#ffffff00);text-align:center}
+.ninja-band strong{display:block;font-size:clamp(1rem,2.4vw,1.22rem);line-height:1.15;color:#7a2f00}
+.ninja-credit{position:absolute;z-index:2;inset:auto 0 0;min-height:42px;display:flex;align-items:center;justify-content:center;padding:5px 8px;background:#fff;color:#626c7c;font-size:.6rem;font-weight:800;line-height:1.15;text-decoration:underline;text-underline-offset:2px}
+.ninja-credit:focus-visible{outline:3px solid #4798e3;outline-offset:-3px}
 .emoji{display:block;font-size:clamp(3.4rem,8vw,5rem);line-height:1}.module strong{display:block;font-size:clamp(1.45rem,3vw,1.9rem)}
 .play{display:none;margin-top:22px;padding:clamp(18px,4vw,30px);border:3px solid #fff;border-radius:28px;background:#ffffffd9;box-shadow:0 10px 28px #23456b18}.play.active{display:block}
 .play h2{font-size:clamp(1.3rem,4vw,1.8rem);margin:0}.hint{color:#526c89}.question{font-size:clamp(2.5rem,10vw,5rem);font-weight:1000;text-align:center;margin:24px 0;color:#1856a0}.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:540px;margin:auto}.answer{min-height:68px;border:3px solid #d8e9f8;border-radius:18px;background:#fff;color:#1c4c83;font-size:clamp(1.4rem,5vw,2rem);font-weight:900}.answer:hover,.answer:focus-visible{border-color:#4798e3;outline:3px solid #4798e355}.feedback{text-align:center;font-size:1.15rem;font-weight:900;min-height:34px;margin:20px 0 8px}.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}.action{border:0;border-radius:999px;padding:11px 18px;background:#226dc0;color:#fff;font-weight:900}.action.alt{background:#edf4fb;color:#31577e}.action:disabled{opacity:.5;cursor:default}.foot{text-align:center;color:#617790;font-size:.85rem;margin-top:24px}
@@ -70,8 +77,11 @@ const profileId=new URLSearchParams(location.search).get('profile')||'mireia';
 // Lista de módulos TEST: retirar una entrada elimina esa tarjeta sin tocar el resto del área.
 const testModules=[{mode:'sumas',title:'Sumas',emoji:'➕'},{mode:'restas',title:'Restas',emoji:'➖'},{mode:'mixtos',title:'Retos mixtos',emoji:'🧮'},{mode:'penalti',title:'Penalti matemático',emoji:'🥅',href:'penalti-matematico.html'},{mode:'naruto',title:'Naruto: desafío ninja',emoji:'🍥',href:'naruto-matematico.html'}];
 function renderModules(){
+  const useLicensedNarutoArt=module=>module.mode==='naruto'&&['mireia','guest'].includes(profileId);
   $('modules').innerHTML=testModules.map(module=>module.href
-    ?`<a class="module" data-mode="${module.mode}" href="${module.href}?profile=${encodeURIComponent(profileId)}"><span class="emoji" aria-hidden="true">${module.emoji}</span><strong>${module.title}</strong></a>`
+    ?useLicensedNarutoArt(module)
+      ?`<div class="module illustrated" data-mode="${module.mode}"><a class="ninja-game-link" href="${module.href}?profile=${encodeURIComponent(profileId)}" aria-label="${module.title}"><img class="ninja-cover" src="imagenes/naruto-vectorstock-tamtv.png" alt="" width="233" height="180"><span class="ninja-band"><strong>${module.title}</strong></span></a><a class="ninja-credit" href="https://www.vectorstock.com/royalty-free-vector/naruto-anime-character-vector-49710225" target="_blank" rel="noopener noreferrer">Naruto anime character · Vector image by VectorStock / TamTV</a></div>`
+      :`<a class="module" data-mode="${module.mode}" href="${module.href}?profile=${encodeURIComponent(profileId)}"><span class="emoji" aria-hidden="true">${module.emoji}</span><strong>${module.title}</strong></a>`
     :`<button class="module" data-mode="${module.mode}"><span class="emoji" aria-hidden="true">${module.emoji}</span><strong>${module.title}</strong></button>`).join('');
   document.querySelectorAll('#modules button[data-mode]').forEach(button=>button.addEventListener('click',()=>{mode=button.dataset.mode;openPracticeLevels()}));
 }
