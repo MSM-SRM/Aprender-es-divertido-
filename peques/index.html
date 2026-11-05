@@ -200,6 +200,18 @@ body.language-changing .app{animation:languageTumble .82s cubic-bezier(.22,.72,.
 <video class="bg-video" autoplay muted loop playsinline preload="auto" poster="./imagenes/fpbg.png" aria-hidden="true" tabindex="-1">
   <source src="./imagenes/fpbg.mp4" type="video/mp4">
 </video>
+<script>
+(function(){
+  var video = document.querySelector(".bg-video");
+  if (!video) return;
+  var rate = 0.65;
+  var applyRate = function(){
+    try { video.defaultPlaybackRate = rate; video.playbackRate = rate; } catch (e) {}
+  };
+  if (video.readyState >= 1) applyRate();
+  else video.addEventListener("loadedmetadata", applyRate, { once: true });
+})();
+</script>
 <div class="app">
 <nav class="language-bar" aria-label="Language / Idioma" id="languageBar">
   <button type="button" class="language-button" data-language="es" aria-label="Español" title="Español" aria-pressed="true"><img src="./imagenes/espflag.PNG" alt="Español"></button>

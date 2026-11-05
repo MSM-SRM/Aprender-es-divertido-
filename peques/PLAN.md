@@ -892,20 +892,24 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 ### Cambios
 
-- Copiado `page1BgGif.mp4` (665.521 bytes, 480×320, 9,6 s) a `peques/imagenes/fpbg.mp4`; SHA-256 idéntico al original.
-- `peques/index.html`: añadido un `<video class="bg-video">` fijo a pantalla completa, silenciado, en bucle y con `object-fit:cover`, colocado detrás del contenido.
-- La imagen `imagenes/fpbg.png` (en realidad AVIF) y el color `#f6cbd9` del `body` siguen como respaldo estático si el vídeo no carga.
+- Copiado `page1BgGif.mp4` a `peques/imagenes/fpbg.mp4`. El archivo original es un MP4 de 480×320, 12,5 fps y 9,6 s (120 fotogramas).
+- El original se guarda en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\MiMundo_backup_2026-11-05_fondo-animado\peques\imagenes\fpbg_original_480x320.mp4` (SHA-256 `4DAE4005...`).
+- Se sustituye la versión de 480×320 por una reescalada a 1440×960 con Lanczos y un enfoque suave (`unsharp`), CRF 22, sin audio: 3.469.917 bytes. No se usa IA de reescalado porque probó a deformar objetos (tijeras y pompón).
+- `peques/index.html`: `<video class="bg-video">` fijo a pantalla completa, silenciado, en bucle y con `object-fit:cover`, detrás del contenido. Un script fija `playbackRate` a 0,65 para ralentizar el movimiento; el bucle pasa de 9,6 s a unos 14,8 s.
+- La imagen `imagenes/fpbg.png` (en realidad AVIF, 870×580) y el color `#f6cbd9` del `body` siguen como respaldo estático si el vídeo no carga.
 - Con `prefers-reduced-motion: reduce`, el vídeo se oculta y queda el fondo estático.
 - No se modifica `Index-ok-04.11.26.html` (copia fechada).
 
 ### Pruebas
 
-- Local: el vídeo responde 200 (`video/mp4`, 665.521 bytes), carga con `readyState` 4, se reproduce solo, está silenciado y completa el bucle de 9,6 s; 0 errores de consola.
-- Escritorio (892×582): el vídeo cubre el área visible con `object-fit:cover`; las tarjetas de perfil y el selector de idioma siguen legibles.
+- Local: el vídeo responde 200 (`video/mp4`, 3.469.917 bytes), carga con `readyState` 4, se reproduce solo, está silenciado, `playbackRate` 0,65 y `loop` activo; 0 errores de consola.
+- Escritorio (985×700): el vídeo cubre el área visible con `object-fit:cover`; las tarjetas de perfil y el selector de idioma siguen legibles.
 - Móvil simulado en iframe de 390×844: fondo a pantalla completa, sin desbordamiento horizontal, tarjetas en dos columnas y selector visibles; 0 errores de consola.
 - `prefers-reduced-motion: reduce`: `.bg-video` oculto y fondo estático `fpbg.png` visible.
 - Respaldo: `imagenes/fpbg.png` sigue respondiendo 200.
+- Limitación conocida: el vídeo original tiene 480×320 y 12,5 fps; al ampliarlo a pantalla completa pierde nitidez y el movimiento es a saltos. El reescalado y la ralentización mejoran la percepción, pero no recuperan detalle que no existe en el archivo. La imagen estática `fpbg.png` (870×580) es más nítida que cualquier versión del vídeo.
 
 ### Publicación
 
-- Publicado en `origin/main` el 05/11/2026 (`1d43e95`) y verificado en GitHub Pages: `index.html` sirve el `<video>`, `imagenes/fpbg.mp4` responde 200 `video/mp4` (665.521 bytes), se reproduce en bucle, cubre el viewport (985×700), las imágenes de perfil cargan y no hay errores de consola.
+- Primera versión publicada en `origin/main` el 05/11/2026 (`1d43e95`).
+- Mejora de nitidez y velocidad: pendiente de publicar en `origin/main`.
