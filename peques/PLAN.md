@@ -1073,5 +1073,5 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - La tarjeta de Capi en la página principal de Sofia y las tarjetas en inglés de Mireia y Guest usan ahora la misma portada, con título y descripción discretos sobre una banda inferior, siguiendo el tratamiento visual de «Cuentos Julia D.».
 - Se mantiene el distintivo **NEW**, la primera posición, los enlaces y las restricciones por perfil e idioma.
 - Verificado localmente en inglés para Guest: la página y el SVG responden correctamente, la imagen carga con dimensiones 800×500 y la tarjeta conserva el enlace a `abecedario-capibara.html?profile=guest&uiLang=en`. La tarjeta de Sofia se verificó en el mismo sitio con su acceso original.
-- Cambios publicados en GitHub Pages el 05/11/2026 en la actualización de portada.
+- Cambios publicados en GitHub Pages el 05/11/2026 en `3d807b3`; ejecución Pages `42037107770` completada con éxito.
 - Copia completa del proyecto (sin metadatos de `.git`) en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\MiMundo_backup_2026-11-05_portada-capi`, con manifiesto SHA-256.
