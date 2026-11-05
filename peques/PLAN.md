@@ -885,3 +885,27 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 ### Publicación
 
 - Publicado en `origin/main` el 04/11/2026 (`ad1ba37`) y verificado en GitHub Pages.
+
+---
+
+## Actualización 05/11/2026 — Fondo animado en la página de entrada
+
+### Cambios
+
+- Copiado `page1BgGif.mp4` (665.521 bytes, 480×320, 9,6 s) a `peques/imagenes/fpbg.mp4`; SHA-256 idéntico al original.
+- `peques/index.html`: añadido un `<video class="bg-video">` fijo a pantalla completa, silenciado, en bucle y con `object-fit:cover`, colocado detrás del contenido.
+- La imagen `imagenes/fpbg.png` (en realidad AVIF) y el color `#f6cbd9` del `body` siguen como respaldo estático si el vídeo no carga.
+- Con `prefers-reduced-motion: reduce`, el vídeo se oculta y queda el fondo estático.
+- No se modifica `Index-ok-04.11.26.html` (copia fechada).
+
+### Pruebas
+
+- Local: el vídeo responde 200 (`video/mp4`, 665.521 bytes), carga con `readyState` 4, se reproduce solo, está silenciado y completa el bucle de 9,6 s; 0 errores de consola.
+- Escritorio (892×582): el vídeo cubre el área visible con `object-fit:cover`; las tarjetas de perfil y el selector de idioma siguen legibles.
+- Móvil simulado en iframe de 390×844: fondo a pantalla completa, sin desbordamiento horizontal, tarjetas en dos columnas y selector visibles; 0 errores de consola.
+- `prefers-reduced-motion: reduce`: `.bg-video` oculto y fondo estático `fpbg.png` visible.
+- Respaldo: `imagenes/fpbg.png` sigue respondiendo 200.
+
+### Publicación
+
+- Pendiente de publicar en `origin/main`.
