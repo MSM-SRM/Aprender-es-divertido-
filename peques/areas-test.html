@@ -67,6 +67,7 @@ const areaCatalog={
   {mode:'simbolos',title:'Símbolos',emoji:'🦚',questions:[['¿Qué animal acompaña a Ganesha en muchas representaciones?',['Un ratón','Un oso polar','Un delfín','Una jirafa'],'Un ratón'],['¿Qué flor aparece con frecuencia como símbolo en relatos de la India?',['Loto','Margarita','Girasol','Tulipán'],'Loto']]}
  ]},
  juegos:{title:'Juegos',key:'juegos',modules:[
+  {mode:'abecedario-capibara',kind:'page',title:'El abecedario de Capi',emoji:'🦫',url:'abecedario-capibara.html',profiles:['sofia'],newFor:['sofia']},
   {mode:'puzzles-mireia',kind:'page',title:'Puzzles Mireia',emoji:'🧩',url:'puzzles-mireia.html',newFor:['mireia','guest']},
   {mode:'memoria',title:'Memoria',emoji:'🧠',questions:[['Recuerda la secuencia: sol, luna, sol. ¿Qué aparece primero?',['Sol','Luna','Estrella','Nube'],'Sol'],['¿Qué elemento se repite: gato, pez, gato, perro?',['Gato','Pez','Perro','Todos'],'Gato']]},
   {mode:'logica',title:'Lógica',emoji:'🧩',questions:[['¿Qué forma sigue? Círculo, cuadrado, círculo, cuadrado…',['Círculo','Triángulo','Estrella','Corazón'],'Círculo'],['Si tienes dos manzanas y te dan una más, ¿cuántas hay?',['Tres','Una','Cuatro','Cinco'],'Tres']]},
@@ -83,7 +84,7 @@ function renderScores(){for(const k of ['gold','silver','bronze'])$(k+'Score').t
 function saveProgress(module){progress.rounds=(Number(progress.rounds)||0)+1;progress.byGame[`${area.key}_${module.mode}`]=(Number(progress.byGame[`${area.key}_${module.mode}`])||0)+1;MiProgreso.persist(profileId,progress);renderScores()}
 let currentModule=null,answered=false;
 function renderModules(){
-  $('modules').innerHTML=area.modules.map(m=>{
+  $('modules').innerHTML=area.modules.filter(m=>!Array.isArray(m.profiles)||m.profiles.includes(profileId)).map(m=>{
     const badge=Array.isArray(m.newFor)&&m.newFor.includes(profileId)?'<span class="new-badge" aria-label="Novedad">NEW</span>':'';
     if(m.kind==='external')return `<a class="module module-link" href="${m.url}" target="_blank" rel="noopener noreferrer">${badge}<span class="emoji" aria-hidden="true">${m.emoji}</span><strong>${m.title}</strong><small>Recurso externo · abre en otra pestaña</small></a>`;
     if(m.kind==='page'){const url=`${m.url}?profile=${encodeURIComponent(profileId)}`;return `<a class="module module-link" href="${url}">${badge}<span class="emoji" aria-hidden="true">${m.emoji}</span><strong>${m.title}</strong><small>Juego completo · abre en esta pestaña</small></a>`}

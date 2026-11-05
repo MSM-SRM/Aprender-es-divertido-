@@ -1,0 +1,272 @@
+[
+    {
+        "letter":  "A",
+        "word":  "abeja",
+        "image":  "imagenes/abecedario/a-abeja.jpg",
+        "author":  "Wilfredor",
+        "license":  "CC BY-SA 4.0",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+        "source":  "https://commons.wikimedia.org/wiki/File%3ABee%20in%20Loto%20in%20Botanical%20Garden%20of%20S%C3%A3o%20Paulo.jpg",
+        "file":  "File:Bee in Loto in Botanical Garden of São Paulo.jpg"
+    },
+    {
+        "letter":  "B",
+        "word":  "barco",
+        "image":  "imagenes/abecedario/b-barco.jpg",
+        "author":  "Ximonic (Simo Räsänen)",
+        "license":  "CC BY-SA 3.0",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+        "source":  "https://commons.wikimedia.org/wiki/File%3ABoat%20with%20autumny%20mountains%20at%20Digermulen%2C%20Hinn%C3%B8ya%2C%20Norway%2C%20Norway%2C%202015%20September.jpg",
+        "file":  "File:Boat with autumny mountains at Digermulen, Hinnøya, Norway, Norway, 2015 September.jpg"
+    },
+    {
+        "letter":  "C",
+        "word":  "casa",
+        "image":  "imagenes/abecedario/c-casa.jpg",
+        "author":  "PumpkinSky",
+        "license":  "CC BY-SA 4.0",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+        "source":  "https://commons.wikimedia.org/wiki/File%3AAdam%20Thoroughgood%20House%20-%20South%20LR.jpg",
+        "file":  "File:Adam Thoroughgood House - South LR.jpg"
+    },
+    {
+        "letter":  "D",
+        "word":  "dado",
+        "image":  "imagenes/abecedario/d-dado.jpg",
+        "author":  "Diacritica",
+        "license":  "CC BY-SA 3.0",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+        "source":  "https://commons.wikimedia.org/wiki/File%3A6sided%20dice.jpg",
+        "file":  "File:6sided dice.jpg"
+    },
+    {
+        "letter":  "E",
+        "word":  "estrella",
+        "image":  "imagenes/abecedario/e-estrella.jpg",
+        "author":  "Nacho MG",
+        "license":  "CC BY-SA 4.0",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+        "source":  "https://commons.wikimedia.org/wiki/File%3ABarcelona%20night%20stars%20NachoMG.jpg",
+        "file":  "File:Barcelona night stars NachoMG.jpg"
+    },
+    {
+        "letter":  "F",
+        "word":  "flor",
+        "image":  "imagenes/abecedario/f-flor.jpg",
+        "author":  "Sam Oth (User:World Trekker)",
+        "license":  "CC BY-SA 2.5",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/2.5",
+        "source":  "https://commons.wikimedia.org/wiki/File%3AFlower%20jtca001.jpg",
+        "file":  "File:Flower jtca001.jpg"
+    },
+    {
+        "letter":  "G",
+        "word":  "gato",
+        "image":  "imagenes/abecedario/g-gato.jpg",
+        "author":  "Paul Danese",
+        "license":  "CC BY-SA 4.0",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+        "source":  "https://commons.wikimedia.org/wiki/File%3A20231125%20housecat%20south%20meadows%20PD100306.jpg",
+        "file":  "File:20231125 housecat south meadows PD100306.jpg"
+    },
+    {
+        "letter":  "H",
+        "word":  "helado",
+        "image":  "imagenes/abecedario/h-helado.jpg",
+        "author":  "Andy Li",
+        "license":  "CC0",
+        "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "source":  "https://commons.wikimedia.org/wiki/File%3A2%20ice%20cream%20cones%202025-05-02.jpg",
+        "file":  "File:2 ice cream cones 2025-05-02.jpg"
+    },
+    {
+        "letter":  "I",
+        "word":  "isla",
+        "image":  "imagenes/abecedario/i-isla.jpg",
+        "author":  "Vyacheslav Argenberg",
+        "license":  "CC BY 4.0",
+        "licenseUrl":  "https://creativecommons.org/licenses/by/4.0",
+        "source":  "https://commons.wikimedia.org/wiki/File%3ABeach%20on%20the%20island%2C%20Tropical%20cyclone%2C%20Gili%20Meno%20Island%2C%20Indonesia.jpg",
+        "file":  "File:Beach on the island, Tropical cyclone, Gili Meno Island, Indonesia.jpg"
+    },
+    {
+        "letter":  "J",
+        "word":  "jirafa",
+        "image":  "imagenes/abecedario/j-jirafa.jpg",
+        "author":  "Giles Laurent",
+        "license":  "CC BY-SA 4.0",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+        "source":  "https://commons.wikimedia.org/wiki/File%3A006%20Giraffe%20portrait%20in%20the%20Lake%20Manyara%20National%20Park%20Photo%20by%20Giles%20Laurent.jpg",
+        "file":  "File:006 Giraffe portrait in the Lake Manyara National Park Photo by Giles Laurent.jpg"
+    },
+    {
+        "letter":  "K",
+        "word":  "kiwi",
+        "image":  "imagenes/abecedario/k-kiwi.jpg",
+        "author":  "Luc Viatour",
+        "license":  "CC BY-SA 2.5",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/2.5",
+        "source":  "https://commons.wikimedia.org/wiki/File%3AKiwi%20(Actinidia%20chinensis)%201%20Luc%20Viatour.jpg",
+        "file":  "File:Kiwi (Actinidia chinensis) 1 Luc Viatour.jpg"
+    },
+    {
+        "letter":  "L",
+        "word":  "limón",
+        "image":  "imagenes/abecedario/l-limon.jpg",
+        "author":  "Kuldeepburjbhalaike",
+        "license":  "CC BY-SA 4.0",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+        "source":  "https://commons.wikimedia.org/wiki/File%3AFive%20Lemons%20on%20lemon%20tree%2C%20Burj%20Bhalaike.jpg",
+        "file":  "File:Five Lemons on lemon tree, Burj Bhalaike.jpg"
+    },
+    {
+        "letter":  "M",
+        "word":  "manzana",
+        "image":  "imagenes/abecedario/m-manzana.jpg",
+        "author":  "George Chernilevsky",
+        "license":  "Public domain",
+        "licenseUrl":  "",
+        "source":  "https://commons.wikimedia.org/wiki/File%3AApples%20in%20basket%202018%20G2.jpg",
+        "file":  "File:Apples in basket 2018 G2.jpg"
+    },
+    {
+        "letter":  "N",
+        "word":  "nube",
+        "image":  "imagenes/abecedario/n-nube.jpg",
+        "author":  "ADARSHluck",
+        "license":  "CC BY-SA 4.0",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+        "source":  "https://commons.wikimedia.org/wiki/File%3ACirrus%20uncinus%20clouds%20in%20the%20morning%20sky.jpg",
+        "file":  "File:Cirrus uncinus clouds in the morning sky.jpg"
+    },
+    {
+        "letter":  "Ñ",
+        "word":  "ñu",
+        "image":  "imagenes/abecedario/ene-nu.jpg",
+        "author":  "Giles Laurent",
+        "license":  "CC BY-SA 4.0",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+        "source":  "https://commons.wikimedia.org/wiki/File%3A040%20Blue%20wildebeest%20with%20wattled%20starlings%20in%20the%20Serengeti%20National%20Park%20Photo%20by%20Giles%20Laurent.jpg",
+        "file":  "File:040 Blue wildebeest with wattled starlings in the Serengeti National Park Photo by Giles Laurent.jpg"
+    },
+    {
+        "letter":  "O",
+        "word":  "oso",
+        "image":  "imagenes/abecedario/o-oso.jpg",
+        "author":  "Malene Thyssen",
+        "license":  "CC BY 2.5",
+        "licenseUrl":  "https://creativecommons.org/licenses/by/2.5",
+        "source":  "https://commons.wikimedia.org/wiki/File%3ABrown%20bear%20(Ursus%20arctos%20arctos)%20running.jpg",
+        "file":  "File:Brown bear (Ursus arctos arctos) running.jpg"
+    },
+    {
+        "letter":  "P",
+        "word":  "pelota",
+        "image":  "imagenes/abecedario/p-pelota.png",
+        "author":  "Nemo",
+        "license":  "CC0",
+        "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "source":  "https://commons.wikimedia.org/wiki/File%3AClose%20up%20soccer%20ball.png",
+        "file":  "File:Close up soccer ball.png"
+    },
+    {
+        "letter":  "Q",
+        "word":  "queso",
+        "image":  "imagenes/abecedario/q-queso.jpg",
+        "author":  "Yann Forget",
+        "license":  "CC BY-SA 4.0",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+        "source":  "https://commons.wikimedia.org/wiki/File%3ABelper%20M%C3%BCrggel%20B%2C%20WikiCheese%20Lausanne.jpg",
+        "file":  "File:Belper Mürggel B, WikiCheese Lausanne.jpg"
+    },
+    {
+        "letter":  "R",
+        "word":  "rana",
+        "image":  "imagenes/abecedario/r-rana.jpg",
+        "author":  "Petar Milošević",
+        "license":  "CC BY-SA 4.0",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+        "source":  "https://commons.wikimedia.org/wiki/File%3AAgile%20frog%20(Rana%20dalmatina).jpg",
+        "file":  "File:Agile frog (Rana dalmatina).jpg"
+    },
+    {
+        "letter":  "S",
+        "word":  "sol",
+        "image":  "imagenes/abecedario/s-sol.jpg",
+        "author":  "NASA Goddard Space Flight Center from Greenbelt, MD, USA",
+        "license":  "Public domain",
+        "licenseUrl":  "",
+        "source":  "https://commons.wikimedia.org/wiki/File%3AAmazing%20Hi-Def%20CME%20(full%20disk)%20-%20Flickr%20-%20NASA%20Goddard%20Photo%20and%20Video.jpg",
+        "file":  "File:Amazing Hi-Def CME (full disk) - Flickr - NASA Goddard Photo and Video.jpg"
+    },
+    {
+        "letter":  "T",
+        "word":  "tren",
+        "image":  "imagenes/abecedario/t-tren.jpg",
+        "author":  "Martinvl",
+        "license":  "CC BY-SA 4.0",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+        "source":  "https://commons.wikimedia.org/wiki/File%3AKrupp%200-8-0T%20Industrial%20steam%20engine%20(No%201751).jpg",
+        "file":  "File:Krupp 0-8-0T Industrial steam engine (No 1751).jpg"
+    },
+    {
+        "letter":  "U",
+        "word":  "uvas",
+        "image":  "imagenes/abecedario/u-uvas.jpg",
+        "author":  "Jaggery",
+        "license":  "CC BY-SA 2.0",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/2.0",
+        "source":  "https://commons.wikimedia.org/wiki/File%3ABunch%20of%20Grapes%2C%20Bridgwater%20-%20geograph.org.uk%20-%203636678.jpg",
+        "file":  "File:Bunch of Grapes, Bridgwater - geograph.org.uk - 3636678.jpg"
+    },
+    {
+        "letter":  "V",
+        "word":  "vaca",
+        "image":  "imagenes/abecedario/v-vaca.jpg",
+        "author":  "Daniel Schwen",
+        "license":  "CC BY-SA 3.0",
+        "licenseUrl":  "http://creativecommons.org/licenses/by-sa/3.0/",
+        "source":  "https://commons.wikimedia.org/wiki/File%3ACH%20cow%202.jpg",
+        "file":  "File:CH cow 2.jpg"
+    },
+    {
+        "letter":  "W",
+        "word":  "waffle",
+        "image":  "imagenes/abecedario/w-waffle.jpg",
+        "author":  "Nan Palmero from San Antonio, TX, USA",
+        "license":  "CC BY 2.0",
+        "licenseUrl":  "https://creativecommons.org/licenses/by/2.0",
+        "source":  "https://commons.wikimedia.org/wiki/File%3ABelgian%20Waffle%20and%20Turkish%20Coffee%20(52556941749).jpg",
+        "file":  "File:Belgian Waffle and Turkish Coffee (52556941749).jpg"
+    },
+    {
+        "letter":  "X",
+        "word":  "xilófono",
+        "image":  "imagenes/abecedario/x-xilofono.jpg",
+        "author":  "David Adam Kess",
+        "license":  "CC BY-SA 4.0",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+        "source":  "https://commons.wikimedia.org/wiki/File%3A(Xylophone)%20Centro%20Hist%C3%B3rico%20Quito.JPG",
+        "file":  "File:(Xylophone) Centro Histórico Quito.JPG"
+    },
+    {
+        "letter":  "Y",
+        "word":  "yogur",
+        "image":  "imagenes/abecedario/y-yogur.jpg",
+        "author":  "Abdulsalam Al Dabbagh",
+        "license":  "CC BY-SA 4.0",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+        "source":  "https://commons.wikimedia.org/wiki/File%3AIraqi%20Sheep%20Yogurt-Mosul.jpg",
+        "file":  "File:Iraqi Sheep Yogurt-Mosul.jpg"
+    },
+    {
+        "letter":  "Z",
+        "word":  "zanahoria",
+        "image":  "imagenes/abecedario/z-zanahoria.jpg",
+        "author":  "Touam (Hervé Agnoux)",
+        "license":  "CC BY-SA 4.0",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+        "source":  "https://commons.wikimedia.org/wiki/File%3ACarottes%20et%20poireaux%20de%20la%20ferme%20Grandjard%20au%20march%C3%A9%20de%20la%20place%20Albert%20Thomas.jpg",
+        "file":  "File:Carottes et poireaux de la ferme Grandjard au marché de la place Albert Thomas.jpg"
+    }
+]

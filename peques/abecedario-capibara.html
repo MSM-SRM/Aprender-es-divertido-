@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#72ad3e">
+<title>El abecedario de Capi · Mi Mundo de Aprendizaje</title>
+<script src="auth-guard.js"></script>
+<script>
+(()=>{const profile=new URLSearchParams(location.search).get('profile')||'mireia';if(profile!=='sofia')location.replace(`areas-test.html?area=juegos&profile=${encodeURIComponent(profile)}`)})();
+</script>
+<style>
+*{box-sizing:border-box}
+:root{font-family:"Trebuchet MS",system-ui,sans-serif;color:#24432c;background:#d9e8c9}
+body{margin:0;min-height:100vh;background:linear-gradient(#f3f6e2aa,#f3f6e2aa),url("imagenes/fondo-supermercado-lidl.jpg") center/cover fixed;padding:clamp(12px,3vw,30px)}
+button{font:inherit;touch-action:manipulation;cursor:pointer}
+.wrap{width:min(100%,1040px);margin:auto}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.back{border:2px solid #d2e7c2;border-radius:999px;background:#fff;color:#315d3b;padding:10px 15px;font-weight:900;box-shadow:0 4px 12px #243d2822;text-decoration:none}
+h1{margin:0;text-align:center;color:#245a31;font-size:clamp(1.7rem,5vw,3rem);text-shadow:0 2px #fff}
+.intro{margin:18px auto 22px;padding:clamp(14px,3vw,24px);display:flex;align-items:center;justify-content:center;gap:15px;text-align:left;background:#fffef0ed;border:3px solid #fff;border-radius:25px;box-shadow:0 8px 24px #243d2825}
+.intro p{margin:3px 0;color:#55734d;font-size:clamp(1rem,2.4vw,1.2rem);font-weight:700}
+.mascot{width:76px;height:96px;flex:none;object-fit:contain}
+.letters{display:grid;grid-template-columns:repeat(auto-fit,minmax(72px,1fr));gap:10px;padding:clamp(12px,3vw,22px);background:#fffdf0e8;border:3px solid #fff;border-radius:27px;box-shadow:0 10px 28px #243d2825}
+.letter{min-height:78px;border:3px solid #e7c869;border-radius:20px;background:linear-gradient(145deg,#fff,#fff3c9);color:#365d38;font-size:clamp(1.8rem,5vw,2.7rem);font-weight:1000;box-shadow:0 4px 0 #d9b452;transition:transform .12s,background .12s}
+.letter:nth-child(3n){border-color:#a9d492;background:linear-gradient(145deg,#fff,#e3f5d6);box-shadow:0 4px 0 #8abd70}
+.letter:nth-child(3n + 1){border-color:#b8c8ed;background:linear-gradient(145deg,#fff,#e9efff);box-shadow:0 4px 0 #93a6d4}
+.letter:hover,.letter:focus-visible{transform:translateY(-3px);outline:3px solid #4b8f4e;outline-offset:2px}
+.letter:active{transform:translateY(2px);box-shadow:none}
+.foot{text-align:center;margin:15px 0 2px;color:#294f35;font-weight:800;text-shadow:0 1px #fff}
+.reveal{position:fixed;inset:0;z-index:5;display:grid;place-items:center;padding:18px;background:#17391c9c;overflow:auto;animation:fadeIn .15s ease-out}
+.reveal[hidden]{display:none}
+.picture{position:relative;width:min(100%,430px);max-height:calc(100dvh - 36px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:32px 22px 24px;border:5px solid #fff;border-radius:32px;background:linear-gradient(145deg,#fffef2,#e7f7dc);box-shadow:0 18px 55px #102d18a8;text-align:center;overflow:auto}
+.close{position:absolute;top:8px;right:9px;width:42px;height:42px;border:2px solid #d9e9cf;border-radius:50%;background:#fff;color:#325b39;font-size:1.55rem;font-weight:900;line-height:1}
+.picture-letter{font-size:clamp(2rem,8vw,3.2rem);font-weight:1000;color:#52813b;line-height:1}
+.object-photo{display:block;width:min(100%,360px);height:min(220px,30vh);min-height:135px;object-fit:contain;border-radius:16px;background:#fff;box-shadow:0 5px 16px #35572b27}
+.object-name{margin:0;color:#284e30;font-size:clamp(1.8rem,7vw,2.6rem);font-weight:1000}
+.photo-credit{margin:0;color:#536d4e;font-size:.78rem;line-height:1.35}
+.photo-credit a,.credits a{color:#315d3b;text-underline-offset:2px}
+.speech-status{max-width:340px;min-height:1.35em;margin:0;color:#536d4e;font-size:.9rem;font-weight:700;line-height:1.35}
+.say-again{border:0;border-radius:999px;background:#538a3b;color:white;padding:10px 17px;font-weight:900;box-shadow:0 4px 0 #3f6d2d}
+.say-again:focus-visible,.close:focus-visible{outline:3px solid #17391c;outline-offset:3px}
+.credits{margin:14px auto 0;padding:11px 15px;max-width:760px;border:2px solid #fff;border-radius:18px;background:#fffef0ed;color:#365b39;box-shadow:0 5px 14px #243d2822;font-size:.9rem}
+.credits summary{cursor:pointer;font-weight:900}
+.credits ul{max-height:220px;overflow:auto;margin:9px 0 0;padding-left:22px}
+.credits li{margin:5px 0}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@media(max-width:520px){.top{align-items:flex-start}.back{padding:8px 10px;font-size:.88rem}.intro{margin:13px auto 16px}.mascot{width:66px;height:84px}.letters{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:12px}.letter{min-height:66px;border-radius:16px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="top">
+    <a class="back" id="back" href="areas-test.html?area=juegos">← Volver a Juegos</a>
+    <h1>🔤 El abecedario de Capi</h1>
+    <span aria-hidden="true" style="width:1px"></span>
+  </header>
+  <section class="intro" aria-label="Instrucciones">
+    <img class="mascot" src="imagenes/abecedario/capi-mascota.png" alt="Capi, una capibara simpática" width="76" height="96">
+    <div><strong>¡Hola! Soy Capi, tu amiga capibara.</strong><p>Toca una letra y descubre un objeto. ¡Lo diremos juntos!</p></div>
+  </section>
+  <section class="letters" id="letters" aria-label="Letras del abecedario" aria-busy="true"></section>
+  <p class="foot">Explora las letras a tu ritmo 🌼</p>
+  <details class="credits">
+    <summary>Créditos de las fotografías y licencias</summary>
+    <p>Las fotos son de Wikimedia Commons y se usan bajo la licencia indicada.</p>
+    <ul id="photoCredits"></ul>
+  </details>
+</main>
+<section class="reveal" id="reveal" role="dialog" aria-modal="true" aria-labelledby="objectName" aria-describedby="pictureLetter" hidden>
+  <div class="picture">
+    <button class="close" id="close" type="button" aria-label="Cerrar imagen">×</button>
+    <span class="picture-letter" id="pictureLetter"></span>
+    <img class="object-photo" id="objectImage" alt="">
+    <h2 class="object-name" id="objectName"></h2>
+    <p class="photo-credit" id="photoCredit"></p>
+    <p class="speech-status" id="speechStatus" role="status" aria-live="polite"></p>
+    <button class="say-again" id="sayAgain" type="button">🔊 Escuchar otra vez</button>
+  </div>
+</section>
+<p class="sr-only" id="announcement" aria-live="polite"></p>
+<script>
+const lettersList=[
+  ['A','abeja'],['B','barco'],['C','casa'],['D','dado'],['E','estrella'],
+  ['F','flor'],['G','gato'],['H','helado'],['I','isla'],['J','jirafa'],
+  ['K','kiwi'],['L','limón'],['M','manzana'],['N','nube'],['Ñ','ñu'],
+  ['O','oso'],['P','pelota'],['Q','queso'],['R','rana'],['S','sol'],
+  ['T','tren'],['U','uvas'],['V','vaca'],['W','waffle'],['X','xilófono'],
+  ['Y','yogur'],['Z','zanahoria']
+];
+const params=new URLSearchParams(location.search);
+const profile=params.get('profile')||'mireia';
+const letters=document.getElementById('letters');
+const reveal=document.getElementById('reveal');
+const image=document.getElementById('objectImage');
+const name=document.getElementById('objectName');
+const letterLabel=document.getElementById('pictureLetter');
+const announcement=document.getElementById('announcement');
+const photoCredit=document.getElementById('photoCredit');
+const speechStatus=document.getElementById('speechStatus');
+const credits=document.getElementById('photoCredits');
+let closeTimer=0,speechWatchdog=0,speechRequest=0;
+document.getElementById('back').href=`areas-test.html?area=juegos&profile=${encodeURIComponent(profile)}`;
+letters.innerHTML=lettersList.map(([letter])=>`<button class="letter" type="button" data-letter="${letter}" aria-label="Letra ${letter}" disabled>${letter}</button>`).join('');
+function clearSpeechTimers(){
+  window.clearTimeout(closeTimer);
+  window.clearTimeout(speechWatchdog);
+}
+function scheduleCloseAfterSpeech(){
+  window.clearTimeout(closeTimer);
+  closeTimer=window.setTimeout(closePicture,2000);
+}
+function speak(word){
+  const request=++speechRequest;
+  clearSpeechTimers();
+  const synthesis=window.speechSynthesis;
+  if(!synthesis||typeof window.SpeechSynthesisUtterance!=='function'){
+    speechStatus.textContent='La voz no está disponible en este navegador. Puedes leer el nombre o volver a intentarlo.';
+    scheduleCloseAfterSpeech();
+    return;
+  }
+  try{synthesis.cancel()}catch(error){console.error('No se pudo cancelar la locución anterior:',error)}
+  let utterance;
+  try{
+    utterance=new SpeechSynthesisUtterance(word);
+    utterance.lang='es-ES';
+    utterance.rate=.82;
+  }catch(error){
+    console.error('No se pudo preparar la locución:',error);
+    speechStatus.textContent='No se pudo preparar la voz. Puedes leer el nombre o volver a intentarlo.';
+    scheduleCloseAfterSpeech();
+    return;
+  }
+  speechStatus.textContent='Reproduciendo el nombre…';
+  const speechFinished=()=>{
+    if(request!==speechRequest||reveal.hidden)return;
+    window.clearTimeout(speechWatchdog);
+    speechRequest++;
+    speechStatus.textContent='La voz ha terminado. La imagen se cerrará en 2 segundos.';
+    scheduleCloseAfterSpeech();
+  };
+  const speechFailed=(message)=>{
+    if(request!==speechRequest||reveal.hidden)return;
+    window.clearTimeout(speechWatchdog);
+    speechRequest++;
+    speechStatus.textContent=message;
+    scheduleCloseAfterSpeech();
+  };
+  utterance.onend=speechFinished;
+  utterance.onerror=event=>{
+    const reason=event&&event.error?` (${event.error})`:'';
+    speechFailed(`No se pudo reproducir la voz${reason}. Puedes leer el nombre o volver a intentarlo.`);
+  };
+  speechWatchdog=window.setTimeout(()=>speechFailed('La voz está tardando demasiado. Puedes leer el nombre o volver a intentarlo.'),8000);
+  try{synthesis.speak(utterance)}catch(error){
+    console.error('No se pudo iniciar la locución:',error);
+    speechFailed('No se pudo iniciar la voz. Puedes leer el nombre o volver a intentarlo.');
+  }
+}
+function closePicture(){
+  clearSpeechTimers();
+  speechRequest++;
+  reveal.hidden=true;
+  if('speechSynthesis' in window){
+    try{window.speechSynthesis.cancel()}catch(error){console.error('No se pudo cancelar la locución al cerrar la imagen:',error)}
+  }
+}
+function addCreditLink(parent,url,label){
+  const link=document.createElement('a');
+  link.href=url;
+  link.target='_blank';
+  link.rel='noopener noreferrer';
+  link.textContent=label;
+  parent.appendChild(link);
+}
+fetch('imagenes/abecedario/creditos.json').then(response=>{
+  if(!response.ok)throw new Error('No se pudieron cargar las fotografías.');
+  return response.json();
+}).then(items=>{
+  const letterSet=new Set(lettersList.map(([letter])=>letter));
+  const letterItems=items.filter(item=>letterSet.has(item.letter));
+  if(letterItems.length!==lettersList.length||items.length!==lettersList.length)throw new Error('El álbum de fotos está incompleto.');
+  const byLetter=new Map(letterItems.map(item=>[item.letter,item]));
+  if(byLetter.size!==lettersList.length||lettersList.some(([letter])=>!byLetter.has(letter)))throw new Error('Falta una fotografía.');
+  letters.innerHTML=lettersList.map(([letter])=>`<button class="letter" type="button" data-letter="${letter}" aria-label="Letra ${letter}">${letter}</button>`).join('');
+  letters.setAttribute('aria-busy','false');
+  items.forEach(item=>{
+    const row=document.createElement('li');
+    addCreditLink(row,item.source,`${item.label||item.letter} · ${item.author}`);
+    row.appendChild(document.createTextNode(` · ${item.license}`));
+    if(item.licenseUrl)addCreditLink(row,item.licenseUrl,'Ver licencia');
+    credits.appendChild(row);
+  });
+  window.alphabetPhotos=byLetter;
+}).catch(()=>{
+  letters.setAttribute('aria-busy','false');
+  document.querySelector('.foot').textContent='No se pudieron cargar las fotos locales. Intenta actualizar la página.';
+});
+function showPicture(letter){
+  const item=window.alphabetPhotos&&window.alphabetPhotos.get(letter);
+  if(!item)return;
+  const word=item.word;
+  clearSpeechTimers();
+  letterLabel.textContent=`${letter} de`;
+  image.src=item.image;
+  image.alt=`Fotografía de ${word}`;
+  name.textContent=word.charAt(0).toLocaleUpperCase('es-ES')+word.slice(1);
+  photoCredit.replaceChildren(document.createTextNode('Foto: '));
+  addCreditLink(photoCredit,item.source,item.author);
+  photoCredit.appendChild(document.createTextNode(' · '));
+  if(item.licenseUrl)addCreditLink(photoCredit,item.licenseUrl,item.license);
+  else photoCredit.appendChild(document.createTextNode(item.license));
+  announcement.textContent=`${letter} de ${word}`;
+  speechStatus.textContent='';
+  reveal.hidden=false;
+  speak(word);
+}
+letters.addEventListener('click',event=>{
+  const button=event.target.closest('button[data-letter]');
+  if(button)showPicture(button.dataset.letter);
+});
+document.getElementById('close').addEventListener('click',closePicture);
+document.getElementById('sayAgain').addEventListener('click',()=>speak(name.textContent.toLocaleLowerCase('es-ES')));
+reveal.addEventListener('click',event=>{if(event.target===reveal)closePicture()});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!reveal.hidden)closePicture()});
+</script>
+</body>
+</html>
