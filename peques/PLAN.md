@@ -908,4 +908,4 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 ### Publicación
 
-- Pendiente de publicar en `origin/main`.
+- Publicado en `origin/main` el 05/11/2026 (`1d43e95`) y verificado en GitHub Pages: `index.html` sirve el `<video>`, `imagenes/fpbg.mp4` responde 200 `video/mp4` (665.521 bytes), se reproduce en bucle, cubre el viewport (985×700), las imágenes de perfil cargan y no hay errores de consola.
