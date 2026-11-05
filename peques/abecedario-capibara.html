@@ -20,7 +20,7 @@ button{font:inherit;touch-action:manipulation;cursor:pointer}
 h1{margin:0;text-align:center;color:#245a31;font-size:clamp(1.7rem,5vw,3rem);text-shadow:0 2px #fff}
 .intro{margin:18px auto 22px;padding:clamp(14px,3vw,24px);display:flex;align-items:center;justify-content:center;gap:15px;text-align:left;background:#fffef0ed;border:3px solid #fff;border-radius:25px;box-shadow:0 8px 24px #243d2825}
 .intro p{margin:3px 0;color:#55734d;font-size:clamp(1rem,2.4vw,1.2rem);font-weight:700}
-.mascot{width:76px;height:96px;flex:none;object-fit:contain}
+.mascot{width:clamp(92px,16vw,132px);height:auto;max-height:105px;flex:none;object-fit:contain;border-radius:18px}
 .letters{display:grid;grid-template-columns:repeat(auto-fit,minmax(72px,1fr));gap:10px;padding:clamp(12px,3vw,22px);background:#fffdf0e8;border:3px solid #fff;border-radius:27px;box-shadow:0 10px 28px #243d2825}
 .letter{min-height:78px;border:3px solid #e7c869;border-radius:20px;background:linear-gradient(145deg,#fff,#fff3c9);color:#365d38;font-size:clamp(1.8rem,5vw,2.7rem);font-weight:1000;box-shadow:0 4px 0 #d9b452;transition:transform .12s,background .12s}
 .letter:nth-child(3n){border-color:#a9d492;background:linear-gradient(145deg,#fff,#e3f5d6);box-shadow:0 4px 0 #8abd70}
@@ -35,39 +35,44 @@ h1{margin:0;text-align:center;color:#245a31;font-size:clamp(1.7rem,5vw,3rem);tex
 .picture-letter{font-size:clamp(2rem,8vw,3.2rem);font-weight:1000;color:#52813b;line-height:1}
 .object-photo{display:block;width:min(100%,360px);height:min(220px,30vh);min-height:135px;object-fit:contain;border-radius:16px;background:#fff;box-shadow:0 5px 16px #35572b27}
 .object-name{margin:0;color:#284e30;font-size:clamp(1.8rem,7vw,2.6rem);font-weight:1000}
-.photo-credit{margin:0;color:#536d4e;font-size:.78rem;line-height:1.35}
-.photo-credit a,.credits a{color:#315d3b;text-underline-offset:2px}
+.credits a{color:#315d3b;text-underline-offset:2px}
 .speech-status{max-width:340px;min-height:1.35em;margin:0;color:#536d4e;font-size:.9rem;font-weight:700;line-height:1.35}
 .say-again{border:0;border-radius:999px;background:#538a3b;color:white;padding:10px 17px;font-weight:900;box-shadow:0 4px 0 #3f6d2d}
 .say-again:focus-visible,.close:focus-visible{outline:3px solid #17391c;outline-offset:3px}
 .credits{margin:14px auto 0;padding:11px 15px;max-width:760px;border:2px solid #fff;border-radius:18px;background:#fffef0ed;color:#365b39;box-shadow:0 5px 14px #243d2822;font-size:.9rem}
-.credits summary{cursor:pointer;font-weight:900}
-.credits ul{max-height:220px;overflow:auto;margin:9px 0 0;padding-left:22px}
-.credits li{margin:5px 0}
+.credits h2{margin:0;font-size:1rem}
+.credits-toggle{min-height:44px;padding:8px 13px;border:2px solid #d2e7c2;border-radius:999px;background:#fff;color:#315d3b;font-weight:900}
+.credits-toggle:focus-visible{outline:3px solid #17391c;outline-offset:3px}
+.credits-content[hidden]{display:none}
+.credits-content{max-height:48vh;overflow:auto;margin-top:8px;padding:0 7px}
+.credits-content h3{margin:12px 0 4px;font-size:1rem}
+.credits-content ul{margin:4px 0 12px;padding-left:22px}
+.credits-content li{margin:6px 0;line-height:1.4;overflow-wrap:anywhere}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@media(max-width:520px){.top{align-items:flex-start}.back{padding:8px 10px;font-size:.88rem}.intro{margin:13px auto 16px}.mascot{width:66px;height:84px}.letters{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:12px}.letter{min-height:66px;border-radius:16px}}
+@media(max-width:520px){.top{align-items:flex-start}.back{padding:8px 10px;font-size:.88rem}.intro{margin:13px auto 16px}.mascot{width:82px;max-height:72px}.letters{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:12px}.letter{min-height:66px;border-radius:16px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
 <main class="wrap">
   <header class="top">
-    <a class="back" id="back" href="index.html">← Volver a Juegos</a>
+    <a class="back" id="back" href="index.html?profile=sofia">← Volver a Juegos</a>
     <h1>🔤 El abecedario de Capi</h1>
-    <span aria-hidden="true" style="width:1px"></span>
+    <nav class="langs" aria-label="Cambiar idioma"></nav>
   </header>
   <section class="intro" aria-label="Instrucciones">
-    <img class="mascot" src="imagenes/abecedario/capi-mascota.png" alt="Capi, una capibara simpática" width="76" height="96">
+    <img class="mascot" src="imagenes/abecedario/capi-mascota.png" alt="Capi, una capibara simpática" width="500" height="375">
     <div><strong>¡Hola! Soy Capi, tu amiga capibara.</strong><p>Toca una letra y descubre un objeto. ¡Lo diremos juntos!</p></div>
   </section>
   <section class="letters" id="letters" aria-label="Letras del abecedario" aria-busy="true"></section>
   <p class="foot">Explora las letras a tu ritmo 🌼</p>
-  <details class="credits">
-    <summary>Créditos de las fotografías y licencias</summary>
-    <p>Las fotos son de Wikimedia Commons y se usan bajo la licencia indicada.</p>
-    <ul id="photoCredits"></ul>
-  </details>
+  <section class="credits" aria-labelledby="creditsTitle">
+    <h2><button class="credits-toggle" id="creditsTitle" type="button" aria-expanded="false" aria-controls="creditsContent" aria-describedby="creditsHint">Créditos</button></h2>
+    <span class="sr-only" id="creditsHint">Toca este botón cinco veces seguidas para consultar las autorías y licencias.</span>
+    <span class="sr-only" id="creditsStatus" role="status" aria-live="polite"></span>
+    <div class="credits-content" id="creditsContent" aria-labelledby="creditsTitle" hidden></div>
+  </section>
 </main>
 <section class="reveal" id="reveal" role="dialog" aria-modal="true" aria-labelledby="objectName" aria-describedby="pictureLetter" hidden>
   <div class="picture">
@@ -75,57 +80,136 @@ h1{margin:0;text-align:center;color:#245a31;font-size:clamp(1.7rem,5vw,3rem);tex
     <span class="picture-letter" id="pictureLetter"></span>
     <img class="object-photo" id="objectImage" alt="">
     <h2 class="object-name" id="objectName"></h2>
-    <p class="photo-credit" id="photoCredit"></p>
     <p class="speech-status" id="speechStatus" role="status" aria-live="polite"></p>
     <button class="say-again" id="sayAgain" type="button">🔊 Escuchar otra vez</button>
   </div>
 </section>
 <p class="sr-only" id="announcement" aria-live="polite"></p>
+<script src="ui-language.js"></script>
 <script>
-const lettersList=[
-  ['A','abeja'],['B','barco'],['C','casa'],['D','dado'],['E','estrella'],
-  ['F','flor'],['G','gato'],['H','helado'],['I','isla'],['J','jirafa'],
-  ['K','kiwi'],['L','limón'],['M','manzana'],['N','nube'],['Ñ','ñu'],
-  ['O','oso'],['P','pelota'],['Q','queso'],['R','rana'],['S','sol'],
-  ['T','tren'],['U','uvas'],['V','vaca'],['W','waffle'],['X','xilófono'],
-  ['Y','yogur'],['Z','zanahoria']
-];
+const alphabet={es:'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split(''),en:'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')};
+const labels={es:{letter:'Letra',for:'de',photo:'Fotografía de'},en:{letter:'Letter',for:'for',photo:'Photo of'},ca:{letter:'Lletra',for:'de',photo:'Fotografia de'},de:{letter:'Buchstabe',for:'wie',photo:'Foto von'}};
 const params=new URLSearchParams(location.search);
-const profile=params.get('profile')||'mireia';
 const letters=document.getElementById('letters');
 const reveal=document.getElementById('reveal');
 const image=document.getElementById('objectImage');
 const name=document.getElementById('objectName');
 const letterLabel=document.getElementById('pictureLetter');
 const announcement=document.getElementById('announcement');
-const photoCredit=document.getElementById('photoCredit');
 const speechStatus=document.getElementById('speechStatus');
-const credits=document.getElementById('photoCredits');
-let closeTimer=0,speechWatchdog=0,speechRequest=0;
-document.getElementById('back').href='index.html';
-letters.innerHTML=lettersList.map(([letter])=>`<button class="letter" type="button" data-letter="${letter}" aria-label="Letra ${letter}" disabled>${letter}</button>`).join('');
+const creditsButton=document.getElementById('creditsTitle');
+const creditsHint=document.getElementById('creditsHint');
+const creditsContent=document.getElementById('creditsContent');
+const creditsStatus=document.getElementById('creditsStatus');
+let creditsActivations=0;
+let closeTimer=0,speechWatchdog=0,voiceWaitTimer=0,voiceWaitCancel=null,speechRequest=0,loadRequest=0,currentItem=null,activeAlphabet=[];
+const currentUiLanguage=()=>window.MiIdioma?window.MiIdioma.current():(params.get('uiLang')||'es');
+const currentVoiceLanguage=()=>currentUiLanguage()==='en'?'en-GB':'es-ES';
+function updateCreditsHint(){
+  const messages={
+    es:'Activa este botón cinco veces seguidas para consultar las autorías y licencias.',
+    en:'Activate this button five times in a row to view attributions and licences.',
+    ca:'Activa aquest botó cinc vegades seguides per consultar les autories i les llicències.',
+    de:'Aktiviere diese Schaltfläche fünfmal hintereinander, um Urheberangaben und Lizenzen anzuzeigen.'
+  };
+  creditsHint.textContent=messages[currentUiLanguage()]||messages.es;
+}
+const back=document.getElementById('back');
+back.href=`index.html?profile=sofia${params.has('uiLang')?`&uiLang=${encodeURIComponent(params.get('uiLang'))}`:''}`;
+back.addEventListener('click',event=>{
+  const previous=document.referrer;
+  if(previous){
+    const source=new URL(previous);
+    if(source.origin===location.origin&&source.pathname===new URL('index.html',location.href).pathname){
+      event.preventDefault();
+      history.back();
+    }
+  }
+});
 function clearSpeechTimers(){
   window.clearTimeout(closeTimer);
   window.clearTimeout(speechWatchdog);
+  if(voiceWaitCancel)voiceWaitCancel();
+  window.clearTimeout(voiceWaitTimer);
 }
 function scheduleCloseAfterSpeech(){
   window.clearTimeout(closeTimer);
   closeTimer=window.setTimeout(closePicture,2000);
 }
-function speak(word){
+function preferredVoice(synthesis,language){
+  const voices=synthesis.getVoices().filter(voice=>(voice.lang||'').toLowerCase()===language.toLowerCase());
+  const rank=voice=>{
+    const name=(voice.name||'').toLowerCase();
+    if(/google uk english female/.test(name))return 0;
+    if(/\b(sonia|libby|serena|hazel)\b/.test(name))return 1;
+    if(/\bfemale\b/.test(name))return 2;
+    if(/\b(natural|online)\b/.test(name))return 3;
+    return 4;
+  };
+  return voices.sort((a,b)=>rank(a)-rank(b))[0]||null;
+}
+function waitForVoice(synthesis,language){
+  const available=preferredVoice(synthesis,language);
+  if(available)return Promise.resolve(available);
+  const voices=synthesis.getVoices();
+  if(voices.length&&language==='es-ES')return Promise.resolve(null);
+  return new Promise(resolve=>{
+    let finished=false;
+    const previousHandler=synthesis.onvoiceschanged;
+    const fallbackHandler=event=>{
+      if(typeof previousHandler==='function')previousHandler.call(synthesis,event);
+      handleVoicesChanged();
+    };
+    const finish=voice=>{
+      if(finished)return;
+      finished=true;
+      window.clearTimeout(voiceWaitTimer);
+      if(synthesis.removeEventListener)synthesis.removeEventListener('voiceschanged',handleVoicesChanged);
+      else if(synthesis.onvoiceschanged===fallbackHandler)synthesis.onvoiceschanged=previousHandler||null;
+      voiceWaitCancel=null;
+      resolve(voice);
+    };
+    const handleVoicesChanged=()=>{
+      const voice=preferredVoice(synthesis,language);
+      if(voice)finish(voice);
+    };
+    voiceWaitCancel=()=>finish(null);
+    if(synthesis.addEventListener)synthesis.addEventListener('voiceschanged',handleVoicesChanged);
+    else synthesis.onvoiceschanged=fallbackHandler;
+    if(!finished)voiceWaitTimer=window.setTimeout(()=>finish(preferredVoice(synthesis,language)),1800);
+  });
+}
+async function speak(word){
   const request=++speechRequest;
   clearSpeechTimers();
   const synthesis=window.speechSynthesis;
+  const language=currentVoiceLanguage();
+  const isEnglish=currentUiLanguage()==='en';
   if(!synthesis||typeof window.SpeechSynthesisUtterance!=='function'){
-    speechStatus.textContent='La voz no está disponible en este navegador. Puedes leer el nombre o volver a intentarlo.';
+    speechStatus.textContent=isEnglish?'No hay una voz de inglés británico (en-GB) disponible. Puedes leer la palabra, pero no se pronunciará.':'La voz no está disponible en este navegador. Puedes leer el nombre o volver a intentarlo.';
     scheduleCloseAfterSpeech();
     return;
   }
   try{synthesis.cancel()}catch(error){console.error('No se pudo cancelar la locución anterior:',error)}
+  speechStatus.textContent='Buscando una voz adecuada…';
+  let voice;
+  try{
+    voice=await waitForVoice(synthesis,language);
+    if(request!==speechRequest||reveal.hidden)return;
+  }catch(error){
+    console.error('No se pudo buscar una voz:',error);
+    if(request!==speechRequest||reveal.hidden)return;
+  }
+  if(isEnglish&&!voice){
+    speechStatus.textContent='No hay una voz de inglés británico (en-GB) disponible. Puedes leer la palabra, pero no se pronunciará.';
+    scheduleCloseAfterSpeech();
+    return;
+  }
   let utterance;
   try{
     utterance=new SpeechSynthesisUtterance(word);
-    utterance.lang='es-ES';
+    utterance.lang=language;
+    if(voice)utterance.voice=voice;
     utterance.rate=.82;
   }catch(error){
     console.error('No se pudo preparar la locución:',error);
@@ -141,7 +225,7 @@ function speak(word){
     speechStatus.textContent='La voz ha terminado. La imagen se cerrará en 2 segundos.';
     scheduleCloseAfterSpeech();
   };
-  const speechFailed=(message)=>{
+  const speechFailed=message=>{
     if(request!==speechRequest||reveal.hidden)return;
     window.clearTimeout(speechWatchdog);
     speechRequest++;
@@ -149,10 +233,7 @@ function speak(word){
     scheduleCloseAfterSpeech();
   };
   utterance.onend=speechFinished;
-  utterance.onerror=event=>{
-    const reason=event&&event.error?` (${event.error})`:'';
-    speechFailed(`No se pudo reproducir la voz${reason}. Puedes leer el nombre o volver a intentarlo.`);
-  };
+  utterance.onerror=()=>speechFailed('No se pudo reproducir la voz. Puedes leer el nombre o volver a intentarlo.');
   speechWatchdog=window.setTimeout(()=>speechFailed('La voz está tardando demasiado. Puedes leer el nombre o volver a intentarlo.'),8000);
   try{synthesis.speak(utterance)}catch(error){
     console.error('No se pudo iniciar la locución:',error);
@@ -175,44 +256,83 @@ function addCreditLink(parent,url,label){
   link.textContent=label;
   parent.appendChild(link);
 }
-fetch('imagenes/abecedario/creditos.json').then(response=>{
-  if(!response.ok)throw new Error('No se pudieron cargar las fotografías.');
-  return response.json();
-}).then(items=>{
-  const letterSet=new Set(lettersList.map(([letter])=>letter));
-  const letterItems=items.filter(item=>letterSet.has(item.letter));
-  if(letterItems.length!==lettersList.length||items.length!==lettersList.length)throw new Error('El álbum de fotos está incompleto.');
-  const byLetter=new Map(letterItems.map(item=>[item.letter,item]));
-  if(byLetter.size!==lettersList.length||lettersList.some(([letter])=>!byLetter.has(letter)))throw new Error('Falta una fotografía.');
-  letters.innerHTML=lettersList.map(([letter])=>`<button class="letter" type="button" data-letter="${letter}" aria-label="Letra ${letter}">${letter}</button>`).join('');
-  letters.setAttribute('aria-busy','false');
-  items.forEach(item=>{
-    const row=document.createElement('li');
-    addCreditLink(row,item.source,`${item.label||item.letter} · ${item.author}`);
-    row.appendChild(document.createTextNode(` · ${item.license}`));
-    if(item.licenseUrl)addCreditLink(row,item.licenseUrl,'Ver licencia');
-    credits.appendChild(row);
+function appendCreditsHeading(text){
+  const heading=document.createElement('h3');
+  heading.textContent=text;
+  creditsContent.appendChild(heading);
+  const list=document.createElement('ul');
+  creditsContent.appendChild(list);
+  return list;
+}
+function renderCredits(spanishItems,englishItems){
+  creditsContent.replaceChildren();
+  const groups=[
+    {title:'Abecedario en español',items:spanishItems,language:'es'},
+    {title:'English alphabet',items:englishItems,language:'en'}
+  ];
+  groups.forEach(group=>{
+    const list=appendCreditsHeading(group.title);
+    group.items.forEach(item=>{
+      const row=document.createElement('li');
+      const itemName=item.word.charAt(0).toLocaleUpperCase(group.language==='en'?'en-GB':'es-ES')+item.word.slice(1);
+      addCreditLink(row,item.source,`${itemName} · ${item.author}`);
+      row.appendChild(document.createTextNode(` · ${item.license}`));
+      if(item.licenseUrl){
+        row.appendChild(document.createTextNode(' · '));
+        addCreditLink(row,item.licenseUrl,'Ver licencia');
+      }
+      list.appendChild(row);
+    });
   });
-  window.alphabetPhotos=byLetter;
-}).catch(()=>{
-  letters.setAttribute('aria-busy','false');
-  document.querySelector('.foot').textContent='No se pudieron cargar las fotos locales. Intenta actualizar la página.';
-});
+}
+async function loadAlphabet(){
+  const request=++loadRequest;
+  closePicture();
+  announcement.textContent='';
+  const uiLanguage=currentUiLanguage();
+  const wordLanguage=uiLanguage==='en'?'en':'es';
+  const languageLabels=labels[uiLanguage]||labels.es;
+  activeAlphabet=alphabet[wordLanguage];
+  letters.setAttribute('aria-busy','true');
+  letters.innerHTML=activeAlphabet.map(letter=>`<button class="letter" type="button" aria-label="${languageLabels.letter} ${letter}" disabled>${letter}</button>`).join('');
+  try{
+    const responses=await Promise.all([
+      fetch('imagenes/abecedario/creditos.json'),
+      fetch('imagenes/abecedario/creditos-en.json')
+    ]);
+    if(responses.some(response=>!response.ok))throw new Error('No se pudieron cargar las fotografías.');
+    const [spanishItems,englishItems]=await Promise.all(responses.map(response=>response.json()));
+    const items=wordLanguage==='en'?englishItems:spanishItems;
+    const byLetter=new Map(items.map(item=>[item.letter,item]));
+    if(items.length!==activeAlphabet.length||byLetter.size!==activeAlphabet.length||activeAlphabet.some(letter=>!byLetter.has(letter)))throw new Error('El álbum de fotos está incompleto.');
+    if(spanishItems.length!==27||englishItems.length!==26)throw new Error('Los créditos de los alfabetos están incompletos.');
+    if(request!==loadRequest)return;
+    currentItem=null;
+    letters.innerHTML=activeAlphabet.map(letter=>`<button class="letter" type="button" data-letter="${letter}" aria-label="${languageLabels.letter} ${letter}">${letter}</button>`).join('');
+    letters.setAttribute('aria-busy','false');
+    renderCredits(spanishItems,englishItems);
+    window.alphabetPhotos=byLetter;
+  }catch(error){
+    if(request!==loadRequest)return;
+    letters.setAttribute('aria-busy','false');
+    letters.innerHTML='';
+    document.querySelector('.foot').textContent='No se pudieron cargar las fotos locales. Intenta actualizar la página.';
+    console.error(error);
+  }
+}
 function showPicture(letter){
   const item=window.alphabetPhotos&&window.alphabetPhotos.get(letter);
   if(!item)return;
+  currentItem=item;
   const word=item.word;
-  clearSpeechTimers();
-  letterLabel.textContent=`${letter} de`;
+  const language=currentUiLanguage();
+  const text=labels[language]||labels.es;
+  closePicture();
+  letterLabel.textContent=`${letter} ${text.for}`;
   image.src=item.image;
-  image.alt=`Fotografía de ${word}`;
-  name.textContent=word.charAt(0).toLocaleUpperCase('es-ES')+word.slice(1);
-  photoCredit.replaceChildren(document.createTextNode('Foto: '));
-  addCreditLink(photoCredit,item.source,item.author);
-  photoCredit.appendChild(document.createTextNode(' · '));
-  if(item.licenseUrl)addCreditLink(photoCredit,item.licenseUrl,item.license);
-  else photoCredit.appendChild(document.createTextNode(item.license));
-  announcement.textContent=`${letter} de ${word}`;
+  image.alt=`${text.photo} ${word}`;
+  name.textContent=word.charAt(0).toLocaleUpperCase(language==='en'?'en-GB':'es-ES')+word.slice(1);
+  announcement.textContent=language==='en'?`${letter} for ${name.textContent}`:language==='de'?`Buchstabe ${letter}: ${name.textContent}`:language==='ca'?`Lletra ${letter}: ${name.textContent}`:`${letter} de ${name.textContent.toLocaleLowerCase('es-ES')}`;
   speechStatus.textContent='';
   reveal.hidden=false;
   speak(word);
@@ -222,9 +342,33 @@ letters.addEventListener('click',event=>{
   if(button)showPicture(button.dataset.letter);
 });
 document.getElementById('close').addEventListener('click',closePicture);
-document.getElementById('sayAgain').addEventListener('click',()=>speak(name.textContent.toLocaleLowerCase('es-ES')));
+document.getElementById('sayAgain').addEventListener('click',()=>{if(currentItem)speak(currentItem.word)});
 reveal.addEventListener('click',event=>{if(event.target===reveal)closePicture()});
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!reveal.hidden)closePicture()});
+creditsButton.addEventListener('click',()=>{
+  if(!creditsContent.hidden)return;
+  creditsActivations++;
+  if(creditsActivations===5){
+    creditsContent.hidden=false;
+    creditsButton.setAttribute('aria-expanded','true');
+    creditsStatus.textContent='Créditos disponibles.';
+  }
+});
+document.addEventListener('pointerdown',event=>{
+  if(!creditsButton.contains(event.target))creditsActivations=0;
+},true);
+document.addEventListener('click',event=>{
+  if(!creditsButton.contains(event.target))creditsActivations=0;
+},true);
+document.addEventListener('keydown',event=>{
+  if(event.target!==creditsButton||!['Enter',' '].includes(event.key))creditsActivations=0;
+},true);
+window.addEventListener('mundo:ui-language',()=>{
+  updateCreditsHint();
+  loadAlphabet();
+});
+updateCreditsHint();
+loadAlphabet();
 </script>
 </body>
 </html>

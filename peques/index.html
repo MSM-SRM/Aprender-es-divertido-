@@ -551,41 +551,47 @@ async function checkSavedSession(profile) {
   }
 }
 
-async function selectProfile(profile) {
-  const loginOK = await loginWithPin(profile);
-  if(!loginOK) return;
-
-  currentProfile = profile;
-
-  // Cada perfil conserva su idioma; al entrar se aplica el suyo si lo tiene.
+function applyProfileLanguage(profile) {
   try {
     const savedProfileLang = localStorage.getItem("mundoAprendizajeUiLanguageV1_" + profile) || localStorage.getItem("mundoAprendizajeLanguage") || "es";
     if (window.MiIdioma && savedProfileLang !== window.MiIdioma.current()) window.MiIdioma.apply(savedProfileLang);
   } catch(e) {}
+}
 
-  // Sofía conserva su página básica con juegos dentro de index.html.
-  // Mireia entra al mapa nuevo. El mapa de Mireia no debe mostrarse a Sofía.
+function showSofiaHome() {
+  currentProfile = "sofia";
+  applyProfileLanguage("sofia");
   const mapButton = document.querySelector("[data-map]");
-  if(mapButton) mapButton.style.display = profile === "sofia" ? "none" : "";
+  if(mapButton) mapButton.style.display = "none";
+  $("age").value = "3";
+  setAge();
+  $("profileChooser").classList.add("hide");
+  $("appContent").classList.remove("hide");
+  $("home").classList.remove("hide");
+  $("screen").classList.remove("active");
+  state.game = null;
+  progress = loadProgress();
+  renderProgress();
+  if("speechSynthesis" in window) window.speechSynthesis.cancel();
+}
+
+async function selectProfile(profile) {
+  const loginOK = await loginWithPin(profile);
+  if(!loginOK) return;
   if(profile === "sofia") {
-    $("age").value = "3";
-    setAge();
-    $("profileChooser").classList.add("hide");
-    $("appContent").classList.remove("hide");
-    $("home").classList.remove("hide");
-    $("screen").classList.remove("active");
-    state.game = null;
-    progress = loadProgress();
-    renderProgress();
-    if("speechSynthesis" in window) window.speechSynthesis.cancel();
+    showSofiaHome();
     return;
   }
-
+  currentProfile = profile;
+  applyProfileLanguage(profile);
+  const mapButton = document.querySelector("[data-map]");
+  if(mapButton) mapButton.style.display = "";
   location.href = "mundo-mireia.html?profile=" + encodeURIComponent(profile);
 }
 
 function switchProfile() {
   if("speechSynthesis" in window) window.speechSynthesis.cancel();
+  try { sessionStorage.removeItem("mundoAprendizajeReturnSofia"); } catch(e) {}
   if(currentProfile) {
     try { localStorage.removeItem("mundoAprendizajeSession_" + currentProfile); } catch(e) {}
   }
@@ -604,6 +610,13 @@ document.querySelectorAll("[data-profile]").forEach(b => {
       return;
     }
     selectProfile(b.dataset.profile);
+  });
+});
+document.querySelectorAll("a[data-alpha]").forEach(link => {
+  link.addEventListener("click",() => {
+    try {
+      if(currentProfile === "sofia") sessionStorage.setItem("mundoAprendizajeReturnSofia","1");
+    } catch(e) {}
   });
 });
 $("switchProfile").onclick = switchProfile;
@@ -1185,6 +1198,25 @@ function flipCard(i,b) {
   // Load language on start. The Spanish interface remains the default.
   window.MiIdioma = { apply: applyLanguage, current: () => language };
   applyLanguage(language);
+})();
+</script>
+<script>
+(()=>{
+  const returnKey='mundoAprendizajeReturnSofia';
+  const params=new URLSearchParams(location.search);
+  try{
+    if(params.get('profile')==='sofia'&&sessionStorage.getItem(returnKey)==='1'){
+      sessionStorage.removeItem(returnKey);
+      showSofiaHome();
+    }else if(sessionStorage.getItem(returnKey)==='1'){
+      sessionStorage.removeItem(returnKey);
+    }
+  }catch(error){}
+  window.addEventListener('pageshow',event=>{
+    if(event.persisted){
+      try{sessionStorage.removeItem(returnKey)}catch(error){}
+    }
+  });
 })();
 </script>
 

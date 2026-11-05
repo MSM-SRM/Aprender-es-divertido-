@@ -6,7 +6,7 @@
 > Última actualización: **05/11/2026**
 > Producción: `https://msm-srm.github.io/Aprender-es-divertido-/peques/`
 > Repositorio: `https://github.com/MSM-SRM/Aprender-es-divertido-`
-> Rama: `main` · Estado: sincronizado con `origin/main`
+> Rama: `main` · Estado: cambios locales sin commit, no publicados
 
 ---
 
@@ -19,7 +19,7 @@
 | Perfiles | `guest`, `mireia`, `sofia` |
 | Entrada | `peques/index.html` |
 | Hub principal | `peques/mundo-mireia.html` |
-| Estado del código | Estable, sincronizado con `origin/main` |
+| Estado del código | Cambios locales del abecedario inglés, créditos y selección de voz, pendientes de commit y publicación |
 | Estado de la limpieza | Completada: 8 archivos retirados, mapa optimizado, `qa/` archivado y `.git` compactado |
 | Subagentes OpenCode | Bloqueados por límite de uso gratuito; Copilot puede continuar en local |
 
@@ -102,6 +102,9 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 | H16 | P5: nombre de `areas-test.html` | Resuelta: se mantiene. Es el hub real de actividades (mapa, puzzles y abecedario enlazan a él), no una página de prueba |
 | H17 | Revisión del abecedario de Capi (perfil Sofia) | 27/27 letras e imágenes correctas, sin errores de consola; móvil 390×844 y 360×640 sin desbordamiento. Fallos menores anotados en `peques/PLAN.md` |
 | H18 | Acceso al abecedario de Capi desde la página de Sofia | `b71b881`; tarjeta primera en `index.html`, vuelta a Juegos y traducciones |
+| H19 | Versión inglesa del abecedario de Capi (A–Z), conservando el juego español | Cambios locales: 26/26 palabras, fotos locales y créditos; voz `en-GB`, cierre modal a los 2 s, selector multilingüe y regreso a Sofia verificados en navegador local |
+| H20 | Créditos de ambos alfabetos fuera del popup, bajo activación de cinco toques | Cambios locales: créditos ES/EN conservados, apertura en la quinta activación, reinicio al interactuar con otras zonas; controles y etiquetas accesibles en español e inglés, verificados en navegador local |
+| H21 | Voz británica inglesa estricta y preferencia de voz femenina/natural | Cambios locales: selecciona solo voces `en-GB`, espera `voiceschanged`, prefiere nombres conocidos como Sonia/Libby/Serena/Hazel o Google UK English Female y no reproduce si no hay voz británica; voz española `es-ES` conservada. Publicación pendiente de disponer de voz `en-GB` o autorización expresa para publicar sin habla inglesa |
 
 ### En curso
 

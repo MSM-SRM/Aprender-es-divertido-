@@ -75,7 +75,7 @@
         "image":  "imagenes/abecedario/h-helado.jpg",
         "author":  "Andy Li",
         "license":  "CC0",
-        "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "licenseUrl":  "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
         "source":  "https://commons.wikimedia.org/wiki/File%3A2%20ice%20cream%20cones%202025-05-02.jpg",
         "file":  "File:2 ice cream cones 2025-05-02.jpg"
     },
@@ -165,7 +165,7 @@
         "image":  "imagenes/abecedario/p-pelota.png",
         "author":  "Nemo",
         "license":  "CC0",
-        "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "licenseUrl":  "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
         "source":  "https://commons.wikimedia.org/wiki/File%3AClose%20up%20soccer%20ball.png",
         "file":  "File:Close up soccer ball.png"
     },
@@ -225,7 +225,7 @@
         "image":  "imagenes/abecedario/v-vaca.jpg",
         "author":  "Daniel Schwen",
         "license":  "CC BY-SA 3.0",
-        "licenseUrl":  "http://creativecommons.org/licenses/by-sa/3.0/",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0/",
         "source":  "https://commons.wikimedia.org/wiki/File%3ACH%20cow%202.jpg",
         "file":  "File:CH cow 2.jpg"
     },
