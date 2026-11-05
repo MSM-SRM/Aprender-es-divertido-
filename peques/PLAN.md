@@ -1,5 +1,8 @@
 # Mi Mundo de Aprendizaje
 
+> Estado vivo, tareas y próximos pasos: [ESTADO-PROYECTO.md](../ESTADO-PROYECTO.md).
+> Este archivo conserva el historial técnico y las decisiones anteriores.
+
 ## Objetivo
 Crear una plataforma propia de juegos educativos para mis dos hijas,
 partiendo de la estructura inicial de Mundo Mellis.

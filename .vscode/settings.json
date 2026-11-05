@@ -1,0 +1,17 @@
+{
+  "search.exclude": {
+    "**/.git": true,
+    "qa/**/*.png": true,
+    "qa/**/*.jpg": true,
+    "qa/**/*.jpeg": true,
+    "qa/**/*.webp": true,
+    "qa/**/*.gif": true,
+    "qa/**/*.mp4": true,
+    "qa/**/*.mp3": true
+  },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "qa/**": true
+  }
+}
