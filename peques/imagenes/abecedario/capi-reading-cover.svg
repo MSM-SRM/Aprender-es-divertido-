@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-labelledby="title description">
+  <title id="title">Capi reads in a cosy little library</title>
+  <desc id="description">An original illustration of a young capybara reading a colourful book beside a stack of books.</desc>
+  <defs>
+    <linearGradient id="wall" x2="0" y2="1">
+      <stop stop-color="#b9eff7"/>
+      <stop offset="1" stop-color="#e7f8e6"/>
+    </linearGradient>
+    <linearGradient id="rug" x2="1" y2="1">
+      <stop stop-color="#ffd58d"/>
+      <stop offset="1" stop-color="#ffb5a8"/>
+    </linearGradient>
+    <linearGradient id="book" x2="1" y2="1">
+      <stop stop-color="#ff8d8d"/>
+      <stop offset="1" stop-color="#ef5e79"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#wall)"/>
+  <circle cx="665" cy="94" r="44" fill="#fff5c3"/>
+  <path d="M0 350h800v150H0z" fill="#f3d9ae"/>
+  <path d="M0 355h800" stroke="#d3ae7e" stroke-width="8"/>
+  <rect x="44" y="106" width="180" height="206" rx="14" fill="#ad7251"/>
+  <rect x="57" y="120" width="154" height="178" rx="8" fill="#fff4d5"/>
+  <path d="M59 182h150M59 239h150" stroke="#ad7251" stroke-width="10"/>
+  <path d="M78 168v-35h20v35m8 0v-24h18v24m54 0v-40h20v40M80 225v-32h18v32m12 0v-22h25v22m37 0v-37h20v37M79 282v-32h26v32m11 0v-25h20v25m41 0v-41h19v41" fill="#8fc8a0" stroke="#527b68" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M276 340c-32-37-15-92 24-105 11-43 50-69 100-59 35-33 94-24 112 18 42 13 61 53 47 91 23 38 8 81-30 98H308c-14-10-25-24-32-43Z" fill="#fff" opacity=".82"/>
+  <ellipse cx="432" cy="427" rx="205" ry="40" fill="url(#rug)"/>
+  <path d="M341 388c-13 29-8 54 18 62h40l16-62m44 0 12 62h38c26-10 29-34 11-64" fill="#6d8b63" stroke="#533c2e" stroke-width="8" stroke-linejoin="round"/>
+  <ellipse cx="431" cy="337" rx="111" ry="105" fill="#c9874e" stroke="#533c2e" stroke-width="9"/>
+  <circle cx="355" cy="259" r="31" fill="#c9874e" stroke="#533c2e" stroke-width="8"/>
+  <circle cx="507" cy="259" r="31" fill="#c9874e" stroke="#533c2e" stroke-width="8"/>
+  <circle cx="355" cy="259" r="13" fill="#f2bc83"/>
+  <circle cx="507" cy="259" r="13" fill="#f2bc83"/>
+  <path d="M349 308c5-43 39-71 82-71s77 28 82 71c-3 49-36 78-82 78s-79-29-82-78Z" fill="#d99a5c"/>
+  <ellipse cx="431" cy="324" rx="48" ry="36" fill="#f0c58f"/>
+  <ellipse cx="431" cy="313" rx="14" ry="10" fill="#533c2e"/>
+  <path d="M431 322v15m0 0c-8 9-17 9-23 3m23-3c8 9 17 9 23 3" fill="none" stroke="#533c2e" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="396" cy="290" r="6" fill="#30251f"/>
+  <circle cx="466" cy="290" r="6" fill="#30251f"/>
+  <path d="M389 280c6-7 14-8 20-3m47 0c6-5 14-4 20 3" fill="none" stroke="#533c2e" stroke-width="5" stroke-linecap="round"/>
+  <path d="M390 236c-3-24 13-38 39-38 22 0 37 15 34 39-15-9-27-13-41-12-10 0-21 4-32 11Z" fill="#6e4937"/>
+  <path d="m370 231 17-28 15 18m46 1 19-25 12 35" fill="#c9874e" stroke="#533c2e" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M474 379c22-14 40-29 54-45l30 19c-17 26-40 45-68 57" fill="#c9874e" stroke="#533c2e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M344 378c-19-9-34-23-44-42l26-23c17 18 31 28 49 34" fill="#c9874e" stroke="#533c2e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m325 337 103-25 40 95-105 25Z" fill="url(#book)" stroke="#754356" stroke-width="7" stroke-linejoin="round"/>
+  <path d="m428 312 19-5 39 96-18 4Z" fill="#ffe4a8"/>
+  <path d="m347 348 59-15m-48 38 56-15" stroke="#fff4d5" stroke-width="7" stroke-linecap="round"/>
+  <path d="M609 336h130v17H609z" fill="#9d6747"/>
+  <path d="M621 352v71m107-71v71" stroke="#805139" stroke-width="10"/>
+  <path d="M620 328h101v-21H620z" fill="#73b3d2" stroke="#805139" stroke-width="5"/>
+  <path d="M632 301h78v-18h-78z" fill="#e9a45b" stroke="#805139" stroke-width="5"/>
+  <path d="M645 278h55v-17h-55z" fill="#ab89cb" stroke="#805139" stroke-width="5"/>
+  <path d="M621 245c20-11 38-10 54 2m-27-2v-28" fill="none" stroke="#568866" stroke-width="7" stroke-linecap="round"/>
+  <path d="M634 238c-10-18-8-30 3-37 12 13 12 25-3 37m17-4c1-21 10-30 25-29 0 17-8 27-25 29" fill="#71aa72"/>
+  <rect x="282" y="103" width="44" height="42" rx="7" fill="#ffe18b" transform="rotate(-9 304 124)"/>
+  <text x="301" y="132" text-anchor="middle" font-family="Trebuchet MS, sans-serif" font-size="26" font-weight="900" fill="#8c6234" transform="rotate(-9 301 132)">A</text>
+  <rect x="548" y="117" width="44" height="42" rx="7" fill="#d7c8f4" transform="rotate(10 570 138)"/>
+  <text x="570" y="147" text-anchor="middle" font-family="Trebuchet MS, sans-serif" font-size="26" font-weight="900" fill="#6c5798" transform="rotate(10 570 147)">B</text>
+  <path d="m302 191 6 14 15 2-11 10 3 15-13-8-13 8 3-15-11-10 15-2z" fill="#ffcf58"/>
+  <path d="m575 202 5 11 12 2-9 8 2 12-10-6-10 6 2-12-9-8 12-2z" fill="#ffcf58"/>
+</svg>

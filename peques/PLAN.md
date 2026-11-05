@@ -1063,4 +1063,15 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - `peques/abecedario-capibara.html` acepta esos perfiles únicamente con `uiLang=en`; el acceso directo con otro idioma/perfil se redirige al hub de Juegos.
 - Sofia conserva su tarjeta de acceso multilingüe desde Juegos y el regreso al origen apropiado.
 - QA local pasó para Mireia y Guest: tarjeta visible en Lengua Inglés, juego abierto en inglés y acceso no permitido fuera de esa condición.
-- Este acceso es un cambio local pendiente de push/publicación en el commit que actualiza este historial.
+- Publicado en `12cb0fd` y verificado en GitHub Pages para Guest; la misma tarjeta aparece para Mireia. El juego abre en inglés y sigue restringido a esa condición.
+
+---
+
+## Actualización 05/11/2026 — Portada ilustrada para el abecedario de Capi
+
+- Creada la ilustración original `peques/imagenes/abecedario/capi-reading-cover.svg`: una capibara pequeña sentada leyendo en una biblioteca acogedora. No se reutiliza ni altera la imagen de stock con marca de agua compartida durante la conversación.
+- La tarjeta de Capi en la página principal de Sofia y las tarjetas en inglés de Mireia y Guest usan ahora la misma portada, con título y descripción discretos sobre una banda inferior, siguiendo el tratamiento visual de «Cuentos Julia D.».
+- Se mantiene el distintivo **NEW**, la primera posición, los enlaces y las restricciones por perfil e idioma.
+- Verificado localmente en inglés para Guest: la página y el SVG responden correctamente, la imagen carga con dimensiones 800×500 y la tarjeta conserva el enlace a `abecedario-capibara.html?profile=guest&uiLang=en`. La tarjeta de Sofia se verificó en el mismo sitio con su acceso original.
+- Cambios publicados en GitHub Pages el 05/11/2026 en la actualización de portada.
+- Copia completa del proyecto (sin metadatos de `.git`) en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\MiMundo_backup_2026-11-05_portada-capi`, con manifiesto SHA-256.

@@ -6,7 +6,7 @@
 > Última actualización: **05/11/2026**
 > Producción: `https://msm-srm.github.io/Aprender-es-divertido-/peques/`
 > Repositorio: `https://github.com/MSM-SRM/Aprender-es-divertido-`
-> Rama: `main` · Estado: commit local del acceso en inglés, sin push; producción sigue en `a564339`
+> Rama: `main` · Estado: acceso en inglés publicado en `12cb0fd`; portada ilustrada de Capi preparada para publicar en esta actualización
 
 ---
 
@@ -19,7 +19,7 @@
 | Perfiles | `guest`, `mireia`, `sofia` |
 | Entrada | `peques/index.html` |
 | Hub principal | `peques/mundo-mireia.html` |
-| Estado del código | Abecedario A–Z inglés, créditos y voz estricta publicados en `a564339`; el acceso English-only desde Lengua Inglés para Mireia/Guest está en un commit local sin push |
+| Estado del código | Abecedario bilingüe, créditos y acceso English-only para Mireia/Guest publicados; nueva portada ilustrada en tarjetas de Capi |
 | Estado de la limpieza | Completada: 8 archivos retirados, mapa optimizado, `qa/` archivado y `.git` compactado |
 | Subagentes OpenCode | Bloqueados por límite de uso gratuito; Copilot puede continuar en local |
 
@@ -105,7 +105,8 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 | H19 | Versión inglesa del abecedario de Capi (A–Z), conservando el juego español de 27 letras (A–Z y Ñ) | `a564339`, publicado y verificado en GitHub Pages; 26 palabras e imágenes inglesas locales, selector multilingüe para Sofia y fondo Lidl |
 | H20 | Créditos fuera del popup, bajo activación de cinco toques consecutivos | `a564339`, publicado; panel «Créditos» se revela en la quinta activación consecutiva, se reinicia al interactuar fuera del botón; listas de 27 créditos ES y 26 EN en `creditos.json` y `creditos-en.json` |
 | H21 | Voz británica inglesa estricta y preferencia por voz femenina/natural | `a564339`, publicado; espera `voiceschanged`, selecciona solo `en-GB` y prefiere Google UK English Female o Sonia/Libby/Serena/Hazel; nunca recurre al español. No hay voz `en-GB` instalada en el entorno probado: muestra aviso y permite leer la palabra sin locución. La instalación y prueba de una voz británica sigue pendiente; voz española `es-ES` conservada |
-| H22 | Acceso English-only al abecedario desde Lengua Inglés para Mireia y Guest | Commit local sin push: tarjeta primera con NEW solo en `lang=en`, enlace `profile=mireia|guest&uiLang=en`; la página bloquea acceso directo fuera de ese idioma/perfiles. Sofia conserva su acceso multilingüe. QA local pasó para ambos perfiles |
+| H22 | Acceso English-only al abecedario desde Lengua Inglés para Mireia y Guest | `12cb0fd`, publicado y verificado: tarjeta primera con NEW solo en `lang=en`, enlace `profile=mireia|guest&uiLang=en`; Sofia conserva su acceso multilingüe |
+| H23 | Portada ilustrada de Capi leyendo en las tarjetas del abecedario | Nueva ilustración SVG original en las tarjetas de Sofia y de Mireia/Guest en inglés; nombre y descripción en banda inferior más pequeña, al estilo de la tarjeta de cuentos. Verificada localmente y publicada en la actualización del 05/11/2026; copia del proyecto en `Downloads\ZZ - Mi_Mundo Back ups` |
 
 ### En curso
 

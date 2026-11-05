@@ -98,6 +98,11 @@ button{cursor:pointer;border:0;border-radius:16px;padding:12px 16px;font-weight:
 .game:nth-child(3){background:#e4f5ff}
 .game:nth-child(4){background:#e1f8e9}
 .game[data-alpha]{background:#e6f7d7}
+.game[data-alpha]{display:block;padding:0;overflow:hidden;text-align:center;min-height:180px}
+.game[data-alpha] .alpha-cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.game[data-alpha] .alpha-band{position:absolute;inset:auto 0 0;padding:24px 8px 10px;background:linear-gradient(to top,#fffffff0 55%,#ffffff00);display:block}
+.game[data-alpha] .alpha-band strong{display:block;font-size:.95rem;line-height:1.15}
+.game[data-alpha] .alpha-band small{display:block;margin-top:3px;font-size:.72rem;color:var(--muted);line-height:1.2}
 .game[data-map]{grid-column:1/-1;min-height:0;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;text-align:center;padding:16px;background:#efe6ff}
 .game[data-map] .emoji{font-size:2rem}
 .game[data-map] strong{font-size:1.1rem}
@@ -292,7 +297,7 @@ body.language-changing .app{animation:languageTumble .82s cubic-bezier(.22,.72,.
 <div id="home">
   <div class="section-title"><h2>🎮 Elige una actividad</h2><small id="levelText">Nivel descubrir</small></div>
   <div class="games">
-    <a class="game game-link" href="abecedario-capibara.html?profile=sofia" data-alpha><span class="new-badge">NEW</span><span class="emoji" aria-hidden="true">🔤</span><strong>El abecedario de Capi</strong><span>Escucha, mira y aprende las letras.</span></a>
+    <a class="game game-link" href="abecedario-capibara.html?profile=sofia" data-alpha><img class="alpha-cover" src="imagenes/abecedario/capi-reading-cover.svg" alt="" width="800" height="500"><span class="new-badge">NEW</span><span class="alpha-band"><strong>El abecedario de Capi</strong><small>Escucha, mira y aprende las letras.</small></span></a>
     <button class="game" data-game="math"><span class="emoji">🔢</span><strong id="mathTitle">Contar objetos</strong><span id="mathDesc">Cuenta y elige el número.</span></button>
     <button class="game" data-game="words"><span class="emoji">🔤</span><strong>Palabras mágicas</strong><span id="wordsDesc">Escucha y reconoce palabras.</span></button>
     <button class="game" data-game="memory"><span class="emoji">🧠</span><strong>Memoria divertida</strong><span>Encuentra las parejas iguales.</span></button>
