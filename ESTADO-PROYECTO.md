@@ -98,19 +98,19 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 | H12 | P2: mapa de respaldo en JPEG | `4f0e891`; 574.016 bytes, producción verificada |
 | H13 | P3: capturas antiguas de `qa/` archivadas | 575 archivos (182,88 MB) retirados; copia de 189,47 MB con 854/854 hashes |
 | H14 | P4: `.git` compactado | Bundle de 214,3 MB verificado; 213,38 → 34,87 MB; `git fsck` limpio |
+| H15 | P6: documentación final de la limpieza | `55f54ea`; este archivo verificado en producción |
 
 ### En curso
 
 | ID | Tarea | Nota |
 |---|---|---|
-| C2 | Documentación final de la limpieza | Actualizando este archivo y `peques/PLAN.md`; commit y push a continuación |
+| — | Sin tareas en curso | — |
 
 ### Pendiente
 
 | ID | Tarea | Prioridad | Criterio de terminado |
 |---|---|---|---|
 | P5 | Evaluar el nombre `areas-test.html` | Baja | Renombrado a `areas.html` con todas las referencias actualizadas, o decisión de mantenerlo |
-| P6 | Cerrar la documentación de la limpieza | Alta | Commit, push y verificación de este archivo en producción |
 
 ### Bloqueado
 
@@ -263,6 +263,7 @@ Todas están en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\`. Los hashes
 | 05/11/2026 | `2ca2ce7` | Documentación de la retirada |
 | 05/11/2026 | `4f0e891` | Mapa de respaldo en JPEG |
 | 05/11/2026 | — | `qa/` archivado y `.git` compactado (solo local) |
+| 05/11/2026 | `55f54ea` | Documentación final de la limpieza |
 
 ---
 
@@ -279,9 +280,8 @@ Todas están en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\`. Los hashes
 
 ## 9. Próxima acción
 
-1. **Cerrar la documentación:** commit y push de `ESTADO-PROYECTO.md` y `peques/PLAN.md`, y comprobar este archivo en producción.
-2. **P5 (baja prioridad):** decidir si `peques/areas-test.html` se renombra a `areas.html` o se mantiene. Está en uso; el nombre es confuso, pero no es una página de prueba.
-3. **Trabajo local sin publicar:** `peques/abecedario-capibara.html`, su fondo `imagenes/fondo-supermercado-lidl.jpg` y el acceso añadido en `areas-test.html` están en el árbol de trabajo, no en `origin/main`. Revisar, probar y publicar cuando el usuario lo indique.
+1. **P5 (baja prioridad):** decidir si `peques/areas-test.html` se renombra a `areas.html` o se mantiene. Está en uso; el nombre es confuso, pero no es una página de prueba.
+2. **Trabajo local sin publicar:** `peques/abecedario-capibara.html`, su fondo `imagenes/fondo-supermercado-lidl.jpg` y el acceso añadido en `areas-test.html` están en el árbol de trabajo, no en `origin/main`. Revisar, probar y publicar cuando el usuario lo indique.
 
 Si OpenCode no está disponible, Copilot puede continuar en VS Code:
 
