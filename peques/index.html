@@ -87,7 +87,9 @@ button{cursor:pointer;border:0;border-radius:16px;padding:12px 16px;font-weight:
 .section-title h2{font-size:1.2rem;margin:0}
 .section-title small{color:var(--muted)}
 .games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.game{padding:17px 15px;text-align:left;min-height:158px;display:flex;flex-direction:column;align-items:flex-start;gap:7px;border:2px solid #fff;background:#fff;border-radius:23px;box-shadow:0 7px 20px #3b32700c}
+.game{position:relative;padding:17px 15px;text-align:left;min-height:158px;display:flex;flex-direction:column;align-items:flex-start;gap:7px;border:2px solid #fff;background:#fff;border-radius:23px;box-shadow:0 7px 20px #3b32700c}
+.game-link{color:inherit;text-decoration:none}
+.game .new-badge{position:absolute;z-index:2;top:10px;right:10px;display:inline-flex;align-items:center;justify-content:center;padding:4px 10px;border-radius:999px;border:2px solid #fff;background:linear-gradient(135deg,#ff8fc7,#f45fa8);color:#fff;font-size:.72rem;font-weight:900;letter-spacing:.04em;box-shadow:0 4px 10px #d43c8a45}
 .game .emoji{font-size:2.25rem}
 .game strong{font-size:1.05rem}
 .game span:last-child{font-size:.9rem;color:var(--muted);line-height:1.35}
@@ -95,6 +97,7 @@ button{cursor:pointer;border:0;border-radius:16px;padding:12px 16px;font-weight:
 .game:nth-child(2){background:#ffe5f0}
 .game:nth-child(3){background:#e4f5ff}
 .game:nth-child(4){background:#e1f8e9}
+.game[data-alpha]{background:#e6f7d7}
 .game[data-map]{grid-column:1/-1;min-height:0;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;text-align:center;padding:16px;background:#efe6ff}
 .game[data-map] .emoji{font-size:2rem}
 .game[data-map] strong{font-size:1.1rem}
@@ -289,6 +292,7 @@ body.language-changing .app{animation:languageTumble .82s cubic-bezier(.22,.72,.
 <div id="home">
   <div class="section-title"><h2>🎮 Elige una actividad</h2><small id="levelText">Nivel descubrir</small></div>
   <div class="games">
+    <a class="game game-link" href="abecedario-capibara.html?profile=sofia" data-alpha><span class="new-badge">NEW</span><span class="emoji" aria-hidden="true">🔤</span><strong>El abecedario de Capi</strong><span>Escucha, mira y aprende las letras.</span></a>
     <button class="game" data-game="math"><span class="emoji">🔢</span><strong id="mathTitle">Contar objetos</strong><span id="mathDesc">Cuenta y elige el número.</span></button>
     <button class="game" data-game="words"><span class="emoji">🔤</span><strong>Palabras mágicas</strong><span id="wordsDesc">Escucha y reconoce palabras.</span></button>
     <button class="game" data-game="memory"><span class="emoji">🧠</span><strong>Memoria divertida</strong><span>Encuentra las parejas iguales.</span></button>
@@ -874,6 +878,7 @@ function flipCard(i,b) {
       "Nivel 3 años · Descubrir":"Level age 3 · Discover","Nivel 7 años · Practicar":"Level age 7 · Practise",
       "🔊 Escuchar":"🔊 Listen","🎮 Elige una actividad":"🎮 Choose an activity","Nivel descubrir":"Discover level","Nivel practicar":"Practice level",
       "Contar objetos":"Count objects","Retos matemáticos":"Math challenges","Cuenta y elige el número.":"Count and choose the number.",
+      "El abecedario de Capi":"Capi's alphabet","Escucha, mira y aprende las letras.":"Listen, look and learn the letters.",
       "Mapa de aventuras":"Adventure map","Explora el mundo mágico y sus zonas.":"Explore the magical world and its zones.",
       "Naruto: desafío ninja":"Naruto: ninja challenge","10 retos de cálculo con Naruto y Gaara.":"10 maths challenges with Naruto and Gaara.",
       "Sumas y restas sencillas.":"Simple addition and subtraction.","Palabras mágicas":"Magic words","Escucha y reconoce palabras.":"Listen and recognise words.",
@@ -922,6 +927,7 @@ function flipCard(i,b) {
       "Nivel 3 años · Descubrir":"Nivell 3 anys · Descobrir","Nivel 7 años · Practicar":"Nivell 7 anys · Practicar",
       "🔊 Escuchar":"🔊 Escolta","🎮 Elige una actividad":"🎮 Tria una activitat","Nivel descubrir":"Nivell descobrir","Nivel practicar":"Nivell practicar",
       "Contar objetos":"Comptar objectes","Retos matemáticos":"Reptes matemàtics","Cuenta y elige el número.":"Compta i tria el número.",
+      "El abecedario de Capi":"L'abecedari de la Capi","Escucha, mira y aprende las letras.":"Escolta, mira i aprèn les lletres.",
       "Mapa de aventuras":"Mapa d'aventures","Explora el mundo mágico y sus zonas.":"Explora el món màgic i les seves zones.",
       "Naruto: desafío ninja":"Naruto: desafiament ninja","10 retos de cálculo con Naruto y Gaara.":"10 reptes de càlcul amb Naruto i Gaara.",
       "Sumas y restas sencillas.":"Sumes i restes senzilles.","Palabras mágicas":"Paraules màgiques","Escucha y reconoce palabras.":"Escolta i reconeix paraules.",
@@ -970,6 +976,7 @@ function flipCard(i,b) {
       "Nivel 3 años · Descubrir":"Stufe 3 Jahre · Entdecken","Nivel 7 años · Practicar":"Stufe 7 Jahre · Üben",
       "🔊 Escuchar":"🔊 Anhören","🎮 Elige una actividad":"🎮 Wähle eine Aktivität","Nivel descubrir":"Entdeckerstufe","Nivel practicar":"Übungsstufe",
       "Contar objetos":"Objekte zählen","Retos matemáticos":"Mathe-Aufgaben","Cuenta y elige el número.":"Zähle und wähle die Zahl.",
+      "El abecedario de Capi":"Capis Alphabet","Escucha, mira y aprende las letras.":"Höre zu, schau hin und lerne die Buchstaben.",
       "Mapa de aventuras":"Abenteuerkarte","Explora el mundo mágico y sus zonas.":"Entdecke die magische Welt und ihre Zonen.",
       "Naruto: desafío ninja":"Naruto: Ninja-Herausforderung","10 retos de cálculo con Naruto y Gaara.":"10 Rechenaufgaben mit Naruto und Gaara.",
       "Sumas y restas sencillas.":"Einfache Addition und Subtraktion.","Palabras mágicas":"Zauberwörter","Escucha y reconoce palabras.":"Höre Wörter und erkenne sie.",
