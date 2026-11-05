@@ -101,6 +101,7 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 | H15 | P6: documentación final de la limpieza | `55f54ea`; este archivo verificado en producción |
 | H16 | P5: nombre de `areas-test.html` | Resuelta: se mantiene. Es el hub real de actividades (mapa, puzzles y abecedario enlazan a él), no una página de prueba |
 | H17 | Revisión del abecedario de Capi (perfil Sofia) | 27/27 letras e imágenes correctas, sin errores de consola; móvil 390×844 y 360×640 sin desbordamiento. Fallos menores anotados en `peques/PLAN.md` |
+| H18 | Acceso al abecedario de Capi desde la página de Sofia | `b71b881`; tarjeta primera en `index.html`, vuelta a Juegos y traducciones |
 
 ### En curso
 
@@ -284,7 +285,7 @@ Todas están en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\`. Los hashes
 ## 9. Próxima acción
 
 1. **Sin tareas abiertas.** P5 se resolvió manteniendo `peques/areas-test.html`: es el hub real de actividades y no una página de prueba.
-2. **Abecedario de Capi:** publicado en `2de4e07` y funciona en el perfil de Sofia. Mejoras opcionales, pendientes de autorización: quitar el recuadro blanco de la mascota, mejorar el foco del diálogo, alargar el cierre automático y decir «A de abeja» en lugar de solo «abeja».
+2. **Abecedario de Capi:** publicado en `2de4e07` y accesible como primera actividad de la página de Sofia (`b71b881`). Mejoras opcionales, pendientes de autorización: quitar el recuadro blanco de la mascota, mejorar el foco del diálogo, alargar el cierre automático y decir «A de abeja» en lugar de solo «abeja».
 
 Si OpenCode no está disponible, Copilot puede continuar en VS Code:
 

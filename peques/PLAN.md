@@ -1016,7 +1016,7 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - Voz con `speechSynthesis` en español (`es-ES`, velocidad 0,82). La imagen se cierra sola 2 segundos después de terminar la locución.
 - Diálogo con cierre por botón, Escape o toque en el fondo, y botón **Escuchar otra vez**.
 - Diseño responsive: 4 columnas de letras en móvil, 9 en escritorio; el diálogo cabe a 390×844 y 360×640.
-- Acceso desde `areas-test.html?area=juegos` solo para el perfil `sofia` (`profiles:['sofia']`); la propia página redirige a otros perfiles a Juegos.
+- Acceso desde `areas-test.html?area=juegos` y desde la página principal de Sofia (`index.html`) como primera actividad; solo para el perfil `sofia` (`profiles:['sofia']`); la propia página redirige a otros perfiles.
 - Fondo `peques/imagenes/fondo-supermercado-lidl.jpg`.
 
 ### Pruebas
@@ -1035,3 +1035,12 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - El cierre automático a los 2 segundos puede ser demasiado rápido para una niña de 2 años y medio.
 - La voz dice solo el nombre del objeto («abeja»), no la letra («A de abeja»).
 - Si el HTML se abre directamente con `file://`, el `fetch` de `creditos.json` puede quedar bloqueado por el navegador y las letras no se activan; conviene usar `tools/serve.ps1` o la web publicada.
+
+### Acceso corregido (05/11/2026)
+
+- El PIN de Sofia no lleva al mapa: deja a Sofia en la página principal (`index.html`). El juego solo estaba en `areas-test.html`, el hub de Juegos del mapa, así que Sofia no lo veía en ningún sitio.
+- Añadida una tarjeta **El abecedario de Capi** como primera actividad de `index.html`, con enlace directo a `abecedario-capibara.html?profile=sofia`.
+- El botón **Volver a Juegos** del juego vuelve a `index.html`, la página de Sofia, en lugar del hub del mapa.
+- Sustituido el emoji 🦫 por 🔤 en las tarjetas: el capibara no se dibuja en todos los Windows y aparecía como un recuadro vacío.
+- Traducciones de la tarjeta añadidas a inglés, catalán y alemán.
+- Publicado en `origin/main` el 05/11/2026 (`b71b881`).
