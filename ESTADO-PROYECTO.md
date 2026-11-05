@@ -6,7 +6,7 @@
 > Última actualización: **05/11/2026**
 > Producción: `https://msm-srm.github.io/Aprender-es-divertido-/peques/`
 > Repositorio: `https://github.com/MSM-SRM/Aprender-es-divertido-`
-> Rama: `main` · Último commit: `197e947`
+> Rama: `main` · Estado: sincronizado con `origin/main`
 
 ---
 
@@ -92,6 +92,7 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 | H6 | Progreso compartido: módulo común y migración de áreas (fase 1) | `246ec0f` |
 | H7 | Progreso fase 2 en index, Naruto y Penalti | `ffd86ac` |
 | H8 | Auditoría de duplicados, páginas huérfanas y referencias | Este documento + `qa/` |
+| H9 | Flujo compartido: estado único, instrucciones Copilot y tareas VS Code | `fdfe8b8` |
 
 ### En curso
 
@@ -240,7 +241,8 @@ Las refs de agente (`refs/agents/...`) son copias de seguridad internas de OpenC
 | 05/11/2026 | `1d43e95` | Fondo animado en la entrada |
 | 05/11/2026 | `9517629` | Fondo reescalado y ralentizado |
 | 05/11/2026 | `197e947` | Verificación del fondo en producción |
-| 05/11/2026 | — | Auditoría de limpieza y flujo compartido |
+| 05/11/2026 | — | Auditoría de limpieza |
+| 05/11/2026 | `fdfe8b8` | Flujo compartido y estado único del proyecto |
 
 ---
 
