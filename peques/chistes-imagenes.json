@@ -1,0 +1,569 @@
+{
+  "version": 1,
+  "description": "Mapa de ilustraciones por posición estable del chiste. La imagen depende del índice del chiste, nunca del idioma.",
+  "source": "chistes.json",
+  "rule": "Los cuatro idiomas tienen 140 entradas en el mismo orden. El chiste número N usa siempre images[N-1], independientemente del idioma.",
+  "images": [
+    {
+      "index": 1,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 2,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 3,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 4,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 5,
+      "image": "imagenes/abecedario/v-vaca.jpg"
+    },
+    {
+      "index": 6,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 7,
+      "image": "imagenes/abecedario/o-owl.jpg"
+    },
+    {
+      "index": 8,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 9,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 10,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 11,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 12,
+      "image": "imagenes/abecedario/a-abeja.jpg"
+    },
+    {
+      "index": 13,
+      "image": "imagenes/abecedario/z-zebra.jpg"
+    },
+    {
+      "index": 14,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 15,
+      "image": "imagenes/abecedario/r-rabbit.jpg"
+    },
+    {
+      "index": 16,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 17,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 18,
+      "image": "imagenes/abecedario/r-rana.jpg"
+    },
+    {
+      "index": 19,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 20,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 21,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 22,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 23,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 24,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 25,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 26,
+      "image": "imagenes/abecedario/c-casa.jpg"
+    },
+    {
+      "index": 27,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 28,
+      "image": "imagenes/abecedario/c-casa.jpg"
+    },
+    {
+      "index": 29,
+      "image": "imagenes/abecedario/x-xilofono.jpg"
+    },
+    {
+      "index": 30,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 31,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 32,
+      "image": "imagenes/abecedario/c-casa.jpg"
+    },
+    {
+      "index": 33,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 34,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 35,
+      "image": "imagenes/abecedario/t-tren.jpg"
+    },
+    {
+      "index": 36,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 37,
+      "image": "imagenes/abecedario/w-waffle.jpg"
+    },
+    {
+      "index": 38,
+      "image": "imagenes/abecedario/m-manzana.jpg"
+    },
+    {
+      "index": 39,
+      "image": "imagenes/abecedario/q-queso.jpg"
+    },
+    {
+      "index": 40,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 41,
+      "image": "imagenes/abecedario/z-zanahoria.jpg"
+    },
+    {
+      "index": 42,
+      "image": "imagenes/abecedario/m-manzana.jpg"
+    },
+    {
+      "index": 43,
+      "image": "imagenes/abecedario/w-waffle.jpg"
+    },
+    {
+      "index": 44,
+      "image": "imagenes/abecedario/q-queso.jpg"
+    },
+    {
+      "index": 45,
+      "image": "imagenes/abecedario/y-yogur.jpg"
+    },
+    {
+      "index": 46,
+      "image": "imagenes/abecedario/m-manzana.jpg"
+    },
+    {
+      "index": 47,
+      "image": "imagenes/abecedario/h-helado.jpg"
+    },
+    {
+      "index": 48,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 49,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 50,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 51,
+      "image": "imagenes/abecedario/w-waffle.jpg"
+    },
+    {
+      "index": 52,
+      "image": "imagenes/abecedario/h-helado.jpg"
+    },
+    {
+      "index": 53,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 54,
+      "image": "imagenes/abecedario/m-manzana.jpg"
+    },
+    {
+      "index": 55,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 56,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 57,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 58,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 59,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 60,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 61,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 62,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 63,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 64,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 65,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 66,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 67,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 68,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 69,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 70,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 71,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 72,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 73,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 74,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 75,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 76,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 77,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 78,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 79,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 80,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 81,
+      "image": "imagenes/abecedario/n-nube.jpg"
+    },
+    {
+      "index": 82,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 83,
+      "image": "imagenes/abecedario/capi-reading-cover.svg"
+    },
+    {
+      "index": 84,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 85,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 86,
+      "image": "imagenes/abecedario/w-waffle.jpg"
+    },
+    {
+      "index": 87,
+      "image": "imagenes/abecedario/c-casa.jpg"
+    },
+    {
+      "index": 88,
+      "image": "imagenes/abecedario/t-tren.jpg"
+    },
+    {
+      "index": 89,
+      "image": "imagenes/abecedario/c-casa.jpg"
+    },
+    {
+      "index": 90,
+      "image": "imagenes/abecedario/c-casa.jpg"
+    },
+    {
+      "index": 91,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 92,
+      "image": "imagenes/abecedario/c-casa.jpg"
+    },
+    {
+      "index": 93,
+      "image": "imagenes/abecedario/t-tren.jpg"
+    },
+    {
+      "index": 94,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 95,
+      "image": "imagenes/abecedario/c-casa.jpg"
+    },
+    {
+      "index": 96,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 97,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 98,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 99,
+      "image": "imagenes/abecedario/x-xilofono.jpg"
+    },
+    {
+      "index": 100,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 101,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 102,
+      "image": "imagenes/abecedario/t-tren.jpg"
+    },
+    {
+      "index": 103,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 104,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 105,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 106,
+      "image": "imagenes/abecedario/f-flor.jpg"
+    },
+    {
+      "index": 107,
+      "image": "imagenes/abecedario/n-nube.jpg"
+    },
+    {
+      "index": 108,
+      "image": "imagenes/abecedario/d-dado.jpg"
+    },
+    {
+      "index": 109,
+      "image": "imagenes/abecedario/w-waffle.jpg"
+    },
+    {
+      "index": 110,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 111,
+      "image": "imagenes/abecedario/capi-reading-cover.svg"
+    },
+    {
+      "index": 112,
+      "image": "imagenes/abecedario/t-tren.jpg"
+    },
+    {
+      "index": 113,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 114,
+      "image": "imagenes/abecedario/x-xilofono.jpg"
+    },
+    {
+      "index": 115,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 116,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 117,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 118,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 119,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 120,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 121,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 122,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 123,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 124,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 125,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 126,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 127,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 128,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 129,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 130,
+      "image": "imagenes/abecedario/capi-mascota.png"
+    },
+    {
+      "index": 131,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 132,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 133,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 134,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 135,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 136,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 137,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 138,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 139,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    },
+    {
+      "index": 140,
+      "image": "imagenes/abecedario/p-pencil.jpg"
+    }
+  ],
+  "fallback": "imagenes/abecedario/capi-mascota.png"
+}
