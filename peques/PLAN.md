@@ -1044,3 +1044,23 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - Sustituido el emoji 🦫 por 🔤 en las tarjetas: el capibara no se dibuja en todos los Windows y aparecía como un recuadro vacío.
 - Traducciones de la tarjeta añadidas a inglés, catalán y alemán.
 - Publicado en `origin/main` el 05/11/2026 (`b71b881`).
+
+---
+
+## Actualización 05/11/2026 — Abecedario inglés y acceso desde Lengua Inglés
+
+### Juego y publicación
+
+- `a564339` añade la versión inglesa A–Z sin sustituir el alfabeto español A–Z y Ñ. Cada letra inglesa tiene palabra e imagen local; `creditos.json` contiene 27 atribuciones españolas y `creditos-en.json`, 26 inglesas.
+- Se conservan el fondo `imagenes/fondo-supermercado-lidl.jpg` y la mascota `imagenes/abecedario/capi-mascota.png`.
+- Sofia mantiene el selector multilingüe. La locución inglesa solicita únicamente voces `en-GB`, espera `voiceschanged` y prioriza Google UK English Female o las voces llamadas Sonia, Libby, Serena o Hazel. No utiliza una voz española como alternativa; si no encuentra voz británica, informa que la palabra puede leerse pero no se pronunciará.
+- Los créditos están fuera del popup de las letras, en el panel «Créditos», que se revela al quinto toque/activación consecutiva; interactuar fuera del botón reinicia la cuenta. Las etiquetas y el control son accesibles en español e inglés.
+- `a564339` está publicado en GitHub Pages y el despliegue fue verificado. En el entorno local no hay voz `en-GB` instalada; queda pendiente instalarla y probar audio. No cambiar el comportamiento estricto ni añadir fallback español.
+
+### Acceso desde Lengua Inglés
+
+- `peques/idiomas.html` muestra como primera tarjeta el abecedario con badge **NEW** solo cuando se visita Inglés (`lang=en`) con perfil `mireia` o `guest`. El enlace incluye `profile` y `uiLang=en`.
+- `peques/abecedario-capibara.html` acepta esos perfiles únicamente con `uiLang=en`; el acceso directo con otro idioma/perfil se redirige al hub de Juegos.
+- Sofia conserva su tarjeta de acceso multilingüe desde Juegos y el regreso al origen apropiado.
+- QA local pasó para Mireia y Guest: tarjeta visible en Lengua Inglés, juego abierto en inglés y acceso no permitido fuera de esa condición.
+- Este acceso es un cambio local pendiente de push/publicación en el commit que actualiza este historial.

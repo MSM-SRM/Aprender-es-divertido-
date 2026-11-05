@@ -6,7 +6,7 @@
 > Última actualización: **05/11/2026**
 > Producción: `https://msm-srm.github.io/Aprender-es-divertido-/peques/`
 > Repositorio: `https://github.com/MSM-SRM/Aprender-es-divertido-`
-> Rama: `main` · Estado: cambios locales sin commit, no publicados
+> Rama: `main` · Estado: commit local del acceso en inglés, sin push; producción sigue en `a564339`
 
 ---
 
@@ -19,7 +19,7 @@
 | Perfiles | `guest`, `mireia`, `sofia` |
 | Entrada | `peques/index.html` |
 | Hub principal | `peques/mundo-mireia.html` |
-| Estado del código | Cambios locales del abecedario inglés, créditos y selección de voz, pendientes de commit y publicación |
+| Estado del código | Abecedario A–Z inglés, créditos y voz estricta publicados en `a564339`; el acceso English-only desde Lengua Inglés para Mireia/Guest está en un commit local sin push |
 | Estado de la limpieza | Completada: 8 archivos retirados, mapa optimizado, `qa/` archivado y `.git` compactado |
 | Subagentes OpenCode | Bloqueados por límite de uso gratuito; Copilot puede continuar en local |
 
@@ -102,9 +102,10 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 | H16 | P5: nombre de `areas-test.html` | Resuelta: se mantiene. Es el hub real de actividades (mapa, puzzles y abecedario enlazan a él), no una página de prueba |
 | H17 | Revisión del abecedario de Capi (perfil Sofia) | 27/27 letras e imágenes correctas, sin errores de consola; móvil 390×844 y 360×640 sin desbordamiento. Fallos menores anotados en `peques/PLAN.md` |
 | H18 | Acceso al abecedario de Capi desde la página de Sofia | `b71b881`; tarjeta primera en `index.html`, vuelta a Juegos y traducciones |
-| H19 | Versión inglesa del abecedario de Capi (A–Z), conservando el juego español | Cambios locales: 26/26 palabras, fotos locales y créditos; voz `en-GB`, cierre modal a los 2 s, selector multilingüe y regreso a Sofia verificados en navegador local |
-| H20 | Créditos de ambos alfabetos fuera del popup, bajo activación de cinco toques | Cambios locales: créditos ES/EN conservados, apertura en la quinta activación, reinicio al interactuar con otras zonas; controles y etiquetas accesibles en español e inglés, verificados en navegador local |
-| H21 | Voz británica inglesa estricta y preferencia de voz femenina/natural | Cambios locales: selecciona solo voces `en-GB`, espera `voiceschanged`, prefiere nombres conocidos como Sonia/Libby/Serena/Hazel o Google UK English Female y no reproduce si no hay voz británica; voz española `es-ES` conservada. Publicación pendiente de disponer de voz `en-GB` o autorización expresa para publicar sin habla inglesa |
+| H19 | Versión inglesa del abecedario de Capi (A–Z), conservando el juego español de 27 letras (A–Z y Ñ) | `a564339`, publicado y verificado en GitHub Pages; 26 palabras e imágenes inglesas locales, selector multilingüe para Sofia y fondo Lidl |
+| H20 | Créditos fuera del popup, bajo activación de cinco toques consecutivos | `a564339`, publicado; panel «Créditos» se revela en la quinta activación consecutiva, se reinicia al interactuar fuera del botón; listas de 27 créditos ES y 26 EN en `creditos.json` y `creditos-en.json` |
+| H21 | Voz británica inglesa estricta y preferencia por voz femenina/natural | `a564339`, publicado; espera `voiceschanged`, selecciona solo `en-GB` y prefiere Google UK English Female o Sonia/Libby/Serena/Hazel; nunca recurre al español. No hay voz `en-GB` instalada en el entorno probado: muestra aviso y permite leer la palabra sin locución. La instalación y prueba de una voz británica sigue pendiente; voz española `es-ES` conservada |
+| H22 | Acceso English-only al abecedario desde Lengua Inglés para Mireia y Guest | Commit local sin push: tarjeta primera con NEW solo en `lang=en`, enlace `profile=mireia|guest&uiLang=en`; la página bloquea acceso directo fuera de ese idioma/perfiles. Sofia conserva su acceso multilingüe. QA local pasó para ambos perfiles |
 
 ### En curso
 
@@ -116,7 +117,7 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 
 | ID | Tarea | Prioridad | Criterio de terminado |
 |---|---|---|---|
-| — | Sin tareas pendientes | — | — |
+| P1 | Instalar/probar una voz del sistema `en-GB` | Baja | Confirmar locución inglesa; mantener silencio con aviso si no hay voz, sin fallback al español |
 
 ### Bloqueado
 
@@ -146,7 +147,7 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 | `peques/halloween-familia-addams.html` | Memoria de los Addams | Activa |
 | `peques/halloween-pinta-descubre.html` | Pintar y descubrir | Activa |
 | `peques/cuentos-julia-d.html` | Cuentos de Julia Donaldson | Activa |
-| `peques/abecedario-capibara.html` | Abecedario con Capi | Activa (solo perfil Sofia) |
+| `peques/abecedario-capibara.html` | Abecedario con Capi | Sofia multilingüe; Mireia y Guest solo en inglés desde Lengua Inglés |
 | `index.html` (raíz) | Redirección a `peques/` | Necesaria |
 | `peques/google*.html` | Verificación de Google | Conservar |
 | `peques/BingSiteAuth.xml` | Verificación de Bing | Conservar |
@@ -288,7 +289,7 @@ Todas están en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\`. Los hashes
 ## 9. Próxima acción
 
 1. **Sin tareas abiertas.** P5 se resolvió manteniendo `peques/areas-test.html`: es el hub real de actividades y no una página de prueba.
-2. **Abecedario de Capi:** publicado en `2de4e07` y accesible como primera actividad de la página de Sofia (`b71b881`). Mejoras opcionales, pendientes de autorización: quitar el recuadro blanco de la mascota, mejorar el foco del diálogo, alargar el cierre automático y decir «A de abeja» en lugar de solo «abeja».
+2. **Abecedario de Capi:** versión española y extensión inglesa publicadas (`2de4e07`, `a564339`); acceso English-only de Mireia/Guest queda en el commit local sin push. Pendiente instalar una voz `en-GB` para comprobar locución. Mejoras opcionales, pendientes de autorización: mejorar el foco del diálogo, alargar el cierre automático y decir «A de abeja» en lugar de solo «abeja».
 
 Si OpenCode no está disponible, Copilot puede continuar en VS Code:
 

@@ -7,11 +7,12 @@
 <title>El abecedario de Capi · Mi Mundo de Aprendizaje</title>
 <script src="auth-guard.js"></script>
 <script>
-(()=>{const profile=new URLSearchParams(location.search).get('profile')||'mireia';if(profile!=='sofia')location.replace(`areas-test.html?area=juegos&profile=${encodeURIComponent(profile)}`)})();
+(()=>{const params=new URLSearchParams(location.search),profile=params.get('profile')||'mireia',englishOnly=['mireia','guest'].includes(profile)&&params.get('uiLang')==='en',allowed=profile==='sofia'||englishOnly;if(!allowed){location.replace(`areas-test.html?area=juegos&profile=${encodeURIComponent(profile)}`);return}if(englishOnly)document.documentElement.dataset.alphabetProfile='english-only'})();
 </script>
 <style>
 *{box-sizing:border-box}
 :root{font-family:"Trebuchet MS",system-ui,sans-serif;color:#24432c;background:#d9e8c9}
+html[data-alphabet-profile="english-only"] .langs{display:none}
 body{margin:0;min-height:100vh;background:linear-gradient(#f3f6e2aa,#f3f6e2aa),url("imagenes/fondo-supermercado-lidl.jpg") center/cover fixed;padding:clamp(12px,3vw,30px)}
 button{font:inherit;touch-action:manipulation;cursor:pointer}
 .wrap{width:min(100%,1040px);margin:auto}
@@ -90,6 +91,7 @@ h1{margin:0;text-align:center;color:#245a31;font-size:clamp(1.7rem,5vw,3rem);tex
 const alphabet={es:'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split(''),en:'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')};
 const labels={es:{letter:'Letra',for:'de',photo:'Fotografía de'},en:{letter:'Letter',for:'for',photo:'Photo of'},ca:{letter:'Lletra',for:'de',photo:'Fotografia de'},de:{letter:'Buchstabe',for:'wie',photo:'Foto von'}};
 const params=new URLSearchParams(location.search);
+const profile=params.get('profile')||'mireia';
 const letters=document.getElementById('letters');
 const reveal=document.getElementById('reveal');
 const image=document.getElementById('objectImage');
@@ -115,12 +117,14 @@ function updateCreditsHint(){
   creditsHint.textContent=messages[currentUiLanguage()]||messages.es;
 }
 const back=document.getElementById('back');
-back.href=`index.html?profile=sofia${params.has('uiLang')?`&uiLang=${encodeURIComponent(params.get('uiLang'))}`:''}`;
+back.href=profile==='sofia'?`index.html?profile=sofia${params.has('uiLang')?`&uiLang=${encodeURIComponent(params.get('uiLang'))}`:''}`:`idiomas.html?lang=en&profile=${encodeURIComponent(profile)}`;
 back.addEventListener('click',event=>{
   const previous=document.referrer;
   if(previous){
     const source=new URL(previous);
-    if(source.origin===location.origin&&source.pathname===new URL('index.html',location.href).pathname){
+    const fromIndex=source.pathname===new URL('index.html',location.href).pathname;
+    const fromEnglishArea=source.pathname===new URL('idiomas.html',location.href).pathname&&source.searchParams.get('lang')==='en';
+    if(source.origin===location.origin&&((profile==='sofia'&&fromIndex)||(profile!=='sofia'&&fromEnglishArea))){
       event.preventDefault();
       history.back();
     }
