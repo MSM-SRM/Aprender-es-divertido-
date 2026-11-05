@@ -1075,3 +1075,13 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - Verificado localmente en inglés para Guest: la página y el SVG responden correctamente, la imagen carga con dimensiones 800×500 y la tarjeta conserva el enlace a `abecedario-capibara.html?profile=guest&uiLang=en`. La tarjeta de Sofia se verificó en el mismo sitio con su acceso original.
 - Cambios publicados en GitHub Pages el 05/11/2026 en `3d807b3`; ejecución Pages `42037107770` completada con éxito.
 - Copia completa del proyecto (sin metadatos de `.git`) en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\MiMundo_backup_2026-11-05_portada-capi`, con manifiesto SHA-256.
+
+---
+
+## Actualización 05/11/2026 — Portada Naruto con atribución en Mi Mates
+
+- La tarjeta del reto Naruto usa `peques/imagenes/naruto-vectorstock-tamtv.png` para los perfiles `mireia` y `guest`; otros perfiles conservan su tarjeta original.
+- La imagen fue proporcionada por el usuario junto con los términos de la licencia gratuita de VectorStock. La tarjeta muestra el título «Naruto anime character» y la atribución «Vector image by VectorStock / TamTV», enlazados a la ficha de la imagen: `https://www.vectorstock.com/royalty-free-vector/naruto-anime-character-vector-49710225`.
+- El crédito se mantiene visible en una franja blanca inferior, con tamaño reducido y tono gris discreto; el enlace al juego y el enlace de atribución funcionan por separado.
+- QA local para Mireia y Guest: imagen cargada, tarjeta cuadrada, enlace al juego mantiene el perfil y enlace de crédito abre la ficha indicada. Sin errores en `mi-mates.html`.
+- Código publicado en `b74aa5b`; verificación final del despliegue de GitHub Pages pendiente.
