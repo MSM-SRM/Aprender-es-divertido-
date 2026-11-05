@@ -99,6 +99,8 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 | H13 | P3: capturas antiguas de `qa/` archivadas | 575 archivos (182,88 MB) retirados; copia de 189,47 MB con 854/854 hashes |
 | H14 | P4: `.git` compactado | Bundle de 214,3 MB verificado; 213,38 → 34,87 MB; `git fsck` limpio |
 | H15 | P6: documentación final de la limpieza | `55f54ea`; este archivo verificado en producción |
+| H16 | P5: nombre de `areas-test.html` | Resuelta: se mantiene. Es el hub real de actividades (mapa, puzzles y abecedario enlazan a él), no una página de prueba |
+| H17 | Revisión del abecedario de Capi (perfil Sofia) | 27/27 letras e imágenes correctas, sin errores de consola; móvil 390×844 y 360×640 sin desbordamiento. Fallos menores anotados en `peques/PLAN.md` |
 
 ### En curso
 
@@ -110,7 +112,7 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 
 | ID | Tarea | Prioridad | Criterio de terminado |
 |---|---|---|---|
-| P5 | Evaluar el nombre `areas-test.html` | Baja | Renombrado a `areas.html` con todas las referencias actualizadas, o decisión de mantenerlo |
+| — | Sin tareas pendientes | — | — |
 
 ### Bloqueado
 
@@ -126,7 +128,7 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 |---|---|---|
 | `peques/index.html` | Entrada, selector de perfil, fondo animado y accesos | Activa |
 | `peques/mundo-mireia.html` | Mapa de áreas y panel de eventos | Activa |
-| `peques/areas-test.html` | Hub de actividades por área | Activa (nombre confuso) |
+| `peques/areas-test.html` | Hub de actividades por área | Activa (nombre heredado; se mantiene) |
 | `peques/mi-mates.html` | Matemáticas | Activa |
 | `peques/mi-lectura.html` | Lectura | Activa |
 | `peques/mi-escritura.html` | Escritura | Activa |
@@ -281,8 +283,8 @@ Todas están en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\`. Los hashes
 
 ## 9. Próxima acción
 
-1. **P5 (baja prioridad):** decidir si `peques/areas-test.html` se renombra a `areas.html` o se mantiene. Está en uso; el nombre es confuso, pero no es una página de prueba.
-2. **Abecedario de Capi:** ya está publicado en `2de4e07` y funciona en el perfil de Sofia. Queda valorar mejoras menores: recuadro blanco de la mascota, foco del diálogo y tiempo de cierre automático.
+1. **Sin tareas abiertas.** P5 se resolvió manteniendo `peques/areas-test.html`: es el hub real de actividades y no una página de prueba.
+2. **Abecedario de Capi:** publicado en `2de4e07` y funciona en el perfil de Sofia. Mejoras opcionales, pendientes de autorización: quitar el recuadro blanco de la mascota, mejorar el foco del diálogo, alargar el cierre automático y decir «A de abeja» en lugar de solo «abeja».
 
 Si OpenCode no está disponible, Copilot puede continuar en VS Code:
 
