@@ -1084,4 +1084,4 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - La imagen fue proporcionada por el usuario junto con los términos de la licencia gratuita de VectorStock. La tarjeta muestra el título «Naruto anime character» y la atribución «Vector image by VectorStock / TamTV», enlazados a la ficha de la imagen: `https://www.vectorstock.com/royalty-free-vector/naruto-anime-character-vector-49710225`.
 - El crédito se mantiene visible en una franja blanca inferior, con tamaño reducido y tono gris discreto; el enlace al juego y el enlace de atribución funcionan por separado.
 - QA local para Mireia y Guest: imagen cargada, tarjeta cuadrada, enlace al juego mantiene el perfil y enlace de crédito abre la ficha indicada. Sin errores en `mi-mates.html`.
-- Código publicado en `b74aa5b`; verificación final del despliegue de GitHub Pages pendiente.
+- Código publicado en `b74aa5b`; ejecución Pages `42042737919` completada con éxito. Imagen y páginas de Mireia/Guest responden 200 en producción, y se verificó la carga de la imagen y la atribución.
