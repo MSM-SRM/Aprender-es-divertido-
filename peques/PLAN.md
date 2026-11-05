@@ -955,3 +955,26 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 ### Publicación
 
 - Pendiente de publicar en `origin/main`.
+
+---
+
+## Actualización 05/11/2026 — Mapa de respaldo optimizado
+
+### Cambios
+
+- `peques/fondomundomireia-limpia.png` (3.927,4 KB) sustituido como fallback por `peques/fondomundomireia-fallback.jpg` (574.016 bytes, 1280×1024, JPEG calidad 88).
+- Ahorro: 3.447.649 bytes (≈3,3 MB).
+- Copia del PNG original en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\MiMundo_backup_2026-11-05_mapa-fallback\` con `SHA256.txt`.
+- `peques/mundo-mireia.html`: el `<img>` del mapa apunta a `fondomundomireia-fallback.jpg`.
+- Se mantienen las variantes WebP de 640, 960 y 1280; el JPEG solo se usa como fallback en navegadores sin WebP.
+
+### Pruebas
+
+- Local: `mundo-mireia.html` responde 200; el navegador carga `imagenes/fondomundomireia-960.webp` (720×576 CSS) y el JPEG de respaldo carga a 1280×1024.
+- Local: el PNG antiguo responde 404.
+- 0 errores de consola.
+- La imagen JPEG se revisó visualmente y conserva el detalle del mapa.
+
+### Publicación
+
+- Pendiente de publicar en `origin/main`.
