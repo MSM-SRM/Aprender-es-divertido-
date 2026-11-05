@@ -1004,3 +1004,34 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 - Los cambios de `qa/` y `.git` son locales: no afectan a GitHub Pages ni a VS Code/Copilot.
 - Las copias en `Downloads` permiten recuperar capturas o la historia anterior si hiciera falta.
+
+---
+
+## Actualización 05/11/2026 — Abecedario de Capi (perfil Sofia)
+
+### Cambios
+
+- Nueva página `peques/abecedario-capibara.html`: 27 letras (A–Z, incluida Ñ), una palabra y una fotografía por letra.
+- Fotografías locales en `peques/imagenes/abecedario/` (500 px de ancho) y créditos en `creditos.json` (autor, licencia y enlace a Wikimedia Commons).
+- Voz con `speechSynthesis` en español (`es-ES`, velocidad 0,82). La imagen se cierra sola 2 segundos después de terminar la locución.
+- Diálogo con cierre por botón, Escape o toque en el fondo, y botón **Escuchar otra vez**.
+- Diseño responsive: 4 columnas de letras en móvil, 9 en escritorio; el diálogo cabe a 390×844 y 360×640.
+- Acceso desde `areas-test.html?area=juegos` solo para el perfil `sofia` (`profiles:['sofia']`); la propia página redirige a otros perfiles a Juegos.
+- Fondo `peques/imagenes/fondo-supermercado-lidl.jpg`.
+
+### Pruebas
+
+- Las 27 letras cargan su imagen y su palabra; no hay imágenes rotas ni palabras vacías.
+- Créditos correctos para las 27 fotografías.
+- Sin errores de consola.
+- Abrir, cerrar con botón, cerrar con Escape, cerrar tocando el fondo y repetir la voz funcionan.
+- En móvil no hay desbordamiento horizontal; el diálogo y el botón de repetir caben en pantalla.
+- Publicado en `origin/main` el 05/11/2026 (`2de4e07`) y disponible en producción para el perfil Sofia.
+
+### Observaciones de la revisión
+
+- `capi-mascota.png` es opaca y tiene fondo blanco; sobre el panel crema se ve un recuadro blanco alrededor de la mascota.
+- Al abrir el diálogo, el foco no se mueve al botón de cerrar y no hay trampa de foco; con teclado hay que tabular por el resto de la página para alcanzarlo.
+- El cierre automático a los 2 segundos puede ser demasiado rápido para una niña de 2 años y medio.
+- La voz dice solo el nombre del objeto («abeja»), no la letra («A de abeja»).
+- Si el HTML se abre directamente con `file://`, el `fetch` de `creditos.json` puede quedar bloqueado por el navegador y las letras no se activan; conviene usar `tools/serve.ps1` o la web publicada.

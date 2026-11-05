@@ -93,7 +93,7 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 | H7 | Progreso fase 2 en index, Naruto y Penalti | `ffd86ac` |
 | H8 | Auditoría de duplicados, páginas huérfanas y referencias | Este documento + `qa/` |
 | H9 | Flujo compartido: estado único, instrucciones Copilot y tareas VS Code | `fdfe8b8` |
-| H10 | Juego original del abecedario con Capi y fondo del supermercado Lidl | `peques/abecedario-capibara.html`, verificación local |
+| H10 | Juego original del abecedario con Capi y fondo del supermercado Lidl | `2de4e07`; publicado, solo perfil Sofia |
 | H11 | P1: retirada de los 8 archivos seguros | `30c175a`, `2ca2ce7`; 8 rutas en 404 y páginas activas en 200 |
 | H12 | P2: mapa de respaldo en JPEG | `4f0e891`; 574.016 bytes, producción verificada |
 | H13 | P3: capturas antiguas de `qa/` archivadas | 575 archivos (182,88 MB) retirados; copia de 189,47 MB con 854/854 hashes |
@@ -140,7 +140,7 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 | `peques/halloween-familia-addams.html` | Memoria de los Addams | Activa |
 | `peques/halloween-pinta-descubre.html` | Pintar y descubrir | Activa |
 | `peques/cuentos-julia-d.html` | Cuentos de Julia Donaldson | Activa |
-| `peques/abecedario-capibara.html` | Abecedario con Capi | Nueva; en local, pendiente de publicar |
+| `peques/abecedario-capibara.html` | Abecedario con Capi | Activa (solo perfil Sofia) |
 | `index.html` (raíz) | Redirección a `peques/` | Necesaria |
 | `peques/google*.html` | Verificación de Google | Conservar |
 | `peques/BingSiteAuth.xml` | Verificación de Bing | Conservar |
@@ -264,6 +264,7 @@ Todas están en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\`. Los hashes
 | 05/11/2026 | `4f0e891` | Mapa de respaldo en JPEG |
 | 05/11/2026 | — | `qa/` archivado y `.git` compactado (solo local) |
 | 05/11/2026 | `55f54ea` | Documentación final de la limpieza |
+| 05/11/2026 | `2de4e07` | Abecedario de Capi publicado (solo perfil Sofia) |
 
 ---
 
@@ -281,7 +282,7 @@ Todas están en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\`. Los hashes
 ## 9. Próxima acción
 
 1. **P5 (baja prioridad):** decidir si `peques/areas-test.html` se renombra a `areas.html` o se mantiene. Está en uso; el nombre es confuso, pero no es una página de prueba.
-2. **Trabajo local sin publicar:** `peques/abecedario-capibara.html`, su fondo `imagenes/fondo-supermercado-lidl.jpg` y el acceso añadido en `areas-test.html` están en el árbol de trabajo, no en `origin/main`. Revisar, probar y publicar cuando el usuario lo indique.
+2. **Abecedario de Capi:** ya está publicado en `2de4e07` y funciona en el perfil de Sofia. Queda valorar mejoras menores: recuadro blanco de la mascota, foco del diálogo y tiempo de cierre automático.
 
 Si OpenCode no está disponible, Copilot puede continuar en VS Code:
 
