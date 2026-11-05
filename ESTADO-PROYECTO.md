@@ -20,7 +20,7 @@
 | Entrada | `peques/index.html` |
 | Hub principal | `peques/mundo-mireia.html` |
 | Estado del código | Estable, sincronizado con `origin/main` |
-| Estado de la limpieza | Auditoría hecha; **retirada pendiente de autorización** |
+| Estado de la limpieza | Completada: 8 archivos retirados, mapa optimizado, `qa/` archivado y `.git` compactado |
 | Subagentes OpenCode | Bloqueados por límite de uso gratuito; Copilot puede continuar en local |
 
 ---
@@ -93,23 +93,24 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 | H7 | Progreso fase 2 en index, Naruto y Penalti | `ffd86ac` |
 | H8 | Auditoría de duplicados, páginas huérfanas y referencias | Este documento + `qa/` |
 | H9 | Flujo compartido: estado único, instrucciones Copilot y tareas VS Code | `fdfe8b8` |
+| H10 | Juego original del abecedario con Capi y fondo del supermercado Lidl | `peques/abecedario-capibara.html`, verificación local |
+| H11 | P1: retirada de los 8 archivos seguros | `30c175a`, `2ca2ce7`; 8 rutas en 404 y páginas activas en 200 |
+| H12 | P2: mapa de respaldo en JPEG | `4f0e891`; 574.016 bytes, producción verificada |
+| H13 | P3: capturas antiguas de `qa/` archivadas | 575 archivos (182,88 MB) retirados; copia de 189,47 MB con 854/854 hashes |
+| H14 | P4: `.git` compactado | Bundle de 214,3 MB verificado; 213,38 → 34,87 MB; `git fsck` limpio |
 
 ### En curso
 
 | ID | Tarea | Nota |
 |---|---|---|
-| C1 | Limpieza de archivos antiguos y duplicados | Lista preparada; falta autorización para retirar |
+| C2 | Documentación final de la limpieza | Actualizando este archivo y `peques/PLAN.md`; commit y push a continuación |
 
 ### Pendiente
 
 | ID | Tarea | Prioridad | Criterio de terminado |
 |---|---|---|---|
-| P1 | Retirar los 8 candidatos seguros del sitio | Alta | Copia con SHA-256 en Downloads, `git rm`, producción 404, sin enlaces rotos |
-| P2 | Optimizar el mapa de respaldo `fondomundomireia-limpia.png` | Media | Fallback JPEG de calidad equivalente, ~3,4 MB menos, verificado en local |
-| P3 | Archivar capturas antiguas de `qa/` | Media | Copia en Downloads + `qa/` por debajo de ~10 MB, informes conservados |
-| P4 | Reducir el peso de `.git` | Media | Refs de agente antiguas retiradas con autorización; `git gc` deja el repo en ~45 MB |
 | P5 | Evaluar el nombre `areas-test.html` | Baja | Renombrado a `areas.html` con todas las referencias actualizadas, o decisión de mantenerlo |
-| P6 | Revisión final y publicación de la limpieza | Alta | Commit, push, verificación de producción y `ESTADO-PROYECTO.md` actualizado |
+| P6 | Cerrar la documentación de la limpieza | Alta | Commit, push y verificación de este archivo en producción |
 
 ### Bloqueado
 
@@ -139,16 +140,16 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 | `peques/halloween-familia-addams.html` | Memoria de los Addams | Activa |
 | `peques/halloween-pinta-descubre.html` | Pintar y descubrir | Activa |
 | `peques/cuentos-julia-d.html` | Cuentos de Julia Donaldson | Activa |
+| `peques/abecedario-capibara.html` | Abecedario con Capi | Nueva; en local, pendiente de publicar |
 | `index.html` (raíz) | Redirección a `peques/` | Necesaria |
 | `peques/google*.html` | Verificación de Google | Conservar |
 | `peques/BingSiteAuth.xml` | Verificación de Bing | Conservar |
-| `peques/Index-ok-04.11.26.html` | Copia fechada del index anterior | **Candidata a retirar** |
-| `peques/preview-mapa-mireia.html` | Redirección antigua a `mundo-mireia.html` | **Candidata a retirar** |
-| `peques/LEEME.txt` | Instrucciones antiguas de publicación | **Candidata a retirar** |
+
+Retirados el 05/11/2026 con copia en `Downloads`: `peques/Index-ok-04.11.26.html`, `peques/preview-mapa-mireia.html` y `peques/LEEME.txt`.
 
 ---
 
-## 5. Auditoría del 05/11/2026
+## 5. Auditoría y limpieza del 05/11/2026
 
 ### Método
 
@@ -161,13 +162,12 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 ### Resultado corto
 
 - No hay archivos duplicados byte a byte.
-- Hay **2 páginas sin referencias reales** (excluyendo los verificadores de Google/Bing): `Index-ok-04.11.26.html` y `preview-mapa-mireia.html`.
-- Hay **8 archivos retirables** con seguridad: 1 página duplicada, 1 redirección huérfana, 1 documento antiguo, 1 ZIP de la primera versión y 4 assets sin uso.
-- Hay **1 archivo pesado optimizable**: el PNG de respaldo del mapa (3,84 MB).
-- Las imágenes `imagenes/addams/*` parecen huérfanas, pero **se usan dinámicamente**; no tocar.
-- El mayor consumo de espacio no está en el sitio: está en `.git` (213 MB) y en capturas locales de `qa/` (187,66 MB).
+- Se retiraron **8 archivos** con seguridad: 1 página duplicada, 1 redirección huérfana, 1 documento antiguo, 1 ZIP de la primera versión y 4 assets sin uso (1.535.658 bytes).
+- Se optimizó **1 archivo pesado**: el PNG de respaldo del mapa pasó de 3,84 MB a 574 KB en JPEG.
+- Las imágenes `imagenes/addams/*` parecen huérfanas, pero **se usan dinámicamente**; no se tocaron.
+- El mayor consumo de espacio estaba fuera del sitio: `.git` (213,38 MB) y las capturas locales de `qa/` (187,66 MB). Ambos se compactaron.
 
-### A. Retirar del sitio (pendiente de autorización)
+### A. Retirado del sitio (ejecutado el 05/11/2026)
 
 | Archivo | Bytes | SHA-256 | Motivo |
 |---|---:|---|---|
@@ -182,15 +182,15 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 
 **Total:** 1.535.658 bytes (≈1,46 MB).
 
-Riesgo bajo. La única excepción es `preview-mapa-mireia.html`: si alguien tiene un marcador antiguo, pasará a 404. Se puede conservar como redirección si se prefiere.
+Retirados con `git rm` en `30c175a` y documentados en `2ca2ce7`. Producción verificada: las 8 rutas devuelven 404 y las páginas activas siguen en 200. Copia íntegra en `MiMundo_backup_2026-11-05_limpieza` con 8/8 hashes correctos.
 
-### B. Optimizar (no retirar)
+### B. Optimizado (ejecutado el 05/11/2026)
 
-| Archivo | Actual | Propuesta | Ahorro |
-|---|---:|---|---:|
-| `peques/fondomundomireia-limpia.png` | 3.927,4 KB | JPEG de respaldo 1280×1024, calidad 88 (≈560 KB) | ≈3,37 MB |
+| Archivo | Antes | Después | Ahorro |
+|---|---:|---:|---:|
+| Mapa de respaldo | `fondomundomireia-limpia.png` (3.927,4 KB) | `fondomundomireia-fallback.jpg` (574.016 bytes, JPEG q88, 1280×1024) | 3.447.649 bytes (≈3,37 MB) |
 
-El PNG es opaco y solo se usa como fallback dentro de `<picture>`; los navegadores modernos reciben WebP. La prueba visual con calidad 88 es correcta. Hay que actualizar `mundo-mireia.html` y verificar el mapa en local.
+El PNG era opaco y solo se usaba como fallback dentro de `<picture>`; los navegadores modernos reciben WebP. Publicado en `4f0e891`: en producción el JPEG responde 200 con 574.016 bytes, el PNG antiguo devuelve 404 y las variantes WebP siguen en 200. Sin errores de consola.
 
 ### C. Conservar (no tocar)
 
@@ -202,15 +202,30 @@ El PNG es opaco y solo se usa como fallback dentro de `<picture>`; los navegador
 - Banderas, imágenes de perfil y assets de juegos con referencias reales.
 - `peques/imagenes/sofia.png` y `mireia.png`: fallbacks con transparencia; se pueden optimizar más adelante, no ahora.
 
-### D. Espacio local
+### D. Espacio local: antes y después
 
-| Elemento | Tamaño | Detalle |
-|---|---:|---|
-| `.git/` | 213 MB | 42,27 MB alcanzables desde `main`; ≈186 MB en refs de agente locales |
-| `qa/` | 187,66 MB | 149,76 MB en `qa/naruto-mejoras-2026-10-25`; 15,53 MB en `qa/mobile-audit-2026-10-22` |
-| `peques/` | 18,1 MB | Incluye 3,31 MB de `fpbg.mp4` y 3,84 MB del PNG del mapa |
+| Elemento | Antes | Después | Ahorro |
+|---|---:|---:|---:|
+| `.git/` | 213,38 MB | 34,87 MB | 178,51 MB |
+| `qa/` | 187,66 MB | 6,49 MB | 181,17 MB |
+| `peques/` | 18,10 MB | 13,35 MB | 4,75 MB |
+| **Total** | **419,14 MB** | **54,71 MB** | **364,43 MB** |
 
-Las refs de agente (`refs/agents/...`) son copias de seguridad internas de OpenCode, no forman parte de `origin/main` y no las necesita VS Code/Copilot. Borrarlas y ejecutar `git gc --prune=now` reduciría `.git` a unos 45 MB. Antes hay que confirmar que no se necesita rebobinar ninguna sesión antigua.
+- `.git/`: se guardó un bundle de seguridad de 214,3 MB, se eliminaron 4 refs `refs/agents/...` y se ejecutó `git gc --prune=now`. `git fsck --full` no informa errores y `main` / `origin/main` siguen en `4f0e891`.
+- `qa/`: se retiraron 575 archivos multimedia (182,88 MB). Quedan 279 archivos (6,49 MB): informes `*.md`, scripts `*.ps1`, JSON y documentación.
+- `peques/`: incluye los 8 archivos retirados (1,46 MB) y el ahorro del mapa (3,37 MB).
+
+### E. Copias de seguridad
+
+| Copia | Contenido | Tamaño | Verificación |
+|---|---|---:|---|
+| `MiMundo_backup_2026-11-05_limpieza` | 8 archivos retirados | 1,47 MB | `SHA256.txt`, 8/8 hashes |
+| `MiMundo_backup_2026-11-05_mapa-fallback` | PNG original del mapa | 3,84 MB | `SHA256.txt` |
+| `MiMundo_backup_2026-11-05_qa-capturas` | `qa/` completo antes de limpiar | 189,47 MB | `SHA256.txt`, 854/854 hashes |
+| `MiMundo_backup_2026-11-05_refs.bundle` | Historia completa de `.git`, incluidas las refs retiradas | 214,3 MB | `git bundle verify`: historia completa |
+| `MiMundo_backup_2026-11-05_fondo-animado` | Copia previa del fondo | 0,63 MB | `SHA256.txt` |
+
+Todas están en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\`. Los hashes y el bundle permiten restaurar cualquier archivo o la historia anterior.
 
 ---
 
@@ -243,6 +258,11 @@ Las refs de agente (`refs/agents/...`) son copias de seguridad internas de OpenC
 | 05/11/2026 | `197e947` | Verificación del fondo en producción |
 | 05/11/2026 | — | Auditoría de limpieza |
 | 05/11/2026 | `fdfe8b8` | Flujo compartido y estado único del proyecto |
+| 05/11/2026 | `a3c719c` | Registro del flujo compartido y la auditoría |
+| 05/11/2026 | `30c175a` | Retirada de 8 archivos antiguos o sin uso |
+| 05/11/2026 | `2ca2ce7` | Documentación de la retirada |
+| 05/11/2026 | `4f0e891` | Mapa de respaldo en JPEG |
+| 05/11/2026 | — | `qa/` archivado y `.git` compactado (solo local) |
 
 ---
 
@@ -259,7 +279,9 @@ Las refs de agente (`refs/agents/...`) son copias de seguridad internas de OpenC
 
 ## 9. Próxima acción
 
-**Pedir autorización al usuario para P1, P2, P3 y P4.** Hasta entonces, no se borra nada.
+1. **Cerrar la documentación:** commit y push de `ESTADO-PROYECTO.md` y `peques/PLAN.md`, y comprobar este archivo en producción.
+2. **P5 (baja prioridad):** decidir si `peques/areas-test.html` se renombra a `areas.html` o se mantiene. Está en uso; el nombre es confuso, pero no es una página de prueba.
+3. **Trabajo local sin publicar:** `peques/abecedario-capibara.html`, su fondo `imagenes/fondo-supermercado-lidl.jpg` y el acceso añadido en `areas-test.html` están en el árbol de trabajo, no en `origin/main`. Revisar, probar y publicar cuando el usuario lo indique.
 
 Si OpenCode no está disponible, Copilot puede continuar en VS Code:
 

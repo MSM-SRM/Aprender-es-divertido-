@@ -954,7 +954,8 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 ### Publicación
 
-- Pendiente de publicar en `origin/main`.
+- Publicado en `origin/main` el 05/11/2026: `30c175a` (retirada) y `2ca2ce7` (documentación).
+- Verificado en GitHub Pages: las 8 rutas retiradas devuelven 404 y las páginas activas siguen en 200.
 
 ---
 
@@ -977,4 +978,29 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 ### Publicación
 
-- Pendiente de publicar en `origin/main`.
+- Publicado en `origin/main` el 05/11/2026 (`4f0e891`).
+- Verificado en GitHub Pages: `fondomundomireia-fallback.jpg` responde 200 con 574.016 bytes, el PNG antiguo devuelve 404 y las variantes WebP siguen en 200.
+
+---
+
+## Actualización 05/11/2026 — Limpieza local de `qa/` y `.git`
+
+### `qa/`
+
+- Copia íntegra previa en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\MiMundo_backup_2026-11-05_qa-capturas\`: 855 archivos, 189,47 MB, `SHA256.txt` con 854/854 hashes correctos.
+- Retirados 575 archivos multimedia (capturas PNG/JPG/WebP/GIF y vídeos/audios, 182,88 MB).
+- Conservados informes `*.md`, scripts `*.ps1`, JSON y documentación. `qa/` pasa de 187,66 MB a 6,49 MB (279 archivos).
+- `qa/` no se versiona ni se publica.
+
+### `.git/`
+
+- Guardada la lista de 4 refs de agente en `MiMundo_backup_2026-11-05_git_refs.txt`.
+- Bundle de seguridad `MiMundo_backup_2026-11-05_refs.bundle` (214,3 MB); `git bundle verify` confirma historia completa.
+- Eliminadas las 4 refs `refs/agents/f7de31dd-.../checkpoints/turn/*`.
+- `git gc --prune=now`: `.git` pasa de 213,38 MB a 34,87 MB.
+- `git fsck --full` sin errores; `main` y `origin/main` en `4f0e891`.
+
+### Estado
+
+- Los cambios de `qa/` y `.git` son locales: no afectan a GitHub Pages ni a VS Code/Copilot.
+- Las copias en `Downloads` permiten recuperar capturas o la historia anterior si hiciera falta.
