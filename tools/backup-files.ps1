@@ -8,6 +8,13 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+
+# Permite pasar las rutas como array o como una lista separada por comas.
+$Paths = $Paths |
+  ForEach-Object { $_ -split "," } |
+  ForEach-Object { $_.Trim() } |
+  Where-Object { $_ -ne "" }
+
 $repo = Split-Path -Parent $PSScriptRoot
 $fecha = Get-Date -Format "yyyy-MM-dd"
 $backupRoot = Join-Path "C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups" "MiMundo_backup_${fecha}_$Motivo"

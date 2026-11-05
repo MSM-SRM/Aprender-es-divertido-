@@ -916,3 +916,42 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 - Primera versión publicada en `origin/main` el 05/11/2026 (`1d43e95`).
 - Mejora de nitidez y velocidad publicada en `origin/main` el 05/11/2026 (`9517629`) y verificada en GitHub Pages: `imagenes/fpbg.mp4` responde 200 `video/mp4` (3.469.917 bytes), el vídeo es 1440×960, se reproduce a `playbackRate` 0,65, en bucle, cubre el viewport y las imágenes de perfil cargan sin errores de consola.
+
+---
+
+## Actualización 05/11/2026 — Limpieza de archivos antiguos (fase 1)
+
+### Revisión
+
+- Auditoría completa de 122 archivos versionados y 21 páginas HTML.
+- 0 duplicados exactos por SHA-256.
+- 2 páginas sin referencias reales: `Index-ok-04.11.26.html` (copia fechada del index anterior) y `preview-mapa-mireia.html` (redirección antigua).
+- 4 assets sin uso: `images/mireia-avatar.jpeg`, `imagenes/fondomundomireia.webp`, `audios/cr7123hm.mp3` e `imagenes/gaara-8bit.png`.
+- `LEEME.txt` y `mi_mundo_aprendizaje.zip` eran materiales de la primera versión.
+- Las imágenes `imagenes/addams/*` se conservan: se cargan dinámicamente desde `halloween-familia-addams.html`.
+
+### Cambios
+
+- Retirados 8 archivos (1.535.658 bytes):
+  - `peques/Index-ok-04.11.26.html`
+  - `peques/preview-mapa-mireia.html`
+  - `peques/LEEME.txt`
+  - `mi_mundo_aprendizaje.zip`
+  - `peques/images/mireia-avatar.jpeg`
+  - `peques/imagenes/fondomundomireia.webp`
+  - `peques/audios/cr7123hm.mp3`
+  - `peques/imagenes/gaara-8bit.png`
+- Copia completa en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\MiMundo_backup_2026-11-05_limpieza\` con `SHA256.txt`; 8/8 hashes idénticos.
+- No se modifica ninguna página activa ni el fondo animado.
+
+### Pruebas
+
+- Local: `index.html`, `mundo-mireia.html`, `areas-test.html`, el mapa WebP y `fpbg.mp4` responden 200.
+- Local: las 8 rutas retiradas responden 404.
+- `tools/audit-refs.ps1`: no quedan páginas huérfanas (solo los verificadores de Google).
+- `tools/audit-assets.ps1`: no quedan assets con 0 referencias salvo los dinámicos de Addams.
+- 0 enlaces internos rotos.
+
+### Publicación
+
+- Pendiente de publicar en `origin/main`.
