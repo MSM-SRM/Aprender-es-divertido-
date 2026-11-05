@@ -912,4 +912,4 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 ### Publicación
 
 - Primera versión publicada en `origin/main` el 05/11/2026 (`1d43e95`).
-- Mejora de nitidez y velocidad: pendiente de publicar en `origin/main`.
+- Mejora de nitidez y velocidad publicada en `origin/main` el 05/11/2026 (`9517629`) y verificada en GitHub Pages: `imagenes/fpbg.mp4` responde 200 `video/mp4` (3.469.917 bytes), el vídeo es 1440×960, se reproduce a `playbackRate` 0,65, en bucle, cubre el viewport y las imágenes de perfil cargan sin errores de consola.
