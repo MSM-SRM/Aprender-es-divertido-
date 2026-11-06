@@ -1085,3 +1085,39 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - El crédito se mantiene visible en una franja blanca inferior, con tamaño reducido y tono gris discreto; el enlace al juego y el enlace de atribución funcionan por separado.
 - QA local para Mireia y Guest: imagen cargada, tarjeta cuadrada, enlace al juego mantiene el perfil y enlace de crédito abre la ficha indicada. Sin errores en `mi-mates.html`.
 - Código publicado en `b74aa5b`; ejecución Pages `42042737919` completada con éxito. Imagen y páginas de Mireia/Guest responden 200 en producción, y se verificó la carga de la imagen y la atribución.
+
+---
+
+## Actualización 06/11/2026 — Capi se va de aventura
+
+### Juego y datos
+
+- Nueva página `peques/capibara-se-va-de-aventura.html` con lógica en `peques/capibara-se-va-de-aventura.js` y datos en `peques/capibara-vocabulario.json`.
+- 11 lugares (Supermercado, Escuela, Médico/Hospital, Playa, Montaña, Camping, Aeropuerto, Centro comercial, Parque de atracciones, Taller y Bernabéu), con 20 palabras cada uno: 220 tarjetas en total.
+- Cada palabra tiene foto local, término en español e inglés y crédito CC completo (autor, licencia y archivo de Wikimedia Commons). Las 220 fotos y los créditos se validaron con `qa/check-adventure.ps1`: 0 problemas y 0 avisos.
+- El juego tiene dos fases por lugar: mirar y leer las 20 fotos y, después, unir cada foto con su palabra en un quiz de 20 preguntas. Guarda rondas y estrellas en el progreso compartido (`capibara_aventura`, área `juegos`).
+- Selector español/inglés que actualiza título, textos, tarjetas, quiz y pantalla final; la preferencia se guarda por perfil.
+- La portada animada `capi-aventurera.gif` (401,7 KB, 8 fotogramas) tiene respaldo estático `capi-aventurera-poster.png` (480×320) para `prefers-reduced-motion`.
+- Los scripts `tools/build-capibara-vocabulary.ps1` y `tools/build-capi-gif.ps1` generan los datos, las fotos, el GIF y el póster.
+
+### Integración y orden
+
+- Título definitivo: «Capi se va de aventura»; inglés «Capi Goes on an Adventure»; catalán «La Capi se'n va d'aventura»; alemán «Capi geht auf Abenteuer».
+- `peques/index.html`: tarjeta de Sofia con badge **NEW**, después del abecedario.
+- `peques/areas-test.html`: tarjeta primera en Juegos, antes del abecedario, con paso de `uiLang`.
+- `peques/idiomas.html`: tarjeta English-only primera en Lengua Inglés, con GIF, póster y atribución.
+- `peques/ui-language.js`: traducciones del título para EN/CA/DE.
+- La vuelta a Juegos usa `index.html?profile=sofia` y un flag de sesión para abrir directamente el inicio de Sofia.
+
+### Pruebas
+
+- Local: los 11 lugares cargan; en Supermercado se recorrieron las 20 tarjetas y se completó el quiz 20/20 con progreso guardado y consola limpia.
+- Cambio ES/EN comprobado en títulos, textos, tarjetas, quiz y pantalla final.
+- Móvil: 390×844 en español y 360×640 en inglés, sin desbordamiento horizontal ni respuestas recortadas.
+- Movimiento reducido: Chrome selecciona y carga `capi-aventurera-poster.png`.
+- Enlaces de vuelta y tarjetas de Sofia, Juegos e Idiomas verificados en local, sin errores de consola.
+
+### Publicación
+
+- Código publicado en `c6a9ae4`.
+- Verificado en GitHub Pages: página del juego, JSON, GIF, póster, tarjetas y enlaces responden correctamente.
