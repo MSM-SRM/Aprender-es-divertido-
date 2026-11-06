@@ -8,7 +8,7 @@
   const strings = {
     es: {
       back: '← Volver a Juegos', tagline: '¡Acompaña a Capi de aventura y descubre palabras nuevas!',
-      hero: 'Para niñas y niños de 6 a 9 años: elige un lugar. Primero miraremos y leeremos 20 fotos; después uniremos cada foto con su palabra.',
+      hero: 'Capi, la capibara, se va de viaje a vivir la aventura de aprender nuevas palabras. ¿Le quieres acompañar a aprender? ¿Adónde quieres ir con Capi primero…?',
       heroAlt: 'Capi, la capibara aventurera, camina de lado con un kimono rosa de jiu-jitsu, una mochila y un mapa.',
       heroRegion: 'Capi, la capibara aventurera',
       loading: 'Preparando las aventuras y sus fotografías…', loadError: 'No se pudieron cargar las aventuras. Abre esta página desde el servidor local del proyecto.',
@@ -27,7 +27,7 @@
     },
     en: {
       back: '← Back to Games', tagline: 'Join Capi on an adventure and discover new words!',
-      hero: 'For ages 6–9: choose a place. First we will look at and read 20 photos; then we will match each photo to its word.',
+      hero: 'Capi, the capybara, is setting off on a journey to live the adventure of learning new words. Will you join her to learn? Where would you like to go with Capi first…?',
       heroAlt: 'Capi the capybara walks sideways wearing a pink jiu-jitsu gi, an adventure backpack, and carrying a map.',
       heroRegion: 'Capi the adventurous capybara',
       loading: 'Getting the adventures and their photos ready…', loadError: 'The adventures could not be loaded. Open this page using the project’s local web server.',
