@@ -1096,6 +1096,7 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - 11 lugares (Supermercado, Escuela, Médico/Hospital, Playa, Montaña, Camping, Aeropuerto, Centro comercial, Parque de atracciones, Taller y Bernabéu), con 20 palabras cada uno: 220 tarjetas en total.
 - Cada palabra tiene foto local, término en español e inglés y crédito CC completo (autor, licencia y archivo de Wikimedia Commons). Las 220 fotos y los créditos se validaron con `qa/check-adventure.ps1`: 0 problemas y 0 avisos. Los créditos no se muestran en cada tarjeta: desde `88655b3` se agrupan al final del juego, en un panel discreto que se abre con cinco toques seguidos en «Créditos».
 - El juego tiene dos fases por lugar: mirar y leer las 20 fotos y, después, unir cada foto con su palabra en un quiz de 20 preguntas. Guarda rondas y estrellas en el progreso compartido (`capibara_aventura`, área `juegos`).
+- Texto de bienvenida (`8e91cfb`): «Capi, la capibara, se va de viaje a vivir la aventura de aprender nuevas palabras. ¿Le quieres acompañar a aprender? ¿Adónde quieres ir con Capi primero…?», con versión inglesa equivalente.
 - Selector español/inglés que actualiza título, textos, tarjetas, quiz y pantalla final; la preferencia se guarda por perfil.
 - La portada animada `capi-aventurera.gif` (401,7 KB, 8 fotogramas) tiene respaldo estático `capi-aventurera-poster.png` (480×320) para `prefers-reduced-motion`.
 - Los scripts `tools/build-capibara-vocabulary.ps1` y `tools/build-capi-gif.ps1` generan los datos, las fotos, el GIF y el póster.
@@ -1125,3 +1126,4 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - Verificado en GitHub Pages: página del juego, JSON, GIF, póster, tarjetas y enlaces responden correctamente.
 - `6295cc1` corrige el enlace de la tarjeta de Juegos: antes podía abrir el juego en español aunque la página estuviera en inglés; ahora `uiLang` de la página tiene prioridad y, si falta, se usa la preferencia guardada.
 - `88655b3` retira los créditos de las tarjetas y los agrupa en el panel discreto del final, accesible con cinco toques en «Créditos».
+- `8e91cfb` actualiza el texto de bienvenida en español e inglés; comprobado en 390×844 y 360×640 sin desbordamiento.

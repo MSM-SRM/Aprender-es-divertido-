@@ -6,7 +6,7 @@
 > Última actualización: **06/11/2026**
 > Producción: `https://msm-srm.github.io/Aprender-es-divertido-/peques/`
 > Repositorio: `https://github.com/MSM-SRM/Aprender-es-divertido-`
-> Rama: `main` · Estado: juego «Capi se va de aventura» publicado en `c6a9ae4` y verificado en GitHub Pages; enlace de Juegos corregido en `6295cc1`; créditos agrupados en un panel discreto en `88655b3`
+> Rama: `main` · Estado: juego «Capi se va de aventura» publicado en `c6a9ae4` y verificado en GitHub Pages; enlace de Juegos corregido en `6295cc1`; créditos agrupados en un panel discreto en `88655b3`; texto de bienvenida actualizado en `8e91cfb`
 
 ---
 
@@ -110,6 +110,7 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 | H24 | Portada Naruto con atribución en Mi Mates para Mireia y Guest | `b74aa5b`, publicado y verificado en Pages (ejecución `42042737919`): imagen VectorStock de TamTV en tarjeta cuadrada para Mireia y Guest; enlace de atribución visible, pequeño y discreto al pie de la tarjeta |
 | H25 | Aventura de vocabulario «Capi se va de aventura» | `c6a9ae4`, publicado y verificado en Pages: 11 lugares × 20 palabras (220 fotos), créditos CC completos, quiz de unión foto-palabra, progreso por perfil, ES/EN y vuelta a Juegos; tarjeta NEW en Sofia, Juegos e Idiomas. Enlace de Juegos corregido en `6295cc1` para respetar el `uiLang` de la página |
 | H26 | Créditos de la aventura agrupados en un panel discreto | `88655b3`, publicado y verificado: se retiran de cada tarjeta y se agrupan al final del juego; el botón «Créditos» abre el panel tras cinco toques seguidos. Incluye 221 atribuciones (220 palabras y una imagen adicional), en español e inglés |
+| H27 | Texto de bienvenida de la aventura | `8e91cfb`, publicado: sustituido el texto de edades por la presentación de Capi viajando para aprender palabras y la pregunta «¿Adónde quieres ir con Capi primero…?», con versión inglesa equivalente |
 
 ### En curso
 
@@ -280,6 +281,7 @@ Todas están en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\`. Los hashes
 | 06/11/2026 | `c6a9ae4` | Aventura de vocabulario «Capi se va de aventura» publicada |
 | 06/11/2026 | `6295cc1` | Enlace de la aventura en Juegos ajustado al idioma de la página |
 | 06/11/2026 | `88655b3` | Créditos de la aventura agrupados en un panel discreto |
+| 06/11/2026 | `8e91cfb` | Texto de bienvenida de la aventura actualizado |
 
 ---
 
@@ -298,7 +300,7 @@ Todas están en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\`. Los hashes
 
 1. **Sin tareas abiertas.** P5 se resolvió manteniendo `peques/areas-test.html`: es el hub real de actividades y no una página de prueba.
 2. **Abecedario de Capi:** versión española y extensión inglesa publicadas (`2de4e07`, `a564339`); acceso English-only de Mireia/Guest queda en el commit local sin push. Pendiente instalar una voz `en-GB` para comprobar locución. Mejoras opcionales, pendientes de autorización: mejorar el foco del diálogo, alargar el cierre automático y decir «A de abeja» en lugar de solo «abeja».
-3. **Capi se va de aventura:** publicada en `c6a9ae4`. 11 lugares, 220 fotos, quiz y progreso compartido; español e inglés. Probada en local (Supermercado completo 20/20, móvil 390×844 y 360×640, movimiento reducido) y verificada en GitHub Pages. El enlace de Juegos se corrigió en `6295cc1` para conservar el idioma de la página. Desde `88655b3` los créditos ya no aparecen en cada tarjeta: están agrupados al final, en un panel que se abre con cinco toques en «Créditos».
+3. **Capi se va de aventura:** publicada en `c6a9ae4`. 11 lugares, 220 fotos, quiz y progreso compartido; español e inglés. Probada en local (Supermercado completo 20/20, móvil 390×844 y 360×640, movimiento reducido) y verificada en GitHub Pages. El enlace de Juegos se corrigió en `6295cc1` para conservar el idioma de la página. Desde `88655b3` los créditos ya no aparecen en cada tarjeta: están agrupados al final, en un panel que se abre con cinco toques en «Créditos». El texto de bienvenida se actualizó en `8e91cfb`.
 
 Si OpenCode no está disponible, Copilot puede continuar en VS Code:
 
