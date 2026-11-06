@@ -41,9 +41,19 @@ h1{margin:0;text-align:center;color:#98506e;font-size:clamp(1.7rem,5.5vw,3rem);l
 .photo-gallery .photo{width:100%;height:clamp(170px,35vw,280px)}
 .word{margin:14px 0 0;color:#365b32;font-size:clamp(2rem,7vw,3.2rem);font-weight:1000;line-height:1.1}
 .translation{margin:5px 0 0;color:#6b7760;font-size:clamp(1rem,3vw,1.3rem);font-weight:800}
-.credit{margin:12px auto 0;padding:10px 12px;border-radius:14px;background:#f4f6ed;color:#56614f;font-size:.78rem;line-height:1.45;overflow-wrap:anywhere}
-.credit-source{display:block}
-.credit a{color:#315f91;font-weight:800;text-underline-offset:2px}
+.credits{margin:20px auto 0;max-width:760px;text-align:center}
+.credits h2{margin:0}
+.credits-toggle{min-height:44px;padding:6px 13px;border:1px solid #e3ead9;border-radius:999px;background:#fffdf0b3;color:#8a9482;font-size:.76rem;font-weight:800;text-decoration:underline;text-underline-offset:3px;box-shadow:none}
+.credits-toggle:hover{color:#5f6e56;border-color:#c9d8bb}
+.credits-toggle:focus-visible{outline:3px solid #185ea8;outline-offset:3px}
+.credits-content{max-height:46vh;overflow:auto;margin:8px auto 0;padding:12px 15px;border:2px solid #e4efd7;border-radius:16px;background:#fffdf0;color:#4f5f48;font-size:.78rem;line-height:1.45;text-align:left;box-shadow:0 6px 18px #66402a12}
+.credits-content[hidden]{display:none}
+.credits-content h3{margin:12px 0 5px;color:#365b32;font-size:.9rem}
+.credits-content h3:first-of-type{margin-top:0}
+.credits-content ul{margin:0 0 10px;padding-left:18px}
+.credits-content li{margin:5px 0;overflow-wrap:anywhere}
+.credits-content a{color:#315f91;font-weight:800;text-underline-offset:2px}
+.credits-intro{margin:0 0 10px;color:#6b7760;font-weight:700}
 .actions{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:17px}
 .action{min-height:48px;border:0;border-radius:999px;background:#528b42;color:#fff;padding:11px 20px;font-weight:900;box-shadow:0 4px 0 #3f7132}
 .action.secondary{background:#fbe2ec;color:#78445d;box-shadow:0 4px 0 #eab9cc}
@@ -126,7 +136,12 @@ h1{margin:0;text-align:center;color:#98506e;font-size:clamp(1.7rem,5.5vw,3rem);l
       </div>
     </div>
   </section>
-  <p class="foot" id="footerNote">Las fotografías son de Wikimedia Commons. Cada tarjeta incluye el nombre de quien la creó, su fuente y su licencia.</p>
+  <section class="credits" aria-labelledby="creditsTitle">
+    <h2><button class="credits-toggle" id="creditsTitle" type="button" aria-expanded="false" aria-controls="creditsContent" aria-describedby="creditsHint">Créditos</button></h2>
+    <span class="sr-only" id="creditsHint">Toca este botón cinco veces seguidas para ver las autorías y licencias de las fotografías.</span>
+    <span class="sr-only" id="creditsStatus" role="status" aria-live="polite"></span>
+    <div class="credits-content" id="creditsContent" aria-labelledby="creditsTitle" tabindex="-1" hidden></div>
+  </section>
 </main>
 <script src="capibara-se-va-de-aventura.js"></script>
 </body>

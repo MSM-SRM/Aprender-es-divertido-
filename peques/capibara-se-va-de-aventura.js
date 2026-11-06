@@ -18,7 +18,9 @@
       previous: '← Anterior', choosePlace: '← Elegir lugar', next: 'Siguiente →', startQuiz: '¡A jugar! Unir fotos y palabras →',
       quizPrompt: '¿Qué palabra corresponde a esta foto?', correct: '¡Muy bien! 🌟', tryAgain: '¡Casi! Prueba con otra palabra.',
       nextQuestion: 'Siguiente foto →', finish: '¡Aventura completada!', score: (score, total) => `Has unido ${score} de ${total} fotos con su palabra. ¡Buen trabajo!`,
-      replay: 'Jugar otra vez', chooseAgain: 'Elegir otro lugar', footer: 'Las fotografías son de Wikimedia Commons. Cada tarjeta incluye el nombre de quien la creó, su fuente y su licencia.',
+      replay: 'Jugar otra vez', chooseAgain: 'Elegir otro lugar',
+      credits: 'Créditos', creditsHint: 'Toca este botón cinco veces seguidas para ver las autorías y licencias de las fotografías.',
+      creditsRevealed: 'Créditos visibles. Vuelve a tocar Créditos para cerrarlos.', creditsIntro: 'Fotografías de Wikimedia Commons. Autoría, licencia y archivo original:',
       photoBy: 'Fotografía de',       file: 'Archivo de Wikimedia Commons', modified: 'imagen recortada', language: 'English',
       imagesAlt: word => `Fotografía de ${word}`, progress: (index, total) => `Foto ${index} de ${total}`,
       locationCount: count => `${count} palabras con fotos`, languageName: 'Español', retry: 'Volver a las tarjetas'
@@ -35,7 +37,9 @@
       previous: '← Previous', choosePlace: '← Choose place', next: 'Next →', startQuiz: 'Let’s play! Match photos and words →',
       quizPrompt: 'Which word matches this photo?', correct: 'Great job! 🌟', tryAgain: 'Not quite. Try another word.',
       nextQuestion: 'Next photo →', finish: 'Adventure complete!', score: (score, total) => `You matched ${score} out of ${total} photos to their words. Great work!`,
-      replay: 'Play again', chooseAgain: 'Choose another place', footer: 'Photos are from Wikimedia Commons. Every card credits its creator, source, and license.',
+      replay: 'Play again', chooseAgain: 'Choose another place',
+      credits: 'Credits', creditsHint: 'Tap this button five times in a row to view photo credits and licences.',
+      creditsRevealed: 'Credits shown. Tap Credits again to close them.', creditsIntro: 'Photos from Wikimedia Commons. Author, licence and original file:',
       photoBy: 'Photo by', file: 'Wikimedia Commons file', modified: 'cropped image', language: 'Español',
       imagesAlt: word => `Photo of ${word}`, progress: (index, total) => `Photo ${index} of ${total}`,
       locationCount: count => `${count} words with photos`, languageName: 'English', retry: 'Review the cards'
@@ -67,34 +71,49 @@
     if (heading) heading.focus?.();
   }
 
-  function createSourceCredit(container, item) {
-    const credit = document.createElement('p');
-    credit.className = 'credit';
-    const sources = [
-      { author: item.author, license: item.license, licenseUrl: item.licenseUrl, source: item.source, file: item.file, modified: item.modified },
-      ...(item.additionalCredits || [])
-    ];
-    sources.forEach(imageCredit => {
-      const line = document.createElement('span');
-      line.className = 'credit-source';
-      line.append(`${ui.photoBy} ${imageCredit.author} · `);
-      const license = document.createElement('a');
-      license.href = imageCredit.licenseUrl || imageCredit.source;
-      license.target = '_blank';
-      license.rel = 'noopener noreferrer';
-      license.textContent = imageCredit.license;
-      line.appendChild(license);
-      if (imageCredit.modified) line.append(` · ${ui.modified}`);
-      line.append(' · ');
-      const source = document.createElement('a');
-      source.href = imageCredit.source;
-      source.target = '_blank';
-      source.rel = 'noopener noreferrer';
-      source.textContent = `${ui.file}: ${imageCredit.file.replace(/^File:/, '')}`;
-      line.appendChild(source);
-      credit.appendChild(line);
+  function createCreditRow(credit, label, index, total) {
+    const line = document.createElement('li');
+    const name = document.createElement('strong');
+    name.textContent = total > 1 ? `${label} (${index + 1})` : label;
+    line.append(name, ' · ', `${ui.photoBy} ${credit.author} · `);
+    const license = document.createElement('a');
+    license.href = credit.licenseUrl || credit.source;
+    license.target = '_blank';
+    license.rel = 'noopener noreferrer';
+    license.textContent = credit.license;
+    line.appendChild(license);
+    if (credit.modified) line.append(` · ${ui.modified}`);
+    line.append(' · ');
+    const source = document.createElement('a');
+    source.href = credit.source;
+    source.target = '_blank';
+    source.rel = 'noopener noreferrer';
+    source.textContent = `${ui.file}: ${credit.file.replace(/^File:/, '')}`;
+    line.appendChild(source);
+    return line;
+  }
+
+  function renderCredits() {
+    const container = $('creditsContent');
+    container.replaceChildren();
+    if (!packs.length) return;
+    const intro = document.createElement('p');
+    intro.className = 'credits-intro';
+    intro.textContent = ui.creditsIntro;
+    container.appendChild(intro);
+    packs.forEach(pack => {
+      const heading = document.createElement('h3');
+      heading.textContent = `${pack.emoji} ${pack[language]}`;
+      container.appendChild(heading);
+      const list = document.createElement('ul');
+      pack.items.forEach(item => {
+        const sources = [item, ...(item.additionalCredits || [])];
+        sources.forEach((credit, index) => {
+          list.appendChild(createCreditRow(credit, item[language], index, sources.length));
+        });
+      });
+      container.appendChild(list);
     });
-    container.appendChild(credit);
   }
 
   function makePhoto(item) {
@@ -169,7 +188,6 @@
     const card = $('learnCard');
     card.replaceChildren(makePhoto(item));
     addWordLabels(card, item);
-    createSourceCredit(card, item);
     $('learnBack').disabled = false;
     $('learnBack').textContent = learnIndex === 0 ? ui.choosePlace : ui.previous;
     $('learnNext').textContent = learnIndex === selectedPack.items.length - 1 ? ui.startQuiz : ui.next;
@@ -192,7 +210,6 @@
     $('quizCount').textContent = ui.progress(quizIndex + 1, quizItems.length);
     const card = $('quizCard');
     card.replaceChildren(makePhoto(item));
-    createSourceCredit(card, item);
     const distractors = selectedPack.items.filter(candidate => candidate !== item).sort(() => Math.random() - 0.5).slice(0, 3);
     const answers = [item, ...distractors].sort(() => Math.random() - 0.5);
     const answerList = $('answerList');
@@ -271,7 +288,9 @@
     setText('locationsHint', ui.locationHint);
     setText('learnTitle', ui.learnHeading);
     setText('quizTitle', ui.quizHeading);
-    setText('footerNote', ui.footer);
+    setText('creditsTitle', ui.credits);
+    setText('creditsHint', ui.creditsHint);
+    if (!$('creditsContent').hidden) renderCredits();
     $('languageToggle').textContent = ui.language;
     $('languageToggle').setAttribute('aria-label', language === 'es' ? 'Cambiar a English' : 'Switch to Español');
     if (packs.length) renderLocations();
@@ -305,6 +324,48 @@
       })
     );
   }
+
+  const creditsButton = $('creditsTitle');
+  const creditsContent = $('creditsContent');
+  const creditsStatus = $('creditsStatus');
+  let creditsActivations = 0;
+
+  function closeCredits() {
+    creditsContent.hidden = true;
+    creditsButton.setAttribute('aria-expanded', 'false');
+    creditsStatus.textContent = '';
+  }
+
+  function revealCredits() {
+    if (!packs.length) return;
+    renderCredits();
+    creditsContent.hidden = false;
+    creditsButton.setAttribute('aria-expanded', 'true');
+    creditsStatus.textContent = ui.creditsRevealed;
+    creditsContent.focus();
+  }
+
+  creditsButton.addEventListener('click', () => {
+    if (!creditsContent.hidden) {
+      closeCredits();
+      creditsActivations = 0;
+      return;
+    }
+    creditsActivations++;
+    if (creditsActivations >= 5) {
+      creditsActivations = 0;
+      revealCredits();
+    }
+  });
+  document.addEventListener('pointerdown', event => {
+    if (!creditsButton.contains(event.target)) creditsActivations = 0;
+  }, true);
+  document.addEventListener('click', event => {
+    if (!creditsButton.contains(event.target)) creditsActivations = 0;
+  }, true);
+  document.addEventListener('keydown', event => {
+    if (event.target !== creditsButton || !['Enter', ' '].includes(event.key)) creditsActivations = 0;
+  }, true);
 
   $('learnBack').addEventListener('click', () => {
     if (learnIndex === 0) {
