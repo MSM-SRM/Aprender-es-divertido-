@@ -1094,7 +1094,7 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 - Nueva página `peques/capibara-se-va-de-aventura.html` con lógica en `peques/capibara-se-va-de-aventura.js` y datos en `peques/capibara-vocabulario.json`.
 - 11 lugares (Supermercado, Escuela, Médico/Hospital, Playa, Montaña, Camping, Aeropuerto, Centro comercial, Parque de atracciones, Taller y Bernabéu), con 20 palabras cada uno: 220 tarjetas en total.
-- Cada palabra tiene foto local, término en español e inglés y crédito CC completo (autor, licencia y archivo de Wikimedia Commons). Las 220 fotos y los créditos se validaron con `qa/check-adventure.ps1`: 0 problemas y 0 avisos.
+- Cada palabra tiene foto local, término en español e inglés y crédito CC completo (autor, licencia y archivo de Wikimedia Commons). Las 220 fotos y los créditos se validaron con `qa/check-adventure.ps1`: 0 problemas y 0 avisos. Los créditos no se muestran en cada tarjeta: desde `88655b3` se agrupan al final del juego, en un panel discreto que se abre con cinco toques seguidos en «Créditos».
 - El juego tiene dos fases por lugar: mirar y leer las 20 fotos y, después, unir cada foto con su palabra en un quiz de 20 preguntas. Guarda rondas y estrellas en el progreso compartido (`capibara_aventura`, área `juegos`).
 - Selector español/inglés que actualiza título, textos, tarjetas, quiz y pantalla final; la preferencia se guarda por perfil.
 - La portada animada `capi-aventurera.gif` (401,7 KB, 8 fotogramas) tiene respaldo estático `capi-aventurera-poster.png` (480×320) para `prefers-reduced-motion`.
@@ -1108,6 +1108,7 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - `peques/idiomas.html`: tarjeta English-only primera en Lengua Inglés, con GIF, póster y atribución.
 - `peques/ui-language.js`: traducciones del título para EN/CA/DE.
 - La vuelta a Juegos usa `index.html?profile=sofia` y un flag de sesión para abrir directamente el inicio de Sofia.
+- El panel de créditos del juego lista las 221 atribuciones agrupadas por lugar (220 palabras y una imagen adicional), con enlaces a licencia y archivo original. Se cierra al volver a tocar «Créditos».
 
 ### Pruebas
 
@@ -1116,9 +1117,11 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - Móvil: 390×844 en español y 360×640 en inglés, sin desbordamiento horizontal ni respuestas recortadas.
 - Movimiento reducido: Chrome selecciona y carga `capi-aventurera-poster.png`.
 - Enlaces de vuelta y tarjetas de Sofia, Juegos e Idiomas verificados en local, sin errores de consola.
+- Créditos: las tarjetas de aprendizaje y quiz ya no muestran atribuciones. En 390×844 y 360×640 el botón mide 44 px de alto, el panel no desborda horizontalmente y contiene las 221 entradas; también se abre con cinco pulsaciones de Enter y se actualiza al cambiar ES/EN.
 
 ### Publicación
 
 - Código publicado en `c6a9ae4`.
 - Verificado en GitHub Pages: página del juego, JSON, GIF, póster, tarjetas y enlaces responden correctamente.
 - `6295cc1` corrige el enlace de la tarjeta de Juegos: antes podía abrir el juego en español aunque la página estuviera en inglés; ahora `uiLang` de la página tiene prioridad y, si falta, se usa la preferencia guardada.
+- `88655b3` retira los créditos de las tarjetas y los agrupa en el panel discreto del final, accesible con cinco toques en «Créditos».
