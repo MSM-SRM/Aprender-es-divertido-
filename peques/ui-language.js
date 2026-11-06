@@ -447,6 +447,7 @@
 
   Object.assign(dictionary.en, {
     '← Volver a Juegos': '← Back to games',
+    'Capi se va de aventura': 'Capi Goes on an Adventure',
     'El abecedario de Capi': 'Capi’s alphabet',
     'Mi Mundo de Aprendizaje': 'My Learning World',
     '🔤 El abecedario de Capi': '🔤 Capi’s alphabet',
@@ -479,6 +480,7 @@
   });
   Object.assign(dictionary.ca, {
     '← Volver a Juegos': '← Tornar als jocs',
+    'Capi se va de aventura': 'La Capi se’n va d’aventura',
     'El abecedario de Capi': 'L’abecedari de la Capi',
     'Mi Mundo de Aprendizaje': 'El meu món d’aprenentatge',
     '🔤 El abecedario de Capi': '🔤 L’abecedari de la Capi',
@@ -511,6 +513,7 @@
   });
   Object.assign(dictionary.de, {
     '← Volver a Juegos': '← Zurück zu den Spielen',
+    'Capi se va de aventura': 'Capi geht auf Abenteuer',
     'El abecedario de Capi': 'Capis Alphabet',
     'Mi Mundo de Aprendizaje': 'Meine Lernwelt',
     '🔤 El abecedario de Capi': '🔤 Capis Alphabet',

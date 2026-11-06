@@ -1,0 +1,2306 @@
+﻿[
+    {
+        "emoji":  "🛒",
+        "en":  "Supermarket",
+        "id":  "supermercado",
+        "items":  [
+                      {
+                          "es":  "manzana",
+                          "en":  "apple",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-01.jpg",
+                          "author":  "Eunice Ameh",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Apple_fruit_in_illorin.jpg",
+                          "file":  "File:Apple fruit in illorin.jpg"
+                      },
+                      {
+                          "es":  "leche",
+                          "en":  "milk",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-02.jpg",
+                          "author":  "Ngophuongthanh",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:A_glass_of_milk.jpg",
+                          "file":  "File:A glass of milk.jpg",
+                          "additionalImages":  [
+                                                   {
+                                                       "image":  "imagenes/capibara-vocabulario/supermercado-milk-containers.jpg",
+                                                       "es":  "Botellas y envases de leche en la estantería del supermercado",
+                                                       "en":  "Milk bottles and cartons on a supermarket shelf"
+                                                   }
+                                               ],
+                          "additionalCredits":  [
+                                                    {
+                                                        "author":  "CHOTDUCKSHAO Leigeea",
+                                                        "license":  "CC BY-SA 4.0",
+                                                        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                                                        "source":  "https://commons.wikimedia.org/wiki/File:HK_SW_%E4%B8%8A%E7%92%B0_Sheung_Wan_%E7%9A%87%E5%90%8E%E5%A4%A7%E9%81%93%E4%B8%AD_Queen%27s_Road_Central_MarketPlace_Supermarket_goods_glass_bottle_milk_February_2021_SS2_06.jpg",
+                                                        "file":  "File:HK SW 上環 Sheung Wan 皇后大道中 Queen\u0027s Road Central MarketPlace Supermarket goods glass bottle milk February 2021 SS2 06.jpg"
+                                                    }
+                                                ]
+                      },
+                      {
+                          "es":  "pan",
+                          "en":  "bread",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-03.jpg",
+                          "author":  "Tomascastelazo",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Home_made_sour_dough_bread.jpg",
+                          "file":  "File:Home made sour dough bread.jpg"
+                      },
+                      {
+                          "es":  "huevos",
+                          "en":  "eggs",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-04.jpg",
+                          "author":  "Krzysztof Golik",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Egg_cartons_with_chicken_eggs_03.jpg",
+                          "file":  "File:Egg cartons with chicken eggs 03.jpg"
+                      },
+                      {
+                          "es":  "queso",
+                          "en":  "cheese",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-05.jpg",
+                          "author":  "Jacob van Es",
+                          "license":  "Public domain",
+                          "licenseUrl":  null,
+                          "source":  "https://commons.wikimedia.org/wiki/File:Jacob_Fopsen_van_Es_-_Still_life_with_cheese_and_other_foods_on_a_table.jpg",
+                          "file":  "File:Jacob Fopsen van Es - Still life with cheese and other foods on a table.jpg"
+                      },
+                      {
+                          "es":  "arroz",
+                          "en":  "rice",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-06.jpg",
+                          "author":  "Earth100",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:White,_Brown,_Red_%26_Wild_rice.jpg",
+                          "file":  "File:White, Brown, Red \u0026 Wild rice.jpg"
+                      },
+                      {
+                          "es":  "pasta",
+                          "en":  "pasta",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-07.jpg",
+                          "author":  "Sarah Boyle sboyle",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Handmade_pasta_noodles_(Unsplash).jpg",
+                          "file":  "File:Handmade pasta noodles (Unsplash).jpg"
+                      },
+                      {
+                          "es":  "tomate",
+                          "en":  "tomato",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-08.jpg",
+                          "author":  "FEsum IAIomel",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:HK_CWB_%E9%8A%85%E9%91%BC%E7%81%A3_Causeway_Bay_%E6%B8%A3%E7%94%B8%E5%9D%8A_Jardine%27s_Crescent_Dec_2018_SSG_street_market_fruit_tomato_vegetable.jpg",
+                          "file":  "File:HK CWB 銅鑼灣 Causeway Bay 渣甸坊 Jardine\u0027s Crescent Dec 2018 SSG street market fruit tomato vegetable.jpg"
+                      },
+                      {
+                          "es":  "plátano",
+                          "en":  "banana",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-09.jpg",
+                          "author":  "Wilfredor",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Bunch_of_bananas_on_sale.jpg",
+                          "file":  "File:Bunch of bananas on sale.jpg"
+                      },
+                      {
+                          "es":  "naranja",
+                          "en":  "orange",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-10.jpg",
+                          "author":  "Ivar Leidus",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Oranges_-_whole-halved-segment.jpg",
+                          "file":  "File:Oranges - whole-halved-segment.jpg"
+                      },
+                      {
+                          "es":  "yogur",
+                          "en":  "yogurt",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-11.jpg",
+                          "author":  "JulianGrayscales",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Yogurt_drinks_in_baskets.jpg",
+                          "file":  "File:Yogurt drinks in baskets.jpg"
+                      },
+                      {
+                          "es":  "cereales",
+                          "en":  "cereal",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-12.jpg",
+                          "author":  "Infrogmation",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Three_boxes_of_breakfast_cereal_atop_fridge.jpg",
+                          "file":  "File:Three boxes of breakfast cereal atop fridge.jpg"
+                      },
+                      {
+                          "es":  "carrito",
+                          "en":  "shopping cart",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-13.jpg",
+                          "author":  "safaritravelplus",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Shopping_Cart_Supermarket.jpg",
+                          "file":  "File:Shopping Cart Supermarket.jpg"
+                      },
+                      {
+                          "es":  "cesta",
+                          "en":  "shopping basket",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-14.jpg",
+                          "author":  "gailhampshire from Cradley, Malvern, U.K",
+                          "license":  "CC BY 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:P1330364_-_Flickr_-_gailhampshire.jpg",
+                          "file":  "File:P1330364 - Flickr - gailhampshire.jpg"
+                      },
+                      {
+                          "es":  "caja",
+                          "en":  "checkout counter",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-15.jpg",
+                          "author":  "Ka23 13",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Checkout_area_20200509_b.jpg",
+                          "file":  "File:Checkout area 20200509 b.jpg"
+                      },
+                      {
+                          "es":  "cajera o cajero",
+                          "en":  "cashier",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-16.jpg",
+                          "author":  "gailhampshire from Cradley, Malvern, U.K",
+                          "license":  "CC BY 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:P1330363_-_Flickr_-_gailhampshire.jpg",
+                          "file":  "File:P1330363 - Flickr - gailhampshire.jpg"
+                      },
+                      {
+                          "es":  "precio",
+                          "en":  "price tag",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-17.jpg",
+                          "author":  "Christopher Arthur Aragon",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:2a_Calle_Poniente,_San_Antonio_Pajonal.jpg",
+                          "file":  "File:2a Calle Poniente, San Antonio Pajonal.jpg"
+                      },
+                      {
+                          "es":  "monedas",
+                          "en":  "coins",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-18.jpg",
+                          "author":  "Livioandronico2013",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Coins_of_the_Italian_Republic_(500_Lire)_silver_(Caravels).png",
+                          "file":  "File:Coins of the Italian Republic (500 Lire) silver (Caravels).png"
+                      },
+                      {
+                          "es":  "bolsa",
+                          "en":  "shopping bag",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-19.jpg",
+                          "author":  "Donald Trung Quoc Don (Chữ Hán: 徵國單) - Wikimedia Commons.(Want to use this image?)",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Zara_paper_shopping_bag,_Groningen_(2019)_02.jpg",
+                          "file":  "File:Zara paper shopping bag, Groningen (2019) 02.jpg"
+                      },
+                      {
+                          "es":  "estantería",
+                          "en":  "shelf",
+                          "image":  "imagenes/capibara-vocabulario/supermercado-20.jpg",
+                          "author":  "Kurt Kaiser",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Empty_grocery_store_shelf_coronavirus_2020.jpg",
+                          "file":  "File:Empty grocery store shelf coronavirus 2020.jpg"
+                      }
+                  ],
+        "es":  "Supermercado"
+    },
+    {
+        "emoji":  "⛺",
+        "en":  "Camping",
+        "id":  "camping",
+        "items":  [
+                      {
+                          "es":  "tienda de campaña",
+                          "en":  "tent",
+                          "image":  "imagenes/capibara-vocabulario/camping-01.jpg",
+                          "author":  "Charles J. Sharp",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Indian_tent_turtle_(Pangshura_tentoria_tentoria).jpg",
+                          "file":  "File:Indian tent turtle (Pangshura tentoria tentoria).jpg"
+                      },
+                      {
+                          "es":  "saco de dormir",
+                          "en":  "sleeping bag",
+                          "image":  "imagenes/capibara-vocabulario/camping-02.jpg",
+                          "author":  "Brocken Inaglory",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Tent_caterpillar_original.jpg",
+                          "file":  "File:Tent caterpillar original.jpg"
+                      },
+                      {
+                          "es":  "linterna",
+                          "en":  "flashlight",
+                          "image":  "imagenes/capibara-vocabulario/camping-03.jpg",
+                          "author":  "Brocken Inaglory",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Western_tent_caterpillars_Malacosoma_californicum_in_Joshua_Tree_NP.jpg",
+                          "file":  "File:Western tent caterpillars Malacosoma californicum in Joshua Tree NP.jpg"
+                      },
+                      {
+                          "es":  "brújula",
+                          "en":  "compass",
+                          "image":  "imagenes/capibara-vocabulario/camping-04.jpg",
+                          "author":  "Charles J. Sharp",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Common_tent-making_bats.JPG",
+                          "file":  "File:Common tent-making bats.JPG"
+                      },
+                      {
+                          "es":  "mochila",
+                          "en":  "backpack",
+                          "image":  "imagenes/capibara-vocabulario/camping-05.jpg",
+                          "author":  "Julius Rückert .",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "http://creativecommons.org/licenses/by-sa/3.0/",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Tent_rocks_MG_3174.jpg",
+                          "file":  "File:Tent rocks MG 3174.jpg"
+                      },
+                      {
+                          "es":  "mapa",
+                          "en":  "map",
+                          "image":  "imagenes/capibara-vocabulario/camping-06.jpg",
+                          "author":  "Grendelkhan",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Kasha-Katuwe_Tent_Rocks_National_Monument_entrance_sign.jpg",
+                          "file":  "File:Kasha-Katuwe Tent Rocks National Monument entrance sign.jpg"
+                      },
+                      {
+                          "es":  "fogata",
+                          "en":  "campfire",
+                          "image":  "imagenes/capibara-vocabulario/camping-07.jpg",
+                          "author":  "Julius Rückert .",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "http://creativecommons.org/licenses/by-sa/3.0/",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Tent_rocks_MG_3257.jpg",
+                          "file":  "File:Tent rocks MG 3257.jpg"
+                      },
+                      {
+                          "es":  "nubes de azúcar",
+                          "en":  "marshmallows",
+                          "image":  "imagenes/capibara-vocabulario/camping-08.jpg",
+                          "author":  "Chris Woodrich",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:%22Raising_the_Tent%22_by_Ruth_Abernathy_(1997),_Festival_Theatre,_Stratford,_Ontario,_2025-08-04_01.jpg",
+                          "file":  "File:\"Raising the Tent\" by Ruth Abernathy (1997), Festival Theatre, Stratford, Ontario, 2025-08-04 01.jpg"
+                      },
+                      {
+                          "es":  "prismáticos",
+                          "en":  "binoculars",
+                          "image":  "imagenes/capibara-vocabulario/camping-09.jpg",
+                          "author":  "Michal Klajban",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Inside_of_the_Tent_Camp,_Kahurangi_National_Park,_New_Zealand_23.jpg",
+                          "file":  "File:Inside of the Tent Camp, Kahurangi National Park, New Zealand 23.jpg"
+                      },
+                      {
+                          "es":  "botella de agua",
+                          "en":  "water bottle",
+                          "image":  "imagenes/capibara-vocabulario/camping-10.jpg",
+                          "author":  "Julius Rückert .",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "http://creativecommons.org/licenses/by-sa/3.0/",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Tent_rocks_MG_3171.jpg",
+                          "file":  "File:Tent rocks MG 3171.jpg"
+                      },
+                      {
+                          "es":  "botas",
+                          "en":  "hiking boots",
+                          "image":  "imagenes/capibara-vocabulario/camping-11.jpg",
+                          "author":  "Julius Rückert .",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "http://creativecommons.org/licenses/by-sa/3.0/",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Tent_rocks_MG_3251.jpg",
+                          "file":  "File:Tent rocks MG 3251.jpg"
+                      },
+                      {
+                          "es":  "chubasquero",
+                          "en":  "rain jacket",
+                          "image":  "imagenes/capibara-vocabulario/camping-12.jpg",
+                          "author":  "Allyn",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Lighted_Rain_Jacket_Worn_In_Cornwell_Park_In_Bellingham_Washington.jpg",
+                          "file":  "File:Lighted Rain Jacket Worn In Cornwell Park In Bellingham Washington.jpg"
+                      },
+                      {
+                          "es":  "pino",
+                          "en":  "pine tree",
+                          "image":  "imagenes/capibara-vocabulario/camping-13.jpg",
+                          "author":  "Charles Barilleaux from Cincinnati, Ohio, United States of America",
+                          "license":  "CC BY 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:-dailyarsenal_Pelikan_600_-fountainpen,_Waterman_Expert_ballpoint,_a_rain_jacket,_my_cool_hat._(5528724807).jpg",
+                          "file":  "File:-dailyarsenal Pelikan 600 -fountainpen, Waterman Expert ballpoint, a rain jacket, my cool hat. (5528724807).jpg"
+                      },
+                      {
+                          "es":  "río",
+                          "en":  "river",
+                          "image":  "imagenes/capibara-vocabulario/camping-14.jpg",
+                          "author":  "Joe Mabel",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Early_Gore-Tex_hooded_rain_jacket.jpg",
+                          "file":  "File:Early Gore-Tex hooded rain jacket.jpg"
+                      },
+                      {
+                          "es":  "campamento",
+                          "en":  "campsite",
+                          "image":  "imagenes/capibara-vocabulario/camping-15.jpg",
+                          "author":  "Michal Klajban",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Campsite_at_Mystic_Beach,_Vancouver_Island,_Canada.jpg",
+                          "file":  "File:Campsite at Mystic Beach, Vancouver Island, Canada.jpg"
+                      },
+                      {
+                          "es":  "farol",
+                          "en":  "lantern",
+                          "image":  "imagenes/capibara-vocabulario/camping-16.jpg",
+                          "author":  "Michal Klajban",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:A_pier_at_a_campsite_during_sunset,_Sidney_Spit_(part_of_Gulf_Islands_National_Park_Reserve),_Sidney_Island,_British_Columbia,_Canada_20.jpg",
+                          "file":  "File:A pier at a campsite during sunset, Sidney Spit (part of Gulf Islands National Park Reserve), Sidney Island, British Columbia, Canada 20.jpg"
+                      },
+                      {
+                          "es":  "cuerda",
+                          "en":  "rope",
+                          "image":  "imagenes/capibara-vocabulario/camping-17.jpg",
+                          "author":  "Michal Klajban",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Rocky_coast_between_Little_Kuitshe_Campsite_and_Payzant_Campsite,_Juan_de_Fuca_Trail,_Vancouver_Island,_Canada_38.jpg",
+                          "file":  "File:Rocky coast between Little Kuitshe Campsite and Payzant Campsite, Juan de Fuca Trail, Vancouver Island, Canada 38.jpg"
+                      },
+                      {
+                          "es":  "silbato",
+                          "en":  "whistle",
+                          "image":  "imagenes/capibara-vocabulario/camping-18.jpg",
+                          "author":  "Trougnouf (Benoit Brummer)",
+                          "license":  "CC BY 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Throne_over_the_woods_style_composting_toilet_at_campsite_32_in_Bowron_Lakes_Provincial_Park,_BC_(DSCF2871).jpg",
+                          "file":  "File:Throne over the woods style composting toilet at campsite 32 in Bowron Lakes Provincial Park, BC (DSCF2871).jpg"
+                      },
+                      {
+                          "es":  "repelente de insectos",
+                          "en":  "insect repellent",
+                          "image":  "imagenes/capibara-vocabulario/camping-19.jpg",
+                          "author":  "Michal Klajban",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Rocky_coast_between_Little_Kuitshe_Campsite_and_Payzant_Campsite,_Juan_de_Fuca_Trail,_Vancouver_Island,_Canada_40.jpg",
+                          "file":  "File:Rocky coast between Little Kuitshe Campsite and Payzant Campsite, Juan de Fuca Trail, Vancouver Island, Canada 40.jpg"
+                      },
+                      {
+                          "es":  "botiquín",
+                          "en":  "first aid kit",
+                          "image":  "imagenes/capibara-vocabulario/camping-20.jpg",
+                          "author":  "Michal Klajban",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Rocky_coast_between_Little_Kuitshe_Campsite_and_Payzant_Campsite,_Juan_de_Fuca_Trail,_Vancouver_Island,_Canada_41.jpg",
+                          "file":  "File:Rocky coast between Little Kuitshe Campsite and Payzant Campsite, Juan de Fuca Trail, Vancouver Island, Canada 41.jpg"
+                      }
+                  ],
+        "es":  "Camping"
+    },
+    {
+        "emoji":  "✈️",
+        "en":  "Airport",
+        "id":  "aeropuerto",
+        "items":  [
+                      {
+                          "es":  "avión",
+                          "en":  "airplane",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-01.jpg",
+                          "author":  "Andrew Heneen",
+                          "license":  "CC BY 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Delta_Air_Lines_Boeing_757-200_N551NW_taking_off_at_Tampa_International_Airport.jpg",
+                          "file":  "File:Delta Air Lines Boeing 757-200 N551NW taking off at Tampa International Airport.jpg"
+                      },
+                      {
+                          "es":  "aeropuerto",
+                          "en":  "airport",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-02.jpg",
+                          "author":  "Aliceinthealice",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Ninoy_Aquino_International_Airport_Terminal_1,_09.jpg",
+                          "file":  "File:Ninoy Aquino International Airport Terminal 1, 09.jpg"
+                      },
+                      {
+                          "es":  "pasaporte",
+                          "en":  "passport",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-03.jpg",
+                          "author":  "JohnGold6000",
+                          "license":  "CC BY 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Polish_passport_(2018_series).jpg",
+                          "file":  "File:Polish passport (2018 series).jpg"
+                      },
+                      {
+                          "es":  "tarjeta de embarque",
+                          "en":  "boarding pass",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-04.jpg",
+                          "author":  "Trish Steel",
+                          "license":  "CC BY-SA 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Virgins%27_Crown,_Church_of_St_Mary_the_Virgin,_Abbotts_Ann_-_geograph.org.uk_-_1161322.jpg",
+                          "file":  "File:Virgins\u0027 Crown, Church of St Mary the Virgin, Abbotts Ann - geograph.org.uk - 1161322.jpg"
+                      },
+                      {
+                          "es":  "maleta",
+                          "en":  "suitcase",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-05.jpg",
+                          "author":  "Artist not credited on Commons",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:EXTERIOR_REAR_PORTION_-_FACING_SOUTH._-_Santa_Clara_Verein,_1082_Alviso_Street,_Santa_Clara,_Santa_Clara_County,_CA_HABS_CAL,43-SANCLA,4-7.tif",
+                          "file":  "File:EXTERIOR REAR PORTION - FACING SOUTH. - Santa Clara Verein, 1082 Alviso Street, Santa Clara, Santa Clara County, CA HABS CAL,43-SANCLA,4-7.tif"
+                      },
+                      {
+                          "es":  "mochila",
+                          "en":  "backpack",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-06.jpg",
+                          "author":  "Artist not credited on Commons",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:EAST_FRONT_-_Santa_Clara_Verein,_1082_Alviso_Street,_Santa_Clara,_Santa_Clara_County,_CA_HABS_CAL,43-SANCLA,4-1.tif",
+                          "file":  "File:EAST FRONT - Santa Clara Verein, 1082 Alviso Street, Santa Clara, Santa Clara County, CA HABS CAL,43-SANCLA,4-1.tif"
+                      },
+                      {
+                          "es":  "puerta de embarque",
+                          "en":  "boarding gate",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-07.jpg",
+                          "author":  "Artist not credited on Commons",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:EXTERIOR_VIEW_OF_SOUTH_WEST_CORNER._-_Santa_Clara_Verein,_1082_Alviso_Street,_Santa_Clara,_Santa_Clara_County,_CA_HABS_CAL,43-SANCLA,4-9.tif",
+                          "file":  "File:EXTERIOR VIEW OF SOUTH WEST CORNER. - Santa Clara Verein, 1082 Alviso Street, Santa Clara, Santa Clara County, CA HABS CAL,43-SANCLA,4-9.tif"
+                      },
+                      {
+                          "es":  "pista",
+                          "en":  "runway",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-08.jpg",
+                          "author":  "Artist not credited on Commons",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Santa_Clara_Verein,_1082_Alviso_Street,_Santa_Clara,_Santa_Clara_County,_CA_HABS_CAL,43-SANCLA,4-_(sheet_1_of_2).tif",
+                          "file":  "File:Santa Clara Verein, 1082 Alviso Street, Santa Clara, Santa Clara County, CA HABS CAL,43-SANCLA,4- (sheet 1 of 2).tif"
+                      },
+                      {
+                          "es":  "piloto",
+                          "en":  "pilot",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-09.jpg",
+                          "author":  "Artist not credited on Commons",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Santa_Clara_Verein,_1082_Alviso_Street,_Santa_Clara,_Santa_Clara_County,_CA_HABS_CAL,43-SANCLA,4-_(sheet_2_of_2).tif",
+                          "file":  "File:Santa Clara Verein, 1082 Alviso Street, Santa Clara, Santa Clara County, CA HABS CAL,43-SANCLA,4- (sheet 2 of 2).tif"
+                      },
+                      {
+                          "es":  "auxiliar de vuelo",
+                          "en":  "flight attendant",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-10.jpg",
+                          "author":  "Artist not credited on Commons",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Santa_Clara_Verein,_1082_Alviso_Street,_Santa_Clara,_Santa_Clara_County,_CA_HABS_CAL,43-SANCLA,4-_(sheet_2_of_2).png",
+                          "file":  "File:Santa Clara Verein, 1082 Alviso Street, Santa Clara, Santa Clara County, CA HABS CAL,43-SANCLA,4- (sheet 2 of 2).png"
+                      },
+                      {
+                          "es":  "carrito de equipaje",
+                          "en":  "luggage cart",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-11.jpg",
+                          "author":  "Artist not credited on Commons",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Santa_Clara_Verein,_1082_Alviso_Street,_Santa_Clara,_Santa_Clara_County,_CA_HABS_CAL,43-SANCLA,4-_(sheet_1_of_2).png",
+                          "file":  "File:Santa Clara Verein, 1082 Alviso Street, Santa Clara, Santa Clara County, CA HABS CAL,43-SANCLA,4- (sheet 1 of 2).png"
+                      },
+                      {
+                          "es":  "control de seguridad",
+                          "en":  "security checkpoint",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-12.jpg",
+                          "author":  "Sgt. Mary Torres",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:JTF-SB_Marines_Strengthen_Southern_Border_Barrier_(9372946).jpg",
+                          "file":  "File:JTF-SB Marines Strengthen Southern Border Barrier (9372946).jpg"
+                      },
+                      {
+                          "es":  "panel de salidas",
+                          "en":  "departure board",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-13.jpg",
+                          "author":  "Sgt. Mary Torres",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:JTF-SB_Marines_Strengthen_Southern_Border_Barrier_(9372947).jpg",
+                          "file":  "File:JTF-SB Marines Strengthen Southern Border Barrier (9372947).jpg"
+                      },
+                      {
+                          "es":  "billete",
+                          "en":  "plane ticket",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-14.jpg",
+                          "author":  "Artist not credited on Commons",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:The_young_politician_(BM_1868,0808.4464).jpg",
+                          "file":  "File:The young politician (BM 1868,0808.4464).jpg"
+                      },
+                      {
+                          "es":  "cinturón de seguridad",
+                          "en":  "seat belt",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-15.jpg",
+                          "author":  "Onlysilence",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:New_life_with_Schengen.jpg",
+                          "file":  "File:New life with Schengen.jpg"
+                      },
+                      {
+                          "es":  "ventanilla",
+                          "en":  "airplane window",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-16.jpg",
+                          "author":  "Grendelkhan",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Koyaike_Park_from_airplane_window.jpg",
+                          "file":  "File:Koyaike Park from airplane window.jpg"
+                      },
+                      {
+                          "es":  "terminal",
+                          "en":  "airport terminal",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-17.jpg",
+                          "author":  "CAPTAIN RAJU",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Sky_Aerial_View_From_Airplane_Window_(Dhaka_to_Addis_Ababa)_in_2025.01.jpg",
+                          "file":  "File:Sky Aerial View From Airplane Window (Dhaka to Addis Ababa) in 2025.01.jpg"
+                      },
+                      {
+                          "es":  "recogida de equipaje",
+                          "en":  "baggage claim",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-18.jpg",
+                          "author":  "mutovkin",
+                          "license":  "CC BY 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:London_Docklands_from_the_airplane_window_2024-04-01.jpg",
+                          "file":  "File:London Docklands from the airplane window 2024-04-01.jpg"
+                      },
+                      {
+                          "es":  "etiqueta de equipaje",
+                          "en":  "luggage tag",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-19.jpg",
+                          "author":  "Morre Christophe morrec",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Airplane_window_sunset_(Unsplash).jpg",
+                          "file":  "File:Airplane window sunset (Unsplash).jpg"
+                      },
+                      {
+                          "es":  "aduana",
+                          "en":  "customs",
+                          "image":  "imagenes/capibara-vocabulario/aeropuerto-20.jpg",
+                          "author":  "Amin",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Wet_waterdrops_on_airplane_window.jpg",
+                          "file":  "File:Wet waterdrops on airplane window.jpg"
+                      }
+                  ],
+        "es":  "Aeropuerto"
+    },
+    {
+        "emoji":  "🩺",
+        "en":  "Doctor and hospital",
+        "id":  "medico-hospital",
+        "items":  [
+                      {
+                          "es":  "médica o médico",
+                          "en":  "doctor",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-01.jpg",
+                          "author":  "Shixart1985",
+                          "license":  "CC BY 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Doctor_walking_in_a_clinic_interacting_with_colleagues_while_carrying_a_clipboard_and_wearing_a_white_coat.jpg",
+                          "file":  "File:Doctor walking in a clinic interacting with colleagues while carrying a clipboard and wearing a white coat.jpg"
+                      },
+                      {
+                          "es":  "enfermera o enfermero",
+                          "en":  "nurse",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-02.jpg",
+                          "author":  "w_lemay",
+                          "license":  "CC BY-SA 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Main_Street,_Newark,_OH_-_52545500586.jpg",
+                          "file":  "File:Main Street, Newark, OH - 52545500586.jpg"
+                      },
+                      {
+                          "es":  "hospital",
+                          "en":  "hospital",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-03.jpg",
+                          "author":  "w_lemay",
+                          "license":  "CC BY-SA 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Main_Street,_Newark,_OH_-_52546045343.jpg",
+                          "file":  "File:Main Street, Newark, OH - 52546045343.jpg"
+                      },
+                      {
+                          "es":  "estetoscopio",
+                          "en":  "stethoscope",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-04.jpg",
+                          "author":  "Scan by NYPL",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Railroad_Station,_Eltingville,_Staten_Island,_N.Y._(old_cars_at_R.R._crossing,_people_on_sidewalk_in_front_of_Eltingville_Pharmacy_with_sign_for_soda_and_%22Reid%27s%22_ice_cream)_(NYPL_b15279351-104911).tiff",
+                          "file":  "File:Railroad Station, Eltingville, Staten Island, N.Y. (old cars at R.R. crossing, people on sidewalk in front of Eltingville Pharmacy with sign for soda and \"Reid\u0027s\" ice cream) (NYPL b15279351-104911).tiff"
+                      },
+                      {
+                          "es":  "tirita",
+                          "en":  "bandage",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-05.jpg",
+                          "author":  "Scan by NYPL",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Annadale_Road,_Annadale,_Staten_Island,_N.Y_wide_road_with_shops_-_Taub%27s_Pharmacy_on_corner_next_door_to_the_Atlantic_%26_Pacific,_i.e._the_(NYPL_b15279351-105114).tiff",
+                          "file":  "File:Annadale Road, Annadale, Staten Island, N.Y wide road with shops - Taub\u0027s Pharmacy on corner next door to the Atlantic \u0026 Pacific, i.e. the (NYPL b15279351-105114).tiff"
+                      },
+                      {
+                          "es":  "termómetro",
+                          "en":  "thermometer",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-06.jpg",
+                          "author":  "Scan by NYPL",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Shopping_Center,_Midland_Avenue,_near_Third_Street,_Midland_Beach,_Staten_Island_(pub._Wagner_Pharmacy)_(Stores-_Wagners_Pharmacy,_donut_store,_food_market_and_dry_goods_store,_people_on_street,_(NYPL_b15279351-104514).tiff",
+                          "file":  "File:Shopping Center, Midland Avenue, near Third Street, Midland Beach, Staten Island (pub. Wagner Pharmacy) (Stores- Wagners Pharmacy, donut store, food market and dry goods store, people on street, (NYPL b15279351-104514).tiff"
+                      },
+                      {
+                          "es":  "sala de espera",
+                          "en":  "waiting room",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-07.jpg",
+                          "author":  "DeFacto",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Glenfinnan_railway_station_ticket_office_and_waiting_room.jpg",
+                          "file":  "File:Glenfinnan railway station ticket office and waiting room.jpg"
+                      },
+                      {
+                          "es":  "consulta",
+                          "en":  "examination room",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-08.jpg",
+                          "author":  "Rodhullandemu",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Waiting_room_at_Earlestown_railway_station_1.jpg",
+                          "file":  "File:Waiting room at Earlestown railway station 1.jpg"
+                      },
+                      {
+                          "es":  "medicina",
+                          "en":  "medicine",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-09.jpg",
+                          "author":  "Architect: Claude Bragdon",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:1914_Rochester_NYC_Station_waiting_room.png",
+                          "file":  "File:1914 Rochester NYC Station waiting room.png"
+                      },
+                      {
+                          "es":  "farmacia",
+                          "en":  "pharmacy",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-10.jpg",
+                          "author":  "Artist not credited on Commons",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:View_of_waiting_room_-_Erie_Railway,_Pier_5_Immigrant%27s_Waiting_Room,_Jersey_City,_Hudson_County,_NJ_HAER_NJ,9-JERCI,8-2.tif",
+                          "file":  "File:View of waiting room - Erie Railway, Pier 5 Immigrant\u0027s Waiting Room, Jersey City, Hudson County, NJ HAER NJ,9-JERCI,8-2.tif"
+                      },
+                      {
+                          "es":  "silla de ruedas",
+                          "en":  "wheelchair",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-11.jpg",
+                          "author":  "LN9267",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:HZMB_Macau_Port_to_Macau_International_Airport_Waiting_Room_and_Hong_Kong_International_Airport_Waiting_Room_14-02-2024.jpg",
+                          "file":  "File:HZMB Macau Port to Macau International Airport Waiting Room and Hong Kong International Airport Waiting Room 14-02-2024.jpg"
+                      },
+                      {
+                          "es":  "muletas",
+                          "en":  "crutches",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-12.jpg",
+                          "author":  "Drew de F Fawkes",
+                          "license":  "CC BY 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Isaac_Gracie,_The_Waiting_Room,_London_(28537700782).jpg",
+                          "file":  "File:Isaac Gracie, The Waiting Room, London (28537700782).jpg"
+                      },
+                      {
+                          "es":  "mascarilla",
+                          "en":  "face mask",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-13.jpg",
+                          "author":  "Eric Fischer",
+                          "license":  "CC BY 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Greyhound_waiting_room_(26914304209).jpg",
+                          "file":  "File:Greyhound waiting room (26914304209).jpg"
+                      },
+                      {
+                          "es":  "gel desinfectante",
+                          "en":  "hand sanitizer",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-14.jpg",
+                          "author":  "Geof Sheppard",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:2010_at_Templecombe_station_-_waiting_room_interior.jpg",
+                          "file":  "File:2010 at Templecombe station - waiting room interior.jpg"
+                      },
+                      {
+                          "es":  "cita médica",
+                          "en":  "appointment",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-15.jpg",
+                          "author":  "Unknown photographer",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Doctor_examines_patient_with_stethoscope.jpg",
+                          "file":  "File:Doctor examines patient with stethoscope.jpg"
+                      },
+                      {
+                          "es":  "cartel de letras",
+                          "en":  "eye chart",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-16.jpg",
+                          "author":  "ブルーノ・プラス",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Azusawa_departure_and_arrival_terminal_waiting_room,_-december_2021.jpg",
+                          "file":  "File:Azusawa departure and arrival terminal waiting room, -december 2021.jpg"
+                      },
+                      {
+                          "es":  "radiografía",
+                          "en":  "X-ray",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-17.jpg",
+                          "author":  "Thomas1313",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:2026-06-30_Waiting_Room_(George_Stephen_House)_01.jpg",
+                          "file":  "File:2026-06-30 Waiting Room (George Stephen House) 01.jpg"
+                      },
+                      {
+                          "es":  "escayola",
+                          "en":  "cast",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-18.jpg",
+                          "author":  "Roy Hughes",
+                          "license":  "CC BY-SA 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Worcester_Shrub_Hill_Restored_Victorian_Waiting_Room_-_geograph.org.uk_-_4890021.jpg",
+                          "file":  "File:Worcester Shrub Hill Restored Victorian Waiting Room - geograph.org.uk - 4890021.jpg"
+                      },
+                      {
+                          "es":  "tensiómetro",
+                          "en":  "blood pressure monitor",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-19.jpg",
+                          "author":  "code of the new",
+                          "license":  "CC BY 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Withings_blood_pressure_monitor.jpg",
+                          "file":  "File:Withings blood pressure monitor.jpg"
+                      },
+                      {
+                          "es":  "ambulancia",
+                          "en":  "ambulance",
+                          "image":  "imagenes/capibara-vocabulario/medico-hospital-20.jpg",
+                          "author":  "Weeksgo",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Wrist-style-blood-pressure-monitor.png",
+                          "file":  "File:Wrist-style-blood-pressure-monitor.png"
+                      }
+                  ],
+        "es":  "Médico y hospital"
+    },
+    {
+        "emoji":  "🎒",
+        "en":  "School",
+        "id":  "escuela",
+        "items":  [
+                      {
+                          "es":  "lápiz",
+                          "en":  "pencil",
+                          "image":  "imagenes/capibara-vocabulario/escuela-01.jpg",
+                          "author":  "David E Mead",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Wild_hops_pod_(ruled).jpg",
+                          "file":  "File:Wild hops pod (ruled).jpg"
+                      },
+                      {
+                          "es":  "goma de borrar",
+                          "en":  "eraser",
+                          "image":  "imagenes/capibara-vocabulario/escuela-02.jpg",
+                          "author":  "Jim Nachlin (he / him) from New York City, USA",
+                          "license":  "CC BY-SA 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Comparing_and_Measuring_Contact_Points_(52507304724).jpg",
+                          "file":  "File:Comparing and Measuring Contact Points (52507304724).jpg"
+                      },
+                      {
+                          "es":  "cuaderno",
+                          "en":  "notebook",
+                          "image":  "imagenes/capibara-vocabulario/escuela-03.jpg",
+                          "author":  "Jim Nachlin (he / him) from New York City, USA",
+                          "license":  "CC BY-SA 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Comparing_and_Measuring_Contact_Points_(52507304674).jpg",
+                          "file":  "File:Comparing and Measuring Contact Points (52507304674).jpg"
+                      },
+                      {
+                          "es":  "pupitre",
+                          "en":  "school desk",
+                          "image":  "imagenes/capibara-vocabulario/escuela-04.jpg",
+                          "author":  "Sewill",
+                          "license":  "CC BY 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Ruler,_navigational_(AM_1991.239-1).jpg",
+                          "file":  "File:Ruler, navigational (AM 1991.239-1).jpg"
+                      },
+                      {
+                          "es":  "silla",
+                          "en":  "chair",
+                          "image":  "imagenes/capibara-vocabulario/escuela-05.jpg",
+                          "author":  "Sewill",
+                          "license":  "CC BY 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Ruler,_navigational_(AM_1991.239-4).jpg",
+                          "file":  "File:Ruler, navigational (AM 1991.239-4).jpg"
+                      },
+                      {
+                          "es":  "mochila",
+                          "en":  "backpack",
+                          "image":  "imagenes/capibara-vocabulario/escuela-06.jpg",
+                          "author":  "Laanya",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Sufi_saint_salim_chisti_tomb_at_fatehpur_sikri.jpg",
+                          "file":  "File:Sufi saint salim chisti tomb at fatehpur sikri.jpg"
+                      },
+                      {
+                          "es":  "libro",
+                          "en":  "book",
+                          "image":  "imagenes/capibara-vocabulario/escuela-07.jpg",
+                          "author":  "Sewill",
+                          "license":  "CC BY 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Ruler,_navigational_(AM_1991.239-3).jpg",
+                          "file":  "File:Ruler, navigational (AM 1991.239-3).jpg"
+                      },
+                      {
+                          "es":  "tijeras",
+                          "en":  "scissors",
+                          "image":  "imagenes/capibara-vocabulario/escuela-08.jpg",
+                          "author":  "Sewill",
+                          "license":  "CC BY 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Ruler,_navigational_(AM_1991.239-2).jpg",
+                          "file":  "File:Ruler, navigational (AM 1991.239-2).jpg"
+                      },
+                      {
+                          "es":  "pegamento",
+                          "en":  "glue",
+                          "image":  "imagenes/capibara-vocabulario/escuela-09.jpg",
+                          "author":  "Sharvarism",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Beautifully_carved_gate_of_the_Kakatiya_Rudreshwara_Ramappa_Temple.jpg",
+                          "file":  "File:Beautifully carved gate of the Kakatiya Rudreshwara Ramappa Temple.jpg"
+                      },
+                      {
+                          "es":  "regla",
+                          "en":  "ruler",
+                          "image":  "imagenes/capibara-vocabulario/escuela-10.jpg",
+                          "author":  "Qnx3000",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Mosque_of_El-Hakim_in_Cairo_02.JPG",
+                          "file":  "File:Mosque of El-Hakim in Cairo 02.JPG"
+                      },
+                      {
+                          "es":  "ceras de colores",
+                          "en":  "crayons",
+                          "image":  "imagenes/capibara-vocabulario/escuela-11.jpg",
+                          "author":  "Mukul Banerjee",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Gol_Gumbaz_-5,_Bijapur,_Karnataka.jpg",
+                          "file":  "File:Gol Gumbaz -5, Bijapur, Karnataka.jpg"
+                      },
+                      {
+                          "es":  "pincel",
+                          "en":  "paintbrush",
+                          "image":  "imagenes/capibara-vocabulario/escuela-12.jpg",
+                          "author":  "Mukul Banerjee",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Adil_Shah%27s_Tomb,_Inside_Gol_Gumbaz,_Bijapur,_Karnataka.jpg",
+                          "file":  "File:Adil Shah\u0027s Tomb, Inside Gol Gumbaz, Bijapur, Karnataka.jpg"
+                      },
+                      {
+                          "es":  "aula",
+                          "en":  "classroom",
+                          "image":  "imagenes/capibara-vocabulario/escuela-13.jpg",
+                          "author":  "Mukul Banerjee",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Gol_Gumbaz_-6,_Bijapur,_Karnataka.jpg",
+                          "file":  "File:Gol Gumbaz -6, Bijapur, Karnataka.jpg"
+                      },
+                      {
+                          "es":  "maestra o maestro",
+                          "en":  "teacher",
+                          "image":  "imagenes/capibara-vocabulario/escuela-14.jpg",
+                          "author":  "Mukul Banerjee",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Gol_Gumbaz_-4,_Bijapur,_Karnataka.jpg",
+                          "file":  "File:Gol Gumbaz -4, Bijapur, Karnataka.jpg"
+                      },
+                      {
+                          "es":  "pizarra",
+                          "en":  "blackboard",
+                          "image":  "imagenes/capibara-vocabulario/escuela-15.jpg",
+                          "author":  "Qnx3000",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Mosque_of_El-Hakim_in_Cairo_03.JPG",
+                          "file":  "File:Mosque of El-Hakim in Cairo 03.JPG"
+                      },
+                      {
+                          "es":  "globo terráqueo",
+                          "en":  "globe",
+                          "image":  "imagenes/capibara-vocabulario/escuela-16.jpg",
+                          "author":  "Qnx3000",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Mosque_of_El-Hakim_in_Cairo_01.JPG",
+                          "file":  "File:Mosque of El-Hakim in Cairo 01.JPG"
+                      },
+                      {
+                          "es":  "fiambrera",
+                          "en":  "lunchbox",
+                          "image":  "imagenes/capibara-vocabulario/escuela-17.jpg",
+                          "author":  "Qnx3000",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Mosque_of_El-Hakim_in_Cairo_04.JPG",
+                          "file":  "File:Mosque of El-Hakim in Cairo 04.JPG"
+                      },
+                      {
+                          "es":  "biblioteca",
+                          "en":  "library",
+                          "image":  "imagenes/capibara-vocabulario/escuela-18.jpg",
+                          "author":  "Derby Museums Trust, Charlotte Burrill, 2011-05-24 14:54:23",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Medieval_Coin_Hoard_(FindID_434897).jpg",
+                          "file":  "File:Medieval Coin Hoard (FindID 434897).jpg"
+                      },
+                      {
+                          "es":  "reloj",
+                          "en":  "clock",
+                          "image":  "imagenes/capibara-vocabulario/escuela-19.jpg",
+                          "author":  "Eder Pozo Pérez",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Round_analog_clock_(Unsplash).jpg",
+                          "file":  "File:Round analog clock (Unsplash).jpg"
+                      },
+                      {
+                          "es":  "ordenador",
+                          "en":  "computer",
+                          "image":  "imagenes/capibara-vocabulario/escuela-20.jpg",
+                          "author":  "Oliver Propst",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Desktop_Computer_In_Mozilla_Taiwan_Office_(72739495).jpeg",
+                          "file":  "File:Desktop Computer In Mozilla Taiwan Office (72739495).jpeg"
+                      }
+                  ],
+        "es":  "Escuela"
+    },
+    {
+        "emoji":  "🔧",
+        "en":  "Car repair shop",
+        "id":  "taller-coche",
+        "items":  [
+                      {
+                          "es":  "mecánica o mecánico",
+                          "en":  "mechanic",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-01.jpg",
+                          "author":  "Lewis Hine",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Lewis_Hine_Power_house_mechanic_working_on_steam_pump.jpg",
+                          "file":  "File:Lewis Hine Power house mechanic working on steam pump.jpg"
+                      },
+                      {
+                          "es":  "coche",
+                          "en":  "car",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-02.jpg",
+                          "author":  "U.S. Navy photo by Photographer\u0027s Mate Airman Bernardo Fuller.",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:US_Navy_030323-N-5362F-003_Aviation_Structural_Mechanic_1st_Class_Robert_Montes_and_Aviation_Structural_Mechanic_2nd_Class_Richard_Ford,_both_assigned_to_Carrier_Air_Wing_Fourteen_(CVW-14).jpg",
+                          "file":  "File:US Navy 030323-N-5362F-003 Aviation Structural Mechanic 1st Class Robert Montes and Aviation Structural Mechanic 2nd Class Richard Ford, both assigned to Carrier Air Wing Fourteen (CVW-14).jpg"
+                      },
+                      {
+                          "es":  "rueda",
+                          "en":  "wheel",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-03.jpg",
+                          "author":  "Sanford, E.F. Everts, W.P. Worley \u0026 Bracher Bourquin, Fred Leggett, C.T. Edgerly, Jas. A. Wolcott, J.D. Landon, A. Colby, N. Geo. Edwards, J.P. Edwards, C.H. Harlow, A.H. Roe, A.D. Neuman, L.",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Mechanic_Falls._(IA_dr_mechanic-falls-0874026).jpg",
+                          "file":  "File:Mechanic Falls. (IA dr mechanic-falls-0874026).jpg"
+                      },
+                      {
+                          "es":  "neumático",
+                          "en":  "tire",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-04.jpg",
+                          "author":  "U.S. Navy photo by Photographer\u0027s Mate 3rd Class Jennifer Rivera.",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:US_Navy_030618-N-3970R-003_Aviation_Structural_Mechanic_3rd_Class_Nichalos_Baldwin_and_Aviation_Structural_Mechanic_2nd_Class_Eddie_Brutus_work_together_to_properly_torque_the_fittings_on_an_aircraft_tire.jpg",
+                          "file":  "File:US Navy 030618-N-3970R-003 Aviation Structural Mechanic 3rd Class Nichalos Baldwin and Aviation Structural Mechanic 2nd Class Eddie Brutus work together to properly torque the fittings on an aircraft tire.jpg"
+                      },
+                      {
+                          "es":  "volante",
+                          "en":  "steering wheel",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-05.jpg",
+                          "author":  "Capt. Murray Shugars, 2nd Battalion, 198th Combined Arms",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:US_Army_52578_Spc._Jason_E._Dean_(left),_a_mechanic_from_Brooklyn,_Miss.,_and_Pfc._Joseph_V._Morgan,_a_mechanic_from_Seminary,_Miss.,_inspect_the_interior_of_an_M1117_Armored_Security_Vehicle_Sept._30,_after_the_AS.jpg",
+                          "file":  "File:US Army 52578 Spc. Jason E. Dean (left), a mechanic from Brooklyn, Miss., and Pfc. Joseph V. Morgan, a mechanic from Seminary, Miss., inspect the interior of an M1117 Armored Security Vehicle Sept. 30, after the AS.jpg"
+                      },
+                      {
+                          "es":  "caja de herramientas",
+                          "en":  "toolbox",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-06.jpg",
+                          "author":  "U.S. Navy photo by Mass Communication Specialist 3rd Class Walter M. Wayman",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:US_Navy_090421-N-6538W-069_Aviation_Structural_Mechanic_(Equipment)_2nd_Class_Erik_Gratil,_right,_and_Aviation_Structural_Mechanic_Airman_Yijia_Liu,_perform_maintenance_on_an_F-A-18F_Super_Hornet_from_the.jpg",
+                          "file":  "File:US Navy 090421-N-6538W-069 Aviation Structural Mechanic (Equipment) 2nd Class Erik Gratil, right, and Aviation Structural Mechanic Airman Yijia Liu, perform maintenance on an F-A-18F Super Hornet from the.jpg"
+                      },
+                      {
+                          "es":  "llave inglesa",
+                          "en":  "wrench",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-07.jpg",
+                          "author":  "U.S. Navy photo by Photographer\u0027s Mate 3rd Class Kevin S. O\u0027Brien",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:US_Navy_060112-N-5549O-069_Aviation_Structural_Mechanic_1st_Class_Damon_Ventierre,_left,_and_Aviation_Structural_Mechanic_2nd_Class_Zachary_Crain_perform_routine_maintenance_on_an_SH-60F_Seahawk_helicopter.jpg",
+                          "file":  "File:US Navy 060112-N-5549O-069 Aviation Structural Mechanic 1st Class Damon Ventierre, left, and Aviation Structural Mechanic 2nd Class Zachary Crain perform routine maintenance on an SH-60F Seahawk helicopter.jpg"
+                      },
+                      {
+                          "es":  "destornillador",
+                          "en":  "screwdriver",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-08.jpg",
+                          "author":  "U.S. Navy photo by Mass Communication Specialist 3rd Class Paul J. Perkins",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:US_Navy_070403-N-2659P-054_Aviation_Structural_Mechanic_Airman_Joshua_Burton,_left,_and_Aviation_Structural_Mechanic_3rd_Class_Ricardo_Pezaguirre_work_together_to_install_a_wingfold_swivel_on_an_F-A-18C_Hornet.jpg",
+                          "file":  "File:US Navy 070403-N-2659P-054 Aviation Structural Mechanic Airman Joshua Burton, left, and Aviation Structural Mechanic 3rd Class Ricardo Pezaguirre work together to install a wingfold swivel on an F-A-18C Hornet.jpg"
+                      },
+                      {
+                          "es":  "martillo",
+                          "en":  "hammer",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-09.jpg",
+                          "author":  "U.S. Navy photo by Photographer\u0027s Mate 3rd Class Jennifer Rivera.",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:US_Navy_030618-N-3970R-001_Aviation_Structural_Mechanic_2nd_Class_Jason_Lively_and_Aviation_Mechanic_Airman_Rafael_Bustamente_work_together_to_rivet_an_air_baffle.jpg",
+                          "file":  "File:US Navy 030618-N-3970R-001 Aviation Structural Mechanic 2nd Class Jason Lively and Aviation Mechanic Airman Rafael Bustamente work together to rivet an air baffle.jpg"
+                      },
+                      {
+                          "es":  "gato hidráulico",
+                          "en":  "car jack",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-10.jpg",
+                          "author":  "U.S. Navy photo by Mass Communication Specialist 3rd Class Joshua Scott",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:US_Navy_080919-N-1635S-008_Aviation_Structural_Mechanic_(Equipment)_Airman_Kevin_Morris,_left,_Aviation_Boatswain%27s_Mate_(Fuels)_Airman_Nicholas_Gilbert_and_Aviation_Structural_Mechanic_Airman_Robert_Reynolds_use_deck_brushes.jpg",
+                          "file":  "File:US Navy 080919-N-1635S-008 Aviation Structural Mechanic (Equipment) Airman Kevin Morris, left, Aviation Boatswain\u0027s Mate (Fuels) Airman Nicholas Gilbert and Aviation Structural Mechanic Airman Robert Reynolds use deck brushes.jpg"
+                      },
+                      {
+                          "es":  "motor",
+                          "en":  "engine",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-11.jpg",
+                          "author":  "U.S. Navy photo by Mass Communication Specialist 2nd Class David Kolmel",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:US_Navy_100518-N-6935K-005_Aviation_Structural_Mechanic_Airman_Robert_Payne_and_Aviation_Structural_Mechanic_3rd_Class_Kimberly_Heitz_performs_maintenance.jpg",
+                          "file":  "File:US Navy 100518-N-6935K-005 Aviation Structural Mechanic Airman Robert Payne and Aviation Structural Mechanic 3rd Class Kimberly Heitz performs maintenance.jpg"
+                      },
+                      {
+                          "es":  "batería",
+                          "en":  "car battery",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-12.jpg",
+                          "author":  "Andy / Andrew Fogg from near Cambridge, UK",
+                          "license":  "CC BY 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Car_battery_charger_(165623144).jpg",
+                          "file":  "File:Car battery charger (165623144).jpg"
+                      },
+                      {
+                          "es":  "aceite de motor",
+                          "en":  "motor oil",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-13.jpg",
+                          "author":  "Azorbli",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Car_battery.jpg",
+                          "file":  "File:Car battery.jpg"
+                      },
+                      {
+                          "es":  "faro",
+                          "en":  "headlight",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-14.jpg",
+                          "author":  "Dilshan Jayakody from Maharagama, Sri Lanka",
+                          "license":  "CC BY-SA 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Automatic_Car_Battery_Charger_Prototype_(15258113394).jpg",
+                          "file":  "File:Automatic Car Battery Charger Prototype (15258113394).jpg"
+                      },
+                      {
+                          "es":  "freno",
+                          "en":  "brake",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-15.jpg",
+                          "author":  "TaurusEmerald",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Super_Start_Premium_Car_Battery.jpg",
+                          "file":  "File:Super Start Premium Car Battery.jpg"
+                      },
+                      {
+                          "es":  "cinturón de seguridad",
+                          "en":  "seat belt",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-16.jpg",
+                          "author":  "F ASTILY",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Car_Battery_Charger_1_2021-05-27.jpeg",
+                          "file":  "File:Car Battery Charger 1 2021-05-27.jpeg"
+                      },
+                      {
+                          "es":  "taller",
+                          "en":  "repair shop",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-17.jpg",
+                          "author":  "The ed17",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Remy_charg-o-matic_car_battery.jpg",
+                          "file":  "File:Remy charg-o-matic car battery.jpg"
+                      },
+                      {
+                          "es":  "cono de tráfico",
+                          "en":  "traffic cone",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-18.jpg",
+                          "author":  "Autobatteries",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Car_Battery_Delivery_Chicago_01.jpg",
+                          "file":  "File:Car Battery Delivery Chicago 01.jpg"
+                      },
+                      {
+                          "es":  "chaleco reflectante",
+                          "en":  "high-visibility vest",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-19.jpg",
+                          "author":  "Donald Trung Quoc Don (Chữ Hán: 徵國單) - Wikimedia Commons - © CC BY-SA 4.0 International . ( Want to use this image? ) Original publication 📤: -- Donald Trung 『徵國單』 ( No Fake News 💬 ) ( WikiProject Numismatics 💴) ( Articles 📚 ) 19:33, 8 August 2019 (UTC)",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Mercedes-Benz_A140_car_battery,_Ter_Apel_(2019)_02.jpg",
+                          "file":  "File:Mercedes-Benz A140 car battery, Ter Apel (2019) 02.jpg"
+                      },
+                      {
+                          "es":  "elevador de coche",
+                          "en":  "car lift",
+                          "image":  "imagenes/capibara-vocabulario/taller-coche-20.jpg",
+                          "author":  "Shixart1985",
+                          "license":  "CC BY 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Car_battery_charging.jpg",
+                          "file":  "File:Car battery charging.jpg"
+                      }
+                  ],
+        "es":  "Taller de coche"
+    },
+    {
+        "emoji":  "🏬",
+        "en":  "Shopping mall",
+        "id":  "centro-comercial",
+        "items":  [
+                      {
+                          "es":  "centro comercial",
+                          "en":  "shopping mall",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-01.jpg",
+                          "author":  "Derek Harper",
+                          "license":  "CC BY-SA 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Facade_on_Church_Street,_Sidmouth-geograph-3198079.jpg",
+                          "file":  "File:Facade on Church Street, Sidmouth-geograph-3198079.jpg"
+                      },
+                      {
+                          "es":  "tienda",
+                          "en":  "shop",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-02.jpg",
+                          "author":  "Lusi Lindwurm",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Rainbow_yarn_for_knitting,_display_in_front_of_a_needlework_shop_in_Graz,_Austria,_GW23-100.jpg",
+                          "file":  "File:Rainbow yarn for knitting, display in front of a needlework shop in Graz, Austria, GW23-100.jpg"
+                      },
+                      {
+                          "es":  "escalera mecánica",
+                          "en":  "escalator",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-03.jpg",
+                          "author":  "Cayambe",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Fogo_S%C3%A3o_Filipe_shop.jpg",
+                          "file":  "File:Fogo São Filipe shop.jpg"
+                      },
+                      {
+                          "es":  "ascensor",
+                          "en":  "elevator",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-04.jpg",
+                          "author":  "Roger McLassus.",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "http://creativecommons.org/licenses/by-sa/3.0/",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Legal_hashish_shop_in_Kathmandu,_Nepal_in_1973.jpg",
+                          "file":  "File:Legal hashish shop in Kathmandu, Nepal in 1973.jpg"
+                      },
+                      {
+                          "es":  "zona de restaurantes",
+                          "en":  "food court",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-05.jpg",
+                          "author":  "Jafri Ali",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Tajines_in_a_pottery_shop_in_Morocco.jpg",
+                          "file":  "File:Tajines in a pottery shop in Morocco.jpg"
+                      },
+                      {
+                          "es":  "fuente",
+                          "en":  "fountain",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-06.jpg",
+                          "author":  "Jack Delano",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Chicago_and_Northwestern_railroad_locomotive_shop_fsac.1a34676u.jpg",
+                          "file":  "File:Chicago and Northwestern railroad locomotive shop fsac.1a34676u.jpg"
+                      },
+                      {
+                          "es":  "escaparate",
+                          "en":  "shop window",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-07.jpg",
+                          "author":  "Carlos Valenzuela Montuy",
+                          "license":  "CC BY 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Shop_ceiling_Tezontepec_boots_2025.jpg",
+                          "file":  "File:Shop ceiling Tezontepec boots 2025.jpg"
+                      },
+                      {
+                          "es":  "ropa",
+                          "en":  "clothes",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-08.jpg",
+                          "author":  "IssamBarhoumi",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Chechia_Maker_in_his_shop.jpg",
+                          "file":  "File:Chechia Maker in his shop.jpg"
+                      },
+                      {
+                          "es":  "zapatos",
+                          "en":  "shoes",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-09.jpg",
+                          "author":  "Basile Morin",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:TWG_Tea_shop_entrance_in_Singapore.jpg",
+                          "file":  "File:TWG Tea shop entrance in Singapore.jpg"
+                      },
+                      {
+                          "es":  "juguetería",
+                          "en":  "toy shop",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-10.jpg",
+                          "author":  "Matthew Machado",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Heavy_Machine_Shop_-_edited.jpg",
+                          "file":  "File:Heavy Machine Shop - edited.jpg"
+                      },
+                      {
+                          "es":  "librería",
+                          "en":  "bookstore",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-11.jpg",
+                          "author":  "PereslavlFoto",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Brynchagi-shop-01.jpg",
+                          "file":  "File:Brynchagi-shop-01.jpg"
+                      },
+                      {
+                          "es":  "cine",
+                          "en":  "cinema",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-12.jpg",
+                          "author":  "Rodhullandemu",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Cannington_Shaw_Bottle_Shop_4.jpg",
+                          "file":  "File:Cannington Shaw Bottle Shop 4.jpg"
+                      },
+                      {
+                          "es":  "aparcamiento",
+                          "en":  "parking lot",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-13.jpg",
+                          "author":  "Adbar",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Schneeb%C3%A4lle_shop_Seoul.jpg",
+                          "file":  "File:Schneebälle shop Seoul.jpg"
+                      },
+                      {
+                          "es":  "entrada",
+                          "en":  "entrance",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-14.jpg",
+                          "author":  "Christian Ferrer",
+                          "license":  "CC BY 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Maguelone_Cathedral,_entrance_01_.jpg",
+                          "file":  "File:Maguelone Cathedral, entrance 01 .jpg"
+                      },
+                      {
+                          "es":  "salida",
+                          "en":  "exit",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-15.jpg",
+                          "author":  "Martin Falbisoner",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Entrance_on_Sonnenstrasse,_Munich,_February_2017.jpg",
+                          "file":  "File:Entrance on Sonnenstrasse, Munich, February 2017.jpg"
+                      },
+                      {
+                          "es":  "mapa del centro",
+                          "en":  "mall map",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-16.jpg",
+                          "author":  "Richard Bartz, Munich Makro Freak \u0026 Beemaster Hubert Seibring, Munich which gave me advice and a protection suite ;) My dog caught 6 bee-stings on the nose, i caught 4.",
+                          "license":  "CC BY-SA 2.5",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/2.5",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Apis_mellifera_carnica_worker_hive_entrance_3.jpg",
+                          "file":  "File:Apis mellifera carnica worker hive entrance 3.jpg"
+                      },
+                      {
+                          "es":  "bolsa de compras",
+                          "en":  "shopping bag",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-17.jpg",
+                          "author":  "Jebulon",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Ceiling_Civitas_Dei,_Entrance_of_the_Cathedral,_Aachen,_Germany.jpg",
+                          "file":  "File:Ceiling Civitas Dei, Entrance of the Cathedral, Aachen, Germany.jpg"
+                      },
+                      {
+                          "es":  "recibo",
+                          "en":  "receipt",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-18.jpg",
+                          "author":  "Jebulon",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Entrance_La_Rochelle_old_harbor.jpg",
+                          "file":  "File:Entrance La Rochelle old harbor.jpg"
+                      },
+                      {
+                          "es":  "probador",
+                          "en":  "fitting room",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-19.jpg",
+                          "author":  "NIG YUE 23 DAPIENGEE LIEM",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:HK_MK_%E6%97%BA%E8%A7%92_Mong_Kok_%E7%99%BB%E6%89%93%E5%A3%AB%E8%A1%97_56_Dunas_Street_%E5%AE%B6%E6%A8%82%E5%9D%8A_Gala_Place_shopping_mall_shop_Foot_Locker_clothing_store_November_2022_Px3_10_fitting_room.jpg",
+                          "file":  "File:HK MK 旺角 Mong Kok 登打士街 56 Dunas Street 家樂坊 Gala Place shopping mall shop Foot Locker clothing store November 2022 Px3 10 fitting room.jpg"
+                      },
+                      {
+                          "es":  "vigilante de seguridad",
+                          "en":  "security guard",
+                          "image":  "imagenes/capibara-vocabulario/centro-comercial-20.jpg",
+                          "author":  "Jean-Baptiste Tuby / After Charles Le Brun",
+                          "license":  "CC BY 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:A_sculpture_at_the_entrance_to_the_palace_of_Versailles.jpg",
+                          "file":  "File:A sculpture at the entrance to the palace of Versailles.jpg"
+                      }
+                  ],
+        "es":  "Centro comercial"
+    },
+    {
+        "emoji":  "⚽",
+        "en":  "Santiago Bernabéu Stadium",
+        "id":  "bernabeu",
+        "items":  [
+                      {
+                          "es":  "estadio",
+                          "en":  "stadium",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-01.jpg",
+                          "author":  "Florstein ( Telegram: WikiPhoto.Space )",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Petrovskiy_football_stadium_in_SPB.jpg",
+                          "file":  "File:Petrovskiy football stadium in SPB.jpg"
+                      },
+                      {
+                          "es":  "campo de fútbol",
+                          "en":  "football pitch",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-02.jpg",
+                          "author":  "Godot13",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:RUS-2016-Aerial-SPB-Krestovsky_Stadium_01.jpg",
+                          "file":  "File:RUS-2016-Aerial-SPB-Krestovsky Stadium 01.jpg"
+                      },
+                      {
+                          "es":  "portería",
+                          "en":  "goal",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-03.jpg",
+                          "author":  "Óðinn",
+                          "license":  "CC BY-SA 2.5 ca",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/2.5/ca/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Helsinki_Olympic_Stadium_Tower.jpg",
+                          "file":  "File:Helsinki Olympic Stadium Tower.jpg"
+                      },
+                      {
+                          "es":  "poste de portería del Bernabéu",
+                          "en":  "goalpost at the Bernabéu",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-04.jpg",
+                          "author":  "Badefa",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Estadio_Santiago_Bernab%C3%A9u_-_Real_Madrid-Real_Sociedad.jpg",
+                          "file":  "File:Estadio Santiago Bernabéu - Real Madrid-Real Sociedad.jpg"
+                      },
+                      {
+                          "es":  "red",
+                          "en":  "goal net",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-05.jpg",
+                          "author":  "Peter23",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Beijing_national_stadium.jpg",
+                          "file":  "File:Beijing national stadium.jpg"
+                      },
+                      {
+                          "es":  "balón",
+                          "en":  "football",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-06.jpg",
+                          "author":  "Raph_PH",
+                          "license":  "CC BY 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:GunsNRoses160617-61_(35271773841).jpg",
+                          "file":  "File:GunsNRoses160617-61 (35271773841).jpg"
+                      },
+                      {
+                          "es":  "camiseta",
+                          "en":  "football jersey",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-07.jpg",
+                          "author":  "Samson Ssemakadde",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Uganda_Cranes_football_Jersey_Launch5.jpg",
+                          "file":  "File:Uganda Cranes football Jersey Launch5.jpg"
+                      },
+                      {
+                          "es":  "bufanda",
+                          "en":  "scarf",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-08.jpg",
+                          "author":  "Samson Ssemakadde",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Uganda_Cranes_football_Jersey_Launch.jpg",
+                          "file":  "File:Uganda Cranes football Jersey Launch.jpg"
+                      },
+                      {
+                          "es":  "afición",
+                          "en":  "football fans",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-09.jpg",
+                          "author":  "Samson Ssemakadde",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Uganda_Cranes_football_Jersey_Launch6.jpg",
+                          "file":  "File:Uganda Cranes football Jersey Launch6.jpg"
+                      },
+                      {
+                          "es":  "jugadora o jugador",
+                          "en":  "football player",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-10.jpg",
+                          "author":  "Samson Ssemakadde",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Uganda_Cranes_football_Jersey_Launch_in_Kampala.jpg",
+                          "file":  "File:Uganda Cranes football Jersey Launch in Kampala.jpg"
+                      },
+                      {
+                          "es":  "portera o portero",
+                          "en":  "goalkeeper",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-11.jpg",
+                          "author":  "Samson Ssemakadde",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Uganda_Cranes_football_Jersey_Launch098.jpg",
+                          "file":  "File:Uganda Cranes football Jersey Launch098.jpg"
+                      },
+                      {
+                          "es":  "árbitra o árbitro",
+                          "en":  "referee",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-12.jpg",
+                          "author":  "Samson Ssemakadde",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Uganda_Cranes_football_Jersey_Launch6675.jpg",
+                          "file":  "File:Uganda Cranes football Jersey Launch6675.jpg"
+                      },
+                      {
+                          "es":  "silbato",
+                          "en":  "whistle",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-13.jpg",
+                          "author":  "Samson Ssemakadde",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Uganda_Cranes_football_Jersey_Launch_in_Kampala90.jpg",
+                          "file":  "File:Uganda Cranes football Jersey Launch in Kampala90.jpg"
+                      },
+                      {
+                          "es":  "marcador",
+                          "en":  "scoreboard",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-14.jpg",
+                          "author":  "Samson Ssemakadde",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Uganda_Cranes_football_Jersey_Launch_in_Kampala908.jpg",
+                          "file":  "File:Uganda Cranes football Jersey Launch in Kampala908.jpg"
+                      },
+                      {
+                          "es":  "entrada",
+                          "en":  "ticket",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-15.jpg",
+                          "author":  "Harrisonkrank",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:NDSU_Football_Jersey.png",
+                          "file":  "File:NDSU Football Jersey.png"
+                      },
+                      {
+                          "es":  "torniquete",
+                          "en":  "turnstile",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-16.jpg",
+                          "author":  "Samson Ssemakadde",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Uganda_Cranes_football_Jersey_Launch3.jpg",
+                          "file":  "File:Uganda Cranes football Jersey Launch3.jpg"
+                      },
+                      {
+                          "es":  "grada",
+                          "en":  "grandstand",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-17.jpg",
+                          "author":  "Samson Ssemakadde",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Uganda_Cranes_football_Jersey_Launch9.jpg",
+                          "file":  "File:Uganda Cranes football Jersey Launch9.jpg"
+                      },
+                      {
+                          "es":  "focos",
+                          "en":  "stadium floodlights",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-18.jpg",
+                          "author":  "RayceKThompson",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:1983_Carnegie_Mellon_Football_Jersey.jpg",
+                          "file":  "File:1983 Carnegie Mellon Football Jersey.jpg"
+                      },
+                      {
+                          "es":  "trofeo",
+                          "en":  "trophy",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-19.jpg",
+                          "author":  "Marie-Lan Nguyen",
+                          "license":  "CC BY 2.5",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/2.5",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Laura_Flessel-Colovic,_Team_trophy_presentation_Challenge_international_de_Saint-Maur_2013_t161426.jpg",
+                          "file":  "File:Laura Flessel-Colovic, Team trophy presentation Challenge international de Saint-Maur 2013 t161426.jpg"
+                      },
+                      {
+                          "es":  "banderín de córner",
+                          "en":  "corner flag",
+                          "image":  "imagenes/capibara-vocabulario/bernabeu-20.jpg",
+                          "author":  "Manoj Karingamadathil",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Nehru_Trophy_Boat_Race_2012_7791.JPG",
+                          "file":  "File:Nehru Trophy Boat Race 2012 7791.JPG"
+                      }
+                  ],
+        "es":  "Estadio Santiago Bernabéu"
+    },
+    {
+        "emoji":  "🎡",
+        "en":  "Amusement park",
+        "id":  "parque-atracciones",
+        "items":  [
+                      {
+                          "es":  "montaña rusa",
+                          "en":  "roller coaster",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-01.jpg",
+                          "author":  "Jebulon",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Roller_Coaster_Prater_Vienna.jpg",
+                          "file":  "File:Roller Coaster Prater Vienna.jpg"
+                      },
+                      {
+                          "es":  "noria",
+                          "en":  "Ferris wheel",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-02.jpg",
+                          "author":  "ThrillZing",
+                          "license":  "CC BY 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Rock_%27n%27_Roller_Coaster_arch_and_track,_closer_angle,_Rock_%27n%27_Roller_Coaster,_June_2006_-_ThrillZing.jpg",
+                          "file":  "File:Rock \u0027n\u0027 Roller Coaster arch and track, closer angle, Rock \u0027n\u0027 Roller Coaster, June 2006 - ThrillZing.jpg"
+                      },
+                      {
+                          "es":  "carrusel",
+                          "en":  "carousel",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-03.jpg",
+                          "author":  "Artist not credited on Commons",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "http://creativecommons.org/licenses/by-sa/3.0/",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Rock_n_Roller_Coaster,_Disney%27s_Hollywood_Studios.jpg",
+                          "file":  "File:Rock n Roller Coaster, Disney\u0027s Hollywood Studios.jpg"
+                      },
+                      {
+                          "es":  "coches de choque",
+                          "en":  "bumper cars",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-04.jpg",
+                          "author":  "Peter Greenberg",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Thunderbolt_Roller_Coaster_-_Coney_Island_-_Under_Construction_-_2014-05-26.jpg",
+                          "file":  "File:Thunderbolt Roller Coaster - Coney Island - Under Construction - 2014-05-26.jpg"
+                      },
+                      {
+                          "es":  "atracción de agua",
+                          "en":  "water ride",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-05.jpg",
+                          "author":  "ThrillZing",
+                          "license":  "CC BY 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Rock_%27n%27_Roller_Coaster_entrance_arch_with_limo_car,_Rock_%27n%27_Roller_Coaster,_June_2006_-_ThrillZing.jpg",
+                          "file":  "File:Rock \u0027n\u0027 Roller Coaster entrance arch with limo car, Rock \u0027n\u0027 Roller Coaster, June 2006 - ThrillZing.jpg"
+                      },
+                      {
+                          "es":  "taquilla",
+                          "en":  "ticket booth",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-06.jpg",
+                          "author":  "Cullen328",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:TrainTown_Sonoma_roller_coaster.jpg",
+                          "file":  "File:TrainTown Sonoma roller coaster.jpg"
+                      },
+                      {
+                          "es":  "cola",
+                          "en":  "queue",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-07.jpg",
+                          "author":  "Artist not credited on Commons",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Roller_coaster_wheels.jpg",
+                          "file":  "File:Roller coaster wheels.jpg"
+                      },
+                      {
+                          "es":  "operadora u operador",
+                          "en":  "ride operator",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-08.jpg",
+                          "author":  "Mokka",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Thundercoaster_roller_coaster.jpg",
+                          "file":  "File:Thundercoaster roller coaster.jpg"
+                      },
+                      {
+                          "es":  "palomitas",
+                          "en":  "popcorn",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-09.jpg",
+                          "author":  "Paulo Ordoveza from Washington, DC",
+                          "license":  "CC BY 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:SooperDooperLooper,_Hersheypark_roller_coaster,_2013-08-10.jpg",
+                          "file":  "File:SooperDooperLooper, Hersheypark roller coaster, 2013-08-10.jpg"
+                      },
+                      {
+                          "es":  "algodón de azúcar",
+                          "en":  "cotton candy",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-10.jpg",
+                          "author":  "Jeremy Thompson",
+                          "license":  "CC BY 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Clipper_roller_coaster_at_Space_World_2011_-_1.jpg",
+                          "file":  "File:Clipper roller coaster at Space World 2011 - 1.jpg"
+                      },
+                      {
+                          "es":  "helado",
+                          "en":  "ice cream",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-11.jpg",
+                          "author":  "W.carter",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Apple_cake_with_vanilla_ice_cream_2.jpg",
+                          "file":  "File:Apple cake with vanilla ice cream 2.jpg"
+                      },
+                      {
+                          "es":  "cartel de altura mínima",
+                          "en":  "height requirement sign",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-12.jpg",
+                          "author":  "SpartacksCompatriot",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Indonesian_chocolate_pancake_with_ice_cream.JPG",
+                          "file":  "File:Indonesian chocolate pancake with ice cream.JPG"
+                      },
+                      {
+                          "es":  "mapa del parque",
+                          "en":  "park map",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-13.jpg",
+                          "author":  "Cayambe",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Tartu_Ice_cream_vendor_2015.jpg",
+                          "file":  "File:Tartu Ice cream vendor 2015.jpg"
+                      },
+                      {
+                          "es":  "fuente",
+                          "en":  "fountain",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-14.jpg",
+                          "author":  "Pudelek (Marcin Szala)",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Ice_cream_van,_Helsinki_(Helsingfors).JPG",
+                          "file":  "File:Ice cream van, Helsinki (Helsingfors).JPG"
+                      },
+                      {
+                          "es":  "desfile",
+                          "en":  "parade",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-15.jpg",
+                          "author":  "Acabashi",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Crumble_and_ice_cream_at_Black_Horse_Inn,_Nuthurst,_West_Sussex,_England.jpg",
+                          "file":  "File:Crumble and ice cream at Black Horse Inn, Nuthurst, West Sussex, England.jpg"
+                      },
+                      {
+                          "es":  "mascota",
+                          "en":  "mascot",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-16.jpg",
+                          "author":  "Ossewa",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Ice_cream_van_in_Vereeniging.jpg",
+                          "file":  "File:Ice cream van in Vereeniging.jpg"
+                      },
+                      {
+                          "es":  "recuerdo",
+                          "en":  "souvenir",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-17.jpg",
+                          "author":  "Another Believer",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:A-Zhu_Peanut_Ice_Cream_Roll,_Jiufen_Old_Street,_2024.jpg",
+                          "file":  "File:A-Zhu Peanut Ice Cream Roll, Jiufen Old Street, 2024.jpg"
+                      },
+                      {
+                          "es":  "parque infantil",
+                          "en":  "playground",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-18.jpg",
+                          "author":  "Daniel Schwen",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Ice_cream_truck_beach.jpg",
+                          "file":  "File:Ice cream truck beach.jpg"
+                      },
+                      {
+                          "es":  "salida",
+                          "en":  "exit sign",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-19.jpg",
+                          "author":  "Kritzolina",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Tulpe_%27Ice_Cream%27_im_botanischen_Garten_M%C3%BCnchen-Nymphenburg_03.jpg",
+                          "file":  "File:Tulpe \u0027Ice Cream\u0027 im botanischen Garten München-Nymphenburg 03.jpg"
+                      },
+                      {
+                          "es":  "barra de seguridad",
+                          "en":  "safety bar",
+                          "image":  "imagenes/capibara-vocabulario/parque-atracciones-20.jpg",
+                          "author":  "Photograph by Mike Peel ( www.mikepeel.net ).",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Ice_cream_van_DWM_698.jpg",
+                          "file":  "File:Ice cream van DWM 698.jpg"
+                      }
+                  ],
+        "es":  "Parque de atracciones"
+    },
+    {
+        "emoji":  "🏖️",
+        "en":  "Beach",
+        "id":  "playa",
+        "items":  [
+                      {
+                          "es":  "arena",
+                          "en":  "sand",
+                          "image":  "imagenes/capibara-vocabulario/playa-01.jpg",
+                          "author":  "Farragutful",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:2020_Punaluu_Black_Sand_Beach_06.jpg",
+                          "file":  "File:2020 Punaluu Black Sand Beach 06.jpg"
+                      },
+                      {
+                          "es":  "mar",
+                          "en":  "sea",
+                          "image":  "imagenes/capibara-vocabulario/playa-02.jpg",
+                          "author":  "John Fry Productions",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Foot_of_Newport_at_Ocean_Beach_Shoreline,_San_Diego,_California.jpg",
+                          "file":  "File:Foot of Newport at Ocean Beach Shoreline, San Diego, California.jpg"
+                      },
+                      {
+                          "es":  "ola",
+                          "en":  "wave",
+                          "image":  "imagenes/capibara-vocabulario/playa-03.jpg",
+                          "author":  "Brocken Inaglory edit by user:Kallerna",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:A_surfer_at_the_wave_edit.jpg",
+                          "file":  "File:A surfer at the wave edit.jpg"
+                      },
+                      {
+                          "es":  "concha",
+                          "en":  "shell",
+                          "image":  "imagenes/capibara-vocabulario/playa-04.jpg",
+                          "author":  "Kgbo",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Seashells_and_sand_on_the_beach,_Main_Beach,_Queensland.jpg",
+                          "file":  "File:Seashells and sand on the beach, Main Beach, Queensland.jpg"
+                      },
+                      {
+                          "es":  "cubo",
+                          "en":  "bucket",
+                          "image":  "imagenes/capibara-vocabulario/playa-05.jpg",
+                          "author":  "Lisa Sanderson from Stroudsburg, PA, USA",
+                          "license":  "CC BY 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Sand_bucket_and_flip_flops.jpg",
+                          "file":  "File:Sand bucket and flip flops.jpg"
+                      },
+                      {
+                          "es":  "pala",
+                          "en":  "spade",
+                          "image":  "imagenes/capibara-vocabulario/playa-06.jpg",
+                          "author":  "magnoid",
+                          "license":  "CC BY-SA 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Beach_Shovel.jpg",
+                          "file":  "File:Beach Shovel.jpg"
+                      },
+                      {
+                          "es":  "toalla de playa",
+                          "en":  "beach towel",
+                          "image":  "imagenes/capibara-vocabulario/playa-07.jpg",
+                          "author":  "Newtown grafitti from Sydney, Australia",
+                          "license":  "CC BY 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Beach_towel,_II_(8600327864).jpg",
+                          "file":  "File:Beach towel, II (8600327864).jpg"
+                      },
+                      {
+                          "es":  "sombrilla",
+                          "en":  "beach umbrella",
+                          "image":  "imagenes/capibara-vocabulario/playa-08.jpg",
+                          "author":  "David Dixon",
+                          "license":  "CC BY-SA 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Beach_Umbrella,_Swanage_-_geograph.org.uk_-_3268993.jpg",
+                          "file":  "File:Beach Umbrella, Swanage - geograph.org.uk - 3268993.jpg"
+                      },
+                      {
+                          "es":  "bañador",
+                          "en":  "swimsuit",
+                          "image":  "imagenes/capibara-vocabulario/playa-09.jpg",
+                          "author":  "Miscellaneous Items in High Demand, PPOC, Library of Congress",
+                          "license":  "Public domain",
+                          "licenseUrl":  null,
+                          "source":  "https://commons.wikimedia.org/wiki/File:Woman_in_swimsuit_on_beach_with_an_Indian_family_in_1923-_LCCN99471588_(cropped).jpg",
+                          "file":  "File:Woman in swimsuit on beach with an Indian family in 1923- LCCN99471588 (cropped).jpg"
+                      },
+                      {
+                          "es":  "gafas de sol",
+                          "en":  "sunglasses",
+                          "image":  "imagenes/capibara-vocabulario/playa-10.jpg",
+                          "author":  "Ildar Sagdejev ( Specious )",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:2008-07-27_Sunglasses.jpg",
+                          "file":  "File:2008-07-27 Sunglasses.jpg"
+                      },
+                      {
+                          "es":  "gorra",
+                          "en":  "sun hat",
+                          "image":  "imagenes/capibara-vocabulario/playa-11.jpg",
+                          "author":  "Miscellaneous Items in High Demand, PPOC, Library of Congress",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Bide-A-Wee_Home_for_Animals,_New_York,_N.Y.-_man_putting_sun_hat_on_horse_and_woman_holding_another_hat_LCCN2002717987.jpg",
+                          "file":  "File:Bide-A-Wee Home for Animals, New York, N.Y.- man putting sun hat on horse and woman holding another hat LCCN2002717987.jpg"
+                      },
+                      {
+                          "es":  "protector solar",
+                          "en":  "sunscreen",
+                          "image":  "imagenes/capibara-vocabulario/playa-12.jpg",
+                          "author":  "Netstars22",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:LRP_sunscreen_bottle.jpg",
+                          "file":  "File:LRP sunscreen bottle.jpg"
+                      },
+                      {
+                          "es":  "socorrista",
+                          "en":  "lifeguard",
+                          "image":  "imagenes/capibara-vocabulario/playa-13.jpg",
+                          "author":  "Alvesgaspar",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Lifeguard_August_2010-1.jpg",
+                          "file":  "File:Lifeguard August 2010-1.jpg"
+                      },
+                      {
+                          "es":  "torre de socorrismo",
+                          "en":  "lifeguard tower",
+                          "image":  "imagenes/capibara-vocabulario/playa-14.jpg",
+                          "author":  "Beyond My Ken",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:2019_Main_Lifeguard_Tower,_Coronado_Beach.jpg",
+                          "file":  "File:2019 Main Lifeguard Tower, Coronado Beach.jpg"
+                      },
+                      {
+                          "es":  "gaviota",
+                          "en":  "seagull",
+                          "image":  "imagenes/capibara-vocabulario/playa-15.jpg",
+                          "author":  "Freddy2001",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:2016-07-27_Seagull_in_Zandvoort_aan_Zee_(freddy2001).jpg",
+                          "file":  "File:2016-07-27 Seagull in Zandvoort aan Zee (freddy2001).jpg"
+                      },
+                      {
+                          "es":  "cangrejo",
+                          "en":  "crab",
+                          "image":  "imagenes/capibara-vocabulario/playa-16.jpg",
+                          "author":  "Rhododendrites",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Atlantic_sand_fiddler_crab_(30996).jpg",
+                          "file":  "File:Atlantic sand fiddler crab (30996).jpg"
+                      },
+                      {
+                          "es":  "castillo de arena",
+                          "en":  "sandcastle",
+                          "image":  "imagenes/capibara-vocabulario/playa-17.jpg",
+                          "author":  "Colin Smith",
+                          "license":  "CC BY-SA 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Sandcastle_Competition_on_West_Beach_-_geograph.org.uk_-_2591858.jpg",
+                          "file":  "File:Sandcastle Competition on West Beach - geograph.org.uk - 2591858.jpg"
+                      },
+                      {
+                          "es":  "pelota de playa",
+                          "en":  "beach ball",
+                          "image":  "imagenes/capibara-vocabulario/playa-18.jpg",
+                          "author":  "James G",
+                          "license":  "CC BY 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:A_beach_ball_bounces_through_the_crowd._(9121124416).jpg",
+                          "file":  "File:A beach ball bounces through the crowd. (9121124416).jpg"
+                      },
+                      {
+                          "es":  "chanclas",
+                          "en":  "flip-flops",
+                          "image":  "imagenes/capibara-vocabulario/playa-19.jpg",
+                          "author":  "Kgbo",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Brisbane_street_fashion_in_2018;_minidress,_black_mini_handbag_and_flip-flops.jpg",
+                          "file":  "File:Brisbane street fashion in 2018; minidress, black mini handbag and flip-flops.jpg"
+                      },
+                      {
+                          "es":  "orilla",
+                          "en":  "shoreline",
+                          "image":  "imagenes/capibara-vocabulario/playa-20.jpg",
+                          "author":  "Łigbíne\u0027ádįh",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Eel_grass,_Point_Pinole_Regional_Shoreline,_beach.jpg",
+                          "file":  "File:Eel grass, Point Pinole Regional Shoreline, beach.jpg"
+                      }
+                  ],
+        "es":  "Playa"
+    },
+    {
+        "emoji":  "⛰️",
+        "en":  "Mountain",
+        "id":  "montana",
+        "items":  [
+                      {
+                          "es":  "montaña",
+                          "en":  "mountain",
+                          "image":  "imagenes/capibara-vocabulario/montana-01.jpg",
+                          "author":  "Creator:Gaetano Martoriello",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:0565Fb._Gaetano_Martoriello._Mountain_landscape_with_a_sea_view.jpg",
+                          "file":  "File:0565Fb. Gaetano Martoriello. Mountain landscape with a sea view.jpg"
+                      },
+                      {
+                          "es":  "colina",
+                          "en":  "hill",
+                          "image":  "imagenes/capibara-vocabulario/montana-02.jpg",
+                          "author":  "Unknown author Unknown author",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Barite_Hill_Landscape.jpg",
+                          "file":  "File:Barite Hill Landscape.jpg"
+                      },
+                      {
+                          "es":  "cima",
+                          "en":  "summit",
+                          "image":  "imagenes/capibara-vocabulario/montana-03.jpg",
+                          "author":  "Mountaineer",
+                          "license":  "CC BY 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Summitting_Island_Peak.jpg",
+                          "file":  "File:Summitting Island Peak.jpg"
+                      },
+                      {
+                          "es":  "sendero",
+                          "en":  "hiking trail",
+                          "image":  "imagenes/capibara-vocabulario/montana-04.jpg",
+                          "author":  "Jakub Hałun",
+                          "license":  "CC BY 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Hiking_trail_on_N%C3%A1mafjall_Mountain,_Iceland,_20240716_1130_1346.jpg",
+                          "file":  "File:Hiking trail on Námafjall Mountain, Iceland, 20240716 1130 1346.jpg"
+                      },
+                      {
+                          "es":  "botas de montaña",
+                          "en":  "hiking boots",
+                          "image":  "imagenes/capibara-vocabulario/montana-05.jpg",
+                          "author":  "GT1976",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:2018-01-01_(212)_McKinley_Hiking_boots.jpg",
+                          "file":  "File:2018-01-01 (212) McKinley Hiking boots.jpg"
+                      },
+                      {
+                          "es":  "bastón de senderismo",
+                          "en":  "walking stick",
+                          "image":  "imagenes/capibara-vocabulario/montana-06.jpg",
+                          "author":  "Tiia Monto",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Hiking_pole.jpg",
+                          "file":  "File:Hiking pole.jpg"
+                      },
+                      {
+                          "es":  "mochila",
+                          "en":  "backpack",
+                          "image":  "imagenes/capibara-vocabulario/montana-07.jpg",
+                          "author":  "Olympic National Park",
+                          "license":  "Public domain",
+                          "licenseUrl":  null,
+                          "source":  "https://commons.wikimedia.org/wiki/File:Hiker_subalpine_backpacking_mountain_people_NPS_Photo_(23061216662).jpg",
+                          "file":  "File:Hiker subalpine backpacking mountain people NPS Photo (23061216662).jpg"
+                      },
+                      {
+                          "es":  "brújula",
+                          "en":  "compass",
+                          "image":  "imagenes/capibara-vocabulario/montana-08.jpg",
+                          "author":  "Barby Dalbosco barbydalbosco",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Antique_gold_compass_(Unsplash).jpg",
+                          "file":  "File:Antique gold compass (Unsplash).jpg"
+                      },
+                      {
+                          "es":  "mapa",
+                          "en":  "map",
+                          "image":  "imagenes/capibara-vocabulario/montana-09.jpg",
+                          "author":  "NPS Photo / Emily Mesner",
+                          "license":  "Public domain",
+                          "licenseUrl":  null,
+                          "source":  "https://commons.wikimedia.org/wiki/File:A_park_ranger_discusses_how_to_read_a_topographic_map_with_visitors_on_a_Discovery_Hike_in_Denali_(b250534f-969b-4be8-b911-065277c51c8f).JPG",
+                          "file":  "File:A park ranger discusses how to read a topographic map with visitors on a Discovery Hike in Denali (b250534f-969b-4be8-b911-065277c51c8f).JPG"
+                      },
+                      {
+                          "es":  "arroyo",
+                          "en":  "stream",
+                          "image":  "imagenes/capibara-vocabulario/montana-10.jpg",
+                          "author":  "Didier Descouens",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:(Barcelona)_A_Bridge_over_a_mountain_Stream_-_Gorges_du_Guiers_Mort,_Chartreuse_-_1802_-_William_Turner_-_Tate_Britain.jpg",
+                          "file":  "File:(Barcelona) A Bridge over a mountain Stream - Gorges du Guiers Mort, Chartreuse - 1802 - William Turner - Tate Britain.jpg"
+                      },
+                      {
+                          "es":  "cascada",
+                          "en":  "waterfall",
+                          "image":  "imagenes/capibara-vocabulario/montana-11.jpg",
+                          "author":  "Joachim Frich",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:A_Mountain_Waterfall).jpg",
+                          "file":  "File:A Mountain Waterfall).jpg"
+                      },
+                      {
+                          "es":  "pino",
+                          "en":  "pine tree",
+                          "image":  "imagenes/capibara-vocabulario/montana-12.jpg",
+                          "author":  "Anton Vakulenko",
+                          "license":  "CC BY-SA 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Cloudy_fall_morning_in_the_pine_tree_forest.jpg",
+                          "file":  "File:Cloudy fall morning in the pine tree forest.jpg"
+                      },
+                      {
+                          "es":  "águila",
+                          "en":  "eagle",
+                          "image":  "imagenes/capibara-vocabulario/montana-13.jpg",
+                          "author":  "Mizhala",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Eagle_Bird.jpg",
+                          "file":  "File:Eagle Bird.jpg"
+                      },
+                      {
+                          "es":  "cabra montés",
+                          "en":  "mountain goat",
+                          "image":  "imagenes/capibara-vocabulario/montana-14.jpg",
+                          "author":  "Grickson Dave, U.S. Fish and Wildlife Service",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Male_mountain_goat_animal_oreamnos_americanus.jpg",
+                          "file":  "File:Male mountain goat animal oreamnos americanus.jpg"
+                      },
+                      {
+                          "es":  "marmota",
+                          "en":  "marmot",
+                          "image":  "imagenes/capibara-vocabulario/montana-15.jpg",
+                          "author":  "Olympic National Park",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Marmot_animal_resting_rocks_NPS_Photo_(17300652662).jpg",
+                          "file":  "File:Marmot animal resting rocks NPS Photo (17300652662).jpg"
+                      },
+                      {
+                          "es":  "nieve",
+                          "en":  "snow",
+                          "image":  "imagenes/capibara-vocabulario/montana-16.jpg",
+                          "author":  "Cogburn CC",
+                          "license":  "CC BY-SA 2.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/2.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Baima_Snow_Mountain_%E7%99%BD%E9%A9%AC%E9%9B%AA%E5%B1%B1,_Yunnan,_2009_(51989795792).jpg",
+                          "file":  "File:Baima Snow Mountain 白马雪山, Yunnan, 2009 (51989795792).jpg"
+                      },
+                      {
+                          "es":  "glaciar",
+                          "en":  "glacier",
+                          "image":  "imagenes/capibara-vocabulario/montana-17.jpg",
+                          "author":  "Olympic National Park",
+                          "license":  "Public domain",
+                          "licenseUrl":  "",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Eel_Glacier_Mountain_Anderson_10-20-10_NPS_JB_1814_(17312513792).jpg",
+                          "file":  "File:Eel Glacier Mountain Anderson 10-20-10 NPS JB 1814 (17312513792).jpg"
+                      },
+                      {
+                          "es":  "refugio",
+                          "en":  "mountain hut",
+                          "image":  "imagenes/capibara-vocabulario/montana-18.jpg",
+                          "author":  "Janezdrilc",
+                          "license":  "CC0",
+                          "licenseUrl":  "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Cesargrad_Mountain_Hut.jpg",
+                          "file":  "File:Cesargrad Mountain Hut.jpg"
+                      },
+                      {
+                          "es":  "señal de sendero",
+                          "en":  "trail sign",
+                          "image":  "imagenes/capibara-vocabulario/montana-19.jpg",
+                          "author":  "Lvaughn7",
+                          "license":  "CC BY-SA 4.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Greyrock_Mountain_Trail_sign.jpg",
+                          "file":  "File:Greyrock Mountain Trail sign.jpg"
+                      },
+                      {
+                          "es":  "prismáticos",
+                          "en":  "binoculars",
+                          "image":  "imagenes/capibara-vocabulario/montana-20.jpg",
+                          "author":  "Matěj Baťha",
+                          "license":  "CC BY-SA 3.0",
+                          "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                          "source":  "https://commons.wikimedia.org/wiki/File:Liverpool_Merseyside_Maritime_Museum_006.JPG",
+                          "file":  "File:Liverpool Merseyside Maritime Museum 006.JPG"
+                      }
+                  ],
+        "es":  "Montaña"
+    }
+]

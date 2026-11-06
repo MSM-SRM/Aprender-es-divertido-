@@ -67,6 +67,7 @@ const areaCatalog={
   {mode:'simbolos',title:'Símbolos',emoji:'🦚',questions:[['¿Qué animal acompaña a Ganesha en muchas representaciones?',['Un ratón','Un oso polar','Un delfín','Una jirafa'],'Un ratón'],['¿Qué flor aparece con frecuencia como símbolo en relatos de la India?',['Loto','Margarita','Girasol','Tulipán'],'Loto']]}
  ]},
  juegos:{title:'Juegos',key:'juegos',modules:[
+  {mode:'capibara-vocabulario',kind:'page',title:'Capi se va de aventura',emoji:'🗺️',url:'capibara-se-va-de-aventura.html',profiles:['sofia','mireia','guest'],newFor:['sofia','mireia','guest']},
   {mode:'abecedario-capibara',kind:'page',title:'El abecedario de Capi',emoji:'🔤',url:'abecedario-capibara.html',profiles:['sofia'],newFor:['sofia']},
   {mode:'puzzles-mireia',kind:'page',title:'Puzzles Mireia',emoji:'🧩',url:'puzzles-mireia.html',newFor:['mireia','guest']},
   {mode:'memoria',title:'Memoria',emoji:'🧠',questions:[['Recuerda la secuencia: sol, luna, sol. ¿Qué aparece primero?',['Sol','Luna','Estrella','Nube'],'Sol'],['¿Qué elemento se repite: gato, pez, gato, perro?',['Gato','Pez','Perro','Todos'],'Gato']]},
@@ -87,7 +88,7 @@ function renderModules(){
   $('modules').innerHTML=area.modules.filter(m=>!Array.isArray(m.profiles)||m.profiles.includes(profileId)).map(m=>{
     const badge=Array.isArray(m.newFor)&&m.newFor.includes(profileId)?'<span class="new-badge" aria-label="Novedad">NEW</span>':'';
     if(m.kind==='external')return `<a class="module module-link" href="${m.url}" target="_blank" rel="noopener noreferrer">${badge}<span class="emoji" aria-hidden="true">${m.emoji}</span><strong>${m.title}</strong><small>Recurso externo · abre en otra pestaña</small></a>`;
-    if(m.kind==='page'){const url=`${m.url}?profile=${encodeURIComponent(profileId)}`;return `<a class="module module-link" href="${url}">${badge}<span class="emoji" aria-hidden="true">${m.emoji}</span><strong>${m.title}</strong><small>Juego completo · abre en esta pestaña</small></a>`}
+    if(m.kind==='page'){let url=`${m.url}?profile=${encodeURIComponent(profileId)}`;if(m.mode==='capibara-vocabulario'){let uiLang='es';try{uiLang=localStorage.getItem('capibaraAventuraLanguage_'+profileId)||localStorage.getItem('mundoAprendizajeLanguage')||'es'}catch(e){}url+=`&uiLang=${uiLang==='en'?'en':'es'}`}return `<a class="module module-link" href="${url}">${badge}<span class="emoji" aria-hidden="true">${m.emoji}</span><strong>${m.title}</strong><small>Juego completo · abre en esta pestaña</small></a>`}
     return `<button class="module" data-mode="${m.mode}">${badge}<span class="emoji" aria-hidden="true">${m.emoji}</span><strong>${m.title}</strong></button>`
   }).join('');
   document.querySelectorAll('button[data-mode]').forEach(b=>b.addEventListener('click',()=>{currentModule=area.modules.find(m=>m.mode===b.dataset.mode);$('play').classList.add('active');nextRound();$('play').scrollIntoView({behavior:'smooth',block:'nearest'})}))

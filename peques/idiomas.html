@@ -11,6 +11,8 @@
 <style>
 .module-alpha{display:block;min-height:215px;padding:0;overflow:hidden;background:#eaf6ff}
 .module-alpha>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.module-alpha>picture{position:absolute;inset:0}
+.module-alpha>picture img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
 .module-alpha .jd-band{position:absolute;left:0;right:0;bottom:0;display:block;padding:28px 10px 11px;background:linear-gradient(to top,#fffffff0 55%,#ffffff00);text-align:center}
 .module-alpha .jd-band strong{display:block;font-size:clamp(1rem,2.4vw,1.22rem);line-height:1.15;color:#18365e}
 .module-alpha .jd-band small{display:block;margin-top:3px;font-size:.74rem;font-weight:700;line-height:1.2;color:#3d6188}
@@ -46,5 +48,14 @@ function startRound(){answered=false;current=null;$('feedback').textContent='';$
 function wordRound(){current=language.words[Math.floor(Math.random()*language.words.length)];$('title').textContent=`Palabras · ${language.short}`;$('hint').textContent=`¿Cómo se dice «${current[0]}» en ${language.short}?`;$('activity').innerHTML=`<div class="prompt"><div class="word">${current[0]}</div></div>`;const options=[current,...language.words.filter(x=>x!==current).sort(()=>Math.random()-.5).slice(0,3)].sort(()=>Math.random()-.5);choose(options,current[1],'words',x=>x[1])}
 function listenRound(){current=language.words[Math.floor(Math.random()*language.words.length)];$('title').textContent=`Escucha · ${language.short}`;$('hint').textContent='Pulsa el altavoz y elige el dibujo que corresponde.';$('activity').innerHTML=`<div class="prompt"><button class="action" id="speakWord" type="button">🔊 Escuchar</button></div>`;$('speakWord').onclick=()=>speak(current[1]);speak(current[1]);const options=[current,...language.words.filter(x=>x!==current).sort(()=>Math.random()-.5).slice(0,3)].sort(()=>Math.random()-.5);choose(options,current[1],'listen',x=>x[2])}
 function phraseRound(){current=language.phrases[Math.floor(Math.random()*language.phrases.length)];$('title').textContent=`Frases · ${language.short}`;$('hint').textContent='Lee la frase y elige lo que significa en español.';$('activity').innerHTML=`<div class="prompt"><div class="word">${current[0]}</div><button class="action alt" id="speakPhrase" type="button">🔊 Escuchar frase</button></div>`;$('speakPhrase').onclick=()=>speak(current[0]);const options=[current[1],...language.phrases.filter(x=>x!==current).map(x=>x[1])].sort(()=>Math.random()-.5);choose(options.map(value=>({value})),current[1],'phrases',x=>x.value)}
-renderModules();renderScores();$('next').addEventListener('click',startRound);$('change').addEventListener('click',()=>{$('play').classList.remove('active');$('modules').scrollIntoView({behavior:'smooth',block:'start'})});
+renderModules();
+if(language.key==='ingles'&&params.get('lang')==='en'){
+ const adventureCard=document.createElement('a');
+ adventureCard.className='module module-link module-alpha';
+ adventureCard.href=`capibara-se-va-de-aventura.html?profile=${encodeURIComponent(profileId)}&uiLang=en`;
+ adventureCard.setAttribute('aria-label',"Open Capi's adventure vocabulary game in English");
+ adventureCard.innerHTML=`<span class="jd-new" aria-hidden="true">NEW</span><picture><source media="(prefers-reduced-motion: reduce)" srcset="imagenes/capibara-vocabulario/capi-aventurera-poster.png"><img src="imagenes/capibara-vocabulario/capi-aventurera.gif" alt="" width="480" height="320"></picture><span class="jd-band"><strong>Capi Goes on an Adventure</strong><small>Learn and match 20 photo words at each place.</small></span>`;
+ $('modules').insertBefore(adventureCard,$('modules').firstChild);
+}
+renderScores();$('next').addEventListener('click',startRound);$('change').addEventListener('click',()=>{$('play').classList.remove('active');$('modules').scrollIntoView({behavior:'smooth',block:'start'})});
 </script><script src="ui-language.js"></script></body></html>

@@ -298,6 +298,7 @@ body.language-changing .app{animation:languageTumble .82s cubic-bezier(.22,.72,.
   <div class="section-title"><h2>🎮 Elige una actividad</h2><small id="levelText">Nivel descubrir</small></div>
   <div class="games">
     <a class="game game-link" href="abecedario-capibara.html?profile=sofia" data-alpha><img class="alpha-cover" src="imagenes/abecedario/capi-reading-cover.svg" alt="" width="800" height="500"><span class="new-badge">NEW</span><span class="alpha-band"><strong>El abecedario de Capi</strong><small>Escucha, mira y aprende las letras.</small></span></a>
+    <a class="game game-link" href="capibara-se-va-de-aventura.html?profile=sofia&amp;uiLang=es" data-vocab><span class="emoji" aria-hidden="true">🗺️</span><span class="new-badge">NEW</span><strong>Capi se va de aventura</strong><span>Aprende 20 palabras con fotos y juega a unirlas en cada lugar.</span></a>
     <button class="game" data-game="math"><span class="emoji">🔢</span><strong id="mathTitle">Contar objetos</strong><span id="mathDesc">Cuenta y elige el número.</span></button>
     <button class="game" data-game="words"><span class="emoji">🔤</span><strong>Palabras mágicas</strong><span id="wordsDesc">Escucha y reconoce palabras.</span></button>
     <button class="game" data-game="memory"><span class="emoji">🧠</span><strong>Memoria divertida</strong><span>Encuentra las parejas iguales.</span></button>
@@ -617,11 +618,19 @@ document.querySelectorAll("[data-profile]").forEach(b => {
     selectProfile(b.dataset.profile);
   });
 });
-document.querySelectorAll("a[data-alpha]").forEach(link => {
+document.querySelectorAll("a[data-alpha],a[data-vocab]").forEach(link => {
   link.addEventListener("click",() => {
     try {
       if(currentProfile === "sofia") sessionStorage.setItem("mundoAprendizajeReturnSofia","1");
     } catch(e) {}
+    if(link.hasAttribute("data-vocab")) {
+      try {
+        const language=localStorage.getItem("mundoAprendizajeLanguage");
+        const target=new URL(link.href,location.href);
+        target.searchParams.set("uiLang",language==="en"?"en":"es");
+        link.href=target.href;
+      } catch(e) {}
+    }
   });
 });
 $("switchProfile").onclick = switchProfile;
@@ -897,6 +906,7 @@ function flipCard(i,b) {
       "🔊 Escuchar":"🔊 Listen","🎮 Elige una actividad":"🎮 Choose an activity","Nivel descubrir":"Discover level","Nivel practicar":"Practice level",
       "Contar objetos":"Count objects","Retos matemáticos":"Math challenges","Cuenta y elige el número.":"Count and choose the number.",
       "El abecedario de Capi":"Capi's alphabet","Escucha, mira y aprende las letras.":"Listen, look and learn the letters.",
+      "Capi se va de aventura":"Capi Goes on an Adventure","Aprende 20 palabras con fotos y juega a unirlas en cada lugar.":"Learn 20 words with photos and match them at each place.",
       "Mapa de aventuras":"Adventure map","Explora el mundo mágico y sus zonas.":"Explore the magical world and its zones.",
       "Naruto: desafío ninja":"Naruto: ninja challenge","10 retos de cálculo con Naruto y Gaara.":"10 maths challenges with Naruto and Gaara.",
       "Sumas y restas sencillas.":"Simple addition and subtraction.","Palabras mágicas":"Magic words","Escucha y reconoce palabras.":"Listen and recognise words.",
@@ -946,6 +956,7 @@ function flipCard(i,b) {
       "🔊 Escuchar":"🔊 Escolta","🎮 Elige una actividad":"🎮 Tria una activitat","Nivel descubrir":"Nivell descobrir","Nivel practicar":"Nivell practicar",
       "Contar objetos":"Comptar objectes","Retos matemáticos":"Reptes matemàtics","Cuenta y elige el número.":"Compta i tria el número.",
       "El abecedario de Capi":"L'abecedari de la Capi","Escucha, mira y aprende las letras.":"Escolta, mira i aprèn les lletres.",
+      "Capi se va de aventura":"La Capi se'n va d'aventura","Aprende 20 palabras con fotos y juega a unirlas en cada lugar.":"Aprèn 20 paraules amb fotos i uneix-les a cada lloc.",
       "Mapa de aventuras":"Mapa d'aventures","Explora el mundo mágico y sus zonas.":"Explora el món màgic i les seves zones.",
       "Naruto: desafío ninja":"Naruto: desafiament ninja","10 retos de cálculo con Naruto y Gaara.":"10 reptes de càlcul amb Naruto i Gaara.",
       "Sumas y restas sencillas.":"Sumes i restes senzilles.","Palabras mágicas":"Paraules màgiques","Escucha y reconoce palabras.":"Escolta i reconeix paraules.",
@@ -995,6 +1006,7 @@ function flipCard(i,b) {
       "🔊 Escuchar":"🔊 Anhören","🎮 Elige una actividad":"🎮 Wähle eine Aktivität","Nivel descubrir":"Entdeckerstufe","Nivel practicar":"Übungsstufe",
       "Contar objetos":"Objekte zählen","Retos matemáticos":"Mathe-Aufgaben","Cuenta y elige el número.":"Zähle und wähle die Zahl.",
       "El abecedario de Capi":"Capis Alphabet","Escucha, mira y aprende las letras.":"Höre zu, schau hin und lerne die Buchstaben.",
+      "Capi se va de aventura":"Capi geht auf Abenteuer","Aprende 20 palabras con fotos y juega a unirlas en cada lugar.":"Lerne 20 Wörter mit Fotos und ordne sie an jedem Ort zu.",
       "Mapa de aventuras":"Abenteuerkarte","Explora el mundo mágico y sus zonas.":"Entdecke die magische Welt und ihre Zonen.",
       "Naruto: desafío ninja":"Naruto: Ninja-Herausforderung","10 retos de cálculo con Naruto y Gaara.":"10 Rechenaufgaben mit Naruto und Gaara.",
       "Sumas y restas sencillas.":"Einfache Addition und Subtraktion.","Palabras mágicas":"Zauberwörter","Escucha y reconoce palabras.":"Höre Wörter und erkenne sie.",

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5a8c7">
+<title>Capi se va de aventura · Mi Mundo de Aprendizaje</title>
+<script src="auth-guard.js"></script>
+<script src="progress-shared.js"></script>
+<style>
+:root{font-family:"Trebuchet MS",system-ui,sans-serif;color:#31412f;background:#fff3e7;font-synthesis:none}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 82% 4%,#ffe4f0 0,transparent 35%),linear-gradient(145deg,#fff8e9,#e9f6e5);padding:clamp(12px,3vw,30px)}
+button{font:inherit;touch-action:manipulation;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid #185ea8;outline-offset:3px}
+.wrap{width:min(100%,1000px);margin:auto}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:clamp(14px,3vw,25px)}
+.back,.language{min-height:44px;border:2px solid #f2c5d5;border-radius:999px;background:#fff;color:#70405b;padding:9px 14px;font-weight:900;text-decoration:none}
+.language{border-color:#b9d8a8;color:#365b32}
+h1{margin:0;text-align:center;color:#98506e;font-size:clamp(1.7rem,5.5vw,3rem);line-height:1.04}
+.subhead{margin:7px 0 0;text-align:center;color:#617354;font-size:clamp(.97rem,2.4vw,1.15rem);font-weight:700}
+.hero{display:flex;align-items:center;justify-content:center;gap:clamp(10px,4vw,28px);margin:18px auto 22px;padding:12px clamp(12px,4vw,28px);border:3px solid #fff;border-radius:24px;background:#fffdf0d9;box-shadow:0 8px 22px #66402a16}
+.hero img{display:block;width:min(34vw,230px);max-height:160px;object-fit:contain;flex:0 0 auto}
+.hero p{max-width:480px;margin:0;color:#52684b;font-weight:800;line-height:1.5}
+.stage{display:none}
+.stage.active{display:block}
+.panel{padding:clamp(16px,4vw,28px);border:3px solid #fff;border-radius:26px;background:#ffffffdf;box-shadow:0 9px 25px #66402a17}
+.panel h2{margin:0 0 8px;color:#5a7549;font-size:clamp(1.35rem,4vw,1.8rem)}
+.intro{margin:0 0 18px;color:#587052;line-height:1.45}
+.locations{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:12px}
+.location{min-height:105px;border:2px solid #e4efd7;border-radius:20px;background:linear-gradient(145deg,#fff,#f1f8e9);color:#365b32;text-align:left;padding:14px;display:flex;align-items:center;gap:12px;box-shadow:0 4px 11px #42663810;font-weight:900}
+.location:hover{transform:translateY(-2px);border-color:#9fc782}
+.location .emoji{font-size:2.15rem;line-height:1;flex:none}
+.location small{display:block;margin-top:3px;color:#718265;font-weight:700}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:15px}
+.crumb{color:#6b7b60;font-weight:800}
+.step-count{padding:6px 12px;border-radius:999px;background:#fff2c8;color:#775d21;font-size:.95rem;font-weight:900}
+.photo-card{max-width:610px;margin:0 auto;text-align:center}
+.photo{display:block;width:min(100%,520px);height:clamp(220px,52vw,370px);margin:auto;object-fit:contain;border-radius:20px;background:#f8f6ee;box-shadow:0 5px 15px #3a392414}
+.photo-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.photo-gallery .photo{width:100%;height:clamp(170px,35vw,280px)}
+.word{margin:14px 0 0;color:#365b32;font-size:clamp(2rem,7vw,3.2rem);font-weight:1000;line-height:1.1}
+.translation{margin:5px 0 0;color:#6b7760;font-size:clamp(1rem,3vw,1.3rem);font-weight:800}
+.credit{margin:12px auto 0;padding:10px 12px;border-radius:14px;background:#f4f6ed;color:#56614f;font-size:.78rem;line-height:1.45;overflow-wrap:anywhere}
+.credit-source{display:block}
+.credit a{color:#315f91;font-weight:800;text-underline-offset:2px}
+.actions{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:17px}
+.action{min-height:48px;border:0;border-radius:999px;background:#528b42;color:#fff;padding:11px 20px;font-weight:900;box-shadow:0 4px 0 #3f7132}
+.action.secondary{background:#fbe2ec;color:#78445d;box-shadow:0 4px 0 #eab9cc}
+.action:disabled{opacity:.5;cursor:default}
+.quiz-question{max-width:630px;margin:12px auto 16px;text-align:center;color:#5c704d;font-size:clamp(1.1rem,3.4vw,1.5rem);font-weight:900}
+.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:620px;margin:18px auto}
+.answer{min-height:62px;border:2px solid #dfead4;border-radius:17px;background:#fff;color:#365b32;padding:10px;font-size:clamp(1rem,3vw,1.25rem);font-weight:900}
+.answer:hover:not(:disabled){border-color:#78a55d;background:#f7fbf1}
+.answer.correct{border-color:#528b42;background:#e8f7df}
+.feedback{min-height:30px;text-align:center;color:#4c7540;font-weight:900}
+.feedback.error{color:#a44949}
+.finish{text-align:center}
+.finish .big-emoji{font-size:3.3rem}
+.finish p{color:#556d4c;font-size:1.1rem;font-weight:800}
+.loading,.error{padding:22px;border-radius:18px;background:#fff2d6;color:#74551d;font-weight:800}
+.error{background:#ffeded;color:#8e3535}
+.foot{margin:19px auto 0;text-align:center;color:#718064;font-size:.82rem}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:540px){.top{align-items:flex-start}.back,.language{padding:8px 10px;font-size:.88rem}.hero{gap:10px}.hero img{width:30vw;max-width:126px}.hero p{font-size:.92rem}.locations{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.location{min-height:92px;padding:10px;gap:8px;font-size:.93rem}.location .emoji{font-size:1.8rem}.answers{gap:8px}.answer{min-height:58px}.photo{height:clamp(215px,62vw,320px)}.photo-gallery .photo{height:clamp(145px,48vw,220px)}}
+@media(max-width:360px){.locations{grid-template-columns:1fr}.back,.language{font-size:.82rem}.hero p{font-size:.85rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="top">
+    <a class="back" id="back" href="areas-test.html?area=juegos">← Volver a Juegos</a>
+    <button class="language" id="languageToggle" type="button" aria-label="Cambiar idioma">English</button>
+  </header>
+  <h1 id="gameTitle">Capi se va de aventura</h1>
+  <p class="subhead" id="tagline">¡Acompaña a Capi de aventura y descubre palabras nuevas!</p>
+  <section class="hero" id="heroRegion" aria-label="Capi, la capibara aventurera">
+    <picture>
+      <source media="(prefers-reduced-motion: reduce)" srcset="imagenes/capibara-vocabulario/capi-aventurera-poster.png">
+      <img id="capiHero" src="imagenes/capibara-vocabulario/capi-aventurera.gif" width="480" height="320" alt="Capi, una capibara con uniforme rosa de jiu-jitsu brasileño, mochila de aventura y un mapa, camina de lado.">
+    </picture>
+    <p id="heroText">Elige un lugar. Primero miraremos y leeremos 20 fotos; después jugaremos a unir cada foto con su palabra.</p>
+  </section>
+
+  <section class="stage active" id="loadingStage" aria-live="polite">
+    <p class="loading" id="loadingMessage">Preparando las aventuras y sus fotografías…</p>
+  </section>
+  <section class="stage" id="locationsStage" aria-labelledby="locationsTitle">
+    <div class="panel">
+      <h2 id="locationsTitle" tabindex="-1">¿Adónde vamos?</h2>
+      <p class="intro" id="locationsHint">Elige una aventura. Cada lugar tiene 20 palabras con fotografías reales.</p>
+      <div class="locations" id="locationList"></div>
+    </div>
+  </section>
+  <section class="stage" id="learnStage" aria-labelledby="learnTitle">
+    <div class="panel">
+      <div class="bar"><span class="crumb" id="learnLocation"></span><span class="step-count" id="learnCount"></span></div>
+      <h2 class="sr-only" id="learnTitle" tabindex="-1">Tarjeta para aprender una palabra</h2>
+      <div class="photo-card" id="learnCard"></div>
+      <div class="actions">
+        <button class="action secondary" id="learnBack" type="button"></button>
+        <button class="action" id="learnNext" type="button"></button>
+      </div>
+    </div>
+  </section>
+  <section class="stage" id="quizStage" aria-labelledby="quizTitle">
+    <div class="panel">
+      <div class="bar"><span class="crumb" id="quizLocation"></span><span class="step-count" id="quizCount"></span></div>
+      <h2 class="sr-only" id="quizTitle" tabindex="-1">Juego de unir las fotos con sus palabras</h2>
+      <p class="quiz-question" id="quizPrompt"></p>
+      <div class="photo-card" id="quizCard"></div>
+      <div class="answers" id="answerList"></div>
+      <p class="feedback" id="feedback" aria-live="polite"></p>
+      <div class="actions"><button class="action" id="quizNext" type="button" hidden></button></div>
+    </div>
+  </section>
+  <section class="stage" id="finishStage" aria-labelledby="finishTitle">
+    <div class="panel finish">
+      <div class="big-emoji" aria-hidden="true">🌟</div>
+      <h2 id="finishTitle" tabindex="-1"></h2>
+      <p id="finishScore"></p>
+      <div class="actions">
+        <button class="action" id="replayQuiz" type="button"></button>
+        <button class="action secondary" id="chooseAgain" type="button"></button>
+      </div>
+    </div>
+  </section>
+  <p class="foot" id="footerNote">Las fotografías son de Wikimedia Commons. Cada tarjeta incluye el nombre de quien la creó, su fuente y su licencia.</p>
+</main>
+<script src="capibara-se-va-de-aventura.js"></script>
+</body>
+</html>

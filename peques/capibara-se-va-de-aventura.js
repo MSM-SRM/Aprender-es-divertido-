@@ -1,0 +1,368 @@
+(() => {
+  'use strict';
+
+  const params = new URLSearchParams(location.search);
+  const profiles = ['sofia', 'mireia', 'guest'];
+  const profile = profiles.includes(params.get('profile')) ? params.get('profile') : 'guest';
+  const localeKey = `capibaraAventuraLanguage_${profile}`;
+  const strings = {
+    es: {
+      back: '← Volver a Juegos', tagline: '¡Acompaña a Capi de aventura y descubre palabras nuevas!',
+      hero: 'Para niñas y niños de 6 a 9 años: elige un lugar. Primero miraremos y leeremos 20 fotos; después uniremos cada foto con su palabra.',
+      heroAlt: 'Capi, la capibara aventurera, camina de lado con un kimono rosa de jiu-jitsu, una mochila y un mapa.',
+      heroRegion: 'Capi, la capibara aventurera',
+      loading: 'Preparando las aventuras y sus fotografías…', loadError: 'No se pudieron cargar las aventuras. Abre esta página desde el servidor local del proyecto.',
+      badData: 'La aventura no está completa: debe tener 11 lugares, 20 palabras por lugar y sus fotografías con atribuciones. Revisa los datos antes de jugar.',
+      where: '¿Adónde vamos?', locationHint: 'Elige una aventura. Cada lugar tiene 20 palabras con fotografías reales.',
+      learn: 'Aprende las palabras', learnHeading: 'Tarjeta para aprender una palabra', quizHeading: 'Juego de unir las fotos con sus palabras',
+      previous: '← Anterior', choosePlace: '← Elegir lugar', next: 'Siguiente →', startQuiz: '¡A jugar! Unir fotos y palabras →',
+      quizPrompt: '¿Qué palabra corresponde a esta foto?', correct: '¡Muy bien! 🌟', tryAgain: '¡Casi! Prueba con otra palabra.',
+      nextQuestion: 'Siguiente foto →', finish: '¡Aventura completada!', score: (score, total) => `Has unido ${score} de ${total} fotos con su palabra. ¡Buen trabajo!`,
+      replay: 'Jugar otra vez', chooseAgain: 'Elegir otro lugar', footer: 'Las fotografías son de Wikimedia Commons. Cada tarjeta incluye el nombre de quien la creó, su fuente y su licencia.',
+      photoBy: 'Fotografía de',       file: 'Archivo de Wikimedia Commons', modified: 'imagen recortada', language: 'English',
+      imagesAlt: word => `Fotografía de ${word}`, progress: (index, total) => `Foto ${index} de ${total}`,
+      locationCount: count => `${count} palabras con fotos`, languageName: 'Español', retry: 'Volver a las tarjetas'
+    },
+    en: {
+      back: '← Back to Games', tagline: 'Join Capi on an adventure and discover new words!',
+      hero: 'For ages 6–9: choose a place. First we will look at and read 20 photos; then we will match each photo to its word.',
+      heroAlt: 'Capi the capybara walks sideways wearing a pink jiu-jitsu gi, an adventure backpack, and carrying a map.',
+      heroRegion: 'Capi the adventurous capybara',
+      loading: 'Getting the adventures and their photos ready…', loadError: 'The adventures could not be loaded. Open this page using the project’s local web server.',
+      badData: 'This adventure is incomplete: it needs 11 places, 20 words per place, and properly credited photos. Check the game data before playing.',
+      where: 'Where shall we go?', locationHint: 'Choose an adventure. Every place has 20 words with real photographs.',
+      learn: 'Learn the words', learnHeading: 'Learning card', quizHeading: 'Match the photos to their words',
+      previous: '← Previous', choosePlace: '← Choose place', next: 'Next →', startQuiz: 'Let’s play! Match photos and words →',
+      quizPrompt: 'Which word matches this photo?', correct: 'Great job! 🌟', tryAgain: 'Not quite. Try another word.',
+      nextQuestion: 'Next photo →', finish: 'Adventure complete!', score: (score, total) => `You matched ${score} out of ${total} photos to their words. Great work!`,
+      replay: 'Play again', chooseAgain: 'Choose another place', footer: 'Photos are from Wikimedia Commons. Every card credits its creator, source, and license.',
+      photoBy: 'Photo by', file: 'Wikimedia Commons file', modified: 'cropped image', language: 'Español',
+      imagesAlt: word => `Photo of ${word}`, progress: (index, total) => `Photo ${index} of ${total}`,
+      locationCount: count => `${count} words with photos`, languageName: 'English', retry: 'Review the cards'
+    }
+  };
+  let language = params.get('uiLang') === 'en' ? 'en' : params.get('uiLang') === 'es' ? 'es' : '';
+  if (!language) {
+    try { language = localStorage.getItem(localeKey) === 'en' ? 'en' : 'es'; } catch (error) { language = 'es'; }
+  }
+  try { localStorage.setItem(localeKey, language); } catch (error) {}
+  const $ = id => document.getElementById(id);
+  let ui = strings[language];
+  const stages = ['loadingStage', 'locationsStage', 'learnStage', 'quizStage', 'finishStage'];
+  let packs = [];
+  let selectedPack = null;
+  let learnIndex = 0;
+  let quizItems = [];
+  let quizIndex = 0;
+  let correctAnswers = 0;
+  let answered = false;
+
+  function setText(id, text) {
+    $(id).textContent = text;
+  }
+
+  function setStage(id) {
+    stages.forEach(stageId => $(stageId).classList.toggle('active', stageId === id));
+    const heading = id === 'locationsStage' ? $('locationsTitle') : $(id).querySelector('h2');
+    if (heading) heading.focus?.();
+  }
+
+  function createSourceCredit(container, item) {
+    const credit = document.createElement('p');
+    credit.className = 'credit';
+    const sources = [
+      { author: item.author, license: item.license, licenseUrl: item.licenseUrl, source: item.source, file: item.file, modified: item.modified },
+      ...(item.additionalCredits || [])
+    ];
+    sources.forEach(imageCredit => {
+      const line = document.createElement('span');
+      line.className = 'credit-source';
+      line.append(`${ui.photoBy} ${imageCredit.author} · `);
+      const license = document.createElement('a');
+      license.href = imageCredit.licenseUrl || imageCredit.source;
+      license.target = '_blank';
+      license.rel = 'noopener noreferrer';
+      license.textContent = imageCredit.license;
+      line.appendChild(license);
+      if (imageCredit.modified) line.append(` · ${ui.modified}`);
+      line.append(' · ');
+      const source = document.createElement('a');
+      source.href = imageCredit.source;
+      source.target = '_blank';
+      source.rel = 'noopener noreferrer';
+      source.textContent = `${ui.file}: ${imageCredit.file.replace(/^File:/, '')}`;
+      line.appendChild(source);
+      credit.appendChild(line);
+    });
+    container.appendChild(credit);
+  }
+
+  function makePhoto(item) {
+    const photos = [
+      { image: item.image, alt: ui.imagesAlt(item[language]) },
+      ...(item.additionalImages || []).map(photo => ({ image: photo.image, alt: photo[language] || ui.imagesAlt(item[language]) }))
+    ];
+    const gallery = document.createElement(photos.length > 1 ? 'div' : 'img');
+    if (photos.length > 1) {
+      gallery.className = 'photo-gallery';
+      gallery.setAttribute('role', 'group');
+      gallery.setAttribute('aria-label', ui.imagesAlt(item[language]));
+    }
+    photos.forEach(photo => {
+      const image = photos.length === 1 ? gallery : document.createElement('img');
+      image.className = 'photo';
+      image.src = photo.image;
+      image.alt = photo.alt;
+      image.width = 520;
+      image.height = 370;
+      image.loading = 'eager';
+      image.decoding = 'async';
+      if (photos.length > 1) gallery.appendChild(image);
+    });
+    return gallery;
+  }
+
+  function addWordLabels(container, item) {
+    const word = document.createElement('p');
+    word.className = 'word';
+    word.textContent = item[language];
+    const translation = document.createElement('p');
+    translation.className = 'translation';
+    translation.textContent = item[language === 'es' ? 'en' : 'es'];
+    container.append(word, translation);
+  }
+
+  function renderLocations() {
+    const list = $('locationList');
+    list.replaceChildren();
+    packs.forEach(pack => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'location';
+      button.dataset.locationId = pack.id;
+      const emoji = document.createElement('span');
+      emoji.className = 'emoji';
+      emoji.setAttribute('aria-hidden', 'true');
+      emoji.textContent = pack.emoji;
+      const label = document.createElement('span');
+      label.append(document.createTextNode(pack[language]));
+      const count = document.createElement('small');
+      count.textContent = ui.locationCount(pack.items.length);
+      label.appendChild(count);
+      button.append(emoji, label);
+      button.addEventListener('click', () => startPack(pack));
+      list.appendChild(button);
+    });
+  }
+
+  function startPack(pack) {
+    selectedPack = pack;
+    learnIndex = 0;
+    setText('learnLocation', `${pack.emoji} ${pack[language]}`);
+    setStage('learnStage');
+    renderLearningCard();
+  }
+
+  function renderLearningCard() {
+    const item = selectedPack.items[learnIndex];
+    $('learnCount').textContent = ui.progress(learnIndex + 1, selectedPack.items.length);
+    const card = $('learnCard');
+    card.replaceChildren(makePhoto(item));
+    addWordLabels(card, item);
+    createSourceCredit(card, item);
+    $('learnBack').disabled = false;
+    $('learnBack').textContent = learnIndex === 0 ? ui.choosePlace : ui.previous;
+    $('learnNext').textContent = learnIndex === selectedPack.items.length - 1 ? ui.startQuiz : ui.next;
+  }
+
+  function startQuiz() {
+    quizItems = [...selectedPack.items].sort(() => Math.random() - 0.5);
+    quizIndex = 0;
+    correctAnswers = 0;
+    answered = false;
+    setText('quizLocation', `${selectedPack.emoji} ${selectedPack[language]}`);
+    $('quizPrompt').textContent = ui.quizPrompt;
+    setStage('quizStage');
+    renderQuestion();
+  }
+
+  function renderQuestion(preserveAnswer = false) {
+    const keepAnswer = preserveAnswer && answered;
+    const item = quizItems[quizIndex];
+    $('quizCount').textContent = ui.progress(quizIndex + 1, quizItems.length);
+    const card = $('quizCard');
+    card.replaceChildren(makePhoto(item));
+    createSourceCredit(card, item);
+    const distractors = selectedPack.items.filter(candidate => candidate !== item).sort(() => Math.random() - 0.5).slice(0, 3);
+    const answers = [item, ...distractors].sort(() => Math.random() - 0.5);
+    const answerList = $('answerList');
+    answerList.replaceChildren();
+    answers.forEach(answer => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'answer';
+      button.textContent = answer[language];
+      button.addEventListener('click', () => checkAnswer(button, answer === item));
+      answerList.appendChild(button);
+    });
+    $('feedback').textContent = keepAnswer ? ui.correct : '';
+    $('feedback').classList.toggle('error', false);
+    $('quizNext').hidden = !keepAnswer;
+    $('quizNext').textContent = quizIndex === quizItems.length - 1 ? ui.finish : ui.nextQuestion;
+    if (keepAnswer) {
+      answerList.querySelectorAll('button').forEach(answer => {
+        answer.disabled = true;
+        if (answer.textContent === item[language]) answer.classList.add('correct');
+      });
+    } else {
+      answered = false;
+    }
+  }
+
+  function checkAnswer(button, correct) {
+    if (answered) return;
+    if (!correct) {
+      $('feedback').textContent = ui.tryAgain;
+      $('feedback').classList.add('error');
+      return;
+    }
+    answered = true;
+    correctAnswers++;
+    button.classList.add('correct');
+    $('answerList').querySelectorAll('button').forEach(answer => { answer.disabled = true; });
+    $('feedback').textContent = ui.correct;
+    $('feedback').classList.remove('error');
+    $('quizNext').hidden = false;
+  }
+
+  function saveCompletion() {
+    if (!window.MiProgreso) return;
+    const progress = MiProgreso.load(profile);
+    progress.rounds = (Number(progress.rounds) || 0) + 1;
+    progress.byGame.capibara_aventura = (Number(progress.byGame.capibara_aventura) || 0) + 1;
+    const gameArea = MiProgreso.area(progress, 'juegos');
+    gameArea.gold++;
+    MiProgreso.persist(profile, progress);
+  }
+
+  function finishQuiz() {
+    setText('finishTitle', `${ui.finish} ${selectedPack.emoji}`);
+    setText('finishScore', ui.score(correctAnswers, quizItems.length));
+    $('replayQuiz').textContent = ui.replay;
+    $('chooseAgain').textContent = ui.chooseAgain;
+    saveCompletion();
+    setStage('finishStage');
+  }
+
+  function applyLanguage() {
+    ui = strings[language];
+    document.documentElement.lang = language;
+    document.title = language === 'es' ? 'Capi se va de aventura · Mi Mundo de Aprendizaje' : 'Capi Goes on an Adventure · My Learning World';
+    const isSofia = profile === 'sofia';
+    $('back').href = isSofia ? `index.html?profile=${profile}` : `areas-test.html?area=juegos&profile=${profile}`;
+    setText('back', ui.back);
+    setText('gameTitle', language === 'es' ? 'Capi se va de aventura' : 'Capi Goes on an Adventure');
+    setText('tagline', ui.tagline);
+    setText('heroText', ui.hero);
+    $('capiHero').alt = ui.heroAlt;
+    $('heroRegion').setAttribute('aria-label', ui.heroRegion);
+    setText('loadingMessage', ui.loading);
+    setText('locationsTitle', ui.where);
+    setText('locationsHint', ui.locationHint);
+    setText('learnTitle', ui.learnHeading);
+    setText('quizTitle', ui.quizHeading);
+    setText('footerNote', ui.footer);
+    $('languageToggle').textContent = ui.language;
+    $('languageToggle').setAttribute('aria-label', language === 'es' ? 'Cambiar a English' : 'Switch to Español');
+    if (packs.length) renderLocations();
+    if (selectedPack && $('learnStage').classList.contains('active')) {
+      setText('learnLocation', `${selectedPack.emoji} ${selectedPack[language]}`);
+      renderLearningCard();
+    } else if (selectedPack && $('quizStage').classList.contains('active')) {
+      setText('quizLocation', `${selectedPack.emoji} ${selectedPack[language]}`);
+      $('quizPrompt').textContent = ui.quizPrompt;
+      renderQuestion(true);
+    } else if (selectedPack && $('finishStage').classList.contains('active')) {
+      setText('finishTitle', `${ui.finish} ${selectedPack.emoji}`);
+      setText('finishScore', ui.score(correctAnswers, quizItems.length));
+      $('replayQuiz').textContent = ui.replay;
+      $('chooseAgain').textContent = ui.chooseAgain;
+    }
+  }
+
+  function validateData(data) {
+    return Array.isArray(data) && data.length === 11 && data.every(pack =>
+      pack.id && pack.es && pack.en && pack.emoji && Array.isArray(pack.items) && pack.items.length === 20 &&
+      pack.items.every(item => {
+        const validCredit = credit => credit && credit.author && credit.license && credit.source && credit.file;
+        const additionalImages = item.additionalImages || [];
+        const additionalCredits = item.additionalCredits || [];
+        return item.es && item.en && item.image && validCredit(item) &&
+          Array.isArray(additionalImages) && Array.isArray(additionalCredits) &&
+          additionalImages.length === additionalCredits.length &&
+          additionalImages.every(photo => photo && photo.image && photo.es && photo.en) &&
+          additionalCredits.every(validCredit);
+      })
+    );
+  }
+
+  $('learnBack').addEventListener('click', () => {
+    if (learnIndex === 0) {
+      setStage('locationsStage');
+      return;
+    }
+    learnIndex--;
+    renderLearningCard();
+  });
+  $('learnNext').addEventListener('click', () => {
+    if (learnIndex < selectedPack.items.length - 1) {
+      learnIndex++;
+      renderLearningCard();
+      return;
+    }
+    startQuiz();
+  });
+  $('quizNext').addEventListener('click', () => {
+    if (quizIndex < quizItems.length - 1) {
+      quizIndex++;
+      renderQuestion();
+      return;
+    }
+    finishQuiz();
+  });
+  $('replayQuiz').addEventListener('click', startQuiz);
+  $('chooseAgain').addEventListener('click', () => {
+    selectedPack = null;
+    setStage('locationsStage');
+  });
+  $('languageToggle').addEventListener('click', () => {
+    language = language === 'es' ? 'en' : 'es';
+    try { localStorage.setItem(localeKey, language); } catch (error) {}
+    params.set('profile', profile);
+    params.set('uiLang', language);
+    history.replaceState(null, '', `${location.pathname}?${params.toString()}${location.hash}`);
+    applyLanguage();
+  });
+  $('back').addEventListener('click', () => {
+    if (profile === 'sofia') {
+      try { sessionStorage.setItem('mundoAprendizajeReturnSofia', '1'); } catch (error) {}
+    }
+  });
+
+  applyLanguage();
+  fetch('capibara-vocabulario.json')
+    .then(response => {
+      if (!response.ok) throw new Error('Data request failed');
+      return response.json();
+    })
+    .then(data => {
+      if (!validateData(data)) throw new Error('Incomplete vocabulary data');
+      packs = data;
+      renderLocations();
+      setStage('locationsStage');
+    })
+    .catch(error => {
+      setText('loadingMessage', error.message === 'Incomplete vocabulary data' ? ui.badData : ui.loadError);
+      $('loadingMessage').classList.add('error');
+    });
+})();
