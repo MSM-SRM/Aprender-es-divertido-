@@ -1104,7 +1104,7 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 - Título definitivo: «Capi se va de aventura»; inglés «Capi Goes on an Adventure»; catalán «La Capi se'n va d'aventura»; alemán «Capi geht auf Abenteuer».
 - `peques/index.html`: tarjeta de Sofia con badge **NEW**, después del abecedario.
-- `peques/areas-test.html`: tarjeta primera en Juegos, antes del abecedario, con paso de `uiLang`.
+- `peques/areas-test.html`: tarjeta primera en Juegos, antes del abecedario, con paso de `uiLang` que prioriza el idioma de la página y, si no viene, la preferencia guardada.
 - `peques/idiomas.html`: tarjeta English-only primera en Lengua Inglés, con GIF, póster y atribución.
 - `peques/ui-language.js`: traducciones del título para EN/CA/DE.
 - La vuelta a Juegos usa `index.html?profile=sofia` y un flag de sesión para abrir directamente el inicio de Sofia.
@@ -1121,3 +1121,4 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 - Código publicado en `c6a9ae4`.
 - Verificado en GitHub Pages: página del juego, JSON, GIF, póster, tarjetas y enlaces responden correctamente.
+- `6295cc1` corrige el enlace de la tarjeta de Juegos: antes podía abrir el juego en español aunque la página estuviera en inglés; ahora `uiLang` de la página tiene prioridad y, si falta, se usa la preferencia guardada.
