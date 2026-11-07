@@ -1187,6 +1187,7 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 ### Publicación
 
 - Código y 493 MP3 publicados en `b2857d5` (496 archivos); GitHub Pages ejecución `42413418398` terminó con éxito.
+- Documentación y herramientas publicadas en `4e1c3c7` y `d6e36d3`. El despliegue de `4e1c3c7` falló por un timeout de GitHub Pages; el de `d6e36d3` (ejecución `42414933887`) terminó con éxito y el sitio quedó actualizado.
 - Producción verificada:
   - Los MP3 de abecedario (EN/ES) y vocabulario (EN/ES) responden 200 con `Content-Type: audio/mp3`.
   - Abecedario inglés (`profile=guest&uiLang=en`): A reproduce `audios/abecedario/en/A.mp3` (2,268 s) y muestra «Playing…», con consola limpia.

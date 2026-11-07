@@ -296,6 +296,8 @@ Todas están en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\`. Los hashes
 | 06/11/2026 | `88655b3` | Créditos de la aventura agrupados en un panel discreto |
 | 06/11/2026 | `8e91cfb` | Texto de bienvenida de la aventura actualizado |
 | 07/11/2026 | `b2857d5` | Audio en inglés británico y español del abecedario y la aventura, publicado y verificado |
+| 07/11/2026 | `4e1c3c7` | Documentación del audio en `ESTADO-PROYECTO.md` y `peques/PLAN.md` |
+| 07/11/2026 | `d6e36d3` | Instrucciones de Copilot y herramientas de verificación de audio |
 
 ---
 
