@@ -32,13 +32,13 @@ h1{margin:0;text-align:center;color:#245a31;font-size:clamp(1.7rem,5vw,3rem);tex
 .reveal{position:fixed;inset:0;z-index:5;display:grid;place-items:center;padding:18px;background:#17391c9c;overflow:auto;animation:fadeIn .15s ease-out}
 .reveal[hidden]{display:none}
 .picture{position:relative;width:min(100%,430px);max-height:calc(100dvh - 36px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:32px 22px 24px;border:5px solid #fff;border-radius:32px;background:linear-gradient(145deg,#fffef2,#e7f7dc);box-shadow:0 18px 55px #102d18a8;text-align:center;overflow:auto}
-.close{position:absolute;top:8px;right:9px;width:42px;height:42px;border:2px solid #d9e9cf;border-radius:50%;background:#fff;color:#325b39;font-size:1.55rem;font-weight:900;line-height:1}
+.close{position:absolute;top:8px;right:9px;width:44px;height:44px;border:2px solid #d9e9cf;border-radius:50%;background:#fff;color:#325b39;font-size:1.55rem;font-weight:900;line-height:1}
 .picture-letter{font-size:clamp(2rem,8vw,3.2rem);font-weight:1000;color:#52813b;line-height:1}
 .object-photo{display:block;width:min(100%,360px);height:min(220px,30vh);min-height:135px;object-fit:contain;border-radius:16px;background:#fff;box-shadow:0 5px 16px #35572b27}
 .object-name{margin:0;color:#284e30;font-size:clamp(1.8rem,7vw,2.6rem);font-weight:1000}
 .credits a{color:#315d3b;text-underline-offset:2px}
 .speech-status{max-width:340px;min-height:1.35em;margin:0;color:#536d4e;font-size:.9rem;font-weight:700;line-height:1.35}
-.say-again{border:0;border-radius:999px;background:#538a3b;color:white;padding:10px 17px;font-weight:900;box-shadow:0 4px 0 #3f6d2d}
+.say-again{border:0;border-radius:999px;background:#538a3b;color:white;padding:10px 17px;min-height:44px;font-weight:900;box-shadow:0 4px 0 #3f6d2d}
 .say-again:focus-visible,.close:focus-visible{outline:3px solid #17391c;outline-offset:3px}
 .credits{margin:14px auto 0;padding:11px 15px;max-width:760px;border:2px solid #fff;border-radius:18px;background:#fffef0ed;color:#365b39;box-shadow:0 5px 14px #243d2822;font-size:.9rem}
 .credits h2{margin:0;font-size:1rem}
@@ -86,6 +86,7 @@ h1{margin:0;text-align:center;color:#245a31;font-size:clamp(1.7rem,5vw,3rem);tex
   </div>
 </section>
 <p class="sr-only" id="announcement" aria-live="polite"></p>
+<audio id="voiceAudio" preload="auto" hidden></audio>
 <script src="ui-language.js"></script>
 <script>
 const alphabet={es:'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split(''),en:'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')};
@@ -99,14 +100,63 @@ const name=document.getElementById('objectName');
 const letterLabel=document.getElementById('pictureLetter');
 const announcement=document.getElementById('announcement');
 const speechStatus=document.getElementById('speechStatus');
+const voiceAudio=document.getElementById('voiceAudio');
 const creditsButton=document.getElementById('creditsTitle');
 const creditsHint=document.getElementById('creditsHint');
 const creditsContent=document.getElementById('creditsContent');
 const creditsStatus=document.getElementById('creditsStatus');
 let creditsActivations=0;
-let closeTimer=0,speechWatchdog=0,voiceWaitTimer=0,voiceWaitCancel=null,speechRequest=0,loadRequest=0,currentItem=null,activeAlphabet=[];
+let closeTimer=0,speechWatchdog=0,voiceWaitTimer=0,voiceWaitCancel=null,speechRequest=0,audioRequest=0,loadRequest=0,currentItem=null,activeAlphabet=[];
 const currentUiLanguage=()=>window.MiIdioma?window.MiIdioma.current():(params.get('uiLang')||'es');
 const currentVoiceLanguage=()=>currentUiLanguage()==='en'?'en-GB':'es-ES';
+const currentWordLanguage=()=>currentUiLanguage()==='en'?'en':'es';
+const audioLetter=letter=>letter==='Ñ'?'N-tilde':letter;
+const speechMessages={
+  es:{playing:'Reproduciendo…',searching:'Buscando una voz adecuada…',done:'La voz ha terminado. La imagen se cerrará en 2 segundos.',error:'No se pudo reproducir el audio. Puedes leer la palabra.'},
+  en:{playing:'Playing…',searching:'Looking for a suitable voice…',done:'The voice has finished. The picture will close in 2 seconds.',error:'Audio could not be played. You can read the word.'},
+  ca:{playing:'Reproduint…',searching:'Buscant una veu adequada…',done:'La veu ha acabat. La imatge es tancarà en 2 segons.',error:'No s’ha pogut reproduir l’àudio. Pots llegir la paraula.'},
+  de:{playing:'Wird abgespielt…',searching:'Geeignete Stimme wird gesucht…',done:'Die Stimme ist beendet. Das Bild schließt sich in 2 Sekunden.',error:'Das Audio konnte nicht abgespielt werden. Du kannst das Wort lesen.'}
+};
+const speechText=()=>speechMessages[currentUiLanguage()]||speechMessages.es;
+function stopVoiceAudio(){
+  audioRequest++;
+  if(!voiceAudio)return;
+  voiceAudio.onended=null;
+  voiceAudio.onerror=null;
+  try{voiceAudio.pause();voiceAudio.currentTime=0}catch(error){}
+}
+function playItemAudio(item){
+  if(!item)return;
+  if(!voiceAudio){speakWithSynthesis(item.word);return}
+  const request=++audioRequest;
+  clearSpeechTimers();
+  voiceAudio.onended=null;
+  voiceAudio.onerror=null;
+  try{voiceAudio.pause();voiceAudio.currentTime=0}catch(error){}
+  const messages=speechText();
+  speechStatus.textContent=messages.playing;
+  let settled=false;
+  const finish=()=>{
+    if(settled||request!==audioRequest||reveal.hidden)return;
+    settled=true;
+    window.clearTimeout(speechWatchdog);
+    speechStatus.textContent=messages.done;
+    scheduleCloseAfterSpeech();
+  };
+  const fallback=()=>{
+    if(settled||request!==audioRequest||reveal.hidden)return;
+    settled=true;
+    window.clearTimeout(speechWatchdog);
+    speechStatus.textContent='';
+    speakWithSynthesis(item.word);
+  };
+  voiceAudio.src=`audios/abecedario/${currentWordLanguage()}/${audioLetter(item.letter)}.mp3`;
+  voiceAudio.onended=finish;
+  voiceAudio.onerror=fallback;
+  speechWatchdog=window.setTimeout(fallback,15000);
+  const playback=voiceAudio.play();
+  if(playback&&typeof playback.catch==='function')playback.catch(fallback);
+}
 function updateCreditsHint(){
   const messages={
     es:'Activa este botón cinco veces seguidas para consultar las autorías y licencias.',
@@ -183,19 +233,18 @@ function waitForVoice(synthesis,language){
     if(!finished)voiceWaitTimer=window.setTimeout(()=>finish(preferredVoice(synthesis,language)),1800);
   });
 }
-async function speak(word){
+async function speakWithSynthesis(word){
   const request=++speechRequest;
   clearSpeechTimers();
   const synthesis=window.speechSynthesis;
   const language=currentVoiceLanguage();
-  const isEnglish=currentUiLanguage()==='en';
   if(!synthesis||typeof window.SpeechSynthesisUtterance!=='function'){
-    speechStatus.textContent=isEnglish?'No hay una voz de inglés británico (en-GB) disponible. Puedes leer la palabra, pero no se pronunciará.':'La voz no está disponible en este navegador. Puedes leer el nombre o volver a intentarlo.';
+    speechStatus.textContent=speechText().error;
     scheduleCloseAfterSpeech();
     return;
   }
   try{synthesis.cancel()}catch(error){console.error('No se pudo cancelar la locución anterior:',error)}
-  speechStatus.textContent='Buscando una voz adecuada…';
+  speechStatus.textContent=speechText().searching;
   let voice;
   try{
     voice=await waitForVoice(synthesis,language);
@@ -204,8 +253,8 @@ async function speak(word){
     console.error('No se pudo buscar una voz:',error);
     if(request!==speechRequest||reveal.hidden)return;
   }
-  if(isEnglish&&!voice){
-    speechStatus.textContent='No hay una voz de inglés británico (en-GB) disponible. Puedes leer la palabra, pero no se pronunciará.';
+  if(currentVoiceLanguage()==='en-GB'&&!voice){
+    speechStatus.textContent=speechText().error;
     scheduleCloseAfterSpeech();
     return;
   }
@@ -217,16 +266,16 @@ async function speak(word){
     utterance.rate=.82;
   }catch(error){
     console.error('No se pudo preparar la locución:',error);
-    speechStatus.textContent='No se pudo preparar la voz. Puedes leer el nombre o volver a intentarlo.';
+    speechStatus.textContent=speechText().error;
     scheduleCloseAfterSpeech();
     return;
   }
-  speechStatus.textContent='Reproduciendo el nombre…';
+  speechStatus.textContent=speechText().playing;
   const speechFinished=()=>{
     if(request!==speechRequest||reveal.hidden)return;
     window.clearTimeout(speechWatchdog);
     speechRequest++;
-    speechStatus.textContent='La voz ha terminado. La imagen se cerrará en 2 segundos.';
+    speechStatus.textContent=speechText().done;
     scheduleCloseAfterSpeech();
   };
   const speechFailed=message=>{
@@ -237,15 +286,16 @@ async function speak(word){
     scheduleCloseAfterSpeech();
   };
   utterance.onend=speechFinished;
-  utterance.onerror=()=>speechFailed('No se pudo reproducir la voz. Puedes leer el nombre o volver a intentarlo.');
-  speechWatchdog=window.setTimeout(()=>speechFailed('La voz está tardando demasiado. Puedes leer el nombre o volver a intentarlo.'),8000);
+  utterance.onerror=()=>speechFailed(speechText().error);
+  speechWatchdog=window.setTimeout(()=>speechFailed(speechText().error),8000);
   try{synthesis.speak(utterance)}catch(error){
     console.error('No se pudo iniciar la locución:',error);
-    speechFailed('No se pudo iniciar la voz. Puedes leer el nombre o volver a intentarlo.');
+    speechFailed(speechText().error);
   }
 }
 function closePicture(){
   clearSpeechTimers();
+  stopVoiceAudio();
   speechRequest++;
   reveal.hidden=true;
   if('speechSynthesis' in window){
@@ -339,14 +389,14 @@ function showPicture(letter){
   announcement.textContent=language==='en'?`${letter} for ${name.textContent}`:language==='de'?`Buchstabe ${letter}: ${name.textContent}`:language==='ca'?`Lletra ${letter}: ${name.textContent}`:`${letter} de ${name.textContent.toLocaleLowerCase('es-ES')}`;
   speechStatus.textContent='';
   reveal.hidden=false;
-  speak(word);
+  playItemAudio(item);
 }
 letters.addEventListener('click',event=>{
   const button=event.target.closest('button[data-letter]');
   if(button)showPicture(button.dataset.letter);
 });
 document.getElementById('close').addEventListener('click',closePicture);
-document.getElementById('sayAgain').addEventListener('click',()=>{if(currentItem)speak(currentItem.word)});
+document.getElementById('sayAgain').addEventListener('click',()=>{if(currentItem)playItemAudio(currentItem)});
 reveal.addEventListener('click',event=>{if(event.target===reveal)closePicture()});
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!reveal.hidden)closePicture()});
 creditsButton.addEventListener('click',()=>{

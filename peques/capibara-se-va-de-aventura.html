@@ -41,6 +41,10 @@ h1{margin:0;text-align:center;color:#98506e;font-size:clamp(1.7rem,5.5vw,3rem);l
 .photo-gallery .photo{width:100%;height:clamp(170px,35vw,280px)}
 .word{margin:14px 0 0;color:#365b32;font-size:clamp(2rem,7vw,3.2rem);font-weight:1000;line-height:1.1}
 .translation{margin:5px 0 0;color:#6b7760;font-size:clamp(1rem,3vw,1.3rem);font-weight:800}
+.speak-word{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;margin:14px auto 0;padding:8px 18px;border:2px solid #b9d8a8;border-radius:999px;background:#f4fbee;color:#365b32;font:inherit;font-weight:900;cursor:pointer;touch-action:manipulation;box-shadow:0 3px 0 #d7e9c9}
+.speak-word:hover{background:#e8f6dc;border-color:#9fc782}
+.speak-word:active{transform:translateY(2px);box-shadow:none}
+.speak-word:focus-visible{outline:3px solid #185ea8;outline-offset:3px}
 .credits{margin:20px auto 0;max-width:760px;text-align:center}
 .credits h2{margin:0}
 .credits-toggle{min-height:44px;padding:6px 13px;border:1px solid #e3ead9;border-radius:999px;background:#fffdf0b3;color:#8a9482;font-size:.76rem;font-weight:800;text-decoration:underline;text-underline-offset:3px;box-shadow:none}
@@ -143,6 +147,7 @@ h1{margin:0;text-align:center;color:#98506e;font-size:clamp(1.7rem,5.5vw,3rem);l
     <div class="credits-content" id="creditsContent" aria-labelledby="creditsTitle" tabindex="-1" hidden></div>
   </section>
 </main>
+<audio id="wordAudio" preload="auto" hidden></audio>
 <script src="capibara-se-va-de-aventura.js"></script>
 </body>
 </html>

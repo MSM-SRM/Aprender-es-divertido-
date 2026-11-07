@@ -16,6 +16,7 @@
       where: '¿Adónde vamos?', locationHint: 'Elige una aventura. Cada lugar tiene 20 palabras con fotografías reales.',
       learn: 'Aprende las palabras', learnHeading: 'Tarjeta para aprender una palabra', quizHeading: 'Juego de unir las fotos con sus palabras',
       previous: '← Anterior', choosePlace: '← Elegir lugar', next: 'Siguiente →', startQuiz: '¡A jugar! Unir fotos y palabras →',
+      listen: 'Escuchar', listenAria: word => `Escuchar la palabra ${word}`,
       quizPrompt: '¿Qué palabra corresponde a esta foto?', correct: '¡Muy bien! 🌟', tryAgain: '¡Casi! Prueba con otra palabra.',
       nextQuestion: 'Siguiente foto →', finish: '¡Aventura completada!', score: (score, total) => `Has unido ${score} de ${total} fotos con su palabra. ¡Buen trabajo!`,
       replay: 'Jugar otra vez', chooseAgain: 'Elegir otro lugar',
@@ -35,6 +36,7 @@
       where: 'Where shall we go?', locationHint: 'Choose an adventure. Every place has 20 words with real photographs.',
       learn: 'Learn the words', learnHeading: 'Learning card', quizHeading: 'Match the photos to their words',
       previous: '← Previous', choosePlace: '← Choose place', next: 'Next →', startQuiz: 'Let’s play! Match photos and words →',
+      listen: 'Listen', listenAria: word => `Listen to the word ${word}`,
       quizPrompt: 'Which word matches this photo?', correct: 'Great job! 🌟', tryAgain: 'Not quite. Try another word.',
       nextQuestion: 'Next photo →', finish: 'Adventure complete!', score: (score, total) => `You matched ${score} out of ${total} photos to their words. Great work!`,
       replay: 'Play again', chooseAgain: 'Choose another place',
@@ -51,6 +53,7 @@
   }
   try { localStorage.setItem(localeKey, language); } catch (error) {}
   const $ = id => document.getElementById(id);
+  const wordAudio = $('wordAudio');
   let ui = strings[language];
   const stages = ['loadingStage', 'locationsStage', 'learnStage', 'quizStage', 'finishStage'];
   let packs = [];
@@ -60,15 +63,56 @@
   let quizIndex = 0;
   let correctAnswers = 0;
   let answered = false;
+  let audioRequest = 0;
 
   function setText(id, text) {
     $(id).textContent = text;
   }
 
   function setStage(id) {
+    stopWordAudio();
     stages.forEach(stageId => $(stageId).classList.toggle('active', stageId === id));
     const heading = id === 'locationsStage' ? $('locationsTitle') : $(id).querySelector('h2');
     if (heading) heading.focus?.();
+  }
+
+  function audioPath(item) {
+    if (!item || !item.image) return '';
+    const base = item.image.split('/').pop().replace(/\.[^.]+$/, '');
+    return `audios/capibara-vocabulario/${language}/${base}.mp3`;
+  }
+
+  function stopWordAudio() {
+    audioRequest++;
+    if (!wordAudio) return;
+    wordAudio.onended = null;
+    wordAudio.onerror = null;
+    try { wordAudio.pause(); wordAudio.currentTime = 0; } catch (error) {}
+  }
+
+  function speakWordFallback(item) {
+    if (!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance !== 'function') return;
+    try {
+      const utterance = new SpeechSynthesisUtterance(item[language]);
+      utterance.lang = language === 'en' ? 'en-GB' : 'es-ES';
+      utterance.rate = .82;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    } catch (error) {}
+  }
+
+  function playWordAudio(item) {
+    if (!item || !wordAudio) return;
+    stopWordAudio();
+    const request = audioRequest;
+    const source = audioPath(item);
+    if (!source) return;
+    wordAudio.onerror = () => {
+      if (request === audioRequest) speakWordFallback(item);
+    };
+    wordAudio.src = source;
+    const playback = wordAudio.play();
+    if (playback && typeof playback.catch === 'function') playback.catch(() => {});
   }
 
   function createCreditRow(credit, label, index, total) {
@@ -148,7 +192,13 @@
     const translation = document.createElement('p');
     translation.className = 'translation';
     translation.textContent = item[language === 'es' ? 'en' : 'es'];
-    container.append(word, translation);
+    const listen = document.createElement('button');
+    listen.type = 'button';
+    listen.className = 'speak-word';
+    listen.textContent = `🔊 ${ui.listen}`;
+    listen.setAttribute('aria-label', ui.listenAria(item[language]));
+    listen.addEventListener('click', () => playWordAudio(item));
+    container.append(word, translation, listen);
   }
 
   function renderLocations() {
@@ -188,6 +238,7 @@
     const card = $('learnCard');
     card.replaceChildren(makePhoto(item));
     addWordLabels(card, item);
+    playWordAudio(item);
     $('learnBack').disabled = false;
     $('learnBack').textContent = learnIndex === 0 ? ui.choosePlace : ui.previous;
     $('learnNext').textContent = learnIndex === selectedPack.items.length - 1 ? ui.startQuiz : ui.next;
@@ -205,6 +256,7 @@
   }
 
   function renderQuestion(preserveAnswer = false) {
+    stopWordAudio();
     const keepAnswer = preserveAnswer && answered;
     const item = quizItems[quizIndex];
     $('quizCount').textContent = ui.progress(quizIndex + 1, quizItems.length);
@@ -250,6 +302,7 @@
     $('feedback').textContent = ui.correct;
     $('feedback').classList.remove('error');
     $('quizNext').hidden = false;
+    playWordAudio(quizItems[quizIndex]);
   }
 
   function saveCompletion() {
@@ -272,6 +325,7 @@
   }
 
   function applyLanguage() {
+    stopWordAudio();
     ui = strings[language];
     document.documentElement.lang = language;
     document.title = language === 'es' ? 'Capi se va de aventura · Mi Mundo de Aprendizaje' : 'Capi Goes on an Adventure · My Learning World';
