@@ -17,6 +17,8 @@ $rows = foreach ($a in $assets) {
   # Las imagenes de Addams se cargan dinamicamente con imagenes/addams/${c.src}.
   $nota = ""
   if ($rel -like "imagenes/addams/*") { $nota = "dinamico (memoria Addams)" }
+  if ($rel -like "audios/abecedario/*") { $nota = "dinamico (letra + idioma)" }
+  if ($rel -like "audios/capibara-vocabulario/*") { $nota = "dinamico (JSON de vocabulario)" }
 
   [pscustomobject]@{
     Asset  = $rel

@@ -12,6 +12,7 @@ Este repositorio es un sitio web estatico en espanol. Antes de proponer o hacer 
 - Hub principal: `peques/mundo-mireia.html`.
 - Perfiles: `guest`, `mireia`, `sofia`.
 - Historial tecnico: `peques/PLAN.md`.
+- Audio: 493 MP3 locales en `peques/audios/` (abecedario y vocabulario, en ingles britanico y espanol).
 
 ## Reglas que no se deben romper
 
@@ -50,13 +51,17 @@ Tareas disponibles en `.vscode/tasks.json`:
 - `peques/areas-test.html`: hub de actividades por area (a pesar del nombre, esta en uso).
 - `peques/mi-mates.html`, `mi-lectura.html`, `mi-escritura.html`, `idiomas.html`: actividades.
 - `peques/mi-progreso.html`: progreso por perfil.
+- `peques/abecedario-capibara.html`: abecedario de Capi, 27 letras en espanol y 26 en ingles, con audio MP3 local.
+- `peques/capibara-se-va-de-aventura.html` y `peques/capibara-se-va-de-aventura.js`: aventura de vocabulario de 220 palabras con audio MP3 local.
+- `peques/audios/abecedario/`: 53 MP3 (26 en `en/` y 27 en `es/`; la Ñ se llama `N-tilde.mp3`).
+- `peques/audios/capibara-vocabulario/`: 440 MP3 (220 palabras en `en/` y 220 en `es/`).
 - `peques/naruto-matematico.html`, `penalti-matematico.html`, `puzzles-mireia.html`: juegos.
 - `peques/evento-especial.html` y `halloween-*.html`: contenido estacional.
 - `peques/progress-shared.js`: progreso compartido.
 - `peques/auth-guard.js`: control de sesion por perfil.
 - `peques/ui-language.js`: textos e interfaz multiidioma.
 - `tools/`: servidor local y scripts de auditoria.
-- `qa/`: informes y capturas locales. No se publica.
+- `qa/`: informes y capturas locales. No se publica. Incluye `generate-audio.ps1`, el generador local de los MP3.
 
 ## Flujo recomendado para cada tarea
 
@@ -77,10 +82,24 @@ Tareas disponibles en `.vscode/tasks.json`:
 - No anadir dependencias externas si se puede resolver con HTML, CSS o JS.
 - Evitar duplicar logica de progreso: usar `progress-shared.js`.
 
+## Audio
+
+- El abecedario y la aventura usan **MP3 locales** y no dependen de las voces instaladas en el navegador del visitante.
+- Voces de generacion: **Microsoft Hazel** (`en-GB`) y **Microsoft Helena** (`es-ES`).
+- Rutas y nombres:
+  - `peques/audios/abecedario/en/<letra>.mp3` y `peques/audios/abecedario/es/<letra>.mp3`; la Ñ se guarda como `N-tilde.mp3`.
+  - `peques/audios/capibara-vocabulario/en/<base-de-image>.mp3` y `peques/audios/capibara-vocabulario/es/<base-de-image>.mp3`. El nombre se deriva del campo `image` de `peques/capibara-vocabulario.json`.
+- El abecedario reproduce letra y palabra, cierra la imagen 2 s despues de terminar y ofrece «Escuchar otra vez». La aventura reproduce la palabra al abrir cada tarjeta y al acertar, con boton «Escuchar/Listen»; el audio se detiene al cambiar de tarjeta, idioma o pantalla.
+- Si falta o falla un MP3, ambas paginas usan `speechSynthesis` como respaldo.
+- Para regenerar: `powershell -NoProfile -ExecutionPolicy Bypass -File qa\generate-audio.ps1` (PowerShell 5.1 y BOM UTF-8). `-Test` genera una muestra de 10 archivos y `-Force` regenera los existentes. Requiere Hazel y Helena instaladas en Windows.
+- No borrar ni renombrar un MP3 sin actualizar el codigo. Si se anade o cambia una palabra, regenerar su audio en ambos idiomas.
+- `tools/check-prod.ps1` comprueba una muestra de MP3 en produccion; `tools/audit-assets.ps1` marca los audios dinamicos como referencias generadas.
+
 ## Checklist antes de terminar
 
 - [ ] La pagina carga en local sin errores de consola.
 - [ ] Las imagenes y audios referenciados responden 200.
+- [ ] Si se toco el abecedario o el vocabulario, los MP3 existen y suenan en espanol e ingles.
 - [ ] Los enlaces internos llevan a paginas existentes.
 - [ ] Se ve bien a 390 px y a 1280 px.
 - [ ] No se ha borrado nada sin copia y autorizacion.
