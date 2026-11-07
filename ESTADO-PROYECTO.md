@@ -3,10 +3,10 @@
 > **Fuente única de verdad** para el usuario, OpenCode y VS Code/Copilot.
 > Antes de empezar una tarea, lee este archivo. Al terminarla, actualízalo.
 >
-> Última actualización: **06/11/2026**
+> Última actualización: **07/11/2026**
 > Producción: `https://msm-srm.github.io/Aprender-es-divertido-/peques/`
 > Repositorio: `https://github.com/MSM-SRM/Aprender-es-divertido-`
-> Rama: `main` · Estado: juego «Capi se va de aventura» publicado en `c6a9ae4` y verificado en GitHub Pages; enlace de Juegos corregido en `6295cc1`; créditos agrupados en un panel discreto en `88655b3`; texto de bienvenida actualizado en `8e91cfb`
+> Rama: `main` · Estado: juego «Capi se va de aventura» publicado en `c6a9ae4` y verificado en GitHub Pages; enlace de Juegos corregido en `6295cc1`; créditos agrupados en un panel discreto en `88655b3`; texto de bienvenida actualizado en `8e91cfb`; audio en inglés británico y español publicado y verificado en `b2857d5`
 
 ---
 
@@ -19,7 +19,7 @@
 | Perfiles | `guest`, `mireia`, `sofia` |
 | Entrada | `peques/index.html` |
 | Hub principal | `peques/mundo-mireia.html` |
-| Estado del código | Abecedario bilingüe, créditos y acceso English-only para Mireia/Guest publicados; portada de Naruto en Mi Mates para Mireia/Guest publicada y verificada en `b74aa5b`; aventura de vocabulario «Capi se va de aventura» publicada y verificada en `c6a9ae4`, con créditos agrupados en un panel discreto desde `88655b3` |
+| Estado del código | Abecedario bilingüe, créditos y acceso English-only para Mireia/Guest publicados; portada de Naruto en Mi Mates para Mireia/Guest publicada y verificada en `b74aa5b`; aventura de vocabulario «Capi se va de aventura» publicada y verificada en `c6a9ae4`, con créditos agrupados en un panel discreto desde `88655b3`; audio local en inglés británico y español añadido al abecedario y a la aventura en `b2857d5`, publicado y verificado |
 | Estado de la limpieza | Completada: 8 archivos retirados, mapa optimizado, `qa/` archivado y `.git` compactado |
 | Subagentes OpenCode | Bloqueados por límite de uso gratuito; Copilot puede continuar en local |
 
@@ -104,13 +104,14 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 | H18 | Acceso al abecedario de Capi desde la página de Sofia | `b71b881`; tarjeta primera en `index.html`, vuelta a Juegos y traducciones |
 | H19 | Versión inglesa del abecedario de Capi (A–Z), conservando el juego español de 27 letras (A–Z y Ñ) | `a564339`, publicado y verificado en GitHub Pages; 26 palabras e imágenes inglesas locales, selector multilingüe para Sofia y fondo Lidl |
 | H20 | Créditos fuera del popup, bajo activación de cinco toques consecutivos | `a564339`, publicado; panel «Créditos» se revela en la quinta activación consecutiva, se reinicia al interactuar fuera del botón; listas de 27 créditos ES y 26 EN en `creditos.json` y `creditos-en.json` |
-| H21 | Voz británica inglesa estricta y preferencia por voz femenina/natural | `a564339`, publicado; espera `voiceschanged`, selecciona solo `en-GB` y prefiere Google UK English Female o Sonia/Libby/Serena/Hazel; nunca recurre al español. No hay voz `en-GB` instalada en el entorno probado: muestra aviso y permite leer la palabra sin locución. La instalación y prueba de una voz británica sigue pendiente; voz española `es-ES` conservada |
+| H21 | Voz británica inglesa estricta y preferencia por voz femenina/natural | `a564339`, publicado; espera `voiceschanged`, selecciona solo `en-GB` y prefiere Google UK English Female o Sonia/Libby/Serena/Hazel; nunca recurre al español. En el entorno probado no había voz `en-GB` en el navegador y se mostraba un aviso. Superado por H28: los MP3 locales ya no dependen de las voces del navegador; voz española `es-ES` conservada |
 | H22 | Acceso English-only al abecedario desde Lengua Inglés para Mireia y Guest | `12cb0fd`, publicado y verificado: tarjeta primera con NEW solo en `lang=en`, enlace `profile=mireia|guest&uiLang=en`; Sofia conserva su acceso multilingüe |
 | H23 | Portada ilustrada de Capi leyendo en las tarjetas del abecedario | `3d807b3`, publicado y verificado en Pages: SVG original en las tarjetas de Sofia y de Mireia/Guest en inglés; nombre y descripción en banda inferior más pequeña, al estilo de la tarjeta de cuentos. Copia del proyecto en `Downloads\ZZ - Mi_Mundo Back ups` |
 | H24 | Portada Naruto con atribución en Mi Mates para Mireia y Guest | `b74aa5b`, publicado y verificado en Pages (ejecución `42042737919`): imagen VectorStock de TamTV en tarjeta cuadrada para Mireia y Guest; enlace de atribución visible, pequeño y discreto al pie de la tarjeta |
 | H25 | Aventura de vocabulario «Capi se va de aventura» | `c6a9ae4`, publicado y verificado en Pages: 11 lugares × 20 palabras (220 fotos), créditos CC completos, quiz de unión foto-palabra, progreso por perfil, ES/EN y vuelta a Juegos; tarjeta NEW en Sofia, Juegos e Idiomas. Enlace de Juegos corregido en `6295cc1` para respetar el `uiLang` de la página |
 | H26 | Créditos de la aventura agrupados en un panel discreto | `88655b3`, publicado y verificado: se retiran de cada tarjeta y se agrupan al final del juego; el botón «Créditos» abre el panel tras cinco toques seguidos. Incluye 221 atribuciones (220 palabras y una imagen adicional), en español e inglés |
 | H27 | Texto de bienvenida de la aventura | `8e91cfb`, publicado: sustituido el texto de edades por la presentación de Capi viajando para aprender palabras y la pregunta «¿Adónde quieres ir con Capi primero…?», con versión inglesa equivalente |
+| H28 | Audio en inglés británico y español para el abecedario y la aventura | `b2857d5`, publicado y verificado en GitHub Pages: 493 MP3 locales (53 del abecedario y 440 del vocabulario), generados con Hazel (`en-GB`) y Helena (`es-ES`). El abecedario dice letra y palabra, cierra la imagen al terminar y elimina el aviso de voz ausente. La aventura reproduce la palabra al abrir cada tarjeta, añade el botón 🔊 Escuchar/Listen y repite el audio al acertar; si falta el MP3, usa `speechSynthesis` como respaldo |
 
 ### En curso
 
@@ -122,7 +123,7 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 
 | ID | Tarea | Prioridad | Criterio de terminado |
 |---|---|---|---|
-| P1 | Instalar/probar una voz del sistema `en-GB` | Baja | Confirmar locución inglesa; mantener silencio con aviso si no hay voz, sin fallback al español |
+| — | Sin tareas pendientes | — | — |
 
 ### Bloqueado
 
@@ -159,6 +160,17 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 | `peques/BingSiteAuth.xml` | Verificación de Bing | Conservar |
 
 Retirados el 05/11/2026 con copia en `Downloads`: `peques/Index-ok-04.11.26.html`, `peques/preview-mapa-mireia.html` y `peques/LEEME.txt`.
+
+### Audio del abecedario y de la aventura
+
+- **493 MP3 locales** (≈4,8 MB): 26 clips ingleses y 27 españoles del abecedario, más 220 palabras × 2 idiomas de la aventura.
+- Rutas:
+  - `peques/audios/abecedario/en/<letra>.mp3` y `…/es/<letra>.mp3` (la Ñ se guarda como `N-tilde.mp3`).
+  - `peques/audios/capibara-vocabulario/en/<base-de-image>.mp3` y `…/es/<base-de-image>.mp3`.
+- Voces de Windows: **Microsoft Hazel** (`en-GB`) y **Microsoft Helena** (`es-ES`), con SSML para el abecedario («A. Apple.», «Letra A. Abeja.»).
+- El abecedario reproduce el MP3 al abrir la letra, muestra el estado en el idioma de la interfaz y cierra la imagen 2 s después de terminar. «Escuchar otra vez» repite el clip. Si el MP3 falla, recurre a `speechSynthesis` y ya no muestra el aviso de «no hay voz en-GB».
+- La aventura reproduce la palabra automáticamente al abrir cada tarjeta y al acertar en el quiz, con botón **🔊 Escuchar/Listen** en cada ficha. Al cambiar de tarjeta, idioma o pantalla se detiene el audio anterior; si falta el MP3, usa `speechSynthesis` como respaldo.
+- Regeneración (solo local, no se versiona): `powershell -NoProfile -ExecutionPolicy Bypass -File qa\generate-audio.ps1`; admite `-Test` y `-Force`. Requiere las voces Hazel y Helena instaladas en Windows.
 
 ---
 
@@ -282,6 +294,7 @@ Todas están en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\`. Los hashes
 | 06/11/2026 | `6295cc1` | Enlace de la aventura en Juegos ajustado al idioma de la página |
 | 06/11/2026 | `88655b3` | Créditos de la aventura agrupados en un panel discreto |
 | 06/11/2026 | `8e91cfb` | Texto de bienvenida de la aventura actualizado |
+| 07/11/2026 | `b2857d5` | Audio en inglés británico y español del abecedario y la aventura, publicado y verificado |
 
 ---
 
@@ -299,8 +312,8 @@ Todas están en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\`. Los hashes
 ## 9. Próxima acción
 
 1. **Sin tareas abiertas.** P5 se resolvió manteniendo `peques/areas-test.html`: es el hub real de actividades y no una página de prueba.
-2. **Abecedario de Capi:** versión española y extensión inglesa publicadas (`2de4e07`, `a564339`); acceso English-only de Mireia/Guest queda en el commit local sin push. Pendiente instalar una voz `en-GB` para comprobar locución. Mejoras opcionales, pendientes de autorización: mejorar el foco del diálogo, alargar el cierre automático y decir «A de abeja» en lugar de solo «abeja».
-3. **Capi se va de aventura:** publicada en `c6a9ae4`. 11 lugares, 220 fotos, quiz y progreso compartido; español e inglés. Probada en local (Supermercado completo 20/20, móvil 390×844 y 360×640, movimiento reducido) y verificada en GitHub Pages. El enlace de Juegos se corrigió en `6295cc1` para conservar el idioma de la página. Desde `88655b3` los créditos ya no aparecen en cada tarjeta: están agrupados al final, en un panel que se abre con cinco toques en «Créditos». El texto de bienvenida se actualizó en `8e91cfb`.
+2. **Abecedario de Capi:** versión española y extensión inglesa publicadas (`2de4e07`, `a564339`); acceso English-only de Mireia/Guest en `12cb0fd`. El audio ya no depende de las voces del navegador: 53 MP3 locales en inglés británico y español, publicados en `b2857d5` y verificados en Pages. Mejoras opcionales, pendientes de autorización: mejorar el foco del diálogo, alargar el cierre automático y valorar más palabras por letra.
+3. **Capi se va de aventura:** publicada en `c6a9ae4`. 11 lugares, 220 fotos, quiz y progreso compartido; español e inglés. Probada en local (Supermercado completo 20/20, móvil 390×844 y 360×640, movimiento reducido) y verificada en GitHub Pages. El enlace de Juegos se corrigió en `6295cc1` para conservar el idioma de la página. Desde `88655b3` los créditos ya no aparecen en cada tarjeta: están agrupados al final, en un panel que se abre con cinco toques en «Créditos». El texto de bienvenida se actualizó en `8e91cfb`. El audio de las 220 palabras en ambos idiomas se publicó en `b2857d5` y se comprobó en producción, incluido el quiz.
 
 Si OpenCode no está disponible, Copilot puede continuar en VS Code:
 

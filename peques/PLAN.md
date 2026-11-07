@@ -1127,3 +1127,69 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - `6295cc1` corrige el enlace de la tarjeta de Juegos: antes podía abrir el juego en español aunque la página estuviera en inglés; ahora `uiLang` de la página tiene prioridad y, si falta, se usa la preferencia guardada.
 - `88655b3` retira los créditos de las tarjetas y los agrupa en el panel discreto del final, accesible con cinco toques en «Créditos».
 - `8e91cfb` actualiza el texto de bienvenida en español e inglés; comprobado en 390×844 y 360×640 sin desbordamiento.
+
+---
+
+## Actualización 07/11/2026 — Audio en inglés británico y español para el abecedario y la aventura
+
+### Decisión
+
+- El navegador de pruebas solo exponía voces españolas y el abecedario mostraba el aviso de que no había voz `en-GB`. Para no depender de las voces instaladas en cada dispositivo, el audio se genera una vez y se guarda en el propio sitio como MP3.
+- Voces de Windows utilizadas: **Microsoft Hazel** (`en-GB`) y **Microsoft Helena** (`es-ES`). No se usa ttsmp3/Amy: requiere captcha y no aporta ventaja frente a las voces locales.
+- No se instalan voces nuevas ni se piden permisos: Hazel y Helena ya estaban disponibles en el sistema.
+
+### Archivos generados
+
+- **493 MP3** (≈4,8 MB), todos válidos y servidos con HTTP 200:
+  - `peques/audios/abecedario/en/`: 26 clips, uno por letra.
+  - `peques/audios/abecedario/es/`: 27 clips; la Ñ se guarda como `N-tilde.mp3`.
+  - `peques/audios/capibara-vocabulario/en/`: 220 palabras.
+  - `peques/audios/capibara-vocabulario/es/`: 220 palabras.
+- El nombre de cada clip de vocabulario se deriva de la base del campo `image`, que es única para las 220 palabras.
+- El abecedario usa SSML para decir letra y palabra («A. Apple.», «Letra A. Abeja.»). Si el SSML fallara, el generador recurre a texto plano («Letter A. Apple.»).
+
+### Generación reproducible
+
+- Script local `qa/generate-audio.ps1`, no versionado por la regla de no publicar `qa/`.
+- Usa `SpeechSynthesizer` y `MediaTranscoder` de WinRT para producir MP3 a partir de WAV, con `SynthesizeSsmlToStreamAsync` o `SynthesizeTextToStreamAsync`.
+- Debe ejecutarse con PowerShell 5.1 y conservar el BOM UTF-8; sin BOM, la letra Ñ rompe el parser.
+- Uso: `powershell -NoProfile -ExecutionPolicy Bypass -File qa\generate-audio.ps1`; `-Test` genera una muestra de 10 archivos y `-Force` regenera los existentes.
+- Resultado de la ejecución completa: **483 generados, 10 omitidos (muestra previa), 0 errores, 218,7 s**. Log en `qa/audio-generation.log`.
+
+### Abecedario
+
+- Añadido `<audio id="voiceAudio">` y `playItemAudio(item)`; `speakWithSynthesis` queda solo como respaldo.
+- `audioLetter` traduce la Ñ a `N-tilde`; `currentWordLanguage` elige `en` o `es` según la interfaz.
+- Mensajes de estado localizados en ES/EN/CA/DE (`speechMessages`): reproduciendo, terminado, error.
+- Al terminar el MP3 se muestra el aviso de cierre y la imagen se cierra 2 s después. «Escuchar otra vez» reinicia el mismo clip. Al cerrar el diálogo se detiene el audio.
+- Eliminado el mensaje que decía que no había voz británica.
+- Los botones de cerrar y repetir se ajustan a 44 px de alto para uso táctil.
+
+### Aventura
+
+- Añadido `<audio id="wordAudio">`, `audioPath(item)`, `playWordAudio(item)` y `stopWordAudio()`.
+- `renderLearningCard` reproduce la palabra automáticamente al abrir cada tarjeta; `checkAnswer` la repite al acertar.
+- Cada ficha muestra un botón **🔊 Escuchar/Listen** con `aria-label` que incluye la palabra.
+- El audio se detiene al cambiar de tarjeta, de idioma, de pantalla o al empezar el quiz.
+- Si el MP3 no existe o falla, `speakWordFallback` usa `speechSynthesis` con `en-GB`/`es-ES`.
+- El panel de créditos y sus 221 atribuciones siguen intactos.
+
+### Pruebas
+
+- Abecedario español: Ñ reproduce `audios/abecedario/es/N-tilde.mp3` (2,232 s), muestra «Ñ de / Ñu», estado «Reproduciendo…», cierra la imagen tras terminar y «Escuchar otra vez» reinicia el clip.
+- Abecedario inglés: A reproduce `audios/abecedario/en/A.mp3` (2,268 s), estado «Playing…», cierre automático y consola limpia. W (2,988 s) también verificado.
+- Aventura en inglés: «apple» reproduce `en/supermercado-01.mp3`; «milk» reproduce `en/supermercado-02.mp3` al pasar de tarjeta; el botón «Listen» reinicia el clip; al cambiar a español reproduce `es/supermercado-02.mp3` y el botón pasa a «Escuchar».
+- Aventura en español: quiz de Supermercado, respuesta correcta «huevos» reproduce `es/supermercado-04.mp3`, feedback «¡Muy bien! 🌟» y botón de siguiente visible.
+- Móvil 390×844 y 360×640: abecedario y aventura sin desbordamiento horizontal; botones de escuchar de 133×44 y 112×44; diálogo del abecedario dentro de la pantalla; botones de cerrar/repetir de 44 px.
+- Auditoría HTTP: 493/493 MP3 responden 200, con más de 2 KB y cabecera MP3 válida. Sin errores de consola en las pruebas.
+- La comprobación móvil existente de la aventura mantiene 11 lugares, imágenes correctas, quiz sin respuestas recortadas y 221 créditos.
+
+### Publicación
+
+- Código y 493 MP3 publicados en `b2857d5` (496 archivos); GitHub Pages ejecución `42413418398` terminó con éxito.
+- Producción verificada:
+  - Los MP3 de abecedario (EN/ES) y vocabulario (EN/ES) responden 200 con `Content-Type: audio/mp3`.
+  - Abecedario inglés (`profile=guest&uiLang=en`): A reproduce `audios/abecedario/en/A.mp3` (2,268 s) y muestra «Playing…», con consola limpia.
+  - Aventura inglesa: «apple» reproduce `audios/capibara-vocabulario/en/supermercado-01.mp3` y el botón muestra «🔊 Listen».
+  - Aventura española: «manzana» reproduce `es/supermercado-01.mp3`; en el quiz, «arroz» reproduce `es/supermercado-06.mp3` con feedback «¡Muy bien! 🌟» y consola limpia.
+- El abecedario español en producción exige sesión de Sofia y redirige a `index.html` sin login; se comprobó en local con el mismo código y en producción la parte inglesa, accesible como invitado.
