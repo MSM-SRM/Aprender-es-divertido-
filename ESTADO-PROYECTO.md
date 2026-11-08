@@ -3,10 +3,10 @@
 > **Fuente única de verdad** para el usuario, OpenCode y VS Code/Copilot.
 > Antes de empezar una tarea, lee este archivo. Al terminarla, actualízalo.
 >
-> Última actualización: **07/11/2026**
+> Última actualización: **08/11/2026**
 > Producción: `https://msm-srm.github.io/Aprender-es-divertido-/peques/`
 > Repositorio: `https://github.com/MSM-SRM/Aprender-es-divertido-`
-> Rama: `main` · Estado: juego «Capi se va de aventura» publicado en `c6a9ae4` y verificado en GitHub Pages; enlace de Juegos corregido en `6295cc1`; créditos agrupados en un panel discreto en `88655b3`; texto de bienvenida actualizado en `8e91cfb`; audio en inglés británico y español publicado y verificado en `b2857d5`
+> Rama: `main` · Estado: juego «Capi se va de aventura» publicado en `c6a9ae4` y verificado en GitHub Pages; enlace de Juegos corregido en `6295cc1`; créditos agrupados en un panel discreto en `88655b3`; texto de bienvenida actualizado en `8e91cfb`; audio en inglés británico y español publicado y verificado en `b2857d5`; Rincón del JA-ja! HA-ha! y «Guardar chiste» publicados y verificados en `331077c`
 
 ---
 
@@ -19,7 +19,7 @@
 | Perfiles | `guest`, `mireia`, `sofia` |
 | Entrada | `peques/index.html` |
 | Hub principal | `peques/mundo-mireia.html` |
-| Estado del código | Abecedario bilingüe, créditos y acceso English-only para Mireia/Guest publicados; portada de Naruto en Mi Mates para Mireia/Guest publicada y verificada en `b74aa5b`; aventura de vocabulario «Capi se va de aventura» publicada y verificada en `c6a9ae4`, con créditos agrupados en un panel discreto desde `88655b3`; audio local en inglés británico y español añadido al abecedario y a la aventura en `b2857d5`, publicado y verificado |
+| Estado del código | Abecedario bilingüe, créditos y acceso English-only para Mireia/Guest publicados; portada de Naruto en Mi Mates para Mireia/Guest publicada y verificada en `b74aa5b`; aventura de vocabulario «Capi se va de aventura» publicada y verificada en `c6a9ae4`, con créditos agrupados en un panel discreto desde `88655b3`; audio local en inglés británico y español añadido al abecedario y a la aventura en `b2857d5`, publicado y verificado; Rincón del JA-ja! HA-ha! y «Guardar chiste» publicados y verificados en `331077c` |
 | Estado de la limpieza | Completada: 8 archivos retirados, mapa optimizado, `qa/` archivado y `.git` compactado |
 | Subagentes OpenCode | Bloqueados por límite de uso gratuito; Copilot puede continuar en local |
 
@@ -112,6 +112,7 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 | H26 | Créditos de la aventura agrupados en un panel discreto | `88655b3`, publicado y verificado: se retiran de cada tarjeta y se agrupan al final del juego; el botón «Créditos» abre el panel tras cinco toques seguidos. Incluye 221 atribuciones (220 palabras y una imagen adicional), en español e inglés |
 | H27 | Texto de bienvenida de la aventura | `8e91cfb`, publicado: sustituido el texto de edades por la presentación de Capi viajando para aprender palabras y la pregunta «¿Adónde quieres ir con Capi primero…?», con versión inglesa equivalente |
 | H28 | Audio en inglés británico y español para el abecedario y la aventura | `b2857d5`, publicado y verificado en GitHub Pages: 493 MP3 locales (53 del abecedario y 440 del vocabulario), generados con Hazel (`en-GB`) y Helena (`es-ES`). El abecedario dice letra y palabra, cierra la imagen al terminar y elimina el aviso de voz ausente. La aventura reproduce la palabra al abrir cada tarjeta, añade el botón 🔊 Escuchar/Listen y repite el audio al acertar; si falta el MP3, usa `speechSynthesis` como respaldo |
+| H29 | «El Rincón del JA-ja! HA-ha!» en la entrada, con «Guardar chiste» | `331077c`, publicado y verificado en GitHub Pages (ejecución `42524656141`): mazo aleatorio de 140 chistes sin repetición por ciclo, cuatro idiomas (ES/EN/CA/DE), ilustración estable por índice, GIF original de 87 fotogramas, respaldo local → caché → JSON remoto → 6 chistes internos. «Guardar chiste» abre tres círculos iguales de 66×66 px (Mireia, Sofía, Guest) con avatares reales y `object-fit: cover`; colecciones separadas en `mundoAprendizajeJokeCollectionV1_<perfil>`, sin duplicados por índice, confirmación traducida y cierre con ✕, Escape o alternando el botón. «Repetir chiste» eliminado. Probado a 320, 390 y 1280 px sin desbordamiento |
 
 ### En curso
 
@@ -298,6 +299,7 @@ Todas están en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\`. Los hashes
 | 07/11/2026 | `b2857d5` | Audio en inglés británico y español del abecedario y la aventura, publicado y verificado |
 | 07/11/2026 | `4e1c3c7` | Documentación del audio en `ESTADO-PROYECTO.md` y `peques/PLAN.md` |
 | 07/11/2026 | `d6e36d3` | Instrucciones de Copilot y herramientas de verificación de audio |
+| 08/11/2026 | `331077c` | «El Rincón del JA-ja! HA-ha!» y «Guardar chiste» publicados y verificados en Pages |
 
 ---
 
@@ -314,6 +316,7 @@ Todas están en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\`. Los hashes
 
 ## 9. Próxima acción
 
+0. **Rincón del JA-ja! HA-ha! (H29):** publicado en `331077c` y verificado en Pages (ejecución `42524656141`, éxito). Contenido en producción: «Guardar chiste» presente, «Repetir chiste» ausente, tres círculos de 66×66 px con Mireia, Sofía y Guest, y GIF de 270×270 y 87 fotogramas con SHA-256 idéntico al local.
 1. **Sin tareas abiertas.** P5 se resolvió manteniendo `peques/areas-test.html`: es el hub real de actividades y no una página de prueba.
 2. **Abecedario de Capi:** versión española y extensión inglesa publicadas (`2de4e07`, `a564339`); acceso English-only de Mireia/Guest en `12cb0fd`. El audio ya no depende de las voces del navegador: 53 MP3 locales en inglés británico y español, publicados en `b2857d5` y verificados en Pages. Mejoras opcionales, pendientes de autorización: mejorar el foco del diálogo, alargar el cierre automático y valorar más palabras por letra.
 3. **Capi se va de aventura:** publicada en `c6a9ae4`. 11 lugares, 220 fotos, quiz y progreso compartido; español e inglés. Probada en local (Supermercado completo 20/20, móvil 390×844 y 360×640, movimiento reducido) y verificada en GitHub Pages. El enlace de Juegos se corrigió en `6295cc1` para conservar el idioma de la página. Desde `88655b3` los créditos ya no aparecen en cada tarjeta: están agrupados al final, en un panel que se abre con cinco toques en «Créditos». El texto de bienvenida se actualizó en `8e91cfb`. El audio de las 220 palabras en ambos idiomas se publicó en `b2857d5` y se comprobó en producción, incluido el quiz.

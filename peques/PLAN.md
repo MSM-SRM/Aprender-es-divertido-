@@ -1194,3 +1194,61 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
   - Aventura inglesa: «apple» reproduce `audios/capibara-vocabulario/en/supermercado-01.mp3` y el botón muestra «🔊 Listen».
   - Aventura española: «manzana» reproduce `es/supermercado-01.mp3`; en el quiz, «arroz» reproduce `es/supermercado-06.mp3` con feedback «¡Muy bien! 🌟» y consola limpia.
 - El abecedario español en producción exige sesión de Sofia y redirige a `index.html` sin login; se comprobó en local con el mismo código y en producción la parte inglesa, accesible como invitado.
+
+## Actualización 08/11/2026 - El Rincón del JA-ja! HA-ha! y «Guardar chiste»
+
+### Alcance
+
+- El rincón se integra en `peques/index.html`, dentro de `#profileChooser`; no aparece dentro de los perfiles.
+- Nombre oficial: **«El Rincón del JA-ja! HA-ha!»**.
+- Se conserva el GIF original `imagenes/payaso-rincon.gif` (270×270, 87 fotogramas) sin modificarlo.
+
+### Datos, mazo e imágenes
+
+- `chistes.json`: 140 chistes en `es`, `en`, `ca` y `de`, en el mismo orden en los cuatro idiomas.
+- `chistes-imagenes.json`: mapa 1-based de índice → imagen; 140 entradas y 21 imágenes únicas de `imagenes/abecedario/`.
+- La ilustración depende solo del índice del chiste, nunca del idioma: cambiar ES→EN→CA→DE conserva chiste e imagen.
+- Mazo aleatorio de los 140 índices, sin repeticiones dentro de un ciclo. Al empezar otro ciclo se evita que el primer chiste sea el último del ciclo anterior.
+- El índice actual y el mazo se guardan en `mundoAprendizajeJokesV1`, por lo que se conservan al recargar.
+- Orden de respaldo: `./chistes.json` → caché en `mundoAprendizajeJokesCacheV1` → JSON remoto de GitHub → 6 chistes internos en español como último recurso.
+- Imagen de respaldo: si falla la imagen del índice se usa `imagenes/abecedario/capi-mascota.png`; si también falla, se oculta sin romper la página.
+
+### Interfaz
+
+- Textos y etiquetas accesibles traducidos en ES/EN/CA/DE.
+- Se mantienen «🔊 Escuchar chiste» y «😄 Otro chiste». «🔁 Repetir chiste» se elimina del HTML, del JavaScript y de los diccionarios.
+- La ilustración lleva `alt` por idioma, dimensiones declaradas y `decoding="async"`.
+
+### Guardar chiste
+
+- «💾 Guardar chiste» abre un selector inline, sin modal ni botones de texto.
+- Tres círculos iguales de 66×66 px en horizontal, con `object-fit: cover`, avatares reales (`mireia-320.webp`, `sofia-320.webp`, `guest.svg`) y el nombre debajo.
+- Cierre con ✕, Escape o volviendo a pulsar el botón; `aria-controls` y `aria-expanded` se mantienen sincronizados.
+- Colecciones independientes en localStorage:
+  - `mundoAprendizajeJokeCollectionV1_mireia`
+  - `mundoAprendizajeJokeCollectionV1_sofia`
+  - `mundoAprendizajeJokeCollectionV1_guest`
+- Cada entrada guarda `{index, lang, text, savedAt}`. Los duplicados se detectan por índice, también al cambiar de idioma.
+- Confirmación breve y traducida para guardado, duplicado y error, con `role="status"` y `aria-live="polite"`.
+
+### Pruebas
+
+- Mazo: 140 índices y 140 textos únicos por ciclo; los 140 índices aparecen una sola vez; el ciclo siguiente no repite el último chiste.
+- Idiomas: con el chiste 108 se mantienen el índice y `d-dado.jpg` en ES, EN, CA y DE; títulos, botones, selector y confirmaciones traducidos.
+- Guardado: una entrada por perfil, duplicado bloqueado sin aumentar la colección y persistencia tras recargar.
+- Cierre sin guardar: ✕, Escape y alternancia del botón.
+- Diseño: 390×844 (panel 322×195 px), 320×760 (274×195 px) y 1280×900 (520×176 px); círculos de 66×66 px, nombres debajo y sin desbordamiento horizontal.
+- Consola sin errores propios; solo el 404 preexistente de `favicon.ico`.
+
+### Publicación
+
+- Código y GIF publicados en `331077c` («Completa El Rincón del JA-ja! HA-ha!»), dos archivos: `peques/index.html` y `peques/imagenes/payaso-rincon.gif`.
+- GitHub Pages, ejecución `42524656141`: terminó con éxito.
+- Producción verificada:
+  - `index.html` idéntico al local salvo por los finales de línea CRLF/LF.
+  - «Guardar chiste» presente y «Repetir chiste» ausente.
+  - 140 chistes por idioma y 140 entradas en el mapa de imágenes.
+  - 25/25 recursos del rincón con HTTP 200: 21 imágenes del mapa, el GIF, los tres avatares y la imagen de respaldo.
+  - GIF con el mismo SHA-256 que el local, 270×270 y 87 fotogramas.
+  - `tools/check-prod.ps1`: 12/12 comprobaciones correctas.
+- Documentación actualizada en `ESTADO-PROYECTO.md` y en este archivo.
