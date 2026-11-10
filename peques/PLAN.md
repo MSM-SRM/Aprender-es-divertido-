@@ -1252,3 +1252,39 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
   - GIF con el mismo SHA-256 que el local, 270×270 y 87 fotogramas.
   - `tools/check-prod.ps1`: 12/12 comprobaciones correctas.
 - Documentación actualizada en `ESTADO-PROYECTO.md` y en este archivo.
+
+---
+
+## Actualización 10/11/2026 — Música del Penalti y versión autónoma para compartir
+
+### Música de fondo y silencio por perfil
+
+- `peques/penalti-matematico.html` carga `audios/himno-real-madrid.mp3` (862.462 B, SHA-256 `3FB5A70A…EF1FE`), copia byte a byte del MP3 aportado por el usuario.
+- La música arranca al pulsar un nivel (`startGame`), dentro del gesto de usuario; `loop = false` y volumen `0.4`. No se reinicia en cada tiro; al terminar la partida sigue hasta agotarse.
+- «Jugar otra vez» vuelve a empezar desde el principio. `showSetup()` pausa, reinicia `currentTime = 0` y oculta el botón.
+- Botón «🔊/🔇 Música» en `.back-row`: visible solo en partida y resultado, 117×44 px en escritorio y 107×44 px a 390 px, con `aria-pressed`, `aria-label` y `title` sincronizados.
+- El botón cambia solo `musicAudio.muted`; `siuuuu`, `haha`, `wrong` y `victory` siguen sin silenciar. Estado por perfil en `mundoAprendizajePenaltiMusicMutedV1_<perfil>`.
+- Se retiró la intro automática de `hala-madrid.mp3` (`introAudio`, `scheduleIntroAudio`, etc.); el archivo antiguo se conserva en disco.
+
+### Versión autónoma `penalti-cr7.html`
+
+- Un único archivo en la raíz, 1.586.259 B, SHA-256 `BB153024…049E2F`, sin dependencias del sitio.
+- Incrusta como data URI el avatar PNG, los cuatro sprites SVG y los cinco MP3 (himno, siuuuu, haha, wrong, victory). Solo `og:image`/`twitter:image` apuntan a una URL absoluta de Pages; el juego no la necesita.
+- Sin `auth-guard.js`, `progress-shared.js`, `ui-language.js`, `profileId`, enlace «Volver a Mi Mates», selector de idioma, estrellas, medallas ni progreso. El resultado muestra título según aciertos, «Has marcado X de 10 penaltis», modo/nivel y los botones «Jugar otra vez» / «Cambiar nivel».
+- El mute usa la clave global `mundoAprendizajePenaltiMusicMutedV1`; es la única preferencia que persiste.
+- Metaetiquetas `viewport`, `theme-color`, Open Graph y favicon inline para compartir el enlace.
+- Enlace público: `https://msm-srm.github.io/Aprender-es-divertido-/penalti-cr7.html`. Copia para enviar: `C:\Users\Usuario\Downloads\Penalti-CR7.html` (mismo tamaño y SHA-256).
+
+### Pruebas
+
+- Main game local: música reproduce tras elegir nivel, `loop=false`, no se reinicia tras un tiro; mute activa `musicAudio.muted` con SFX intactos; persistencia por perfil; `showSetup()` deja `currentTime=0` y botón oculto; 1280 y 390 px sin errores.
+- Standalone local (HTTP y `file://`): sin peticiones externas, assets desde data URI, audio `readyState=4`, 1280×800 y 390×844 sin desbordamiento; música, mute y SFX correctos; títulos con 7/8/10 aciertos («¡Buen partido!», «¡Gran partido!», «¡Partido perfecto!») y victoria solo con 10/10; sin claves de progreso nuevas.
+- Limpieza final: retirada la nota de bronce/plata/oro y la lógica de medallas del resultado autónomo.
+- Producción: `penalti-cr7.html` 200, 1.586.259 B y SHA-256 idéntico al local; `penalti-matematico.html?profile=guest` 200 con música y mute operativos; `himno-real-madrid.mp3` 200 `audio/mp3`; sin errores de consola.
+- Capturas y JSON en `qa/tmp-penalti-standalone/` (no versionado).
+
+### Publicación
+
+- Commit `05bdd88` («Anade musica al Penalti y una version autonoma para compartir»), push a `main`: `peques/penalti-matematico.html`, `peques/audios/himno-real-madrid.mp3` y `penalti-cr7.html`.
+- GitHub Pages sirvió el archivo autónomo con el mismo SHA-256 que el local.
+- Documentación actualizada en `ESTADO-PROYECTO.md`, `README.md`, `.github/copilot-instructions.md` y este archivo.

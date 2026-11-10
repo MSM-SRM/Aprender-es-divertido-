@@ -13,6 +13,7 @@ Este repositorio es un sitio web estatico en espanol. Antes de proponer o hacer 
 - Perfiles: `guest`, `mireia`, `sofia`.
 - Historial tecnico: `peques/PLAN.md`.
 - Audio: 493 MP3 locales en `peques/audios/` (abecedario y vocabulario, en ingles britanico y espanol).
+- Penalti autonomo: `penalti-cr7.html` en la raiz, un solo archivo sin login, perfiles, estrellas ni progreso; enlace publico `https://msm-srm.github.io/Aprender-es-divertido-/penalti-cr7.html`.
 
 ## Reglas que no se deben romper
 
@@ -55,7 +56,9 @@ Tareas disponibles en `.vscode/tasks.json`:
 - `peques/capibara-se-va-de-aventura.html` y `peques/capibara-se-va-de-aventura.js`: aventura de vocabulario de 220 palabras con audio MP3 local.
 - `peques/audios/abecedario/`: 53 MP3 (26 en `en/` y 27 en `es/`; la Ñ se llama `N-tilde.mp3`).
 - `peques/audios/capibara-vocabulario/`: 440 MP3 (220 palabras en `en/` y 220 en `es/`).
-- `peques/naruto-matematico.html`, `penalti-matematico.html`, `puzzles-mireia.html`: juegos.
+- `peques/naruto-matematico.html`, `peques/puzzles-mireia.html`: juegos.
+- `peques/penalti-matematico.html`: juego de penaltis con musica de fondo (`peques/audios/himno-real-madrid.mp3`) y boton que silencia solo la musica, con estado por perfil.
+- `penalti-cr7.html` (raiz): version autonoma del Penalti en un unico HTML, con imagenes y audios en data URI; sin login, perfiles, estrellas ni progreso. Enlace: `https://msm-srm.github.io/Aprender-es-divertido-/penalti-cr7.html`.
 - `peques/evento-especial.html` y `halloween-*.html`: contenido estacional.
 - `peques/progress-shared.js`: progreso compartido.
 - `peques/auth-guard.js`: control de sesion por perfil.
@@ -93,6 +96,8 @@ Tareas disponibles en `.vscode/tasks.json`:
 - Si falta o falla un MP3, ambas paginas usan `speechSynthesis` como respaldo.
 - Para regenerar: `powershell -NoProfile -ExecutionPolicy Bypass -File qa\generate-audio.ps1` (PowerShell 5.1 y BOM UTF-8). `-Test` genera una muestra de 10 archivos y `-Force` regenera los existentes. Requiere Hazel y Helena instaladas en Windows.
 - No borrar ni renombrar un MP3 sin actualizar el codigo. Si se anade o cambia una palabra, regenerar su audio en ambos idiomas.
+- Penalti: la musica empieza al elegir nivel, no entra en bucle, se reinicia al volver a jugar y se para al volver al menu. El boton «Musica» solo cambia `musicAudio.muted`; los efectos (`siuuuu`, `haha`, `wrong`, `victory`) no se silencian.
+- La version autonoma incrusta el himno y los efectos como data URI y guarda el mute en la clave global `mundoAprendizajePenaltiMusicMutedV1`.
 - `tools/check-prod.ps1` comprueba una muestra de MP3 en produccion; `tools/audit-assets.ps1` marca los audios dinamicos como referencias generadas.
 
 ## Checklist antes de terminar
@@ -100,6 +105,8 @@ Tareas disponibles en `.vscode/tasks.json`:
 - [ ] La pagina carga en local sin errores de consola.
 - [ ] Las imagenes y audios referenciados responden 200.
 - [ ] Si se toco el abecedario o el vocabulario, los MP3 existen y suenan en espanol e ingles.
+- [ ] Si se toco el Penalti, la musica empieza al elegir nivel, no entra en bucle y el boton silencia solo la musica.
+- [ ] La version autonoma sigue sin login, perfiles, estrellas ni progreso y no hace peticiones externas.
 - [ ] Los enlaces internos llevan a paginas existentes.
 - [ ] Se ve bien a 390 px y a 1280 px.
 - [ ] No se ha borrado nada sin copia y autorizacion.

@@ -3,6 +3,7 @@
 Sitio educativo estático en español para Mireia y Sofía: perfiles, juegos, cuentos, idiomas, progreso y eventos especiales.
 
 - **Producción:** https://msm-srm.github.io/Aprender-es-divertido-/peques/
+- **Penalti CR7 autónomo:** https://msm-srm.github.io/Aprender-es-divertido-/penalti-cr7.html (un solo HTML, sin perfiles, estrellas ni progreso; también se puede enviar como archivo)
 - **Estado y tareas:** [ESTADO-PROYECTO.md](ESTADO-PROYECTO.md)
 - **Historial técnico:** [peques/PLAN.md](peques/PLAN.md)
 
