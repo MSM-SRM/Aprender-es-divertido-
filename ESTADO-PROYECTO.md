@@ -3,10 +3,10 @@
 > **Fuente única de verdad** para el usuario, OpenCode y VS Code/Copilot.
 > Antes de empezar una tarea, lee este archivo. Al terminarla, actualízalo.
 >
-> Última actualización: **10/11/2026**
+> Última actualización: **11/11/2026**
 > Producción: `https://msm-srm.github.io/Aprender-es-divertido-/peques/`
 > Repositorio: `https://github.com/MSM-SRM/Aprender-es-divertido-`
-> Rama: `main` · Estado: juego «Capi se va de aventura» publicado en `c6a9ae4` y verificado en GitHub Pages; enlace de Juegos corregido en `6295cc1`; créditos agrupados en un panel discreto en `88655b3`; texto de bienvenida actualizado en `8e91cfb`; audio en inglés británico y español publicado y verificado en `b2857d5`; Rincón del JA-ja! HA-ha! y «Guardar chiste» publicados y verificados en `331077c`; música del Penalti y versión autónoma `penalti-cr7.html` publicadas y verificadas en `05bdd88`
+> Rama: `main` · Estado: juego «Capi se va de aventura» publicado en `c6a9ae4` y verificado en GitHub Pages; enlace de Juegos corregido en `6295cc1`; créditos agrupados en un panel discreto en `88655b3`; texto de bienvenida actualizado en `8e91cfb`; audio en inglés británico y español publicado y verificado en `b2857d5`; Rincón del JA-ja! HA-ha! y «Guardar chiste» publicados y verificados en `331077c`; música del Penalti y versión autónoma `penalti-cr7.html` publicadas y verificadas en `05bdd88`; audio de entrada de CR7 y carátula ilustrada del Penalti publicados y verificados en `a15b747`
 
 ---
 
@@ -19,7 +19,7 @@
 | Perfiles | `guest`, `mireia`, `sofia` |
 | Entrada | `peques/index.html` |
 | Hub principal | `peques/mundo-mireia.html` |
-| Estado del código | Abecedario bilingüe, créditos y acceso English-only para Mireia/Guest publicados; portada de Naruto en Mi Mates para Mireia/Guest publicada y verificada en `b74aa5b`; aventura de vocabulario «Capi se va de aventura» publicada y verificada en `c6a9ae4`, con créditos agrupados en un panel discreto desde `88655b3`; audio local en inglés británico y español añadido al abecedario y a la aventura en `b2857d5`, publicado y verificado; Rincón del JA-ja! HA-ha! y «Guardar chiste» publicados y verificados en `331077c`; música de fondo y silencio por perfil en Penalti Matemático, y versión autónoma `penalti-cr7.html`, publicadas y verificadas en `05bdd88` |
+| Estado del código | Abecedario bilingüe, créditos y acceso English-only para Mireia/Guest publicados; portada de Naruto en Mi Mates para Mireia/Guest publicada y verificada en `b74aa5b`; aventura de vocabulario «Capi se va de aventura» publicada y verificada en `c6a9ae4`, con créditos agrupados en un panel discreto desde `88655b3`; audio local en inglés británico y español añadido al abecedario y a la aventura en `b2857d5`, publicado y verificado; Rincón del JA-ja! HA-ha! y «Guardar chiste» publicados y verificados en `331077c`; música de fondo y silencio por perfil en Penalti Matemático, y versión autónoma `penalti-cr7.html`, publicadas y verificadas en `05bdd88`; audio de entrada renovado y carátula ilustrada del Penalti publicados y verificados en `a15b747`, conservando el avatar pixel-art original dentro de ambos juegos |
 | Estado de la limpieza | Completada: 8 archivos retirados, mapa optimizado, `qa/` archivado y `.git` compactado |
 | Subagentes OpenCode | Bloqueados por límite de uso gratuito; Copilot puede continuar en local |
 
@@ -115,6 +115,7 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 | H29 | «El Rincón del JA-ja! HA-ha!» en la entrada, con «Guardar chiste» | `331077c`, publicado y verificado en GitHub Pages (ejecución `42524656141`): mazo aleatorio de 140 chistes sin repetición por ciclo, cuatro idiomas (ES/EN/CA/DE), ilustración estable por índice, GIF original de 87 fotogramas, respaldo local → caché → JSON remoto → 6 chistes internos. «Guardar chiste» abre tres círculos iguales de 66×66 px (Mireia, Sofía, Guest) con avatares reales y `object-fit: cover`; colecciones separadas en `mundoAprendizajeJokeCollectionV1_<perfil>`, sin duplicados por índice, confirmación traducida y cierre con ✕, Escape o alternando el botón. «Repetir chiste» eliminado. Probado a 320, 390 y 1280 px sin desbordamiento |
 | H30 | Música de fondo en Penalti Matemático, con silencio solo de la música por perfil | `05bdd88`, publicado y verificado en GitHub Pages: `peques/audios/himno-real-madrid.mp3` (862.462 B, SHA-256 `3FB5A70A…EF1FE`, copia idéntica del aportado). Suena al pulsar nivel, una vez por partida (`loop=false`, volumen `0.4`), desde el principio en cada partida y «Jugar otra vez»; se para y reinicia al volver al menú. Botón «🔊/🔇 Música» en `.back-row`, visible solo durante partida y resultado (117×44 px en escritorio y 107×44 px a 390 px), con `aria-pressed`, `aria-label` y `title`; estado por perfil en `mundoAprendizajePenaltiMusicMutedV1_<perfil>` mediante `musicAudio.muted`. El botón no silencia `siuuuu`, `haha`, `wrong` ni `victory`. Retirada la intro automática de `hala-madrid.mp3` (archivo conservado en disco). Verificado en local y en producción con el perfil guest: música iniciada tras elegir nivel, sin bucle, mute solo de música y SFX intactos; 1280 y 390 px sin desbordamiento ni errores de consola; MP3 en 200 `audio/mp3` |
 | H31 | Versión autónoma y compartible del Penalti CR7 en un único HTML | `05bdd88`, publicada y verificada: `penalti-cr7.html` en la raíz (1.586.259 B, SHA-256 `BB153024…049E2F`), sin login, perfiles, «Volver a Mi Mates», selector de idioma, estrellas, medallas ni progreso. Avatar, cuatro sprites SVG y cinco MP3 incrustados como data URI; única preferencia persistente: el mute global `mundoAprendizajePenaltiMusicMutedV1`. Enlace público: `https://msm-srm.github.io/Aprender-es-divertido-/penalti-cr7.html`. Probada a 1280×800 y 390×844, por HTTP y con `file://`, sin peticiones externas ni errores; título de resultado según aciertos y sonido de victoria solo con 10/10. Producción idéntica al local (mismo tamaño y SHA-256). Copia para enviar en `C:\Users\Usuario\Downloads\Penalti-CR7.html` |
+| H32 | Audio de entrada de CR7 y carátula ilustrada del Penalti | `a15b747`, publicado y verificado en GitHub Pages: `peques/audios/cr9123hm.mp3` (399.194 B, 24,876 s, SHA-256 `DD8E0843…97896`) suena al entrar en la pantalla principal de ambos juegos, al recargar y al volver desde una partida; la música espera a que termine y el mute de la música no afecta a la intro. `peques/imagenes/penalti-cr7-portada.webp` (810×1024, 113.808 B, SHA-256 `6E0C3F97…ADD55`) es la carátula de la tarjeta de Mi Mates y la imagen OG/Twitter del HTML autónomo, con relación 1:1,15, fondo desenfocado, banda blanca de 40 px y título en una línea en es/ca/de/en. Se restauró el avatar pixel-art original en las pantallas de inicio de `peques/penalti-matematico.html` y `penalti-cr7.html`: la ilustración es solo carátula. El HTML autónomo quedó en 2.124.259 B, SHA-256 `889C3621…00666`, idéntico a producción y a `Downloads\Penalti-CR7.html` |
 
 ### En curso
 
@@ -149,7 +150,7 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 | `peques/idiomas.html` | Inglés, catalán y alemán | Activa |
 | `peques/mi-progreso.html` | Progreso por perfil | Activa |
 | `peques/naruto-matematico.html` | Juego de matemáticas | Activa |
-| `peques/penalti-matematico.html` | Juego de penaltis | Activa; música de fondo y botón de silencio por perfil desde `05bdd88` |
+| `peques/penalti-matematico.html` | Juego de penaltis | Activa; música de fondo y botón de silencio por perfil desde `05bdd88`; audio de entrada de CR7 desde `a15b747` |
 | `penalti-cr7.html` (raíz) | Versión autónoma del Penalti CR7 para compartir por enlace o archivo | Activa; sin login, perfiles, estrellas ni progreso |
 | `peques/puzzles-mireia.html` | Puzzles | Activa |
 | `peques/evento-especial.html` | Eventos especiales (Halloween) | Activa |
@@ -174,7 +175,7 @@ Retirados el 05/11/2026 con copia en `Downloads`: `peques/Index-ok-04.11.26.html
 - Voces de Windows: **Microsoft Hazel** (`en-GB`) y **Microsoft Helena** (`es-ES`), con SSML para el abecedario («A. Apple.», «Letra A. Abeja.»).
 - El abecedario reproduce el MP3 al abrir la letra, muestra el estado en el idioma de la interfaz y cierra la imagen 2 s después de terminar. «Escuchar otra vez» repite el clip. Si el MP3 falla, recurre a `speechSynthesis` y ya no muestra el aviso de «no hay voz en-GB».
 - La aventura reproduce la palabra automáticamente al abrir cada tarjeta y al acertar en el quiz, con botón **🔊 Escuchar/Listen** en cada ficha. Al cambiar de tarjeta, idioma o pantalla se detiene el audio anterior; si falta el MP3, usa `speechSynthesis` como respaldo.
-- **Música del Penalti:** `peques/audios/himno-real-madrid.mp3` (862.462 B) empieza al elegir nivel, suena una vez por partida sin bucle y se reinicia al volver a jugar; el botón «Música» silencia solo la música y recuerda la preferencia por perfil. La versión autónoma `penalti-cr7.html` lleva el MP3 y los efectos incrustados como data URI.
+- **Audio del Penalti:** `peques/audios/himno-real-madrid.mp3` (862.462 B) es la música de fondo: empieza al elegir nivel, suena una vez por partida sin bucle y se reinicia al volver a jugar; el botón «Música» silencia solo la música y recuerda la preferencia por perfil. `peques/audios/cr9123hm.mp3` (399.194 B, 24,876 s) es la intro de CR7: suena al entrar en la pantalla principal, al recargar y al volver desde una partida, y la música espera a que termine; el mute de la música no la silencia. La versión autónoma `penalti-cr7.html` lleva ambos MP3, los efectos y el avatar pixel-art incrustados como data URI.
 - Regeneración (solo local, no se versiona): `powershell -NoProfile -ExecutionPolicy Bypass -File qa\generate-audio.ps1`; admite `-Test` y `-Force`. Requiere las voces Hazel y Helena instaladas en Windows.
 - Herramientas versionadas: `tools/check-prod.ps1` comprueba las páginas de los dos juegos y una muestra de MP3 (estado 200 y `audio/mp3`); `tools/audit-assets.ps1` marca los audios como referencias dinámicas para que no parezcan huérfanos. `.github/copilot-instructions.md` documenta rutas, comportamiento y regeneración.
 
@@ -305,6 +306,7 @@ Todas están en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\`. Los hashes
 | 07/11/2026 | `d6e36d3` | Instrucciones de Copilot y herramientas de verificación de audio |
 | 08/11/2026 | `331077c` | «El Rincón del JA-ja! HA-ha!» y «Guardar chiste» publicados y verificados en Pages |
 | 10/11/2026 | `05bdd88` | Música del Penalti y versión autónoma `penalti-cr7.html` publicadas y verificadas |
+| 11/11/2026 | `a15b747` | Audio de entrada de CR7, carátula del Penalti y avatar pixel-art restaurado, publicados y verificados |
 
 ---
 
@@ -321,7 +323,7 @@ Todas están en `C:\Users\Usuario\Downloads\ZZ - Mi_Mundo Back ups\`. Los hashes
 
 ## 9. Próxima acción
 
-0. **Penalti Matemático (H30/H31):** música de fondo, botón de silencio por perfil y versión autónoma publicados en `05bdd88` y verificados en Pages. Enlace para compartir: `https://msm-srm.github.io/Aprender-es-divertido-/penalti-cr7.html`. Copia enviable en `C:\Users\Usuario\Downloads\Penalti-CR7.html`.
+0. **Penalti Matemático (H30–H32):** música de fondo, botón de silencio por perfil, audio de entrada de CR7 (`cr9123hm.mp3`) y carátula ilustrada publicados en `a15b747` y verificados en Pages. La carátula `penalti-cr7-portada.webp` se usa solo en la tarjeta de Mi Mates y en OG/Twitter; dentro de ambos juegos se conserva el avatar pixel-art. Enlace para compartir: `https://msm-srm.github.io/Aprender-es-divertido-/penalti-cr7.html`. Copia enviable en `C:\Users\Usuario\Downloads\Penalti-CR7.html`.
 1. **Rincón del JA-ja! HA-ha! (H29):** publicado en `331077c` y verificado en Pages (ejecución `42524656141`, éxito). Contenido en producción: «Guardar chiste» presente, «Repetir chiste» ausente, tres círculos de 66×66 px con Mireia, Sofía y Guest, y GIF de 270×270 y 87 fotogramas con SHA-256 idéntico al local.
 2. **Sin tareas abiertas.** P5 se resolvió manteniendo `peques/areas-test.html`: es el hub real de actividades y no una página de prueba.
 3. **Abecedario de Capi:** versión española y extensión inglesa publicadas (`2de4e07`, `a564339`); acceso English-only de Mireia/Guest en `12cb0fd`. El audio ya no depende de las voces del navegador: 53 MP3 locales en inglés británico y español, publicados en `b2857d5` y verificados en Pages. Mejoras opcionales, pendientes de autorización: mejorar el foco del diálogo, alargar el cierre automático y valorar más palabras por letra.

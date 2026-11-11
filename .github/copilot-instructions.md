@@ -57,7 +57,7 @@ Tareas disponibles en `.vscode/tasks.json`:
 - `peques/audios/abecedario/`: 53 MP3 (26 en `en/` y 27 en `es/`; la Ñ se llama `N-tilde.mp3`).
 - `peques/audios/capibara-vocabulario/`: 440 MP3 (220 palabras en `en/` y 220 en `es/`).
 - `peques/naruto-matematico.html`, `peques/puzzles-mireia.html`: juegos.
-- `peques/penalti-matematico.html`: juego de penaltis con musica de fondo (`peques/audios/himno-real-madrid.mp3`) y boton que silencia solo la musica, con estado por perfil.
+- `peques/penalti-matematico.html`: juego de penaltis con musica de fondo (`peques/audios/himno-real-madrid.mp3`), audio de entrada de CR7 (`peques/audios/cr9123hm.mp3`) y boton que silencia solo la musica, con estado por perfil. La caratula ilustrada `peques/imagenes/penalti-cr7-portada.webp` se usa solo en Mi Mates y en OG/Twitter; las pantallas de inicio conservan el avatar pixel-art.
 - `penalti-cr7.html` (raiz): version autonoma del Penalti en un unico HTML, con imagenes y audios en data URI; sin login, perfiles, estrellas ni progreso. Enlace: `https://msm-srm.github.io/Aprender-es-divertido-/penalti-cr7.html`.
 - `peques/evento-especial.html` y `halloween-*.html`: contenido estacional.
 - `peques/progress-shared.js`: progreso compartido.
@@ -97,7 +97,9 @@ Tareas disponibles en `.vscode/tasks.json`:
 - Para regenerar: `powershell -NoProfile -ExecutionPolicy Bypass -File qa\generate-audio.ps1` (PowerShell 5.1 y BOM UTF-8). `-Test` genera una muestra de 10 archivos y `-Force` regenera los existentes. Requiere Hazel y Helena instaladas en Windows.
 - No borrar ni renombrar un MP3 sin actualizar el codigo. Si se anade o cambia una palabra, regenerar su audio en ambos idiomas.
 - Penalti: la musica empieza al elegir nivel, no entra en bucle, se reinicia al volver a jugar y se para al volver al menu. El boton «Musica» solo cambia `musicAudio.muted`; los efectos (`siuuuu`, `haha`, `wrong`, `victory`) no se silencian.
-- La version autonoma incrusta el himno y los efectos como data URI y guarda el mute en la clave global `mundoAprendizajePenaltiMusicMutedV1`.
+- Penalti: la intro `cr9123hm.mp3` suena al entrar en la pantalla principal, al recargar y al volver desde una partida, una vez y sin bucle; si el navegador bloquea el autoplay, se reintenta con el primer gesto. La musica de fondo espera a que termine la intro y el mute de la musica no silencia la intro.
+- La version autonoma incrusta el avatar pixel-art, la intro, el himno y los efectos como data URI y guarda el mute en la clave global `mundoAprendizajePenaltiMusicMutedV1`.
+- La caratula `peques/imagenes/penalti-cr7-portada.webp` solo se usa en la tarjeta de Mi Mates y en las metaetiquetas OG/Twitter. No sustituir con ella el avatar pixel-art de las pantallas de inicio de `peques/penalti-matematico.html` ni de `penalti-cr7.html`.
 - `tools/check-prod.ps1` comprueba una muestra de MP3 en produccion; `tools/audit-assets.ps1` marca los audios dinamicos como referencias generadas.
 
 ## Checklist antes de terminar
@@ -106,6 +108,8 @@ Tareas disponibles en `.vscode/tasks.json`:
 - [ ] Las imagenes y audios referenciados responden 200.
 - [ ] Si se toco el abecedario o el vocabulario, los MP3 existen y suenan en espanol e ingles.
 - [ ] Si se toco el Penalti, la musica empieza al elegir nivel, no entra en bucle y el boton silencia solo la musica.
+- [ ] Si se toco el Penalti, la intro suena al entrar, al recargar y al volver al menu, espera a la musica y no la silencia el boton de mute.
+- [ ] La caratula del Penalti sigue solo en Mi Mates y OG/Twitter, y las pantallas de inicio conservan el avatar pixel-art.
 - [ ] La version autonoma sigue sin login, perfiles, estrellas ni progreso y no hace peticiones externas.
 - [ ] Los enlaces internos llevan a paginas existentes.
 - [ ] Se ve bien a 390 px y a 1280 px.

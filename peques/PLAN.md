@@ -1288,3 +1288,35 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - Commit `05bdd88` («Anade musica al Penalti y una version autonoma para compartir»), push a `main`: `peques/penalti-matematico.html`, `peques/audios/himno-real-madrid.mp3` y `penalti-cr7.html`.
 - GitHub Pages sirvió el archivo autónomo con el mismo SHA-256 que el local.
 - Documentación actualizada en `ESTADO-PROYECTO.md`, `README.md`, `.github/copilot-instructions.md` y este archivo.
+
+---
+
+## Actualización 11/11/2026 — Audio de entrada de CR7 y carátula del Penalti
+
+### Audio de entrada
+
+- `peques/audios/cr9123hm.mp3`: 399.194 B, 24,875918 s, SHA-256 `DD8E084331735762F9F89F2F48EC4E5DC94F98CCB4FFE9A8E73F5085B4197896`; sustituye al antiguo `cr7123hm.mp3` como intro de CR7.
+- `peques/penalti-matematico.html` carga la intro con `createAudio(..., 0.9)` y `loop = false`. Suena al entrar en la pantalla principal (espera de 400 ms para no competir con los recursos), al recargar la página y al volver desde una partida o el resultado mediante `showSetup() → scheduleCr7Intro()`.
+- `cr7IntroActive`, `cr7IntroPlayed`, `musicPending` y `cr7IntroTimer` evitan duplicados y solapamientos. Si el navegador bloquea el autoplay, se arma un reintento de un solo uso con el primer `pointerdown`, `touchstart` o `keydown`.
+- La música de fondo no arranca hasta que termina la intro (`startMusicWhenIntroDone()`). El botón «Música» solo cambia `musicAudio.muted`: la intro y los efectos (`siuuuu`, `haha`, `wrong`, `victory`) siguen sonando.
+- La versión autónoma `penalti-cr7.html` incrusta la intro como `AUDIO_CR7` (data URI) y aplica la misma lógica, con la clave global `mundoAprendizajePenaltiMusicMutedV1`.
+
+### Carátula y avatar
+
+- `peques/imagenes/penalti-cr7-portada.webp`: 810×1024, 113.808 B, SHA-256 `6E0C3F972A8C1FC89FC1B3827A91B2C2699AF5CDBB8B4295F25558263E2ADD55`. Se usa solo como carátula: tarjeta de Penalti en `peques/mi-mates.html` y `og:image`/`twitter:image` de `penalti-cr7.html`.
+- Tarjeta: `aspect-ratio: 1 / 1.15` (335 px de alto frente a 292 px de Naruto en escritorio), fondo desenfocado con la misma imagen, `object-fit: contain` y banda blanca inferior de 40 px con `white-space: nowrap`.
+- Probada en es, ca, de y en: títulos en una línea, banda de 40 px y cuerpo completo visible; 292×335 px en escritorio.
+- Las pantallas de inicio conservan el avatar pixel-art original: `imagenes/ronaldo-avatar-8bit.png` en `peques/penalti-matematico.html` y el PNG incrustado en `penalti-cr7.html`. La ilustración nueva no se usa dentro del juego.
+
+### Pruebas
+
+- Intro: duración 24,875918 s; suena al cargar, al recargar, al volver al menú y al cambiar de nivel; no se solapa con la música; el mute de la música no la silencia; sin errores de consola.
+- Música: sigue empezando al elegir nivel, sin bucle, con reinicio en «Jugar otra vez» y parada al volver al menú.
+- Autónomo: funciona por HTTP y `file://`, sin peticiones externas; intro, música, mute y SFX correctos; 1280×800 y 390×844 sin desbordamiento.
+- Producción: `penalti-cr7.html` 200, 2.124.259 B y SHA-256 `889C3621072B847978162C4C599361571B774ADD8BA5FEECE613EB17E9800666`; `cr9123hm.mp3` 200 con el hash esperado; `penalti-cr7-portada.webp` 200 con el hash esperado. El HTML local se normalizó a LF para ser byte a byte idéntico a producción y se actualizó `C:\Users\Usuario\Downloads\Penalti-CR7.html`.
+
+### Publicación
+
+- Commit `a15b747` («Renueva el audio de entrada y la portada del Penalti»), push a `main`: `penalti-cr7.html`, `peques/penalti-matematico.html`, `peques/mi-mates.html`, `peques/audios/cr9123hm.mp3` y `peques/imagenes/penalti-cr7-portada.webp` (5 archivos).
+- GitHub Pages tardó unas cinco comprobaciones (≈50 s) en servir el HTML nuevo y los assets; después se verificaron tamaño y hashes.
+- Documentación actualizada en `ESTADO-PROYECTO.md`, `README.md`, `.github/copilot-instructions.md` y este archivo.
