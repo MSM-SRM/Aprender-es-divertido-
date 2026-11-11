@@ -748,6 +748,18 @@
         const musicAudio = createAudio('audios/himno-real-madrid.mp3', 0.4);
         musicAudio.loop = false;
 
+        // Audio de entrada de CR7: solo en la pantalla principal, una vez y sin bucle.
+        // No depende del botón de silencio de la música.
+        const cr7IntroAudio = createAudio('audios/cr9123hm.mp3', 0.9);
+        cr7IntroAudio.loop = false;
+
+        let cr7IntroActive = false;       // sonando o a punto de sonar
+        let cr7IntroPlayed = false;       // ya sonó en esta entrada a la pantalla principal
+        let cr7IntroRetryArmed = false;   // reintento armado para el primer gesto
+        let cr7IntroRetryHandler = null;
+        let cr7IntroTimer = null;
+        let musicPending = false;         // la música espera a que termine el audio de CR7
+
         const MUSIC_MUTED_KEY = 'mundoAprendizajePenaltiMusicMutedV1_' + profileId;
         let musicMuted = false;
         try {
@@ -791,6 +803,142 @@
                 musicAudio.currentTime = 0;
             } catch (e) {}
         }
+
+        // ---------- Audio de entrada de CR7 ----------
+        function isSetupVisible() {
+            const setup = document.getElementById('setup-screen');
+            return !!setup && setup.classList.contains('active');
+        }
+
+        function clearCr7IntroRetry() {
+            if (cr7IntroRetryHandler) {
+                ['pointerdown', 'touchstart', 'keydown'].forEach(ev => {
+                    document.removeEventListener(ev, cr7IntroRetryHandler, true);
+                });
+                cr7IntroRetryHandler = null;
+            }
+            cr7IntroRetryArmed = false;
+        }
+
+        // Reintento de un solo uso: el primer gesto del usuario en la pantalla principal.
+        function armCr7IntroRetry() {
+            if (cr7IntroRetryArmed) return;
+            cr7IntroRetryArmed = true;
+            cr7IntroRetryHandler = () => {
+                clearCr7IntroRetry();
+                if (!isSetupVisible()) {
+                    if (musicPending) {
+                        musicPending = false;
+                        startMusic();
+                    }
+                    return;
+                }
+                playCr7Intro();
+            };
+            ['pointerdown', 'touchstart', 'keydown'].forEach(ev => {
+                document.addEventListener(ev, cr7IntroRetryHandler, true);
+            });
+        }
+
+        function playCr7Intro() {
+            try {
+                cr7IntroAudio.pause();
+                cr7IntroAudio.currentTime = 0;
+                cr7IntroAudio.muted = false;
+                cr7IntroActive = true;
+                const attempt = cr7IntroAudio.play();
+                if (attempt && typeof attempt.then === 'function') {
+                    attempt.then(() => {
+                        cr7IntroPlayed = true;
+                        clearCr7IntroRetry();
+                    }).catch(() => {
+                        cr7IntroActive = false;
+                        if (musicPending) {
+                            musicPending = false;
+                            startMusic();
+                        }
+                        if (isSetupVisible()) armCr7IntroRetry();
+                    });
+                } else {
+                    cr7IntroPlayed = true;
+                    clearCr7IntroRetry();
+                }
+                return true;
+            } catch (e) {
+                cr7IntroActive = false;
+                if (musicPending) {
+                    musicPending = false;
+                    startMusic();
+                }
+                if (isSetupVisible()) armCr7IntroRetry();
+                return false;
+            }
+        }
+
+        function stopCr7Intro() {
+            if (cr7IntroTimer) {
+                clearTimeout(cr7IntroTimer);
+                cr7IntroTimer = null;
+            }
+            clearCr7IntroRetry();
+            cr7IntroActive = false;
+            try {
+                cr7IntroAudio.pause();
+                cr7IntroAudio.currentTime = 0;
+            } catch (e) {}
+        }
+
+        // Entrada nueva a la pantalla principal: estado limpio y reproducción desde el principio.
+        function resetCr7IntroState() {
+            cr7IntroPlayed = false;
+            musicPending = false;
+        }
+
+        // En la carga inicial se espera un poco para no competir con el resto de recursos.
+        function scheduleCr7Intro() {
+            stopCr7Intro();
+            resetCr7IntroState();
+            cr7IntroTimer = setTimeout(() => {
+                cr7IntroTimer = null;
+                if (!isSetupVisible()) return;
+                playCr7Intro();
+            }, 400);
+        }
+
+        // Música al elegir nivel, pero nunca solapada con el audio de CR7.
+        function startMusicWhenIntroDone() {
+            if (cr7IntroActive) {
+                musicPending = true;
+                return;
+            }
+            if (!cr7IntroPlayed && isSetupVisible()) {
+                musicPending = true;
+                if (playCr7Intro()) return;
+            }
+            musicPending = false;
+            startMusic();
+        }
+
+        cr7IntroAudio.addEventListener('ended', () => {
+            cr7IntroActive = false;
+            cr7IntroPlayed = true;
+            if (musicPending) {
+                musicPending = false;
+                if (document.getElementById('game-screen').classList.contains('active')) {
+                    startMusic();
+                }
+            }
+        });
+
+        cr7IntroAudio.addEventListener('error', () => {
+            cr7IntroActive = false;
+            if (musicPending) {
+                musicPending = false;
+                if (document.getElementById('game-screen').classList.contains('active')) {
+                    startMusic();
+                }
+            }
+        });
 
         function toggleMusic() {
             musicMuted = !musicMuted;
@@ -888,7 +1036,7 @@
             document.getElementById('game-screen').classList.add('active');
 
             setMusicButtonVisible(true);
-            startMusic();
+            startMusicWhenIntroDone();
 
             updateHud();
             generateOperation();
@@ -912,6 +1060,7 @@
             document.getElementById('result-screen').classList.remove('active');
             document.getElementById('setup-screen').classList.add('active');
             updateHud();
+            scheduleCr7Intro();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -1536,6 +1685,9 @@
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // Al cargar la página, la pantalla principal ya está visible.
+        scheduleCr7Intro();
 
     </script>
 <script src="ui-language.js"></script>
