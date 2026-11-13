@@ -14,6 +14,7 @@ Este repositorio es un sitio web estatico en espanol. Antes de proponer o hacer 
 - Historial tecnico: `peques/PLAN.md`.
 - Audio: 493 MP3 locales en `peques/audios/` (abecedario y vocabulario, en ingles britanico y espanol).
 - Penalti autonomo: `penalti-cr7.html` en la raiz, un solo archivo sin login, perfiles, estrellas ni progreso; enlace publico `https://msm-srm.github.io/Aprender-es-divertido-/penalti-cr7.html`.
+- Nuevo juego: `peques/que-hora-es.html` (Ciencias, Mireia y Guest), con hub de 4 espacios y la leccion «Aprende con Kakashi sensei»; los otros 3 juegos son placeholders. Pendiente de publicar.
 
 ## Reglas que no se deben romper
 
@@ -57,6 +58,7 @@ Tareas disponibles en `.vscode/tasks.json`:
 - `peques/audios/abecedario/`: 53 MP3 (26 en `en/` y 27 en `es/`; la Ñ se llama `N-tilde.mp3`).
 - `peques/audios/capibara-vocabulario/`: 440 MP3 (220 palabras en `en/` y 220 en `es/`).
 - `peques/naruto-matematico.html`, `peques/puzzles-mireia.html`: juegos.
+- `peques/que-hora-es.html`: juego de lectura del reloj con fondo `goldBG`, hub de 4 tarjetas, 15 conceptos y leccion compacta en dos columnas. Reloj de 336 px con numeros fucsia grandes y Kakashi sin medallon (`kakashi-body.webp`, 366x720) al 80 % del diametro; los brazos transparentes `brazo-izquierdo.png` (hora) y `brazo-derecho.png` (minutos) giran desde los hombros. Assets en `peques/imagenes/que-hora-es/` (`gold-bg.jpg`, `portada-hora.jpg`, `kakashi-learn.jpg`, `naruto-hi.jpg`, `sakura-day.jpg`, `mireia-day.jpg` y los tres anteriores). La tarjeta de Ciencias se muestra solo a Mireia y Guest.
 - `peques/penalti-matematico.html`: juego de penaltis con musica de fondo (`peques/audios/himno-real-madrid.mp3`), audio de entrada de CR7 (`peques/audios/cr9123hm.mp3`) y boton que silencia solo la musica, con estado por perfil. La caratula ilustrada `peques/imagenes/penalti-cr7-portada.webp` se usa solo en Mi Mates y en OG/Twitter; las pantallas de inicio conservan el avatar pixel-art.
 - `penalti-cr7.html` (raiz): version autonoma del Penalti en un unico HTML, con imagenes y audios en data URI; sin login, perfiles, estrellas ni progreso. Enlace: `https://msm-srm.github.io/Aprender-es-divertido-/penalti-cr7.html`.
 - `peques/evento-especial.html` y `halloween-*.html`: contenido estacional.
@@ -111,6 +113,7 @@ Tareas disponibles en `.vscode/tasks.json`:
 - [ ] Si se toco el Penalti, la intro suena al entrar, al recargar y al volver al menu, espera a la musica y no la silencia el boton de mute.
 - [ ] La caratula del Penalti sigue solo en Mi Mates y OG/Twitter, y las pantallas de inicio conservan el avatar pixel-art.
 - [ ] La version autonoma sigue sin login, perfiles, estrellas ni progreso y no hace peticiones externas.
+- [ ] Si se toco «Que hora es?», la leccion recorre los 15 conceptos, el reloj marca bien 12:00 AM/PM y los cuartos, y la tarjeta no aparece para Sofia.
 - [ ] Los enlaces internos llevan a paginas existentes.
 - [ ] Se ve bien a 390 px y a 1280 px.
 - [ ] No se ha borrado nada sin copia y autorizacion.

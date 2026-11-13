@@ -3,10 +3,10 @@
 > **Fuente única de verdad** para el usuario, OpenCode y VS Code/Copilot.
 > Antes de empezar una tarea, lee este archivo. Al terminarla, actualízalo.
 >
-> Última actualización: **11/11/2026**
+> Última actualización: **13/11/2026**
 > Producción: `https://msm-srm.github.io/Aprender-es-divertido-/peques/`
 > Repositorio: `https://github.com/MSM-SRM/Aprender-es-divertido-`
-> Rama: `main` · Estado: juego «Capi se va de aventura» publicado en `c6a9ae4` y verificado en GitHub Pages; enlace de Juegos corregido en `6295cc1`; créditos agrupados en un panel discreto en `88655b3`; texto de bienvenida actualizado en `8e91cfb`; audio en inglés británico y español publicado y verificado en `b2857d5`; Rincón del JA-ja! HA-ha! y «Guardar chiste» publicados y verificados en `331077c`; música del Penalti y versión autónoma `penalti-cr7.html` publicadas y verificadas en `05bdd88`; audio de entrada de CR7 y carátula ilustrada del Penalti publicados y verificados en `a15b747`
+> Rama: `main` · Estado: juego «Capi se va de aventura» publicado en `c6a9ae4` y verificado en GitHub Pages; enlace de Juegos corregido en `6295cc1`; créditos agrupados en un panel discreto en `88655b3`; texto de bienvenida actualizado en `8e91cfb`; audio en inglés británico y español publicado y verificado en `b2857d5`; Rincón del JA-ja! HA-ha! y «Guardar chiste» publicados y verificados en `331077c`; música del Penalti y versión autónoma `penalti-cr7.html` publicadas y verificadas en `05bdd88`; audio de entrada de CR7 y carátula ilustrada del Penalti publicados y verificados en `a15b747`; nuevo juego «¿Qué hora es?» con la lección de Kakashi implementado y verificado en local, pendiente de autorización para publicar
 
 ---
 
@@ -19,9 +19,9 @@
 | Perfiles | `guest`, `mireia`, `sofia` |
 | Entrada | `peques/index.html` |
 | Hub principal | `peques/mundo-mireia.html` |
-| Estado del código | Abecedario bilingüe, créditos y acceso English-only para Mireia/Guest publicados; portada de Naruto en Mi Mates para Mireia/Guest publicada y verificada en `b74aa5b`; aventura de vocabulario «Capi se va de aventura» publicada y verificada en `c6a9ae4`, con créditos agrupados en un panel discreto desde `88655b3`; audio local en inglés británico y español añadido al abecedario y a la aventura en `b2857d5`, publicado y verificado; Rincón del JA-ja! HA-ha! y «Guardar chiste» publicados y verificados en `331077c`; música de fondo y silencio por perfil en Penalti Matemático, y versión autónoma `penalti-cr7.html`, publicadas y verificadas en `05bdd88`; audio de entrada renovado y carátula ilustrada del Penalti publicados y verificados en `a15b747`, conservando el avatar pixel-art original dentro de ambos juegos |
+| Estado del código | Abecedario bilingüe, créditos y acceso English-only para Mireia/Guest publicados; portada de Naruto en Mi Mates para Mireia/Guest publicada y verificada en `b74aa5b`; aventura de vocabulario «Capi se va de aventura» publicada y verificada en `c6a9ae4`, con créditos agrupados en un panel discreto desde `88655b3`; audio local en inglés británico y español añadido al abecedario y a la aventura en `b2857d5`, publicado y verificado; Rincón del JA-ja! HA-ha! y «Guardar chiste» publicados y verificados en `331077c`; música de fondo y silencio por perfil en Penalti Matemático, y versión autónoma `penalti-cr7.html`, publicadas y verificadas en `05bdd88`; audio de entrada renovado y carátula ilustrada del Penalti publicados y verificados en `a15b747`, conservando el avatar pixel-art original dentro de ambos juegos; nuevo juego «¿Qué hora es?» para Mireia y Guest con hub de 4 espacios y lección de 15 conceptos rediseñada y verificada en local, pendiente de publicar |
 | Estado de la limpieza | Completada: 8 archivos retirados, mapa optimizado, `qa/` archivado y `.git` compactado |
-| Subagentes OpenCode | Bloqueados por límite de uso gratuito; Copilot puede continuar en local |
+| Subagentes OpenCode | Disponibles, con límite de pasos en tareas largas; el supervisor revisa y completa la verificación |
 
 ---
 
@@ -116,6 +116,8 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 | H30 | Música de fondo en Penalti Matemático, con silencio solo de la música por perfil | `05bdd88`, publicado y verificado en GitHub Pages: `peques/audios/himno-real-madrid.mp3` (862.462 B, SHA-256 `3FB5A70A…EF1FE`, copia idéntica del aportado). Suena al pulsar nivel, una vez por partida (`loop=false`, volumen `0.4`), desde el principio en cada partida y «Jugar otra vez»; se para y reinicia al volver al menú. Botón «🔊/🔇 Música» en `.back-row`, visible solo durante partida y resultado (117×44 px en escritorio y 107×44 px a 390 px), con `aria-pressed`, `aria-label` y `title`; estado por perfil en `mundoAprendizajePenaltiMusicMutedV1_<perfil>` mediante `musicAudio.muted`. El botón no silencia `siuuuu`, `haha`, `wrong` ni `victory`. Retirada la intro automática de `hala-madrid.mp3` (archivo conservado en disco). Verificado en local y en producción con el perfil guest: música iniciada tras elegir nivel, sin bucle, mute solo de música y SFX intactos; 1280 y 390 px sin desbordamiento ni errores de consola; MP3 en 200 `audio/mp3` |
 | H31 | Versión autónoma y compartible del Penalti CR7 en un único HTML | `05bdd88`, publicada y verificada: `penalti-cr7.html` en la raíz (1.586.259 B, SHA-256 `BB153024…049E2F`), sin login, perfiles, «Volver a Mi Mates», selector de idioma, estrellas, medallas ni progreso. Avatar, cuatro sprites SVG y cinco MP3 incrustados como data URI; única preferencia persistente: el mute global `mundoAprendizajePenaltiMusicMutedV1`. Enlace público: `https://msm-srm.github.io/Aprender-es-divertido-/penalti-cr7.html`. Probada a 1280×800 y 390×844, por HTTP y con `file://`, sin peticiones externas ni errores; título de resultado según aciertos y sonido de victoria solo con 10/10. Producción idéntica al local (mismo tamaño y SHA-256). Copia para enviar en `C:\Users\Usuario\Downloads\Penalti-CR7.html` |
 | H32 | Audio de entrada de CR7 y carátula ilustrada del Penalti | `a15b747`, publicado y verificado en GitHub Pages: `peques/audios/cr9123hm.mp3` (399.194 B, 24,876 s, SHA-256 `DD8E0843…97896`) suena al entrar en la pantalla principal de ambos juegos, al recargar y al volver desde una partida; la música espera a que termine y el mute de la música no afecta a la intro. `peques/imagenes/penalti-cr7-portada.webp` (810×1024, 113.808 B, SHA-256 `6E0C3F97…ADD55`) es la carátula de la tarjeta de Mi Mates y la imagen OG/Twitter del HTML autónomo, con relación 1:1,15, fondo desenfocado, banda blanca de 40 px y título en una línea en es/ca/de/en. Se restauró el avatar pixel-art original en las pantallas de inicio de `peques/penalti-matematico.html` y `penalti-cr7.html`: la ilustración es solo carátula. El HTML autónomo quedó en 2.124.259 B, SHA-256 `889C3621…00666`, idéntico a producción y a `Downloads\Penalti-CR7.html` |
+| H33 | Juego «¿Qué hora es?»: hub de 4 espacios y lección «Aprende con Kakashi sensei» | Implementado y verificado en local, sin commit ni push (pendiente de autorización): `peques/que-hora-es.html` con fondo `goldBG`, 4 tarjetas (1 activa y 3 «Muy pronto»), 15 conceptos con ejemplos, reloj redondo con 12 números fucsia, Kakashi en el centro y brazos animados con cálculo de ángulo/longitud desde los hombros. Tarjeta nueva en Ciencias para Mireia y Guest (`profiles`/`newFor`, imagen `portada-hora.jpg`), ausente para Sofia. Probado en local a 1280 y 390 px, sin errores de consola; 12:00 AM/PM, 6:45 y 7:45 correctos; enlace y perfil conservados. Estrella de oro en `ciencias` al completar la lección. Auditoría independiente de `web-qa`: APTO (`qa/que-hora-es-2026-11-12.md`) |
+| H34 | Rediseño de la lección «Aprende con Kakashi sensei» | Verificado en local, sin commit: Kakashi sin medallón y al 80 % del diámetro interior (`kakashi-body.webp`, 366×720), números fucsia al 16 % (≈49 px) y reloj de 336 px; brazos transparentes recortados (`brazo-izquierdo.png` para la hora, `brazo-derecho.png` para los minutos) que giran desde los hombros; lección compacta en dos columnas (máx. 1000 px) que cabe en 1280×800 sin scroll y pasa a una columna a ≤860 px; retirados la leyenda y «Repetir movimiento». Probado 7:00, 12:00 AM/PM, 3:30, 9:15, 6:45 y 7:45 a 1280×800 y 390×844, sin errores de consola ni desbordamiento horizontal. Los números quedan por encima de los brazos para seguir legibles |
 
 ### En curso
 
@@ -127,13 +129,14 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 
 | ID | Tarea | Prioridad | Criterio de terminado |
 |---|---|---|---|
-| — | Sin tareas pendientes | — | — |
+| P7 | Completar los tres juegos de «¿Qué hora es?» | Alta | Implementar «Mira lo que se» (20 preguntas aleatorias), «El día de Sakura» y «¿Qué haces, Mireia?», manteniendo el fondo `goldBG`, el estilo del hub y los enlaces por perfil |
+| P8 | Publicar «¿Qué hora es?» cuando lo autorice el usuario | Alta | Commit de `peques/que-hora-es.html`, `peques/imagenes/que-hora-es/` y `peques/areas-test.html` (sin `qa/` ni archivos ajenos), incluido el rediseño de Kakashi (`kakashi-body.webp`, `brazo-izquierdo.png` y `brazo-derecho.png`), push a `main` y verificación en GitHub Pages |
 
 ### Bloqueado
 
 | ID | Tarea | Motivo |
 |---|---|---|
-| B1 | Delegación en subagentes `web-builder` / `web-qa` | Límite de uso gratuito de OpenCode. No afecta a Copilot ni al trabajo local |
+| B1 | Delegación en subagentes `web-builder` / `web-qa` | El límite de pasos de `web-builder` interrumpió la verificación de una tarea larga; el supervisor revisó, corrigió y completó las pruebas. No afecta a Copilot ni al trabajo local |
 
 ---
 
@@ -143,7 +146,8 @@ Cambiar `guest` por `mireia` o `sofia` para probar cada perfil.
 |---|---|---|
 | `peques/index.html` | Entrada, selector de perfil, fondo animado y accesos | Activa |
 | `peques/mundo-mireia.html` | Mapa de áreas y panel de eventos | Activa |
-| `peques/areas-test.html` | Hub de actividades por área | Activa (nombre heredado; se mantiene) |
+| `peques/areas-test.html` | Hub de actividades por área | Activa (nombre heredado; se mantiene); incluye la tarjeta «¿Qué hora es?» para Mireia y Guest |
+| `peques/que-hora-es.html` | Juego de lectura del reloj: hub de 4 espacios y lección «Aprende con Kakashi sensei» | Activa en local; pendiente de publicar. Los otros 3 juegos son placeholders «Muy pronto» |
 | `peques/mi-mates.html` | Matemáticas | Activa |
 | `peques/mi-lectura.html` | Lectura | Activa |
 | `peques/mi-escritura.html` | Escritura | Activa |
@@ -178,6 +182,17 @@ Retirados el 05/11/2026 con copia en `Downloads`: `peques/Index-ok-04.11.26.html
 - **Audio del Penalti:** `peques/audios/himno-real-madrid.mp3` (862.462 B) es la música de fondo: empieza al elegir nivel, suena una vez por partida sin bucle y se reinicia al volver a jugar; el botón «Música» silencia solo la música y recuerda la preferencia por perfil. `peques/audios/cr9123hm.mp3` (399.194 B, 24,876 s) es la intro de CR7: suena al entrar en la pantalla principal, al recargar y al volver desde una partida, y la música espera a que termine; el mute de la música no la silencia. La versión autónoma `penalti-cr7.html` lleva ambos MP3, los efectos y el avatar pixel-art incrustados como data URI.
 - Regeneración (solo local, no se versiona): `powershell -NoProfile -ExecutionPolicy Bypass -File qa\generate-audio.ps1`; admite `-Test` y `-Force`. Requiere las voces Hazel y Helena instaladas en Windows.
 - Herramientas versionadas: `tools/check-prod.ps1` comprueba las páginas de los dos juegos y una muestra de MP3 (estado 200 y `audio/mp3`); `tools/audit-assets.ps1` marca los audios como referencias dinámicas para que no parezcan huérfanos. `.github/copilot-instructions.md` documenta rutas, comportamiento y regeneración.
+
+### Juego «¿Qué hora es?»
+
+- Página: `peques/que-hora-es.html`, para Mireia y Guest; no aparece en Ciencias para Sofia.
+- Tarjeta de Ciencias: `peques/imagenes/que-hora-es/portada-hora.jpg`, título «¿Qué hora es?», subtítulo y etiqueta NEW para ambos perfiles. Se integra en `areas-test.html` con `kind:'page'`, `image` y `subtitle`; las tarjetas antiguas conservan su emoji.
+- Hub de 4 espacios: «Aprende con Kakashi sensei» (activo con `kakashi-learn.jpg`), «Mira lo que se» (`naruto-hi.jpg`), «El día de Sakura» (`sakura-day.jpg`) y «¿Qué haces, Mireia?» (`mireia-day.jpg`). Los tres últimos son botones desactivados con «Muy pronto».
+- Fondo: `peques/imagenes/que-hora-es/gold-bg.jpg` en el hub y en la lección, con un velo cálido para legibilidad.
+- Lección: 15 conceptos (mañana, tarde, noche, medianoche, mediodía, AM, PM, en punto, y media, y cuarto, menos cuarto y combinaciones AM/PM), con 2 ejemplos clicables y un tip cada uno. Barra de progreso, 15 puntos navegables, flechas del teclado y tarjeta final con estrella.
+- Composición: dos columnas (reloj de 390 px y panel flexible, máx. 1000 px) con panel compacto; la lección cabe en 1280×800 sin scroll. A ≤860 px pasa a una columna centrada de 520 px.
+- Reloj: esfera blanca, aro dorado y 12 números fucsia grandes (16 % del ancho de la esfera, ≈49 px). Kakashi `kakashi-body.webp` (366×720, sin brazos ni medallón) ocupa el 80 % del diámetro interior y se centra por el torso para compensar el pelo. Dos brazos transparentes recortados de las imágenes originales: `brazo-izquierdo.png` (hora) y `brazo-derecho.png` (minutos, Chidori). Giran desde los hombros con pivotes en (250,5) y (35,5), longitud fija del 30 % y 32,5 % del ancho de la esfera y transición CSS de 1,25 s; el hombro de la hora se desplaza un 1 % hacia el torso. Los números se dibujan por encima (`z-index: 6`) para que no queden tapados. `prefers-reduced-motion` los deja colocados sin animación. La leyenda de colores y «Repetir movimiento» se retiraron.
+- Progreso: al completar la lección suma 1 estrella de oro al área `ciencias` con `MiProgreso`; no falla si el módulo no está disponible.
 
 ---
 

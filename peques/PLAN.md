@@ -1320,3 +1320,62 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - Commit `a15b747` («Renueva el audio de entrada y la portada del Penalti»), push a `main`: `penalti-cr7.html`, `peques/penalti-matematico.html`, `peques/mi-mates.html`, `peques/audios/cr9123hm.mp3` y `peques/imagenes/penalti-cr7-portada.webp` (5 archivos).
 - GitHub Pages tardó unas cinco comprobaciones (≈50 s) en servir el HTML nuevo y los assets; después se verificaron tamaño y hashes.
 - Documentación actualizada en `ESTADO-PROYECTO.md`, `README.md`, `.github/copilot-instructions.md` y este archivo.
+
+---
+
+## Actualización 12/11/2026 — Juego «¿Qué hora es?» y lección de Kakashi
+
+### Alcance
+
+- Página nueva `peques/que-hora-es.html` para Mireia y Guest, dentro de Ciencias. El fondo `goldBG` se usa en la portada y en la lección.
+- Hub con 4 tarjetas: «Aprende con Kakashi sensei» activa, y «Mira lo que se», «El día de Sakura» y «¿Qué haces, Mireia?» desactivadas con «Muy pronto».
+- Tarjeta de Ciencias integrada en `peques/areas-test.html` con `image: 'imagenes/que-hora-es/portada-hora.jpg'`, subtítulo, `profiles: ['mireia','guest']` y `newFor` para ambos. El render de `kind:'page'` acepta ahora `m.image` y `m.subtitle`; las tarjetas sin imagen mantienen su emoji. Sofia no ve la tarjeta.
+- Assets copiados a `peques/imagenes/que-hora-es/`: `gold-bg.jpg`, `kakashi-learn.jpg`, `naruto-hi.jpg`, `sakura-day.jpg`, `mireia-day.jpg`, `portada-hora.jpg`, `kakashi-chibi.jpg` y `kakashi-body.png` (cuerpo transparente sin brazos, generado desde el original).
+
+### Lección y reloj
+
+- 15 conceptos: mañana, tarde, noche, medianoche, mediodía, AM, PM, en punto, y media, y cuarto, menos cuarto, en punto AM, en punto PM, y cuarto AM, menos cuarto PM. Cada uno con explicación, 2 ejemplos clicables y un tip.
+- Reloj redondo de 420 px máx., cara blanca, aro dorado y 12 números fucsia con brillo. Kakashi `kakashi-body.png` en un medallón central del 44 %.
+- Dos brazos de manga: verde para la hora y azul para los minutos, con mano al final. Los pivotes están en los hombros (38,5 % y 61,5 % del ancho). Para cada hora se calcula el ángulo y la longitud desde el hombro hasta el número objetivo (radio 31 %), se acumulan grados con el sentido más corto y se anima con transición CSS de 1,25 s. La hora usa `(h%12)*30 + m*0.5`.
+- Hora digital de 12 h con píldora AM/PM, frase natural, leyenda de colores y botón «Repetir movimiento» (Web Animations API). `prefers-reduced-motion` desactiva las animaciones.
+- Navegación con Anterior/Siguiente, 15 puntos, flechas del teclado y Escape. Al terminar, diálogo con trofeo, «⭐ +1» y botones para repetir o volver. La estrella se suma a `ciencias` con `MiProgreso` y se persiste por perfil.
+
+### Pruebas
+
+- 1280×900 (escritorio) y 390×844 (móvil): hub y lección sin desbordamiento horizontal; 4 tarjetas y reloj completo; sin errores de consola.
+- Recorridos los 15 conceptos: 7:00, 5:00 PM, 9:00 PM, 12:00 AM, 12:00 PM, 9:00 AM, 6:00 PM, 10:00, 3:30, 9:15, 6:45, 8:00 AM, 4:00 PM, 10:15 AM y 7:45 PM. Comprobados 12:00 AM/PM, 6:45 y 7:45; los brazos apuntan a los números correctos.
+- Ejemplos clicables, Anterior/Siguiente, flechas y diálogo final comprobados. «Repetir movimiento» reinicia la animación en un entorno sin reducción de movimiento; con `prefers-reduced-motion` se mantiene quieto.
+- Tarjeta de Ciencias en `areas-test.html` para `profile=guest` y `profile=mireia`, con enlace `que-hora-es.html?profile=...`; ausente con `profile=sofia`. Sin errores de consola.
+- `tools/audit-refs.ps1` reconoce `que-hora-es.html` enlazada desde `areas-test.html`.
+- Auditoría independiente de `web-qa`: APTO. Informe en `qa/que-hora-es-2026-11-12.md`; capturas en `C:\Users\Usuario\Downloads\material-web\`. Sin fallos bloqueantes; observaciones menores (favicon 404, puntos de 26×26 px y resolución justa del fondo y de algunas tarjetas).
+
+### Pendiente
+
+- Completar los tres juegos restantes (20 preguntas, Sakura y Mireia) y publicar cuando el usuario lo autorice.
+- No se ha hecho commit ni push. Los archivos nuevos siguen sin seguimiento y `qa/` y otros archivos ajenos no deben incluirse.
+
+---
+
+## Actualización 13/11/2026 — Rediseño de la lección de Kakashi
+
+### Cambios visuales
+
+- Reloj reducido de 420 a 336 px; números fucsia al 16 % del ancho de la esfera (≈49 px, un 30-40 % más grandes) y con `z-index: 6` por encima de los brazos para que nunca queden tapados.
+- Kakashi sin medallón: cuerpo transparente `kakashi-body.webp` (366×720, 49.254 B) al 80 % del diámetro interior, centrado por el torso (42,7392 % del ancho de la imagen) para compensar el pelo.
+- Brazos transparentes recortados de las imágenes originales: `brazo-izquierdo.png` (284×490) para la hora y `brazo-derecho.png` (256×515, Chidori) para los minutos. Giran desde los hombros con pivotes en (250,5) y (35,5), longitud fija del 30 % y 32,5 % del ancho de la esfera y transición CSS de 1,25 s. El hombro de la hora se desplaza un 1 % hacia el torso.
+- Retirados la leyenda «Brazo izquierdo = hora · Brazo derecho = minutos», el botón «Repetir movimiento», su CSS y su listener.
+- Composición en dos columnas (reloj 390 px + panel flexible, máx. 1000 px) con panel compacto: la lección completa cabe en 1280×800 sin scroll. A ≤860 px pasa a una columna centrada de 520 px.
+
+### Verificación
+
+- 1280×800: `scrollWidth` 1280, `scrollHeight` 800, sin scroll; reloj 336×336, panel 584×474, números 49,28 px; sin desbordamiento horizontal.
+- 900×800 y 861×800: dos columnas sin desbordamiento; 390×844: una columna, reloj 329 px, `scrollWidth` 375 (sin desbordamiento horizontal) y scroll vertical normal.
+- Conceptos comprobados a 1280×800: 7:00, 12:00 AM, 12:00 PM, 3:30, 9:15, 6:45 y 7:45; brazos colocados en el ángulo correcto, números legibles por encima. En 390×844: 7:00 y 12:00 PM.
+- `prefers-reduced-motion`: transición de 1e-05 s y brazos en su posición final; no rompe la colocación.
+- Assets: `kakashi-body.webp` 366×720, `brazo-izquierdo.png` 284×490 y `brazo-derecho.png` 256×515 cargan completos; sin errores de consola.
+- Decisión pendiente: al girar desde los hombros, las manos quedan sobre una circunferencia centrada en el hombro, no sobre los números. En 12:00 suben en V y las mangas rozan la cara (manos junto al 11 y al 1); en 7:00 la mano de la hora queda entre el 6 y el 7. Se probó una longitud adaptativa para que la mano llegara al número, pero inflaba mucho los brazos y tapaba más la cara; se descartó. Los números siguen por encima y son legibles.
+
+### Pendiente
+
+- Validación del usuario sobre la pose de 12:00 y la aproximación de las manos; si se quiere alineación exacta, habría que cambiar el pivote o aceptar brazos de longitud variable.
+- Sin commit ni push.

@@ -1,0 +1,943 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d99a1e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%95%92%3C/text%3E%3C/svg%3E">
+<title>¿Qué hora es? · Mi Mundo de Aprendizaje</title>
+<script src="auth-guard.js"></script>
+<style>
+*{box-sizing:border-box}
+:root{
+  font-family:"Trebuchet MS",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:#5a3410;
+  --ink:#5a3410;
+  --ink-soft:#7c5527;
+  --gold:#d99a1e;
+  --gold-deep:#a86a0c;
+  --cream:#fff8e8;
+  --fuchsia:#d81b7a;
+  --green:#2f9e44;
+  --blue:#1d6fd0;
+}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--ink);
+  background:url("imagenes/que-hora-es/gold-bg.jpg") center/cover no-repeat fixed;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 0%,#fffdf3d9 0,transparent 55%),
+    linear-gradient(180deg,#fff9eb99 0%,#fff3d0a6 45%,#f8e3b3b8 100%);
+}
+.page{position:relative;z-index:1;width:min(100%,1120px);margin:0 auto;padding:clamp(12px,3vw,26px)}
+[hidden]{display:none!important}
+button{font:inherit;cursor:pointer;touch-action:manipulation}
+a{color:inherit}
+:focus-visible{outline:3px solid #7a3f00;outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.sr-only:focus,.sr-only:focus-visible{position:fixed;left:12px;top:12px;z-index:100;width:auto;height:auto;padding:10px 14px;margin:0;overflow:visible;clip:auto;white-space:normal;border:3px solid #d99a1e;border-radius:999px;background:#fffaf0;color:#5a3410;font-weight:900;box-shadow:0 8px 20px #5a341033}
+
+/* ---------- Cabeceras ---------- */
+.top,.lesson-top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:6px 0 18px}
+.lesson-top{padding:2px 0 10px}
+.back{
+  display:inline-flex;align-items:center;min-height:44px;padding:9px 15px;
+  border:2px solid #f0d9a8;border-radius:999px;background:#fffaf0e8;color:#7a4a12;
+  font-weight:900;text-decoration:none;white-space:nowrap;
+  box-shadow:0 4px 12px #7a4a1220;transition:background .15s,transform .15s;
+}
+.back:hover{background:#fff;transform:translateY(-1px)}
+.brand,.lesson-heading{flex:1;text-align:center;min-width:0}
+.brand h1,.lesson-heading h1{
+  margin:0;font-size:clamp(1.8rem,5.2vw,3rem);line-height:1;color:#7a3f00;
+  text-shadow:0 2px 0 #fff,0 4px 16px #fff;letter-spacing:-.01em;
+}
+.brand p{margin:6px 0 0;font-weight:800;color:#8a6228;font-size:clamp(.85rem,2.4vw,1.05rem)}
+.lesson-heading h1{font-size:clamp(1.25rem,3.8vw,2rem)}
+.lesson-heading h1:focus{outline:none}
+.top-gap{width:104px;flex:none}
+@media(max-width:620px){
+  .top{flex-wrap:wrap;justify-content:center;padding-bottom:14px}
+  .brand{order:-1;flex-basis:100%}
+  .top-gap{display:none}
+  .lesson-top{gap:8px;flex-wrap:nowrap;flex-direction:column;align-items:stretch;justify-content:flex-start}
+  .lesson-top .back{order:0;align-self:flex-start}
+  .lesson-heading{order:1;flex-basis:auto;width:100%}
+  .lesson-top .top-gap{display:none}
+}
+
+/* ---------- Portada ---------- */
+.hero{
+  display:flex;align-items:center;gap:16px;margin:2px auto 24px;max-width:820px;
+  padding:clamp(12px,3vw,18px) clamp(14px,3vw,22px);
+  border:3px solid #fff;border-radius:24px;background:#fffaf0d9;
+  box-shadow:0 10px 26px #7a4a1220;
+}
+.hero-img{
+  width:clamp(66px,12vw,94px);height:auto;flex:none;border-radius:18px;
+  border:2px solid #f2d18c;background:#fff;object-fit:cover;
+}
+.hero strong{display:block;color:#6b3a05;font-size:clamp(1rem,2.8vw,1.18rem)}
+.hero p{margin:4px 0 0;color:#7c5527;font-weight:700;line-height:1.45;font-size:clamp(.92rem,2.4vw,1rem)}
+.section-title{
+  margin:0;text-align:center;color:#6b3a05;font-size:clamp(1.15rem,3vw,1.5rem);
+  text-transform:uppercase;letter-spacing:.08em;
+}
+.games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2.6vw,22px);margin-top:14px}
+.game-card{
+  position:relative;display:flex;flex-direction:column;text-align:left;padding:0;
+  border:3px solid #fff;border-radius:26px;background:#fffaf0;color:var(--ink);
+  box-shadow:0 10px 24px #7a4a121f;overflow:hidden;font-weight:700;
+  transition:transform .18s,box-shadow .18s;
+}
+.game-card.live{
+  border-color:#f3cd63;background:#fffaf0;
+  box-shadow:0 0 0 3px #ffe9a8,0 16px 32px #a86a0c33;
+}
+.game-card.live:hover,.game-card.live:focus-visible{transform:translateY(-5px);box-shadow:0 0 0 3px #ffe9a8,0 22px 38px #a86a0c3d}
+.card-media{position:relative;display:block;width:100%;aspect-ratio:16/10;background:#f7e6bd;overflow:hidden}
+.card-media img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+.game-card.live:hover .card-media img{transform:scale(1.045)}
+.game-card.soon .card-media img{filter:saturate(.5) grayscale(.3);opacity:.86}
+.badge{
+  position:absolute;top:10px;left:10px;z-index:2;display:inline-flex;align-items:center;gap:5px;
+  padding:5px 11px;border:2px solid #fff;border-radius:999px;font-size:.72rem;font-weight:1000;
+  letter-spacing:.07em;text-transform:uppercase;box-shadow:0 3px 9px #00000038;
+}
+.badge.live{background:linear-gradient(#54b85e,#267a33);color:#fff}
+.badge.soon{background:#5d5344e0;color:#fff}
+.card-body{display:flex;flex-direction:column;gap:6px;padding:14px 17px 17px;flex:1}
+.card-kicker{font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;font-weight:1000;color:#a86a0c}
+.card-title{font-size:clamp(1.15rem,3vw,1.5rem);line-height:1.15;color:#6b3a05;font-weight:1000}
+.card-sub{font-size:.92rem;line-height:1.42;color:#7c5527;font-weight:700}
+.card-cta{margin-top:auto;padding-top:9px;color:#a9510a;font-weight:1000}
+.game-card.soon{
+  cursor:not-allowed;border-color:#efe3c8;background:#fdf8ec;
+  box-shadow:0 6px 16px #7a4a1212;
+}
+.game-card.soon .card-title{color:#8b7a60}
+.game-card.soon .card-kicker,.game-card.soon .card-cta{color:#a1937c}
+.game-card.soon:hover{transform:none;box-shadow:0 6px 16px #7a4a1212}
+@media(max-width:700px){
+  .games{grid-template-columns:1fr}
+  .card-media{aspect-ratio:16/9}
+}
+
+/* ---------- Lección ---------- */
+.counter{margin:3px 0 7px;font-weight:900;color:#8a5a1d;font-size:clamp(.85rem,2.4vw,1rem)}
+.progressbar{
+  width:min(100%,430px);height:13px;margin:0 auto;border:2px solid #fff;border-radius:999px;
+  background:#f1e0b8;overflow:hidden;box-shadow:inset 0 1px 3px #7a4a1222;
+}
+.progressbar span{display:block;height:100%;width:6.7%;border-radius:999px;background:linear-gradient(90deg,#f4b93f,#d97d0e);transition:width .35s ease}
+.lesson-grid{
+  display:grid;grid-template-columns:minmax(0,390px) minmax(0,1fr);
+  gap:clamp(16px,2.4vw,26px);align-items:stretch;
+  max-width:1000px;margin:0 auto;
+}
+.clock-col{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;
+  padding:clamp(10px,2vw,16px);border:3px solid #fff;border-radius:26px;
+  background:#fffaf0d9;box-shadow:0 10px 26px #7a4a1220;
+}
+
+/* Reloj */
+.clock{
+  position:relative;width:min(100%,336px);aspect-ratio:1/1;border-radius:50%;
+  border:clamp(7px,1.8vw,13px) solid transparent;
+  background:
+    radial-gradient(circle at 35% 28%,#fff 0,#fffdf5 45%,#fff4d8 100%) padding-box,
+    linear-gradient(135deg,#f9e08b 0,#d99a1e 35%,#b97a12 55%,#f6d477 100%) border-box;
+  box-shadow:0 16px 36px #7a4a1233,inset 0 0 0 4px #fff9e6,inset 0 0 28px #e7c26944;
+  isolation:isolate;
+}
+.num{
+  position:absolute;z-index:6;transform:translate(-50%,-50%);
+  font-size:calc(var(--clock-size,308px) * .16);line-height:1;font-weight:1000;
+  color:#e0157f;letter-spacing:-.04em;pointer-events:none;
+  text-shadow:0 0 6px #ff9bd4,0 0 15px #ffb7e2,0 2px 0 #fff;
+}
+.arm{
+  position:absolute;left:50%;top:50%;width:0;height:0;z-index:4;
+  transform:rotate(0deg);transform-origin:0 0;
+  transition:transform 1.25s cubic-bezier(.3,.8,.3,1);will-change:transform;
+}
+.arm.minute{z-index:5}
+.arm img{
+  position:absolute;display:block;max-width:none;height:auto;
+  transform-origin:0 0;pointer-events:none;
+  filter:drop-shadow(0 3px 4px #1a243344);
+}
+.kakashi{
+  position:absolute;left:50%;top:50%;z-index:3;height:80%;aspect-ratio:366/720;
+  transform:translate(-42.7392%,-50%);pointer-events:none;
+}
+.kakashi img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 6px 10px #7a4a1226)}
+.clock-hint{position:absolute;inset:0;border-radius:50%;pointer-events:none;box-shadow:inset 0 0 0 2px #fff8dd}
+
+/* Hora digital */
+.digital-row{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:10px}
+.digital{font-size:clamp(2.3rem,6vw,3.1rem);font-weight:1000;line-height:1;color:#5a3410;letter-spacing:.01em;text-shadow:0 2px 0 #fff}
+.mer{
+  display:inline-flex;align-items:center;justify-content:center;min-height:32px;padding:4px 11px;
+  border-radius:999px;color:#fff;font-weight:1000;font-size:.95rem;letter-spacing:.06em;
+  background:#1d6fd0;box-shadow:0 3px 0 #1359a8;
+}
+.mer.pm{background:#b03a8f;box-shadow:0 3px 0 #8a2a70}
+.clock-phrase{
+  margin:4px 0 0;min-height:2.2em;text-align:center;font-weight:900;line-height:1.3;
+  color:#7c5527;font-size:clamp(.92rem,2.5vw,1.02rem);
+}
+
+/* Panel de la lección */
+.panel{
+  display:flex;flex-direction:column;gap:10px;min-width:0;
+  padding:clamp(14px,2.2vw,20px);border:3px solid #fff;border-radius:26px;
+  background:#fffaf0e8;box-shadow:0 10px 26px #7a4a1220;
+}
+.panel-inner{display:flex;flex-direction:column;gap:9px}
+.concept-badge{
+  display:inline-flex;align-items:center;gap:8px;align-self:flex-start;max-width:100%;
+  padding:5px 12px;border:2px solid #e7bd58;border-radius:999px;
+  background:linear-gradient(#fff3c8,#ffe7a1);color:#7a4a12;font-weight:1000;font-size:.88rem;
+}
+.concept-badge .icon{font-size:1.1rem;line-height:1}
+.concept-title{margin:0;font-size:clamp(1.2rem,2.5vw,1.5rem);line-height:1.2;color:#6b3a05}
+.concept-text{margin:0;font-size:clamp(.95rem,1.8vw,1.02rem);line-height:1.48;color:#5f4527;font-weight:700}
+.examples h3{margin:0 0 6px;font-size:.74rem;text-transform:uppercase;letter-spacing:.11em;color:#a86a0c}
+.example{
+  display:flex;align-items:center;gap:9px;width:100%;margin:0 0 6px;padding:8px 10px;
+  border:2px solid #f0d9a8;border-radius:14px;background:#fffdf6;color:#5f4527;
+  text-align:left;font-weight:800;line-height:1.3;transition:background .14s,border-color .14s;
+}
+.example:last-child{margin-bottom:0}
+.example:hover,.example:focus-visible{border-color:#d99a1e;background:#fff6d8}
+.example.is-active{border-color:#d99a1e;background:#ffefbd;box-shadow:0 0 0 2px #ffe9a8}
+.ex-time{
+  flex:none;padding:4px 8px;border-radius:999px;background:#7a4a12;color:#fff;
+  font-size:.8rem;font-weight:1000;letter-spacing:.02em;
+}
+.ex-text{min-width:0}
+.tip{
+  display:flex;gap:8px;margin:0;padding:8px 10px;border:2px solid #f0d9a8;border-radius:14px;
+  background:#fff6d8;color:#6b4a1c;font-weight:800;line-height:1.38;font-size:.9rem;
+}
+.tip .icon{flex:none}
+.nav-row{display:flex;gap:10px;margin-top:auto}
+.nav-row button{flex:1;min-height:44px;padding:9px 12px;border-radius:999px;font-weight:1000;border:3px solid transparent;transition:transform .12s,background .12s}
+#prev{background:#fffdf4;border-color:#f0d9a8;color:#7a4a12}
+#prev:hover:not(:disabled){background:#fff6d8}
+#next{background:linear-gradient(#f6c64d,#dd9414);color:#4a2b00;box-shadow:0 4px 0 #a86a0c}
+#next:hover{filter:brightness(1.04)}
+#next:active{transform:translateY(2px);box-shadow:none}
+#prev:disabled,#next:disabled{opacity:.45;box-shadow:none;cursor:not-allowed}
+.dots{display:flex;flex-wrap:wrap;gap:3px;justify-content:center}
+.dot-b{
+  width:24px;height:24px;padding:0;border:2px solid #e7c269;border-radius:50%;
+  background:#fffdf4;color:#a86a0c;font-size:.7rem;font-weight:1000;
+  display:grid;place-items:center;transition:background .14s,color .14s;
+}
+.dot-b.done{background:#ffe9a8}
+.dot-b[aria-current="true"]{background:#7a4a12;border-color:#7a4a12;color:#fff;box-shadow:0 0 0 2px #ffe9a8}
+@media(max-width:860px){
+  .lesson-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto}
+  .clock{width:min(100%,336px)}
+}
+
+/* Final de la lección */
+.modal{
+  position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:18px;
+  background:#4a2b0099;backdrop-filter:blur(2px);
+}
+.modal-card{
+  width:min(100%,430px);padding:26px 22px 22px;text-align:center;border:4px solid #f3cd63;
+  border-radius:30px;background:linear-gradient(#fffdf4,#fff3d6);
+  box-shadow:0 24px 60px #2e1a0099;animation:pop .25s ease-out;
+}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.trophy{font-size:3.4rem;line-height:1}
+.star-award{
+  display:inline-flex;align-items:center;gap:5px;margin:10px 0 0;padding:5px 13px;
+  border:2px solid #fff;border-radius:999px;background:linear-gradient(#ffd85c,#e9a312);
+  color:#5a3400;font-weight:1000;font-size:1rem;box-shadow:0 3px 10px #a86a0c55;
+}
+.modal-card h2{margin:10px 0 4px;color:#6b3a05;font-size:clamp(1.4rem,4.4vw,1.8rem);line-height:1.2}
+.modal-card p{margin:0;color:#7c5527;font-weight:700;line-height:1.45}
+.modal-actions{display:flex;flex-direction:column;gap:9px;margin-top:18px}
+.modal-actions button{min-height:48px;padding:10px 14px;border-radius:999px;font-weight:1000;border:3px solid transparent}
+#repeatLesson{background:linear-gradient(#f6c64d,#dd9414);color:#4a2b00;box-shadow:0 4px 0 #a86a0c}
+#backToGames{background:#fffdf4;border-color:#f0d9a8;color:#7a4a12}
+
+@media(max-width:520px){
+  .page{padding:10px}
+  .hero{gap:11px;padding:11px 13px}
+  .hero-img{width:58px;border-radius:13px}
+  .section-title{font-size:1.02rem}
+  .panel,.clock-col{border-radius:22px}
+  .nav-row{flex-direction:column}
+  .nav-row button{width:100%}
+  .digital-row{gap:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+</style>
+</head>
+<body>
+<a class="sr-only" href="#homeMain">Saltar al contenido</a>
+<div class="page">
+
+  <!-- ===== Portada del juego ===== -->
+  <section id="homeView" class="view" aria-labelledby="homeTitle">
+    <header class="top">
+      <a class="back" id="backToArea" href="areas-test.html?area=ciencias&amp;profile=mireia">← Ciencias</a>
+      <div class="brand">
+        <h1 id="homeTitle">¿Qué hora es?</h1>
+        <p>Aprende a leer el reloj con Kakashi sensei</p>
+      </div>
+      <span class="top-gap" aria-hidden="true"></span>
+    </header>
+
+    <main id="homeMain" class="hub-main">
+      <section class="hero" aria-label="Presentación">
+        <img class="hero-img" src="imagenes/que-hora-es/kakashi-chibi.jpg" alt="Kakashi sensei" loading="eager">
+        <div>
+          <strong>¡Hola! Soy Kakashi sensei.</strong>
+          <p>Mis brazos son las agujas del reloj: el izquierdo marca la hora y el derecho los minutos. ¿Aprendemos juntos?</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="gamesTitle">
+        <h2 class="section-title" id="gamesTitle">Los 4 juegos</h2>
+        <div class="games">
+          <button type="button" class="game-card live" id="startLesson" aria-describedby="liveDesc">
+            <span class="card-media">
+              <img src="imagenes/que-hora-es/kakashi-learn.jpg" alt="Kakashi sensei con un reloj" loading="eager">
+              <span class="badge live">Disponible</span>
+            </span>
+            <span class="card-body">
+              <span class="card-kicker">Lección · 15 conceptos</span>
+              <span class="card-title">Aprende con Kakashi sensei</span>
+              <span class="card-sub" id="liveDesc">Reloj animado, ejemplos y trucos para leer la hora.</span>
+              <span class="card-cta">Empezar lección →</span>
+            </span>
+          </button>
+
+          <button type="button" class="game-card soon" disabled aria-disabled="true">
+            <span class="card-media">
+              <img src="imagenes/que-hora-es/naruto-hi.jpg" alt="Naruto saludando" loading="lazy">
+              <span class="badge soon">Muy pronto</span>
+            </span>
+            <span class="card-body">
+              <span class="card-kicker">Juego 2</span>
+              <span class="card-title">Mira lo que se</span>
+              <span class="card-sub">Un reto para demostrar todo lo que sabes del reloj.</span>
+              <span class="card-cta">🔒 Muy pronto</span>
+            </span>
+          </button>
+
+          <button type="button" class="game-card soon" disabled aria-disabled="true">
+            <span class="card-media">
+              <img src="imagenes/que-hora-es/sakura-day.jpg" alt="Sakura en un día soleado" loading="lazy">
+              <span class="badge soon">Muy pronto</span>
+            </span>
+            <span class="card-body">
+              <span class="card-kicker">Juego 3</span>
+              <span class="card-title">El día de Sakura</span>
+              <span class="card-sub">Acompaña a Sakura en un día lleno de horas.</span>
+              <span class="card-cta">🔒 Muy pronto</span>
+            </span>
+          </button>
+
+          <button type="button" class="game-card soon" disabled aria-disabled="true">
+            <span class="card-media">
+              <img src="imagenes/que-hora-es/mireia-day.jpg" alt="Mireia durante el día" loading="lazy">
+              <span class="badge soon">Muy pronto</span>
+            </span>
+            <span class="card-body">
+              <span class="card-kicker">Juego 4</span>
+              <span class="card-title">¿Qué haces, Mireia?</span>
+              <span class="card-sub">Descubre las horas de un día con Mireia.</span>
+              <span class="card-cta">🔒 Muy pronto</span>
+            </span>
+          </button>
+        </div>
+      </section>
+    </main>
+  </section>
+
+  <!-- ===== Lección ===== -->
+  <section id="lessonView" class="view" aria-labelledby="lessonTitle" hidden>
+    <header class="lesson-top">
+      <button type="button" class="back" id="backToHub">← Los 4 juegos</button>
+      <div class="lesson-heading">
+        <h1 id="lessonTitle" tabindex="-1">Aprende con Kakashi sensei</h1>
+        <p class="counter" id="counter">Concepto 1 de 15</p>
+        <div class="progressbar" id="progressbar" role="progressbar" aria-label="Progreso de la lección" aria-valuemin="1" aria-valuemax="15" aria-valuenow="1">
+          <span id="progressFill"></span>
+        </div>
+      </div>
+      <span class="top-gap" aria-hidden="true"></span>
+    </header>
+
+    <main class="lesson-main">
+      <div class="lesson-grid">
+        <section class="clock-col" aria-label="Reloj de Kakashi sensei">
+          <div class="clock" id="clock" role="img" aria-label="Reloj analógico">
+            <div class="clock-hint" aria-hidden="true"></div>
+            <div id="numberLayer" aria-hidden="true"></div>
+            <div class="arm hour" id="hourArm" aria-hidden="true">
+              <img id="hourArmImg" src="imagenes/que-hora-es/brazo-izquierdo.png" alt="">
+            </div>
+            <div class="arm minute" id="minuteArm" aria-hidden="true">
+              <img id="minuteArmImg" src="imagenes/que-hora-es/brazo-derecho.png" alt="">
+            </div>
+            <div class="kakashi" aria-hidden="true">
+              <img src="imagenes/que-hora-es/kakashi-body.webp" alt="">
+            </div>
+          </div>
+
+          <div class="digital-row">
+            <span class="digital" id="digital">7:00</span>
+            <span class="mer" id="meridiem">AM</span>
+          </div>
+          <p class="clock-phrase" id="clockPhrase">Son las 7 de la mañana</p>
+        </section>
+
+        <section class="panel" aria-label="Explicación del concepto">
+          <div class="panel-inner" id="panelInner" aria-live="polite" aria-atomic="false"></div>
+          <div class="nav-row">
+            <button type="button" id="prev">← Anterior</button>
+            <button type="button" id="next">Siguiente →</button>
+          </div>
+          <div class="dots" id="dots" role="group" aria-label="Ir a un concepto"></div>
+        </section>
+      </div>
+    </main>
+  </section>
+
+  <!-- ===== Final ===== -->
+  <div class="modal" id="finishModal" role="dialog" aria-modal="true" aria-labelledby="finishTitle" aria-describedby="finishText" hidden>
+    <div class="modal-card">
+      <div class="trophy" aria-hidden="true">🏆</div>
+      <p class="star-award" id="starAward">⭐ +1</p>
+      <h2 id="finishTitle">¡Ya sabes leer la hora!</h2>
+      <p id="finishText">Has completado los 15 conceptos con Kakashi sensei.</p>
+      <div class="modal-actions">
+        <button type="button" id="repeatLesson">Repetir lección</button>
+        <button type="button" id="backToGames">Volver a los juegos</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script src="progress-shared.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var params = new URLSearchParams(location.search);
+  var profileId = params.get('profile') || 'mireia';
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* Los 15 conceptos: hora principal, explicación, ejemplos y consejo. */
+  var CONCEPTS = [
+    {
+      name: 'Por la mañana', icon: '🌅', h: 7, m: 0, phrase: 'Son las 7 de la mañana',
+      title: 'El sol sale y empezamos el día',
+      text: 'Por la mañana sale el sol y empezamos el día. Va desde las 6 hasta las 12 del mediodía.',
+      examples: [
+        { h: 7, m: 0, label: 'Son las 7 de la mañana: me despierto' },
+        { h: 9, m: 0, label: 'A las 9 de la mañana voy al cole' }
+      ],
+      tip: 'Si el sol está saliendo o está alto, suele ser por la mañana.'
+    },
+    {
+      name: 'Por la tarde', icon: '🌤️', h: 17, m: 0, phrase: 'Son las 5 de la tarde',
+      title: 'Después de comer, antes del sol',
+      text: 'Por la tarde es después de comer y antes de que se ponga el sol.',
+      examples: [
+        { h: 16, m: 0, label: 'A las 4 de la tarde juego en el parque' },
+        { h: 18, m: 30, label: 'A las 6 y media de la tarde meriendo' }
+      ],
+      tip: 'El sol empieza a bajar.'
+    },
+    {
+      name: 'De noche', icon: '🌙', h: 21, m: 0, phrase: 'Son las 9 de la noche',
+      title: 'La luna y las estrellas',
+      text: 'De noche ya no hay sol: vemos la luna y las estrellas.',
+      examples: [
+        { h: 21, m: 0, label: 'A las 9 de la noche ceno' },
+        { h: 22, m: 0, label: 'A las 10 de la noche me voy a dormir' }
+      ],
+      tip: 'Si está oscuro y hay luna, es de noche.'
+    },
+    {
+      name: 'Medianoche', icon: '🌌', h: 0, m: 0, phrase: 'Son las 12 de la noche',
+      title: 'Las 12 de la noche',
+      text: 'La medianoche son las 12 de la noche. Es el momento en que empieza un día nuevo.',
+      examples: [
+        { h: 0, m: 0, label: 'A las 12 de la noche es medianoche' },
+        { h: 0, m: 30, label: 'A las 12 y media de la noche todos duermen' }
+      ],
+      tip: 'Medianoche = 12:00 AM.'
+    },
+    {
+      name: 'Mediodía', icon: '☀️', h: 12, m: 0, phrase: 'Son las 12 del mediodía',
+      title: 'Las 12 del mediodía',
+      text: 'El mediodía son las 12 del mediodía. El sol está muy alto.',
+      examples: [
+        { h: 12, m: 0, label: 'A las 12 del mediodía comemos' },
+        { h: 12, m: 15, label: 'A las 12 y cuarto del mediodía jugamos un ratito' }
+      ],
+      tip: 'Mediodía = 12:00 PM.'
+    },
+    {
+      name: 'AM', icon: '🌞', h: 9, m: 0, phrase: 'Son las 9 de la mañana',
+      title: 'AM: antes del mediodía',
+      text: 'AM significa antes del mediodía. Va desde la medianoche hasta las 12 del mediodía.',
+      examples: [
+        { h: 8, m: 0, label: 'Las 8:00 AM son las 8 de la mañana' },
+        { h: 11, m: 0, label: 'Las 11:00 AM son las 11 de la mañana' }
+      ],
+      tip: 'AM = por la mañana.'
+    },
+    {
+      name: 'PM', icon: '🌇', h: 18, m: 0, phrase: 'Son las 6 de la tarde',
+      title: 'PM: después del mediodía',
+      text: 'PM significa después del mediodía. Va desde las 12 del mediodía hasta la medianoche.',
+      examples: [
+        { h: 15, m: 0, label: 'Las 3:00 PM son las 3 de la tarde' },
+        { h: 20, m: 0, label: 'Las 8:00 PM son las 8 de la noche' }
+      ],
+      tip: 'PM = por la tarde o por la noche.'
+    },
+    {
+      name: 'En punto', icon: '⏰', h: 10, m: 0, phrase: 'Son las 10 en punto',
+      title: 'El minutero en el 12',
+      text: 'Cuando el minutero está en el 12, la hora es en punto: no faltan ni sobran minutos.',
+      examples: [
+        { h: 10, m: 0, label: 'Son las 10 en punto' },
+        { h: 6, m: 0, label: 'Son las 6 en punto' }
+      ],
+      tip: 'El minutero en el 12 = en punto.'
+    },
+    {
+      name: 'Y media', icon: '🕞', h: 15, m: 30, phrase: 'Son las 3 y media',
+      title: 'El minutero en el 6',
+      text: 'Cuando el minutero está en el 6, han pasado 30 minutos: la hora es y media.',
+      examples: [
+        { h: 15, m: 30, label: 'Son las 3 y media' },
+        { h: 7, m: 30, label: 'Son las 7 y media' }
+      ],
+      tip: '30 minutos = media hora.'
+    },
+    {
+      name: 'Y cuarto', icon: '🕘', h: 9, m: 15, phrase: 'Son las 9 y cuarto',
+      title: 'El minutero en el 3',
+      text: 'Cuando el minutero está en el 3, han pasado 15 minutos: la hora es y cuarto.',
+      examples: [
+        { h: 9, m: 15, label: 'Son las 9 y cuarto' },
+        { h: 13, m: 15, label: 'Es la 1 y cuarto' }
+      ],
+      tip: '15 minutos = un cuarto de hora.'
+    },
+    {
+      name: 'Menos cuarto', icon: '🕕', h: 6, m: 45, phrase: 'Son las 7 menos cuarto',
+      title: 'Faltan 15 minutos',
+      text: 'Cuando faltan 15 minutos para la hora siguiente, decimos menos cuarto.',
+      examples: [
+        { h: 6, m: 45, label: 'Son las 7 menos cuarto' },
+        { h: 14, m: 45, label: 'Son las 3 menos cuarto' }
+      ],
+      tip: 'El minutero está en el 9.'
+    },
+    {
+      name: 'En punto AM', icon: '🌅', h: 8, m: 0, phrase: 'Son las 8 en punto AM',
+      title: 'En punto por la mañana',
+      text: 'Una hora en punto por la mañana.',
+      examples: [
+        { h: 8, m: 0, label: 'Son las 8 en punto AM' },
+        { h: 11, m: 0, label: 'Son las 11 en punto AM' }
+      ],
+      tip: 'En punto + AM.'
+    },
+    {
+      name: 'En punto PM', icon: '🌇', h: 16, m: 0, phrase: 'Son las 4 en punto PM',
+      title: 'En punto por la tarde',
+      text: 'Una hora en punto por la tarde.',
+      examples: [
+        { h: 16, m: 0, label: 'Son las 4 en punto PM' },
+        { h: 21, m: 0, label: 'Son las 9 en punto PM' }
+      ],
+      tip: 'En punto + PM.'
+    },
+    {
+      name: 'Y cuarto AM', icon: '☀️', h: 10, m: 15, phrase: 'Son las 10 y cuarto AM',
+      title: 'Y cuarto por la mañana',
+      text: 'Una hora y cuarto por la mañana.',
+      examples: [
+        { h: 10, m: 15, label: 'Son las 10 y cuarto AM' },
+        { h: 7, m: 15, label: 'Son las 7 y cuarto AM' }
+      ],
+      tip: 'Y cuarto + AM.'
+    },
+    {
+      name: 'Menos cuarto PM', icon: '🌆', h: 19, m: 45, phrase: 'Son las 8 menos cuarto PM',
+      title: 'Menos cuarto por la tarde',
+      text: 'Faltan 15 minutos para las 8, y todavía es por la tarde.',
+      examples: [
+        { h: 19, m: 45, label: 'Son las 8 menos cuarto PM' },
+        { h: 17, m: 45, label: 'Son las 6 menos cuarto PM' }
+      ],
+      tip: 'Menos cuarto + PM.'
+    }
+  ];
+  /* ---------- Referencias ---------- */
+  var homeView = $('homeView');
+  var lessonView = $('lessonView');
+  var finishModal = $('finishModal');
+  var clockEl = $('clock');
+  var hourArm = $('hourArm'), minuteArm = $('minuteArm');
+  var hourArmImg = $('hourArmImg'), minuteArmImg = $('minuteArmImg');
+  var kakashiEl = document.querySelector('.kakashi');
+
+  var currentIndex = 0;
+  var currentTime = { h: 7, m: 0, phrase: 'Son las 7 de la mañana' };
+  var hourAngle = 0;
+  var minuteAngle = 0;
+  var runCompleted = false;
+  var dialogOpen = false;
+  var lastFocus = null;
+
+  var backToArea = $('backToArea');
+  backToArea.href = 'areas-test.html?area=ciencias&profile=' + encodeURIComponent(profileId);
+
+  /* ---------- Utilidades ---------- */
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function twelve(h) { return ((h + 11) % 12) + 1; }
+  function fmt(h, m) {
+    return { time: twelve(h) + ':' + pad(m), mer: h < 12 ? 'AM' : 'PM' };
+  }
+
+  /* ---------- Números del reloj ---------- */
+  function buildNumbers() {
+    var layer = $('numberLayer');
+    var frag = document.createDocumentFragment();
+    for (var n = 1; n <= 12; n++) {
+      var el = document.createElement('span');
+      el.className = 'num';
+      el.textContent = String(n);
+      var rad = n * 30 * Math.PI / 180;
+      el.style.left = (50 + 38.5 * Math.sin(rad)).toFixed(3) + '%';
+      el.style.top = (50 - 38.5 * Math.cos(rad)).toFixed(3) + '%';
+      frag.appendChild(el);
+    }
+    layer.appendChild(frag);
+  }
+
+  /* ---------- Geometría de los brazos ---------- */
+  function shortestDelta(target, current) {
+    var d = (target - (current % 360)) % 360;
+    if (d > 180) d -= 360;
+    if (d < -180) d += 360;
+    return d;
+  }
+  /* Medidas reales de las imágenes: pivote en el hombro y eje hasta la mano. */
+  var ARM_META = {
+    hour: {
+      naturalW: 284, naturalH: 490,
+      pivotX: 250, pivotY: 5,
+      naturalAngle: -155.4,
+      naturalAxis: 508.3,
+      lengthRatio: 0.300
+    },
+    minute: {
+      naturalW: 256, naturalH: 515,
+      pivotX: 35, pivotY: 5,
+      naturalAngle: 162.7,
+      naturalAxis: 464,
+      lengthRatio: 0.325
+    }
+  };
+  /* Cuerpo sin brazos: proporciones dentro de la imagen recortada. */
+  var BODY_META = {
+    heightRatio: 0.80, aspect: 366 / 720,
+    centerX: 0.427392,
+    shoulderLeftX: 0.101056,
+    shoulderRightX: 0.753729,
+    shoulderY: 0.47783,
+    liftRatio: 0.030
+  };
+  function placeArm(wrap, img, kind, targetDeg, currentAngle, size) {
+    var meta = ARM_META[kind];
+    var axisLen = size * meta.lengthRatio;
+    var scale = axisLen / meta.naturalAxis;
+
+    img.style.width = (meta.naturalW * scale) + 'px';
+    img.style.height = (meta.naturalH * scale) + 'px';
+    img.style.left = (-meta.pivotX * scale) + 'px';
+    img.style.top = (-meta.pivotY * scale) + 'px';
+
+    var desired = targetDeg - meta.naturalAngle;
+    currentAngle += shortestDelta(desired, currentAngle);
+    wrap.style.transform = 'rotate(' + currentAngle.toFixed(2) + 'deg)';
+    return currentAngle;
+  }
+
+  /* ---------- Reloj ---------- */
+  function showClock(h, m, phrase) {
+    var t = fmt(h, m);
+    $('digital').textContent = t.time;
+    var mer = $('meridiem');
+    mer.textContent = t.mer;
+    mer.classList.toggle('pm', t.mer === 'PM');
+    $('clockPhrase').textContent = phrase;
+    clockEl.setAttribute('aria-label', 'Reloj analógico: ' + t.time + ' ' + t.mer + '. ' + phrase + '.');
+
+    currentTime = { h: h, m: m, phrase: phrase };
+
+    hourArm.getAnimations().forEach(function (a) { a.cancel(); });
+    minuteArm.getAnimations().forEach(function (a) { a.cancel(); });
+
+    var size = clockEl.clientWidth;
+    if (!size) return;
+    clockEl.style.setProperty('--clock-size', size + 'px');
+
+    /* Colocar el cuerpo y calcular los hombros. */
+    var bodyH = size * BODY_META.heightRatio;
+    var bodyW = bodyH * BODY_META.aspect;
+    var lift = size * BODY_META.liftRatio;
+    kakashiEl.style.width = bodyW + 'px';
+    kakashiEl.style.height = bodyH + 'px';
+    kakashiEl.style.left = (size / 2 - bodyW * BODY_META.centerX) + 'px';
+    kakashiEl.style.top = (size / 2 - bodyH / 2 - lift) + 'px';
+    kakashiEl.style.transform = 'none';
+
+    var shoulderY = size / 2 + (BODY_META.shoulderY - 0.5) * bodyH - lift;
+    var minuteX = size / 2 + (BODY_META.shoulderLeftX - BODY_META.centerX) * bodyW;
+    var hourX = size / 2 + (BODY_META.shoulderRightX - BODY_META.centerX) * bodyW - size * 0.01;
+    hourArm.style.left = hourX + 'px';
+    hourArm.style.top = shoulderY + 'px';
+    minuteArm.style.left = minuteX + 'px';
+    minuteArm.style.top = shoulderY + 'px';
+
+    var hourDeg = (h % 12) * 30 + m * 0.5;
+    var minuteDeg = m * 6;
+    hourAngle = placeArm(hourArm, hourArmImg, 'hour', hourDeg, hourAngle, size);
+    minuteAngle = placeArm(minuteArm, minuteArmImg, 'minute', minuteDeg, minuteAngle, size);
+  }
+
+  /* ---------- Panel ---------- */
+  function renderPanel(c) {
+    var html = '';
+    html += '<p class="concept-badge"><span class="icon" aria-hidden="true">' + c.icon + '</span>' + c.name + '</p>';
+    html += '<h2 class="concept-title">' + c.title + '</h2>';
+    html += '<p class="concept-text">' + c.text + '</p>';
+    html += '<div class="examples"><h3>Ejemplos</h3>';
+    c.examples.forEach(function (ex, i) {
+      var t = fmt(ex.h, ex.m);
+      html += '<button type="button" class="example" data-example="' + i + '" aria-pressed="false" ' +
+        'aria-label="Poner el reloj a las ' + t.time + ' ' + t.mer + '. ' + ex.label + '">' +
+        '<span class="ex-time">' + t.time + '</span>' +
+        '<span class="ex-text">' + ex.label + '</span></button>';
+    });
+    html += '</div>';
+    html += '<p class="tip"><span class="icon" aria-hidden="true">💡</span>' +
+      '<span><strong>Tip:</strong> ' + c.tip + '</span></p>';
+    $('panelInner').innerHTML = html;
+
+    [].forEach.call($('panelInner').querySelectorAll('[data-example]'), function (btn) {
+      btn.addEventListener('click', function () {
+        var ex = c.examples[Number(btn.dataset.example)];
+        [].forEach.call($('panelInner').querySelectorAll('.example'), function (other) {
+          other.classList.remove('is-active');
+          other.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-pressed', 'true');
+        showClock(ex.h, ex.m, ex.label);
+      });
+    });
+  }
+
+  function buildDots() {
+    var dots = $('dots');
+    CONCEPTS.forEach(function (c, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'dot-b';
+      b.textContent = String(i + 1);
+      b.setAttribute('aria-label', 'Concepto ' + (i + 1) + ': ' + c.name);
+      b.addEventListener('click', function () { setConcept(i); });
+      dots.appendChild(b);
+    });
+  }
+  function updateDots() {
+    var list = $('dots').children;
+    for (var i = 0; i < list.length; i++) {
+      list[i].classList.toggle('done', i < currentIndex);
+      if (i === currentIndex) list[i].setAttribute('aria-current', 'true');
+      else list[i].removeAttribute('aria-current');
+    }
+  }
+
+  /* ---------- Navegación de la lección ---------- */
+  function setConcept(index, fromStart) {
+    index = Math.max(0, Math.min(CONCEPTS.length - 1, index));
+    currentIndex = index;
+    runCompleted = false;
+    var c = CONCEPTS[index];
+
+    $('counter').textContent = 'Concepto ' + (index + 1) + ' de 15';
+    $('progressFill').style.width = (((index + 1) / CONCEPTS.length) * 100) + '%';
+    $('progressbar').setAttribute('aria-valuenow', String(index + 1));
+
+    renderPanel(c);
+    showClock(c.h, c.m, c.phrase);
+    updateDots();
+
+    $('prev').disabled = index === 0;
+    $('next').textContent = index === CONCEPTS.length - 1 ? '¡Hecho! 🎉' : 'Siguiente →';
+    $('next').setAttribute('aria-label', index === CONCEPTS.length - 1 ? 'Terminar la lección' : 'Siguiente concepto');
+  }
+
+  function nextStep() {
+    if (currentIndex < CONCEPTS.length - 1) setConcept(currentIndex + 1);
+    else finishLesson();
+  }
+  function prevStep() {
+    if (currentIndex > 0) setConcept(currentIndex - 1);
+  }
+
+  /* ---------- Estrella de oro ---------- */
+  function awardStar() {
+    try {
+      if (!window.MiProgreso) return false;
+      var progress = MiProgreso.load(profileId);
+      var area = MiProgreso.area(progress, 'ciencias');
+      area.gold = (Number(area.gold) || 0) + 1;
+      MiProgreso.persist(profileId, progress);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function finishLesson() {
+    if (runCompleted) {
+      openDialog(false);
+      return;
+    }
+    runCompleted = true;
+    var awarded = awardStar();
+    openDialog(awarded);
+  }
+
+  function openDialog(awarded) {
+    $('starAward').hidden = !awarded;
+    lastFocus = document.activeElement;
+    finishModal.hidden = false;
+    dialogOpen = true;
+    document.body.style.overflow = 'hidden';
+    $('repeatLesson').focus();
+  }
+  function closeDialog() {
+    finishModal.hidden = true;
+    dialogOpen = false;
+    document.body.style.overflow = '';
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+  function trapFocus(e) {
+    var buttons = finishModal.querySelectorAll('button');
+    var first = buttons[0];
+    var last = buttons[buttons.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
+  /* ---------- Vistas ---------- */
+  function showLesson() {
+    homeView.hidden = true;
+    lessonView.hidden = false;
+    window.scrollTo(0, 0);
+    setConcept(0, true);
+    $('lessonTitle').focus({ preventScroll: true });
+  }
+  function showHome() {
+    if (dialogOpen) closeDialog();
+    lessonView.hidden = true;
+    homeView.hidden = false;
+    window.scrollTo(0, 0);
+    $('startLesson').focus();
+  }
+
+  /* ---------- Eventos ---------- */
+  $('startLesson').addEventListener('click', showLesson);
+  $('backToHub').addEventListener('click', showHome);
+  $('backToGames').addEventListener('click', showHome);
+  $('repeatLesson').addEventListener('click', function () {
+    closeDialog();
+    setConcept(0);
+    $('lessonTitle').focus({ preventScroll: true });
+  });
+  $('prev').addEventListener('click', prevStep);
+  $('next').addEventListener('click', nextStep);
+  finishModal.addEventListener('click', function (e) {
+    if (e.target === finishModal) closeDialog();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (dialogOpen) {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeDialog();
+      } else if (e.key === 'Tab') {
+        trapFocus(e);
+      }
+      return;
+    }
+    if (lessonView.hidden) return;
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      nextStep();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      prevStep();
+    }
+  });
+
+  var resizeTimer = null;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      if (!lessonView.hidden) showClock(currentTime.h, currentTime.m, currentTime.phrase);
+    }, 140);
+  });
+
+  /* ---------- Arranque ---------- */
+  buildNumbers();
+  buildDots();
+  updateDots();
+
+})();
+</script>
+</body>
+</html>
