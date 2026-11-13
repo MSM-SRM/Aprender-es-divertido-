@@ -14,7 +14,7 @@ Este repositorio es un sitio web estatico en espanol. Antes de proponer o hacer 
 - Historial tecnico: `peques/PLAN.md`.
 - Audio: 493 MP3 locales en `peques/audios/` (abecedario y vocabulario, en ingles britanico y espanol).
 - Penalti autonomo: `penalti-cr7.html` en la raiz, un solo archivo sin login, perfiles, estrellas ni progreso; enlace publico `https://msm-srm.github.io/Aprender-es-divertido-/penalti-cr7.html`.
-- Nuevo juego: `peques/que-hora-es.html` (Ciencias, Mireia y Guest), con hub de 4 espacios y la leccion «Aprende con Kakashi sensei»; los otros 3 juegos son placeholders. Pendiente de publicar.
+- Nuevo juego: `peques/que-hora-es.html` (Ciencias, Mireia y Guest), con hub de 4 espacios y la leccion «Aprende con Kakashi sensei»; los otros 3 juegos son placeholders.
 
 ## Reglas que no se deben romper
 

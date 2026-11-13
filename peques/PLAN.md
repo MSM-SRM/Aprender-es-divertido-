@@ -1373,9 +1373,10 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - Conceptos comprobados a 1280×800: 7:00, 12:00 AM, 12:00 PM, 3:30, 9:15, 6:45 y 7:45; brazos colocados en el ángulo correcto, números legibles por encima. En 390×844: 7:00 y 12:00 PM.
 - `prefers-reduced-motion`: transición de 1e-05 s y brazos en su posición final; no rompe la colocación.
 - Assets: `kakashi-body.webp` 366×720, `brazo-izquierdo.png` 284×490 y `brazo-derecho.png` 256×515 cargan completos; sin errores de consola.
-- Decisión pendiente: al girar desde los hombros, las manos quedan sobre una circunferencia centrada en el hombro, no sobre los números. En 12:00 suben en V y las mangas rozan la cara (manos junto al 11 y al 1); en 7:00 la mano de la hora queda entre el 6 y el 7. Se probó una longitud adaptativa para que la mano llegara al número, pero inflaba mucho los brazos y tapaba más la cara; se descartó. Los números siguen por encima y son legibles.
+- Decisión visual: al girar desde los hombros, las manos quedan sobre una circunferencia centrada en el hombro, no sobre los números. En 12:00 suben en V y las mangas rozan la cara (manos junto al 11 y al 1); en 7:00 la mano de la hora queda entre el 6 y el 7. Se probó una longitud adaptativa para que la mano llegara al número, pero inflaba mucho los brazos y tapaba más la cara; se descartó. Los números siguen por encima y son legibles.
 
-### Pendiente
+### Publicación
 
-- Validación del usuario sobre la pose de 12:00 y la aproximación de las manos; si se quiere alineación exacta, habría que cambiar el pivote o aceptar brazos de longitud variable.
-- Sin commit ni push.
+- Commit `9b9ea2f` en `main`: `peques/que-hora-es.html`, los 10 assets referenciados y la tarjeta de `areas-test.html`, con la documentación actualizada. No se incluyeron `qa/`, `AGENTS.md`, los cromos ni los assets antiguos sin uso.
+- Verificado en GitHub Pages: HTML nuevo en 200 (38.852 B), `kakashi-body.webp` (49.254 B), `brazo-izquierdo.png` (80.205 B), `brazo-derecho.png` (97.419 B), `portada-hora.jpg` (63.178 B) y `gold-bg.jpg` (26.536 B) en 200 con sus tipos MIME; la tarjeta de Ciencias aparece con su portada.
+- La geometría de longitud fija se mantiene como decisión visual aceptada al autorizar la publicación.
