@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d99a1e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E">
+<title>Un día en la vida de Sakura · Mi Mundo de Aprendizaje</title>
+<script src="auth-guard.js"></script>
+<style>
+*{box-sizing:border-box}
+:root{
+  font-family:"Trebuchet MS",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:#5a3410;
+  --ink:#5a3410;
+  --ink-soft:#7c5527;
+  --gold:#d99a1e;
+  --gold-deep:#a86a0c;
+  --cream:#fffaf0;
+  --fuchsia:#d81b7a;
+  --green:#2f9e44;
+  --blue:#1d6fd0;
+}
+html{scroll-behavior:smooth}
+body{
+  margin:0;min-height:100vh;color:var(--ink);
+  background:url("imagenes/que-hora-es/gold-bg.jpg") center/cover no-repeat fixed;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 0%,#fffdf3d9 0,transparent 55%),
+    linear-gradient(180deg,#fff9eb99 0%,#fff3d0a6 45%,#f8e3b3b8 100%);
+}
+.page{position:relative;z-index:1;width:min(100%,1120px);margin:0 auto;padding:clamp(12px,3vw,26px)}
+[hidden]{display:none!important}
+button{font:inherit;cursor:pointer;touch-action:manipulation}
+a{color:inherit}
+:focus-visible{outline:3px solid #7a3f00;outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.sr-only:focus,.sr-only:focus-visible{position:fixed;left:12px;top:12px;z-index:100;width:auto;height:auto;padding:10px 14px;margin:0;overflow:visible;clip:auto;white-space:normal;border:3px solid #d99a1e;border-radius:999px;background:#fffaf0;color:#5a3410;font-weight:900;box-shadow:0 8px 20px #5a341033}
+
+/* ---------- Cabecera ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:2px 0 12px}
+.back{
+  display:inline-flex;align-items:center;min-height:44px;padding:9px 15px;
+  border:2px solid #f0d9a8;border-radius:999px;background:#fffaf0e8;color:#7a4a12;
+  font-weight:900;text-decoration:none;white-space:nowrap;
+  box-shadow:0 4px 12px #7a4a1220;transition:background .15s,transform .15s;
+}
+.back:hover{background:#fff;transform:translateY(-1px)}
+.heading{flex:1;text-align:center;min-width:0}
+.heading h1{
+  margin:0;font-size:clamp(1.25rem,3.5vw,2rem);line-height:1.05;color:#7a3f00;
+  text-shadow:0 2px 0 #fff,0 4px 16px #fff;letter-spacing:-.01em;
+}
+.heading p{margin:4px 0 0;font-weight:900;color:#8a5a1d;font-size:clamp(.8rem,2.2vw,.95rem)}
+.music-btn{
+  display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 13px;
+  border:2px solid #f0d9a8;border-radius:999px;background:#fffaf0e8;color:#7a4a12;
+  font-weight:900;white-space:nowrap;box-shadow:0 4px 12px #7a4a1220;
+}
+.music-btn[aria-pressed="true"]{background:#efe2c5;color:#6b5435}
+.music-hint{margin:0 0 8px;text-align:center;font-weight:800;color:#8a5a1d;font-size:.85rem}
+@media(max-width:700px){
+  .top{flex-wrap:wrap;justify-content:center;gap:8px}
+  .heading{order:-1;flex-basis:100%}
+  .back{order:0;margin-right:auto}
+  .music-btn{order:1;margin-left:auto}
+}
+
+/* ---------- Portada ---------- */
+.start-card{
+  display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);
+  max-width:920px;margin:clamp(8px,2vw,18px) auto 0;overflow:hidden;
+  border:3px solid #fff;border-radius:28px;background:var(--cream);
+  box-shadow:0 14px 34px #7a4a1226;
+}
+.start-media{position:relative;min-height:220px;background:#f7e6bd;overflow:hidden}
+.start-media img{display:block;width:100%;height:100%;min-height:220px;object-fit:cover}
+.start-copy{display:flex;flex-direction:column;justify-content:center;gap:10px;padding:clamp(20px,3.5vw,34px)}
+.kicker{font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;font-weight:1000;color:#a86a0c}
+.start-copy h2{margin:0;font-size:clamp(1.6rem,3.6vw,2.4rem);line-height:1.05;color:#6b3a05}
+.start-copy p{margin:0;color:#5f4527;font-weight:700;line-height:1.5;font-size:clamp(.98rem,2.3vw,1.08rem)}
+.countdown{
+  margin-top:2px!important;font-size:clamp(1.05rem,2.8vw,1.3rem)!important;
+  font-weight:1000!important;color:#a9510a!important;min-height:1.5em;
+}
+.primary,.secondary{
+  display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:11px 18px;
+  border-radius:999px;font-weight:1000;font-size:1.02rem;transition:transform .14s,box-shadow .14s,background .14s;
+}
+.primary{
+  border:3px solid #f7d67d;background:linear-gradient(#f7c44b,#e09a18);color:#4b2a00;
+  box-shadow:0 6px 0 #a86a0c,0 12px 20px #7a4a1226;
+}
+.primary:hover{transform:translateY(-2px);box-shadow:0 8px 0 #a86a0c,0 14px 24px #7a4a122e}
+.primary:active{transform:translateY(3px);box-shadow:0 3px 0 #a86a0c}
+.secondary{
+  border:3px solid #9fd3a7;background:linear-gradient(#e7f8e9,#c8ebcd);color:#1e5b2a;
+  box-shadow:0 5px 0 #79b584,0 10px 18px #2f6c3a1c;
+}
+.secondary:hover{transform:translateY(-2px);box-shadow:0 7px 0 #79b584}
+.start-copy .primary{align-self:flex-start;margin-top:4px}
+@media(max-width:760px){
+  .start-card{grid-template-columns:1fr}
+  .start-media,.start-media img{min-height:0;aspect-ratio:16/10}
+  .start-copy .primary{align-self:stretch}
+}
+
+/* ---------- Juego ---------- */
+.progress-row{width:min(100%,1000px);margin:0 auto 10px}
+.counter{margin:0 0 6px;text-align:center;font-weight:900;color:#8a5a1d;font-size:clamp(.85rem,2.2vw,.98rem)}
+.progressbar{
+  width:min(100%,430px);height:13px;margin:0 auto;border:2px solid #fff;border-radius:999px;
+  background:#f1e0b8;overflow:hidden;box-shadow:inset 0 1px 3px #7a4a1222;
+}
+.progressbar span{display:block;height:100%;width:5.26%;border-radius:999px;background:linear-gradient(90deg,#f4b93f,#d97d0e);transition:width .35s ease}
+.game-grid{
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:clamp(14px,2.4vw,24px);align-items:stretch;max-width:1000px;margin:0 auto;
+}
+.story-card{
+  display:flex;flex-direction:column;min-width:0;overflow:hidden;
+  border:3px solid #fff;border-radius:26px;background:var(--cream);
+  box-shadow:0 10px 26px #7a4a1220;
+}
+.story-media{position:relative;width:100%;aspect-ratio:16/10;background:#f7e6bd;overflow:hidden}
+.story-media img{display:block;width:100%;height:100%;object-fit:cover}
+.story-copy{display:flex;flex-direction:column;gap:5px;padding:14px clamp(16px,2.4vw,22px) 18px}
+.target-time{
+  margin:2px 0 0;font-size:clamp(1.75rem,4vw,2.35rem);line-height:1;font-weight:1000;
+  color:#c41570;letter-spacing:.01em;text-shadow:0 2px 0 #fff;
+}
+.target-title{margin:0;font-size:clamp(1.2rem,2.7vw,1.55rem);line-height:1.2;color:#6b3a05}
+.target-title:focus{outline:none}
+.story-hint{margin:2px 0 0;font-size:.9rem;line-height:1.4;color:#7c5527;font-weight:700}
+@media(max-width:860px){
+  .game-grid{grid-template-columns:1fr;max-width:560px}
+  .story-card{width:100%}
+}
+
+/* ---------- Reloj ---------- */
+.clock-card{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-width:0;
+  padding:clamp(12px,2.2vw,18px);border:3px solid #fff;border-radius:26px;
+  background:#fffaf0e5;box-shadow:0 10px 26px #7a4a1220;
+}
+.clock{
+  --clock-size:300px;
+  position:relative;width:min(100%,330px);aspect-ratio:1/1;border-radius:50%;
+  border:clamp(7px,1.8vw,12px) solid transparent;
+  background:
+    radial-gradient(circle at 35% 28%,#fff 0,#fffdf5 45%,#fff4d8 100%) padding-box,
+    linear-gradient(135deg,#f9e08b 0,#d99a1e 35%,#b97a12 55%,#f6d477 100%) border-box;
+  box-shadow:0 16px 36px #7a4a1233,inset 0 0 0 4px #fff9e6,inset 0 0 28px #e7c26944;
+  touch-action:none;user-select:none;-webkit-user-select:none;isolation:isolate;
+}
+.number{
+  position:absolute;z-index:3;transform:translate(-50%,-50%);
+  font-size:calc(var(--clock-size) * .125);line-height:1;font-weight:1000;
+  color:#e0157f;letter-spacing:-.04em;pointer-events:none;
+  text-shadow:0 0 6px #ff9bd4,0 0 15px #ffb7e2,0 2px 0 #fff;
+}
+.hand{
+  position:absolute;left:50%;top:50%;width:0;height:0;z-index:5;
+  transform:rotate(0deg);transform-origin:0 0;pointer-events:none;
+}
+.hand.minute{z-index:6;--len:calc(var(--clock-size) * .355)}
+.hand.hour{--len:calc(var(--clock-size) * .255)}
+.hand .line{
+  position:absolute;left:50%;bottom:0;height:var(--len);transform:translateX(-50%);
+  border-radius:999px;pointer-events:none;box-shadow:0 2px 4px #2b1a0a33;
+}
+.hand.hour .line{width:16px;background:linear-gradient(90deg,#2f5d8a,#183b5e 55%,#2f5d8a)}
+.hand.minute .line{width:6px;background:linear-gradient(90deg,#f04b9d,#c41570 55%,#f04b9d)}
+.hand .hit{
+  position:absolute;left:50%;bottom:0;height:var(--len);transform:translateX(-50%);
+  background:transparent;border-radius:999px;pointer-events:auto;cursor:grab;touch-action:none;
+}
+.hand.hour .hit{width:44px}
+.hand.minute .hit{width:26px}
+.hand .hit:active{cursor:grabbing}
+.hand .knob{
+  position:absolute;left:50%;bottom:calc(var(--len) - 8px);width:16px;height:16px;
+  transform:translateX(-50%);border-radius:50%;pointer-events:none;
+  border:2px solid #fff;box-shadow:0 2px 5px #2b1a0a55;
+}
+.hand.hour .knob{background:#2f5d8a;width:18px;height:18px;bottom:calc(var(--len) - 9px)}
+.hand.minute .knob{background:#c41570;width:12px;height:12px;bottom:calc(var(--len) - 6px)}
+.hand:focus-visible .knob{box-shadow:0 0 0 4px #fff,0 0 0 7px #7a3f00}
+.clock.solved .hand .hit{pointer-events:none;cursor:default}
+.pin{
+  position:absolute;left:50%;top:50%;z-index:7;width:20px;height:20px;transform:translate(-50%,-50%);
+  border:3px solid #fff;border-radius:50%;background:linear-gradient(145deg,#f2c44d,#b97a12);
+  box-shadow:0 3px 8px #5a341055;pointer-events:none;
+}
+.clock-readout{
+  margin:2px 0 0;font-size:clamp(1.45rem,3.4vw,1.8rem);font-weight:1000;line-height:1;
+  color:#5a3410;letter-spacing:.04em;font-variant-numeric:tabular-nums;
+}
+.period{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:min(100%,230px)}
+.period button{
+  min-height:48px;border:3px solid #e7d3a8;border-radius:16px;background:#fffdf6;
+  color:#7a5a2a;font-weight:1000;font-size:1rem;letter-spacing:.05em;
+}
+.period button[aria-pressed="true"]{color:#fff;border-color:#fff;box-shadow:0 4px 10px #5a341033}
+#amBtn[aria-pressed="true"]{background:#1d6fd0}
+#pmBtn[aria-pressed="true"]{background:#b03a8f}
+.feedback{
+  min-height:2.3em;margin:0;text-align:center;font-weight:900;line-height:1.25;
+  color:#7c5527;font-size:clamp(.88rem,2.2vw,.98rem);
+}
+.feedback.ok{color:#1e6b2e}
+.feedback.warn{color:#a9510a}
+.actions{display:flex;flex-direction:column;gap:8px;width:min(100%,250px)}
+.actions button{width:100%}
+
+/* ---------- Modal final ---------- */
+.modal{
+  position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:18px;
+  background:#3b240a99;backdrop-filter:blur(2px);
+}
+.modal-card{
+  width:min(100%,420px);padding:24px;text-align:center;border:3px solid #fff;border-radius:28px;
+  background:#fffaf0;box-shadow:0 24px 60px #2b1a0a66;
+}
+.trophy{font-size:clamp(2.6rem,7vw,3.6rem);line-height:1}
+.star-award{
+  display:inline-flex;align-items:center;gap:6px;margin:6px 0 0;padding:5px 12px;
+  border:2px solid #e7bd58;border-radius:999px;background:#fff3c8;color:#7a4a12;
+  font-weight:1000;font-size:.9rem;
+}
+.modal-card h2{margin:10px 0 4px;color:#6b3a05;font-size:clamp(1.4rem,4.4vw,1.8rem);line-height:1.2}
+.modal-card p{margin:0;color:#7c5527;font-weight:700;line-height:1.45}
+.modal-actions{display:flex;flex-direction:column;gap:9px;margin-top:18px}
+.modal-actions button{min-height:48px;padding:10px 14px;border-radius:999px;font-weight:1000;border:3px solid transparent}
+#repeatDay{border-color:#f7d67d;background:linear-gradient(#f7c44b,#e09a18);color:#4b2a00}
+#backToGames{border-color:#d8e9f8;background:#edf4fb;color:#31577e}
+
+@media(max-width:430px){
+  .page{padding:10px}
+  .story-copy{padding:12px 14px 15px}
+  .clock-card{padding:10px}
+  .target-time{font-size:1.7rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+</style>
+</head>
+<body>
+<a class="sr-only" href="#gameMain">Saltar al contenido</a>
+<div class="page">
+
+  <header class="top">
+    <a class="back" id="backToHub" href="que-hora-es.html?profile=mireia">← Los 4 juegos</a>
+    <div class="heading">
+      <h1>Un día en la vida de Sakura</h1>
+      <p id="statusLine">Portada</p>
+    </div>
+    <button type="button" class="music-btn" id="musicBtn" aria-pressed="false" title="Silenciar la música">🔊 Música</button>
+  </header>
+  <p class="music-hint" id="musicHint" hidden>Toca la pantalla para oír la música.</p>
+
+  <main id="gameMain">
+
+    <!-- ===== Portada ===== -->
+    <section id="startView" aria-labelledby="startTitle">
+      <div class="start-card">
+        <div class="start-media">
+          <img src="imagenes/que-hora-es/sakura/0-portada.jpg" alt="Mapa de la aldea de Konoha" loading="eager">
+        </div>
+        <div class="start-copy">
+          <span class="kicker">Juego 3 · 19 eventos</span>
+          <h2 id="startTitle">¡Hola! Soy Sakura.</h2>
+          <p>Te voy a contar lo que hago en un día de cole. Tu misión es poner las agujas del reloj en la hora correcta y decir si es <strong>AM</strong> o <strong>PM</strong>.</p>
+          <p class="countdown" id="countdown" aria-live="polite">Empezamos en 4…</p>
+          <button type="button" class="primary" id="startNow">Empezar ya →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Evento ===== -->
+    <section id="eventView" aria-labelledby="eventTitle" hidden>
+      <div class="progress-row">
+        <div class="progressbar" id="progressbar" role="progressbar" aria-label="Progreso del día de Sakura" aria-valuemin="1" aria-valuemax="19" aria-valuenow="1">
+          <span id="progressFill"></span>
+        </div>
+      </div>
+
+      <div class="game-grid">
+        <section class="story-card" aria-label="Lo que hace Sakura">
+          <div class="story-media">
+            <img id="eventImg" src="imagenes/que-hora-es/sakura/01.jpg" alt="">
+          </div>
+          <div class="story-copy">
+            <span class="kicker">Sakura dice…</span>
+            <p class="target-time" id="eventTime">07:00 AM</p>
+            <h2 class="target-title" id="eventTitle" tabindex="-1">Se despierta.</h2>
+            <p class="story-hint">Pon la aguja corta en la hora, la larga en los minutos y elige AM o PM.</p>
+          </div>
+        </section>
+
+        <section class="clock-card" aria-label="Reloj para poner la hora">
+          <div class="clock" id="clock" role="group" aria-label="Reloj: arrastra las agujas o usa las flechas del teclado">
+            <div id="numberLayer" aria-hidden="true"></div>
+            <div class="hand hour" id="hourHand" role="slider" tabindex="0" aria-label="Aguja de la hora" aria-valuemin="1" aria-valuemax="12" aria-valuenow="12" aria-valuetext="12 en punto">
+              <span class="hit" aria-hidden="true"></span>
+              <span class="line" aria-hidden="true"></span>
+              <span class="knob" aria-hidden="true"></span>
+            </div>
+            <div class="hand minute" id="minuteHand" role="slider" tabindex="0" aria-label="Aguja de los minutos" aria-valuemin="0" aria-valuemax="55" aria-valuenow="0" aria-valuetext="0 minutos">
+              <span class="hit" aria-hidden="true"></span>
+              <span class="line" aria-hidden="true"></span>
+              <span class="knob" aria-hidden="true"></span>
+            </div>
+            <div class="pin" aria-hidden="true"></div>
+          </div>
+
+          <p class="clock-readout" id="clockReadout">12:00</p>
+          <div class="period" role="group" aria-label="Elige AM o PM">
+            <button type="button" id="amBtn" aria-pressed="false">AM</button>
+            <button type="button" id="pmBtn" aria-pressed="false">PM</button>
+          </div>
+          <p class="feedback" id="feedback" aria-live="polite"></p>
+          <div class="actions">
+            <button type="button" class="primary" id="confirmBtn">Confirmar</button>
+            <button type="button" class="secondary" id="nextBtn" hidden>Siguiente →</button>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ===== Final ===== -->
+<div class="modal" id="finishModal" role="dialog" aria-modal="true" aria-labelledby="finishTitle" aria-describedby="finishText" hidden>
+  <div class="modal-card">
+    <div class="trophy" aria-hidden="true">🏆</div>
+    <p class="star-award" id="starAward">⭐ +1</p>
+    <h2 id="finishTitle">¡Has completado el día de Sakura!</h2>
+    <p id="finishText">Has puesto la hora correcta en los 19 momentos del día.</p>
+    <div class="modal-actions">
+      <button type="button" id="repeatDay">Repetir el día</button>
+      <button type="button" id="backToGames">Volver a los juegos</button>
+    </div>
+  </div>
+</div>
+
+<audio id="sakuraMusic" src="audios/sakura.mp3" loop preload="auto"></audio>
+<script src="progress-shared.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var params = new URLSearchParams(location.search);
+  var profileId = params.get('profile') || 'mireia';
+  var $ = function (id) { return document.getElementById(id); };
+  var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+
+  /* ---------- Los 19 momentos del día ---------- */
+  var EVENTS = [
+    { h24: 7,  m: 0,  title: 'Se despierta.', img: '01.jpg', alt: 'Sakura se despierta en su cama' },
+    { h24: 7,  m: 30, title: 'Desayuna.', img: '02.jpg', alt: 'Sakura desayuna arroz con palillos' },
+    { h24: 7,  m: 45, title: 'Va al cole.', img: '03.jpg', alt: 'Sakura va al cole caminando' },
+    { h24: 8,  m: 0,  title: 'Empieza a estudiar.', img: '04.jpg', alt: 'Sakura estudia en clase' },
+    { h24: 10, m: 0,  title: 'Recreo.', img: '05.jpg', alt: 'Sakura está en el recreo con sus amigas' },
+    { h24: 10, m: 30, title: 'Vuelta a estudiar.', img: '06.jpg', alt: 'Sakura vuelve a estudiar' },
+    { h24: 12, m: 30, title: 'Hora del almuerzo.', img: '07.jpg', alt: 'Sakura almuerza con sus amigos' },
+    { h24: 13, m: 15, title: 'Extraescolar de gimnasia.', img: '08.jpg', alt: 'Sakura hace gimnasia artística' },
+    { h24: 14, m: 15, title: 'Vuelta a clase.', img: '09.jpg', alt: 'Sakura vuelve a clase' },
+    { h24: 16, m: 0,  title: 'Se acaba el cole.', img: '10.jpg', alt: 'Sakura sale del cole' },
+    { h24: 16, m: 15, title: 'Va a casa a merendar.', img: '11.jpg', alt: 'Sakura merienda doriyaki' },
+    { h24: 17, m: 0,  title: 'Va a entrenar ninjitsu con Kakashi sensei.', img: '12.jpg', alt: 'Sakura entrena ninjitsu con Kakashi' },
+    { h24: 18, m: 0,  title: 'Entrena jiu-jitsu con Guy sensei.', img: '13.jpg', alt: 'Sakura entrena jiu-jitsu con Guy' },
+    { h24: 19, m: 0,  title: 'Va a casa a hacer deberes.', img: '14.jpg', alt: 'Sakura hace deberes' },
+    { h24: 20, m: 0,  title: 'Prepara y come la cena con la tele.', img: '15.jpg', alt: 'Sakura prepara la cena con la tele' },
+    { h24: 21, m: 0,  title: 'Prepara las cosas para el día siguiente.', img: '16.jpg', alt: 'Sakura prepara la mochila' },
+    { h24: 21, m: 15, title: 'Hace dientes, pijama y baño.', img: '17.jpg', alt: 'Sakura se lava los dientes y se pone el pijama' },
+    { h24: 21, m: 30, title: 'Se va a la cama para leer.', img: '18.jpg', alt: 'Sakura lee en la cama' },
+    { h24: 22, m: 30, title: 'Se duerme con su peluche de Sasuke.', img: '19.jpg', alt: 'Sakura duerme con su peluche de Sasuke' }
+  ];
+
+  function targetOf(ev) {
+    var period = ev.h24 >= 12 ? 'PM' : 'AM';
+    var h12 = ev.h24 % 12;
+    if (h12 === 0) h12 = 12;
+    return { h: h12, m: ev.m, period: period };
+  }
+  function timeText(ev) {
+    var t = targetOf(ev);
+    return pad(t.h) + ':' + pad(t.m) + ' ' + t.period;
+  }
+
+  /* ---------- Estado ---------- */
+  var currentIndex = 0;
+  var state = { h: 12, m: 0, period: null };
+  var solved = false;
+  var dragging = null;
+  var started = false;
+  var starGranted = false;
+  var dialogOpen = false;
+  var lastFocus = null;
+
+  var startView = $('startView');
+  var eventView = $('eventView');
+  var startTimer = null;
+  var countdownLeft = 4;
+
+  var clock = $('clock');
+  var hourHand = $('hourHand');
+  var minuteHand = $('minuteHand');
+  var clockReadout = $('clockReadout');
+  var feedback = $('feedback');
+  var confirmBtn = $('confirmBtn');
+  var nextBtn = $('nextBtn');
+  var amBtn = $('amBtn');
+  var pmBtn = $('pmBtn');
+  var finishModal = $('finishModal');
+
+  $('backToHub').href = 'que-hora-es.html?profile=' + encodeURIComponent(profileId);
+  $('backToGames').href = 'que-hora-es.html?profile=' + encodeURIComponent(profileId);
+
+  /* ---------- Números del reloj ---------- */
+  function buildNumbers() {
+    var layer = $('numberLayer');
+    var frag = document.createDocumentFragment();
+    for (var n = 1; n <= 12; n++) {
+      var el = document.createElement('span');
+      el.className = 'number';
+      el.textContent = String(n);
+      var rad = n * 30 * Math.PI / 180;
+      el.style.left = (50 + 38.5 * Math.sin(rad)).toFixed(3) + '%';
+      el.style.top = (50 - 38.5 * Math.cos(rad)).toFixed(3) + '%';
+      frag.appendChild(el);
+    }
+    layer.appendChild(frag);
+  }
+
+  function sizeClock() {
+    var size = clock.clientWidth || 300;
+    clock.style.setProperty('--clock-size', size + 'px');
+  }
+
+  /* ---------- Pintar reloj ---------- */
+  function renderClock() {
+    var hourAngle = (state.h % 12) * 30 + state.m * 0.5;
+    var minuteAngle = state.m * 6;
+    hourHand.style.transform = 'rotate(' + hourAngle.toFixed(2) + 'deg)';
+    minuteHand.style.transform = 'rotate(' + minuteAngle.toFixed(2) + 'deg)';
+
+    hourHand.setAttribute('aria-valuenow', String(state.h));
+    hourHand.setAttribute('aria-valuetext', state.m === 0 ? state.h + ' en punto' : state.h + ' y ' + state.m + ' minutos');
+    minuteHand.setAttribute('aria-valuenow', String(state.m));
+    minuteHand.setAttribute('aria-valuetext', state.m + ' minutos');
+
+    clockReadout.textContent = pad(state.h) + ':' + pad(state.m) + (state.period ? ' ' + state.period : '');
+  }
+
+  function setPeriod(period) {
+    if (solved) return;
+    state.period = period;
+    amBtn.setAttribute('aria-pressed', String(period === 'AM'));
+    pmBtn.setAttribute('aria-pressed', String(period === 'PM'));
+    renderClock();
+    feedback.textContent = '';
+    feedback.className = 'feedback';
+  }
+
+  function setHandsEnabled(enabled) {
+    [hourHand, minuteHand].forEach(function (hand) {
+      hand.setAttribute('aria-disabled', String(!enabled));
+      hand.setAttribute('tabindex', enabled ? '0' : '-1');
+    });
+    clock.classList.toggle('solved', !enabled);
+  }
+
+  function resetClock() {
+    state = { h: 12, m: 0, period: null };
+    solved = false;
+    dragging = null;
+    amBtn.setAttribute('aria-pressed', 'false');
+    pmBtn.setAttribute('aria-pressed', 'false');
+    feedback.textContent = '';
+    feedback.className = 'feedback';
+    confirmBtn.hidden = false;
+    confirmBtn.disabled = false;
+    nextBtn.hidden = true;
+    setHandsEnabled(true);
+    renderClock();
+  }
+
+  /* ---------- Arrastrar agujas ---------- */
+  function angleFromPoint(x, y) {
+    var rect = clock.getBoundingClientRect();
+    var cx = rect.left + rect.width / 2;
+    var cy = rect.top + rect.height / 2;
+    var deg = Math.atan2(x - cx, cy - y) * 180 / Math.PI;
+    return (deg + 360) % 360;
+  }
+
+  function updateFromPoint(x, y, kind) {
+    var deg = angleFromPoint(x, y);
+    if (kind === 'minute') {
+      var m = Math.round(deg / 6 / 5) * 5;
+      state.m = ((m % 60) + 60) % 60;
+    } else {
+      var h = Math.round(deg / 30 - state.m / 60);
+      h = ((h % 12) + 12) % 12;
+      if (h === 0) h = 12;
+      state.h = h;
+    }
+    renderClock();
+    feedback.textContent = '';
+    feedback.className = 'feedback';
+  }
+
+  function beginDrag(kind, e) {
+    if (solved) return;
+    dragging = kind;
+    updateFromPoint(e.clientX, e.clientY, kind);
+    e.preventDefault();
+  }
+
+  function onPointerMove(e) {
+    if (!dragging) return;
+    updateFromPoint(e.clientX, e.clientY, dragging);
+    e.preventDefault();
+  }
+
+  function endDrag() {
+    dragging = null;
+  }
+
+  [hourHand, minuteHand].forEach(function (hand) {
+    var kind = hand === hourHand ? 'hour' : 'minute';
+    hand.addEventListener('pointerdown', function (e) {
+      beginDrag(kind, e);
+      hand.focus({ preventScroll: true });
+    });
+  });
+
+  window.addEventListener('pointermove', onPointerMove, { passive: false });
+  window.addEventListener('pointerup', endDrag);
+  window.addEventListener('pointercancel', endDrag);
+
+  /* Teclado: flechas para ajustar la aguja enfocada. */
+  hourHand.addEventListener('keydown', function (e) {
+    if (solved) return;
+    var delta = 0;
+    if (e.key === 'ArrowUp' || e.key === 'ArrowRight') delta = 1;
+    else if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') delta = -1;
+    if (!delta) return;
+    e.preventDefault();
+    var h = state.h + delta;
+    if (h > 12) h = 1;
+    if (h < 1) h = 12;
+    state.h = h;
+    renderClock();
+    feedback.textContent = '';
+    feedback.className = 'feedback';
+  });
+
+  minuteHand.addEventListener('keydown', function (e) {
+    if (solved) return;
+    var delta = 0;
+    if (e.key === 'ArrowUp' || e.key === 'ArrowRight') delta = 5;
+    else if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') delta = -5;
+    if (!delta) return;
+    e.preventDefault();
+    state.m = ((state.m + delta) % 60 + 60) % 60;
+    renderClock();
+    feedback.textContent = '';
+    feedback.className = 'feedback';
+  });
+
+  amBtn.addEventListener('click', function () { setPeriod('AM'); });
+  pmBtn.addEventListener('click', function () { setPeriod('PM'); });
+
+  /* ---------- Comprobar ---------- */
+  function checkAnswer() {
+    if (solved) return;
+    var target = targetOf(EVENTS[currentIndex]);
+    if (!state.period) {
+      feedback.textContent = 'Elige AM o PM para confirmar.';
+      feedback.className = 'feedback warn';
+      return;
+    }
+    var timeOk = state.h === target.h && state.m === target.m;
+    var periodOk = state.period === target.period;
+    if (timeOk && periodOk) {
+      solved = true;
+      setHandsEnabled(false);
+      confirmBtn.hidden = true;
+      nextBtn.hidden = false;
+      nextBtn.textContent = currentIndex === EVENTS.length - 1 ? 'Ver resultado 🎉' : 'Siguiente →';
+      feedback.textContent = '¡Muy bien! Son las ' + timeText(EVENTS[currentIndex]) + '.';
+      feedback.className = 'feedback ok';
+      nextBtn.focus({ preventScroll: true });
+      return;
+    }
+    if (timeOk && !periodOk) {
+      feedback.textContent = 'La hora está bien. Pero… ¿es por la mañana o por la tarde?';
+    } else {
+      feedback.textContent = 'Casi. Revisa la aguja de la hora y la de los minutos.';
+    }
+    feedback.className = 'feedback warn';
+  }
+
+  confirmBtn.addEventListener('click', checkAnswer);
+
+  /* ---------- Mostrar eventos ---------- */
+  function showEvent(index) {
+    started = true;
+    if (startTimer) { clearInterval(startTimer); startTimer = null; }
+    currentIndex = Math.max(0, Math.min(EVENTS.length - 1, index));
+    var ev = EVENTS[currentIndex];
+
+    startView.hidden = true;
+    eventView.hidden = false;
+    $('statusLine').textContent = 'Evento ' + (currentIndex + 1) + ' de ' + EVENTS.length;
+    $('progressFill').style.width = (((currentIndex + 1) / EVENTS.length) * 100) + '%';
+    $('progressbar').setAttribute('aria-valuenow', String(currentIndex + 1));
+
+    $('eventTime').textContent = timeText(ev);
+    $('eventTitle').textContent = ev.title;
+    var img = $('eventImg');
+    img.src = 'imagenes/que-hora-es/sakura/' + ev.img;
+    img.alt = ev.alt;
+
+    resetClock();
+    sizeClock();
+    window.scrollTo(0, 0);
+    $('eventTitle').focus({ preventScroll: true });
+  }
+
+  function nextEvent() {
+    if (!solved) return;
+    if (currentIndex < EVENTS.length - 1) showEvent(currentIndex + 1);
+    else finishGame();
+  }
+  nextBtn.addEventListener('click', nextEvent);
+
+  /* ---------- Final y estrella ---------- */
+  function awardStar() {
+    if (starGranted) return false;
+    starGranted = true;
+    try {
+      if (!window.MiProgreso) return false;
+      var progress = MiProgreso.load(profileId);
+      var area = MiProgreso.area(progress, 'ciencias');
+      area.gold = (Number(area.gold) || 0) + 1;
+      MiProgreso.persist(profileId, progress);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function finishGame() {
+    var awarded = awardStar();
+    $('starAward').hidden = !awarded;
+    lastFocus = document.activeElement;
+    finishModal.hidden = false;
+    dialogOpen = true;
+    document.body.style.overflow = 'hidden';
+    $('repeatDay').focus();
+  }
+
+  function closeDialog() {
+    finishModal.hidden = true;
+    dialogOpen = false;
+    document.body.style.overflow = '';
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  function trapFocus(e) {
+    var buttons = finishModal.querySelectorAll('button');
+    var first = buttons[0];
+    var last = buttons[buttons.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
+  $('repeatDay').addEventListener('click', function () {
+    closeDialog();
+    showEvent(0);
+  });
+  $('backToGames').addEventListener('click', function () {
+    location.href = $('backToGames').href;
+  });
+  finishModal.addEventListener('click', function (e) {
+    if (e.target === finishModal) closeDialog();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (dialogOpen) {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeDialog();
+      } else if (e.key === 'Tab') {
+        trapFocus(e);
+      }
+    }
+  });
+
+  /* ---------- Portada y cuenta atrás ---------- */
+  function updateCountdown() {
+    $('countdown').textContent = countdownLeft > 0 ? 'Empezamos en ' + countdownLeft + '…' : '¡Vamos!';
+  }
+
+  function beginCountdown() {
+    updateCountdown();
+    startTimer = setInterval(function () {
+      countdownLeft -= 1;
+      updateCountdown();
+      if (countdownLeft <= 0) {
+        clearInterval(startTimer);
+        startTimer = null;
+        showEvent(0);
+      }
+    }, 1000);
+  }
+
+  $('startNow').addEventListener('click', function () {
+    if (startTimer) { clearInterval(startTimer); startTimer = null; }
+    showEvent(0);
+  });
+
+  /* ---------- Música ---------- */
+  var audio = $('sakuraMusic');
+  var musicBtn = $('musicBtn');
+  var musicHint = $('musicHint');
+  var muted = false;
+  var muteKey = 'mundoAprendizajeSakuraMusicMutedV1_' + profileId;
+
+  try { muted = localStorage.getItem(muteKey) === '1'; } catch (e) { muted = false; }
+
+  function updateMusicButton() {
+    musicBtn.textContent = muted ? '🔇 Música' : '🔊 Música';
+    musicBtn.title = muted ? 'Activar la música' : 'Silenciar la música';
+    musicBtn.setAttribute('aria-pressed', String(muted));
+    musicBtn.setAttribute('aria-label', muted ? 'Activar la música' : 'Silenciar la música');
+  }
+
+  function tryPlay() {
+    if (muted) return;
+    try {
+      var p = audio.play();
+      if (p && typeof p.catch === 'function') {
+        p.catch(function () { musicHint.hidden = false; });
+      }
+    } catch (e) {
+      musicHint.hidden = false;
+    }
+  }
+
+  function unlockAudio() {
+    if (!muted && audio.paused) tryPlay();
+  }
+
+  audio.addEventListener('playing', function () {
+    musicHint.hidden = true;
+    document.removeEventListener('pointerdown', unlockAudio);
+    document.removeEventListener('keydown', unlockAudio);
+  });
+
+  musicBtn.addEventListener('click', function () {
+    if (muted) {
+      muted = false;
+      try { localStorage.setItem(muteKey, '0'); } catch (e) {}
+      updateMusicButton();
+      tryPlay();
+    } else {
+      muted = true;
+      try { localStorage.setItem(muteKey, '1'); } catch (e) {}
+      audio.pause();
+      updateMusicButton();
+    }
+  });
+
+  document.addEventListener('pointerdown', unlockAudio);
+  document.addEventListener('keydown', unlockAudio);
+
+  /* ---------- Arranque ---------- */
+  buildNumbers();
+  sizeClock();
+  updateMusicButton();
+  renderClock();
+  beginCountdown();
+  tryPlay();
+
+  var resizeTimer = null;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(sizeClock, 120);
+  });
+
+  window.addEventListener('pagehide', function () {
+    if (startTimer) clearInterval(startTimer);
+  });
+
+})();
+</script>
+</body>
+</html>

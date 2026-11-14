@@ -14,7 +14,8 @@ Este repositorio es un sitio web estatico en espanol. Antes de proponer o hacer 
 - Historial tecnico: `peques/PLAN.md`.
 - Audio: 493 MP3 locales en `peques/audios/` (abecedario y vocabulario, en ingles britanico y espanol).
 - Penalti autonomo: `penalti-cr7.html` en la raiz, un solo archivo sin login, perfiles, estrellas ni progreso; enlace publico `https://msm-srm.github.io/Aprender-es-divertido-/penalti-cr7.html`.
-- Nuevo juego: `peques/que-hora-es.html` (Ciencias, Mireia y Guest), con hub de 4 espacios y la leccion «Aprende con Kakashi sensei»; los otros 3 juegos son placeholders.
+- Nuevo juego: `peques/que-hora-es.html` (Ciencias, Mireia y Guest), con hub de 4 espacios y la leccion «Aprende con Kakashi sensei»; «Un dia en la vida de Sakura» ya es un juego completo y los otros 2 siguen como placeholders.
+- Juego de Sakura: `peques/sakura-day.html` (Mireia y Guest), 19 eventos, reloj de 12 h con agujas arrastrables, botones AM/PM, «Confirmar» y «Siguiente» solo tras acertar, musica `peques/audios/sakura.mp3` en bucle con silencio por perfil y estrella final en `ciencias`.
 
 ## Reglas que no se deben romper
 
@@ -58,7 +59,8 @@ Tareas disponibles en `.vscode/tasks.json`:
 - `peques/audios/abecedario/`: 53 MP3 (26 en `en/` y 27 en `es/`; la Ñ se llama `N-tilde.mp3`).
 - `peques/audios/capibara-vocabulario/`: 440 MP3 (220 palabras en `en/` y 220 en `es/`).
 - `peques/naruto-matematico.html`, `peques/puzzles-mireia.html`: juegos.
-- `peques/que-hora-es.html`: juego de lectura del reloj con fondo `goldBG`, hub de 4 tarjetas, 15 conceptos y leccion compacta en dos columnas. Reloj de 336 px con numeros fucsia grandes y Kakashi sin medallon (`kakashi-body.webp`, 366x720) al 80 % del diametro; los brazos transparentes `brazo-izquierdo.png` (hora) y `brazo-derecho.png` (minutos) giran desde los hombros. Assets en `peques/imagenes/que-hora-es/` (`gold-bg.jpg`, `portada-hora.jpg`, `kakashi-learn.jpg`, `naruto-hi.jpg`, `sakura-day.jpg`, `mireia-day.jpg` y los tres anteriores). La tarjeta de Ciencias se muestra solo a Mireia y Guest.
+- `peques/que-hora-es.html`: juego de lectura del reloj con fondo `goldBG`, hub de 4 tarjetas, 15 conceptos y leccion compacta en dos columnas. Reloj de 336 px con numeros fucsia grandes y Kakashi sin medallon (`kakashi-body.webp`, 366x720) al 80 % del diametro; los brazos transparentes `brazo-izquierdo.png` (hora) y `brazo-derecho.png` (minutos) giran desde los hombros. Assets en `peques/imagenes/que-hora-es/` (`gold-bg.jpg`, `portada-hora.jpg`, `kakashi-learn.jpg`, `naruto-hi.jpg`, `sakura/01.jpg`, `mireia-day.jpg` y los tres anteriores). La tarjeta de Ciencias se muestra solo a Mireia y Guest. El antiguo `sakura-day.jpg` ya no se usa en el hub; se conserva sin borrar.
+- `peques/sakura-day.html`: juego «Un dia en la vida de Sakura», 19 eventos con imagen y hora, reloj de 12 h con agujas arrastrables y teclado, AM/PM, «Confirmar» y «Siguiente» solo tras acertar. Portada con cuenta atras de 4 s, musica `peques/audios/sakura.mp3` en bucle, mute por perfil en `mundoAprendizajeSakuraMusicMutedV1_<perfil>` y estrella final en `ciencias`. Imagenes en `peques/imagenes/que-hora-es/sakura/` (`0-portada.jpg` y `01.jpg`–`19.jpg`). Enlazado desde la tarjeta 3 de `que-hora-es.html`.
 - `peques/penalti-matematico.html`: juego de penaltis con musica de fondo (`peques/audios/himno-real-madrid.mp3`), audio de entrada de CR7 (`peques/audios/cr9123hm.mp3`) y boton que silencia solo la musica, con estado por perfil. La caratula ilustrada `peques/imagenes/penalti-cr7-portada.webp` se usa solo en Mi Mates y en OG/Twitter; las pantallas de inicio conservan el avatar pixel-art.
 - `penalti-cr7.html` (raiz): version autonoma del Penalti en un unico HTML, con imagenes y audios en data URI; sin login, perfiles, estrellas ni progreso. Enlace: `https://msm-srm.github.io/Aprender-es-divertido-/penalti-cr7.html`.
 - `peques/evento-especial.html` y `halloween-*.html`: contenido estacional.

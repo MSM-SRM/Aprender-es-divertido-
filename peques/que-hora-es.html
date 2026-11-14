@@ -348,18 +348,18 @@ a{color:inherit}
             </span>
           </button>
 
-          <button type="button" class="game-card soon" disabled aria-disabled="true">
+          <a class="game-card live" id="startSakura" href="sakura-day.html?profile=mireia" aria-describedby="sakuraDesc" style="text-decoration:none">
             <span class="card-media">
-              <img src="imagenes/que-hora-es/sakura-day.jpg" alt="Sakura en un día soleado" loading="lazy">
-              <span class="badge soon">Muy pronto</span>
+              <img src="imagenes/que-hora-es/sakura/01.jpg" width="392" height="248" alt="Sakura se despierta en la cama y estira los brazos" loading="lazy">
+              <span class="badge live">Disponible</span>
             </span>
             <span class="card-body">
-              <span class="card-kicker">Juego 3</span>
-              <span class="card-title">El día de Sakura</span>
-              <span class="card-sub">Acompaña a Sakura en un día lleno de horas.</span>
-              <span class="card-cta">🔒 Muy pronto</span>
+              <span class="card-kicker">Juego 3 · 19 eventos</span>
+              <span class="card-title">Un día en la vida de Sakura</span>
+              <span class="card-sub" id="sakuraDesc">Acompaña a Sakura y pon las agujas en cada momento del día.</span>
+              <span class="card-cta">Jugar ahora →</span>
             </span>
-          </button>
+          </a>
 
           <button type="button" class="game-card soon" disabled aria-disabled="true">
             <span class="card-media">
@@ -624,6 +624,8 @@ a{color:inherit}
 
   var backToArea = $('backToArea');
   backToArea.href = 'areas-test.html?area=ciencias&profile=' + encodeURIComponent(profileId);
+  var sakuraCard = $('startSakura');
+  if (sakuraCard) sakuraCard.href = 'sakura-day.html?profile=' + encodeURIComponent(profileId);
 
   /* ---------- Utilidades ---------- */
   function pad(n) { return n < 10 ? '0' + n : '' + n; }

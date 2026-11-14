@@ -1380,3 +1380,37 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - Commit `9b9ea2f` en `main`: `peques/que-hora-es.html`, los 10 assets referenciados y la tarjeta de `areas-test.html`, con la documentación actualizada. No se incluyeron `qa/`, `AGENTS.md`, los cromos ni los assets antiguos sin uso.
 - Verificado en GitHub Pages: HTML nuevo en 200 (38.852 B), `kakashi-body.webp` (49.254 B), `brazo-izquierdo.png` (80.205 B), `brazo-derecho.png` (97.419 B), `portada-hora.jpg` (63.178 B) y `gold-bg.jpg` (26.536 B) en 200 con sus tipos MIME; la tarjeta de Ciencias aparece con su portada.
 - La geometría de longitud fija se mantiene como decisión visual aceptada al autorizar la publicación.
+
+---
+
+## Actualización 14/11/2026 — «Un día en la vida de Sakura»
+
+### Alcance
+
+- Página nueva `peques/sakura-day.html` para Mireia y Guest, enlazada desde la tarjeta «Un día en la vida de Sakura» del hub `que-hora-es.html` con `?profile=...`.
+- Portada con `0-portada.jpg`, texto de presentación, cuenta atrás de 4 s y botón «Empezar ya»; al terminar la cuenta atrás se abre el evento 1 automáticamente. El resto de eventos avanza solo con «Siguiente» tras acertar.
+- Assets copiados a `peques/imagenes/que-hora-es/sakura/` (`0-portada.jpg` y `01.jpg`–`19.jpg`) y audio a `peques/audios/sakura.mp3` (333.687 B).
+
+### Juego y reloj
+
+- Dos recuadros: a la izquierda, imagen de Sakura, hora objetivo y título del evento; a la derecha, reloj redondo que empieza siempre en 12:00, botones AM/PM, «Confirmar» y «Siguiente».
+- Agujas de hora (azul, 16 px) y minutos (fucsia, 6 px) arrastrables con pointer events y ajustables con las flechas del teclado. Los minutos van en pasos de 5; la hora se calcula con `hora + minutos/60` para que la aguja corta acompañe a la larga.
+- Validación: «Siguiente» solo aparece con hora, minutos y AM/PM correctos. Mensajes específicos si falta el periodo, si la hora es correcta pero el periodo no, o si falla la hora/los minutos. Al acertar se bloquean las agujas y se anuncia la hora completa.
+- 19 eventos en 12 h: 07:00, 07:30, 07:45, 08:00, 10:00, 10:30, 12:30, 13:15, 14:15, 16:00, 16:15, 17:00, 18:00, 19:00, 20:00, 21:00, 21:15, 21:30 y 22:30.
+- Música `sakura.mp3` en bucle desde la portada, con intento de autoplay, aviso si el navegador lo bloquea y reintento al primer gesto. Botón «🔊/🔇 Música» que silencia solo la música y persiste por perfil en `mundoAprendizajeSakuraMusicMutedV1_<perfil>`.
+- Final: modal con trofeo, «Repetir el día» y vuelta a los juegos; suma 1 estrella de oro a `ciencias` una sola vez por partida con `MiProgreso`.
+
+### Pruebas
+
+- Recorridos automáticamente los 19 eventos con arrastre sintético: todos aceptan su hora y minutos y avanzan; el modal final y la estrella aparecen. Estrella verificada con persistencia: el oro de `ciencias` pasó de 1 a 2 al completar el día y el progreso de invitado se restauró después de la prueba.
+- Casos negativos: sin AM/PM no avanza y avisa; hora correcta con periodo incorrecto avisa; hora incorrecta no avanza; el evento siguiente reinicia el reloj a 12:00 y limpia el periodo.
+- Teclado comprobado en ambas agujas; mute comprobado (pausa, reanudación y `1`/`0` en localStorage). Cuenta atrás 4 → 3 → 1 y salto al evento 1 a los ~4,4 s.
+- Layout: 1280×800 sin scroll (`scrollWidth` 1280, `scrollHeight` 800); 390×844 medido en iframe, `scrollWidth` 390 y `scrollHeight` 1093, sin desbordamiento horizontal. Sin errores de consola.
+- Navegación desde el hub comprobada: la tarjeta enlaza a `sakura-day.html?profile=guest` y la vuelta conserva el perfil. Capturas de referencia en `C:\Users\Usuario\AppData\Local\Temp\opencode\sak-e1b-1280.png`, `sak-e1b-390.png` y `sak-startb-390.png`.
+
+### Publicación
+
+- **Pendiente de autorización del usuario.** No se ha hecho commit ni push; `peques/sakura-day.html`, los 20 JPG y `peques/audios/sakura.mp3` siguen sin seguimiento y `peques/que-hora-es.html` figura modificado.
+- El helper temporal `peques/_check-sakura.html` se eliminó y no debe publicarse.
+- Para el futuro commit: incluir `peques/sakura-day.html`, los 20 JPG, `peques/audios/sakura.mp3` y los cambios de `peques/que-hora-es.html`; no incluir `qa/`, `AGENTS.md`, la imagen del capibara, los cromos de Real Madrid ni assets antiguos sin uso.
+- La tarjeta del hub usa `sakura/01.jpg`; el antiguo `peques/imagenes/que-hora-es/sakura-day.jpg` (242×251) queda sin referencias y se conserva sin borrar por la regla de no eliminar assets sin autorización.
