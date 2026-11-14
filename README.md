@@ -6,7 +6,7 @@ Sitio educativo estático en español para Mireia y Sofía: perfiles, juegos, cu
 - **Penalti CR7 autónomo:** https://msm-srm.github.io/Aprender-es-divertido-/penalti-cr7.html (un solo HTML, sin perfiles, estrellas ni progreso; también se puede enviar como archivo)
 - **Penalti:** audio de entrada de CR7 (`peques/audios/cr9123hm.mp3`) y carátula ilustrada en la tarjeta de Mi Mates; dentro de los dos juegos se mantiene el avatar pixel-art original.
 - **¿Qué hora es?:** juego de Ciencias para Mireia y Guest con la lección «Aprende con Kakashi sensei», 15 conceptos y reloj de 336 px con Kakashi grande y brazos transparentes que giran desde los hombros (`peques/que-hora-es.html`).
-- **Un día en la vida de Sakura:** juego 3 de «¿Qué hora es?» (`peques/sakura-day.html`), con 19 eventos del día, reloj de 12 h manipulable, AM/PM, música en bucle con botón de silencio por perfil y estrella final. Completo en local, pendiente de publicación.
+- **Un día en la vida de Sakura:** juego 3 de «¿Qué hora es?» (`peques/sakura-day.html`), con 19 eventos del día, reloj de 12 h manipulable, AM/PM, música en bucle con botón de silencio por perfil y estrella final. Publicado y verificado en GitHub Pages en `aee3daf`.
 - **Estado y tareas:** [ESTADO-PROYECTO.md](ESTADO-PROYECTO.md)
 - **Historial técnico:** [peques/PLAN.md](peques/PLAN.md)
 

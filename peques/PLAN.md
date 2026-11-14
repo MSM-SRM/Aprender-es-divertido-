@@ -1410,7 +1410,7 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 ### Publicación
 
-- **Pendiente de autorización del usuario.** No se ha hecho commit ni push; `peques/sakura-day.html`, los 20 JPG y `peques/audios/sakura.mp3` siguen sin seguimiento y `peques/que-hora-es.html` figura modificado.
-- El helper temporal `peques/_check-sakura.html` se eliminó y no debe publicarse.
-- Para el futuro commit: incluir `peques/sakura-day.html`, los 20 JPG, `peques/audios/sakura.mp3` y los cambios de `peques/que-hora-es.html`; no incluir `qa/`, `AGENTS.md`, la imagen del capibara, los cromos de Real Madrid ni assets antiguos sin uso.
+- Commit `aee3daf` en `main`: `peques/sakura-day.html`, los 20 JPG, `peques/audios/sakura.mp3`, la tarjeta y el enlace de `peques/que-hora-es.html` y la documentación actualizada. No se incluyeron `qa/`, `AGENTS.md`, la imagen del capibara, los cromos de Real Madrid ni assets antiguos sin uso.
+- Verificado en GitHub Pages: `sakura-day.html` 200 (32.672 B), hub `que-hora-es.html` 200 (39.151 B) con `startSakura` y el enlace a `sakura-day.html`, `sakura.mp3` 200 `audio/mp3` (333.687 B) y las 20 imágenes 200 (`image/jpeg`) con sus bytes locales exactos.
+- El helper temporal `peques/_check-sakura.html` se eliminó y no se publicó.
 - La tarjeta del hub usa `sakura/01.jpg`; el antiguo `peques/imagenes/que-hora-es/sakura-day.jpg` (242×251) queda sin referencias y se conserva sin borrar por la regla de no eliminar assets sin autorización.
