@@ -335,18 +335,18 @@ a{color:inherit}
             </span>
           </button>
 
-          <button type="button" class="game-card soon" disabled aria-disabled="true">
+          <a class="game-card live" id="startNaruto" href="mira-lo-que-se.html?profile=mireia" aria-describedby="narutoDesc" style="text-decoration:none">
             <span class="card-media">
-              <img src="imagenes/que-hora-es/naruto-hi.jpg" alt="Naruto saludando" loading="lazy">
-              <span class="badge soon">Muy pronto</span>
+              <img src="imagenes/que-hora-es/naruto-hi.jpg" width="236" height="181" alt="Naruto señalando con la mano" loading="lazy">
+              <span class="badge live">Disponible</span>
             </span>
             <span class="card-body">
-              <span class="card-kicker">Juego 2</span>
+              <span class="card-kicker">Juego 2 · 20 preguntas</span>
               <span class="card-title">Mira lo que se</span>
-              <span class="card-sub">Un reto para demostrar todo lo que sabes del reloj.</span>
-              <span class="card-cta">🔒 Muy pronto</span>
+              <span class="card-sub" id="narutoDesc">Naruto te dice la hora en palabras: elige el reloj correcto.</span>
+              <span class="card-cta">Jugar ahora →</span>
             </span>
-          </button>
+          </a>
 
           <a class="game-card live" id="startSakura" href="sakura-day.html?profile=mireia" aria-describedby="sakuraDesc" style="text-decoration:none">
             <span class="card-media">
@@ -626,6 +626,8 @@ a{color:inherit}
   backToArea.href = 'areas-test.html?area=ciencias&profile=' + encodeURIComponent(profileId);
   var sakuraCard = $('startSakura');
   if (sakuraCard) sakuraCard.href = 'sakura-day.html?profile=' + encodeURIComponent(profileId);
+  var narutoCard = $('startNaruto');
+  if (narutoCard) narutoCard.href = 'mira-lo-que-se.html?profile=' + encodeURIComponent(profileId);
 
   /* ---------- Utilidades ---------- */
   function pad(n) { return n < 10 ? '0' + n : '' + n; }

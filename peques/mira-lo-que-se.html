@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d99a1e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%95%92%3C/text%3E%3C/svg%3E">
+<title>Mira lo que se · Mi Mundo de Aprendizaje</title>
+<script src="auth-guard.js"></script>
+<style>
+*{box-sizing:border-box}
+:root{
+  font-family:"Trebuchet MS",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:#5a3410;
+  --ink:#5a3410;
+  --ink-soft:#7c5527;
+  --gold:#d99a1e;
+  --gold-deep:#a86a0c;
+  --cream:#fffaf0;
+  --fuchsia:#d81b7a;
+  --green:#2f9e44;
+  --blue:#1d6fd0;
+  --orange:#e87511;
+  --manga-ink:#2b1a0a;
+}
+html{scroll-behavior:smooth}
+body{
+  margin:0;min-height:100vh;color:var(--ink);
+  background:url("imagenes/que-hora-es/gold-bg.jpg") center/cover no-repeat fixed;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 0%,#fffdf3d9 0,transparent 55%),
+    linear-gradient(180deg,#fff9eb99 0%,#fff3d0a6 45%,#f8e3b3b8 100%);
+}
+.page{position:relative;z-index:1;width:min(100%,1120px);margin:0 auto;padding:clamp(12px,3vw,26px)}
+[hidden]{display:none!important}
+button{font:inherit;cursor:pointer;touch-action:manipulation}
+a{color:inherit}
+:focus-visible{outline:3px solid #7a3f00;outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.sr-only:focus,.sr-only:focus-visible{position:fixed;left:12px;top:12px;z-index:100;width:auto;height:auto;padding:10px 14px;margin:0;overflow:visible;clip:auto;white-space:normal;border:3px solid #d99a1e;border-radius:999px;background:#fffaf0;color:#5a3410;font-weight:900;box-shadow:0 8px 20px #5a341033}
+
+/* ---------- Cabecera ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:2px 0 12px}
+.back{
+  display:inline-flex;align-items:center;min-height:44px;padding:9px 15px;
+  border:2px solid #f0d9a8;border-radius:999px;background:#fffaf0e8;color:#7a4a12;
+  font-weight:900;text-decoration:none;white-space:nowrap;
+  box-shadow:0 4px 12px #7a4a1220;transition:background .15s,transform .15s;
+}
+.back:hover{background:#fff;transform:translateY(-1px)}
+.heading{flex:1;text-align:center;min-width:0}
+.heading h1{
+  margin:0;font-size:clamp(1.3rem,3.8vw,2rem);line-height:1.05;color:#7a3f00;
+  text-shadow:0 2px 0 #fff,0 4px 16px #fff;letter-spacing:-.01em;
+}
+.heading p{margin:4px 0 0;font-weight:900;color:#8a5a1d;font-size:clamp(.8rem,2.2vw,.95rem)}
+.score-pill{
+  display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 14px;
+  border:2px solid #f0d9a8;border-radius:999px;background:#fffaf0e8;color:#7a4a12;
+  font-weight:1000;font-size:.9rem;white-space:nowrap;box-shadow:0 4px 12px #7a4a1220;
+}
+@media(max-width:700px){
+  .top{flex-wrap:wrap;justify-content:center;gap:8px}
+  .heading{order:-1;flex-basis:100%}
+  .back{order:0;margin-right:auto}
+  .score-pill{order:1;margin-left:auto}
+}
+
+/* ---------- Progreso ---------- */
+.progress-row{width:min(100%,1000px);margin:0 auto 12px}
+.progressbar{
+  width:min(100%,430px);height:13px;margin:0 auto;border:2px solid #fff;border-radius:999px;
+  background:#f1e0b8;overflow:hidden;box-shadow:inset 0 1px 3px #7a4a1222;
+}
+.progressbar span{display:block;height:100%;width:5%;border-radius:999px;background:linear-gradient(90deg,#f4b93f,#d97d0e);transition:width .35s ease}
+
+/* ---------- Juego ---------- */
+.game{
+  display:flex;flex-direction:column;align-items:center;gap:clamp(14px,2vw,20px);
+  max-width:1000px;margin:0 auto;
+}
+
+/* ---------- Naruto y burbuja ---------- */
+.manga-card{
+  position:relative;width:min(100%,680px);margin:0 auto;overflow:hidden;
+  border:4px solid var(--manga-ink);border-radius:24px;background:#f7e6bd;
+  box-shadow:8px 8px 0 var(--gold),0 18px 36px #7a4a1230;
+}
+.manga-card::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(circle at 70% 30%,transparent 0,transparent 56%,#2b1a0a22 100%);
+}
+.naruto-stage{position:relative;margin:0;line-height:0}
+.naruto-img{
+  display:block;width:100%;height:auto;aspect-ratio:236/181;
+  object-fit:cover;object-position:center 45%;
+}
+.speech{
+  position:absolute;z-index:3;bottom:clamp(12px,2.6vw,24px);left:clamp(12px,2.6vw,24px);
+  width:min(50%,340px);padding:clamp(10px,1.4vw,15px) clamp(12px,1.8vw,17px);
+  border:3px solid var(--manga-ink);border-radius:22px 22px 10px 22px;
+  background:#fff;box-shadow:6px 6px 0 var(--manga-ink);
+  transform:rotate(-1deg);color:var(--manga-ink);
+}
+.speech::after{
+  content:"";position:absolute;right:34px;top:-14px;width:24px;height:24px;
+  background:#fff;border-left:3px solid var(--manga-ink);border-top:3px solid var(--manga-ink);
+  transform:rotate(45deg);
+}
+.speech-kicker{display:block;margin-bottom:3px;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:1000;color:#a86a0c}
+.speech-text{
+  margin:0;font-size:clamp(1.05rem,2.2vw,1.45rem);line-height:1.08;font-weight:1000;
+  letter-spacing:-.01em;color:var(--manga-ink);text-wrap:balance;
+}
+.period-note{margin:0;text-align:center;font-size:clamp(.72rem,1.8vw,.82rem);line-height:1.25;font-weight:800;color:#7c5527}
+
+/* ---------- Relojes de respuesta ---------- */
+.answers-card{
+  display:flex;flex-direction:column;align-items:center;gap:10px;width:min(100%,960px);
+  padding:clamp(12px,2vw,20px);border:3px solid #fff;border-radius:26px;
+  background:#fffaf0e8;box-shadow:0 10px 26px #7a4a1220;
+}
+.instruction{margin:0;text-align:center;font-weight:1000;color:#7c5527;font-size:clamp(.9rem,2vw,1rem)}
+.clock-grid{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(8px,1.4vw,14px);width:100%;max-width:880px;
+}
+.clock-option{
+  position:relative;display:flex;flex-direction:column;align-items:center;gap:7px;
+  min-width:0;padding:clamp(8px,1.2vw,12px) 8px;
+  border:3px solid #e7d3a8;border-radius:20px;background:#fffdf6;
+  color:var(--ink);transition:background .15s,transform .15s,border-color .15s,box-shadow .15s;
+}
+.clock-option:hover:not(:disabled){background:#fff;border-color:#f0c86a;transform:translateY(-2px)}
+.clock-option:disabled{cursor:default;opacity:.55}
+.clock-option.correct{opacity:1;border-color:var(--green);background:#f3fff6}
+.clock-option.wrong{opacity:1;border-color:var(--fuchsia);background:#fff2f8}
+.mini-clock{
+  --clock-size:140px;
+  position:relative;display:block;width:100%;max-width:150px;aspect-ratio:1/1;
+  border-radius:50%;border:6px solid transparent;
+  background:
+    radial-gradient(circle at 35% 28%,#fff 0,#fffdf5 45%,#fff4d8 100%) padding-box,
+    linear-gradient(135deg,#f9e08b 0,#d99a1e 35%,#b97a12 55%,#f6d477 100%) border-box;
+  box-shadow:0 8px 18px #7a4a1222,inset 0 0 0 3px #fff9e6;
+  isolation:isolate;transition:box-shadow .15s,transform .15s;
+}
+.clock-option.correct .mini-clock{box-shadow:0 0 0 5px var(--green),0 8px 18px #2f9e4433}
+.clock-option.wrong .mini-clock{box-shadow:0 0 0 5px var(--fuchsia),0 8px 18px #d81b7a33}
+.clock-number{
+  position:absolute;z-index:9;transform:translate(-50%,-50%);
+  font-size:calc(var(--clock-size) * .14);line-height:1;font-weight:1000;
+  color:#e0157f;letter-spacing:-.04em;pointer-events:none;
+  text-shadow:0 0 5px #ff9bd4,0 0 12px #ffb7e2,0 1px 0 #fff;
+}
+.mini-clock .hand{position:absolute;left:50%;top:50%;width:0;height:0;z-index:5;transform:rotate(0deg);transform-origin:0 0;pointer-events:none}
+.mini-clock .hand.minute{z-index:6;--len:calc(var(--clock-size) * .355)}
+.mini-clock .hand.hour{--len:calc(var(--clock-size) * .255)}
+.mini-clock .hand .line{
+  position:absolute;left:50%;bottom:0;height:var(--len);transform:translateX(-50%);
+  border-radius:999px;box-shadow:0 2px 4px #2b1a0a33;
+}
+.mini-clock .hand.hour .line{width:clamp(7px,1.1vw,10px);background:linear-gradient(90deg,#2f5d8a,#183b5e 55%,#2f5d8a)}
+.mini-clock .hand.minute .line{width:clamp(4px,.65vw,5px);background:linear-gradient(90deg,#f59e3b,#e87511 55%,#c85c07)}
+.mini-clock .pin{
+  position:absolute;left:50%;top:50%;z-index:10;width:clamp(10px,1.7vw,14px);height:clamp(10px,1.7vw,14px);
+  transform:translate(-50%,-50%);border:2px solid #fff;border-radius:50%;
+  background:linear-gradient(145deg,#f2c44d,#b97a12);box-shadow:0 3px 8px #5a341055;pointer-events:none;
+}
+.period-badge{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:50px;min-height:25px;padding:2px 10px;border-radius:999px;
+  border:2px solid #cfe3fb;background:#eaf4ff;color:#1d5fa8;
+  font-weight:1000;font-size:.86rem;letter-spacing:.12em;
+}
+.period-badge.pm{border-color:#f5d2a1;background:#fff2dd;color:#a85a05}
+.feedback{
+  min-height:2.3em;margin:0;text-align:center;font-weight:900;line-height:1.25;
+  color:#7c5527;font-size:clamp(.88rem,2.2vw,.98rem);
+}
+.feedback.ok{color:#1e6b2e}
+.feedback.warn{color:#a9510a}
+.primary{
+  display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:11px 18px;
+  border:3px solid #f7d67d;border-radius:999px;background:linear-gradient(#f7c44b,#e09a18);
+  color:#4b2a00;font-weight:1000;font-size:1.02rem;
+  box-shadow:0 6px 0 #a86a0c,0 12px 20px #7a4a1226;
+  transition:transform .14s,box-shadow .14s;
+}
+.primary:hover{transform:translateY(-2px);box-shadow:0 8px 0 #a86a0c,0 14px 24px #7a4a122e}
+.primary:active{transform:translateY(3px);box-shadow:0 3px 0 #a86a0c}
+.next{width:min(100%,250px)}
+
+/* ---------- Modal final ---------- */
+.modal{
+  position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:18px;
+  background:#3b240a99;backdrop-filter:blur(2px);
+}
+.modal-card{
+  width:min(100%,440px);padding:24px;text-align:center;border:3px solid #fff;border-radius:28px;
+  background:#fffaf0;box-shadow:0 24px 60px #2b1a0a66;
+}
+.trophy{font-size:clamp(2.6rem,7vw,3.6rem);line-height:1}
+.star-award{
+  display:inline-flex;align-items:center;gap:6px;margin:6px 0 0;padding:5px 12px;
+  border:2px solid #e7bd58;border-radius:999px;background:#fff3c8;color:#7a4a12;
+  font-weight:1000;font-size:.9rem;
+}
+.modal-card h2{margin:10px 0 4px;color:#6b3a05;font-size:clamp(1.4rem,4.4vw,1.8rem);line-height:1.2}
+.modal-card p{margin:0;color:#7c5527;font-weight:700;line-height:1.45}
+.modal-actions{display:flex;flex-direction:column;gap:9px;margin-top:18px}
+.modal-actions button{min-height:48px;padding:10px 14px;border-radius:999px;font-weight:1000;border:3px solid transparent}
+#repeatGame{border-color:#f7d67d;background:linear-gradient(#f7c44b,#e09a18);color:#4b2a00}
+#backToGames{border-color:#d8e9f8;background:#edf4fb;color:#31577e}
+
+@media(min-width:821px){
+  .naruto-stage{height:clamp(260px,40vh,330px)}
+  .naruto-img{height:100%;aspect-ratio:auto;object-position:center top}
+  .answers-card{padding:14px;gap:8px}
+  .clock-grid{gap:10px}
+  .clock-option{padding:8px}
+  .mini-clock{max-width:140px}
+}
+@media(max-width:820px){
+  .clock-grid{grid-template-columns:repeat(2,minmax(0,1fr));max-width:520px}
+  .speech{left:10px;right:10px;bottom:10px;width:auto;padding:9px 11px;border-radius:18px 18px 8px 18px}
+  .speech::after{right:24px;top:-11px;width:20px;height:20px;border-width:3px 0 0 3px}
+  .speech-kicker{display:none}
+  .speech-text{font-size:1.02rem;line-height:1.1}
+}
+@media(max-width:430px){
+  .page{padding:10px}
+  .manga-card{border-width:3px;border-radius:18px;box-shadow:6px 6px 0 var(--gold),0 14px 28px #7a4a1226}
+  .speech{left:8px;right:8px;bottom:6px;padding:7px 10px;border-radius:16px 16px 7px 16px;box-shadow:4px 4px 0 var(--manga-ink)}
+  .speech::after{right:20px;width:18px;height:18px}
+  .speech-text{font-size:.94rem;line-height:1.1}
+  .period-note{font-size:.7rem}
+  .answers-card{padding:10px;border-radius:18px;gap:8px}
+  .clock-grid{gap:8px}
+  .clock-option{padding:8px 6px;border-radius:15px;gap:6px}
+  .period-badge{min-width:44px;min-height:23px;font-size:.8rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+</style>
+</head>
+<body>
+<a class="sr-only" href="#gameMain">Saltar al contenido</a>
+<div class="page">
+
+  <header class="top">
+    <a class="back" id="backToHub" href="que-hora-es.html?profile=mireia">← Los 4 juegos</a>
+    <div class="heading">
+      <h1>Mira lo que se</h1>
+      <p id="statusLine">Pregunta 1 de 20</p>
+    </div>
+    <p class="score-pill" id="scoreLine">Aciertos: 0</p>
+  </header>
+
+  <main id="gameMain">
+    <div class="progress-row">
+      <div class="progressbar" id="progressbar" role="progressbar" aria-label="Progreso del reto" aria-valuemin="1" aria-valuemax="20" aria-valuenow="1">
+        <span id="progressFill"></span>
+      </div>
+    </div>
+
+    <div class="game">
+      <section class="manga-card" id="questionCard" aria-labelledby="questionText">
+        <figure class="naruto-stage">
+          <img class="naruto-img" src="imagenes/que-hora-es/naruto-hi.jpg" width="236" height="181" alt="Naruto Uzumaki señalando con la mano">
+          <div class="speech">
+            <span class="speech-kicker">Naruto dice…</span>
+            <p class="speech-text" id="questionText">¿Cómo serían las seis menos cuarto de la tarde en el reloj?</p>
+          </div>
+        </figure>
+      </section>
+
+      <section class="answers-card" aria-labelledby="instruction">
+        <p class="instruction" id="instruction">Elige el reloj correcto:</p>
+        <p class="period-note">AM = mañana/madrugada · PM = tarde/noche</p>
+        <div class="clock-grid" id="options" role="group" aria-labelledby="instruction"></div>
+        <p class="feedback" id="feedback" aria-live="polite"></p>
+        <button type="button" class="primary next" id="nextBtn" hidden>Siguiente →</button>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="modal" id="finishModal" role="dialog" aria-modal="true" aria-labelledby="finishTitle" aria-describedby="finishText" hidden>
+  <div class="modal-card">
+    <div class="trophy" aria-hidden="true">🏆</div>
+    <p class="star-award" id="starAward" hidden>🌟 +1 estrella de oro</p>
+    <h2 id="finishTitle">¡Reto completado!</h2>
+    <p id="finishText">Has acertado 0 de 20.</p>
+    <div class="modal-actions">
+      <button type="button" id="repeatGame">Repetir el reto</button>
+      <button type="button" id="backToGames">Volver a los juegos</button>
+    </div>
+  </div>
+</div>
+
+<script src="progress-shared.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var params = new URLSearchParams(location.search);
+  var profileId = params.get('profile') || 'mireia';
+  var $ = function (id) { return document.getElementById(id); };
+  var TOTAL = 20;
+  var GOLD_PCT = 0.9, SILVER_PCT = 0.7, BRONZE_PCT = 0.5;
+  var GRADE_LABEL = { gold: 'oro', silver: 'plata', bronze: 'bronce' };
+  var GRADE_ICON = { gold: '🌟', silver: '⭐', bronze: '🥉' };
+
+  var questions = [];
+  var currentIndex = 0;
+  var score = 0;
+  var answered = false;
+  var awardedThisRun = false;
+  var lastAwarded = false;
+  var dialogOpen = false;
+  var lastFocus = null;
+
+  var questionCard = $('questionCard');
+  var questionText = $('questionText');
+  var optionsEl = $('options');
+  var feedback = $('feedback');
+  var nextBtn = $('nextBtn');
+  var scoreLine = $('scoreLine');
+  var finishModal = $('finishModal');
+
+  $('backToHub').href = 'que-hora-es.html?profile=' + encodeURIComponent(profileId);
+  $('backToGames').href = 'que-hora-es.html?profile=' + encodeURIComponent(profileId);
+
+  /* ---------- Utilidades ---------- */
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function formatTime(h, m) { return h + ':' + pad(m); }
+  function wrapHour(h) { return ((h - 1 + 12) % 12) + 1; }
+  function wrapMinute(m) { return ((m % 60) + 60) % 60; }
+  function capitalize(text) { return text.charAt(0).toUpperCase() + text.slice(1); }
+  function shuffle(list) {
+    for (var i = list.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = list[i];
+      list[i] = list[j];
+      list[j] = tmp;
+    }
+    return list;
+  }
+
+  /* ---------- Banco de horas ---------- */
+  var ALL_TIMES = [];
+  for (var th = 1; th <= 12; th++) {
+    for (var tm = 0; tm < 60; tm += 5) ALL_TIMES.push({ h: th, m: tm });
+  }
+  var HOUR_WORDS = ['', 'una', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'diez', 'once', 'doce'];
+  var MINUTE_WORDS = { 5: 'cinco', 10: 'diez', 15: 'cuarto', 20: 'veinte', 25: 'veinticinco' };
+
+  function periodWords(h, period) {
+    if (period === 'AM') return h === 12 ? 'de la madrugada' : 'de la mañana';
+    return h === 12 ? 'de la tarde' : (h >= 8 ? 'de la noche' : 'de la tarde');
+  }
+
+  function timeSentence(h, m, period) {
+    var intro = h === 1 ? 'la ' : 'las ';
+    var tail = ' ' + periodWords(h, period);
+    if (m === 0) return { text: intro + HOUR_WORDS[h] + ' en punto' + tail, singular: h === 1 };
+    if (m === 15) return { text: intro + HOUR_WORDS[h] + ' y cuarto' + tail, singular: h === 1 };
+    if (m === 30) return { text: intro + HOUR_WORDS[h] + ' y media' + tail, singular: h === 1 };
+    if (m < 30) return { text: intro + HOUR_WORDS[h] + ' y ' + MINUTE_WORDS[m] + tail, singular: h === 1 };
+
+    var nextHour = h === 12 ? 1 : h + 1;
+    var nextIntro = nextHour === 1 ? 'la ' : 'las ';
+    var minutesLeft = 60 - m;
+    var minutesText = minutesLeft === 15 ? 'cuarto' : MINUTE_WORDS[minutesLeft];
+    return {
+      text: nextIntro + HOUR_WORDS[nextHour] + ' menos ' + minutesText + tail,
+      singular: nextHour === 1
+    };
+  }
+
+  function makeOptions(h, m, period) {
+    var opposite = period === 'AM' ? 'PM' : 'AM';
+    var correct = { h: h, m: m, period: period, correct: true };
+    var sameClock = { h: h, m: m, period: opposite };
+    var otherHour = { h: wrapHour(h + (Math.random() < 0.5 ? 1 : -1)), m: m, period: period };
+    var minuteDelta = (Math.random() < 0.5 ? 5 : 10) * (Math.random() < 0.5 ? 1 : -1);
+    var otherMinute = { h: h, m: wrapMinute(m + minuteDelta), period: opposite };
+    return shuffle([correct, sameClock, otherHour, otherMinute]);
+  }
+
+  function newQuestions() {
+    var pool = shuffle(ALL_TIMES.slice()).slice(0, TOTAL);
+    var periods = [];
+    for (var i = 0; i < TOTAL; i++) periods.push(i < TOTAL / 2 ? 'AM' : 'PM');
+    shuffle(periods);
+    return pool.map(function (time, index) {
+      var period = periods[index];
+      var sentence = timeSentence(time.h, time.m, period);
+      return {
+        h: time.h,
+        m: time.m,
+        period: period,
+        phrase: sentence.text,
+        question: '¿Cómo ' + (sentence.singular ? 'sería ' : 'serían ') + sentence.text + ' en el reloj?',
+        correctLabel: formatTime(time.h, time.m) + ' ' + period,
+        options: makeOptions(time.h, time.m, period)
+      };
+    });
+  }
+
+  /* ---------- Relojes pequeños ---------- */
+  function buildClockNumbers(layer) {
+    for (var n = 1; n <= 12; n++) {
+      var el = document.createElement('span');
+      el.className = 'clock-number';
+      el.textContent = String(n);
+      var rad = n * 30 * Math.PI / 180;
+      el.style.left = (50 + 38.5 * Math.sin(rad)).toFixed(3) + '%';
+      el.style.top = (50 - 38.5 * Math.cos(rad)).toFixed(3) + '%';
+      layer.appendChild(el);
+    }
+  }
+
+  function setClockHands(clockEl, h, m) {
+    clockEl.querySelector('.hand.hour').style.transform = 'rotate(' + ((h % 12) * 30 + m * 0.5).toFixed(2) + 'deg)';
+    clockEl.querySelector('.hand.minute').style.transform = 'rotate(' + (m * 6).toFixed(2) + 'deg)';
+    clockEl.dataset.hour = String(h);
+    clockEl.dataset.minute = pad(m);
+  }
+
+  function sizeMiniClocks() {
+    Array.prototype.forEach.call(optionsEl.querySelectorAll('.mini-clock'), function (clockEl) {
+      clockEl.style.setProperty('--clock-size', (clockEl.clientWidth || 140) + 'px');
+    });
+  }
+
+  function buildOption(option) {
+    var label = formatTime(option.h, option.m) + ' ' + option.period;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'clock-option';
+    btn.setAttribute('aria-label', 'Reloj de las ' + label);
+    btn.dataset.hour = String(option.h);
+    btn.dataset.minute = pad(option.m);
+    btn.dataset.period = option.period;
+    if (option.correct) btn.dataset.correct = 'true';
+
+    var clockEl = document.createElement('span');
+    clockEl.className = 'mini-clock';
+    clockEl.setAttribute('aria-hidden', 'true');
+
+    var numberLayer = document.createElement('span');
+    numberLayer.className = 'clock-numbers';
+    clockEl.appendChild(numberLayer);
+    buildClockNumbers(numberLayer);
+
+    var hourHand = document.createElement('span');
+    hourHand.className = 'hand hour';
+    var hourLine = document.createElement('span');
+    hourLine.className = 'line';
+    hourHand.appendChild(hourLine);
+    clockEl.appendChild(hourHand);
+
+    var minuteHand = document.createElement('span');
+    minuteHand.className = 'hand minute';
+    var minuteLine = document.createElement('span');
+    minuteLine.className = 'line';
+    minuteHand.appendChild(minuteLine);
+    clockEl.appendChild(minuteHand);
+
+    var pin = document.createElement('span');
+    pin.className = 'pin';
+    clockEl.appendChild(pin);
+
+    setClockHands(clockEl, option.h, option.m);
+    btn.appendChild(clockEl);
+
+    var badge = document.createElement('span');
+    badge.className = 'period-badge ' + option.period.toLowerCase();
+    badge.textContent = option.period;
+    badge.setAttribute('aria-hidden', 'true');
+    btn.appendChild(badge);
+
+    btn.addEventListener('click', function () { answer(btn); });
+    return btn;
+  }
+
+  /* ---------- Preguntas ---------- */
+  function updateProgress() {
+    $('statusLine').textContent = 'Pregunta ' + (currentIndex + 1) + ' de ' + TOTAL;
+    scoreLine.textContent = 'Aciertos: ' + score;
+    $('progressFill').style.width = (((currentIndex + 1) / TOTAL) * 100) + '%';
+    $('progressbar').setAttribute('aria-valuenow', String(currentIndex + 1));
+  }
+
+  function renderQuestion(focusFirst) {
+    answered = false;
+    var q = questions[currentIndex];
+    questionText.textContent = q.question;
+    questionCard.dataset.hour = String(q.h);
+    questionCard.dataset.minute = pad(q.m);
+    questionCard.dataset.period = q.period;
+
+    optionsEl.innerHTML = '';
+    q.options.forEach(function (option) {
+      optionsEl.appendChild(buildOption(option));
+    });
+    sizeMiniClocks();
+
+    feedback.textContent = '';
+    feedback.className = 'feedback';
+    nextBtn.hidden = true;
+    nextBtn.textContent = currentIndex === TOTAL - 1 ? 'Ver resultado 🎉' : 'Siguiente →';
+    updateProgress();
+    if (focusFirst) {
+      var first = optionsEl.querySelector('.clock-option');
+      if (first) first.focus({ preventScroll: true });
+    }
+  }
+
+  function answer(btn) {
+    if (answered) return;
+    answered = true;
+    var q = questions[currentIndex];
+    var isCorrect = btn.dataset.correct === 'true';
+    if (isCorrect) score++;
+
+    Array.prototype.forEach.call(optionsEl.querySelectorAll('.clock-option'), function (option) {
+      option.disabled = true;
+      if (option.dataset.correct === 'true') option.classList.add('correct');
+      if (option === btn && !isCorrect) option.classList.add('wrong');
+    });
+
+    var message = capitalize(q.phrase) + ': ' + q.correctLabel + '.';
+    if (isCorrect) {
+      feedback.textContent = '¡Muy bien! ' + message;
+      feedback.className = 'feedback ok';
+    } else {
+      feedback.textContent = 'Casi. ' + message;
+      feedback.className = 'feedback warn';
+    }
+    scoreLine.textContent = 'Aciertos: ' + score;
+    nextBtn.hidden = false;
+    nextBtn.focus({ preventScroll: true });
+  }
+
+  function nextQuestion() {
+    if (!answered) return;
+    if (currentIndex < TOTAL - 1) {
+      currentIndex++;
+      renderQuestion(true);
+      window.scrollTo(0, 0);
+    } else {
+      finishGame();
+    }
+  }
+
+  /* ---------- Final y estrella ---------- */
+  function awardStar(grade) {
+    try {
+      if (!window.MiProgreso) return false;
+      var progress = MiProgreso.load(profileId);
+      var area = MiProgreso.area(progress, 'ciencias');
+      area[grade] = (Number(area[grade]) || 0) + 1;
+      MiProgreso.persist(profileId, progress);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function gradeFor(scoreValue) {
+    var ratio = scoreValue / TOTAL;
+    if (ratio >= GOLD_PCT) return 'gold';
+    if (ratio >= SILVER_PCT) return 'silver';
+    if (ratio >= BRONZE_PCT) return 'bronze';
+    return null;
+  }
+
+  function finishGame() {
+    var grade = gradeFor(score);
+    if (!awardedThisRun) {
+      awardedThisRun = true;
+      lastAwarded = grade ? awardStar(grade) : false;
+    }
+
+    var ratio = score / TOTAL;
+    var title = score === TOTAL ? '¡Perfecto, ' + TOTAL + ' de ' + TOTAL + '!'
+      : ratio >= GOLD_PCT ? '¡Excelente!'
+      : ratio >= SILVER_PCT ? '¡Muy bien!'
+      : ratio >= BRONZE_PCT ? '¡Buen trabajo!'
+      : '¡Sigue practicando!';
+    $('finishTitle').textContent = title;
+    var copy = 'Has acertado ' + score + ' de ' + TOTAL + '. ';
+    copy += lastAwarded && grade
+      ? 'Has ganado una estrella de ' + GRADE_LABEL[grade] + '.'
+      : 'Repite el reto para mejorar tu marca.';
+    $('finishText').textContent = copy;
+
+    if (lastAwarded && grade) {
+      $('starAward').hidden = false;
+      $('starAward').textContent = GRADE_ICON[grade] + ' +1 estrella de ' + GRADE_LABEL[grade];
+    } else {
+      $('starAward').hidden = true;
+    }
+
+    lastFocus = document.activeElement;
+    finishModal.hidden = false;
+    dialogOpen = true;
+    document.body.style.overflow = 'hidden';
+    $('repeatGame').focus();
+  }
+
+  function closeDialog() {
+    finishModal.hidden = true;
+    dialogOpen = false;
+    document.body.style.overflow = '';
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  function trapFocus(e) {
+    var buttons = finishModal.querySelectorAll('button');
+    var first = buttons[0];
+    var last = buttons[buttons.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
+  function resetGame() {
+    questions = newQuestions();
+    currentIndex = 0;
+    score = 0;
+    answered = false;
+    awardedThisRun = false;
+    lastAwarded = false;
+    renderQuestion(false);
+    window.scrollTo(0, 0);
+  }
+
+  $('repeatGame').addEventListener('click', function () {
+    closeDialog();
+    resetGame();
+  });
+  $('backToGames').addEventListener('click', function () {
+    location.href = $('backToGames').href;
+  });
+  finishModal.addEventListener('click', function (e) {
+    if (e.target === finishModal) closeDialog();
+  });
+  nextBtn.addEventListener('click', nextQuestion);
+
+  document.addEventListener('keydown', function (e) {
+    if (dialogOpen) {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeDialog();
+      } else if (e.key === 'Tab') {
+        trapFocus(e);
+      }
+      return;
+    }
+    if (!answered && /^[1-4]$/.test(e.key)) {
+      var btn = optionsEl.querySelectorAll('.clock-option')[Number(e.key) - 1];
+      if (btn) {
+        e.preventDefault();
+        btn.click();
+      }
+    }
+  });
+
+  /* ---------- Arranque ---------- */
+  resetGame();
+
+  var resizeTimer = null;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(sizeMiniClocks, 120);
+  });
+})();
+</script>
+</body>
+</html>

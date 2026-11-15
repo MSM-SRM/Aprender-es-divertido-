@@ -1414,3 +1414,34 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - Verificado en GitHub Pages: `sakura-day.html` 200 (32.672 B), hub `que-hora-es.html` 200 (39.151 B) con `startSakura` y el enlace a `sakura-day.html`, `sakura.mp3` 200 `audio/mp3` (333.687 B) y las 20 imágenes 200 (`image/jpeg`) con sus bytes locales exactos.
 - El helper temporal `peques/_check-sakura.html` se eliminó y no se publicó.
 - La tarjeta del hub usa `sakura/01.jpg`; el antiguo `peques/imagenes/que-hora-es/sakura-day.jpg` (242×251) queda sin referencias y se conserva sin borrar por la regla de no eliminar assets sin autorización.
+
+---
+
+## Actualización 15/11/2026 — «Mira lo que se» rediseñado
+
+### Alcance
+
+- Página `peques/mira-lo-que-se.html` para Mireia y Guest, enlazada desde la tarjeta 2 del hub `que-hora-es.html` (`startNaruto`) con `?profile=...`. Se actualizó el subtítulo de la tarjeta para explicar que hay que elegir el reloj correcto.
+- Se reutilizan `imagenes/que-hora-es/naruto-hi.jpg` (236×181) y el fondo `gold-bg.jpg`; no se añadieron imágenes ni audios nuevos. El rediseño sustituye la versión anterior de un reloj y cuatro respuestas digitales.
+
+### Juego
+
+- 20 preguntas aleatorias por partida: 20 horas únicas de un banco de 144 (12 horas × 12 pasos de 5 minutos), barajadas. Se reparten 10 AM y 10 PM al azar para trabajar la diferencia entre mañana/madrugada y tarde/noche.
+- Cada enunciado escribe la hora en palabras, con el periodo: «las ocho y veinte de la mañana», «las seis menos cuarto de la tarde», «la una en punto de la madrugada». Incluye en punto, y cuarto, y media, y cinco/veinte/veinticinco y menos cinco/cuarto/veinte/veinticinco.
+- Cuatro relojes analógicos por pregunta, dos AM y dos PM, con una sola respuesta correcta. Distractores: la misma hora en el periodo contrario, ±1 hora en el mismo periodo y ±5 o ±10 minutos en el periodo contrario. La pareja de relojes idénticos con distinto AM/PM obliga a fijarse en la insignia del periodo.
+- Relojes de respuesta con esfera blanca, aro dorado, 12 números fucsia, aguja de hora azul y de minutos naranja, e insignia AM/PM. Los botones exponen `data-hour`, `data-minute`, `data-period` y `data-correct`.
+- Naruto ocupa todo el ancho de la viñeta (máx. 680 px) y la burbuja blanca con borde negro y sombra dura queda en la parte inferior del dibujo, sin tapar la cara. En escritorio ocupa el 50 % del ancho, con la cola arriba a la derecha, y la viñeta se recorta como banner (clamp de 260 a 330 px de alto según la ventana) para que los cuatro relojes queden a la vista a 1280×800; en móvil conserva la proporción 236:181 y la burbuja pasa a todo el ancho, sin kicker, con texto compacto bajo la cara. La nota «AM = mañana/madrugada · PM = tarde/noche» se muestra encima de los relojes.
+- Al responder se bloquean los cuatro relojes, el correcto queda con aro verde (también si se falla) y el elegido incorrecto con aro fucsia; se anuncia la hora correcta y aparece «Siguiente». Teclado 1–4; modal final con trofeo, repetición y vuelta al hub. Estrella en `ciencias` con `MiProgreso`: oro ≥18, plata ≥14, bronce ≥10; sin estrella por debajo de 10.
+
+### Pruebas
+
+- Recorrido automático de 20 preguntas: 4 relojes por pregunta, exactamente una respuesta correcta, 2 AM + 2 PM y relojes con la hora del enunciado; las 20 horas son únicas.
+- Resultados verificados: 20/20 oro (`¡Perfecto, 20 de 20!`), 18/20 oro, 14/20 plata, 10/20 bronce y 9/20 sin estrella, con el texto y la insignia correspondientes. La estrella de `ciencias` se incrementó y el progreso de invitado se restauró después a `gold: 1`.
+- Fallo comprobado: el reloj correcto recibe un aro verde de 5 px y el elegido un aro fucsia; el feedback muestra la hora correcta y «Siguiente» queda enfocado. Teclado `1` comprobado sobre la primera opción.
+- «Repetir el reto» vuelve a la pregunta 1 con 0 aciertos y cuatro relojes nuevos; el modal devuelve el foco a «Repetir el reto».
+- Layout medido con iframes: 1280×800 con los cuatro relojes visibles y sin desbordamiento horizontal; 390×844 y 320×640 sin desbordamiento horizontal, con scroll vertical y los relojes en dos columnas (161 px y 126 px de ancho; esferas de 143 px y 108 px). La burbuja queda dentro de la viñeta y debajo de la cara en los tres tamaños; en 320 px la pregunta más larga ocupa tres líneas y la burbuja empieza a 139 px del borde superior de una viñeta de 220 px, por debajo del mentón. Sin errores de consola.
+- Navegación del hub comprobada para Guest: `startNaruto` es un enlace activo, conserva el perfil y la vuelta desde el juego apunta al hub con el mismo perfil.
+
+### Publicación
+
+- **Pendiente de autorización del usuario.** No se ha hecho commit ni push. Para el futuro commit: `peques/mira-lo-que-se.html`, `peques/que-hora-es.html` y la documentación; no incluir `qa/`, `AGENTS.md`, la imagen del capibara, los cromos de Real Madrid ni assets antiguos sin uso.
