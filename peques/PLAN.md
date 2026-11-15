@@ -1444,4 +1444,5 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 ### Publicación
 
-- **Pendiente de autorización del usuario.** No se ha hecho commit ni push. Para el futuro commit: `peques/mira-lo-que-se.html`, `peques/que-hora-es.html` y la documentación; no incluir `qa/`, `AGENTS.md`, la imagen del capibara, los cromos de Real Madrid ni assets antiguos sin uso.
+- Commit `2f840d1` en `main`: `peques/mira-lo-que-se.html`, `peques/que-hora-es.html` y la documentación. No se incluyeron `qa/`, `AGENTS.md`, la imagen del capibara, los cromos de Real Madrid ni assets antiguos sin uso.
+- Verificado en GitHub Pages: `mira-lo-que-se.html` 200 (27.654 B), hub 200 (39.431 B), `naruto-hi.jpg` 200 (16.525 B) y `gold-bg.jpg` 200 (26.536 B), con los mismos bytes que en local.
