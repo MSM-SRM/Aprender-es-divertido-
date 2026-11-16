@@ -1474,7 +1474,8 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - Layout medido con iframes: 1280×800 sin scroll ni desbordamiento horizontal, escena de 1000×361 y reloj de 264 px; 390×844 y 320×640 sin desbordamiento horizontal, escena de 370×240 y 285×189, relojes de 177 px y 135 px. La burbuja queda dentro de la viñeta en los tres tamaños. A 320 la insignia «Por la mañana» se partía en dos líneas y la escena saltaba de 194 a 207 px; se corrigió con `white-space:nowrap`, menos padding y un icono algo menor a ≤360 px: ahora mide 27 px y la escena se mantiene en 189 px. Con feedback y «Siguiente», 1280 y 390 caben sin scroll; en 320 la página se desplaza 33 px para mostrar el botón. Sin errores de consola.
 - Hub comprobado para `guest` y `mireia`: tarjeta 4 activa, `href` con el perfil correcto, badge «Disponible», sin tarjeta «Muy pronto» y sin errores de consola. El progreso de invitado se guardó antes de las pruebas y se restauró a `{"stars":1,"rounds":0,"byGame":{},"byArea":{"ciencias":{"gold":1,"silver":0,"bronze":0}}}`.
 
-### Estado
+### Publicación
 
-- **Completo en local y verificado; pendiente de autorización para commit, push y comprobación en GitHub Pages.** No está publicado.
-- El arnés temporal `qa/tmp-mireia-harness.html` se usó solo para las medidas y se eliminó. No se incluyen `qa/`, `AGENTS.md`, la imagen del capibara, los cromos de Real Madrid ni assets antiguos sin uso.
+- **Publicado en `8aa0bfd` y verificado en GitHub Pages.** El commit incluye `peques/que-haces-mireia.html`, `peques/que-hora-es.html` y la documentación; no se incluyeron `qa/`, `AGENTS.md`, la imagen del capibara, los cromos de Real Madrid ni assets sin uso.
+- Producción: `que-haces-mireia.html` 200 (33.060 B, hash idéntico al local), hub `que-hora-es.html` 200 (39.730 B) con `startMireia` y el enlace, `mireia-day.jpg` 200 `image/jpeg` (32.616 B) y `gold-bg.jpg` 200 (26.536 B); `check-prod.ps1` correcto.
+- El arnés temporal `qa/tmp-mireia-harness.html` se usó solo para las medidas y se eliminó.
