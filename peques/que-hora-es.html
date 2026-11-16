@@ -361,18 +361,18 @@ a{color:inherit}
             </span>
           </a>
 
-          <button type="button" class="game-card soon" disabled aria-disabled="true">
+          <a class="game-card live" id="startMireia" href="que-haces-mireia.html?profile=mireia" aria-describedby="mireiaDesc" style="text-decoration:none">
             <span class="card-media">
-              <img src="imagenes/que-hora-es/mireia-day.jpg" alt="Mireia durante el día" loading="lazy">
-              <span class="badge soon">Muy pronto</span>
+              <img src="imagenes/que-hora-es/mireia-day.jpg" width="340" height="385" alt="Mireia con una medalla en el tatami" loading="lazy">
+              <span class="badge live">Disponible</span>
             </span>
             <span class="card-body">
-              <span class="card-kicker">Juego 4</span>
+              <span class="card-kicker">Juego 4 · 20 momentos</span>
               <span class="card-title">¿Qué haces, Mireia?</span>
-              <span class="card-sub">Descubre las horas de un día con Mireia.</span>
-              <span class="card-cta">🔒 Muy pronto</span>
+              <span class="card-sub" id="mireiaDesc">Mira el reloj y adivina qué hace Mireia en cada momento del día.</span>
+              <span class="card-cta">Jugar ahora →</span>
             </span>
-          </button>
+          </a>
         </div>
       </section>
     </main>
@@ -628,6 +628,8 @@ a{color:inherit}
   if (sakuraCard) sakuraCard.href = 'sakura-day.html?profile=' + encodeURIComponent(profileId);
   var narutoCard = $('startNaruto');
   if (narutoCard) narutoCard.href = 'mira-lo-que-se.html?profile=' + encodeURIComponent(profileId);
+  var mireiaCard = $('startMireia');
+  if (mireiaCard) mireiaCard.href = 'que-haces-mireia.html?profile=' + encodeURIComponent(profileId);
 
   /* ---------- Utilidades ---------- */
   function pad(n) { return n < 10 ? '0' + n : '' + n; }

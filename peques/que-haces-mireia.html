@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d99a1e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%95%92%3C/text%3E%3C/svg%3E">
+<title>¿Qué haces, Mireia? · Mi Mundo de Aprendizaje</title>
+<script src="auth-guard.js"></script>
+<style>
+*{box-sizing:border-box}
+:root{
+  font-family:"Trebuchet MS",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:#5a3410;
+  --ink:#5a3410;
+  --ink-soft:#7c5527;
+  --gold:#d99a1e;
+  --gold-deep:#a86a0c;
+  --cream:#fffaf0;
+  --fuchsia:#d81b7a;
+  --green:#2f9e44;
+  --blue:#1d6fd0;
+  --orange:#e87511;
+  --manga-ink:#2b1a0a;
+}
+html{scroll-behavior:smooth}
+body{
+  margin:0;min-height:100vh;color:var(--ink);
+  background:url("imagenes/que-hora-es/gold-bg.jpg") center/cover no-repeat fixed;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 0%,#fffdf3d9 0,transparent 55%),
+    linear-gradient(180deg,#fff9eb99 0%,#fff3d0a6 45%,#f8e3b3b8 100%);
+}
+.page{position:relative;z-index:1;width:min(100%,1120px);margin:0 auto;padding:clamp(12px,3vw,26px)}
+[hidden]{display:none!important}
+button{font:inherit;cursor:pointer;touch-action:manipulation}
+a{color:inherit}
+:focus-visible{outline:3px solid #7a3f00;outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.sr-only:focus,.sr-only:focus-visible{position:fixed;left:12px;top:12px;z-index:100;width:auto;height:auto;padding:10px 14px;margin:0;overflow:visible;clip:auto;white-space:normal;border:3px solid #d99a1e;border-radius:999px;background:#fffaf0;color:#5a3410;font-weight:900;box-shadow:0 8px 20px #5a341033}
+
+/* ---------- Cabecera ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:2px 0 12px}
+.back{
+  display:inline-flex;align-items:center;min-height:44px;padding:9px 15px;
+  border:2px solid #f0d9a8;border-radius:999px;background:#fffaf0e8;color:#7a4a12;
+  font-weight:900;text-decoration:none;white-space:nowrap;
+  box-shadow:0 4px 12px #7a4a1220;transition:background .15s,transform .15s;
+}
+.back:hover{background:#fff;transform:translateY(-1px)}
+.heading{flex:1;text-align:center;min-width:0}
+.heading h1{
+  margin:0;font-size:clamp(1.25rem,3.5vw,2rem);line-height:1.05;color:#7a3f00;
+  text-shadow:0 2px 0 #fff,0 4px 16px #fff;letter-spacing:-.01em;
+}
+.heading p{margin:4px 0 0;font-weight:900;color:#8a5a1d;font-size:clamp(.8rem,2.2vw,.95rem)}
+.score-pill{
+  display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 14px;
+  border:2px solid #f0d9a8;border-radius:999px;background:#fffaf0e8;color:#7a4a12;
+  font-weight:1000;font-size:.9rem;white-space:nowrap;box-shadow:0 4px 12px #7a4a1220;
+  margin:0;
+}
+@media(max-width:700px){
+  .top{flex-wrap:wrap;justify-content:center;gap:8px}
+  .heading{order:-1;flex-basis:100%}
+  .back{order:0;margin-right:auto}
+  .score-pill{order:1;margin-left:auto}
+}
+
+/* ---------- Portada ---------- */
+.start-card{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.06fr);
+  max-width:920px;margin:clamp(6px,2vw,16px) auto 0;overflow:hidden;
+  border:3px solid #fff;border-radius:28px;background:var(--cream);
+  box-shadow:0 14px 34px #7a4a1226;
+}
+.start-media{position:relative;min-height:240px;background:#f7e6bd;overflow:hidden}
+.start-media img{display:block;width:100%;height:100%;min-height:240px;object-fit:cover;object-position:center 22%}
+.start-copy{display:flex;flex-direction:column;justify-content:center;gap:10px;padding:clamp(20px,3.5vw,34px)}
+.kicker{font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;font-weight:1000;color:#a86a0c}
+.start-copy h2{margin:0;font-size:clamp(1.6rem,3.6vw,2.4rem);line-height:1.05;color:#6b3a05}
+.start-copy p{margin:0;color:#5f4527;font-weight:700;line-height:1.5;font-size:clamp(.98rem,2.3vw,1.08rem)}
+.start-note{margin:0;font-size:clamp(.82rem,2vw,.92rem);font-weight:1000;color:#a9510a}
+.primary,.secondary{
+  display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:11px 18px;
+  border-radius:999px;font-weight:1000;font-size:1.02rem;transition:transform .14s,box-shadow .14s,background .14s;
+}
+.primary{
+  border:3px solid #f7d67d;background:linear-gradient(#f7c44b,#e09a18);color:#4b2a00;
+  box-shadow:0 6px 0 #a86a0c,0 12px 20px #7a4a1226;
+}
+.primary:hover{transform:translateY(-2px);box-shadow:0 8px 0 #a86a0c,0 14px 24px #7a4a122e}
+.primary:active{transform:translateY(3px);box-shadow:0 3px 0 #a86a0c}
+.start-copy .primary{align-self:flex-start;margin-top:4px}
+@media(max-width:760px){
+  .start-card{grid-template-columns:1fr}
+  .start-media,.start-media img{min-height:0;aspect-ratio:4/3}
+  .start-media img{height:100%;min-height:0}
+  .start-copy .primary{align-self:stretch}
+}
+
+/* ---------- Progreso ---------- */
+.progress-row{width:min(100%,1000px);margin:0 auto 12px}
+.progressbar{
+  width:min(100%,430px);height:13px;margin:0 auto;border:2px solid #fff;border-radius:999px;
+  background:#f1e0b8;overflow:hidden;box-shadow:inset 0 1px 3px #7a4a1222;
+}
+.progressbar span{display:block;height:100%;width:5%;border-radius:999px;background:linear-gradient(90deg,#f4b93f,#d97d0e);transition:width .35s ease}
+
+/* ---------- Juego ---------- */
+.game{display:flex;flex-direction:column;gap:clamp(12px,2vw,18px);max-width:1000px;margin:0 auto}
+
+/* Tarjeta-escena manga: dos paneles */
+.scene-card{
+  display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  width:100%;overflow:hidden;border:4px solid var(--manga-ink);border-radius:24px;
+  background:#fffaf0;box-shadow:8px 8px 0 var(--gold),0 18px 36px #7a4a1230;
+}
+.mireia-stage{
+  position:relative;margin:0;overflow:hidden;background:#f7e6bd;line-height:0;
+  border-right:4px solid var(--manga-ink);
+}
+.mireia-img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.speech{
+  position:absolute;z-index:3;left:clamp(10px,1.6vw,16px);bottom:clamp(10px,1.6vw,16px);
+  width:min(78%,296px);padding:clamp(8px,1.2vw,13px) clamp(10px,1.5vw,15px);
+  border:3px solid var(--manga-ink);border-radius:21px 21px 10px 21px;
+  background:#fff;box-shadow:5px 5px 0 var(--manga-ink);
+  transform:rotate(-1deg);color:var(--manga-ink);
+}
+.speech::after{
+  content:"";position:absolute;right:30px;top:-13px;width:22px;height:22px;
+  background:#fff;border-left:3px solid var(--manga-ink);border-top:3px solid var(--manga-ink);
+  transform:rotate(45deg);
+}
+.speech-kicker{display:block;margin-bottom:2px;font-size:.68rem;letter-spacing:.11em;text-transform:uppercase;font-weight:1000;color:#a86a0c}
+.speech-text{margin:0;font-size:clamp(.98rem,1.9vw,1.22rem);line-height:1.12;font-weight:1000;letter-spacing:-.01em;color:var(--manga-ink);text-wrap:balance}
+
+.clock-panel{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(8px,1.4vw,12px);
+  min-width:0;padding:clamp(12px,2vw,20px);background:#fffaf0;
+}
+
+/* Reloj grande */
+.big-clock{
+  --clock-size:280px;
+  position:relative;width:min(100%,300px);aspect-ratio:1/1;border-radius:50%;
+  border:clamp(7px,1.4vw,11px) solid transparent;
+  background:
+    radial-gradient(circle at 35% 28%,#fff 0,#fffdf5 45%,#fff4d8 100%) padding-box,
+    linear-gradient(135deg,#f9e08b 0,#d99a1e 35%,#b97a12 55%,#f6d477 100%) border-box;
+  box-shadow:0 14px 30px #7a4a1233,inset 0 0 0 4px #fff9e6,inset 0 0 24px #e7c26944;
+  isolation:isolate;
+}
+.clock-number{
+  position:absolute;z-index:8;transform:translate(-50%,-50%);
+  font-size:calc(var(--clock-size) * .158);line-height:1;font-weight:1000;
+  color:#e0157f;letter-spacing:-.04em;pointer-events:none;
+  text-shadow:0 0 6px #ff9bd4,0 0 14px #ffb7e2,0 2px 0 #fff;
+}
+.big-clock .hand{
+  position:absolute;left:50%;top:50%;width:0;height:0;z-index:5;
+  transform:rotate(0deg);transform-origin:0 0;pointer-events:none;
+  transition:transform .35s ease;
+}
+.big-clock .hand.minute{z-index:6;--len:calc(var(--clock-size) * .355)}
+.big-clock .hand.hour{--len:calc(var(--clock-size) * .255)}
+.big-clock .hand .line{
+  position:absolute;left:50%;bottom:0;height:var(--len);transform:translateX(-50%);
+  border-radius:999px;box-shadow:0 2px 4px #2b1a0a33;
+}
+.big-clock .hand.hour .line{width:clamp(9px,2vw,14px);background:linear-gradient(90deg,#2f5d8a,#183b5e 55%,#2f5d8a)}
+.big-clock .hand.minute .line{width:clamp(5px,1.1vw,7px);background:linear-gradient(90deg,#f59e3b,#e87511 55%,#c85c07)}
+.big-clock .pin{
+  position:absolute;left:50%;top:50%;z-index:10;width:clamp(13px,2.4vw,20px);height:clamp(13px,2.4vw,20px);
+  transform:translate(-50%,-50%);border:2px solid #fff;border-radius:50%;
+  background:linear-gradient(145deg,#f2c44d,#b97a12);box-shadow:0 3px 8px #5a341055;
+}
+.part-badge{
+  display:inline-flex;align-items:center;gap:8px;margin:0;max-width:100%;
+  padding:6px 14px;border:3px solid var(--manga-ink);border-radius:999px;
+  background:linear-gradient(#fff3c8,#ffe7a1);color:#6b3a05;font-weight:1000;
+  font-size:clamp(.9rem,1.9vw,1.05rem);line-height:1.15;box-shadow:3px 3px 0 var(--manga-ink);
+  transition:background .2s,color .2s;
+}
+.part-badge.morning{background:linear-gradient(#fff3c8,#ffe7a1);color:#6b3a05}
+.part-badge.noon{background:linear-gradient(#ffe6bd,#ffd08a);color:#7a3f00}
+.part-badge.afternoon{background:linear-gradient(#e8f3ff,#cfe4ff);color:#1d4f7a}
+.part-badge.night{background:linear-gradient(#ece9ff,#d8d1ff);color:#3b2d7a}
+.part-icon{font-size:1.15em;line-height:1}
+.start-tip{margin:14px auto 0;text-align:center;font-weight:800;color:#8a5a1d;font-size:clamp(.8rem,2vw,.9rem)}
+
+/* ---------- Respuestas ---------- */
+.answers-card{
+  display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;
+  padding:clamp(12px,2vw,18px);border:3px solid #fff;border-radius:26px;
+  background:#fffaf0e8;box-shadow:0 10px 26px #7a4a1220;
+}
+.instruction{margin:0;text-align:center;font-weight:1000;color:#7c5527;font-size:clamp(.92rem,2vw,1.04rem)}
+.options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1.4vw,14px);width:100%}
+.option{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  min-height:56px;padding:12px 14px;border:3px solid #e7d3a8;border-radius:18px;
+  background:#fffdf6;color:var(--ink);font-weight:1000;text-align:center;
+  font-size:clamp(.95rem,1.8vw,1.1rem);line-height:1.2;
+  transition:background .15s,transform .15s,border-color .15s,box-shadow .15s;
+}
+.option .emoji{font-size:1.45em;line-height:1}
+.option:hover:not(:disabled){background:#fff;border-color:#f0c86a;transform:translateY(-2px)}
+.option:disabled{cursor:default}
+.option:disabled:not(.correct):not(.wrong){opacity:.55}
+.option.correct{border-color:var(--green);background:#f3fff6;box-shadow:0 0 0 3px #2f9e4433}
+.option.wrong{border-color:var(--fuchsia);background:#fff2f8;box-shadow:0 0 0 3px #d81b7a33}
+.feedback{
+  min-height:2.5em;margin:0;text-align:center;font-weight:900;line-height:1.3;
+  color:#7c5527;font-size:clamp(.88rem,2.2vw,.98rem);
+}
+.feedback.ok{color:#1e6b2e}
+.feedback.warn{color:#a9510a}
+.next{width:min(100%,250px)}
+
+@media(min-width:861px){
+  .big-clock{width:min(100%,clamp(210px,33vh,300px))}
+}
+@media(max-width:700px){
+  .options{grid-template-columns:1fr}
+  .option{justify-content:flex-start;text-align:left}
+}
+@media(max-width:430px){
+  .page{padding:10px}
+  .scene-card{border-width:3px;border-radius:18px;box-shadow:6px 6px 0 var(--gold),0 14px 28px #7a4a1226}
+  .mireia-stage{border-right-width:3px}
+  .clock-panel{padding:10px;gap:7px}
+  .speech{left:8px;bottom:8px;width:min(82%,250px);padding:6px 8px;border-radius:15px 15px 7px 15px;box-shadow:4px 4px 0 var(--manga-ink)}
+  .speech::after{right:22px;top:-11px;width:19px;height:19px}
+  .speech-kicker{display:none}
+  .speech-text{font-size:.86rem;line-height:1.1}
+  .part-badge{font-size:.8rem;padding:5px 9px;gap:5px;border-width:2px;box-shadow:2px 2px 0 var(--manga-ink)}
+  .part-icon{font-size:1.3em}
+  .answers-card{padding:11px;border-radius:18px;gap:9px}
+  .option{padding:11px 12px;border-radius:15px;min-height:56px}
+}
+@media(max-width:360px){
+  .clock-panel{padding:8px;gap:6px}
+  .part-badge{padding:4px 6px;gap:4px;white-space:nowrap}
+  .part-icon{font-size:1.1em}
+}
+
+/* ---------- Modal final ---------- */
+.modal{
+  position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:18px;
+  background:#3b240a99;backdrop-filter:blur(2px);
+}
+.modal-card{
+  width:min(100%,430px);padding:24px;text-align:center;border:3px solid #fff;border-radius:28px;
+  background:#fffaf0;box-shadow:0 24px 60px #2b1a0a66;animation:pop .25s ease-out;
+}
+@keyframes pop{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+.trophy{font-size:clamp(2.6rem,7vw,3.6rem);line-height:1}
+.star-award{
+  display:inline-flex;align-items:center;gap:6px;margin:6px 0 0;padding:5px 12px;
+  border:2px solid #e7bd58;border-radius:999px;background:#fff3c8;color:#7a4a12;
+  font-weight:1000;font-size:.9rem;
+}
+.modal-card h2{margin:10px 0 4px;color:#6b3a05;font-size:clamp(1.4rem,4.4vw,1.8rem);line-height:1.2}
+.modal-card p{margin:0;color:#7c5527;font-weight:700;line-height:1.45}
+.modal-actions{display:flex;flex-direction:column;gap:9px;margin-top:18px}
+.modal-actions button{min-height:48px;padding:10px 14px;border-radius:999px;font-weight:1000;border:3px solid transparent}
+#repeatDay{border-color:#f7d67d;background:linear-gradient(#f7c44b,#e09a18);color:#4b2a00}
+#backToGames{border-color:#d8e9f8;background:#edf4fb;color:#31577e}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+</style>
+</head>
+<body>
+<a class="sr-only" href="#gameMain">Saltar al contenido</a>
+<div class="page">
+
+  <header class="top">
+    <a class="back" id="backToHub" href="que-hora-es.html?profile=mireia">← Los 4 juegos</a>
+    <div class="heading">
+      <h1>¿Qué haces, Mireia?</h1>
+      <p id="statusLine">Lee el reloj y adivina qué hace Mireia</p>
+    </div>
+    <p class="score-pill" id="scoreLine" hidden>Aciertos: 0</p>
+  </header>
+
+  <main id="gameMain">
+
+    <!-- ===== Portada ===== -->
+    <section id="startView" aria-labelledby="startTitle">
+      <div class="start-card">
+        <div class="start-media">
+          <img src="imagenes/que-hora-es/mireia-day.jpg" width="340" height="385" alt="Mireia con una medalla en el tatami" loading="eager">
+        </div>
+        <div class="start-copy">
+          <span class="kicker">Juego 4 · 20 momentos</span>
+          <h2 id="startTitle">¿Qué haces, Mireia?</h2>
+          <p>Mira el reloj, fíjate en el momento del día y elige lo que hace Mireia.</p>
+          <p class="start-note">Mañana, mediodía, tarde y noche</p>
+          <button type="button" class="primary" id="startBtn">Empezar el día</button>
+        </div>
+      </div>
+      <p class="start-tip">Pista: la aguja corta marca la hora y la larga, los minutos.</p>
+    </section>
+
+    <!-- ===== Juego ===== -->
+    <section id="playView" aria-labelledby="playTitle" hidden>
+      <h2 class="sr-only" id="playTitle">¿Qué haces, Mireia? — juego</h2>
+      <div class="progress-row" hidden id="progressRow">
+        <div class="progressbar" id="progressbar" role="progressbar" aria-label="Progreso del día" aria-valuemin="1" aria-valuemax="20" aria-valuenow="1">
+          <span id="progressFill"></span>
+        </div>
+      </div>
+
+      <div class="game">
+        <section class="scene-card" id="sceneCard" aria-label="La escena del día">
+          <figure class="mireia-stage">
+            <img class="mireia-img" src="imagenes/que-hora-es/mireia-day.jpg" width="340" height="385" alt="Mireia con una medalla en el tatami">
+            <div class="speech">
+              <span class="speech-kicker">Mireia dice…</span>
+              <p class="speech-text">¿Qué hago a esta hora?</p>
+            </div>
+          </figure>
+
+          <div class="clock-panel">
+            <div class="big-clock" id="clock" role="img" aria-label="Reloj que marca las 7:35 de la mañana">
+              <span id="numberLayer" aria-hidden="true"></span>
+              <span class="hand hour" id="hourHand" aria-hidden="true"><span class="line"></span></span>
+              <span class="hand minute" id="minuteHand" aria-hidden="true"><span class="line"></span></span>
+              <span class="pin" aria-hidden="true"></span>
+            </div>
+            <p class="part-badge" id="partBadge">
+              <span class="part-icon" id="partIcon" aria-hidden="true">🌅</span>
+              <span id="partText">Por la mañana</span>
+            </p>
+          </div>
+        </section>
+
+        <section class="answers-card" aria-labelledby="instruction">
+          <p class="instruction" id="instruction">Elige lo que hace Mireia:</p>
+          <div class="options" id="options" role="group" aria-labelledby="instruction"></div>
+          <p class="feedback" id="feedback" aria-live="polite"></p>
+          <button type="button" class="primary next" id="nextBtn" hidden>Siguiente →</button>
+        </section>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ===== Final ===== -->
+<div class="modal" id="finishModal" role="dialog" aria-modal="true" aria-labelledby="finishTitle" aria-describedby="finishText" hidden>
+  <div class="modal-card">
+    <div class="trophy" aria-hidden="true">🏆</div>
+    <p class="star-award" id="starAward" hidden>🌟 +1 estrella de oro</p>
+    <h2 id="finishTitle">¡Día completado!</h2>
+    <p id="finishText">Has acertado 0 de 20.</p>
+    <div class="modal-actions">
+      <button type="button" id="repeatDay">Repetir el día</button>
+      <button type="button" id="backToGames">Volver a los juegos</button>
+    </div>
+  </div>
+</div>
+
+<script src="progress-shared.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var params = new URLSearchParams(location.search);
+  var profileId = params.get('profile') || 'mireia';
+  var $ = function (id) { return document.getElementById(id); };
+  var TOTAL = 20;
+  var GOLD_PCT = 0.9, SILVER_PCT = 0.7, BRONZE_PCT = 0.5;
+  var GRADE_LABEL = { gold: 'oro', silver: 'plata', bronze: 'bronce' };
+  var GRADE_ICON = { gold: '🌟', silver: '⭐', bronze: '🥉' };
+
+  /* ---------- Los 20 momentos del día ---------- */
+  var ROUTINES = [
+    { id: 'wake',       h: 6,  m: 45, period: 'AM', part: 'morning',   label: 'Despertarse',            phrase: 'se despierta',            emoji: '⏰', distractors: ['dinner', 'play'] },
+    { id: 'dress',      h: 7,  m: 10, period: 'AM', part: 'morning',   label: 'Vestirse',               phrase: 'se viste',                emoji: '👕', distractors: ['dinner', 'story'] },
+    { id: 'breakfast',  h: 7,  m: 35, period: 'AM', part: 'morning',   label: 'Desayunar',              phrase: 'desayuna',                emoji: '🥣', distractors: ['dinner', 'sleep'] },
+    { id: 'school',     h: 8,  m: 5,  period: 'AM', part: 'morning',   label: 'Ir al colegio',          phrase: 'va al colegio',           emoji: '🎒', distractors: ['dinner', 'shower'] },
+    { id: 'language',   h: 9,  m: 15, period: 'AM', part: 'morning',   label: 'Clase de lengua',        phrase: 'tiene clase de lengua',   emoji: '📖', distractors: ['sleep', 'dinner'] },
+    { id: 'math',       h: 10, m: 10, period: 'AM', part: 'morning',   label: 'Clase de mates',         phrase: 'tiene clase de mates',    emoji: '➗', distractors: ['dinner', 'sleep'] },
+    { id: 'recess',     h: 11, m: 5,  period: 'AM', part: 'morning',   label: 'Recreo',                 phrase: 'juega en el recreo',      emoji: '⚽', distractors: ['sleep', 'dinner'] },
+    { id: 'science',    h: 12, m: 20, period: 'PM', part: 'noon',      label: 'Clase de ciencias',      phrase: 'tiene clase de ciencias', emoji: '🔬', distractors: ['dinner', 'wake'] },
+    { id: 'lunch',      h: 13, m: 30, period: 'PM', part: 'noon',      label: 'Comer',                  phrase: 'come',                    emoji: '🍽️', distractors: ['breakfast', 'sleep'] },
+    { id: 'read',       h: 14, m: 15, period: 'PM', part: 'afternoon', label: 'Leer un rato',           phrase: 'lee un rato',             emoji: '📚', distractors: ['breakfast', 'sleep'] },
+    { id: 'homework',   h: 15, m: 40, period: 'PM', part: 'afternoon', label: 'Hacer los deberes',      phrase: 'hace los deberes',        emoji: '✏️', distractors: ['breakfast', 'sleep'] },
+    { id: 'snack',      h: 16, m: 25, period: 'PM', part: 'afternoon', label: 'Merendar',               phrase: 'merienda',                emoji: '🍎', distractors: ['breakfast', 'sleep'] },
+    { id: 'taekwondo',  h: 17, m: 10, period: 'PM', part: 'afternoon', label: 'Entrenar taekwondo',     phrase: 'entrena taekwondo',       emoji: '🥋', distractors: ['breakfast', 'sleep'] },
+    { id: 'play',       h: 18, m: 35, period: 'PM', part: 'afternoon', label: 'Jugar con amigos',       phrase: 'juega con sus amigos',    emoji: '🤸', distractors: ['breakfast', 'sleep'] },
+    { id: 'shower',     h: 19, m: 20, period: 'PM', part: 'night',     label: 'Ducharse',               phrase: 'se ducha',                emoji: '🚿', distractors: ['breakfast', 'school'] },
+    { id: 'table',      h: 19, m: 50, period: 'PM', part: 'night',     label: 'Poner la mesa',          phrase: 'pone la mesa',            emoji: '🥄', distractors: ['breakfast', 'school'] },
+    { id: 'dinner',     h: 20, m: 15, period: 'PM', part: 'night',     label: 'Cenar',                  phrase: 'cena',                    emoji: '🍲', distractors: ['breakfast', 'school'] },
+    { id: 'teeth',      h: 20, m: 45, period: 'PM', part: 'night',     label: 'Cepillarse los dientes', phrase: 'se cepilla los dientes',  emoji: '🪥', distractors: ['breakfast', 'school'] },
+    { id: 'story',      h: 21, m: 10, period: 'PM', part: 'night',     label: 'Leer un cuento',         phrase: 'lee un cuento',           emoji: '📕', distractors: ['breakfast', 'school'] },
+    { id: 'sleep',      h: 21, m: 40, period: 'PM', part: 'night',     label: 'Dormir',                 phrase: 'duerme',                  emoji: '😴', distractors: ['breakfast', 'taekwondo'] }
+  ];
+
+  var PART_INFO = {
+    morning:   { icon: '🌅', label: 'Por la mañana', phrase: 'de la mañana' },
+    noon:      { icon: '☀️', label: 'Al mediodía',   phrase: 'del mediodía' },
+    afternoon: { icon: '🌤️', label: 'Por la tarde',  phrase: 'de la tarde' },
+    night:     { icon: '🌙', label: 'Por la noche',  phrase: 'de la noche' }
+  };
+
+  var BY_ID = {};
+  ROUTINES.forEach(function (r) { BY_ID[r.id] = r; });
+
+  /* ---------- Referencias ---------- */
+  var startView = $('startView');
+  var playView = $('playView');
+  var progressRow = $('progressRow');
+  var sceneCard = $('sceneCard');
+  var clockEl = $('clock');
+  var hourHand = $('hourHand');
+  var minuteHand = $('minuteHand');
+  var optionsEl = $('options');
+  var feedback = $('feedback');
+  var nextBtn = $('nextBtn');
+  var scoreLine = $('scoreLine');
+  var statusLine = $('statusLine');
+  var partBadge = $('partBadge');
+  var finishModal = $('finishModal');
+
+  /* ---------- Estado ---------- */
+  var round = [];
+  var currentIndex = 0;
+  var score = 0;
+  var answered = false;
+  var awardedThisRun = false;
+  var lastAwarded = false;
+  var dialogOpen = false;
+  var lastFocus = null;
+
+  /* ---------- Perfil en los enlaces ---------- */
+  var hubHref = 'que-hora-es.html?profile=' + encodeURIComponent(profileId);
+  $('backToHub').href = hubHref;
+  $('backToGames').href = hubHref;
+
+  /* ---------- Utilidades ---------- */
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function to12(h) { return ((h + 11) % 12) + 1; }
+  function clockText(h24, m) { return to12(h24) + ':' + pad(m); }
+  function timePhrase(routine) {
+    var intro = to12(routine.h) === 1 ? 'A la ' : 'A las ';
+    return intro + clockText(routine.h, routine.m) + ' ' + PART_INFO[routine.part].phrase;
+  }
+  function shuffle(list) {
+    for (var i = list.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = list[i];
+      list[i] = list[j];
+      list[j] = tmp;
+    }
+    return list;
+  }
+
+  /* ---------- Números del reloj ---------- */
+  function buildNumbers() {
+    var layer = $('numberLayer');
+    var frag = document.createDocumentFragment();
+    for (var n = 1; n <= 12; n++) {
+      var el = document.createElement('span');
+      el.className = 'clock-number';
+      el.textContent = String(n);
+      var rad = n * 30 * Math.PI / 180;
+      el.style.left = (50 + 38.5 * Math.sin(rad)).toFixed(3) + '%';
+      el.style.top = (50 - 38.5 * Math.cos(rad)).toFixed(3) + '%';
+      frag.appendChild(el);
+    }
+    layer.appendChild(frag);
+  }
+
+  function sizeClock() {
+    var w = clockEl.clientWidth;
+    if (w) clockEl.style.setProperty('--clock-size', w + 'px');
+  }
+
+  function showClock(routine) {
+    var h12 = to12(routine.h);
+    hourHand.style.transform = 'rotate(' + ((h12 % 12) * 30 + routine.m * 0.5).toFixed(2) + 'deg)';
+    minuteHand.style.transform = 'rotate(' + (routine.m * 6).toFixed(2) + 'deg)';
+    sizeClock();
+
+    var part = PART_INFO[routine.part];
+    var intro = h12 === 1 ? 'la ' : 'las ';
+    clockEl.setAttribute('aria-label', 'Reloj que marca ' + intro + clockText(routine.h, routine.m) + ' ' + part.phrase);
+    partBadge.className = 'part-badge ' + routine.part;
+    $('partIcon').textContent = part.icon;
+    $('partText').textContent = part.label;
+
+    sceneCard.dataset.hour = String(routine.h);
+    sceneCard.dataset.minute = pad(routine.m);
+    sceneCard.dataset.period = routine.period;
+    sceneCard.dataset.part = routine.part;
+  }
+
+  /* ---------- Partida ---------- */
+  function newRound() {
+    round = shuffle(ROUTINES.slice()).map(function (routine) {
+      return {
+        routine: routine,
+        options: shuffle([routine.id].concat(routine.distractors))
+      };
+    });
+  }
+
+  function updateProgress() {
+    statusLine.textContent = 'Momento ' + (currentIndex + 1) + ' de ' + TOTAL;
+    scoreLine.textContent = 'Aciertos: ' + score;
+    $('progressFill').style.width = (((currentIndex + 1) / TOTAL) * 100) + '%';
+    $('progressbar').setAttribute('aria-valuenow', String(currentIndex + 1));
+  }
+
+  function buildOption(id, isCorrect) {
+    var routine = BY_ID[id];
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'option';
+    btn.dataset.id = id;
+    if (isCorrect) btn.dataset.correct = 'true';
+    btn.setAttribute('aria-label', routine.label);
+
+    var emoji = document.createElement('span');
+    emoji.className = 'emoji';
+    emoji.setAttribute('aria-hidden', 'true');
+    emoji.textContent = routine.emoji;
+
+    var text = document.createElement('span');
+    text.textContent = routine.label;
+
+    btn.appendChild(emoji);
+    btn.appendChild(text);
+    btn.addEventListener('click', function () { answer(btn); });
+    return btn;
+  }
+
+  function renderQuestion(focusFirst) {
+    answered = false;
+    var q = round[currentIndex];
+    showClock(q.routine);
+
+    optionsEl.innerHTML = '';
+    q.options.forEach(function (id) {
+      optionsEl.appendChild(buildOption(id, id === q.routine.id));
+    });
+
+    feedback.textContent = '';
+    feedback.className = 'feedback';
+    nextBtn.hidden = true;
+    nextBtn.textContent = currentIndex === TOTAL - 1 ? 'Ver resultado 🎉' : 'Siguiente →';
+    updateProgress();
+
+    if (focusFirst) {
+      var first = optionsEl.querySelector('.option');
+      if (first) first.focus({ preventScroll: true });
+    }
+  }
+
+  function answer(btn) {
+    if (answered) return;
+    answered = true;
+    var q = round[currentIndex];
+    var isCorrect = btn.dataset.correct === 'true';
+    if (isCorrect) score++;
+
+    Array.prototype.forEach.call(optionsEl.querySelectorAll('.option'), function (option) {
+      option.disabled = true;
+      if (option.dataset.correct === 'true') option.classList.add('correct');
+      if (option === btn && !isCorrect) option.classList.add('wrong');
+    });
+
+    var sentence = timePhrase(q.routine) + ', Mireia ' + q.routine.phrase + '.';
+    if (isCorrect) {
+      feedback.textContent = '¡Muy bien! ' + sentence;
+      feedback.className = 'feedback ok';
+    } else {
+      feedback.textContent = 'Casi. ' + sentence;
+      feedback.className = 'feedback warn';
+    }
+    scoreLine.textContent = 'Aciertos: ' + score;
+    nextBtn.hidden = false;
+    nextBtn.focus({ preventScroll: true });
+    var nextBox = nextBtn.getBoundingClientRect();
+    if (nextBox.bottom > window.innerHeight || nextBox.top < 0) {
+      nextBtn.scrollIntoView({ block: 'nearest' });
+    }
+  }
+
+  function nextQuestion() {
+    if (!answered) return;
+    if (currentIndex < TOTAL - 1) {
+      currentIndex++;
+      renderQuestion(true);
+      window.scrollTo(0, 0);
+    } else {
+      finishGame();
+    }
+  }
+
+  /* ---------- Estrella y final ---------- */
+  function gradeFor(scoreValue) {
+    var ratio = scoreValue / TOTAL;
+    if (ratio >= GOLD_PCT) return 'gold';
+    if (ratio >= SILVER_PCT) return 'silver';
+    if (ratio >= BRONZE_PCT) return 'bronze';
+    return null;
+  }
+
+  function awardStar(grade) {
+    try {
+      if (!window.MiProgreso) return false;
+      var progress = MiProgreso.load(profileId);
+      var area = MiProgreso.area(progress, 'ciencias');
+      area[grade] = (Number(area[grade]) || 0) + 1;
+      MiProgreso.persist(profileId, progress);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function finishGame() {
+    var grade = gradeFor(score);
+    if (!awardedThisRun) {
+      awardedThisRun = true;
+      lastAwarded = grade ? awardStar(grade) : false;
+    }
+
+    var ratio = score / TOTAL;
+    var title = score === TOTAL ? '¡Perfecto, ' + TOTAL + ' de ' + TOTAL + '!'
+      : ratio >= GOLD_PCT ? '¡Excelente!'
+      : ratio >= SILVER_PCT ? '¡Muy bien!'
+      : ratio >= BRONZE_PCT ? '¡Buen trabajo!'
+      : '¡Sigue practicando!';
+    $('finishTitle').textContent = title;
+
+    var copy = 'Has acertado ' + score + ' de ' + TOTAL + '. ';
+    copy += (lastAwarded && grade)
+      ? 'Has ganado una estrella de ' + GRADE_LABEL[grade] + '.'
+      : 'Repite el día para mejorar tu marca.';
+    $('finishText').textContent = copy;
+
+    if (lastAwarded && grade) {
+      $('starAward').hidden = false;
+      $('starAward').textContent = GRADE_ICON[grade] + ' +1 estrella de ' + GRADE_LABEL[grade];
+    } else {
+      $('starAward').hidden = true;
+    }
+
+    lastFocus = document.activeElement;
+    finishModal.hidden = false;
+    dialogOpen = true;
+    document.body.style.overflow = 'hidden';
+    $('repeatDay').focus();
+  }
+
+  function closeDialog() {
+    finishModal.hidden = true;
+    dialogOpen = false;
+    document.body.style.overflow = '';
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  function trapFocus(e) {
+    var buttons = finishModal.querySelectorAll('button');
+    var first = buttons[0];
+    var last = buttons[buttons.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
+  function resetGame() {
+    newRound();
+    currentIndex = 0;
+    score = 0;
+    answered = false;
+    awardedThisRun = false;
+    lastAwarded = false;
+    renderQuestion(true);
+    window.scrollTo(0, 0);
+  }
+
+  /* ---------- Vistas ---------- */
+  function startGame() {
+    startView.hidden = true;
+    playView.hidden = false;
+    progressRow.hidden = false;
+    scoreLine.hidden = false;
+    scoreLine.textContent = 'Aciertos: 0';
+    resetGame();
+  }
+
+  /* ---------- Eventos ---------- */
+  $('startBtn').addEventListener('click', startGame);
+  $('repeatDay').addEventListener('click', function () {
+    closeDialog();
+    resetGame();
+  });
+  $('backToGames').addEventListener('click', function () {
+    location.href = $('backToGames').href;
+  });
+  finishModal.addEventListener('click', function (e) {
+    if (e.target === finishModal) closeDialog();
+  });
+  nextBtn.addEventListener('click', nextQuestion);
+
+  document.addEventListener('keydown', function (e) {
+    if (dialogOpen) {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeDialog();
+      } else if (e.key === 'Tab') {
+        trapFocus(e);
+      }
+      return;
+    }
+    if (playView.hidden || answered) return;
+    if (/^[1-3]$/.test(e.key)) {
+      var btn = optionsEl.querySelectorAll('.option')[Number(e.key) - 1];
+      if (btn) {
+        e.preventDefault();
+        btn.click();
+      }
+    }
+  });
+
+  var resizeTimer = null;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(sizeClock, 120);
+  });
+
+  /* ---------- Arranque ---------- */
+  buildNumbers();
+})();
+</script>
+</body>
+</html>

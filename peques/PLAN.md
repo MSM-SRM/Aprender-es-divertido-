@@ -1446,3 +1446,35 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 - Commit `2f840d1` en `main`: `peques/mira-lo-que-se.html`, `peques/que-hora-es.html` y la documentación. No se incluyeron `qa/`, `AGENTS.md`, la imagen del capibara, los cromos de Real Madrid ni assets antiguos sin uso.
 - Verificado en GitHub Pages: `mira-lo-que-se.html` 200 (27.654 B), hub 200 (39.431 B), `naruto-hi.jpg` 200 (16.525 B) y `gold-bg.jpg` 200 (26.536 B), con los mismos bytes que en local.
+
+---
+
+## Actualización 16/11/2026 — «¿Qué haces, Mireia?»
+
+### Alcance
+
+- Página nueva `peques/que-haces-mireia.html` (33.060 B) para Mireia y Guest. La tarjeta 4 del hub `peques/que-hora-es.html` deja de ser un botón «Muy pronto» y pasa a ser un enlace activo (`startMireia`, badge «Disponible», kicker «Juego 4 · 20 momentos», subtítulo y CTA «Jugar ahora →»). El JS del hub reescribe el `href` con el perfil (`que-haces-mireia.html?profile=...`).
+- Se reutilizan `imagenes/que-hora-es/mireia-day.jpg` (340×385) y el fondo `gold-bg.jpg`; no se añaden imágenes ni audios nuevos.
+- El subagente `web-builder` agotó el límite de uso gratuito después de crear la página y activar la tarjeta; el supervisor completó los ajustes, la revisión y todas las pruebas.
+
+### Juego
+
+- 20 rutinas diarias de 6:45 a 21:40, barajadas en cada partida: despertarse (6:45), vestirse (7:10), desayunar (7:35), ir al colegio (8:05), clase de lengua (9:15), clase de mates (10:10), recreo (11:05), clase de ciencias (12:20), comer (13:30), leer un rato (14:15), hacer los deberes (15:40), merendar (16:25), entrenar taekwondo (17:10), jugar con amigos (18:35), ducharse (19:20), poner la mesa (19:50), cenar (20:15), cepillarse los dientes (20:45), leer un cuento (21:10) y dormir (21:40).
+- Cada pregunta muestra un reloj analógico grande (esfera blanca, aro dorado, 12 números fucsia, aguja de hora azul y de minutos naranja) y tres opciones barajadas: la rutina correcta y dos distractores fijos de otras rutinas. Una sola es correcta y las tres son únicas. El `aria-label` del reloj anuncia la hora completa con el momento del día.
+- El AM/PM se resuelve con una insignia del momento del día (mañana, mediodía, tarde o noche) con icono y color propio, sin mostrar la hora digital. La escena mantiene dos paneles en todos los tamaños: Mireia con burbuja compacta al pie de la viñeta (sin tapar la cara) y el reloj a la derecha.
+- Al responder se bloquean las tres opciones: la correcta queda en verde y la elegida incorrecta en fucsia. El feedback escribe la hora completa y la rutina; «Siguiente» aparece tras responder y en la última pregunta pasa a «Ver resultado 🎉». Teclado 1–3. Si el botón queda fuera de la vista (320×640), se desplaza lo justo con `scrollIntoView({block:'nearest'})` para mostrarlo.
+- Progreso: barra superior y «Aciertos: N». Al terminar, modal con trofeo, aciertos, repetición y vuelta al hub; estrella en `ciencias` con `MiProgreso` (`load`, `area`, `persist`): oro ≥18/20, plata ≥14/20, bronce ≥10/20, sin estrella por debajo de 10. Una estrella por partida. El foco queda atrapado en el modal, Escape lo cierra y «Repetir el día» reinicia la partida con 0 aciertos.
+- Portada: `mireia-day.jpg`, presentación breve, pista «la aguja corta marca la hora y la larga, los minutos» y botón «Empezar el día». Los enlaces de vuelta conservan el perfil y apuntan al hub.
+
+### Pruebas
+
+- Recorrido automático de las 20 preguntas: etiquetas de hora y momento del día correctas, aguja de hora en `(h12 % 12) * 30 + m * 0.5`, aguja de minutos en `m * 6`, tres opciones únicas y exactamente una correcta. Sin discrepancias.
+- Partidas verificadas: 20/20 (`¡Perfecto, 20 de 20!`, oro), 18/20 (`¡Excelente!`, oro), 14/20 (`¡Muy bien!`, plata), 10/20 (`¡Buen trabajo!`, bronce) y 9/20 (`¡Sigue practicando!`, sin estrella), con el texto y la insignia correspondientes.
+- Fallo comprobado: la opción correcta queda en verde y la elegida en fucsia; el feedback muestra la hora correcta. Teclado `1` comprobado; «Siguiente» queda enfocado. Foco atrapado en el modal (Tab y Shift+Tab), Escape lo cierra y devuelve el foco; «Repetir el día» vuelve a la pregunta 1 con 0 aciertos y opciones nuevas.
+- Layout medido con iframes: 1280×800 sin scroll ni desbordamiento horizontal, escena de 1000×361 y reloj de 264 px; 390×844 y 320×640 sin desbordamiento horizontal, escena de 370×240 y 285×189, relojes de 177 px y 135 px. La burbuja queda dentro de la viñeta en los tres tamaños. A 320 la insignia «Por la mañana» se partía en dos líneas y la escena saltaba de 194 a 207 px; se corrigió con `white-space:nowrap`, menos padding y un icono algo menor a ≤360 px: ahora mide 27 px y la escena se mantiene en 189 px. Con feedback y «Siguiente», 1280 y 390 caben sin scroll; en 320 la página se desplaza 33 px para mostrar el botón. Sin errores de consola.
+- Hub comprobado para `guest` y `mireia`: tarjeta 4 activa, `href` con el perfil correcto, badge «Disponible», sin tarjeta «Muy pronto» y sin errores de consola. El progreso de invitado se guardó antes de las pruebas y se restauró a `{"stars":1,"rounds":0,"byGame":{},"byArea":{"ciencias":{"gold":1,"silver":0,"bronze":0}}}`.
+
+### Estado
+
+- **Completo en local y verificado; pendiente de autorización para commit, push y comprobación en GitHub Pages.** No está publicado.
+- El arnés temporal `qa/tmp-mireia-harness.html` se usó solo para las medidas y se eliminó. No se incluyen `qa/`, `AGENTS.md`, la imagen del capibara, los cromos de Real Madrid ni assets antiguos sin uso.
