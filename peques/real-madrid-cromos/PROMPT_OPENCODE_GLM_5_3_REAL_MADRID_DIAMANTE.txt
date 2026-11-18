@@ -1,0 +1,74 @@
+PROMPT ÚNICO PARA OPENCODE — GLM-5.3
+PROYECTO: REAL MADRID CROMOS / 10 CARTAS DIAMANTE
+Modelo: GLM-5.3 (usar el modelo seleccionado; no cambiar proveedor ni modelo).
+Objetivo: integrar los datos del dossier en el proyecto existente, preparar estructura de 10 jugadores y 20 caras, y dejar el juego funcional sin consumir tokens en explicaciones.
+
+ANTES DE TOCAR NADA
+1. Lee AGENTS.md, README.md, PLAN_MAESTRO_REAL_MADRID_CROMOS.md, PLAN.md, DECISIONES.md y TAREAS.md si existen.
+2. Localiza la carpeta real del juego: peques/real-madrid-cromos/.
+3. Lee completo el archivo REAL_MADRID_CROMOS_DIAMANTE_DATOS_10_JUGADORES.txt (si el usuario lo copia allí). Si no está, no inventes contenido: informa qué archivo falta.
+4. Haz un inventario breve de HTML, CSS, JS, JSON y assets existentes. No reescribas archivos que no sean necesarios.
+5. No hagas commit, push, deploy ni modifiques otras partes de la web.
+
+ORDEN FIJO DE JUGADORES
+01 Cristiano Ronaldo
+02 Alfredo Di Stéfano
+03 Raúl González Blanco
+04 Luka Modrić
+05 Karim Benzema
+06 Ferenc Puskás
+07 Zinedine Zidane
+08 Paco Gento
+09 Sergio Ramos
+10 Iker Casillas
+
+REQUISITOS DE DATOS
+- Cada jugador tendrá dos caras:
+  A) MADRID: exclusivamente estadísticas y palmarés del Real Madrid.
+  B) TODOS: carrera fuera del Real Madrid, por clubes y selección, en orden cronológico. NO repetir el bloque Real Madrid.
+- Campos por bloque cuando existan: temporadas/años, partidos, goles, asistencias, títulos colectivos (competición, cantidad, temporadas), premios individuales (nombre y año), y anécdotas para futuros quizzes.
+- Usa las cifras del dossier como datos iniciales.
+- Marca con asterisco todos los datos indicados con * o que no tengan confirmación primaria. No elimines el asterisco en interfaz.
+- No conviertas un dato desconocido en cero. Cero solo significa que el jugador realmente no anotó (por ejemplo Casillas).
+- No inventes asistencias, partidos, goles, títulos ni temporadas. Si el dossier dice REVISAR, conserva el valor provisional con status "needs_verification" y una nota interna.
+- Guarda para cada estadística: value, source, source_url, status ("verified", "secondary", "disputed", "needs_verification"), last_checked y note.
+- La fuente preferente es Real Madrid oficial; después Marca, Diario AS, FIFA, UEFA, federaciones y organizadores oficiales. Wikipedia solo como contraste secundario.
+- Si fuentes discrepan, conserva el dato elegido y añade *; guarda las otras cifras y su fuente en la nota de discrepancia.
+- No hagas un gran total de trofeos si las fuentes usan criterios diferentes. Mostrar trofeos agrupados por competición con temporadas.
+
+DISEÑO
+- Respetar el diseño aprobado existente. No inventar una nueva identidad visual.
+- Marco DIAMANTE: mosaico triangular prismático/holográfico, predominantemente blanco, plata, azul grisáceo y blanco oro; aproximadamente 50% menos saturación multicolor que la primera referencia.
+- Interior azul marino muy oscuro y limpio; escudo Real Madrid como marca de agua sutil detrás del jugador; sin chispas ni destellos detrás de la foto.
+- Retrato grande y serio; mantener calidad/crop coherentes.
+- Bandera nacional correcta, como tela ondeante con flecos.
+- Nombre y dorsal en el frontal; datos compactos, claros y legibles en móvil.
+- Usar iconos/trofeos gráficos y cantidades donde se entiendan; etiquetas breves.
+- No poner B.O.A.T. en el frontal de Cristiano. Si se conserva como etiqueta editorial, solo reverso y asociada a Manchester United 2007/08; aclarar que no es trofeo oficial.
+- No sustituir fotos reales de archivo por imágenes generadas que pretendan ser fotografías históricas de jugadores reales. Si no hay imagen licenciada/usable, usar placeholder y documentar la necesidad de asset.
+
+FUNCIONALIDAD
+- Preparar datos en JSON estructurado independiente del HTML (un registro por jugador, arrays para career clubs, national teams, trophies, awards, anecdotes).
+- La interfaz debe alternar entre MADRID y TODOS para el jugador seleccionado.
+- No mostrar el Real Madrid en el reverso.
+- En móvil, tarjetas legibles sin scroll horizontal; textos largos pueden desplazarse verticalmente dentro del reverso.
+- Mantener la lógica existente de aleatoriedad, rareza, quiz y navegación si ya existe; no romper otras modalidades.
+- Añadir validación de esquema o un script de QA que compruebe: 10 jugadores, 20 caras lógicas, ningún bloque Real Madrid en TODOS, todos los campos con fuente/status, asteriscos conservados, no hay N/D, no hay ceros usados como sustituto de datos desconocidos.
+- No rellenar automáticamente datos pendientes con búsquedas inventadas.
+
+ENTREGABLES
+1. JSON de los diez jugadores con las dos caras.
+2. UI MADRID/TODOS integrada.
+3. Un README breve explicando estructura de datos y cómo añadir/modificar jugador.
+4. Actualiza PLAN_MAESTRO_REAL_MADRID_CROMOS.md, DECISIONES.md y TAREAS.md (si existen) con cambios reales y pendientes.
+5. Ejecuta comprobaciones automatizadas y prueba local si hay navegador disponible.
+6. Informe final breve: archivos cambiados, pruebas realizadas, errores pendientes, cifras marcadas con * y assets faltantes.
+
+REGLAS DE ECONOMÍA
+- No reescribas el proyecto entero.
+- No expliques lo que vas a hacer; hazlo.
+- Evita investigar de nuevo si el dato ya está en el dossier.
+- No instales dependencias ni herramientas sin necesidad.
+- No consumas tokens generando ilustraciones ni assets; primero integra estructura y contenido.
+- Si una decisión bloquea el trabajo, toma la opción conservadora y documenta.
+- No hagas commit/push/deploy.

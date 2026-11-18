@@ -1,0 +1,282 @@
+REAL MADRID CROMOS — DOSSIER DE DATOS DIAMANTE
+Actualización: 15-11-2026
+Alcance: 10 jugadores × 2 caras (MADRID / TODOS)
+Estado: dossier de trabajo para integración; no declarar cifras con * como verificadas.
+
+REGLA DE LECTURA
+[VERIFICADO] = cifra respaldada por ficha oficial del Real Madrid, FIFA, UEFA, federación/competición o fuente primaria.
+[*] = cifra secundaria, histórica, con discrepancia, corte temporal variable o pendiente de contrastar directamente con Real Madrid/Marca/AS.
+[REVISAR] = falta desglose fiable o hay que consultar fuente primaria. No mostrar N/D en la carta; mantener el dato pendiente en el dossier.
+Los totales de trofeos se presentan por competición y temporada. No sumar premios individuales a títulos colectivos.
+Las asistencias históricas no tienen un registro uniforme: poner * salvo confirmación primaria explícita.
+Para jugadores retirados, el corte estadístico es carrera completa. Para Cristiano, corte de la fuente estadística externa: 30-10-2026 (la misma fuente indica retirada internacional el 5-11-2026; comprobar si el dato sigue vigente y actualizar el corte).
+
+============================================================
+ORDEN FIJO DE LOS 10 DIAMANTE
+============================================================
+01 Cristiano Ronaldo
+02 Alfredo Di Stéfano
+03 Raúl González Blanco
+04 Luka Modrić
+05 Karim Benzema
+06 Ferenc Puskás
+07 Zinedine Zidane
+08 Francisco “Paco” Gento
+09 Sergio Ramos
+10 Iker Casillas
+
+============================================================
+01 — CRISTIANO RONALDO
+============================================================
+MADRID — 2009–2018
+Partidos: 438 [VERIFICADO, Real Madrid]
+Goles: 451 [VERIFICADO, Real Madrid; LALIGA publica 450, discrepancia]
+Desglose de goles publicado por Real Madrid: Liga 312; Champions 105; Copa del Rey 22; Mundial de Clubes 6; Supercopa de España 4; Supercopa de Europa 2.
+Asistencias: 131* (base secundaria; LALIGA cita 119; criterio de asistencia distinto).
+Títulos Real Madrid: 16 [VERIFICADO por Real Madrid]:
+- Champions League: 4 (2013/14, 2015/16, 2016/17, 2017/18)
+- Mundial de Clubes: 3 (2014, 2016, 2017)
+- Supercopa de Europa: 3 (2014, 2016, 2017)
+- Liga: 2 (2011/12, 2016/17)
+- Copa del Rey: 2 (2010/11, 2013/14)
+- Supercopa de España: 2 (2012, 2017)
+Premios destacados: Balón de Oro 5 en carrera (2008, 2013, 2014, 2016, 2017); Botas de Oro 4; The Best FIFA 2; Mejor Jugador UEFA 3; Pichichi 3. Verificar cuáles corresponden específicamente a la etapa Madrid antes de etiquetarlos como premios madridistas.
+Récords: máximo goleador histórico del Real Madrid; 61 goles en una temporada; 17 goles en Champions 2013/14; máximo goleador de Champions según Real Madrid.
+TODOS — sin Real Madrid:
+Sporting CP (2002–03): 31 partidos, 5 goles, 6 asistencias*; Supertaça Cândido de Oliveira 2002.
+Manchester United (2003–09 y 2021–22): 346 partidos, 145 goles, 64 asistencias* (ambas etapas combinadas). Títulos: Premier League 3; FA Cup 1; League Cup 2? [REVISAR]; Community Shield 2*; Champions 1; Mundial de Clubes 1. Confirmar recuento exacto y temporadas.
+Juventus (2018–21): 134 partidos*, 101 goles, 22 asistencias*. Títulos: Serie A 2 (2018/19, 2019/20), Coppa Italia 1 (2020/21), Supercoppa Italiana 2 (2018, 2020).
+Al-Nassr (2023–actualidad, corte 30-10-2026): 160 partidos*, 138 goles, 23 asistencias*. Títulos: Arab Club Champions Cup 2023. Otros títulos de liga/copa que algunas bases le atribuyen deben verificarse oficialmente antes de contar.
+Portugal (2003–2026): 234 partidos*, 146 goles, 45 asistencias*. Títulos: Euro 2016; Nations League 2018/19 y 2024/25. Comprobar actualización del retiro internacional anunciado en fuente secundaria.
+Distinción narrativa: B.O.A.T. / mejor temporada individual 2007/08 solo como etiqueta editorial del proyecto, no trofeo oficial; ubicar detrás junto a Manchester United, nunca en frontal MADRID.
+
+============================================================
+02 — ALFREDO DI STÉFANO
+============================================================
+MADRID — 1953–1964
+Partidos: 396 [VERIFICADO, Real Madrid]
+Goles: 308 [VERIFICADO, Real Madrid]
+Asistencias: * [REVISAR; no existe serie histórica homogénea]
+Títulos: 17 según LALIGA / fuentes históricas, desglose provisional:
+- Liga: 8
+- Copa de Europa: 5 (1955/56–1959/60)
+- Copa de España: 1
+- Copa Intercontinental: 1
+- Copa Latina: 2
+Nota: el Real Madrid enumera además Pequeña Copa del Mundo en algunos resúmenes históricos; revisar oficialidad y si se incluye en el total de 17. No sumar dos veces.
+Premios: Balón de Oro 1957 y 1959; Súper Balón de Oro 1989; Pichichi 5.
+TODOS — sin Real Madrid:
+River Plate (Argentina, 1945–49 y 1953 según fuentes): partidos/goles * [REVISAR desglose; cesión/retorno y fechas exactas].
+Huracán (Argentina, 1946–47): partidos/goles *.
+Millonarios (Colombia, 1949–53): partidos/goles *.
+Selección Argentina: 6 partidos, 6 goles* (incluye Copa América 1947; contrastar).
+Selección Colombia: 4 partidos* (partidos no FIFA A según distintas fuentes; explicar y no mezclar con internacional oficial).
+Selección España (1957–62): 31 partidos, 23 goles* (verificar ficha RFEF).
+Títulos fuera del Madrid: Copa América 1947 con Argentina*; títulos de liga colombiana con Millonarios: 3 (1949, 1951, 1952)*; Copa Colombia 1953* (comprobar antes de fijar).
+
+============================================================
+03 — RAÚL GONZÁLEZ BLANCO
+============================================================
+MADRID — 1994–2010
+Partidos: 741 [VERIFICADO, Real Madrid]
+Goles: 323 [VERIFICADO, Real Madrid]
+Asistencias: * [REVISAR fuente y criterio]
+Títulos: 15 [FIFA] / algunas fuentes contabilizan 16 según criterio. Lista de títulos:
+- Liga: 6 (1994/95, 1996/97, 2000/01, 2002/03, 2006/07, 2007/08)
+- Champions League: 3 (1997/98, 1999/2000, 2001/02)
+- Copa Intercontinental: 2 (1998, 2002)
+- Supercopa de Europa: 1 (2002)
+- Supercopa de España: 4 (1997, 2001, 2003, 2008)
+- Copa del Rey: 0
+Nota: la suma de esta lista da 16 si se cuentan las cuatro Supercopas; revisar qué fuente/criterio explica el total de 15 de FIFA.
+TODOS:
+Schalke 04 (2010–12): 40 partidos*, 13 goles*; Copa de Alemania 2010/11; Supercopa de Alemania 2011.
+Al-Sadd (2012–14): 44 partidos*, 11 goles*; Liga de Catar 2012/13; Copa del Emir 2014; Copa Príncipe 2014* (confirmar palmarés).
+New York Cosmos (2015): 28 partidos*, 8 goles*; NASL Soccer Bowl 2015.
+España (1996–2006): 102 partidos, 44 goles [VERIFICAR con RFEF]; Euro 2000, Mundial 2002, Euro 2004, Mundial 2006: participaciones, no títulos.
+Premios: máximo goleador histórico del Real Madrid hasta que Cristiano lo superó; 2 Pichichi*; 1 Bota de Bronce Mundial 2002*; UEFA Club Footballer of the Year 1999/2000*.
+
+============================================================
+04 — LUKA MODRIĆ
+============================================================
+MADRID — 2012–2025
+Partidos: 597 [VERIFICADO, Real Madrid]
+Goles: 43 [VERIFICAR ficha oficial; cifra ampliamente recogida]
+Asistencias: * [REVISAR]
+Títulos: 28 [cifra difundida por Real Madrid al cierre de su etapa; verificar desglose final]:
+- Champions League: 6
+- Mundial de Clubes: 5*
+- Supercopa de Europa: 5*
+- Liga: 4
+- Copa del Rey: 2
+- Supercopa de España: 5*
+- Intercontinental FIFA 2024: confirmar si está incluida en el total de 28 y evitar duplicidad.
+Premios: Balón de Oro 2018; The Best FIFA 2018; Mejor Jugador UEFA 2017/18; Balón de Oro Mundial 2018; Golden Foot 2019*.
+TODOS:
+Dinamo Zagreb (2003–08, con cesiones): partidos/goles *; títulos croatas: 3 ligas, 2 copas, 1 supercopa* (verificar desglose).
+Zrinjski Mostar (cesión 2003/04): 22 partidos*, 8 goles*.
+Inter Zaprešić (cesión 2004/05): 18 partidos*, 4 goles*.
+Tottenham Hotspur (2008–12): 127 partidos*, 13 goles*; sin títulos colectivos mayores.
+Croacia (2006–2024): 182 partidos*, 27 goles* (comprobar cifra final RFEF/UEFA; Croacia federación). Subcampeón Mundial 2018; tercer puesto Mundial 2022; finalista Nations League 2023.
+Premios internacionales: Balón de Oro 2018; The Best 2018; Mejor Jugador Mundialista 2018; UEFA Player of the Year 2017/18.
+
+============================================================
+05 — KARIM BENZEMA
+============================================================
+MADRID — 2009–2023
+Partidos: 648 [VERIFICADO, Real Madrid]
+Goles: 354 [VERIFICADO, Real Madrid]
+Asistencias: * [REVISAR]
+Títulos: 25 [VERIFICAR desglose definitivo]:
+- Champions League: 5
+- Mundial de Clubes: 5
+- Supercopa de Europa: 4
+- Liga: 4
+- Copa del Rey: 3
+- Supercopa de España: 4
+Premios: Balón de Oro 2022; The Best FIFA 2022; Jugador del Año UEFA 2021/22; Pichichi 2021/22; máximo goleador de la Champions 2021/22.
+TODOS:
+Olympique Lyonnais (2004–09): 112 partidos*, 43 goles*; Ligue 1 4 (2004/05–2007/08); Trophée des Champions 3*.
+Al-Ittihad (2023–actualidad, verificar corte): partidos/goles/asistencias *; títulos de liga/copa y temporadas * [actualizar fuente oficial saudí/club].
+Francia (2007–2022): 97 partidos, 37 goles* (comprobar FFF); Nations League 2020/21. No ganó Mundial 2018 (no convocado) ni Mundial 2022.
+Premios: Balón de Oro 2022; The Best 2022; UEFA Player of the Year 2021/22.
+
+============================================================
+06 — FERENC PUSKÁS
+============================================================
+MADRID — 1958–1966/67
+Partidos: 262 [VERIFICADO, Real Madrid]
+Goles: 242 [VERIFICADO, Real Madrid]
+Asistencias: * [no hay registro histórico homogéneo]
+Títulos: 10 según LALIGA:
+- Liga: 5
+- Copa de Europa: 3 (1959/60, 1965/66 y una tercera edición; verificar temporada exacta y conteo)
+- Copa del Rey: 1*
+- Intercontinental: 0
+Nota: confirmar desglose exacto; distintas fuentes históricas difieren en la Copa de España y total.
+Premios: 4 Pichichi con Real Madrid*; máximo goleador de Europa en 1960/61*; premio FIFA Puskás instituido en 2009 en su honor (no ganado por él).
+TODOS:
+Budapest Honvéd (Hungría, 1943–56): partidos/goles *; títulos de liga húngara 5* (temporadas a verificar).
+Selección Hungría (1945–56): 85 partidos, 84 goles*; oro olímpico 1952; subcampeón Mundial 1954.
+Selección España: 4 partidos, 0 goles* (verificar).
+Otros registros iniciales de clubes húngaros antes de Honvéd: Kispest/Honvéd según nomenclatura histórica; consolidar sin duplicar temporadas.
+
+============================================================
+07 — ZINEDINE ZIDANE
+============================================================
+MADRID — 2001–2006
+Partidos: 227 [VERIFICADO]
+Goles: 49 [VERIFICADO]
+Asistencias: * [REVISAR]
+Títulos: 6:
+- Champions League: 1 (2001/02)
+- Liga: 1 (2002/03)
+- Supercopa de Europa: 1 (2002)
+- Copa Intercontinental: 1 (2002)
+- Supercopa de España: 2 (2001, 2003)
+Premios: Balón de Oro 1998; FIFA World Player 3 (1998, 2000, 2003); Mejor Jugador UEFA 2001/02*.
+TODOS:
+Juventus (1996–2001): 151 partidos*, 24 goles*; Serie A 2 (1996/97, 1997/98); Supercoppa Italiana 1 (1997); UEFA Super Cup 1996; Intercontinental Cup 1996; Intertoto Cup 1999*.
+Girondins Bordeaux (1992–96): 69 partidos*, 6 goles*; Intertoto Cup 1995.
+Cannes (1989–92): 61 partidos*, 6 goles*.
+Francia (1994–2006): 108 partidos, 31 goles*; Mundial 1998; Euro 2000; subcampeón Mundial 2006.
+Premios: Balón de Oro 1998; FIFA World Player 1998, 2000, 2003; Golden Ball Mundial 2006.
+
+============================================================
+08 — FRANCISCO “PACO” GENTO
+============================================================
+MADRID — 1953–1971
+Partidos: 600 [VERIFICADO, Real Madrid/FIFA]
+Goles: 182 [VERIFICADO, Real Madrid]
+Asistencias: * [no hay registro histórico homogéneo]
+Títulos: 23 [LALIGA/Real Madrid]:
+- Copa de Europa: 6 (1955/56, 1956/57, 1957/58, 1958/59, 1959/60, 1965/66)
+- Liga: 12
+- Copa de España: 2 o 3* [REVISAR; fuentes discrepan]
+- Intercontinental: 1 (1960)
+- Copa Latina: 2
+Nota: verificar el desglose exacto que suma 23; no completar por inferencia.
+TODOS:
+Racing Santander (1952–53): partidos/goles * [REVISAR].
+España (1955–69): 43 partidos, 5 goles*; participó en Mundial 1962 y 1966; Euro 1964 (no confundir con título de selección: no formó parte del equipo campeón si no consta).
+Premios individuales: Balón de Oro 1960, segundo puesto*; no ganó Balón de Oro. Verificar distinciones individuales antes de incluir.
+
+============================================================
+09 — SERGIO RAMOS
+============================================================
+MADRID — 2005–2021 (dos etapas? solo 2005–2021; regreso 2023–24 no jugó partido oficial del primer equipo)
+Partidos: 671 [VERIFICADO, Real Madrid]
+Goles: 101 [VERIFICADO]
+Asistencias: * [REVISAR]
+Títulos: 22 [VERIFICAR lista]:
+- Champions League: 4
+- Mundial de Clubes: 4
+- Supercopa de Europa: 3
+- Liga: 5
+- Copa del Rey: 2
+- Supercopa de España: 4
+Nota: suma de categorías debe contrastarse; puede haber discrepancias por Intercontinental/Mundial de Clubes y temporada.
+TODOS:
+Sevilla (2003–05; 2023–24): partidos/goles/asistencias *; títulos con Sevilla: ninguno de primer equipo en su primera etapa; revisar segunda.
+Paris Saint-Germain (2021–23): 58 partidos*, 6 goles*; Ligue 1 2 (2021/22, 2022/23).
+Monterrey (2024–25): partidos/goles/asistencias *; títulos * [verificar Liga MX/Concacaf].
+España (2005–2021): 180 partidos, 23 goles*; Mundial 2010; Euro 2008 y 2012; Nations League 2022/23.
+Premios: FIFA FIFPro World XI múltiples; UEFA Team of the Year; mejor defensa/selección individual; registrar años exactos si se incluyen.
+
+============================================================
+10 — IKER CASILLAS
+============================================================
+MADRID — 1999–2015
+Partidos: 725 [VERIFICADO, Real Madrid]
+Goles: 0
+Asistencias: no aplicable / * si base registra.
+Títulos: 19 [VERIFICAR desglose]:
+- Champions League: 3 (1999/2000, 2001/02, 2013/14)
+- Mundial/Intercontinental: 2 (1998, 2002) + Mundial de Clubes 2014*
+- Supercopa de Europa: 2 (2002, 2014)
+- Liga: 5
+- Copa del Rey: 2
+- Supercopa de España: 4
+- Otros títulos históricos: verificar el total de 19 con ficha oficial.
+TODOS:
+Porto (2015–20): 156 partidos*, 0 goles*; Primeira Liga 2 (2017/18, 2018/19); Supertaça 1 (2018); Taça de Portugal 1 (2019/20).
+España (2000–16): 167 partidos, 0 goles; Mundial 2010; Euro 2008 y 2012.
+Premios: Guante de Oro Mundial 2010; Mejor Portero del Mundo IFFHS 5 veces*; UEFA Club Football Awards; FIFA FIFPro World XI; verificar temporadas y cantidad.
+
+============================================================
+FUENTES BASE Y PRIORIDAD
+============================================================
+1. Real Madrid — fichas oficiales, palmarés, ranking de partidos y goleadores:
+https://www.realmadrid.com/
+2. Real Madrid — ranking oficial de partidos y goleadores:
+https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores
+3. LALIGA — artículos históricos:
+https://www.laliga.com/
+4. FIFA:
+https://www.fifa.com/
+5. UEFA:
+https://www.uefa.com/
+6. RFEF / FFF / federaciones nacionales respectivas.
+7. Marca y Diario AS para contraste.
+8. Wikipedia solo como fuente secundaria de orientación, nunca como única prueba.
+9. Bases de estadísticas especializadas para asistencias/clubes: Transfermarkt, Statto, RSSSF, 11v11, worldfootball.net; marcar * si no coincide con fuente primaria.
+
+FUENTES YA CONSULTADAS EN ESTA SESIÓN
+- Real Madrid, Cristiano Ronaldo: https://www.realmadrid.com/es-ES/el-club/historia/leyendas-futbol/cristiano-ronaldo-dos-santos-aveiro
+- Real Madrid, ranking de partidos/goleadores: https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores
+- LALIGA, leyendas Real Madrid: https://www.laliga.com/noticias/jugadores-historicos-real-madrid
+- FIFA, perfil Real Madrid / Paco Gento / Raúl: https://www.fifa.com/en/articles/real-madrid-club-profile-history-players-qualified
+- Informe anual Real Madrid 2021/22 (Benzema): https://www.realmadrid.com/StaticFiles/RealMadridOAS/pdf/Informe_Anual_Asamblea_2022.pdf
+- RonaldoStats, estadísticas carrera (corte 30-10-2026): https://ronaldostats.app/
+- RonaldoRecords, tabla por equipo: https://ronaldorecords.com/goals-by-team/
+- Tabla histórica comparativa: https://en.wikipedia.org/wiki/List_of_Real_Madrid_CF_records_and_statistics
+
+NOTAS DE CONTROL / NO PUBLICAR SIN REVISIÓN
+- Cristiano: Real Madrid oficial 451 goles; LALIGA 450. El Real Madrid oficial prevalece para el anverso. RonaldoStats/RonaldoRecords 450 para el Madrid; discrepancia marcada.
+- Di Stéfano: Real Madrid/LALIGA 396 partidos y 308 goles; usar como cifra de anverso. Carrera previa necesita investigación histórica detallada.
+- Raúl: FIFA menciona 15 títulos; el desglose común puede sumar 16 por criterio de Supercopas. Resolver con fuente y criterio.
+- Gento/Puskás: competiciones históricas y títulos necesitan verificación competición por competición.
+- Modrić: el total de títulos cambia por inclusión de Copa Intercontinental FIFA 2024 y Supercopas; usar ficha oficial final.
+- Casillas: no sumar Copa Intercontinental y Mundial de Clubes como si fueran competiciones distintas cuando se trata del mismo título histórico.
+- No inventar asistencias para épocas sin datos fiables.
+- En el juego, no mostrar una estadística no disponible como cero. Cero solo cuando sea realmente cero (p. ej. goles de un portero).

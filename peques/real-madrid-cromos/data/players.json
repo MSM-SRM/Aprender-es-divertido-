@@ -1,0 +1,1171 @@
+{
+  "meta": {
+    "title": "Real Madrid Cromos — Diamante",
+    "subtitle": "Diez cartas Diamante con dos caras: MADRID y TODOS",
+    "version": "1.0.0",
+    "last_checked": "2026-11-15",
+    "rarity": "diamond",
+    "totalPlayers": 10,
+    "facesPerPlayer": 2,
+    "statusValues": ["verified", "secondary", "disputed", "needs_verification"],
+    "display": {
+      "missing": "Sin registro fiable*",
+      "asteriskLegend": "asterisk true = dato con matiz, discrepancia o pendiente de contraste"
+    },
+    "rules": [
+      "La cara MADRID solo contiene estadísticas y palmarés del Real Madrid.",
+      "La cara TODOS contiene la carrera fuera del Real Madrid, por clubes y selecciones, en orden cronológico.",
+      "Los títulos se agrupan por competición con sus temporadas; los premios individuales no se suman a los títulos colectivos.",
+      "Un dato pendiente se guarda con value null y status needs_verification; nunca se convierte en cero.",
+      "asterisk true indica matiz, discrepancia o pendiente de contraste según el dossier del 15-11-2026.",
+      "last_checked es la fecha de la última revisión del dato, no la fecha de publicación."
+    ],
+    "sources": [
+      { "id": "real-madrid", "name": "Real Madrid — ranking oficial de partidos y goleadores", "url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores" },
+      { "id": "real-madrid-leyendas", "name": "Real Madrid — leyendas del club", "url": "https://www.realmadrid.com/es-ES/el-club/historia/leyendas-futbol/cristiano-ronaldo-dos-santos-aveiro" },
+      { "id": "laliga", "name": "LALIGA — jugadores históricos", "url": "https://www.laliga.com/noticias/jugadores-historicos-real-madrid" },
+      { "id": "fifa", "name": "FIFA", "url": "https://www.fifa.com/" },
+      { "id": "uefa", "name": "UEFA", "url": "https://www.uefa.com/" },
+      { "id": "transfermarkt", "name": "Transfermarkt (base secundaria)", "url": "https://www.transfermarkt.es/" },
+      { "id": "rsssf", "name": "RSSSF (archivo estadístico)", "url": "https://www.rsssf.org/" },
+      { "id": "ronaldostats", "name": "RonaldoStats (corte 30-10-2026)", "url": "https://ronaldostats.app/" }
+    ]
+  },
+  "players": [
+    {
+      "id": "cristiano-ronaldo",
+      "order": 1,
+      "name": "Cristiano Ronaldo",
+      "cardName": "CRISTIANO RONALDO",
+      "fullName": "Cristiano Ronaldo dos Santos Aveiro",
+      "position": ["delantero"],
+      "nationality": "Portugal",
+      "flag": "pt",
+      "flagLabel": "Portugal",
+      "number": "07",
+      "cardImage": "../CR7_DIAMANTE_MADRID_vista_previa.png",
+      "assetPending": false,
+      "realMadridPeriod": { "from": 2009, "to": 2018, "label": "2009–2018" },
+      "faces": {
+        "madrid": {
+          "label": "MADRID",
+          "periodLabel": "2009–2018",
+          "stats": {
+            "appearances": { "value": 438, "label": "Partidos", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Cifra oficial del club." },
+            "goals": { "value": 451, "label": "Goles", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/leyendas-futbol/cristiano-ronaldo-dos-santos-aveiro", "status": "verified", "asterisk": true, "last_checked": "2026-11-15", "note": "Real Madrid oficial: 451. LALIGA publica 450. Se usa la cifra oficial del club." },
+            "assists": { "value": 131, "label": "Asistencias", "source": "Base secundaria (Transfermarkt / RSSSF)", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Base secundaria; LALIGA cita 119 por un criterio de asistencia distinto." },
+            "titles": { "value": 16, "label": "Títulos", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/leyendas-futbol/cristiano-ronaldo-dos-santos-aveiro", "status": "verified", "last_checked": "2026-11-15", "note": "Títulos colectivos con el club; no incluye premios individuales." }
+          },
+          "goalBreakdown": [
+            { "value": 312, "label": "Liga", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/leyendas-futbol/cristiano-ronaldo-dos-santos-aveiro", "status": "verified", "last_checked": "2026-11-15", "note": "Desglose publicado por el club." },
+            { "value": 105, "label": "Champions League", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/leyendas-futbol/cristiano-ronaldo-dos-santos-aveiro", "status": "verified", "last_checked": "2026-11-15", "note": "Desglose publicado por el club." },
+            { "value": 22, "label": "Copa del Rey", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/leyendas-futbol/cristiano-ronaldo-dos-santos-aveiro", "status": "verified", "last_checked": "2026-11-15", "note": "Desglose publicado por el club." },
+            { "value": 6, "label": "Mundial de Clubes", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/leyendas-futbol/cristiano-ronaldo-dos-santos-aveiro", "status": "verified", "last_checked": "2026-11-15", "note": "Desglose publicado por el club." },
+            { "value": 4, "label": "Supercopa de España", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/leyendas-futbol/cristiano-ronaldo-dos-santos-aveiro", "status": "verified", "last_checked": "2026-11-15", "note": "Desglose publicado por el club." },
+            { "value": 2, "label": "Supercopa de Europa", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/leyendas-futbol/cristiano-ronaldo-dos-santos-aveiro", "status": "verified", "last_checked": "2026-11-15", "note": "Desglose publicado por el club." }
+          ],
+          "trophies": [
+            { "value": 4, "label": "Champions League", "seasons": ["2013/14", "2015/16", "2016/17", "2017/18"], "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/leyendas-futbol/cristiano-ronaldo-dos-santos-aveiro", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 3, "label": "Mundial de Clubes", "seasons": ["2014", "2016", "2017"], "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/leyendas-futbol/cristiano-ronaldo-dos-santos-aveiro", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 3, "label": "Supercopa de Europa", "seasons": ["2014", "2016", "2017"], "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/leyendas-futbol/cristiano-ronaldo-dos-santos-aveiro", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 2, "label": "Liga", "seasons": ["2011/12", "2016/17"], "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/leyendas-futbol/cristiano-ronaldo-dos-santos-aveiro", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 2, "label": "Copa del Rey", "seasons": ["2010/11", "2013/14"], "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/leyendas-futbol/cristiano-ronaldo-dos-santos-aveiro", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 2, "label": "Supercopa de España", "seasons": ["2012", "2017"], "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/leyendas-futbol/cristiano-ronaldo-dos-santos-aveiro", "status": "verified", "last_checked": "2026-11-15", "note": "" }
+          ],
+          "awards": [
+            { "value": 5, "label": "Balón de Oro (carrera)", "years": ["2008", "2013", "2014", "2016", "2017"], "source": "France Football", "source_url": "https://www.fifa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Recuento de carrera; falta confirmar cuáles corresponden a la etapa madridista antes de etiquetarlos como premios del club." },
+            { "value": 4, "label": "Bota de Oro (carrera)", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Carrera completa; pendiente de separar la parte madridista." },
+            { "value": 2, "label": "The Best FIFA", "source": "FIFA", "source_url": "https://www.fifa.com/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Años pendientes de confirmar en la ficha oficial." },
+            { "value": 3, "label": "Mejor Jugador UEFA", "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Años pendientes de confirmar." },
+            { "value": 3, "label": "Pichichi", "source": "LALIGA", "source_url": "https://www.laliga.com/noticias/jugadores-historicos-real-madrid", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Temporadas pendientes de detallar." }
+          ],
+          "records": [
+            "Máximo goleador histórico del Real Madrid.",
+            "61 goles en una sola temporada.",
+            "17 goles en la Champions League 2013/14.",
+            "Máximo goleador de la Champions League según el Real Madrid."
+          ],
+          "notes": [
+            "Los títulos se muestran por competición: 4+3+3+2+2+2 = 16. No se suman los premios individuales."
+          ]
+        },
+        "todos": {
+          "label": "TODOS",
+          "periodLabel": "2002–2026",
+          "clubs": [
+            {
+              "id": "sporting-cp",
+              "name": "Sporting CP",
+              "country": "Portugal",
+              "from": 2002,
+              "to": 2003,
+              "yearsLabel": "2002–2003",
+              "stats": {
+                "appearances": { "value": 31, "label": "Partidos", "source": "Base secundaria (Transfermarkt / RSSSF)", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "last_checked": "2026-11-15", "note": "Dato de base secundaria, sin asterisco en el dossier." },
+                "goals": { "value": 5, "label": "Goles", "source": "Base secundaria (Transfermarkt / RSSSF)", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "last_checked": "2026-11-15", "note": "Dato de base secundaria." },
+                "assists": { "value": 6, "label": "Asistencias", "source": "Base secundaria (Transfermarkt / RSSSF)", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Asistencia con criterio no uniforme en etapas antiguas." }
+              },
+              "trophies": [
+                { "value": 1, "label": "Supertaça Cândido de Oliveira", "seasons": ["2002"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" }
+              ]
+            },
+            {
+              "id": "manchester-united",
+              "name": "Manchester United",
+              "country": "Inglaterra",
+              "from": 2003,
+              "to": 2022,
+              "yearsLabel": "2003–2009 y 2021–2022",
+              "stats": {
+                "appearances": { "value": 346, "label": "Partidos", "source": "Base secundaria (Transfermarkt / RSSSF)", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "last_checked": "2026-11-15", "note": "Ambas etapas combinadas." },
+                "goals": { "value": 145, "label": "Goles", "source": "Base secundaria (Transfermarkt / RSSSF)", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "last_checked": "2026-11-15", "note": "Ambas etapas combinadas." },
+                "assists": { "value": 64, "label": "Asistencias", "source": "Base secundaria (Transfermarkt / RSSSF)", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Ambas etapas combinadas; criterio de asistencia no uniforme." }
+              },
+              "trophies": [
+                { "value": 3, "label": "Premier League", "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Temporadas pendientes de confirmar." },
+                { "value": 1, "label": "FA Cup", "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "Temporada pendiente de confirmar." },
+                { "value": null, "label": "League Cup", "source": "Pendiente de fuente primaria", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "El dossier marca REVISAR el recuento; no se muestra cifra." },
+                { "value": 2, "label": "Community Shield", "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Recuento pendiente de confirmar." },
+                { "value": 1, "label": "Champions League", "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "secondary", "last_checked": "2026-11-15", "note": "Temporada pendiente de confirmar." },
+                { "value": 1, "label": "Mundial de Clubes", "source": "FIFA", "source_url": "https://www.fifa.com/", "status": "secondary", "last_checked": "2026-11-15", "note": "Temporada pendiente de confirmar." }
+              ]
+            },
+            {
+              "id": "juventus",
+              "name": "Juventus",
+              "country": "Italia",
+              "from": 2018,
+              "to": 2021,
+              "yearsLabel": "2018–2021",
+              "stats": {
+                "appearances": { "value": 134, "label": "Partidos", "source": "Base secundaria (Transfermarkt / RSSSF)", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." },
+                "goals": { "value": 101, "label": "Goles", "source": "Base secundaria (Transfermarkt / RSSSF)", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "last_checked": "2026-11-15", "note": "Dato de base secundaria." },
+                "assists": { "value": 22, "label": "Asistencias", "source": "Base secundaria (Transfermarkt / RSSSF)", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Asistencia con criterio no uniforme." }
+              },
+              "trophies": [
+                { "value": 2, "label": "Serie A", "seasons": ["2018/19", "2019/20"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" },
+                { "value": 1, "label": "Coppa Italia", "seasons": ["2020/21"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" },
+                { "value": 2, "label": "Supercoppa Italiana", "seasons": ["2018", "2020"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" }
+              ]
+            },
+            {
+              "id": "al-nassr",
+              "name": "Al-Nassr",
+              "country": "Arabia Saudí",
+              "from": 2023,
+              "to": 2026,
+              "yearsLabel": "2023–actualidad (corte 30-10-2026)",
+              "stats": {
+                "appearances": { "value": 160, "label": "Partidos", "source": "RonaldoStats (corte 30-10-2026)", "source_url": "https://ronaldostats.app/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Corte del 30-10-2026; actualizar al cerrar la temporada." },
+                "goals": { "value": 138, "label": "Goles", "source": "RonaldoStats (corte 30-10-2026)", "source_url": "https://ronaldostats.app/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Corte del 30-10-2026." },
+                "assists": { "value": 23, "label": "Asistencias", "source": "RonaldoStats (corte 30-10-2026)", "source_url": "https://ronaldostats.app/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Corte del 30-10-2026; criterio de asistencia no uniforme." }
+              },
+              "trophies": [
+                { "value": 1, "label": "Arab Club Champions Cup", "seasons": ["2023"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "Otros títulos de liga y copa atribuidos por algunas bases no se contabilizan sin verificación oficial." }
+              ]
+            }
+          ],
+          "nationalTeams": [
+            {
+              "id": "portugal",
+              "name": "Portugal",
+              "from": 2003,
+              "to": 2026,
+              "yearsLabel": "2003–2026",
+              "stats": {
+                "appearances": { "value": 234, "label": "Partidos", "source": "Base secundaria / federación", "source_url": "https://www.uefa.com/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Comprobar si el dato sigue vigente tras el anuncio de retirada internacional del 5-11-2026." },
+                "goals": { "value": 146, "label": "Goles", "source": "Base secundaria / federación", "source_url": "https://www.uefa.com/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Corte de la fuente estadística: 30-10-2026." },
+                "assists": { "value": 45, "label": "Asistencias", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Criterio de asistencia no uniforme." }
+              },
+              "trophies": [
+                { "value": 1, "label": "Eurocopa", "seasons": ["2016"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "secondary", "last_checked": "2026-11-15", "note": "" },
+                { "value": 2, "label": "Nations League", "seasons": ["2018/19", "2024/25"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "secondary", "last_checked": "2026-11-15", "note": "" }
+              ],
+              "notes": ["Retirada internacional anunciada el 5-11-2026 en fuente secundaria: confirmar antes de actualizar el corte."]
+            }
+          ],
+          "editorialNotes": [
+            { "label": "Manchester United 2007/08", "text": "Etiqueta editorial del proyecto: B.O.A.T. / mejor temporada individual 2007/08. No es un trofeo oficial." }
+          ],
+          "notes": [
+            "Cifras de clubes fuera de España y asistencias con *: base secundaria, pendientes de contraste primario."
+          ]
+        }
+      }
+    },
+    {
+      "id": "alfredo-di-stefano",
+      "order": 2,
+      "name": "Alfredo Di Stéfano",
+      "cardName": "ALFREDO DI STÉFANO",
+      "fullName": "Alfredo Stéfano Di Stéfano Laulhé",
+      "position": ["delantero"],
+      "nationality": "Argentina / España",
+      "flag": "ar",
+      "flagLabel": "Argentina",
+      "number": null,
+      "cardImage": null,
+      "assetPending": true,
+      "realMadridPeriod": { "from": 1953, "to": 1964, "label": "1953–1964" },
+      "faces": {
+        "madrid": {
+          "label": "MADRID",
+          "periodLabel": "1953–1964",
+          "stats": {
+            "appearances": { "value": 396, "label": "Partidos", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Cifra oficial del club." },
+            "goals": { "value": 308, "label": "Goles", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Cifra oficial del club." },
+            "assists": { "value": null, "label": "Asistencias", "source": "Pendiente de fuente primaria", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "No existe serie histórica homogénea de asistencias; no se muestra cifra." },
+            "titles": { "value": 17, "label": "Títulos", "source": "LALIGA / fuentes históricas", "source_url": "https://www.laliga.com/noticias/jugadores-historicos-real-madrid", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Desglose provisional. El club enumera además la Pequeña Copa del Mundo en algunos resúmenes: revisar oficialidad y evitar doble conteo." }
+          },
+          "trophies": [
+            { "value": 8, "label": "Liga", "source": "LALIGA / fuentes históricas", "source_url": "https://www.laliga.com/noticias/jugadores-historicos-real-madrid", "status": "secondary", "last_checked": "2026-11-15", "note": "Temporadas pendientes de detallar." },
+            { "value": 5, "label": "Copa de Europa", "seasons": ["1955/56", "1956/57", "1957/58", "1958/59", "1959/60"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "secondary", "last_checked": "2026-11-15", "note": "" },
+            { "value": 1, "label": "Copa de España", "source": "Fuentes históricas", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "Temporada pendiente de confirmar." },
+            { "value": 1, "label": "Copa Intercontinental", "source": "Fuentes históricas", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" },
+            { "value": 2, "label": "Copa Latina", "source": "Fuentes históricas", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" }
+          ],
+          "awards": [
+            { "value": 2, "label": "Balón de Oro", "years": ["1957", "1959"], "source": "France Football", "source_url": "https://www.fifa.com/", "status": "secondary", "last_checked": "2026-11-15", "note": "" },
+            { "value": 1, "label": "Súper Balón de Oro", "years": ["1989"], "source": "France Football", "source_url": "https://www.fifa.com/", "status": "secondary", "last_checked": "2026-11-15", "note": "" },
+            { "value": 5, "label": "Pichichi", "source": "LALIGA", "source_url": "https://www.laliga.com/noticias/jugadores-historicos-real-madrid", "status": "secondary", "last_checked": "2026-11-15", "note": "Temporadas pendientes de detallar." }
+          ],
+          "notes": [
+            "Los títulos se muestran por competición: 8+5+1+1+2 = 17."
+          ]
+        },
+        "todos": {
+          "label": "TODOS",
+          "periodLabel": "1945–1962",
+          "clubs": [
+            {
+              "id": "river-plate",
+              "name": "River Plate",
+              "country": "Argentina",
+              "from": 1945,
+              "to": 1953,
+              "yearsLabel": "1945–1949 y 1953 (según fuentes)",
+              "stats": {
+                "appearances": { "value": null, "label": "Partidos", "source": "Pendiente de investigación histórica", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Cesión, retorno y fechas exactas pendientes de confirmar." },
+                "goals": { "value": null, "label": "Goles", "source": "Pendiente de investigación histórica", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Sin desglose fiable; no se muestra cifra." }
+              },
+              "trophies": []
+            },
+            {
+              "id": "huracan",
+              "name": "Huracán",
+              "country": "Argentina",
+              "from": 1946,
+              "to": 1947,
+              "yearsLabel": "1946–1947",
+              "stats": {
+                "appearances": { "value": null, "label": "Partidos", "source": "Pendiente de investigación histórica", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Sin desglose fiable; no se muestra cifra." },
+                "goals": { "value": null, "label": "Goles", "source": "Pendiente de investigación histórica", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Sin desglose fiable; no se muestra cifra." }
+              },
+              "trophies": []
+            },
+            {
+              "id": "millonarios",
+              "name": "Millonarios",
+              "country": "Colombia",
+              "from": 1949,
+              "to": 1953,
+              "yearsLabel": "1949–1953",
+              "stats": {
+                "appearances": { "value": null, "label": "Partidos", "source": "Pendiente de investigación histórica", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Sin desglose fiable; no se muestra cifra." },
+                "goals": { "value": null, "label": "Goles", "source": "Pendiente de investigación histórica", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Sin desglose fiable; no se muestra cifra." }
+              },
+              "trophies": [
+                { "value": 3, "label": "Liga colombiana", "seasons": ["1949", "1951", "1952"], "source": "Fuentes históricas", "source_url": "https://www.rsssf.org/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Comprobar antes de fijar el palmarés." },
+                { "value": 1, "label": "Copa Colombia", "seasons": ["1953"], "source": "Fuentes históricas", "source_url": "https://www.rsssf.org/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Comprobar antes de fijar el palmarés." }
+              ]
+            }
+          ],
+          "nationalTeams": [
+            {
+              "id": "argentina",
+              "name": "Argentina",
+              "from": 1947,
+              "to": 1947,
+              "yearsLabel": "1947",
+              "stats": {
+                "appearances": { "value": 6, "label": "Partidos", "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Incluye la Copa América 1947; contrastar con la federación." },
+                "goals": { "value": 6, "label": "Goles", "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." }
+              },
+              "trophies": [
+                { "value": 1, "label": "Copa América", "seasons": ["1947"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Confirmar con la federación." }
+              ]
+            },
+            {
+              "id": "colombia",
+              "name": "Colombia",
+              "from": 1949,
+              "to": 1949,
+              "yearsLabel": "1949",
+              "stats": {
+                "appearances": { "value": 4, "label": "Partidos", "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Partidos no reconocidos como internacionales A por distintas fuentes; no se mezclan con los oficiales." },
+                "goals": { "value": null, "label": "Goles", "source": "Pendiente de fuente primaria", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Sin cifra fiable; no se muestra dato." }
+              },
+              "trophies": []
+            },
+            {
+              "id": "espana",
+              "name": "España",
+              "from": 1957,
+              "to": 1962,
+              "yearsLabel": "1957–1962",
+              "stats": {
+                "appearances": { "value": 31, "label": "Partidos", "source": "RFEF (pendiente de ficha)", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Verificar ficha RFEF." },
+                "goals": { "value": 23, "label": "Goles", "source": "RFEF (pendiente de ficha)", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Verificar ficha RFEF." }
+              },
+              "trophies": []
+            }
+          ],
+          "notes": [
+            "La carrera previa a 1953 necesita investigación histórica detallada: clubes y cifras están marcados con *."
+          ]
+        }
+      }
+    },
+    {
+      "id": "raul-gonzalez",
+      "order": 3,
+      "name": "Raúl González Blanco",
+      "cardName": "RAÚL GONZÁLEZ",
+      "fullName": "Raúl González Blanco",
+      "position": ["delantero"],
+      "nationality": "España",
+      "flag": "es",
+      "flagLabel": "España",
+      "number": null,
+      "cardImage": null,
+      "assetPending": true,
+      "realMadridPeriod": { "from": 1994, "to": 2010, "label": "1994–2010" },
+      "faces": {
+        "madrid": {
+          "label": "MADRID",
+          "periodLabel": "1994–2010",
+          "stats": {
+            "appearances": { "value": 741, "label": "Partidos", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Cifra oficial del club." },
+            "goals": { "value": 323, "label": "Goles", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Cifra oficial del club." },
+            "assists": { "value": null, "label": "Asistencias", "source": "Pendiente de fuente primaria", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Falta fuente y criterio homogéneo; no se muestra cifra." },
+            "titles": { "value": 15, "label": "Títulos", "source": "FIFA", "source_url": "https://www.fifa.com/", "status": "disputed", "asterisk": true, "last_checked": "2026-11-15", "note": "FIFA indica 15; otras fuentes suman 16 al contar las cuatro Supercopas. El desglose de esta ficha suma 16. Copa del Rey: 0." }
+          },
+          "trophies": [
+            { "value": 6, "label": "Liga", "seasons": ["1994/95", "1996/97", "2000/01", "2002/03", "2006/07", "2007/08"], "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 3, "label": "Champions League", "seasons": ["1997/98", "1999/2000", "2001/02"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 2, "label": "Copa Intercontinental", "seasons": ["1998", "2002"], "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 1, "label": "Supercopa de Europa", "seasons": ["2002"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 4, "label": "Supercopa de España", "seasons": ["1997", "2001", "2003", "2008"], "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Su cómputo explica la diferencia entre 15 y 16 títulos según la fuente." }
+          ],
+          "awards": [
+            { "value": 2, "label": "Pichichi", "source": "LALIGA", "source_url": "https://www.laliga.com/noticias/jugadores-historicos-real-madrid", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Temporadas pendientes de confirmar." },
+            { "value": 1, "label": "Bota de Bronce del Mundial", "years": ["2002"], "source": "FIFA", "source_url": "https://www.fifa.com/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Confirmar con la ficha FIFA." },
+            { "value": 1, "label": "UEFA Club Footballer of the Year", "years": ["1999/2000"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Confirmar denominación y temporada." }
+          ],
+          "records": [
+            "Máximo goleador histórico del Real Madrid hasta que Cristiano Ronaldo lo superó."
+          ],
+          "notes": [
+            "Los títulos se muestran por competición: 6+3+2+1+4 = 16, mientras FIFA publica 15. Se conservan ambas cifras y la nota."
+          ]
+        },
+        "todos": {
+          "label": "TODOS",
+          "periodLabel": "2010–2015",
+          "clubs": [
+            {
+              "id": "schalke-04",
+              "name": "Schalke 04",
+              "country": "Alemania",
+              "from": 2010,
+              "to": 2012,
+              "yearsLabel": "2010–2012",
+              "stats": {
+                "appearances": { "value": 40, "label": "Partidos", "source": "Base secundaria (Transfermarkt / RSSSF)", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." },
+                "goals": { "value": 13, "label": "Goles", "source": "Base secundaria (Transfermarkt / RSSSF)", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." }
+              },
+              "trophies": [
+                { "value": 1, "label": "Copa de Alemania", "seasons": ["2010/11"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" },
+                { "value": 1, "label": "Supercopa de Alemania", "seasons": ["2011"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" }
+              ]
+            },
+            {
+              "id": "al-sadd",
+              "name": "Al-Sadd",
+              "country": "Catar",
+              "from": 2012,
+              "to": 2014,
+              "yearsLabel": "2012–2014",
+              "stats": {
+                "appearances": { "value": 44, "label": "Partidos", "source": "Base secundaria (Transfermarkt / RSSSF)", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." },
+                "goals": { "value": 11, "label": "Goles", "source": "Base secundaria (Transfermarkt / RSSSF)", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." }
+              },
+              "trophies": [
+                { "value": 1, "label": "Liga de Catar", "seasons": ["2012/13"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" },
+                { "value": 1, "label": "Copa del Emir", "seasons": ["2014"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" },
+                { "value": 1, "label": "Copa del Príncipe", "seasons": ["2014"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Confirmar palmarés antes de fijar el título." }
+              ]
+            },
+            {
+              "id": "new-york-cosmos",
+              "name": "New York Cosmos",
+              "country": "Estados Unidos",
+              "from": 2015,
+              "to": 2015,
+              "yearsLabel": "2015",
+              "stats": {
+                "appearances": { "value": 28, "label": "Partidos", "source": "Base secundaria (Transfermarkt / RSSSF)", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." },
+                "goals": { "value": 8, "label": "Goles", "source": "Base secundaria (Transfermarkt / RSSSF)", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." }
+              },
+              "trophies": [
+                { "value": 1, "label": "NASL Soccer Bowl", "seasons": ["2015"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" }
+              ]
+            }
+          ],
+          "nationalTeams": [
+            {
+              "id": "espana",
+              "name": "España",
+              "from": 1996,
+              "to": 2006,
+              "yearsLabel": "1996–2006",
+              "stats": {
+                "appearances": { "value": 102, "label": "Partidos", "source": "RFEF (pendiente de ficha)", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Verificar con la ficha RFEF." },
+                "goals": { "value": 44, "label": "Goles", "source": "RFEF (pendiente de ficha)", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Verificar con la ficha RFEF." }
+              },
+              "trophies": [],
+              "participations": ["Eurocopa 2000", "Mundial 2002", "Eurocopa 2004", "Mundial 2006"],
+              "notes": ["Participaciones en torneos, no títulos."]
+            }
+          ],
+          "notes": [
+            "La carrera fuera de España está marcada con * en el dossier y procede de bases secundarias."
+          ]
+        }
+      }
+    },
+    {
+      "id": "luka-modric",
+      "order": 4,
+      "name": "Luka Modrić",
+      "cardName": "LUKA MODRIĆ",
+      "fullName": "Luka Modrić",
+      "position": ["centrocampista"],
+      "nationality": "Croacia",
+      "flag": "hr",
+      "flagLabel": "Croacia",
+      "number": null,
+      "cardImage": null,
+      "assetPending": true,
+      "realMadridPeriod": { "from": 2012, "to": 2025, "label": "2012–2025" },
+      "faces": {
+        "madrid": {
+          "label": "MADRID",
+          "periodLabel": "2012–2025",
+          "stats": {
+            "appearances": { "value": 597, "label": "Partidos", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Cifra oficial del club." },
+            "goals": { "value": 43, "label": "Goles", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Cifra ampliamente recogida; conviene contrastarla con la ficha oficial final." },
+            "assists": { "value": null, "label": "Asistencias", "source": "Pendiente de fuente primaria", "source_url": "https://www.transfermarkt.es/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Sin registro homogéneo; no se muestra cifra." },
+            "titles": { "value": 28, "label": "Títulos", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra difundida al cierre de su etapa; falta confirmar el desglose final y si la Copa Intercontinental 2024 ya está incluida en el total." }
+          },
+          "trophies": [
+            { "value": 6, "label": "Champions League", "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "Temporadas pendientes de detallar en la ficha oficial." },
+            { "value": 5, "label": "Mundial de Clubes", "source": "FIFA", "source_url": "https://www.fifa.com/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Recuento pendiente de confirmar." },
+            { "value": 5, "label": "Supercopa de Europa", "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Recuento pendiente de confirmar." },
+            { "value": 4, "label": "Liga", "source": "LALIGA", "source_url": "https://www.laliga.com/noticias/jugadores-historicos-real-madrid", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 2, "label": "Copa del Rey", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 5, "label": "Supercopa de España", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Recuento pendiente de confirmar." },
+            { "value": 1, "label": "Copa Intercontinental FIFA", "seasons": ["2024"], "source": "FIFA", "source_url": "https://www.fifa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Confirmar si este título ya está dentro del total de 28; no sumarlo dos veces." }
+          ],
+          "awards": [
+            { "value": 1, "label": "Balón de Oro", "years": ["2018"], "source": "France Football", "source_url": "https://www.fifa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 1, "label": "The Best FIFA", "years": ["2018"], "source": "FIFA", "source_url": "https://www.fifa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 1, "label": "Mejor Jugador UEFA", "years": ["2017/18"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 1, "label": "Balón de Oro del Mundial", "years": ["2018"], "source": "FIFA", "source_url": "https://www.fifa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 1, "label": "Golden Foot", "years": ["2019"], "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Confirmar edición." }
+          ],
+          "notes": [
+            "Los títulos se muestran por competición; el desglose provisional suma 28 solo si la Copa Intercontinental 2024 no se cuenta dos veces."
+          ]
+        },
+        "todos": {
+          "label": "TODOS",
+          "periodLabel": "2003–2024",
+          "clubs": [
+            {
+              "id": "dinamo-zagreb",
+              "name": "Dinamo Zagreb",
+              "country": "Croacia",
+              "from": 2003,
+              "to": 2008,
+              "yearsLabel": "2003–2008 (con cesiones)",
+              "stats": {
+                "appearances": { "value": null, "label": "Partidos", "source": "Pendiente de fuente primaria", "source_url": "https://www.transfermarkt.es/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Sin desglose fiable; no se muestra cifra." },
+                "goals": { "value": null, "label": "Goles", "source": "Pendiente de fuente primaria", "source_url": "https://www.transfermarkt.es/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Sin desglose fiable; no se muestra cifra." }
+              },
+              "trophies": [
+                { "value": 3, "label": "Liga croata", "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Verificar desglose de títulos croatas." },
+                { "value": 2, "label": "Copa croata", "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Verificar desglose." },
+                { "value": 1, "label": "Supercopa croata", "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Marcada con * en el dossier." }
+              ]
+            },
+            {
+              "id": "zrinjski-mostar",
+              "name": "Zrinjski Mostar",
+              "country": "Bosnia y Herzegovina",
+              "from": 2003,
+              "to": 2004,
+              "yearsLabel": "2003/04 (cesión)",
+              "stats": {
+                "appearances": { "value": 22, "label": "Partidos", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." },
+                "goals": { "value": 8, "label": "Goles", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." }
+              },
+              "trophies": []
+            },
+            {
+              "id": "inter-zapresic",
+              "name": "Inter Zaprešić",
+              "country": "Croacia",
+              "from": 2004,
+              "to": 2005,
+              "yearsLabel": "2004/05 (cesión)",
+              "stats": {
+                "appearances": { "value": 18, "label": "Partidos", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." },
+                "goals": { "value": 4, "label": "Goles", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." }
+              },
+              "trophies": []
+            },
+            {
+              "id": "tottenham-hotspur",
+              "name": "Tottenham Hotspur",
+              "country": "Inglaterra",
+              "from": 2008,
+              "to": 2012,
+              "yearsLabel": "2008–2012",
+              "stats": {
+                "appearances": { "value": 127, "label": "Partidos", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." },
+                "goals": { "value": 13, "label": "Goles", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." }
+              },
+              "trophies": [],
+              "notes": ["Sin títulos colectivos mayores en esta etapa."]
+            }
+          ],
+          "nationalTeams": [
+            {
+              "id": "croacia",
+              "name": "Croacia",
+              "from": 2006,
+              "to": 2024,
+              "yearsLabel": "2006–2024",
+              "stats": {
+                "appearances": { "value": 182, "label": "Partidos", "source": "Federación croata / UEFA (pendiente)", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Comprobar cifra final con la federación." },
+                "goals": { "value": 27, "label": "Goles", "source": "Federación croata / UEFA (pendiente)", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Comprobar cifra final con la federación." }
+              },
+              "trophies": [],
+              "participations": ["Subcampeón del Mundial 2018", "Tercer puesto en el Mundial 2022", "Finalista de la Nations League 2023"],
+              "notes": ["Posiciones destacadas en torneos; no son títulos."]
+            }
+          ],
+          "notes": [
+            "Etapa croata con cesiones: el desglose de partidos y títulos está pendiente de fuente primaria."
+          ]
+        }
+      }
+    },
+    {
+      "id": "karim-benzema",
+      "order": 5,
+      "name": "Karim Benzema",
+      "cardName": "KARIM BENZEMA",
+      "fullName": "Karim Mostafa Benzema",
+      "position": ["delantero"],
+      "nationality": "Francia",
+      "flag": "fr",
+      "flagLabel": "Francia",
+      "number": null,
+      "cardImage": null,
+      "assetPending": true,
+      "realMadridPeriod": { "from": 2009, "to": 2023, "label": "2009–2023" },
+      "faces": {
+        "madrid": {
+          "label": "MADRID",
+          "periodLabel": "2009–2023",
+          "stats": {
+            "appearances": { "value": 648, "label": "Partidos", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Cifra oficial del club." },
+            "goals": { "value": 354, "label": "Goles", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Cifra oficial del club." },
+            "assists": { "value": null, "label": "Asistencias", "source": "Pendiente de fuente primaria", "source_url": "https://www.transfermarkt.es/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Sin registro homogéneo; no se muestra cifra." },
+            "titles": { "value": 25, "label": "Títulos", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Desglose definitivo pendiente de verificar." }
+          },
+          "trophies": [
+            { "value": 5, "label": "Champions League", "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 5, "label": "Mundial de Clubes", "source": "FIFA", "source_url": "https://www.fifa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 4, "label": "Supercopa de Europa", "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 4, "label": "Liga", "source": "LALIGA", "source_url": "https://www.laliga.com/noticias/jugadores-historicos-real-madrid", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 3, "label": "Copa del Rey", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 4, "label": "Supercopa de España", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "" }
+          ],
+          "awards": [
+            { "value": 1, "label": "Balón de Oro", "years": ["2022"], "source": "France Football", "source_url": "https://www.fifa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 1, "label": "The Best FIFA", "years": ["2022"], "source": "FIFA", "source_url": "https://www.fifa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 1, "label": "Jugador del Año UEFA", "years": ["2021/22"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 1, "label": "Pichichi", "years": ["2021/22"], "source": "LALIGA", "source_url": "https://www.laliga.com/noticias/jugadores-historicos-real-madrid", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 1, "label": "Máximo goleador de la Champions League", "years": ["2021/22"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" }
+          ],
+          "notes": [
+            "Los títulos se muestran por competición: 5+5+4+4+3+4 = 25."
+          ]
+        },
+        "todos": {
+          "label": "TODOS",
+          "periodLabel": "2004–2026",
+          "clubs": [
+            {
+              "id": "olympique-lyonnais",
+              "name": "Olympique Lyonnais",
+              "country": "Francia",
+              "from": 2004,
+              "to": 2009,
+              "yearsLabel": "2004–2009",
+              "stats": {
+                "appearances": { "value": 112, "label": "Partidos", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." },
+                "goals": { "value": 43, "label": "Goles", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." }
+              },
+              "trophies": [
+                { "value": 4, "label": "Ligue 1", "seasons": ["2004/05", "2005/06", "2006/07", "2007/08"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" },
+                { "value": 3, "label": "Trophée des Champions", "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Recuento pendiente de confirmar." }
+              ]
+            },
+            {
+              "id": "al-ittihad",
+              "name": "Al-Ittihad",
+              "country": "Arabia Saudí",
+              "from": 2023,
+              "to": 2026,
+              "yearsLabel": "2023–actualidad (corte por verificar)",
+              "stats": {
+                "appearances": { "value": null, "label": "Partidos", "source": "Pendiente de fuente oficial del club / saudí", "source_url": "https://www.transfermarkt.es/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Corte y cifras pendientes de actualizar." },
+                "goals": { "value": null, "label": "Goles", "source": "Pendiente de fuente oficial del club / saudí", "source_url": "https://www.transfermarkt.es/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Corte y cifras pendientes de actualizar." },
+                "assists": { "value": null, "label": "Asistencias", "source": "Pendiente de fuente oficial del club / saudí", "source_url": "https://www.transfermarkt.es/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Corte y cifras pendientes de actualizar." }
+              },
+              "trophies": [],
+              "notes": ["Títulos de liga y copa pendientes de fuente oficial; no se contabilizan sin verificar."]
+            }
+          ],
+          "nationalTeams": [
+            {
+              "id": "francia",
+              "name": "Francia",
+              "from": 2007,
+              "to": 2022,
+              "yearsLabel": "2007–2022",
+              "stats": {
+                "appearances": { "value": 97, "label": "Partidos", "source": "FFF (pendiente de ficha)", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Comprobar con la federación francesa." },
+                "goals": { "value": 37, "label": "Goles", "source": "FFF (pendiente de ficha)", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Comprobar con la federación francesa." }
+              },
+              "trophies": [
+                { "value": 1, "label": "Nations League", "seasons": ["2020/21"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "secondary", "last_checked": "2026-11-15", "note": "" }
+              ],
+              "notes": [
+                "No ganó el Mundial 2018 (no fue convocado) ni el Mundial 2022."
+              ]
+            }
+          ],
+          "notes": [
+            "Etapa en Arabia Saudí sin cifras públicas verificadas: se deja pendiente y no se completa por inferencia."
+          ]
+        }
+      }
+    },
+    {
+      "id": "ferenc-puskas",
+      "order": 6,
+      "name": "Ferenc Puskás",
+      "cardName": "FERENC PUSKÁS",
+      "fullName": "Ferenc Puskás Birová",
+      "position": ["delantero"],
+      "nationality": "Hungría",
+      "flag": "hu",
+      "flagLabel": "Hungría",
+      "number": null,
+      "cardImage": null,
+      "assetPending": true,
+      "realMadridPeriod": { "from": 1958, "to": 1967, "label": "1958–1966/67" },
+      "faces": {
+        "madrid": {
+          "label": "MADRID",
+          "periodLabel": "1958–1966/67",
+          "stats": {
+            "appearances": { "value": 262, "label": "Partidos", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Cifra oficial del club." },
+            "goals": { "value": 242, "label": "Goles", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Cifra oficial del club." },
+            "assists": { "value": null, "label": "Asistencias", "source": "Pendiente de fuente primaria", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "No hay registro histórico homogéneo; no se muestra cifra." },
+            "titles": { "value": 10, "label": "Títulos", "source": "LALIGA", "source_url": "https://www.laliga.com/noticias/jugadores-historicos-real-madrid", "status": "disputed", "asterisk": true, "last_checked": "2026-11-15", "note": "LALIGA indica 10, pero el desglose provisional de esta ficha suma 9 (5 Liga + 3 Copa de Europa + 1 Copa del Rey). No se completa por inferencia; Intercontinental: 0." }
+          },
+          "trophies": [
+            { "value": 5, "label": "Liga", "source": "LALIGA / fuentes históricas", "source_url": "https://www.laliga.com/noticias/jugadores-historicos-real-madrid", "status": "secondary", "last_checked": "2026-11-15", "note": "Temporadas pendientes de detallar." },
+            { "value": 3, "label": "Copa de Europa", "seasons": ["1959/60", "1965/66"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Tercera edición sin temporada confirmada; verificar temporada exacta y conteo." },
+            { "value": 1, "label": "Copa del Rey", "source": "Fuentes históricas", "source_url": "https://www.rsssf.org/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Distintas fuentes históricas difieren en esta Copa de España." }
+          ],
+          "awards": [
+            { "value": 4, "label": "Pichichi", "source": "LALIGA", "source_url": "https://www.laliga.com/noticias/jugadores-historicos-real-madrid", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "El dossier marca la cifra con *; temporadas pendientes." },
+            { "value": 1, "label": "Máximo goleador de Europa", "years": ["1960/61"], "source": "Fuentes históricas", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." }
+          ],
+          "notes": [
+            "El premio FIFA Puskás se instituyó en 2009 en su honor: no lo ganó él.",
+            "Las fuentes históricas difieren en la Copa de España y en el total de títulos."
+          ]
+        },
+        "todos": {
+          "label": "TODOS",
+          "periodLabel": "1943–1956",
+          "clubs": [
+            {
+              "id": "budapest-honved",
+              "name": "Budapest Honvéd",
+              "country": "Hungría",
+              "from": 1943,
+              "to": 1956,
+              "yearsLabel": "1943–1956",
+              "stats": {
+                "appearances": { "value": null, "label": "Partidos", "source": "Pendiente de investigación histórica", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Sin desglose fiable; no se muestra cifra." },
+                "goals": { "value": null, "label": "Goles", "source": "Pendiente de investigación histórica", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Sin desglose fiable; no se muestra cifra." }
+              },
+              "trophies": [
+                { "value": 5, "label": "Liga húngara", "source": "Fuentes históricas", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Temporadas a verificar." }
+              ],
+              "notes": ["Kispest/Honvéd es la misma entidad con nomenclatura histórica: consolidar sin duplicar temporadas."]
+            }
+          ],
+          "nationalTeams": [
+            {
+              "id": "hungria",
+              "name": "Hungría",
+              "from": 1945,
+              "to": 1956,
+              "yearsLabel": "1945–1956",
+              "stats": {
+                "appearances": { "value": 85, "label": "Partidos", "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." },
+                "goals": { "value": 84, "label": "Goles", "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." }
+              },
+              "trophies": [
+                { "value": 1, "label": "Oro olímpico", "seasons": ["1952"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" }
+              ],
+              "participations": ["Subcampeón del Mundial 1954"]
+            },
+            {
+              "id": "espana",
+              "name": "España",
+              "from": 1961,
+              "to": 1962,
+              "yearsLabel": "1961–1962",
+              "stats": {
+                "appearances": { "value": 4, "label": "Partidos", "source": "RFEF (pendiente de ficha)", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Verificar ficha RFEF." },
+                "goals": { "value": 0, "label": "Goles", "source": "RFEF (pendiente de ficha)", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Cero real según el dossier: no marcó con España. Verificar ficha RFEF." }
+              },
+              "trophies": []
+            }
+          ],
+          "notes": [
+            "Clubes húngaros anteriores al Honvéd: consolidar la nomenclatura histórica sin duplicar temporadas."
+          ]
+        }
+      }
+    },
+    {
+      "id": "zinedine-zidane",
+      "order": 7,
+      "name": "Zinedine Zidane",
+      "cardName": "ZINEDINE ZIDANE",
+      "fullName": "Zinedine Yazid Zidane",
+      "position": ["centrocampista"],
+      "nationality": "Francia",
+      "flag": "fr",
+      "flagLabel": "Francia",
+      "number": null,
+      "cardImage": null,
+      "assetPending": true,
+      "realMadridPeriod": { "from": 2001, "to": 2006, "label": "2001–2006" },
+      "faces": {
+        "madrid": {
+          "label": "MADRID",
+          "periodLabel": "2001–2006",
+          "stats": {
+            "appearances": { "value": 227, "label": "Partidos", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Cifra oficial del club." },
+            "goals": { "value": 49, "label": "Goles", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Cifra oficial del club." },
+            "assists": { "value": null, "label": "Asistencias", "source": "Pendiente de fuente primaria", "source_url": "https://www.transfermarkt.es/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Sin registro homogéneo; no se muestra cifra." },
+            "titles": { "value": 6, "label": "Títulos", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Títulos colectivos con el club; no incluye premios individuales." }
+          },
+          "trophies": [
+            { "value": 1, "label": "Champions League", "seasons": ["2001/02"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 1, "label": "Liga", "seasons": ["2002/03"], "source": "LALIGA", "source_url": "https://www.laliga.com/noticias/jugadores-historicos-real-madrid", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 1, "label": "Supercopa de Europa", "seasons": ["2002"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 1, "label": "Copa Intercontinental", "seasons": ["2002"], "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 2, "label": "Supercopa de España", "seasons": ["2001", "2003"], "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "" }
+          ],
+          "awards": [
+            { "value": 1, "label": "Balón de Oro (carrera)", "years": ["1998"], "source": "France Football", "source_url": "https://www.fifa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "Premio de carrera: no se ganó durante la etapa madridista." },
+            { "value": 3, "label": "FIFA World Player (carrera)", "years": ["1998", "2000", "2003"], "source": "FIFA", "source_url": "https://www.fifa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "Premios de carrera; se incluyen como contexto, no como títulos del club." },
+            { "value": 1, "label": "Mejor Jugador UEFA", "years": ["2001/02"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Confirmar denominación del premio." }
+          ],
+          "notes": [
+            "Los títulos se muestran por competición: 1+1+1+1+2 = 6."
+          ]
+        },
+        "todos": {
+          "label": "TODOS",
+          "periodLabel": "1989–2006",
+          "clubs": [
+            {
+              "id": "cannes",
+              "name": "Cannes",
+              "country": "Francia",
+              "from": 1989,
+              "to": 1992,
+              "yearsLabel": "1989–1992",
+              "stats": {
+                "appearances": { "value": 61, "label": "Partidos", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." },
+                "goals": { "value": 6, "label": "Goles", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." }
+              },
+              "trophies": []
+            },
+            {
+              "id": "girondins-bordeaux",
+              "name": "Girondins de Bordeaux",
+              "country": "Francia",
+              "from": 1992,
+              "to": 1996,
+              "yearsLabel": "1992–1996",
+              "stats": {
+                "appearances": { "value": 69, "label": "Partidos", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." },
+                "goals": { "value": 6, "label": "Goles", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." }
+              },
+              "trophies": [
+                { "value": 1, "label": "Copa Intertoto", "seasons": ["1995"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" }
+              ]
+            },
+            {
+              "id": "juventus",
+              "name": "Juventus",
+              "country": "Italia",
+              "from": 1996,
+              "to": 2001,
+              "yearsLabel": "1996–2001",
+              "stats": {
+                "appearances": { "value": 151, "label": "Partidos", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." },
+                "goals": { "value": 24, "label": "Goles", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." }
+              },
+              "trophies": [
+                { "value": 2, "label": "Serie A", "seasons": ["1996/97", "1997/98"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" },
+                { "value": 1, "label": "Supercoppa Italiana", "seasons": ["1997"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" },
+                { "value": 1, "label": "Supercopa de Europa", "seasons": ["1996"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "secondary", "last_checked": "2026-11-15", "note": "" },
+                { "value": 1, "label": "Copa Intercontinental", "seasons": ["1996"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" },
+                { "value": 1, "label": "Copa Intertoto", "seasons": ["1999"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." }
+              ]
+            }
+          ],
+          "nationalTeams": [
+            {
+              "id": "francia",
+              "name": "Francia",
+              "from": 1994,
+              "to": 2006,
+              "yearsLabel": "1994–2006",
+              "stats": {
+                "appearances": { "value": 108, "label": "Partidos", "source": "FFF (pendiente de ficha)", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier; comprobar con la federación." },
+                "goals": { "value": 31, "label": "Goles", "source": "FFF (pendiente de ficha)", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier; comprobar con la federación." }
+              },
+              "trophies": [
+                { "value": 1, "label": "Mundial", "seasons": ["1998"], "source": "FIFA", "source_url": "https://www.fifa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+                { "value": 1, "label": "Eurocopa", "seasons": ["2000"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" }
+              ],
+              "participations": ["Subcampeón del Mundial 2006"]
+            }
+          ],
+          "notes": [
+            "Los clubes se muestran en orden cronológico; las cifras de clubes y selección proceden de bases secundarias."
+          ]
+        }
+      }
+    },
+    {
+      "id": "paco-gento",
+      "order": 8,
+      "name": "Francisco «Paco» Gento",
+      "cardName": "PACO GENTO",
+      "fullName": "Francisco Gento López",
+      "position": ["extremo"],
+      "nationality": "España",
+      "flag": "es",
+      "flagLabel": "España",
+      "number": null,
+      "cardImage": null,
+      "assetPending": true,
+      "realMadridPeriod": { "from": 1953, "to": 1971, "label": "1953–1971" },
+      "faces": {
+        "madrid": {
+          "label": "MADRID",
+          "periodLabel": "1953–1971",
+          "stats": {
+            "appearances": { "value": 600, "label": "Partidos", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Cifra oficial del club." },
+            "goals": { "value": 182, "label": "Goles", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Cifra oficial del club." },
+            "assists": { "value": null, "label": "Asistencias", "source": "Pendiente de fuente primaria", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "No hay registro histórico homogéneo; no se muestra cifra." },
+            "titles": { "value": 23, "label": "Títulos", "source": "LALIGA / Real Madrid", "source_url": "https://www.laliga.com/noticias/jugadores-historicos-real-madrid", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "El total solo cierra con 2 Copas de España; otras fuentes cuentan 3. Desglose pendiente de verificar competición por competición." }
+          },
+          "trophies": [
+            { "value": 6, "label": "Copa de Europa", "seasons": ["1955/56", "1956/57", "1957/58", "1958/59", "1959/60", "1965/66"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 12, "label": "Liga", "source": "LALIGA", "source_url": "https://www.laliga.com/noticias/jugadores-historicos-real-madrid", "status": "secondary", "last_checked": "2026-11-15", "note": "Temporadas pendientes de detallar." },
+            { "value": 2, "label": "Copa de España", "source": "Fuentes históricas", "source_url": "https://www.rsssf.org/", "status": "disputed", "asterisk": true, "last_checked": "2026-11-15", "note": "Dos o tres según la fuente; con 2 el total suma 23." },
+            { "value": 1, "label": "Copa Intercontinental", "seasons": ["1960"], "source": "Fuentes históricas", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" },
+            { "value": 2, "label": "Copa Latina", "source": "Fuentes históricas", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" }
+          ],
+          "awards": [],
+          "notes": [
+            "Balón de Oro 1960: segundo puesto (no lo ganó)*. Verificar distinciones individuales antes de incluirlas como premios.",
+            "El desglose por competición se conserva sin completar por inferencia."
+          ]
+        },
+        "todos": {
+          "label": "TODOS",
+          "periodLabel": "1952–1969",
+          "clubs": [
+            {
+              "id": "racing-santander",
+              "name": "Racing de Santander",
+              "country": "España",
+              "from": 1952,
+              "to": 1953,
+              "yearsLabel": "1952–1953",
+              "stats": {
+                "appearances": { "value": null, "label": "Partidos", "source": "Pendiente de fuente primaria", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "El dossier marca REVISAR; no se muestra cifra." },
+                "goals": { "value": null, "label": "Goles", "source": "Pendiente de fuente primaria", "source_url": "https://www.rsssf.org/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "El dossier marca REVISAR; no se muestra cifra." }
+              },
+              "trophies": []
+            }
+          ],
+          "nationalTeams": [
+            {
+              "id": "espana",
+              "name": "España",
+              "from": 1955,
+              "to": 1969,
+              "yearsLabel": "1955–1969",
+              "stats": {
+                "appearances": { "value": 43, "label": "Partidos", "source": "RFEF (pendiente de ficha)", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." },
+                "goals": { "value": 5, "label": "Goles", "source": "RFEF (pendiente de ficha)", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." }
+              },
+              "trophies": [],
+              "participations": ["Mundial 1962", "Mundial 1966"],
+              "notes": ["No consta que formara parte del equipo campeón de la Eurocopa 1964: no se cuenta como título suyo."]
+            }
+          ],
+          "notes": [
+            "La etapa anterior al club y la selección están marcadas con * en el dossier."
+          ]
+        }
+      }
+    },
+    {
+      "id": "sergio-ramos",
+      "order": 9,
+      "name": "Sergio Ramos",
+      "cardName": "SERGIO RAMOS",
+      "fullName": "Sergio Ramos García",
+      "position": ["defensa"],
+      "nationality": "España",
+      "flag": "es",
+      "flagLabel": "España",
+      "number": null,
+      "cardImage": null,
+      "assetPending": true,
+      "realMadridPeriod": { "from": 2005, "to": 2021, "label": "2005–2021" },
+      "faces": {
+        "madrid": {
+          "label": "MADRID",
+          "periodLabel": "2005–2021",
+          "stats": {
+            "appearances": { "value": 671, "label": "Partidos", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Cifra oficial del club." },
+            "goals": { "value": 101, "label": "Goles", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Cifra oficial del club." },
+            "assists": { "value": null, "label": "Asistencias", "source": "Pendiente de fuente primaria", "source_url": "https://www.transfermarkt.es/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Sin registro homogéneo; no se muestra cifra." },
+            "titles": { "value": 22, "label": "Títulos", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Lista pendiente de contrastar; posibles discrepancias por Copa Intercontinental y Mundial de Clubes." }
+          },
+          "trophies": [
+            { "value": 4, "label": "Champions League", "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "Temporadas pendientes de detallar." },
+            { "value": 4, "label": "Mundial de Clubes", "source": "FIFA", "source_url": "https://www.fifa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 3, "label": "Supercopa de Europa", "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 5, "label": "Liga", "source": "LALIGA", "source_url": "https://www.laliga.com/noticias/jugadores-historicos-real-madrid", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 2, "label": "Copa del Rey", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 4, "label": "Supercopa de España", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "" }
+          ],
+          "awards": [
+            { "value": null, "label": "FIFA FIFPro World XI", "source": "FIFA", "source_url": "https://www.fifa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Número de apariciones y años pendientes de registrar; no se muestra cifra." },
+            { "value": null, "label": "UEFA Team of the Year", "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Años exactos pendientes; no se muestra cifra." },
+            { "value": null, "label": "Mejor defensa", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Distinciones individuales pendientes de verificar antes de incluirlas." }
+          ],
+          "notes": [
+            "Los títulos se muestran por competición: 4+4+3+5+2+4 = 22.",
+            "El regreso de 2023/24 no contabiliza partidos oficiales del primer equipo."
+          ]
+        },
+        "todos": {
+          "label": "TODOS",
+          "periodLabel": "2003–2025",
+          "clubs": [
+            {
+              "id": "sevilla",
+              "name": "Sevilla",
+              "country": "España",
+              "from": 2003,
+              "to": 2024,
+              "yearsLabel": "2003–2005 y 2023–2024",
+              "stats": {
+                "appearances": { "value": null, "label": "Partidos", "source": "Pendiente de fuente primaria", "source_url": "https://www.transfermarkt.es/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Dos etapas; sin desglose fiable, no se muestra cifra." },
+                "goals": { "value": null, "label": "Goles", "source": "Pendiente de fuente primaria", "source_url": "https://www.transfermarkt.es/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Sin desglose fiable, no se muestra cifra." },
+                "assists": { "value": null, "label": "Asistencias", "source": "Pendiente de fuente primaria", "source_url": "https://www.transfermarkt.es/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Sin desglose fiable, no se muestra cifra." }
+              },
+              "trophies": [],
+              "notes": ["Sin títulos de primer equipo en la primera etapa; la segunda queda pendiente de revisar."]
+            },
+            {
+              "id": "paris-saint-germain",
+              "name": "Paris Saint-Germain",
+              "country": "Francia",
+              "from": 2021,
+              "to": 2023,
+              "yearsLabel": "2021–2023",
+              "stats": {
+                "appearances": { "value": 58, "label": "Partidos", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." },
+                "goals": { "value": 6, "label": "Goles", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." }
+              },
+              "trophies": [
+                { "value": 2, "label": "Ligue 1", "seasons": ["2021/22", "2022/23"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" }
+              ]
+            },
+            {
+              "id": "monterrey",
+              "name": "Monterrey",
+              "country": "México",
+              "from": 2024,
+              "to": 2025,
+              "yearsLabel": "2024–2025",
+              "stats": {
+                "appearances": { "value": null, "label": "Partidos", "source": "Pendiente de fuente primaria", "source_url": "https://www.transfermarkt.es/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Sin desglose fiable, no se muestra cifra." },
+                "goals": { "value": null, "label": "Goles", "source": "Pendiente de fuente primaria", "source_url": "https://www.transfermarkt.es/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Sin desglose fiable, no se muestra cifra." },
+                "assists": { "value": null, "label": "Asistencias", "source": "Pendiente de fuente primaria", "source_url": "https://www.transfermarkt.es/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Sin desglose fiable, no se muestra cifra." }
+              },
+              "trophies": [],
+              "notes": ["Títulos de Liga MX o Concacaf pendientes de verificar; no se contabilizan."]
+            }
+          ],
+          "nationalTeams": [
+            {
+              "id": "espana",
+              "name": "España",
+              "from": 2005,
+              "to": 2021,
+              "yearsLabel": "2005–2021",
+              "stats": {
+                "appearances": { "value": 180, "label": "Partidos", "source": "RFEF (pendiente de ficha)", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." },
+                "goals": { "value": 23, "label": "Goles", "source": "RFEF (pendiente de ficha)", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." }
+              },
+              "trophies": [
+                { "value": 1, "label": "Mundial", "seasons": ["2010"], "source": "FIFA", "source_url": "https://www.fifa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+                { "value": 2, "label": "Eurocopa", "seasons": ["2008", "2012"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+                { "value": 1, "label": "Nations League", "seasons": ["2022/23"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Según el dossier; pendiente de contrastar la convocatoria en ese torneo." }
+              ]
+            }
+          ],
+          "notes": [
+            "Etapas fuera de España con cifras marcadas con * y pendientes de contraste."
+          ]
+        }
+      }
+    },
+    {
+      "id": "iker-casillas",
+      "order": 10,
+      "name": "Iker Casillas",
+      "cardName": "IKER CASILLAS",
+      "fullName": "Iker Casillas Fernández",
+      "position": ["portero"],
+      "nationality": "España",
+      "flag": "es",
+      "flagLabel": "España",
+      "number": null,
+      "cardImage": null,
+      "assetPending": true,
+      "realMadridPeriod": { "from": 1999, "to": 2015, "label": "1999–2015" },
+      "faces": {
+        "madrid": {
+          "label": "MADRID",
+          "periodLabel": "1999–2015",
+          "stats": {
+            "appearances": { "value": 725, "label": "Partidos", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Cifra oficial del club." },
+            "goals": { "value": 0, "label": "Goles", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "Cero real: portero, no marcó con el club." },
+            "assists": { "value": null, "label": "Asistencias", "source": "Pendiente de fuente primaria", "source_url": "https://www.transfermarkt.es/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "No aplicable o sin registro para un portero; no se muestra cifra." },
+            "titles": { "value": 19, "label": "Títulos", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Desglose pendiente de verificar con la ficha oficial; no sumar Copa Intercontinental y Mundial de Clubes como competiciones distintas cuando correspondan al mismo título histórico." }
+          },
+          "trophies": [
+            { "value": 3, "label": "Champions League", "seasons": ["1999/2000", "2001/02", "2013/14"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 2, "label": "Copa Intercontinental", "seasons": ["1998", "2002"], "source": "Fuentes históricas", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" },
+            { "value": 1, "label": "Mundial de Clubes", "seasons": ["2014"], "source": "FIFA", "source_url": "https://www.fifa.com/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Confirmar su inclusión sin duplicar el título intercontinental." },
+            { "value": 2, "label": "Supercopa de Europa", "seasons": ["2002", "2014"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 5, "label": "Liga", "source": "LALIGA", "source_url": "https://www.laliga.com/noticias/jugadores-historicos-real-madrid", "status": "verified", "last_checked": "2026-11-15", "note": "Temporadas pendientes de detallar." },
+            { "value": 2, "label": "Copa del Rey", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 4, "label": "Supercopa de España", "source": "Real Madrid", "source_url": "https://www.realmadrid.com/es-ES/el-club/historia/futbol/primer-equipo-masculino/goleadores", "status": "verified", "last_checked": "2026-11-15", "note": "" }
+          ],
+          "awards": [
+            { "value": 1, "label": "Guante de Oro del Mundial", "years": ["2010"], "source": "FIFA", "source_url": "https://www.fifa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+            { "value": 5, "label": "Mejor Portero del Mundo IFFHS", "source": "IFFHS (base secundaria)", "source_url": "https://www.transfermarkt.es/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con *; verificar temporadas y cantidad." },
+            { "value": null, "label": "UEFA Club Football Awards", "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Categorías y años sin registrar; no se muestra cifra." },
+            { "value": null, "label": "FIFA FIFPro World XI", "source": "FIFA", "source_url": "https://www.fifa.com/", "status": "needs_verification", "asterisk": true, "last_checked": "2026-11-15", "note": "Número de apariciones y años sin registrar; no se muestra cifra." }
+          ],
+          "notes": [
+            "Los títulos se muestran por competición: 3+2+1+2+5+2+4 = 19."
+          ]
+        },
+        "todos": {
+          "label": "TODOS",
+          "periodLabel": "2015–2020",
+          "clubs": [
+            {
+              "id": "porto",
+              "name": "Porto",
+              "country": "Portugal",
+              "from": 2015,
+              "to": 2020,
+              "yearsLabel": "2015–2020",
+              "stats": {
+                "appearances": { "value": 156, "label": "Partidos", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cifra marcada con * en el dossier." },
+                "goals": { "value": 0, "label": "Goles", "source": "Base secundaria", "source_url": "https://www.transfermarkt.es/", "status": "secondary", "asterisk": true, "last_checked": "2026-11-15", "note": "Cero real: portero, no marcó." }
+              },
+              "trophies": [
+                { "value": 2, "label": "Primeira Liga", "seasons": ["2017/18", "2018/19"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" },
+                { "value": 1, "label": "Supertaça", "seasons": ["2018"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" },
+                { "value": 1, "label": "Taça de Portugal", "seasons": ["2019/20"], "source": "Base secundaria", "source_url": "https://www.rsssf.org/", "status": "secondary", "last_checked": "2026-11-15", "note": "" }
+              ]
+            }
+          ],
+          "nationalTeams": [
+            {
+              "id": "espana",
+              "name": "España",
+              "from": 2000,
+              "to": 2016,
+              "yearsLabel": "2000–2016",
+              "stats": {
+                "appearances": { "value": 167, "label": "Partidos", "source": "RFEF / UEFA", "source_url": "https://www.uefa.com/", "status": "secondary", "last_checked": "2026-11-15", "note": "Cifra ampliamente recogida; conviene contrastarla con la ficha RFEF." },
+                "goals": { "value": 0, "label": "Goles", "source": "RFEF / UEFA", "source_url": "https://www.uefa.com/", "status": "secondary", "last_checked": "2026-11-15", "note": "Cero real: portero, no marcó con la selección." }
+              },
+              "trophies": [
+                { "value": 1, "label": "Mundial", "seasons": ["2010"], "source": "FIFA", "source_url": "https://www.fifa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" },
+                { "value": 2, "label": "Eurocopa", "seasons": ["2008", "2012"], "source": "UEFA", "source_url": "https://www.uefa.com/", "status": "verified", "last_checked": "2026-11-15", "note": "" }
+              ]
+            }
+          ],
+          "notes": [
+            "Etapa en Portugal con cifras de base secundaria marcadas con *."
+          ]
+        }
+      }
+    }
+  ]
+}

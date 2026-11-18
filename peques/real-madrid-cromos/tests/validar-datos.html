@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d99a1e">
+<title>QA · Validar datos Diamante · Real Madrid Cromos</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  font-family:"Trebuchet MS",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --ink:#5a3410;--ink-soft:#7c5527;--gold:#d99a1e;--cream:#fffaf0;
+}
+body{margin:0;padding:clamp(14px,3vw,28px);color:var(--ink);background:linear-gradient(180deg,#fff9eb,#f8e3b3);min-height:100vh}
+.page{width:min(100%,980px);margin:0 auto}
+header{margin-bottom:14px}
+h1{margin:0;font-size:clamp(1.3rem,3.6vw,1.9rem);color:#7a3f00;line-height:1.1}
+.lead{margin:6px 0 0;font-weight:800;color:#8a5a1d;font-size:.92rem;line-height:1.45}
+.card{border:3px solid #fff;border-radius:22px;background:var(--cream);box-shadow:0 12px 28px #7a4a1222;overflow:hidden}
+.summary{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:14px 16px;border-bottom:2px solid #f0e0bb;background:linear-gradient(#fffdf6,#fff7e4)}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;font-weight:1000;font-size:.86rem;border:2px solid}
+.badge.ok{background:#e7f6ea;border-color:#8fce9d;color:#1d6b32}
+.badge.fail{background:#fdeaea;border-color:#e7a2a2;color:#a3113f}
+.badge.wait{background:#fff3d0;border-color:#e7c98a;color:#7a4a12}
+.counts{display:flex;flex-wrap:wrap;gap:6px;margin-left:auto}
+.count{padding:6px 10px;border-radius:999px;border:1px solid #e8d5ab;background:#fff9ea;font-size:.78rem;font-weight:900;color:#6b4a1c}
+.count b{font-size:.94rem}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid #f1e4c8}
+th{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#a86a0c;background:#fffdf6}
+td.rule{font-weight:900;font-size:.9rem}
+td.detail{font-size:.8rem;font-weight:700;color:#6f5734;line-height:1.4}
+td.state{white-space:nowrap}
+.tag{display:inline-block;padding:4px 10px;border-radius:999px;font-weight:1000;font-size:.74rem;letter-spacing:.06em;border:2px solid}
+.tag.pass{background:#e7f6ea;border-color:#8fce9d;color:#1d6b32}
+.tag.fail{background:#fdeaea;border-color:#e7a2a2;color:#a3113f}
+tr.is-fail{background:#fff5f5}
+tr.is-pass .num{color:#1d6b32}
+.num{font-weight:1000;color:#8a5a1d}
+pre{margin:0;padding:14px 16px;overflow:auto;font-size:.78rem;line-height:1.45;background:#241705;color:#ffe9b8;border-radius:0 0 22px 22px;max-height:340px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
+.actions a,.actions button{
+  display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:9px 16px;
+  border-radius:999px;border:2px solid #f0d9a8;background:#fffaf0;color:#7a4a12;
+  font:inherit;font-weight:1000;font-size:.88rem;text-decoration:none;cursor:pointer;
+}
+.actions a:hover,.actions button:hover{background:#fff}
+.legend{margin:12px 0 0;font-size:.78rem;font-weight:800;color:#8a6a3f;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1>QA · Datos «Real Madrid Cromos Diamante»</h1>
+    <p class="lead">Valida <code>data/players.json</code>: 10 jugadores, 20 caras, ausencia de datos del club en la cara TODOS, fuentes y estados, asteriscos, ceros reales, dorsales e imágenes. Los resultados se muestran aquí, sin consola.</p>
+  </header>
+
+  <section class="card" aria-labelledby="resTitle">
+    <h2 class="sr-only" id="resTitle" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Resultados</h2>
+    <div class="summary">
+      <span class="badge wait" id="globalBadge">Comprobando…</span>
+      <div class="counts">
+        <span class="count">Jugadores <b id="cPlayers">–</b></span>
+        <span class="count">Caras <b id="cFaces">–</b></span>
+        <span class="count">Estadísticas <b id="cStats">–</b></span>
+        <span class="count">PASS <b id="cPass">–</b></span>
+        <span class="count">FAIL <b id="cFail">–</b></span>
+      </div>
+    </div>
+    <div style="overflow-x:auto">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Regla</th><th>Resultado</th><th>Detalle</th></tr>
+        </thead>
+        <tbody id="rows">
+          <tr><td colspan="4" style="font-weight:900;color:#8a5a1d">Cargando datos…</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <pre id="dump" hidden></pre>
+  </section>
+
+  <div class="actions">
+    <a href="../index.html">← Ir al juego</a>
+    <button type="button" id="reload">Volver a comprobar</button>
+    <button type="button" id="toggleDump">Ver datos cargados</button>
+  </div>
+
+  <p class="legend">Si esta página no carga los datos, ábrela desde el servidor local del proyecto (<code>tools\serve.ps1</code>) en <code>http://127.0.0.1:8767/peques/real-madrid-cromos/tests/validar-datos.html</code>. El navegador no permite leer archivos locales con <code>fetch</code> desde <code>file://</code>.</p>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var STATUS_VALUES = ['verified', 'secondary', 'disputed', 'needs_verification'];
+  var ORDER_IDS = ['cristiano-ronaldo', 'alfredo-di-stefano', 'raul-gonzalez', 'luka-modric', 'karim-benzema', 'ferenc-puskas', 'zinedine-zidane', 'paco-gento', 'sergio-ramos', 'iker-casillas'];
+  var ORDER_TOKENS = ['cristiano ronaldo', 'di stefano', 'raul', 'modric', 'benzema', 'puskas', 'zidane', 'gento', 'ramos', 'casillas'];
+
+  function norm(text) {
+    return String(text || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+  function esc(value) {
+    return String(value === null || value === undefined ? '' : value).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function byId(players, id) {
+    var found = null;
+    players.forEach(function (p) { if (p.id === id) { found = p; } });
+    return found;
+  }
+
+  /* Recorre el JSON y devuelve todo objeto que tenga la propiedad value */
+  function collectStats(node, path, ctx, out) {
+    if (Array.isArray(node)) {
+      node.forEach(function (item, index) {
+        var nextCtx = ctx;
+        if (item && typeof item === 'object' && item.name && /\.(clubs|nationalTeams)$/.test(path)) {
+          nextCtx = item.name;
+        }
+        collectStats(item, path + '[' + index + ']', nextCtx, out);
+      });
+      return;
+    }
+    if (!node || typeof node !== 'object') { return; }
+    if (Object.prototype.hasOwnProperty.call(node, 'value')) {
+      out.push({ stat: node, path: path, ctx: ctx });
+      return;
+    }
+    Object.keys(node).forEach(function (key) {
+      collectStats(node[key], path ? path + '.' + key : key, ctx, out);
+    });
+  }
+
+  var ASTERISK_RULES = [
+    { player: 'cristiano-ronaldo', label: 'CR7 · goles Madrid (451 Real Madrid / 450 LALIGA)', test: function (p) { return p.faces.madrid.stats.goals.asterisk === true; } },
+    { player: 'cristiano-ronaldo', label: 'CR7 · asistencias Madrid', test: function (p) { return p.faces.madrid.stats.assists.asterisk === true; } },
+    { player: 'cristiano-ronaldo', label: 'CR7 · League Cup sin cifra (REVISAR)', test: function (p) {
+      var club = (p.faces.todos.clubs || []).filter(function (c) { return c.id === 'manchester-united'; })[0];
+      return !!club && club.trophies.some(function (t) { return t.label === 'League Cup' && t.value === null && t.status === 'needs_verification' && t.asterisk === true; });
+    } },
+    { player: 'cristiano-ronaldo', label: 'CR7 · partidos con Portugal', test: function (p) { return p.faces.todos.nationalTeams[0].stats.appearances.asterisk === true; } },
+    { player: 'alfredo-di-stefano', label: 'Di Stéfano · asistencias (sin serie histórica)', test: function (p) { return p.faces.madrid.stats.assists.value === null && p.faces.madrid.stats.assists.asterisk === true; } },
+    { player: 'alfredo-di-stefano', label: 'Di Stéfano · total de títulos', test: function (p) { return p.faces.madrid.stats.titles.asterisk === true; } },
+    { player: 'alfredo-di-stefano', label: 'Di Stéfano · etapa previa (River/Huracán/Millonarios)', test: function (p) {
+      return (p.faces.todos.clubs || []).every(function (c) { return c.stats.appearances.asterisk === true; });
+    } },
+    { player: 'raul-gonzalez', label: 'Raúl · 15 FIFA / 16 por criterio', test: function (p) { return p.faces.madrid.stats.titles.asterisk === true && p.faces.madrid.stats.titles.status === 'disputed'; } },
+    { player: 'raul-gonzalez', label: 'Raúl · partidos con España', test: function (p) { return p.faces.todos.nationalTeams[0].stats.appearances.asterisk === true; } },
+    { player: 'luka-modric', label: 'Modrić · total de 28 títulos', test: function (p) { return p.faces.madrid.stats.titles.asterisk === true; } },
+    { player: 'luka-modric', label: 'Modrić · partidos con Croacia', test: function (p) { return p.faces.todos.nationalTeams[0].stats.appearances.asterisk === true; } },
+    { player: 'karim-benzema', label: 'Benzema · desglose de 25 títulos', test: function (p) { return p.faces.madrid.stats.titles.asterisk === true; } },
+    { player: 'karim-benzema', label: 'Benzema · goles con Francia', test: function (p) { return p.faces.todos.nationalTeams[0].stats.goals.asterisk === true; } },
+    { player: 'ferenc-puskas', label: 'Puskás · total de 10 títulos (desglose 9)', test: function (p) { return p.faces.madrid.stats.titles.asterisk === true; } },
+    { player: 'ferenc-puskas', label: 'Puskás · tercera Copa de Europa sin temporada', test: function (p) {
+      var trophy = (p.faces.madrid.trophies || []).filter(function (t) { return t.label === 'Copa de Europa'; })[0];
+      return !!trophy && trophy.asterisk === true;
+    } },
+    { player: 'ferenc-puskas', label: 'Puskás · goles con España (cero real)', test: function (p) {
+      var team = p.faces.todos.nationalTeams.filter(function (t) { return t.id === 'espana'; })[0];
+      return !!team && team.stats.goals.value === 0 && team.stats.goals.asterisk === true;
+    } },
+    { player: 'zinedine-zidane', label: 'Zidane · partidos con Francia', test: function (p) { return p.faces.todos.nationalTeams[0].stats.appearances.asterisk === true; } },
+    { player: 'paco-gento', label: 'Gento · 23 títulos y Copa de España 2 o 3', test: function (p) {
+      var copa = (p.faces.madrid.trophies || []).filter(function (t) { return t.label === 'Copa de España'; })[0];
+      return p.faces.madrid.stats.titles.asterisk === true && !!copa && copa.asterisk === true && copa.status === 'disputed';
+    } },
+    { player: 'sergio-ramos', label: 'Ramos · lista de 22 títulos', test: function (p) { return p.faces.madrid.stats.titles.asterisk === true; } },
+    { player: 'sergio-ramos', label: 'Ramos · partidos con España', test: function (p) { return p.faces.todos.nationalTeams[0].stats.appearances.asterisk === true; } },
+    { player: 'iker-casillas', label: 'Casillas · total de 19 títulos', test: function (p) { return p.faces.madrid.stats.titles.asterisk === true; } },
+    { player: 'iker-casillas', label: 'Casillas · asistencias no aplicables', test: function (p) { return p.faces.madrid.stats.assists.asterisk === true; } },
+    { player: 'iker-casillas', label: 'Casillas · partidos con el Porto', test: function (p) { return p.faces.todos.clubs[0].stats.appearances.asterisk === true; } }
+  ];
+
+  function run(data, raw) {
+    var players = data.players || [];
+    var results = [];
+    function add(name, ok, detail) { results.push({ name: name, ok: !!ok, detail: detail }); }
+
+    /* 1 · 10 jugadores en orden fijo */
+    var orderOk = players.length === 10 && players.every(function (p, i) {
+      return p.order === i + 1 && p.id === ORDER_IDS[i] && norm(p.name).indexOf(norm(ORDER_TOKENS[i])) !== -1;
+    });
+    add('10 jugadores en el orden fijo (01–10)', orderOk,
+      orderOk ? players.map(function (p) { return ('0' + p.order).slice(-2) + ' ' + p.name; }).join(' · ')
+        : 'Esperados 10 jugadores con los ids y nombres del dossier; encontrados ' + players.length + '.');
+
+    /* 2 · 20 caras lógicas */
+    var faces = 0;
+    var facesOk = players.length === 10 && players.every(function (p) {
+      var names = p.faces ? Object.keys(p.faces) : [];
+      if (names.length === 2 && names.indexOf('madrid') !== -1 && names.indexOf('todos') !== -1) { faces += 2; return true; }
+      return false;
+    });
+    add('20 caras lógicas (MADRID + TODOS por jugador)', facesOk, faces + ' caras detectadas.');
+
+    /* 3 · ninguna mención al club en la cara TODOS */
+    var leaks = players.filter(function (p) {
+      return JSON.stringify(p.faces.todos).toLowerCase().indexOf('real madrid') !== -1;
+    }).map(function (p) { return p.name; });
+    add('La cara TODOS no menciona «Real Madrid»', leaks.length === 0,
+      leaks.length ? 'Aparece en: ' + leaks.join(', ') : 'Ninguna cadena «Real Madrid» en las 10 caras TODOS.');
+
+    /* 4 · fuente, URL, estado y fecha en toda estadística */
+    var allStats = [];
+    players.forEach(function (p) {
+      collectStats(p.faces, p.id + '.faces', p.name, allStats);
+    });
+    var bad = allStats.filter(function (item) {
+      var s = item.stat;
+      return !s.label || !s.source || !s.source_url || STATUS_VALUES.indexOf(s.status) === -1 ||
+        !/^\d{4}-\d{2}-\d{2}$/.test(String(s.last_checked || ''));
+    }).map(function (item) { return item.path; });
+    add('Toda estadística tiene source, source_url, status válido y last_checked', bad.length === 0,
+      bad.length ? 'Revisar: ' + bad.slice(0, 6).join(', ') + (bad.length > 6 ? '…' : '') : allStats.length + ' estadísticas revisadas, todas completas.');
+
+    /* 5 · asteriscos del dossier */
+    var missing = [];
+    ASTERISK_RULES.forEach(function (rule) {
+      var player = byId(players, rule.player);
+      if (!player || !rule.test(player)) { missing.push(rule.player + ': ' + rule.label); }
+    });
+    add('Asteriscos presentes en los datos marcados con * o REVISAR', missing.length === 0,
+      missing.length ? 'Falta el asterisco en: ' + missing.join(' | ') : ASTERISK_RULES.length + ' reglas de asterisco comprobadas.');
+
+    /* 6 · sin la cadena N/D */
+    var hasND = /N\/D/i.test(raw);
+    add('No existe la cadena «N/D» en el JSON', !hasND,
+      hasND ? 'Se ha encontrado «N/D» en el archivo.' : 'No se usa como sustituto de datos ausentes.');
+
+    /* 7 · ceros solo cuando son reales */
+    var zeros = allStats.filter(function (item) { return item.stat.value === 0; });
+    var badZeros = zeros.filter(function (item) {
+      var s = item.stat;
+      var ctx = norm(item.ctx);
+      if (norm(s.label) !== 'goles') { return true; }
+      if (item.path.indexOf('iker-casillas') !== -1) { return false; }
+      if (item.path.indexOf('ferenc-puskas') !== -1 && ctx.indexOf('espana') !== -1) { return false; }
+      return true;
+    });
+    add('Ceros solo en los ceros reales (goles de porteros y de Puskás con España)', badZeros.length === 0,
+      badZeros.length ? 'Ceros no permitidos: ' + badZeros.map(function (i) { return i.path; }).join(', ')
+        : zeros.length + ' ceros reales: ' + zeros.map(function (i) { return i.ctx + ' · ' + i.stat.label; }).join(' | '));
+
+    /* 8 · dorsal solo para Cristiano */
+    var withNumber = players.filter(function (p) { return p.number !== null && p.number !== undefined; });
+    var numberOk = withNumber.length === 1 && withNumber[0].id === 'cristiano-ronaldo' && String(withNumber[0].number) === '07';
+    add('Dorsal distinto de null solo para Cristiano («07»)', numberOk,
+      withNumber.length ? withNumber.map(function (p) { return p.name + ' = ' + p.number; }).join(' · ') : 'Ningún dorsal declarado.');
+
+    /* 9 · imagen solo para Cristiano */
+    var withImage = players.filter(function (p) { return p.cardImage !== null && p.cardImage !== undefined; });
+    var imageOk = withImage.length === 1 && withImage[0].id === 'cristiano-ronaldo' &&
+      withImage[0].cardImage === '../CR7_DIAMANTE_MADRID_vista_previa.png';
+    add('cardImage distinto de null solo para Cristiano', imageOk,
+      withImage.length ? withImage.map(function (p) { return p.name + ' = ' + p.cardImage; }).join(' · ') : 'Ninguna imagen declarada.');
+
+    /* 10 · coherencia de assets pendientes */
+    var pendingOk = players.every(function (p) {
+      return p.cardImage ? p.assetPending === false : p.assetPending === true;
+    });
+    add('Coherencia de assets: sin imagen ⇒ assetPending true', pendingOk,
+      pendingOk ? 'Cristiano usa la carta aprobada; los otros 9 quedan marcados como pendientes.' : 'Hay jugadores sin imagen no marcados como pendientes, o al contrario.');
+
+    return { results: results, stats: allStats.length, faces: faces, players: players.length };
+  }
+
+  function render(outcome) {
+    var rows = document.getElementById('rows');
+    var pass = outcome.results.filter(function (r) { return r.ok; }).length;
+    var fail = outcome.results.length - pass;
+    rows.innerHTML = outcome.results.map(function (r, i) {
+      return '<tr class="' + (r.ok ? 'is-pass' : 'is-fail') + '">' +
+        '<td class="num">' + (i + 1) + '</td>' +
+        '<td class="rule">' + esc(r.name) + '</td>' +
+        '<td class="state"><span class="tag ' + (r.ok ? 'pass' : 'fail') + '">' + (r.ok ? 'PASS' : 'FAIL') + '</span></td>' +
+        '<td class="detail">' + esc(r.detail) + '</td>' +
+        '</tr>';
+    }).join('');
+    document.getElementById('cPlayers').textContent = outcome.players;
+    document.getElementById('cFaces').textContent = outcome.faces;
+    document.getElementById('cStats').textContent = outcome.stats;
+    document.getElementById('cPass').textContent = pass;
+    document.getElementById('cFail').textContent = fail;
+    var badge = document.getElementById('globalBadge');
+    badge.className = 'badge ' + (fail ? 'fail' : 'ok');
+    badge.textContent = fail
+      ? '✗ ' + fail + ' regla(s) con FAIL · ' + pass + ' PASS'
+      : '✓ Todo correcto · ' + pass + ' de ' + outcome.results.length + ' reglas PASS';
+    document.title = (fail ? 'FAIL · ' : 'PASS · ') + 'QA Real Madrid Cromos';
+  }
+
+  function load() {
+    var rows = document.getElementById('rows');
+    rows.innerHTML = '<tr><td colspan="4" style="font-weight:900;color:#8a5a1d">Cargando data/players.json…</td></tr>';
+    var badge = document.getElementById('globalBadge');
+    badge.className = 'badge wait';
+    badge.textContent = 'Comprobando…';
+
+    fetch('../data/players.json', { cache: 'no-store' })
+      .then(function (response) {
+        if (!response.ok) { throw new Error('HTTP ' + response.status); }
+        return response.text();
+      })
+      .then(function (text) {
+        var data = JSON.parse(text);
+        var outcome = run(data, text);
+        render(outcome);
+        var dump = document.getElementById('dump');
+        dump.textContent = JSON.stringify(data, null, 2);
+      })
+      .catch(function (error) {
+        var badgeFail = document.getElementById('globalBadge');
+        badgeFail.className = 'badge fail';
+        badgeFail.textContent = '✗ No se pudieron cargar los datos';
+        rows.innerHTML = '<tr class="is-fail"><td class="num">–</td><td class="rule">Carga de data/players.json</td>' +
+          '<td class="state"><span class="tag fail">FAIL</span></td>' +
+          '<td class="detail">' + esc(error.message) + '. Abre esta página con el servidor local del proyecto (tools\\serve.ps1) para que fetch pueda leer el JSON.</td></tr>';
+      });
+  }
+
+  document.getElementById('reload').addEventListener('click', load);
+  document.getElementById('toggleDump').addEventListener('click', function () {
+    var dump = document.getElementById('dump');
+    dump.hidden = !dump.hidden;
+    this.textContent = dump.hidden ? 'Ver datos cargados' : 'Ocultar datos cargados';
+  });
+
+  load();
+})();
+</script>
+</body>
+</html>

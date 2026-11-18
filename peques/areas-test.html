@@ -82,6 +82,9 @@ const areaCatalog={
   {mode:'atencion',title:'Atención',emoji:'👀',questions:[['¿Cuál de estas palabras es un color?',['Verde','Ventana','Correr','Silla'],'Verde'],['¿Cuál es diferente? Gato, perro, conejo, manzana.',['Manzana','Gato','Perro','Conejo'],'Manzana']]},
   {mode:'cristic-juegos',kind:'external',title:'Más juegos para 6–8 años · Cristic',emoji:'🧩',url:'https://www.cristic.com/1o-y-2o-de-primaria/Juegos?lang=ca'},
   {mode:'cokitos-siete',kind:'external',title:'Juegos para 7 años · Cokitos',emoji:'🎮',url:'https://www.cokitos.com/category/juegos-para-ninos-de-7-anos/'}
+ ]},
+ 'real-madrid':{title:'Isla Real Madrid',key:'real_madrid',modules:[
+  {mode:'real-madrid-cromos',kind:'page',title:'Real Madrid Cromos',subtitle:'Colección Diamante · 10 cartas con dos caras',image:'real-madrid-cromos/assets/RMportada.png',emoji:'⚽',profiles:['mireia','guest'],newFor:['mireia','guest'],url:'real-madrid-cromos/index.html'}
  ]}
 };
 const slug=params.get('area')||'ciencias',area=areaCatalog[slug]||areaCatalog.ciencias;
