@@ -1,10 +1,10 @@
 # Real Madrid Cromos — tareas abiertas
 
-> Actualizado: 17/11/2026 · Estado de partida: integración DIAMANTE construida y verificada en local; cara TODOS rediseñada como visual (trofeos con icono y años, escudo + bandera, estadísticas con iconos), sin publicar.
+> Actualizado: 18/11/2026 · Estado: publicado en `907da70` y verificado en GitHub Pages (juego, datos, portada, QA, mapa y área); cara TODOS visual, cuenta atrás 10→1, giro 3D y placa «Real Madrid» en el mapa.
 
 ## Bloqueantes para publicar
 
-- [ ] **Autorización del usuario** para commit y push. Ya autorizados (17/11): la isla «Real Madrid» en `mundo-mireia.html`, el área `real-madrid` en `areas-test.html` y el cambio de portada del juego.
+- [x] **Autorización del usuario** para commit y push. Publicado el 18/11 en `907da70` (juego, placa del mapa, área `real-madrid` y portada).
 
 ## Datos (dossier del 15/11/2026)
 
@@ -45,7 +45,7 @@
 - [ ] Historias concretas (4–5 por jugador) con texto breve para niños.
 - [ ] Progreso/colección por perfil y claves de localStorage propias (whitelist en `mi-progreso.html`).
 - [x] **Integración en el mapa (17/11, con autorización del usuario):** acceso «Real Madrid» en `mundo-mireia.html` + área `real-madrid` en `areas-test.html` con el juego «Real Madrid Cromos». Flujo verificado en local: mapa → placa → área → juego. La zona está pensada como hub para este y otros juegos futuros.
-- [x] **Placa en el mapa (18/11):** se retira la isla SVG (mala resolución) y se pone un recuadro con escudo + «Real Madrid» / «Cromos y juegos» en el hueco de agua al sur de Ciencias, junto a Mitología Griega (x 16,5 %, y 73 %). Verificado sin solaparse con la zona clicable de Mitología ni desbordar a 1440/1280/1024/851/768/390/320 px.
+- [x] **Placa en el mapa (18/11):** se retira la isla SVG (mala resolución) y se pone un recuadro con escudo + «Real Madrid» / «Cromos y juegos» en el hueco de agua al sur de Ciencias, junto a Mitología Griega (x 16 %, y 73 %). Verificado sin solaparse con la zona clicable de Mitología ni desbordar a 1440/1280/1024/851/768/390/320 px.
 - [ ] **Valorar con el usuario el coste de una imagen de mapa mejor** (más resolución y más huecos para islas/juegos) y, si se aprueba, sustituir la placa por la isla generada. La placa actual es la solución «de momento».
 - [x] **Giro 3D entre caras (18/11):** el cambio MADRID ↔ TODOS gira la carta 180° (`rotateY`, 0,62 s), con altura animada y sincronizada, `inert`/`aria-hidden` en la cara oculta y respeto a `prefers-reduced-motion`. Verificado a 817/390/320 px.
 - [ ] **Integrar los 3 diseños del usuario** (CR7, Di Stéfano y Raúl, cartas de dos caras): pedirlos en `Downloads\RM cromos` (ver README, sección de assets). Al llegar: recortar anverso/reverso si vienen juntos, guardarlos en `assets/players/<id>/`, añadir `cardImageFront`/`cardImageBack` al JSON, adaptar la vista y ampliar el QA.
@@ -56,4 +56,4 @@
 - [x] QA `tests/validar-datos.html`: 10 reglas PASS (265 estadísticas, 20 caras, 10 jugadores).
 - [x] Layout sin desbordamiento horizontal a 1280/817, 390 y 320 px; sin errores de consola. Re-verificado 17/11 tras el rediseño TODOS (iconos, tiles, escudos, banderas); corregido el salto de línea de los años largos a 320 px.
 - [ ] Revisar la marca de agua del escudo (queda como forma geométrica con `opacity:.13`; valorar un SVG más fiel si el usuario lo pide).
-- [ ] Mostrar al usuario el nuevo diseño TODOS con captura cuando la ventana del navegador esté visible.
+- [x] Mostrar al usuario el nuevo diseño TODOS con captura (18/11; capturas del mapa, del anverso y del reverso disponibles en el historial de la sesión).
