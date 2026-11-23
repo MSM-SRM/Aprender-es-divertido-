@@ -1,6 +1,6 @@
 {
   "language": "es-ES",
-  "voice": "Lucía (ClipUtils, pendiente de prueba auditiva)",
+  "voice": "DaveFX (Piper es_ES-davefx-medium)",
   "source": "comunidades_aut_nomas_de_espa_a.txt",
   "totalAudioFiles": 209,
   "territories": [
