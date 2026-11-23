@@ -10,7 +10,7 @@
       "gent": "Andaluz / Andaluza",
       "intro": {
         "file": "andalucia/00-presentacion.mp3",
-        "text": "Estamos en ANDALUCÍA. Sus habitantes se llaman andaluzes y andaluzas."
+        "text": "Estamos en Andalucía. Sus habitantes son andaluces y andaluzas."
       },
       "facts": [
         {
@@ -71,7 +71,7 @@
       "gent": "Aragonés / Aragonesa",
       "intro": {
         "file": "aragon/00-presentacion.mp3",
-        "text": "Estamos en ARAGÓN. Sus habitantes se llaman aragonéses y aragonesas."
+        "text": "Estamos en Aragón. Sus habitantes son aragoneses y aragonesas."
       },
       "facts": [
         {
@@ -132,7 +132,7 @@
       "gent": "Asturiano / Asturiana",
       "intro": {
         "file": "principado-de-asturias/00-presentacion.mp3",
-        "text": "Estamos en ASTURIAS. Sus habitantes se llaman asturianoes y asturianas."
+        "text": "Estamos en Asturias. Sus habitantes son asturianos y asturianas."
       },
       "facts": [
         {
@@ -193,7 +193,7 @@
       "gent": "Balear",
       "intro": {
         "file": "illes-balears/00-presentacion.mp3",
-        "text": "Estamos en las Islas Baleares. Sus habitantes se llaman baleares."
+        "text": "Estamos en las Islas Baleares. Sus habitantes son baleares."
       },
       "facts": [
         {
@@ -254,7 +254,7 @@
       "gent": "Canario / Canaria",
       "intro": {
         "file": "canarias/00-presentacion.mp3",
-        "text": "Estamos en CANARIAS. Sus habitantes se llaman canarioes y canarias."
+        "text": "Estamos en Canarias. Sus habitantes son canarios y canarias."
       },
       "facts": [
         {
@@ -315,7 +315,7 @@
       "gent": "Cántabro / Cántabra",
       "intro": {
         "file": "cantabria/00-presentacion.mp3",
-        "text": "Estamos en CANTABRIA. Sus habitantes se llaman cántabroes y cántabras."
+        "text": "Estamos en Cantabria. Sus habitantes son cántabros y cántabras."
       },
       "facts": [
         {
@@ -376,7 +376,7 @@
       "gent": "Castellanomanchego / Castellanomanchega",
       "intro": {
         "file": "castilla-la-mancha/00-presentacion.mp3",
-        "text": "Estamos en CASTILLA-LA MANCHA. Sus habitantes se llaman castellanomanchegoes y castellanomanchegas."
+        "text": "Estamos en Castilla-La Mancha. Sus habitantes son castellanomanchegos y castellanomanchegas."
       },
       "facts": [
         {
@@ -437,7 +437,7 @@
       "gent": "Castellanoleonés / Castellanoleonesa",
       "intro": {
         "file": "castilla-y-leon/00-presentacion.mp3",
-        "text": "Estamos en CASTILLA Y LEÓN. Sus habitantes se llaman castellanoleonéses y castellanoleonesas."
+        "text": "Estamos en Castilla y León. Sus habitantes son castellanoleoneses y castellanoleonesas."
       },
       "facts": [
         {
@@ -498,7 +498,7 @@
       "gent": "Catalán / Catalana",
       "intro": {
         "file": "cataluna/00-presentacion.mp3",
-        "text": "Estamos en CATALUÑA. Sus habitantes se llaman catalánes y catalanas."
+        "text": "Estamos en Cataluña. Sus habitantes son catalanes y catalanas."
       },
       "facts": [
         {
@@ -559,7 +559,7 @@
       "gent": "Valenciano / Valenciana",
       "intro": {
         "file": "comunitat-valenciana/00-presentacion.mp3",
-        "text": "Estamos en la Comunidad Valenciana. Sus habitantes se llaman valencianoes y valencianas."
+        "text": "Estamos en la Comunidad Valenciana. Sus habitantes son valencianos y valencianas."
       },
       "facts": [
         {
@@ -620,7 +620,7 @@
       "gent": "Extremeño / Extremeña",
       "intro": {
         "file": "extremadura/00-presentacion.mp3",
-        "text": "Estamos en EXTREMADURA. Sus habitantes se llaman extremeñoes y extremeñas."
+        "text": "Estamos en Extremadura. Sus habitantes son extremeños y extremeñas."
       },
       "facts": [
         {
@@ -681,7 +681,7 @@
       "gent": "Gallego / Gallega",
       "intro": {
         "file": "galicia/00-presentacion.mp3",
-        "text": "Estamos en GALICIA. Sus habitantes se llaman gallegoes y gallegas."
+        "text": "Estamos en Galicia. Sus habitantes son gallegos y gallegas."
       },
       "facts": [
         {
@@ -742,7 +742,7 @@
       "gent": "Madrileño / Madrileña",
       "intro": {
         "file": "comunidad-de-madrid/00-presentacion.mp3",
-        "text": "Estamos en la Comunidad de Madrid. Sus habitantes se llaman madrileñoes y madrileñas."
+        "text": "Estamos en la Comunidad de Madrid. Sus habitantes son madrileños y madrileñas."
       },
       "facts": [
         {
@@ -803,7 +803,7 @@
       "gent": "Murciano / Murciana",
       "intro": {
         "file": "region-de-murcia/00-presentacion.mp3",
-        "text": "Estamos en la Región de Murcia. Sus habitantes se llaman murcianoes y murcianas."
+        "text": "Estamos en la Región de Murcia. Sus habitantes son murcianos y murcianas."
       },
       "facts": [
         {
@@ -864,7 +864,7 @@
       "gent": "Navarro / Navarra",
       "intro": {
         "file": "comunidad-foral-de-navarra/00-presentacion.mp3",
-        "text": "Estamos en Navarra. Sus habitantes se llaman navarroes y navarras."
+        "text": "Estamos en Navarra. Sus habitantes son navarros y navarras."
       },
       "facts": [
         {
@@ -925,7 +925,7 @@
       "gent": "Vasco / Vasca",
       "intro": {
         "file": "pais-vasco-euskadi/00-presentacion.mp3",
-        "text": "Estamos en el País Vasco. Sus habitantes se llaman vascoes y vascas."
+        "text": "Estamos en el País Vasco. Sus habitantes son vascos y vascas."
       },
       "facts": [
         {
@@ -986,7 +986,7 @@
       "gent": "Riojano / Riojana",
       "intro": {
         "file": "la-rioja/00-presentacion.mp3",
-        "text": "Estamos en LA RIOJA. Sus habitantes se llaman riojanoes y riojanas."
+        "text": "Estamos en La Rioja. Sus habitantes son riojanos y riojanas."
       },
       "facts": [
         {
@@ -1047,7 +1047,7 @@
       "gent": "Ceutí",
       "intro": {
         "file": "ceuta/00-presentacion.mp3",
-        "text": "Estamos en CEUTA. Sus habitantes se llaman ceutíes."
+        "text": "Estamos en Ceuta. Sus habitantes son ceutíes."
       },
       "facts": [
         {
@@ -1108,7 +1108,7 @@
       "gent": "Melillense",
       "intro": {
         "file": "melilla/00-presentacion.mp3",
-        "text": "Estamos en MELILLA. Sus habitantes se llaman melillenses."
+        "text": "Estamos en Melilla. Sus habitantes son melillenses."
       },
       "facts": [
         {
