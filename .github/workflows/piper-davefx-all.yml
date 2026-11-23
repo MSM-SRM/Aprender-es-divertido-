@@ -1,0 +1,67 @@
+name: Generar los 209 audios de comunidades con DaveFX
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: generar-audios-comunidades-davefx
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar Piper y FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          python -m pip install --upgrade pip
+          python -m pip install piper-tts
+
+      - name: Generar los 209 MP3
+        run: |
+          python peques/puzzle-comunidades/audio/es/generate_all.py
+
+      - name: Actualizar voz declarada en el manifiesto
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("peques/puzzle-comunidades/audio/es/audio-manifest.json")
+          data = json.loads(p.read_text(encoding="utf-8"))
+          data["voice"] = "DaveFX (Piper es_ES-davefx-medium)"
+          p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          PY
+
+      - name: Guardar los audios en GitHub
+        run: |
+          rm -rf peques/puzzle-comunidades/audio/es/muestras-davefx
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add peques/puzzle-comunidades/audio/es/audio-manifest.json
+          git add peques/puzzle-comunidades/audio/es/*/
+          git diff --cached --quiet && { echo "No hay cambios que guardar."; exit 1; }
+          git commit -m "Añade los 209 audios de comunidades con voz DaveFX"
+          git push
+
+      - name: Resumen
+        if: success()
+        run: |
+          echo "## Audios generados y publicados" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Voz: DaveFX (Piper es_ES-davefx-medium)" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Total esperado: 209 MP3" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Los archivos se han guardado en el repositorio y estarán disponibles para GitHub Pages." >> "$GITHUB_STEP_SUMMARY"
