@@ -1479,3 +1479,186 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - **Publicado en `8aa0bfd` y verificado en GitHub Pages.** El commit incluye `peques/que-haces-mireia.html`, `peques/que-hora-es.html` y la documentación; no se incluyeron `qa/`, `AGENTS.md`, la imagen del capibara, los cromos de Real Madrid ni assets sin uso.
 - Producción: `que-haces-mireia.html` 200 (33.060 B, hash idéntico al local), hub `que-hora-es.html` 200 (39.730 B) con `startMireia` y el enlace, `mireia-day.jpg` 200 `image/jpeg` (32.616 B) y `gold-bg.jpg` 200 (26.536 B); `check-prod.ps1` correcto.
 - El arnés temporal `qa/tmp-mireia-harness.html` se usó solo para las medidas y se eliminó.
+
+## Actualización 18/11/2026 - «Banderas del mundo»
+
+### Alcance
+
+- Juego nuevo en Juegos: `peques/banderas-mundo.html` (40.188 B), tarjeta NEW con portada `peques/banderas/portada.svg` en `peques/areas-test.html` (módulo `banderas-mundo`, perfiles Sofia, Mireia y Guest) y etiqueta «Banderas del mundo» en `peques/mi-progreso.html`.
+- Datos: `peques/banderas/datos.js` con 5 continentes y 184 países (nombre, ISO y dificultad). Banderas: 184 SVG en `peques/banderas/banderas/` (1.331.714 B) de flag-icons 7.2.3 (MIT, © Panayiotis Lipiridis), con atribución al pie. Sin peticiones externas; Windows no dibuja banderas emoji, por eso se usan archivos.
+- No se modifica el mapa del mundo existente: el juego tiene su propio mapamundi SVG y se entra desde la tarjeta de Juegos.
+
+### Funcionamiento
+
+- Portada: mapamundi estilizado con cinco continentes clicables y etiquetas; botones grandes con el progreso de cada continente. Clic, Enter o Espacio abren el continente.
+- Continente: rejilla con todas las banderas (5 columnas en escritorio, 2 en móvil). Cada bandera se marca como vista al tocarla y se guarda en `mundoAprendizajeBanderasVistasV1_<perfil>`. El quiz se desbloquea solo cuando se han tocado todas las banderas del continente.
+- Quiz: modos fácil y difícil, siempre 10 preguntas aleatorias sin repetir país. Pools por dificultad con relleno del otro nivel si hacen falta (Oceanía tiene 14 países: 5 fáciles y 9 difíciles). Dos formatos alternos: bandera + 3 nombres y nombre + 3 banderas; 3 opciones únicas y una correcta del mismo continente. Teclado 1–3, feedback con la respuesta correcta, barra de progreso y «Siguiente».
+- Estrellas: oro 9–10, plata 7–8, bronce 5–6 (90/70/50 %, las mismas reglas que los juegos de 20 preguntas). Se guardan por continente y dificultad en `mundoAprendizajeBanderasEstrellasV1_<perfil>` y se suma una al área `banderas` de `MiProgreso`, que aparece en Mi Progreso. La pantalla final muestra aciertos, estrella y acumulado; permite repetir, volver a las banderas o al mapamundi.
+- Accesibilidad y responsive: grupos SVG con `role="button"`, `tabindex` y activación por teclado; `aria-live` en el feedback; `alt` en las banderas; foco visible; Escape vuelve al continente o al mapa; `prefers-reduced-motion` desactiva animaciones. Sin desbordamiento horizontal a 1280, 390 y 320 px; en móvil las opciones de bandera van en 3 columnas y «Siguiente» queda a la vista.
+
+### Pruebas
+
+- Recorrido automático de los 10 combos continente×dificultad: 10 preguntas por quiz, 10 países únicos, 3 opciones únicas, exactamente una correcta, 5 preguntas de cada formato y países del modo correcto (con relleno en Oceanía). Resultado 10/10 en todos y estrella de oro.
+- Estrellas comprobadas: área `banderas` con 10 de oro tras las pruebas y registros separados por continente/dificultad; `byGame` con `banderas_<continente>_<modo>`. Progreso de invitado restaurado a `{"stars":1,"rounds":0,"byGame":{},"byArea":{"ciencias":{"gold":1,"silver":0,"bronze":0}}}`.
+- Medidas con iframes: 390×844 y 320×640 sin desbordamiento horizontal, rejilla de 2 columnas y botón «Siguiente» visible (top 483/527 px). 1280×800 sin incidencias. 0 errores de consola y banderas 200.
+- Estado: **local, sin commit ni publicación**, pendiente de autorización. El 18/11 se recorrieron los 10 combos continente×dificultad y el registro conservado en `qa/cdp/resultado-flujo.json` guarda los recuentos (184 países, 59 fáciles y 125 difíciles), las 184 banderas con HTTP 200 y cuatro quizzes representativos (10, 8, 5 y 3 aciertos) que cubren oro, plata, bronce y sin estrella; las pruebas del 19/11 están en `qa/shots/interaccion.json`, `qa/shots/report.json` y `qa/shots/anchos-extra.json`.
+
+## Actualización 19/11/2026 - «Banderas del mundo»: portada real y correcciones de QA
+
+### Portada y mapa
+
+- El usuario aporta `Mapa Mundi + Flags\mundi-portada.jpg`; se copia a `peques/banderas/mundi-portada.jpg` (1483×839, 122.981 B) y sustituye al mapamundi SVG `portada.svg` como imagen de la tarjeta de Juegos (`areas-test.html`) y como mapa interactivo del juego. `portada.svg` se conserva sin uso.
+- La imagen se muestra tal cual; encima se colocan siete placas HTML con los nombres en español («Norteamérica», «Sudamérica», «Europa», «África», «Asia», «Oceanía», «Antártida») que tapan los rótulos ingleses originales. Las placas usan `min-width` en porcentaje y `font-size:clamp(9px,1.75vw,20px)` para no salirse del mapa a 320 px.
+- Zonas clicables: polígonos SVG invisibles (`fill-opacity:0`, `pointer-events:all`) generados como envolventes convexas de las máscaras de color de cada continente en la imagen. Las dos placas americanas abren el continente América; la Antártida es decorativa y no se puede pulsar. El resalte de hover es un tinte blanco y el foco de teclado un contorno discontinuo.
+- Debajo del mapa siguen los cinco botones de continente con el progreso y la explicación de estrellas.
+
+### Correcciones de QA
+
+- Escape ya sale del quiz en cualquier momento, también desde la pantalla final, y del continente al mapamundi.
+- Contraste de textos secundarios oscurecido (`#4f6b85`, `#47637e`, `#4a6379`, `#4c6579`) por encima de 4,5:1.
+- Etiquetas del quiz: «mayoría de países conocidos» y «mayoría de países menos conocidos» (Oceanía no tiene 10 países de un solo nivel).
+- Foco al abrir continente (título), al empezar quiz (título), al cambiar de pregunta (tarjeta) y al terminar (título del resultado); región `aria-live` para apertura, desbloqueo, número de pregunta y resultado.
+- `favicon` vacío para evitar el 404; se quita el porcentaje de los chips de continente (se mantiene `X/N`).
+
+### Pruebas (19/11)
+
+- `qa/cdp/check-mapa.ps1`: mapa 1483×839 cargado; 1280×900, 390×844 y 320×700 sin desbordamiento horizontal, placas dentro del mapa y sin solaparse con los bordes.
+- `qa/cdp/check-interaccion.ps1`: clic real en Europa y África abre su continente; las placas «Sudamérica» y «Oceanía» abren América y Oceanía; hover activo (`fill-opacity .18`); Escape desde el continente y dentro del quiz; quiz de Europa fácil completo con teclado 10/10 y oro guardado en `banderas` (`{\"gold\":1,...}`) y en `europa.facil.gold`; foco en títulos; 0 errores de consola.
+- Perfil de prueba `qa-mapa` limpiado; el progreso real no se toca. Las pruebas del 18/11 siguen válidas para los 10 combos continente×dificultad.
+- Estado: **local, sin commit ni publicación**, pendiente de autorización. Informe de QA en `qa/banderas-mundo-2026-11-19.md`.
+
+## Actualización 19/11/2026 - «Banderas del mundo»: mapa por continente con banderas y audio
+
+### Alcance
+
+- La vista de continente deja de ser una rejilla de tarjetas y pasa a ser un **mapa del continente**: cada país se dibuja con la forma real de su territorio y se rellena con su bandera. Se abre desde el mismo mapamundi de siempre (`banderas/mundi-portada.jpg`) y el resto del juego no cambia: 184 países, dos modos de quiz y estrellas por continente y dificultad.
+- 5 SVG nuevos en `peques/banderas/mapas/`: `europa.svg` (303.690 B, viewBox `380 165 212 230`, recortado para dejar fuera casi toda Rusia), `america.svg` (365.221 B, `-8 0 408 662`), `asia.svg` (462.721 B, `540 120 360 385`), `africa.svg` (229.345 B, `395 340 255 280`) y `oceania.svg` (134.015 B, `780 395 265 260`). Total 1.494.992 B y 44/28/45/53/14 países interactivos. Los vecinos del encuadre se incluyen como contexto gris no interactivo. Si un país cruza el borde (Rusia, Kiribati), su bandera se ajusta a la parte visible.
+- 184 MP3 nuevos en `peques/banderas/audios/<iso>.mp3` (1.602.536 B en total), con el nombre de cada país en español.
+- Geometría de `@svg-maps/world` 1.0.1 (CC BY 4.0), basada en MapSVG (`https://mapsvg.com/maps/world`). Atribución visible al pie de `banderas-mundo.html`: «Mapas: MapSVG · svg-maps (CC BY 4.0)», junto a la de flag-icons (MIT).
+- Nada de esto se pide a Internet en tiempo de ejecución: mapas, banderas y audios son archivos locales del sitio.
+
+### Funcionamiento
+
+- Panel: el mapa se inyecta dentro de un panel azul muy oscuro con rejilla sutil. La cabecera lleva la pista «Toca un país del mapa» y el botón «🔊 Sonido / 🔇 Silencio».
+- Países: cada uno es un `<g class="pais" data-code="xx" role="button" tabindex="0" aria-label="…" aria-pressed="false">` con un `<path class="silueta">` relleno con `url(#pat-xx)`. El `<pattern>` de cada país toma el bbox real de su `path` y estira con `preserveAspectRatio="none"` la bandera local `banderas/banderas/xx.svg`, de modo que cada bandera llena exactamente su territorio. Los países se dibujan de mayor a menor superficie para que los pequeños queden encima.
+- Países diminutos: si el bbox mide menos de 8×8 unidades se añade un `<circle class="zona-toque">` transparente de radio 10 con `pointer-events:all`, y además toda la lista de países del continente queda accesible en un `<details>` cerrado («Ver lista de países»). La lista usa botones con bandera y nombre que llaman a la misma función `descubrir(code)` que el mapa, así que el progreso es idéntico por los dos caminos. Si el mapa no se puede cargar, el `<details>` se abre solo y se anuncia por la región `aria-live`.
+- Descubrir: ratón, toque, Enter o Espacio abren la tarjeta de información (bandera + nombre), reproducen el nombre y marcan el país como visto en `mundoAprendizajeBanderasVistasV1_<perfil>`. El contador «X de N banderas», la barra y el candado del quiz se actualizan al instante; el quiz se desbloquea al ver todos los países del continente.
+- Audio: un único `<audio id="audioPais">` (`preload="none"`) apunta a `banderas/audios/<iso>.mp3` al descubrir. El botón «🔊 Oírlo otra vez» repite el último clip. El botón de sonido usa `aria-pressed`/`aria-label`/`title`, silencia solo los nombres (no el resto de la página) y persiste en `mundoAprendizajeBanderasAudioV1_<perfil>` con `on`/`off`; por defecto está activado.
+- Accesibilidad: Escape sigue saliendo del quiz al continente y del continente al mapamundi; el foco va al título al abrir el continente; la región `aria-live` anuncia la apertura, el desbloqueo, el nombre del país y el resultado del quiz.
+
+### Herramientas
+
+- `peques/banderas/herramientas/generar-mapas.ps1`: lee los continentes y países de `banderas/datos.js`, usa `qa/fuente-mundo.svg` si existe (si no, descarga `@svg-maps/world@1.0.1`), calcula los bboxes reales de cada `path` con Chrome headless por CDP (caché en `qa/cdp/_bbox-mundo.json`) y escribe los 5 SVG. Parámetros: `-Fuente`, `-BboxCache`, `-Continente` (`todos`, `europa`, `america`, `asia`, `africa`, `oceania`), `-RecalcularBbox` y `-Force` (aceptado por simetría con el generador de audios; hoy no cambia nada porque los SVG se reescriben en cada pasada). Baja la precisión de los decimales si un archivo pasa de 470 KB.
+- `peques/banderas/herramientas/generar-audios.ps1`: lee los países de `datos.js` y genera un MP3 por código con Microsoft Helena (`es-ES`) mediante SpeechSynthesizer → WAV → MediaTranscoder → MP3. No rehace los MP3 existentes de más de 2 KB salvo `-Force`; `-Test` genera solo `it`, `de` y `pt`.
+- `peques/banderas/herramientas/LEEME.md` documenta requisitos, comandos, licencia y estructura de salida. La fuente de trabajo `qa/fuente-mundo.svg` no se publica.
+
+### Pruebas
+
+- `qa/cdp/check-continente.ps1`: **todo OK**. Los 5 SVG se cargan con los códigos exactos de su continente y 0 etiquetas `<script>`; sin desbordamiento a 1280, 390 y 320 px; clic real en España → nombre «España» en la tarjeta, `audios/es.mp3` reproduciendo, contador 1/44 y país marcado como visto; Tab + Enter descubre un país y suena; Escape vuelve al mapamundi; al ver las 44 de Europa se desbloquea el quiz y se abren 10 preguntas; 0 errores de consola; 184 audios y 5 mapas responden 200. Capturas en `qa/shots/continente-*.png`.
+- El perfil de prueba se limpió; el progreso real no se tocó. Las pruebas del 18/11 (10 combos continente×dificultad) y del 19/11 sobre el mapamundi siguen válidas.
+
+### Estado
+
+- **Local, sin commit ni publicación**, pendiente de autorización expresa del usuario. No se ha tocado el código del sitio en esta actualización de documentación. Informe de QA en `qa/banderas-mundo-2026-11-19.md`.
+
+## Actualización 20/11/2026 - «Banderas del mundo»: Europa más grande, banderas ajustadas y zoom
+
+### Alcance
+
+- Petición del usuario: recortar casi toda Rusia en el mapa de Europa para agrandar el resto, corregir banderas a las que faltaban colores o símbolos y poder ampliar el mapa con facilidad.
+- Europa pasa a viewBox `380 165 212 230` (antes `380 165 410 230`). El borde derecho queda en 592: conserva Ucrania (máximo x 587,5) y deja fuera cerca del 87 % de Rusia. Llegar al 90 % exigiría cortar Ucrania, así que no se hace.
+- Banderas: el `<pattern>` de cada país se ancla a la **masa principal** (mayor componente conectada del `path` rasterizado), no al bbox completo. Así España muestra el escudo en su sitio, Portugal no se estira con Azores, Dinamarca no se estira con Groenlandia, EE. UU. no se estira con Alaska y Grecia no se estira con Creta. Si el rasterizado no encuentra masa clara (Kiribati, islas de un píxel), se usa el bbox completo; si el territorio cruza el borde del encuadre, el patrón se recorta a la parte visible.
+- Tamaño y zoom: el SVG usa la altura de la ventana (hasta 720 px; antes 640) y el panel incorpora «🔍 Ampliar / ↺ Ver todo», que duplica el mapa (2×) dentro del mismo lienzo, con desplazamiento por arrastre o barra. El botón lleva `aria-pressed`, etiqueta y aviso por `aria-live`; al cambiar de continente o volver al mapamundi se restaura el tamaño completo y el scroll.
+
+### Archivos
+
+- `peques/banderas-mundo.html` (56.992 B): botón `botonZoom`, estilos `.cab-botones` y `.mapa-lienzo.zoom`, funciones `pintarBotonZoom()` y `aplicarZoom()`, arrastre con el ratón para mover el mapa ampliado, reinicio del zoom en `abrirContinente()` y `volverAlMapa()`.
+- `peques/banderas/herramientas/generar-mapas.ps1`: viewBox de Europa, rasterizado de la masa principal (`ppal`) junto al bbox y uso de `ppal` con reserva al bbox completo.
+- `qa/cdp/_bbox-mundo.json`: cada país guarda ahora `ppal` además del bbox.
+- `peques/banderas/mapas/*.svg`: regenerados; `europa` 303.690 B, `america` 365.221 B, `asia` 462.721 B, `africa` 229.345 B, `oceania` 134.015 B (1.494.992 B en total).
+- `qa/cdp/check-continente.ps1`: viewBox de Europa actualizado a `380 165 212 230`.
+- `qa/cdp/audit-mapa.ps1`: bloque nuevo de zoom (1280) y comprobación de zoom en 390 y 320.
+
+### Pruebas
+
+- `qa/cdp/check-continente.ps1`: **TODO OK** con el nuevo recorte (mapas, 184 audios, toque, teclado, quiz, responsive y red).
+- `qa/cdp/audit-mapa.ps1`: **TODO OK**. Europa a 647×702 px en 1280, 348×378 en 390 y 278×302 en 320; el zoom la lleva a 1294×1404 (2×) con desplazamiento interno, el arrastre con el ratón mueve el mapa (scroll 146×342 → 266×412), el país sigue respondiendo al toque y «↺ Ver todo» restaura tamaño y scroll. La zona de toque de Malta pasa a 61 px (1280), 32,8 px (390) y 26,2 px (320).
+- Capturas nuevas: `qa/shots/qa-mapa-europa-1280.png`, `qa-mapa-europa-zoom-1280.png`, `qa-mapa-europa-390.png`, `qa-mapa-europa-320.png`; medidas en `qa/shots/qa-mapa-audit.json`.
+
+### Estado
+
+- **Local, sin commit ni publicación**, pendiente de autorización expresa del usuario. Informe de QA en `qa/banderas-mundo-2026-11-19.md` (sección 13).
+
+## Actualización 21/11/2026 - «Banderas del mundo»: Asia y el resto de continentes
+
+### Alcance
+
+- Petición del usuario: aplicar a Asia y a los demás continentes el mismo tratamiento que a Europa (recortar el espacio desperdiciado, agrandar el mapa, banderas bien ajustadas y zoom). No hace falta material nuevo: los cinco mapas se generan del mismo `qa/fuente-mundo.svg`.
+- Asia pasa a viewBox `540 270 352 232` (antes `540 120 360 385`). El encuadre es la unión de los 45 países del juego (x 546,9–884,2; y 276,3–493,5); Rusia queda fuera porque no está en la lista de Asia y solo aparecía como contexto gris. Se recorta también el Índico vacío de la derecha.
+- América pasa a `-4 6 388 652` (antes `-8 0 408 662`), África a `399 345 245 273` (antes `395 340 255 280`) y Oceanía a `786 426 223 226` (antes `780 395 265 260`, cuyo borde derecho 1045 caía 35 unidades fuera del mapamundi y dejaba una franja de océano vacía). En Oceanía el encuadre usa la unión de los 14 países salvo las islas de la Línea de Kiribati (x≈27), que quedan fuera del marco como ya ocurría; las islas Gilbert sí entran.
+- No se toca el código de la página: el anclaje de banderas a la masa principal (`ppal`), el recorte de patrones en el borde y el zoom 2× ya eran globales desde el 20/11. Solo cambian los encuadres y los SVG regenerados.
+
+### Archivos
+
+- `peques/banderas/herramientas/generar-mapas.ps1`: viewBoxes nuevos de América, Asia, África y Oceanía.
+- `peques/banderas/mapas/*.svg`: regenerados — `europa` 303.690 B, `america` 362.954 B, `asia` 439.231 B, `africa` 219.999 B y `oceania` 104.710 B; 1.430.584 B en total.
+- `qa/cdp/check-continente.ps1`: viewBoxes nuevos; el bloque de 1280 recorre ahora los cinco continentes (antes solo América y Oceanía) y se añade Asia a 390 px (marco ancho).
+- `qa/cdp/capturas-continentes.ps1` y `qa/cdp/detalle-continente.ps1`: capturas de los cinco continentes a 1280 y capturas a 2× para revisar detalles; esperan a que las banderas se decodifiquen antes de disparar.
+- `qa/banderas-mundo-2026-11-19.md`: sección 14 con las medidas y la revisión de esta iteración.
+
+### Pruebas
+
+- `qa/cdp/check-continente.ps1`: **TODO OK**. A 1280×900 los mapas quedan así: Europa 647×702, América 418×702, Asia 1002×660, África 630×702 y Oceanía 693×702, todos dentro del lienzo de 1002 px y sin desbordamiento horizontal. Asia a 390×844: 348×229, 45 países y sin desbordamiento. Se mantienen el clic en España, el teclado, el desbloqueo del quiz, los 184 audios y los 5 mapas en 200, sin errores de consola ni 404.
+- `qa/cdp/audit-mapa.ps1`: **TODO OK** (zoom 2×, arrastre, toque de país, reinicio, responsive y red), incluida Europa a 647×702 y el zoom a 1294×1404.
+- Capturas: `qa/shots/continente-{europa,america,asia,africa,oceania}-1280.png`, `continente-asia-390.png`, `detalle-{asia,africa,america}.png` y recortes `crop-*` para revisar Japón, Indonesia, Filipinas y el centro de África.
+
+### Observaciones
+
+- Japón: el disco rojo queda a caballo de la costa porque el patrón se ancla al centro del bbox de Honshu, que cae en el mar; se ve al ampliar, pero el país se reconoce. Es la misma lógica de masa principal que en Europa.
+- Indonesia y Filipinas: al ser archipiélagos, la bandera se repite por islas y no como una sola pieza; es inherente al método de una bandera por territorio y se aceptó igual en Grecia.
+- América es estrecha por su propia forma: el marco ya está ajustado, pero el panel es ancho y quedan márgenes laterales. No se deforma el mapa para llenarlos.
+- Kiribati: sus islas de la Línea siguen fuera del encuadre de Oceanía y su zona de toque es una línea fina; la lista de países sigue siendo el camino fiable para descubrirla.
+
+### Estado
+
+- **Local, sin commit ni publicación**, pendiente de autorización expresa del usuario. Las medidas de los cinco mapas de la sección del 20/11 quedaron obsoletas con esta iteración; las actuales son las de arriba.
+
+## Actualización 22/11/2026 - «Banderas del mundo»: América se divide en Norteamérica y Sudamérica
+
+### Alcance
+
+- Petición del usuario: separar Norteamérica de Sudamérica. Pasan a ser dos continentes independientes, cada uno con su mapa, su progreso de banderas vistas, su quiz de 10 preguntas y sus estrellas.
+- Reparto (184 países en total, sin perder ninguno): **Norteamérica 16** (`us ca mx cu gt hn sv ni cr pa do ht jm bs tt bz`) y **Sudamérica 12** (`br ar co cl pe ve ec bo gy sr uy py`). Trinidad y Tobago se asigna a Norteamérica (Caribe, esquema de la ONU) para que Sudamérica quede en 12.
+- En el mapamundi, el grupo `america` se parte en dos grupos `cont` clicables; las dos placas («Norteamérica» y «Sudamérica») apuntan ya a sus continentes respectivos en vez de abrir ambas América.
+- No se aporta material nuevo: los dos mapas salen del mismo `qa/fuente-mundo.svg` y de la caché de bboxes `qa/cdp/_bbox-mundo.json`.
+
+### Archivos
+
+- `peques/banderas/datos.js`: el continente `america` se sustituye por `norteamerica` (color `#4fc08a`) y `sudamerica` (color `#38b2ac`); se mantienen los 184 países.
+- `peques/banderas-mundo.html`: hulls del mapamundi separados en dos `.cont` con `aria-label` de 16 y 12 países, placas con sus nuevos `data-cont` y migración `migrarAmerica()` que reparte el progreso antiguo de `america` entre los dos continentes nuevos al cargar y lo guarda.
+- `peques/banderas/herramientas/generar-mapas.ps1`: `ValidateSet` y `$viewBoxes` con `norteamerica = '-4 7 337 441'` y `sudamerica = '163 423 219 234'`.
+- `peques/banderas/mapas/norteamerica.svg` (277.299 B, 16 países + 30 de contexto) y `sudamerica.svg` (109.539 B, 12 + 18). El antiguo `america.svg` (362.954 B) se conserva en disco pero ya no se usa; el total de los 6 mapas activos es 1.454.468 B.
+- `qa/cdp/check-continente.ps1`: 6 mapas y 6 chips, viewBoxes nuevos, recorrido de los 5 continentes no europeos a 1280 y 6 comprobaciones HEAD de mapas.
+- `qa/cdp/audit-mapa.ps1`: 6 chips, bloque Norteamérica/Sudamérica/Oceanía y capturas nuevas. `qa/cdp/qa-mapa-audit.ps1` queda marcado como **obsoleto** (auditoría histórica de 5 continentes).
+
+### Pruebas
+
+- `qa/cdp/check-continente.ps1`: **TODO OK**. Los 6 SVG tienen los códigos exactos (44/16/12/45/53/14), 0 `<script>`; a 1280×900 Norteamérica queda a 536×702 px y Sudamérica a 657×702; sin desbordamiento; se mantienen clic en España, teclado, desbloqueo del quiz, 184 audios y los 6 mapas en 200.
+- `qa/cdp/audit-mapa.ps1`: **TODO OK** (zoom 2×, arrastre, país con el mapa ampliado, sonido persistente, lista de apoyo, responsive a 390/320 y red sin peticiones malas), incluida la carga de `norteamerica.svg` y `sudamerica.svg`.
+- `qa/cdp/test-migracion.ps1`: **OK**. Sembrando `america: { us, br, es }`, tras recargar queda `norteamerica: { us }`, `sudamerica: { br }` y la clave antigua intacta; los chips muestran «Norteamérica 1/16» y «Sudamérica 1/12», y `es` no se copia a ninguno.
+- Capturas: `qa/shots/continente-norteamerica-1280.png`, `continente-sudamerica-1280.png`, `qa-mapa-norteamerica-1280.png` y `qa-mapa-sudamerica-1280.png`. Revisión visual: Norteamérica muestra Canadá, EE. UU. con Alaska, México, Centroamérica y el Caribe, con Groenlandia en gris de contexto; Sudamérica muestra los 12 países con banderas reconocibles.
+
+### Observaciones
+
+- El progreso de un perfil que ya hubiera visto países en la antigua América se conserva: se copia a Norteamérica o Sudamérica según el país, sin borrar la clave antigua `america` (no destructivo).
+- El reparto deja el Caribe en Norteamérica; quien busque Trinidad y Tobago la encontrará allí. La lista de países de cada continente sigue siendo el camino fiable para los territorios diminutos.
+- Los mapas mantienen la misma lógica de banderas (`ppal` con reserva al bbox completo), zoom 2× y atribución CC BY 4.0.
+
+### Estado
+
+- **Publicado el 23/11/2026 en GitHub Pages en `d6ed38c`** y verificado, **solo para Mireia y Guest**: la tarjeta de Juegos no aparece para Sofia y su perfil no tiene acceso. Las medidas de América de las secciones del 20/11 y 21/11 quedan obsoletas: ahora son Norteamérica 536×702 y Sudamérica 657×702 a 1280×900.
+
+### Publicación
+
+- Publicado en `main` el 23/11/2026 en `d6ed38c` y verificado en GitHub Pages: `https://msm-srm.github.io/Aprender-es-divertido-/peques/banderas-mundo.html?profile=mireia`. Se publican los 6 mapas (1.454.468 B), las 184 banderas, los 184 audios y el mapamundi de portada.
+- Acceso restringido a Mireia y Guest: en `peques/areas-test.html` el módulo `banderas-mundo` tiene `profiles:['mireia','guest']` y `newFor:['mireia','guest']`; Sofia ya no ve la tarjeta ni la etiqueta NEW.

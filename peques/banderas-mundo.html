@@ -1,0 +1,1158 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Banderas del mundo · El mundo mágico de Mireia</title>
+<link rel="icon" href="data:,">
+<script src="auth-guard.js"></script>
+<style>
+*{box-sizing:border-box}
+:root{
+  --azul:#18365e;--azul-claro:#27637c;--azul-suave:#24558d;--borde:#b9d9f5;
+  --oro:#d99a1e;--plata:#7e93a8;--bronce:#b06a3b;
+  --papel:#eaf7ff;--sombra:#23456b18;
+  --noche:#0f2136;--noche-2:#16324f;--noche-3:#22334a;
+}
+body{margin:0;min-height:100vh;font-family:"Trebuchet MS",system-ui,sans-serif;color:var(--azul);
+  background:radial-gradient(ellipse at 15% 0%,#fff 0,transparent 45%),linear-gradient(160deg,#dff3ff,#eef4ff 45%,#fff6e2)}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+.wrap{width:min(100%,1080px);margin:0 auto;padding:clamp(12px,3vw,26px)}
+.vista[hidden]{display:none}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.back{border:2px solid var(--borde);border-radius:999px;background:#fff;color:var(--azul-suave);padding:10px 16px;font-weight:800;box-shadow:0 4px 12px var(--sombra);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.back:hover,.back:focus-visible{border-color:#5aa9ee;outline:3px solid #5aa9ee55;outline-offset:1px}
+.scores{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.score{display:flex;align-items:center;gap:4px;border:2px solid;border-radius:999px;background:#fff;padding:6px 10px;font-weight:900;font-size:.92rem;box-shadow:0 4px 12px var(--sombra)}
+.score.gold{border-color:#ffd967;background:#fff9df;color:#735515}
+.score.silver{border-color:#c4d3e2;background:#f5f9ff;color:#52677c}
+.score.bronze{border-color:#d9a27c;background:#fff3eb;color:#86502d}
+h1{font-size:clamp(1.9rem,5.2vw,3rem);line-height:1.05;margin:14px 0 4px;color:var(--azul-claro);text-shadow:0 2px #fff;text-align:center}
+.sub{text-align:center;margin:0 auto;max-width:640px;font-weight:700;color:#4c6a86;line-height:1.45}
+.mapa-caja{position:relative;margin-top:14px;border:3px solid #fff;border-radius:26px;overflow:hidden;
+  background:linear-gradient(160deg,#c8ecff,#93d2f7 55%,#cdeeff);
+  box-shadow:0 16px 34px #23456b26,inset 0 0 0 3px #ffffff88;padding:6px}
+.lienzo{position:relative;border-radius:20px;overflow:hidden;background:#b7ebff}
+.mapa-img{display:block;width:100%;height:auto}
+.mapa{position:absolute;inset:0;width:100%;height:100%}
+.cont{cursor:pointer}
+.zona{fill:#fff;fill-opacity:0;stroke:#fff;stroke-opacity:0;stroke-width:6;stroke-linejoin:round;pointer-events:all;transition:fill-opacity .15s,stroke-opacity .15s}
+.cont:hover .zona{fill-opacity:.18;stroke-opacity:0}
+.cont:focus{outline:none}
+.cont:focus-visible .zona{fill-opacity:.16;stroke:#18365e;stroke-opacity:.95;stroke-dasharray:14 8}
+.placa{position:absolute;z-index:2;transform:translate(-50%,-50%);display:inline-flex;align-items:center;justify-content:center;
+  border:3px solid var(--pc,#5aa9ee);border-radius:999px;background:#fff;color:var(--pt,#1c4f86);
+  padding:2px 9px;font-weight:900;font-size:clamp(9px,1.75vw,20px);line-height:1.15;white-space:nowrap;
+  box-shadow:0 2px 7px #23456b2b;cursor:pointer;transition:transform .14s,box-shadow .14s}
+.placa:hover{transform:translate(-50%,-50%) scale(1.07);box-shadow:0 4px 12px #23456b38}
+.placa-america-norte{min-width:15%}
+.placa-america-sur{min-width:14.4%}
+.placa-europa{min-width:10%}
+.placa-asia{min-width:7%}
+.placa-africa{min-width:9.4%}
+.placa-oceania{min-width:11%}
+.placa-antartida{min-width:12.3%;cursor:default}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+.chip{border:2px solid #d5e8f7;border-radius:999px;background:#fff;padding:8px 13px;font-weight:900;display:inline-flex;align-items:center;gap:8px;box-shadow:0 3px 10px var(--sombra);transition:transform .14s,border-color .14s}
+.chip:hover,.chip:focus-visible{transform:translateY(-2px);border-color:#5aa9ee;outline:3px solid #5aa9ee44;outline-offset:1px}
+.chip .punto{width:12px;height:12px;border-radius:50%;flex:0 0 auto}
+.chip small{font-weight:800;color:#4f6b85}
+.total-vistas{text-align:center;margin:12px 0 0;font-weight:800;color:#47637e}
+.total-vistas b{color:var(--azul-claro)}
+.barra{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:6px}
+.cont-titulo{display:flex;align-items:center;gap:10px;justify-content:center;margin:10px 0 0;flex-wrap:wrap}
+.cont-titulo h2{margin:0;font-size:clamp(1.6rem,4.4vw,2.4rem);color:var(--azul-claro);text-shadow:0 2px #fff}
+.cont-titulo .punto{width:20px;height:20px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 6px #23456b30}
+.intro{max-width:660px;margin:8px auto 0;text-align:center;font-weight:700;color:#4c6a86;line-height:1.45}
+.progreso-vistas{display:inline-flex;align-items:center;gap:6px;border:2px solid #d5e8f7;border-radius:999px;background:#fff;padding:7px 12px;font-weight:900;font-size:.86rem;color:#2a6088}
+.barra-progreso{height:14px;border:2px solid #d5e8f7;border-radius:999px;background:#fff;overflow:hidden;margin:12px auto 0;max-width:560px}
+.barra-progreso span{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#7fd1a3,#38a974);transition:width .3s}
+.barra-progreso.vistas{max-width:none;margin-top:10px}
+.barra-progreso.vistas span{background:linear-gradient(90deg,#9ad8ff,#3f97d8)}
+
+/* ===== Panel del mapa del continente ===== */
+.panel-mapa{position:relative;margin-top:14px;border:3px solid #0a1624;border-radius:22px;background:var(--noche);
+  box-shadow:0 16px 34px #0a162430;padding:10px;color:#d6e8f7}
+.panel-mapa-cab{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:2px 4px 9px}
+.panel-mapa-cab .pista{margin:0;font-size:.78rem;font-weight:800;letter-spacing:.03em;text-transform:uppercase;color:#9ec4e4}
+.sonido{display:inline-flex;align-items:center;gap:6px;border:2px solid #3a5f80;border-radius:999px;background:#17324c;color:#eaf5ff;
+  padding:8px 13px;font-weight:900;font-size:.86rem;min-height:40px;box-shadow:0 3px 10px #00000033;transition:transform .14s,border-color .14s}
+.sonido:hover,.sonido:focus-visible{transform:translateY(-1px);border-color:#8ec8f2;outline:3px solid #8ec8f255;outline-offset:1px}
+.mapa-lienzo{position:relative;display:flex;align-items:center;justify-content:center;min-height:220px;
+  border-radius:14px;overflow:hidden;
+  background:
+    linear-gradient(#ffffff0f 1px,transparent 1px) 0 0/28px 28px,
+    linear-gradient(90deg,#ffffff0f 1px,transparent 1px) 0 0/28px 28px,
+    radial-gradient(circle at 50% 38%,#1a3a58,#0b1a2b 78%)}
+.mapa-lienzo::after{content:"";position:absolute;inset:0;border-radius:14px;box-shadow:inset 0 0 46px #050d16aa;pointer-events:none}
+.mapa-escena{position:relative;z-index:1;width:100%;display:flex;justify-content:center}
+.mapa-escena svg{display:block;width:100%;height:auto;max-height:min(78vh,720px)}
+.cab-botones{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.mapa-lienzo.zoom{display:block;overflow:auto;max-height:min(80vh,760px);cursor:grab;overscroll-behavior:contain;
+  scrollbar-width:thin;scrollbar-color:#5a8fbd #0b1a2b}
+.mapa-lienzo.zoom::after{display:none}
+.mapa-lienzo.arrastrando{cursor:grabbing;user-select:none}
+.mapa-lienzo.zoom .mapa-escena{width:max-content;display:block;margin:0 auto}
+.mapa-lienzo.zoom .mapa-escena svg{max-width:none;max-height:none}
+.mapa-escena .pais{cursor:pointer;outline:none}
+.mapa-escena .silueta{stroke:#0b1a2b;stroke-width:.6;vector-effect:non-scaling-stroke;transition:filter .12s}
+.mapa-escena .pais:hover .silueta{filter:brightness(1.18)}
+.mapa-escena .pais:focus{outline:none}
+.mapa-escena .pais:focus-visible .silueta{stroke:#fff3b0;stroke-width:2.4;filter:brightness(1.25)}
+.mapa-escena .pais.visto .silueta{stroke:#ffd25e;stroke-width:1.5}
+.mapa-escena .pais.visto:hover .silueta,.mapa-escena .pais.visto:focus-visible .silueta{stroke:#fff3b0;stroke-width:2.6}
+.mapa-escena .zona-toque{fill:transparent;stroke:none;pointer-events:all}
+.mapa-estado{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  margin:0;padding:16px;text-align:center;font-weight:800;color:#cfe3f5;background:#0b1a2bdd}
+.mapa-estado[hidden]{display:none}
+.mapa-estado .aviso{max-width:420px;line-height:1.45}
+.mapa-estado .accion{background:linear-gradient(#3f97d8,#2a6ea8)}
+.info-pais{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px;border:3px solid #fff;border-radius:20px;
+  background:#fff;padding:12px 14px;box-shadow:0 8px 20px #23456b16;min-height:86px}
+.info-bandera{flex:0 0 auto}
+.info-bandera:empty{display:none}
+.info-bandera img{display:block;width:82px;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:9px;border:1px solid #dbe7f2;background:#eef4f8}
+.info-texto{flex:1 1 190px;min-width:0}
+.info-nombre{margin:0;font-weight:900;font-size:clamp(.98rem,2.4vw,1.15rem);line-height:1.3;color:#21507c}
+.info-nombre.inicial{font-weight:700;color:#4f6b85;font-size:.92rem}
+.info-pais .accion{margin-left:auto}
+.detalles-paises{margin:16px 0 22px;border:2px solid #d5e8f7;border-radius:18px;background:#fff;box-shadow:0 5px 14px var(--sombra);overflow:hidden}
+.detalles-paises summary{cursor:pointer;padding:13px 16px;font-weight:900;color:var(--azul-suave);background:#f4faff;min-height:48px;display:flex;align-items:center;gap:8px;list-style:none}
+.detalles-paises summary::-webkit-details-marker{display:none}
+.detalles-paises summary::before{content:"▸";font-size:1rem;transition:transform .14s}
+.detalles-paises[open] summary::before{transform:rotate(90deg)}
+.detalles-paises summary:hover,.detalles-paises summary:focus-visible{background:#e8f5ff;outline:3px solid #5aa9ee44;outline-offset:-3px}
+.detalles-paises .cuerpo{padding:12px}
+.rejilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,140px),1fr));gap:10px;margin:0}
+.lista-paises .pais{position:relative;display:flex;flex-direction:column;gap:7px;align-items:center;padding:9px;border:2px solid #d3e6f6;border-radius:16px;background:#fff;font-weight:800;box-shadow:0 4px 12px #23456b12;transition:transform .14s,border-color .14s,background .14s}
+.lista-paises .pais:hover,.lista-paises .pais:focus-visible{transform:translateY(-3px);border-color:#5aa9ee;outline:3px solid #5aa9ee44;outline-offset:1px}
+.lista-paises .pais .bandera{display:block;width:100%}
+.lista-paises .pais .bandera img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;border:1px solid #dbe7f2;background:#eef4f8}
+.lista-paises .pais .nombre{font-size:.8rem;line-height:1.2;text-align:center;min-height:2.4em;display:flex;align-items:center}
+.lista-paises .pais.visto{border-color:#7ecb9b;background:linear-gradient(145deg,#f5fff9,#e2f8ec)}
+.lista-paises .pais.visto::after{content:"✓";position:absolute;top:5px;right:5px;width:23px;height:23px;border-radius:50%;background:#2f9e63;color:#fff;font-size:14px;display:grid;place-items:center;border:2px solid #fff;box-shadow:0 2px 6px #2f9e6355}
+.lista-paises .pais.visto .nombre{color:#1d6b45}
+.quiz-panel{border:3px solid #fff;border-radius:24px;background:linear-gradient(150deg,#fffdf4,#fff);box-shadow:0 12px 28px #23456b1c;padding:clamp(16px,3vw,26px);margin-bottom:30px}
+.quiz-panel h3{margin:0 0 6px;font-size:1.35rem;color:var(--azul-claro)}
+.candado{display:flex;align-items:flex-start;gap:10px;background:#fff7e6;border:2px dashed #f0c96a;border-radius:16px;padding:12px 14px;font-weight:800;color:#7a5a13;line-height:1.4;margin:10px 0 14px}
+.candado.abierto{background:#eafaf1;border-color:#7ecb9b;color:#1d6b45;border-style:solid}
+.candado .icono{font-size:1.4rem;line-height:1}
+.candado p{margin:0}
+.quiz-botones{display:flex;flex-wrap:wrap;gap:10px}
+.quiz-modo{flex:1 1 210px;display:flex;flex-direction:column;align-items:flex-start;gap:3px;border:3px solid #cfe6f8;border-radius:18px;background:#fff;padding:13px 16px;font-weight:900;text-align:left;box-shadow:0 5px 14px var(--sombra);transition:transform .14s,border-color .14s}
+.quiz-modo small{font-weight:800;color:#4f6b85;font-size:.76rem}
+.quiz-modo:hover:not(:disabled),.quiz-modo:focus-visible:not(:disabled){transform:translateY(-2px);border-color:#5aa9ee;outline:3px solid #5aa9ee44;outline-offset:1px}
+.quiz-modo.facil{border-color:#a8e3c1}
+.quiz-modo.dificil{border-color:#f3bfc8}
+.quiz-modo:disabled{opacity:.52;cursor:not-allowed}
+.quiz-modo .modo-titulo{font-size:1.1rem}
+.estrellas-cont{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;padding-top:14px;border-top:2px dashed #dbe9f5}
+.estrellas-bloque{flex:1 1 230px}
+.estrellas-bloque strong{display:block;font-size:.86rem;color:#47637e;text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px}
+.estrellas-bloque .fila{display:flex;gap:6px;flex-wrap:wrap}
+.mini-estrella{display:inline-flex;align-items:center;gap:3px;border:2px solid;border-radius:999px;padding:3px 8px;font-weight:900;font-size:.8rem;background:#fff}
+.mini-estrella.gold{border-color:#ffd967;color:#8a6510}
+.mini-estrella.silver{border-color:#c4d3e2;color:#52677c}
+.mini-estrella.bronze{border-color:#d9a27c;color:#86502d}
+.quiz-cabecera{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:6px}
+.quiz-titulo{margin:8px 0 0;text-align:center;color:var(--azul-claro);font-size:clamp(1.3rem,3.6vw,1.9rem)}
+.quiz-card{margin:16px auto 0;max-width:720px;border:3px solid #fff;border-radius:26px;background:linear-gradient(150deg,#fff,#f2f9ff);box-shadow:0 14px 30px #23456b1f;padding:clamp(16px,3.5vw,28px);text-align:center}
+.quiz-card:focus{outline:none}
+.pregunta{margin:12px 0 16px;font-size:clamp(1.15rem,3vw,1.5rem);font-weight:900;color:#20496f}
+.bandera-grande{width:min(100%,270px);margin:0 auto;border-radius:14px;overflow:hidden;border:3px solid #fff;box-shadow:0 8px 20px #23456b26;background:#eef4f8}
+.bandera-grande img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.pais-objetivo{margin:4px 0 0;font-size:clamp(1.9rem,6vw,2.9rem);font-weight:900;color:#1f4f7a;letter-spacing:.01em}
+.opciones{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:10px}
+.opciones-banderas{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.opcion{border:3px solid #cfe6f8;border-radius:16px;background:#fff;padding:13px 12px;font-weight:900;font-size:1rem;box-shadow:0 5px 14px var(--sombra);transition:transform .14s,border-color .14s}
+.opcion:hover:not(:disabled),.opcion:focus-visible:not(:disabled){transform:translateY(-2px);border-color:#5aa9ee;outline:3px solid #5aa9ee44;outline-offset:1px}
+.opcion:disabled{cursor:default}
+.opcion.acierto{border-color:#2f9e63;background:#e6f9ef;color:#1d6b45;box-shadow:0 0 0 3px #2f9e6333}
+.opcion.fallo{border-color:#d8507a;background:#ffeef3;color:#96244a;animation:tiembla .28s}
+@keyframes tiembla{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.opcion.bandera-opcion{padding:8px}
+.opcion.bandera-opcion img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:9px;border:1px solid #dbe7f2;background:#eef4f8}
+.feedback{min-height:1.6em;text-align:center;font-weight:900;margin:14px auto 0;max-width:640px;color:#2a6088}
+.feedback.bien{color:#1d6b45}
+.feedback.mal{color:#a32a52}
+.quiz-acciones{display:flex;justify-content:center;margin-top:12px}
+.accion{border:3px solid #2a6ea8;border-radius:999px;background:linear-gradient(#3f97d8,#2a6ea8);color:#fff;font-weight:900;padding:12px 24px;box-shadow:0 6px 16px #2a6ea844;transition:transform .14s,filter .14s}
+.accion:hover:not(:disabled),.accion:focus-visible:not(:disabled){transform:translateY(-2px);filter:brightness(1.05);outline:3px solid #2a6ea855;outline-offset:2px}
+.accion:disabled{opacity:.5;cursor:not-allowed;box-shadow:none}
+.accion.secundaria{border-color:#c7dced;background:#fff;color:#24558d;box-shadow:0 4px 12px var(--sombra)}
+.final{text-align:center;max-width:640px;margin:18px auto 0;border:3px solid #fff;border-radius:26px;background:linear-gradient(150deg,#fffdf2,#fff);box-shadow:0 14px 30px #23456b1f;padding:clamp(18px,4vw,30px)}
+.final .trofeo{font-size:3.2rem;line-height:1}
+.final h3{margin:6px 0 4px;font-size:clamp(1.4rem,4vw,2rem);color:var(--azul-claro)}
+.final h3:focus{outline:none}
+.final .marcador{font-weight:900;font-size:1.15rem;margin:4px 0}
+.final .gran-estrella{display:inline-flex;align-items:center;gap:8px;border:3px solid;border-radius:999px;padding:8px 18px;font-weight:900;font-size:1.15rem;margin:8px 0 4px;background:#fff}
+.final .gran-estrella.gold{border-color:#ffd967;color:#8a6510;background:#fff9df}
+.final .gran-estrella.silver{border-color:#c4d3e2;color:#52677c}
+.final .gran-estrella.bronze{border-color:#d9a27c;color:#86502d}
+.final .sin-estrella{font-weight:900;color:#4f6b85;margin:8px 0}
+.final .totales{font-size:.86rem;font-weight:800;color:#4a6379;margin:6px auto 12px}
+.final-botones{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:8px}
+.reglas{max-width:760px;margin:18px auto 0;text-align:center;font-size:.84rem;font-weight:800;color:#4c6579;line-height:1.5}
+.foot{text-align:center;color:#4f6b85;font-weight:700;font-size:.82rem;margin:22px 0 8px}
+.foot a{color:#2a6088}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+@media(max-width:560px){
+  .mapa-caja{border-radius:18px}
+  .lienzo{border-radius:14px}
+  .placa{padding:1px 7px;border-width:2px;box-shadow:0 1px 4px #23456b2b}
+  .chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .chip{padding:9px 10px;font-size:.9rem;min-height:48px;justify-content:flex-start;gap:6px}
+  .chip small{font-size:.7rem}
+  .rejilla{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .lista-paises .pais .nombre{font-size:.74rem}
+  .panel-mapa{padding:6px;border-radius:16px}
+  .mapa-lienzo{border-radius:11px;min-height:180px}
+  .panel-mapa-cab .pista{font-size:.7rem}
+  .mapa-lienzo.zoom{max-height:70vh}
+  .info-pais{padding:10px;gap:10px}
+  .info-bandera img{width:64px}
+  .info-pais .accion{margin-left:0;width:100%}
+  .opciones{grid-template-columns:1fr}
+  .opciones-banderas{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .opcion.bandera-opcion{padding:5px}
+  .quiz-modo{flex-basis:100%}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+<p class="sr" id="anuncio" role="status" aria-live="polite"></p>
+
+  <!-- ===== MAPAMUNDI ===== -->
+  <section id="vistaMapa" class="vista" aria-labelledby="tituloJuego">
+    <div class="top">
+      <a class="back" id="volverJuegos" href="areas-test.html?area=juegos">← Volver a Juegos</a>
+      <div class="scores" aria-label="Estrellas de Banderas del mundo">
+        <div class="score gold" aria-label="Estrellas de oro"><span aria-hidden="true">★</span><span id="oroTotal">0</span></div>
+        <div class="score silver" aria-label="Estrellas de plata"><span aria-hidden="true">★</span><span id="plataTotal">0</span></div>
+        <div class="score bronze" aria-label="Estrellas de bronce"><span aria-hidden="true">★</span><span id="bronceTotal">0</span></div>
+      </div>
+    </div>
+    <h1 id="tituloJuego">Banderas del mundo</h1>
+    <p class="sub">Toca un continente, descubre sus países y demuestra lo que sabes.</p>
+
+    <div class="mapa-caja">
+      <div class="lienzo">
+        <img class="mapa-img" src="banderas/mundi-portada.jpg" alt="Mapamundi ilustrado con los continentes de colores y un animal en cada uno" width="1483" height="839" decoding="async">
+        <svg class="mapa" viewBox="0 0 1483 839" role="group" aria-label="Mapamundi dividido en continentes">
+          <g class="cont" data-cont="norteamerica" role="button" tabindex="0" aria-label="Norteamérica: 16 países">
+            <polygon class="zona" points="24,138 105,39 573,48 555,84 231,366 204,363 96,282"/>
+          </g>
+          <g class="cont" data-cont="sudamerica" role="button" tabindex="0" aria-label="Sudamérica: 12 países">
+            <polygon class="zona" points="204,429 231,369 264,345 303,351 429,438 303,717 276,717 258,693 204,438"/>
+          </g>
+          <g class="cont" data-cont="europa" role="button" tabindex="0" aria-label="Europa: 44 países">
+            <polygon class="zona" points="552,99 672,48 717,51 837,87 837,165 822,213 804,219 585,225 552,105"/>
+          </g>
+          <g class="cont" data-cont="africa" role="button" tabindex="0" aria-label="África: 53 países">
+            <polygon class="zona" points="574,240 609,228 640,226 670,232 700,242 725,247 745,255 762,268 777,285 790,305 800,325 808,342 820,352 835,358 846,365 840,378 825,382 812,386 805,398 812,412 818,425 815,440 805,455 803,470 803,485 795,500 790,515 777,530 773,545 765,560 750,572 740,585 725,595 710,605 698,596 692,580 684,560 678,540 672,520 668,500 665,480 672,460 680,445 675,432 665,420 652,410 640,400 628,392 610,386 590,380 572,372 558,360 545,348 535,334 528,318 530,300 535,285 542,270 552,255 562,246"/>
+          </g>
+          <g class="cont" data-cont="asia" role="button" tabindex="0" aria-label="Asia: 45 países">
+            <polygon class="zona" points="768,240 843,72 939,57 1245,96 1293,450 1137,447 816,333 768,261"/>
+          </g>
+          <g class="cont" data-cont="oceania" role="button" tabindex="0" aria-label="Oceanía: 14 países">
+            <polygon class="zona" points="1167,531 1302,423 1332,441 1461,627 1398,669 1299,645 1185,597 1167,549"/>
+          </g>
+        </svg>
+        <span class="placa placa-america-norte" data-cont="norteamerica" style="left:13.62%;top:5.36%;--pc:#3E89E6;--pt:#1c4f86" aria-hidden="true">Norteamérica</span>
+        <span class="placa placa-america-sur" data-cont="sudamerica" style="left:31.15%;top:73.42%;--pc:#3E89E6;--pt:#1c4f86" aria-hidden="true">Sudamérica</span>
+        <span class="placa placa-europa" data-cont="europa" style="left:47.67%;top:7.75%;--pc:#e8542f;--pt:#a3301a" aria-hidden="true">Europa</span>
+        <span class="placa placa-africa" data-cont="africa" style="left:38.57%;top:48.87%;--pc:#7dbb27;--pt:#3f6d17" aria-hidden="true">África</span>
+        <span class="placa placa-asia" data-cont="asia" style="left:73.5%;top:5.01%;--pc:#f0b800;--pt:#8a6100" aria-hidden="true">Asia</span>
+        <span class="placa placa-oceania" data-cont="oceania" style="left:75.19%;top:59.71%;--pc:#2bc3e4;--pt:#0e6f83" aria-hidden="true">Oceanía</span>
+        <span class="placa placa-antartida" style="left:67.57%;top:84.74%;--pc:#9fe0d5;--pt:#2c7a6c" aria-hidden="true">Antártida</span>
+      </div>
+    </div>
+
+    <div class="chips" id="chipsContinentes" aria-label="Continentes"></div>
+    <p class="total-vistas" id="totalVistas"></p>
+    <p class="reglas">Estrellas de cada quiz: <b>oro</b> con 9–10 aciertos · <b>plata</b> con 7–8 · <b>bronce</b> con 5–6. Las estrellas se guardan por continente y dificultad.</p>
+  </section>
+
+  <!-- ===== CONTINENTE ===== -->
+  <section id="vistaContinente" class="vista" hidden aria-labelledby="contTitulo">
+    <div class="barra">
+      <button class="back" id="volverMapa" type="button">← Volver al mapamundi</button>
+      <span class="progreso-vistas" id="progresoVistas">0 de 0 banderas</span>
+    </div>
+    <div class="cont-titulo">
+      <span class="punto" id="puntoContinente" aria-hidden="true"></span>
+      <h2 id="contTitulo" tabindex="-1">Continente</h2>
+    </div>
+    <p class="intro" id="introContinente"></p>
+    <div class="barra-progreso vistas" aria-hidden="true"><span id="barraVistas"></span></div>
+
+    <div class="panel-mapa" id="panelMapa">
+      <div class="panel-mapa-cab">
+        <p class="pista" id="pistaMapa">Toca un país del mapa</p>
+        <div class="cab-botones">
+          <button class="sonido" id="botonZoom" type="button" aria-pressed="false">🔍 Ampliar</button>
+          <button class="sonido" id="botonSonido" type="button" aria-pressed="true">🔊 Sonido</button>
+        </div>
+      </div>
+      <div class="mapa-lienzo" id="mapaLienzo">
+        <div class="mapa-escena" id="mapaEscena"></div>
+        <div class="mapa-estado" id="mapaEstado" role="status">Cargando el mapa…</div>
+      </div>
+    </div>
+
+    <div class="info-pais" id="infoPais">
+      <div class="info-bandera" id="infoBandera" aria-hidden="true"></div>
+      <div class="info-texto">
+        <p class="info-nombre inicial" id="infoNombre">Toca un país del mapa para ver su bandera y oír su nombre</p>
+      </div>
+      <button class="accion secundaria" id="oirOtraVez" type="button" disabled>🔊 Oírlo otra vez</button>
+    </div>
+
+    <details class="detalles-paises" id="detallesPaises">
+      <summary>Ver lista de países</summary>
+      <div class="cuerpo">
+        <div class="rejilla lista-paises" id="rejillaPaises"></div>
+      </div>
+    </details>
+
+    <div class="quiz-panel" id="quizPanel">
+      <h3>Quiz de <span id="quizPanelNombre">este continente</span></h3>
+      <div class="candado" id="candado">
+        <span class="icono" aria-hidden="true">🔒</span>
+        <p id="candadoTexto">Toca todas las banderas para desbloquear el quiz.</p>
+      </div>
+      <div class="quiz-botones">
+        <button class="quiz-modo facil" id="quizFacil" type="button" disabled>
+          <span class="modo-titulo">🟢 Quiz fácil</span>
+          <small>10 preguntas con la mayoría de países conocidos</small>
+        </button>
+        <button class="quiz-modo dificil" id="quizDificil" type="button" disabled>
+          <span class="modo-titulo">🔴 Quiz difícil</span>
+          <small>10 preguntas con la mayoría de países menos conocidos</small>
+        </button>
+      </div>
+      <div class="estrellas-cont" id="estrellasContinente"></div>
+    </div>
+  </section>
+
+  <!-- ===== QUIZ ===== -->
+  <section id="vistaQuiz" class="vista" hidden aria-labelledby="quizTitulo">
+    <div class="quiz-cabecera">
+      <button class="back" id="salirQuiz" type="button">← Volver al continente</button>
+      <span class="progreso-vistas" id="quizContador">Pregunta 1 de 10</span>
+    </div>
+    <h2 class="quiz-titulo" id="quizTitulo" tabindex="-1">Quiz · Europa</h2>
+    <div class="barra-progreso" aria-hidden="true"><span id="quizBarra"></span></div>
+    <div class="quiz-card" id="quizCard" tabindex="-1"></div>
+    <p class="feedback" id="quizFeedback" role="status" aria-live="polite"></p>
+    <div class="quiz-acciones">
+      <button class="accion" id="quizSiguiente" type="button" disabled>Siguiente →</button>
+    </div>
+    <p class="foot">Responde tocando una opción o con las teclas 1, 2 y 3.</p>
+  </section>
+
+  <p class="foot" id="pieCreditos">Banderas: <a href="https://github.com/lipis/flag-icons" target="_blank" rel="noopener noreferrer">flag-icons</a> (MIT) · Mapas: <a href="https://mapsvg.com/maps/world" target="_blank" rel="noopener noreferrer">MapSVG</a> · <a href="https://github.com/svg-maps/svg-maps" target="_blank" rel="noopener noreferrer">svg-maps</a> (CC BY 4.0). Progreso guardado en este dispositivo.</p>
+  <audio id="audioPais" preload="none"></audio>
+</main>
+
+<script src="progress-shared.js"></script>
+<script src="banderas/datos.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var params = new URLSearchParams(location.search);
+  var perfil = params.get('profile') || 'mireia';
+  var CLAVE_VISTAS = 'mundoAprendizajeBanderasVistasV1_' + perfil;
+  var CLAVE_ESTRELLAS = 'mundoAprendizajeBanderasEstrellasV1_' + perfil;
+  var CLAVE_AUDIO = 'mundoAprendizajeBanderasAudioV1_' + perfil;
+  var ORDEN = ['gold', 'silver', 'bronze'];
+  var NOMBRE_ESTRELLA = { gold: 'oro', silver: 'plata', bronze: 'bronce' };
+  var ICONO_ESTRELLA = { gold: '★', silver: '★', bronze: '★' };
+
+  var CONTINENTES = (window.BANDERAS_DATA && window.BANDERAS_DATA.continentes) || [];
+  var totalPaises = CONTINENTES.reduce(function (n, c) { return n + c.paises.length; }, 0);
+
+  var el = function (id) { return document.getElementById(id); };
+  var estados = {
+    cont: null,
+    modo: null,
+    quiz: null,
+    indice: 0,
+    aciertos: 0,
+    respondida: false,
+    finalizado: false,
+    mapaCargado: null,
+    zoom: false
+  };
+  var mapasCache = {};
+  var peticionMapa = 0;
+  var sonidoActivo = true;
+  var ESCALA_ZOOM = 2;
+
+  function leerJSON(clave, porDefecto) {
+    try {
+      var bruto = localStorage.getItem(clave);
+      if (bruto) {
+        var dato = JSON.parse(bruto);
+        if (dato && typeof dato === 'object') return dato;
+      }
+    } catch (e) { /* sin almacenamiento */ }
+    return porDefecto;
+  }
+  function guardarJSON(clave, dato) {
+    try { localStorage.setItem(clave, JSON.stringify(dato)); } catch (e) { /* cuota llena */ }
+  }
+  function leerTexto(clave) {
+    try { return localStorage.getItem(clave); } catch (e) { return null; }
+  }
+  function guardarTexto(clave, valor) {
+    try { localStorage.setItem(clave, valor); } catch (e) { /* sin almacenamiento */ }
+  }
+
+  var vistos = leerJSON(CLAVE_VISTAS, {});
+  var estrellas = leerJSON(CLAVE_ESTRELLAS, {});
+  sonidoActivo = leerTexto(CLAVE_AUDIO) !== 'off';
+
+  function vistosDe(id) {
+    if (!vistos[id] || typeof vistos[id] !== 'object') vistos[id] = {};
+    return vistos[id];
+  }
+  function estrellasDe(id) {
+    if (!estrellas[id] || typeof estrellas[id] !== 'object') estrellas[id] = {};
+    ['facil', 'dificil'].forEach(function (modo) {
+      if (!estrellas[id][modo] || typeof estrellas[id][modo] !== 'object') {
+        estrellas[id][modo] = { gold: 0, silver: 0, bronze: 0 };
+      }
+      ORDEN.forEach(function (tipo) {
+        estrellas[id][modo][tipo] = Math.max(0, Number(estrellas[id][modo][tipo]) || 0);
+      });
+    });
+    return estrellas[id];
+  }
+
+  function pais(code, nombre, dif) { return { code: code, nombre: nombre, dif: dif }; }
+  CONTINENTES.forEach(function (c) {
+    c.lista = c.paises.map(function (p) { return pais(p[0], p[1], p[2]); });
+    c.faciles = c.lista.filter(function (p) { return p.dif === 1; });
+    c.dificiles = c.lista.filter(function (p) { return p.dif === 2; });
+  });
+
+  function continentePorId(id) {
+    return CONTINENTES.filter(function (c) { return c.id === id; })[0] || null;
+  }
+
+  /* 22/11/2026: América se dividió en Norteamérica y Sudamérica. */
+  (function migrarAmerica() {
+    var viejo = vistos.america;
+    if (!viejo || typeof viejo !== 'object') return;
+    var cambio = false;
+    ['norteamerica', 'sudamerica'].forEach(function (id) {
+      var c = continentePorId(id);
+      if (!c) return;
+      var destino = vistosDe(id);
+      c.lista.forEach(function (p) {
+        if (viejo[p.code] && !destino[p.code]) { destino[p.code] = true; cambio = true; }
+      });
+    });
+    if (cambio) guardarJSON(CLAVE_VISTAS, vistos);
+  })();
+  function barajar(lista) {
+    var copia = lista.slice();
+    for (var i = copia.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = copia[i]; copia[i] = copia[j]; copia[j] = tmp;
+    }
+    return copia;
+  }
+  function rutaBandera(p) { return 'banderas/banderas/' + p.code + '.svg'; }
+
+  function totalEstrellas() {
+    var total = { gold: 0, silver: 0, bronze: 0 };
+    if (window.MiProgreso) {
+      var progreso = window.MiProgreso.load(perfil);
+      var area = window.MiProgreso.area(progreso, 'banderas');
+      ORDEN.forEach(function (tipo) { total[tipo] = Number(area[tipo]) || 0; });
+      return total;
+    }
+    CONTINENTES.forEach(function (c) {
+      var registro = estrellasDe(c.id);
+      ['facil', 'dificil'].forEach(function (modo) {
+        ORDEN.forEach(function (tipo) { total[tipo] += registro[modo][tipo]; });
+      });
+    });
+    return total;
+  }
+  function pintarTotales() {
+    var total = totalEstrellas();
+    el('oroTotal').textContent = total.gold;
+    el('plataTotal').textContent = total.silver;
+    el('bronceTotal').textContent = total.bronze;
+  }
+
+  function totalVistosContinente(c) {
+    var marca = vistosDe(c.id);
+    return c.lista.filter(function (p) { return !!marca[p.code]; }).length;
+  }
+  function continenteCompleto(c) { return totalVistosContinente(c) === c.lista.length; }
+
+  function pintarChips() {
+    el('chipsContinentes').innerHTML = CONTINENTES.map(function (c) {
+      var vistosCont = totalVistosContinente(c);
+      return '<button class="chip" type="button" data-cont="' + c.id + '">' +
+        '<span class="punto" style="background:' + c.color + '"></span>' +
+        '<span>' + c.nombre + '</span>' +
+        '<small>' + vistosCont + '/' + c.lista.length + '</small>' +
+        '</button>';
+    }).join('');
+    el('chipsContinentes').querySelectorAll('button[data-cont]').forEach(function (b) {
+      b.addEventListener('click', function () { abrirContinente(b.dataset.cont); });
+    });
+    var vistosTotales = CONTINENTES.reduce(function (n, c) { return n + totalVistosContinente(c); }, 0);
+    el('totalVistas').innerHTML = 'Has visto <b>' + vistosTotales + '</b> de <b>' + totalPaises + '</b> banderas del mundo.';
+  }
+
+  function mostrar(vista) {
+    ['vistaMapa', 'vistaContinente', 'vistaQuiz'].forEach(function (id) {
+      el(id).hidden = id !== vista;
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function anunciar(texto) {
+    var region = el('anuncio');
+    if (region) region.textContent = texto;
+  }
+
+  /* ---------- sonido ---------- */
+
+  function pintarBotonSonido() {
+    var b = el('botonSonido');
+    if (!b) return;
+    b.textContent = sonidoActivo ? '🔊 Sonido' : '🔇 Silencio';
+    b.setAttribute('aria-pressed', sonidoActivo ? 'true' : 'false');
+    b.setAttribute('aria-label', sonidoActivo ? 'Sonido activado. Pulsa para silenciar los nombres' : 'Sonido silenciado. Pulsa para volver a oír los nombres');
+    b.title = sonidoActivo ? 'Silenciar el nombre de los países' : 'Activar el sonido de los países';
+  }
+
+  el('botonSonido').addEventListener('click', function () {
+    sonidoActivo = !sonidoActivo;
+    guardarTexto(CLAVE_AUDIO, sonidoActivo ? 'on' : 'off');
+    pintarBotonSonido();
+    if (!sonidoActivo) {
+      var audio = el('audioPais');
+      try { audio.pause(); } catch (e) { /* sin audio */ }
+    }
+    anunciar(sonidoActivo ? 'Sonido activado.' : 'Sonido silenciado. Los nombres no sonarán.');
+  });
+
+  function reproducirPais(code) {
+    if (!sonidoActivo) return;
+    var audio = el('audioPais');
+    if (!audio) return;
+    try { audio.pause(); audio.currentTime = 0; } catch (e) { /* aún sin pista */ }
+    audio.src = 'banderas/audios/' + code + '.mp3';
+    var intento;
+    try { intento = audio.play(); } catch (e) { return; }
+    if (intento && typeof intento.catch === 'function') {
+      intento.catch(function () { /* el navegador puede bloquear la reproducción */ });
+    }
+  }
+
+  /* ---------- tarjeta de información ---------- */
+
+  function resetInfoPais() {
+    el('infoBandera').innerHTML = '';
+    var nombre = el('infoNombre');
+    nombre.textContent = 'Toca un país del mapa para ver su bandera y oír su nombre';
+    nombre.classList.add('inicial');
+    el('oirOtraVez').disabled = true;
+    el('oirOtraVez').removeAttribute('data-code');
+  }
+
+  function pintarInfoPais(p) {
+    el('infoBandera').innerHTML = '<img src="' + rutaBandera(p) + '" alt="Bandera de ' + p.nombre + '" width="82" height="62">';
+    var nombre = el('infoNombre');
+    nombre.textContent = p.nombre;
+    nombre.classList.remove('inicial');
+    var boton = el('oirOtraVez');
+    boton.disabled = false;
+    boton.dataset.code = p.code;
+    boton.setAttribute('aria-label', 'Oír otra vez el nombre de ' + p.nombre);
+  }
+
+  el('oirOtraVez').addEventListener('click', function () {
+    var code = this.dataset.code;
+    if (code) reproducirPais(code);
+  });
+
+  /* ---------- mapa del continente ---------- */
+
+  function estadoMapa(tipo, c) {
+    var caja = el('mapaEstado');
+    if (tipo === 'cargando') {
+      caja.innerHTML = 'Cargando el mapa…';
+      caja.hidden = false;
+      return;
+    }
+    if (tipo === 'error') {
+      caja.innerHTML = '<p class="aviso">No se ha podido cargar el mapa de ' + (c ? c.nombre : 'este continente') +
+        '. Puedes usar la lista de países de abajo.</p><button class="accion" type="button" id="reintentarMapa">Reintentar</button>';
+      caja.hidden = false;
+      var b = el('reintentarMapa');
+      if (b) b.addEventListener('click', function () { cargarMapa(c, true); });
+      return;
+    }
+    caja.hidden = true;
+    caja.innerHTML = '';
+  }
+
+  function ajustarSvgMapa(svg) {
+    var vb = svg.viewBox && svg.viewBox.baseVal;
+    if (vb && vb.width > 0 && vb.height > 0) {
+      var proporcion = vb.width / vb.height;
+      svg.style.maxWidth = 'calc(min(78vh, 720px) * ' + proporcion.toFixed(4) + ')';
+    }
+    svg.setAttribute('focusable', 'false');
+  }
+
+  /* ---------- ampliar el mapa ---------- */
+
+  function pintarBotonZoom() {
+    var b = el('botonZoom');
+    if (!b) return;
+    var ampliado = !!estados.zoom;
+    b.textContent = ampliado ? '↺ Ver todo' : '🔍 Ampliar';
+    b.setAttribute('aria-pressed', ampliado ? 'true' : 'false');
+    b.setAttribute('aria-label', ampliado
+      ? 'Mapa ampliado. Pulsa para verlo entero'
+      : 'Ampliar el mapa para tocar mejor los países pequeños');
+    b.title = ampliado ? 'Ver el mapa entero' : 'Ampliar el mapa';
+    var pista = el('pistaMapa');
+    if (pista) {
+      pista.textContent = ampliado ? 'Arrastra para mover el mapa' : 'Toca un país del mapa';
+    }
+  }
+
+  function aplicarZoom(avisar) {
+    var lienzo = el('mapaLienzo');
+    var escena = el('mapaEscena');
+    if (!lienzo || !escena) return;
+    var svg = escena.querySelector('svg');
+    var ampliado = !!estados.zoom;
+
+    // Se mide siempre en tamaño normal: así el doble de zoom parte del mapa
+    // que se ve de verdad, sin acumular ampliaciones al redimensionar.
+    lienzo.classList.remove('zoom');
+    if (svg) {
+      svg.style.width = '';
+      svg.style.height = '';
+      svg.style.maxWidth = '';
+      svg.style.maxHeight = '';
+      ajustarSvgMapa(svg);
+    }
+    var normal = svg ? svg.getBoundingClientRect() : null;
+
+    lienzo.classList.toggle('zoom', ampliado);
+    if (svg && normal) {
+      if (ampliado) {
+        svg.style.width = Math.round(normal.width * ESCALA_ZOOM) + 'px';
+        svg.style.height = Math.round(normal.height * ESCALA_ZOOM) + 'px';
+        svg.style.maxWidth = 'none';
+        svg.style.maxHeight = 'none';
+      }
+    }
+    if (ampliado) {
+      lienzo.scrollLeft = Math.max(0, Math.round((lienzo.scrollWidth - lienzo.clientWidth) / 2));
+      lienzo.scrollTop = Math.max(0, Math.round((lienzo.scrollHeight - lienzo.clientHeight) / 2));
+    } else {
+      lienzo.scrollLeft = 0;
+      lienzo.scrollTop = 0;
+    }
+    pintarBotonZoom();
+    if (avisar) {
+      anunciar(ampliado
+        ? 'Mapa ampliado. Arrastra o desplázate para ver el resto y toca un país.'
+        : 'Mapa completo.');
+    }
+  }
+
+  el('botonZoom').addEventListener('click', function () {
+    var svg = el('mapaEscena').querySelector('svg');
+    if (!svg) {
+      anunciar('El mapa todavía se está cargando.');
+      return;
+    }
+    estados.zoom = !estados.zoom;
+    aplicarZoom(true);
+  });
+
+  window.addEventListener('resize', function () {
+    if (estados.zoom) aplicarZoom(false);
+  });
+
+  // Arrastrar con el ratón para mover el mapa ampliado (en táctil se usa el
+  // desplazamiento nativo del panel).
+  (function activarArrastreMapa() {
+    var lienzo = el('mapaLienzo');
+    if (!lienzo) return;
+    var arrastre = { activo: false, movido: false, x: 0, y: 0, izq: 0, arr: 0 };
+    lienzo.addEventListener('pointerdown', function (evento) {
+      if (!estados.zoom || evento.button !== 0 || evento.pointerType === 'touch') return;
+      arrastre.activo = true;
+      arrastre.movido = false;
+      arrastre.x = evento.clientX;
+      arrastre.y = evento.clientY;
+      arrastre.izq = lienzo.scrollLeft;
+      arrastre.arr = lienzo.scrollTop;
+    });
+    lienzo.addEventListener('pointermove', function (evento) {
+      if (!arrastre.activo) return;
+      var dx = evento.clientX - arrastre.x;
+      var dy = evento.clientY - arrastre.y;
+      if (!arrastre.movido && Math.abs(dx) + Math.abs(dy) < 7) return;
+      arrastre.movido = true;
+      lienzo.classList.add('arrastrando');
+      if (lienzo.setPointerCapture) {
+        try { lienzo.setPointerCapture(evento.pointerId); } catch (e) { /* sin captura */ }
+      }
+      evento.preventDefault();
+      lienzo.scrollLeft = arrastre.izq - dx;
+      lienzo.scrollTop = arrastre.arr - dy;
+    });
+    var soltar = function () {
+      arrastre.activo = false;
+      lienzo.classList.remove('arrastrando');
+    };
+    lienzo.addEventListener('pointerup', soltar);
+    lienzo.addEventListener('pointercancel', soltar);
+    lienzo.addEventListener('pointerleave', soltar);
+    lienzo.addEventListener('click', function (evento) {
+      if (arrastre.movido) {
+        evento.preventDefault();
+        evento.stopPropagation();
+        arrastre.movido = false;
+      }
+    }, true);
+  })();
+
+  function activarPaisesDelMapa() {
+    var escena = el('mapaEscena');
+    if (!escena) return;
+    var c = estados.cont;
+    var marca = c ? vistosDe(c.id) : {};
+    escena.querySelectorAll('g.pais[data-code]').forEach(function (g) {
+      var visto = !!marca[g.dataset.code];
+      g.classList.toggle('visto', visto);
+      g.setAttribute('aria-pressed', visto ? 'true' : 'false');
+      var activar = function (evento) {
+        if (evento) evento.preventDefault();
+        descubrir(g.dataset.code);
+      };
+      g.addEventListener('click', activar);
+      g.addEventListener('keydown', function (evento) {
+        if (evento.key === 'Enter' || evento.key === ' ' || evento.key === 'Spacebar') activar(evento);
+      });
+    });
+  }
+
+  function inyectarMapa(c, texto) {
+    var escena = el('mapaEscena');
+    escena.innerHTML = texto;
+    var svg = escena.querySelector('svg');
+    if (!svg) {
+      estadoMapa('error', c);
+      return;
+    }
+    ajustarSvgMapa(svg);
+    estados.mapaCargado = c.id;
+    estadoMapa('oculto');
+    activarPaisesDelMapa();
+    aplicarZoom(false);
+  }
+
+  function cargarMapa(c, forzar) {
+    if (!c) return;
+    var escena = el('mapaEscena');
+    var pedido = ++peticionMapa;
+    if (!forzar && mapasCache[c.id]) {
+      inyectarMapa(c, mapasCache[c.id]);
+      return;
+    }
+    escena.innerHTML = '';
+    estadoMapa('cargando');
+    fetch('banderas/mapas/' + c.id + '.svg', { cache: 'no-store' })
+      .then(function (respuesta) {
+        if (!respuesta.ok) throw new Error('HTTP ' + respuesta.status);
+        return respuesta.text();
+      })
+      .then(function (texto) {
+        if (pedido !== peticionMapa) return;
+        mapasCache[c.id] = texto;
+        inyectarMapa(c, texto);
+      })
+      .catch(function () {
+        if (pedido !== peticionMapa) return;
+        estadoMapa('error', c);
+        el('detallesPaises').open = true;
+        anunciar('No se ha podido cargar el mapa de ' + c.nombre + '. Usa la lista de países.');
+      });
+  }
+
+  /* ---------- descubrir un país ---------- */
+
+  function descubrir(code) {
+    var c = estados.cont;
+    if (!c) return;
+    var p = null;
+    for (var i = 0; i < c.lista.length; i++) {
+      if (c.lista[i].code === code) { p = c.lista[i]; break; }
+    }
+    if (!p) return;
+
+    pintarInfoPais(p);
+    reproducirPais(code);
+    anunciar(p.nombre);
+
+    var marca = vistosDe(c.id);
+    var nuevo = !marca[code];
+    if (nuevo) {
+      marca[code] = true;
+      guardarJSON(CLAVE_VISTAS, vistos);
+    }
+
+    var enMapa = el('mapaEscena').querySelector('g.pais[data-code="' + code + '"]');
+    if (enMapa) {
+      enMapa.classList.add('visto');
+      enMapa.setAttribute('aria-pressed', 'true');
+    }
+    var enLista = el('rejillaPaises').querySelector('button[data-code="' + code + '"]');
+    if (enLista) {
+      enLista.classList.add('visto');
+      enLista.setAttribute('aria-pressed', 'true');
+      enLista.setAttribute('aria-label', 'Visto: ' + p.nombre);
+    }
+
+    actualizarProgresoVistas();
+    if (nuevo) {
+      pintarPanelQuiz();
+      pintarChips();
+      if (continenteCompleto(c)) anunciar('¡Quiz de ' + c.nombre + ' desbloqueado! Ya puedes elegir dificultad.');
+    }
+  }
+
+  /* ---------- lista de países ---------- */
+
+  function pintarListaPaises() {
+    var c = estados.cont;
+    if (!c) return;
+    var marca = vistosDe(c.id);
+    el('rejillaPaises').innerHTML = c.lista.map(function (p) {
+      var visto = !!marca[p.code];
+      return '<button class="pais' + (visto ? ' visto' : '') + '" type="button" data-code="' + p.code + '" aria-pressed="' + visto + '" aria-label="' + (visto ? 'Visto: ' : 'Ver bandera de ') + p.nombre + '">' +
+        '<span class="bandera"><img src="' + rutaBandera(p) + '" alt="Bandera de ' + p.nombre + '" loading="lazy" width="160" height="120"></span>' +
+        '<span class="nombre">' + p.nombre + '</span>' +
+        '</button>';
+    }).join('');
+    el('rejillaPaises').querySelectorAll('button[data-code]').forEach(function (b) {
+      b.addEventListener('click', function () { descubrir(b.dataset.code); });
+    });
+    actualizarProgresoVistas();
+  }
+
+  function actualizarProgresoVistas() {
+    var c = estados.cont;
+    if (!c) return;
+    var n = totalVistosContinente(c);
+    el('progresoVistas').textContent = n + ' de ' + c.lista.length + ' banderas';
+    el('barraVistas').style.width = (c.lista.length ? (n / c.lista.length * 100) : 0) + '%';
+  }
+
+  function abrirContinente(id) {
+    var c = continentePorId(id);
+    if (!c) return;
+    estados.cont = c;
+    estados.modo = null;
+    estados.quiz = null;
+    estados.finalizado = false;
+    estados.mapaCargado = null;
+    peticionMapa++;
+    el('contTitulo').textContent = c.nombre;
+    el('puntoContinente').style.background = c.color;
+    el('introContinente').textContent = 'Toca un país del mapa para ver su bandera y oír su nombre. Cuando hayas visto los ' + c.lista.length + ' países de ' + c.nombre + ', se desbloqueará el quiz.';
+    el('quizPanelNombre').textContent = c.nombre;
+    el('mapaEscena').innerHTML = '';
+    estados.zoom = false;
+    aplicarZoom(false);
+    el('detallesPaises').open = false;
+    resetInfoPais();
+    pintarListaPaises();
+    cargarMapa(c);
+    pintarPanelQuiz();
+    mostrar('vistaContinente');
+    el('contTitulo').focus({ preventScroll: true });
+    anunciar('Has abierto ' + c.nombre + '. ' + c.lista.length + ' países por descubrir.');
+  }
+
+  /* ---------- quiz ---------- */
+
+  function estrellasHTML(registro) {
+    return ORDEN.map(function (tipo) {
+      return '<span class="mini-estrella ' + tipo + '" title="' + NOMBRE_ESTRELLA[tipo] + '">' + ICONO_ESTRELLA[tipo] + ' ' + registro[tipo] + '</span>';
+    }).join('');
+  }
+
+  function pintarPanelQuiz() {
+    var c = estados.cont;
+    if (!c) return;
+    var completo = continenteCompleto(c);
+    var faltan = c.lista.length - totalVistosContinente(c);
+    var candado = el('candado');
+    candado.classList.toggle('abierto', completo);
+    candado.querySelector('.icono').textContent = completo ? '✅' : '🔒';
+    el('candadoTexto').textContent = completo
+      ? '¡Quiz desbloqueado! Ya conoces las ' + c.lista.length + ' banderas de ' + c.nombre + '. Elige una dificultad.'
+      : 'Te faltan ' + faltan + ' bandera' + (faltan === 1 ? '' : 's') + ' por tocar para desbloquear el quiz.';
+    el('quizFacil').disabled = !completo;
+    el('quizDificil').disabled = !completo;
+    var registro = estrellasDe(c.id);
+    el('estrellasContinente').innerHTML =
+      '<div class="estrellas-bloque"><strong>Quiz fácil · ' + c.nombre + '</strong><div class="fila">' + estrellasHTML(registro.facil) + '</div></div>' +
+      '<div class="estrellas-bloque"><strong>Quiz difícil · ' + c.nombre + '</strong><div class="fila">' + estrellasHTML(registro.dificil) + '</div></div>';
+  }
+
+  function construirQuiz(c, modo) {
+    var base = modo === 'facil' ? c.faciles : c.dificiles;
+    var relleno = modo === 'facil' ? c.dificiles : c.faciles;
+    var elegidos = barajar(base).slice(0, 10);
+    if (elegidos.length < 10) {
+      elegidos = elegidos.concat(barajar(relleno).slice(0, 10 - elegidos.length));
+    }
+    elegidos = barajar(elegidos);
+    var empiezaBandera = Math.random() < 0.5;
+    return elegidos.map(function (p, i) {
+      var tipo = (i % 2 === 0) === empiezaBandera ? 'bandera' : 'pais';
+      var distractores = barajar(c.lista.filter(function (x) { return x.code !== p.code; })).slice(0, 2);
+      return {
+        pais: p,
+        tipo: tipo,
+        opciones: barajar([p].concat(distractores)),
+        correcta: p.code
+      };
+    });
+  }
+
+  function iniciarQuiz(modo) {
+    var c = estados.cont;
+    if (!c || !continenteCompleto(c)) return;
+    estados.modo = modo;
+    estados.quiz = construirQuiz(c, modo);
+    estados.indice = 0;
+    estados.aciertos = 0;
+    estados.respondida = false;
+    estados.finalizado = false;
+    el('quizTitulo').textContent = (modo === 'facil' ? 'Quiz fácil' : 'Quiz difícil') + ' · ' + c.nombre;
+    mostrar('vistaQuiz');
+    pintarPregunta();
+    el('quizTitulo').focus({ preventScroll: true });
+  }
+
+  function pintarPregunta() {
+    var q = estados.quiz[estados.indice];
+    var total = estados.quiz.length;
+    estados.respondida = false;
+    el('quizContador').textContent = 'Pregunta ' + (estados.indice + 1) + ' de ' + total;
+    anunciar('Pregunta ' + (estados.indice + 1) + ' de ' + total + '.');
+    el('quizBarra').style.width = (estados.indice / total * 100) + '%';
+    el('quizFeedback').textContent = '';
+    el('quizFeedback').className = 'feedback';
+    el('quizSiguiente').hidden = false;
+    el('quizSiguiente').disabled = true;
+    el('quizSiguiente').textContent = estados.indice === total - 1 ? 'Ver resultado 🎉' : 'Siguiente →';
+
+    if (q.tipo === 'bandera') {
+      el('quizCard').innerHTML =
+        '<div class="bandera-grande"><img src="' + rutaBandera(q.pais) + '" alt="Bandera por adivinar" width="320" height="240"></div>' +
+        '<p class="pregunta">¿De qué país es esta bandera?</p>' +
+        '<div class="opciones">' + q.opciones.map(function (p, i) {
+          return '<button class="opcion" type="button" data-code="' + p.code + '"><span class="sr">' + (i + 1) + '. </span>' + p.nombre + '</button>';
+        }).join('') + '</div>';
+    } else {
+      el('quizCard').innerHTML =
+        '<p class="pais-objetivo">' + q.pais.nombre + '</p>' +
+        '<p class="pregunta">¿Cuál es su bandera?</p>' +
+        '<div class="opciones opciones-banderas">' + q.opciones.map(function (p, i) {
+          return '<button class="opcion bandera-opcion" type="button" data-code="' + p.code + '" aria-label="' + (i + 1) + '. Bandera de ' + p.nombre + '"><img src="' + rutaBandera(p) + '" alt="" loading="eager" width="200" height="150"></button>';
+        }).join('') + '</div>';
+    }
+    el('quizCard').querySelectorAll('button[data-code]').forEach(function (b) {
+      b.addEventListener('click', function () { responder(b.dataset.code, b); });
+    });
+  }
+
+  function responder(code, boton) {
+    if (estados.respondida || estados.finalizado) return;
+    estados.respondida = true;
+    var q = estados.quiz[estados.indice];
+    var acierto = code === q.correcta;
+    if (acierto) estados.aciertos++;
+    el('quizCard').querySelectorAll('button[data-code]').forEach(function (b) {
+      b.disabled = true;
+      if (b.dataset.code === q.correcta) b.classList.add('acierto');
+    });
+    if (!acierto && boton) boton.classList.add('fallo');
+    var feedback = el('quizFeedback');
+    if (acierto) {
+      feedback.className = 'feedback bien';
+      feedback.textContent = '¡Muy bien! Es ' + q.pais.nombre + '.';
+    } else {
+      feedback.className = 'feedback mal';
+      feedback.textContent = 'Casi. La respuesta correcta es ' + q.pais.nombre + '.';
+    }
+    el('quizSiguiente').disabled = false;
+  }
+
+  function siguiente() {
+    if (!estados.respondida) return;
+    if (estados.indice < estados.quiz.length - 1) {
+      estados.indice++;
+      pintarPregunta();
+      el('quizCard').focus({ preventScroll: true });
+      el('quizCard').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      return;
+    }
+    terminarQuiz();
+  }
+
+  function gradoDe(aciertos) {
+    if (aciertos >= 9) return 'gold';
+    if (aciertos >= 7) return 'silver';
+    if (aciertos >= 5) return 'bronze';
+    return null;
+  }
+
+  function terminarQuiz() {
+    var c = estados.cont;
+    var modo = estados.modo;
+    if (!c || !modo) return;
+    estados.finalizado = true;
+    var aciertos = estados.aciertos;
+    var total = estados.quiz.length;
+    var grado = gradoDe(aciertos);
+    var registro = estrellasDe(c.id);
+    if (grado) {
+      registro[modo][grado]++;
+      guardarJSON(CLAVE_ESTRELLAS, estrellas);
+      if (window.MiProgreso) {
+        var progreso = window.MiProgreso.load(perfil);
+        var area = window.MiProgreso.area(progreso, 'banderas');
+        area[grado] = (Number(area[grado]) || 0) + 1;
+        try {
+          progreso.rounds = (Number(progreso.rounds) || 0) + 1;
+          progreso.byGame['banderas_' + c.id + '_' + modo] = (Number(progreso.byGame['banderas_' + c.id + '_' + modo]) || 0) + 1;
+        } catch (e) { /* estructura antigua */ }
+        window.MiProgreso.persist(perfil, progreso);
+      }
+      pintarTotales();
+    }
+    pintarPanelQuiz();
+
+    var textoEstrella = grado
+      ? '<div class="gran-estrella ' + grado + '"><span aria-hidden="true">★</span> Estrella de ' + NOMBRE_ESTRELLA[grado] + '</div>'
+      : '<p class="sin-estrella">Esta vez no hay estrella. ¡Con 5 aciertos ya consigues bronce!</p>';
+    var acumuladas = estrellasDe(c.id)[modo];
+    el('quizCard').innerHTML =
+      '<div class="final">' +
+        '<div class="trofeo" aria-hidden="true">🏆</div>' +
+        '<h3 tabindex="-1">¡Quiz completado!</h3>' +
+        '<p class="marcador">Has acertado <b>' + aciertos + '</b> de ' + total + '.</p>' +
+        textoEstrella +
+        '<p class="totales">En ' + c.nombre + ' · ' + (modo === 'facil' ? 'fácil' : 'difícil') + ': ' +
+          '<b>oro ' + acumuladas.gold + '</b> · <b>plata ' + acumuladas.silver + '</b> · <b>bronce ' + acumuladas.bronze + '</b></p>' +
+        '<div class="final-botones">' +
+          '<button class="accion" type="button" id="repetirQuiz">Jugar otra vez</button>' +
+          '<button class="accion secundaria" type="button" id="volverContinente">Ver las banderas</button>' +
+          '<button class="accion secundaria" type="button" id="volverMapaFinal">Volver al mapamundi</button>' +
+        '</div>' +
+      '</div>';
+    el('quizContador').textContent = 'Resultado · ' + aciertos + ' de ' + total;
+    el('quizBarra').style.width = '100%';
+    el('quizFeedback').textContent = '';
+    el('quizSiguiente').disabled = true;
+    el('quizSiguiente').hidden = true;
+    el('quizCard').querySelector('h3').focus({ preventScroll: true });
+    anunciar('Quiz completado. Has acertado ' + aciertos + ' de ' + total + '.' + (grado ? ' Estrella de ' + NOMBRE_ESTRELLA[grado] + '.' : ' Sin estrella esta vez.'));
+    el('repetirQuiz').addEventListener('click', function () { iniciarQuiz(modo); });
+    el('volverContinente').addEventListener('click', function () { abrirContinente(c.id); });
+    el('volverMapaFinal').addEventListener('click', volverAlMapa);
+  }
+
+  function volverAlMapa() {
+    estados.cont = null;
+    estados.quiz = null;
+    estados.finalizado = false;
+    estados.mapaCargado = null;
+    estados.zoom = false;
+    peticionMapa++;
+    pintarChips();
+    pintarTotales();
+    mostrar('vistaMapa');
+  }
+
+  function salirDelQuiz() {
+    if (!estados.cont) { volverAlMapa(); return; }
+    abrirContinente(estados.cont.id);
+  }
+
+  el('quizSiguiente').hidden = false;
+  el('quizSiguiente').addEventListener('click', siguiente);
+  el('quizFacil').addEventListener('click', function () { iniciarQuiz('facil'); });
+  el('quizDificil').addEventListener('click', function () { iniciarQuiz('dificil'); });
+  el('volverMapa').addEventListener('click', volverAlMapa);
+  el('salirQuiz').addEventListener('click', salirDelQuiz);
+  el('volverJuegos').href = 'areas-test.html?area=juegos&profile=' + encodeURIComponent(perfil);
+
+  document.querySelectorAll('#vistaMapa .cont').forEach(function (grupo) {
+    var activar = function () { abrirContinente(grupo.dataset.cont); };
+    grupo.addEventListener('click', activar);
+    grupo.addEventListener('keydown', function (evento) {
+      if (evento.key === 'Enter' || evento.key === ' ' || evento.key === 'Spacebar') {
+        evento.preventDefault();
+        activar();
+      }
+    });
+  });
+  document.querySelectorAll('#vistaMapa .placa[data-cont]').forEach(function (placa) {
+    placa.addEventListener('click', function () { abrirContinente(placa.dataset.cont); });
+  });
+
+  document.addEventListener('keydown', function (evento) {
+    if (evento.key === 'Escape') {
+      if (!el('vistaQuiz').hidden) { evento.preventDefault(); salirDelQuiz(); return; }
+      if (!el('vistaContinente').hidden) { evento.preventDefault(); volverAlMapa(); return; }
+    }
+    if (!el('vistaQuiz').hidden && estados.quiz && !estados.finalizado) {
+      if (!estados.respondida && /^[1-3]$/.test(evento.key)) {
+        var botones = el('quizCard').querySelectorAll('button[data-code]');
+        var boton = botones[Number(evento.key) - 1];
+        if (boton) { evento.preventDefault(); boton.click(); }
+      } else if (estados.respondida && (evento.key === 'Enter' || evento.key === 'ArrowRight')) {
+        evento.preventDefault();
+        siguiente();
+      }
+    }
+  });
+
+  pintarBotonSonido();
+  pintarBotonZoom();
+  resetInfoPais();
+  pintarTotales();
+  pintarChips();
+  mostrar('vistaMapa');
+})();
+</script>
+</body>
+</html>
