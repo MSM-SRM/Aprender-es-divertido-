@@ -2,64 +2,65 @@
   "language": "es-ES",
   "voice": "Lucía (ClipUtils, pendiente de prueba auditiva)",
   "source": "comunidades_aut_nomas_de_espa_a.txt",
+  "totalAudioFiles": 209,
   "territories": [
     {
-      "id": "comunidades-y-ciudades-autonomas-de-espana",
-      "name": "COMUNIDADES Y CIUDADES AUTÓNOMAS DE ESPAÑA",
-      "gent": "PARA NIÑOS DE 6 A 8 AÑOS",
+      "id": "andalucia",
+      "name": "ANDALUCÍA",
+      "gent": "Andaluz / Andaluza",
       "intro": {
-        "file": "comunidades-y-ciudades-autonomas-de-espana/00-presentacion.mp3",
-        "text": "Esta es COMUNIDADES Y CIUDADES AUTÓNOMAS DE ESPAÑA. Sus habitantes se llaman PARA NIÑOS DE 6 A 8 AÑOS."
+        "file": "andalucia/00-presentacion.mp3",
+        "text": "Estamos en ANDALUCÍA. Sus habitantes se llaman andaluzes y andaluzas."
       },
       "facts": [
         {
           "number": 1,
-          "file": "comunidades-y-ciudades-autonomas-de-espana/01.mp3",
+          "file": "andalucia/01.mp3",
           "text": "Es la comunidad donde vive más gente de toda España."
         },
         {
           "number": 2,
-          "file": "comunidades-y-ciudades-autonomas-de-espana/02.mp3",
+          "file": "andalucia/02.mp3",
           "text": "Tiene el pico más alto de la península, el Mulhacén, que tiene nieve."
         },
         {
           "number": 3,
-          "file": "comunidades-y-ciudades-autonomas-de-espana/03.mp3",
+          "file": "andalucia/03.mp3",
           "text": "Produce muchísimo aceite de oliva, ¡el que usamos para cocinar!"
         },
         {
           "number": 4,
-          "file": "comunidades-y-ciudades-autonomas-de-espana/04.mp3",
+          "file": "andalucia/04.mp3",
           "text": "Hace muchísimo sol casi todos los días del año."
         },
         {
           "number": 5,
-          "file": "comunidades-y-ciudades-autonomas-de-espana/05.mp3",
+          "file": "andalucia/05.mp3",
           "text": "Aquí nacieron el baile y la música del flamenco."
         },
         {
           "number": 6,
-          "file": "comunidades-y-ciudades-autonomas-de-espana/06.mp3",
+          "file": "andalucia/06.mp3",
           "text": "Sus costas están bañadas por dos mares distintos: el Atlántico y el Mediterráneo."
         },
         {
           "number": 7,
-          "file": "comunidades-y-ciudades-autonomas-de-espana/07.mp3",
+          "file": "andalucia/07.mp3",
           "text": "En Córdoba y Granada vivieron reyes árabes que construyeron palacios mágicos como la Alhambra."
         },
         {
           "number": 8,
-          "file": "comunidades-y-ciudades-autonomas-de-espana/08.mp3",
+          "file": "andalucia/08.mp3",
           "text": "Tiene el Parque de Doñana, donde viven linces ibéricos y miles de pájaros."
         },
         {
           "number": 9,
-          "file": "comunidades-y-ciudades-autonomas-de-espana/09.mp3",
+          "file": "andalucia/09.mp3",
           "text": "Aquí nació Pablo Picasso, uno de los pintores más famosos del mundo."
         },
         {
           "number": 10,
-          "file": "comunidades-y-ciudades-autonomas-de-espana/10.mp3",
+          "file": "andalucia/10.mp3",
           "text": "Es la segunda comunidad más grande de España."
         }
       ]
@@ -70,7 +71,7 @@
       "gent": "Aragonés / Aragonesa",
       "intro": {
         "file": "aragon/00-presentacion.mp3",
-        "text": "Esta es ARAGÓN. Sus habitantes se llaman Aragonés / Aragonesa."
+        "text": "Estamos en ARAGÓN. Sus habitantes se llaman aragonéses y aragonesas."
       },
       "facts": [
         {
@@ -131,7 +132,7 @@
       "gent": "Asturiano / Asturiana",
       "intro": {
         "file": "principado-de-asturias/00-presentacion.mp3",
-        "text": "Esta es PRINCIPADO DE ASTURIAS. Sus habitantes se llaman Asturiano / Asturiana."
+        "text": "Estamos en ASTURIAS. Sus habitantes se llaman asturianoes y asturianas."
       },
       "facts": [
         {
@@ -192,7 +193,7 @@
       "gent": "Balear",
       "intro": {
         "file": "illes-balears/00-presentacion.mp3",
-        "text": "Esta es ILLES BALEARS. Sus habitantes se llaman Balear."
+        "text": "Estamos en las Islas Baleares. Sus habitantes se llaman baleares."
       },
       "facts": [
         {
@@ -253,7 +254,7 @@
       "gent": "Canario / Canaria",
       "intro": {
         "file": "canarias/00-presentacion.mp3",
-        "text": "Esta es CANARIAS. Sus habitantes se llaman Canario / Canaria."
+        "text": "Estamos en CANARIAS. Sus habitantes se llaman canarioes y canarias."
       },
       "facts": [
         {
@@ -314,7 +315,7 @@
       "gent": "Cántabro / Cántabra",
       "intro": {
         "file": "cantabria/00-presentacion.mp3",
-        "text": "Esta es CANTABRIA. Sus habitantes se llaman Cántabro / Cántabra."
+        "text": "Estamos en CANTABRIA. Sus habitantes se llaman cántabroes y cántabras."
       },
       "facts": [
         {
@@ -375,7 +376,7 @@
       "gent": "Castellanomanchego / Castellanomanchega",
       "intro": {
         "file": "castilla-la-mancha/00-presentacion.mp3",
-        "text": "Esta es CASTILLA-LA MANCHA. Sus habitantes se llaman Castellanomanchego / Castellanomanchega."
+        "text": "Estamos en CASTILLA-LA MANCHA. Sus habitantes se llaman castellanomanchegoes y castellanomanchegas."
       },
       "facts": [
         {
@@ -436,7 +437,7 @@
       "gent": "Castellanoleonés / Castellanoleonesa",
       "intro": {
         "file": "castilla-y-leon/00-presentacion.mp3",
-        "text": "Esta es CASTILLA Y LEÓN. Sus habitantes se llaman Castellanoleonés / Castellanoleonesa."
+        "text": "Estamos en CASTILLA Y LEÓN. Sus habitantes se llaman castellanoleonéses y castellanoleonesas."
       },
       "facts": [
         {
@@ -497,7 +498,7 @@
       "gent": "Catalán / Catalana",
       "intro": {
         "file": "cataluna/00-presentacion.mp3",
-        "text": "Esta es CATALUÑA. Sus habitantes se llaman Catalán / Catalana."
+        "text": "Estamos en CATALUÑA. Sus habitantes se llaman catalánes y catalanas."
       },
       "facts": [
         {
@@ -558,7 +559,7 @@
       "gent": "Valenciano / Valenciana",
       "intro": {
         "file": "comunitat-valenciana/00-presentacion.mp3",
-        "text": "Esta es COMUNITAT VALENCIANA. Sus habitantes se llaman Valenciano / Valenciana."
+        "text": "Estamos en la Comunidad Valenciana. Sus habitantes se llaman valencianoes y valencianas."
       },
       "facts": [
         {
@@ -619,7 +620,7 @@
       "gent": "Extremeño / Extremeña",
       "intro": {
         "file": "extremadura/00-presentacion.mp3",
-        "text": "Esta es EXTREMADURA. Sus habitantes se llaman Extremeño / Extremeña."
+        "text": "Estamos en EXTREMADURA. Sus habitantes se llaman extremeñoes y extremeñas."
       },
       "facts": [
         {
@@ -680,7 +681,7 @@
       "gent": "Gallego / Gallega",
       "intro": {
         "file": "galicia/00-presentacion.mp3",
-        "text": "Esta es GALICIA. Sus habitantes se llaman Gallego / Gallega."
+        "text": "Estamos en GALICIA. Sus habitantes se llaman gallegoes y gallegas."
       },
       "facts": [
         {
@@ -741,7 +742,7 @@
       "gent": "Madrileño / Madrileña",
       "intro": {
         "file": "comunidad-de-madrid/00-presentacion.mp3",
-        "text": "Esta es COMUNIDAD DE MADRID. Sus habitantes se llaman Madrileño / Madrileña."
+        "text": "Estamos en la Comunidad de Madrid. Sus habitantes se llaman madrileñoes y madrileñas."
       },
       "facts": [
         {
@@ -802,7 +803,7 @@
       "gent": "Murciano / Murciana",
       "intro": {
         "file": "region-de-murcia/00-presentacion.mp3",
-        "text": "Esta es REGIÓN DE MURCIA. Sus habitantes se llaman Murciano / Murciana."
+        "text": "Estamos en la Región de Murcia. Sus habitantes se llaman murcianoes y murcianas."
       },
       "facts": [
         {
@@ -863,7 +864,7 @@
       "gent": "Navarro / Navarra",
       "intro": {
         "file": "comunidad-foral-de-navarra/00-presentacion.mp3",
-        "text": "Esta es COMUNIDAD FORAL DE NAVARRA. Sus habitantes se llaman Navarro / Navarra."
+        "text": "Estamos en Navarra. Sus habitantes se llaman navarroes y navarras."
       },
       "facts": [
         {
@@ -924,7 +925,7 @@
       "gent": "Vasco / Vasca",
       "intro": {
         "file": "pais-vasco-euskadi/00-presentacion.mp3",
-        "text": "Esta es PAÍS VASCO / EUSKADI. Sus habitantes se llaman Vasco / Vasca."
+        "text": "Estamos en el País Vasco. Sus habitantes se llaman vascoes y vascas."
       },
       "facts": [
         {
@@ -985,7 +986,7 @@
       "gent": "Riojano / Riojana",
       "intro": {
         "file": "la-rioja/00-presentacion.mp3",
-        "text": "Esta es LA RIOJA. Sus habitantes se llaman Riojano / Riojana."
+        "text": "Estamos en LA RIOJA. Sus habitantes se llaman riojanoes y riojanas."
       },
       "facts": [
         {
@@ -1046,7 +1047,7 @@
       "gent": "Ceutí",
       "intro": {
         "file": "ceuta/00-presentacion.mp3",
-        "text": "Esta es CIUDAD AUTÓNOMA DE CEUTA. Sus habitantes se llaman Ceutí."
+        "text": "Estamos en CEUTA. Sus habitantes se llaman ceutíes."
       },
       "facts": [
         {
@@ -1107,7 +1108,7 @@
       "gent": "Melillense",
       "intro": {
         "file": "melilla/00-presentacion.mp3",
-        "text": "Esta es CIUDAD AUTÓNOMA DE MELILLA. Sus habitantes se llaman Melillense."
+        "text": "Estamos en MELILLA. Sus habitantes se llaman melillenses."
       },
       "facts": [
         {
