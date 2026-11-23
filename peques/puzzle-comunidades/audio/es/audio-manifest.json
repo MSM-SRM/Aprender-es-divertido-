@@ -1,0 +1,1166 @@
+{
+  "language": "es-ES",
+  "voice": "Lucía (ClipUtils, pendiente de prueba auditiva)",
+  "source": "comunidades_aut_nomas_de_espa_a.txt",
+  "territories": [
+    {
+      "id": "comunidades-y-ciudades-autonomas-de-espana",
+      "name": "COMUNIDADES Y CIUDADES AUTÓNOMAS DE ESPAÑA",
+      "gent": "PARA NIÑOS DE 6 A 8 AÑOS",
+      "intro": {
+        "file": "comunidades-y-ciudades-autonomas-de-espana/00-presentacion.mp3",
+        "text": "Esta es COMUNIDADES Y CIUDADES AUTÓNOMAS DE ESPAÑA. Sus habitantes se llaman PARA NIÑOS DE 6 A 8 AÑOS."
+      },
+      "facts": [
+        {
+          "number": 1,
+          "file": "comunidades-y-ciudades-autonomas-de-espana/01.mp3",
+          "text": "Es la comunidad donde vive más gente de toda España."
+        },
+        {
+          "number": 2,
+          "file": "comunidades-y-ciudades-autonomas-de-espana/02.mp3",
+          "text": "Tiene el pico más alto de la península, el Mulhacén, que tiene nieve."
+        },
+        {
+          "number": 3,
+          "file": "comunidades-y-ciudades-autonomas-de-espana/03.mp3",
+          "text": "Produce muchísimo aceite de oliva, ¡el que usamos para cocinar!"
+        },
+        {
+          "number": 4,
+          "file": "comunidades-y-ciudades-autonomas-de-espana/04.mp3",
+          "text": "Hace muchísimo sol casi todos los días del año."
+        },
+        {
+          "number": 5,
+          "file": "comunidades-y-ciudades-autonomas-de-espana/05.mp3",
+          "text": "Aquí nacieron el baile y la música del flamenco."
+        },
+        {
+          "number": 6,
+          "file": "comunidades-y-ciudades-autonomas-de-espana/06.mp3",
+          "text": "Sus costas están bañadas por dos mares distintos: el Atlántico y el Mediterráneo."
+        },
+        {
+          "number": 7,
+          "file": "comunidades-y-ciudades-autonomas-de-espana/07.mp3",
+          "text": "En Córdoba y Granada vivieron reyes árabes que construyeron palacios mágicos como la Alhambra."
+        },
+        {
+          "number": 8,
+          "file": "comunidades-y-ciudades-autonomas-de-espana/08.mp3",
+          "text": "Tiene el Parque de Doñana, donde viven linces ibéricos y miles de pájaros."
+        },
+        {
+          "number": 9,
+          "file": "comunidades-y-ciudades-autonomas-de-espana/09.mp3",
+          "text": "Aquí nació Pablo Picasso, uno de los pintores más famosos del mundo."
+        },
+        {
+          "number": 10,
+          "file": "comunidades-y-ciudades-autonomas-de-espana/10.mp3",
+          "text": "Es la segunda comunidad más grande de España."
+        }
+      ]
+    },
+    {
+      "id": "aragon",
+      "name": "ARAGÓN",
+      "gent": "Aragonés / Aragonesa",
+      "intro": {
+        "file": "aragon/00-presentacion.mp3",
+        "text": "Esta es ARAGÓN. Sus habitantes se llaman Aragonés / Aragonesa."
+      },
+      "facts": [
+        {
+          "number": 1,
+          "file": "aragon/01.mp3",
+          "text": "Está en el norte y tiene montañas gigantes llamadas Pirineos."
+        },
+        {
+          "number": 2,
+          "file": "aragon/02.mp3",
+          "text": "El pico Aneto es su montaña más alta y siempre hace mucho frío arriba."
+        },
+        {
+          "number": 3,
+          "file": "aragon/03.mp3",
+          "text": "Más de la mitad de la gente vive en una sola ciudad: Zaragoza."
+        },
+        {
+          "number": 4,
+          "file": "aragon/04.mp3",
+          "text": "Tiene un desierto muy curioso llamado Los Monegros, donde casi nunca llueve."
+        },
+        {
+          "number": 5,
+          "file": "aragon/05.mp3",
+          "text": "Aquí nació Francisco de Goya, un pintor muy famoso de reyes y gigantes."
+        },
+        {
+          "number": 6,
+          "file": "aragon/06.mp3",
+          "text": "Es famosa por cultivar melocotones y cerezas riquísimas."
+        },
+        {
+          "number": 7,
+          "file": "aragon/07.mp3",
+          "text": "Por aquí pasa el río Ebro, el más caudaloso de España."
+        },
+        {
+          "number": 8,
+          "file": "aragon/08.mp3",
+          "text": "En Teruel se han encontrado huesos de dinosaurios gigantes."
+        },
+        {
+          "number": 9,
+          "file": "aragon/09.mp3",
+          "text": "Hace siglos fue un reino muy poderoso con barcos por todo el mar."
+        },
+        {
+          "number": 10,
+          "file": "aragon/10.mp3",
+          "text": "Tiene parques naturales con cascadas y bosques preciosos como Ordesa."
+        }
+      ]
+    },
+    {
+      "id": "principado-de-asturias",
+      "name": "PRINCIPADO DE ASTURIAS",
+      "gent": "Asturiano / Asturiana",
+      "intro": {
+        "file": "principado-de-asturias/00-presentacion.mp3",
+        "text": "Esta es PRINCIPADO DE ASTURIAS. Sus habitantes se llaman Asturiano / Asturiana."
+      },
+      "facts": [
+        {
+          "number": 1,
+          "file": "principado-de-asturias/01.mp3",
+          "text": "Es muy verde porque llueve muy a menudo."
+        },
+        {
+          "number": 2,
+          "file": "principado-de-asturias/02.mp3",
+          "text": "Tiene montañas altísimas muy cerca de la playa, los Picos de Europa."
+        },
+        {
+          "number": 3,
+          "file": "principado-de-asturias/03.mp3",
+          "text": "Aquí viven osos pardos en libertad escondidos en los bosques."
+        },
+        {
+          "number": 4,
+          "file": "principado-de-asturias/04.mp3",
+          "text": "Es famosa por su sidra, una bebida de manzana que se sirve desde muy arriba."
+        },
+        {
+          "number": 5,
+          "file": "principado-de-asturias/05.mp3",
+          "text": "Hace más de mil años, aquí empezó la historia de los reinos cristianos en la batalla de Covadonga."
+        },
+        {
+          "number": 6,
+          "file": "principado-de-asturias/06.mp3",
+          "text": "El heredero o heredera del Rey de España lleva el título de Príncipe o Princesa de Asturias."
+        },
+        {
+          "number": 7,
+          "file": "principado-de-asturias/07.mp3",
+          "text": "Hacen más de 40 tipos de quesos distintos, como el queso Cabrales."
+        },
+        {
+          "number": 8,
+          "file": "principado-de-asturias/08.mp3",
+          "text": "Tiene acantilados preciosos y playas muy bonitas en el mar Cantábrico."
+        },
+        {
+          "number": 9,
+          "file": "principado-de-asturias/09.mp3",
+          "text": "Sus vacas dan una leche buenísima."
+        },
+        {
+          "number": 10,
+          "file": "principado-de-asturias/10.mp3",
+          "text": "En su costa se pueden ver huellas reales de dinosaurios en las rocas."
+        }
+      ]
+    },
+    {
+      "id": "illes-balears",
+      "name": "ILLES BALEARS",
+      "gent": "Balear",
+      "intro": {
+        "file": "illes-balears/00-presentacion.mp3",
+        "text": "Esta es ILLES BALEARS. Sus habitantes se llaman Balear."
+      },
+      "facts": [
+        {
+          "number": 1,
+          "file": "illes-balears/01.mp3",
+          "text": "No está pegada a la península, ¡es un grupo de islas en el mar Mediterráneo!"
+        },
+        {
+          "number": 2,
+          "file": "illes-balears/02.mp3",
+          "text": "Las islas más grandes son Mallorca, Menorca, Ibiza y Formentera."
+        },
+        {
+          "number": 3,
+          "file": "illes-balears/03.mp3",
+          "text": "Vienen millones de turistas de todo el mundo a bañarse en sus calas de agua azul."
+        },
+        {
+          "number": 4,
+          "file": "illes-balears/04.mp3",
+          "text": "Bajo el mar hay una planta gigante llamada Posidonia que limpia el agua y tiene miles de años."
+        },
+        {
+          "number": 5,
+          "file": "illes-balears/05.mp3",
+          "text": "Aquí se inventaron las ensaimadas, un dulce riquísimo con forma de espiral."
+        },
+        {
+          "number": 6,
+          "file": "illes-balears/06.mp3",
+          "text": "Hablan español y también catalán (mallorquín, menorquín e ibicenco)."
+        },
+        {
+          "number": 7,
+          "file": "illes-balears/07.mp3",
+          "text": "El tenista Rafa Nadal, uno de los mejores deportistas de la historia, nació en Mallorca."
+        },
+        {
+          "number": 8,
+          "file": "illes-balears/08.mp3",
+          "text": "Tiene muchísimos kilómetros de playas y rocas junto al mar."
+        },
+        {
+          "number": 9,
+          "file": "illes-balears/09.mp3",
+          "text": "En Menorca hay construcciones de piedra gigantes muy antiguas llamadas talayots."
+        },
+        {
+          "number": 10,
+          "file": "illes-balears/10.mp3",
+          "text": "Hace muchos años tuvo sus propios reyes."
+        }
+      ]
+    },
+    {
+      "id": "canarias",
+      "name": "CANARIAS",
+      "gent": "Canario / Canaria",
+      "intro": {
+        "file": "canarias/00-presentacion.mp3",
+        "text": "Esta es CANARIAS. Sus habitantes se llaman Canario / Canaria."
+      },
+      "facts": [
+        {
+          "number": 1,
+          "file": "canarias/01.mp3",
+          "text": "Son siete islas principales en el océano Atlántico, muy cerca de África."
+        },
+        {
+          "number": 2,
+          "file": "canarias/02.mp3",
+          "text": "Aquí está el Teide, un volcán gigante que es la montaña más alta de toda España."
+        },
+        {
+          "number": 3,
+          "file": "canarias/03.mp3",
+          "text": "Hace calorcito todo el año, ¡se puede ir a la playa hasta en Navidad!"
+        },
+        {
+          "number": 4,
+          "file": "canarias/04.mp3",
+          "text": "Sus islas nacieron de volcanes que salieron del fondo del mar."
+        },
+        {
+          "number": 5,
+          "file": "canarias/05.mp3",
+          "text": "Es la única comunidad que tiene dos capitales: Las Palmas de Gran Canaria y Santa Cruz de Tenerife."
+        },
+        {
+          "number": 6,
+          "file": "canarias/06.mp3",
+          "text": "Aquí se cultivan los famosos plátanos de Canarias."
+        },
+        {
+          "number": 7,
+          "file": "canarias/07.mp3",
+          "text": "Tiene 4 Parques Nacionales, con paisajes que parecen de otro planeta, como Timanfaya."
+        },
+        {
+          "number": 8,
+          "file": "canarias/08.mp3",
+          "text": "Sus cielos son tan limpios que hay telescopios gigantes para mirar las estrellas."
+        },
+        {
+          "number": 9,
+          "file": "canarias/09.mp3",
+          "text": "Hay plantas y lagartos que solo existen en estas islas y en ningún otro lugar."
+        },
+        {
+          "number": 10,
+          "file": "canarias/10.mp3",
+          "text": "Sus carnavales son de los más alegres y coloridos del mundo."
+        }
+      ]
+    },
+    {
+      "id": "cantabria",
+      "name": "CANTABRIA",
+      "gent": "Cántabro / Cántabra",
+      "intro": {
+        "file": "cantabria/00-presentacion.mp3",
+        "text": "Esta es CANTABRIA. Sus habitantes se llaman Cántabro / Cántabra."
+      },
+      "facts": [
+        {
+          "number": 1,
+          "file": "cantabria/01.mp3",
+          "text": "Aquí está la Cueva de Altamira, donde los hombres prehistóricos pintaron bisontes hace 14.000 años."
+        },
+        {
+          "number": 2,
+          "file": "cantabria/02.mp3",
+          "text": "Es muy verde y llueve bastante, pero no hace ni mucho frío ni mucho calor."
+        },
+        {
+          "number": 3,
+          "file": "cantabria/03.mp3",
+          "text": "Tiene el Parque de Cabárceno, donde viven elefantes, jirafas y osos en semilibertad."
+        },
+        {
+          "number": 4,
+          "file": "cantabria/04.mp3",
+          "text": "Es famosa por sus sobaos y quesadas, unos bizcochos dulces deliciosos."
+        },
+        {
+          "number": 5,
+          "file": "cantabria/05.mp3",
+          "text": "Su capital, Santander, tiene una de las bahías más bonitas del mundo."
+        },
+        {
+          "number": 6,
+          "file": "cantabria/06.mp3",
+          "text": "Puedes esquiar en la nieve por la mañana y bajar a la playa por la tarde en menos de una hora."
+        },
+        {
+          "number": 7,
+          "file": "cantabria/07.mp3",
+          "text": "Tiene un bosque mágico de secuoyas, unos árboles altísimos y gigantes."
+        },
+        {
+          "number": 8,
+          "file": "cantabria/08.mp3",
+          "text": "Es una de las comunidades con menos habitantes de España."
+        },
+        {
+          "number": 9,
+          "file": "cantabria/09.mp3",
+          "text": "Sus vacas producen mucha leche y mantequilla."
+        },
+        {
+          "number": 10,
+          "file": "cantabria/10.mp3",
+          "text": "Los antiguos cántabros fueron los últimos guerreros en resistir al Imperio Romano."
+        }
+      ]
+    },
+    {
+      "id": "castilla-la-mancha",
+      "name": "CASTILLA-LA MANCHA",
+      "gent": "Castellanomanchego / Castellanomanchega",
+      "intro": {
+        "file": "castilla-la-mancha/00-presentacion.mp3",
+        "text": "Esta es CASTILLA-LA MANCHA. Sus habitantes se llaman Castellanomanchego / Castellanomanchega."
+      },
+      "facts": [
+        {
+          "number": 1,
+          "file": "castilla-la-mancha/01.mp3",
+          "text": "Es la tierra de Don Quijote de la Mancha, el caballero más famoso de los libros."
+        },
+        {
+          "number": 2,
+          "file": "castilla-la-mancha/02.mp3",
+          "text": "Tiene molinos de viento blancos y gigantes que Don Quijote confundió con monstruos."
+        },
+        {
+          "number": 3,
+          "file": "castilla-la-mancha/03.mp3",
+          "text": "Tiene los campos de uvas más grandes del mundo para hacer vino."
+        },
+        {
+          "number": 4,
+          "file": "castilla-la-mancha/04.mp3",
+          "text": "Su capital, Toledo, está rodeada por un río y llena de espadas y armaduras antiguas."
+        },
+        {
+          "number": 5,
+          "file": "castilla-la-mancha/05.mp3",
+          "text": "En Cuenca hay unas casas muy famosas que parecen colgar de las rocas: las Casas Colgadas."
+        },
+        {
+          "number": 6,
+          "file": "castilla-la-mancha/06.mp3",
+          "text": "Aquí se fabrica el famoso queso manchego con leche de oveja."
+        },
+        {
+          "number": 7,
+          "file": "castilla-la-mancha/07.mp3",
+          "text": "Tiene llanuras inmensas donde se ve el horizonte muy lejos."
+        },
+        {
+          "number": 8,
+          "file": "castilla-la-mancha/08.mp3",
+          "text": "En verano hace mucho calor y en invierno hace muchísimo frío."
+        },
+        {
+          "number": 9,
+          "file": "castilla-la-mancha/09.mp3",
+          "text": "Tiene parques naturales con lagunas de colores como las Lagunas de Ruidera."
+        },
+        {
+          "number": 10,
+          "file": "castilla-la-mancha/10.mp3",
+          "text": "Produce mucho azafrán, una especia de color rojo que vale mucho."
+        }
+      ]
+    },
+    {
+      "id": "castilla-y-leon",
+      "name": "CASTILLA Y LEÓN",
+      "gent": "Castellanoleonés / Castellanoleonesa",
+      "intro": {
+        "file": "castilla-y-leon/00-presentacion.mp3",
+        "text": "Esta es CASTILLA Y LEÓN. Sus habitantes se llaman Castellanoleonés / Castellanoleonesa."
+      },
+      "facts": [
+        {
+          "number": 1,
+          "file": "castilla-y-leon/01.mp3",
+          "text": "Es la comunidad más grande de toda España, ¡es más grande que todo Portugal!"
+        },
+        {
+          "number": 2,
+          "file": "castilla-y-leon/02.mp3",
+          "text": "Tiene 9 provincias, más que ninguna otra comunidad."
+        },
+        {
+          "number": 3,
+          "file": "castilla-y-leon/03.mp3",
+          "text": "Es el \"granero de España\" porque cultiva muchísimo trigo para hacer pan."
+        },
+        {
+          "number": 4,
+          "file": "castilla-y-leon/04.mp3",
+          "text": "Tiene castillos preciosos y murallas gigantes como las de Ávila."
+        },
+        {
+          "number": 5,
+          "file": "castilla-y-leon/05.mp3",
+          "text": "En Segovia hay un acueducto romano gigante hecho de piedras sin pegamento."
+        },
+        {
+          "number": 6,
+          "file": "castilla-y-leon/06.mp3",
+          "text": "En Burgos (Atapuerca) se encontraron los huesos de los primeros humanos de Europa."
+        },
+        {
+          "number": 7,
+          "file": "castilla-y-leon/07.mp3",
+          "text": "Tiene la universidad más antigua de España, la de Salamanca."
+        },
+        {
+          "number": 8,
+          "file": "castilla-y-leon/08.mp3",
+          "text": "En León se celebraron las primeras reuniones democráticas de Europa en el año 1188."
+        },
+        {
+          "number": 9,
+          "file": "castilla-y-leon/09.mp3",
+          "text": "Hay mucho espacio y pocos habitantes, por lo que hay muchos pueblos tranquilos."
+        },
+        {
+          "number": 10,
+          "file": "castilla-y-leon/10.mp3",
+          "text": "Hace mucho frío en invierno y suele nevar bastante."
+        }
+      ]
+    },
+    {
+      "id": "cataluna",
+      "name": "CATALUÑA",
+      "gent": "Catalán / Catalana",
+      "intro": {
+        "file": "cataluna/00-presentacion.mp3",
+        "text": "Esta es CATALUÑA. Sus habitantes se llaman Catalán / Catalana."
+      },
+      "facts": [
+        {
+          "number": 1,
+          "file": "cataluna/01.mp3",
+          "text": "Su capital, Barcelona, organizó los famosos Juegos Olímpicos de 1992 con la mascota Cobi."
+        },
+        {
+          "number": 2,
+          "file": "cataluna/02.mp3",
+          "text": "Tiene un templo gigante y lleno de colores llamado la Sagrada Familia, diseñado por Gaudí."
+        },
+        {
+          "number": 3,
+          "file": "cataluna/03.mp3",
+          "text": "Es la segunda comunidad con más habitantes de España."
+        },
+        {
+          "number": 4,
+          "file": "cataluna/04.mp3",
+          "text": "Tiene muchas fábricas, empresas y puertos por donde llegan barcos de todo el mundo."
+        },
+        {
+          "number": 5,
+          "file": "cataluna/05.mp3",
+          "text": "Aquí se habla español y catalán."
+        },
+        {
+          "number": 6,
+          "file": "cataluna/06.mp3",
+          "text": "Tiene el FC Barcelona, uno de los equipos de fútbol más famosos del mundo."
+        },
+        {
+          "number": 7,
+          "file": "cataluna/07.mp3",
+          "text": "Tiene playas muy bonitas en la Costa Brava y montañas altas en los Pirineos."
+        },
+        {
+          "number": 8,
+          "file": "cataluna/08.mp3",
+          "text": "Una de sus tradiciones más divertidas son los \"Castellers\", torres humanas altísimas."
+        },
+        {
+          "number": 9,
+          "file": "cataluna/09.mp3",
+          "text": "En Navidad tienen una tradición muy graciosa llamada el \"Caga Tió\", un tronco que regala dulces."
+        },
+        {
+          "number": 10,
+          "file": "cataluna/10.mp3",
+          "text": "Es la comunidad que recibe más turistas extranjeros de toda España."
+        }
+      ]
+    },
+    {
+      "id": "comunitat-valenciana",
+      "name": "COMUNITAT VALENCIANA",
+      "gent": "Valenciano / Valenciana",
+      "intro": {
+        "file": "comunitat-valenciana/00-presentacion.mp3",
+        "text": "Esta es COMUNITAT VALENCIANA. Sus habitantes se llaman Valenciano / Valenciana."
+      },
+      "facts": [
+        {
+          "number": 1,
+          "file": "comunitat-valenciana/01.mp3",
+          "text": "Es la tierra de las naranjas y mandarinas, ¡las envía a todo el mundo!"
+        },
+        {
+          "number": 2,
+          "file": "comunitat-valenciana/02.mp3",
+          "text": "Aquí se inventó la paella, el plato de arroz más famoso de España."
+        },
+        {
+          "number": 3,
+          "file": "comunitat-valenciana/03.mp3",
+          "text": "En marzo celebran las Fallas, donde construyen muñecos gigantes de cartón y luego los queman."
+        },
+        {
+          "number": 4,
+          "file": "comunitat-valenciana/04.mp3",
+          "text": "Hablan español y valenciano."
+        },
+        {
+          "number": 5,
+          "file": "comunitat-valenciana/05.mp3",
+          "text": "Tiene playas muy largas de arena fina y hace mucho sol."
+        },
+        {
+          "number": 6,
+          "file": "comunitat-valenciana/06.mp3",
+          "text": "En Valencia está la Ciudad de las Artes y las Ciencias, con edificios futuristas y un acuario gigante."
+        },
+        {
+          "number": 7,
+          "file": "comunitat-valenciana/07.mp3",
+          "text": "Benidorm tiene tantos rascacielos que parece una pequeña Nueva York junto al mar."
+        },
+        {
+          "number": 8,
+          "file": "comunitat-valenciana/08.mp3",
+          "text": "En Ibi se fabrican muchísimos juguetes para niños de toda España."
+        },
+        {
+          "number": 9,
+          "file": "comunitat-valenciana/09.mp3",
+          "text": "Tiene el puerto de barcos de mercancías más grande del mar Mediterráneo."
+        },
+        {
+          "number": 10,
+          "file": "comunitat-valenciana/10.mp3",
+          "text": "El Tribunal de las Aguas de Valencia es el juicio más antiguo de Europa que sigue funcionando."
+        }
+      ]
+    },
+    {
+      "id": "extremadura",
+      "name": "EXTREMADURA",
+      "gent": "Extremeño / Extremeña",
+      "intro": {
+        "file": "extremadura/00-presentacion.mp3",
+        "text": "Esta es EXTREMADURA. Sus habitantes se llaman Extremeño / Extremeña."
+      },
+      "facts": [
+        {
+          "number": 1,
+          "file": "extremadura/01.mp3",
+          "text": "Aunque no tiene mar, tiene muchísimos embalses y ríos donde la gente se baña en verano."
+        },
+        {
+          "number": 2,
+          "file": "extremadura/02.mp3",
+          "text": "Es la tierra del mejor jamón ibérico, de cerditos que comen bellotas en el campo."
+        },
+        {
+          "number": 3,
+          "file": "extremadura/03.mp3",
+          "text": "De aquí salieron los exploradores que viajaron a América hace 500 años, como Hernán Cortés."
+        },
+        {
+          "number": 4,
+          "file": "extremadura/04.mp3",
+          "text": "En Mérida hay un teatro romano gigante donde todavía se hacen obras de teatro."
+        },
+        {
+          "number": 5,
+          "file": "extremadura/05.mp3",
+          "text": "Tiene grandes campos llenos de encinas y alcornoques llamados dehesas."
+        },
+        {
+          "number": 6,
+          "file": "extremadura/06.mp3",
+          "text": "Produce mucha energía eléctrica gracias al sol con placas solares gigantes."
+        },
+        {
+          "number": 7,
+          "file": "extremadura/07.mp3",
+          "text": "Es el hogar de aves gigantes y protegidas como el águila imperial y el buitre negro."
+        },
+        {
+          "number": 8,
+          "file": "extremadura/08.mp3",
+          "text": "Tiene ciudades antiguas con calles de piedra preciosas, como Cáceres y Trujillo."
+        },
+        {
+          "number": 9,
+          "file": "extremadura/09.mp3",
+          "text": "Es la comunidad que tiene menos dinero por habitante, pero muchísima naturaleza."
+        },
+        {
+          "number": 10,
+          "file": "extremadura/10.mp3",
+          "text": "De la corteza de sus árboles se saca el corcho para los tapones de las botellas."
+        }
+      ]
+    },
+    {
+      "id": "galicia",
+      "name": "GALICIA",
+      "gent": "Gallego / Gallega",
+      "intro": {
+        "file": "galicia/00-presentacion.mp3",
+        "text": "Esta es GALICIA. Sus habitantes se llaman Gallego / Gallega."
+      },
+      "facts": [
+        {
+          "number": 1,
+          "file": "galicia/01.mp3",
+          "text": "Es la comunidad donde más llueve de toda España, por eso sus bosques parecen mágicos."
+        },
+        {
+          "number": 2,
+          "file": "galicia/02.mp3",
+          "text": "Es la reina de la pesca: sus barcos traen merluza, pulpo y mejillones para todo el país."
+        },
+        {
+          "number": 3,
+          "file": "galicia/03.mp3",
+          "text": "Miles de personas caminan cada año por el Camino de Santiago hasta su catedral."
+        },
+        {
+          "number": 4,
+          "file": "galicia/04.mp3",
+          "text": "En A Coruña está la Torre de Hércules, el faro romano más antiguo del mundo que sigue encendido."
+        },
+        {
+          "number": 5,
+          "file": "galicia/05.mp3",
+          "text": "Hablan español y gallego."
+        },
+        {
+          "number": 6,
+          "file": "galicia/06.mp3",
+          "text": "Aquí nació Zara (Inditex), la empresa de ropa más grande del mundo."
+        },
+        {
+          "number": 7,
+          "file": "galicia/07.mp3",
+          "text": "Tiene miles de aldeas pequeñas y casas de piedra llamadas pazos."
+        },
+        {
+          "number": 8,
+          "file": "galicia/08.mp3",
+          "text": "Su costa tiene entradas de mar muy bonitas llamadas rías y acantilados altos."
+        },
+        {
+          "number": 9,
+          "file": "galicia/09.mp3",
+          "text": "La muralla romana de Lugo es la única del mundo que se conserva entera alrededor de la ciudad."
+        },
+        {
+          "number": 10,
+          "file": "galicia/10.mp3",
+          "text": "Tiene muchísimas vacas y produce casi la mitad de toda la leche de España."
+        }
+      ]
+    },
+    {
+      "id": "comunidad-de-madrid",
+      "name": "COMUNIDAD DE MADRID",
+      "gent": "Madrileño / Madrileña",
+      "intro": {
+        "file": "comunidad-de-madrid/00-presentacion.mp3",
+        "text": "Esta es COMUNIDAD DE MADRID. Sus habitantes se llaman Madrileño / Madrileña."
+      },
+      "facts": [
+        {
+          "number": 1,
+          "file": "comunidad-de-madrid/01.mp3",
+          "text": "Aquí está Madrid, la capital de España y el lugar donde vive el Rey."
+        },
+        {
+          "number": 2,
+          "file": "comunidad-de-madrid/02.mp3",
+          "text": "Tiene al mejor club de fútbol del mundo, el Real Madrid, con más Copas de Europa que nadie."
+        },
+        {
+          "number": 3,
+          "file": "comunidad-de-madrid/03.mp3",
+          "text": "En su estadio (el Santiago Bernabéu) se jugó la gran final del Mundial de fútbol de 1982."
+        },
+        {
+          "number": 4,
+          "file": "comunidad-de-madrid/04.mp3",
+          "text": "Está justo en el centro de España: en la Puerta del Sol está el \"Kilómetro Cero\" donde empiezan todas las carreteras."
+        },
+        {
+          "number": 5,
+          "file": "comunidad-de-madrid/05.mp3",
+          "text": "Es la comunidad más rica de España y donde vive la gente más apretada (mayor densidad)."
+        },
+        {
+          "number": 6,
+          "file": "comunidad-de-madrid/06.mp3",
+          "text": "Tiene el Museo del Prado, uno de los museos de pintura más importantes del planeta."
+        },
+        {
+          "number": 7,
+          "file": "comunidad-de-madrid/07.mp3",
+          "text": "Su símbolo es un oso subido a un árbol llamado madroño."
+        },
+        {
+          "number": 8,
+          "file": "comunidad-de-madrid/08.mp3",
+          "text": "No tiene playa, pero tiene montañas con nieve muy cerca (la Sierra de Guadarrama)."
+        },
+        {
+          "number": 9,
+          "file": "comunidad-de-madrid/09.mp3",
+          "text": "Es la región de toda Europa donde la gente vive más años."
+        },
+        {
+          "number": 10,
+          "file": "comunidad-de-madrid/10.mp3",
+          "text": "Su aeropuerto es el más grande de España y conecta Europa con América."
+        }
+      ]
+    },
+    {
+      "id": "region-de-murcia",
+      "name": "REGIÓN DE MURCIA",
+      "gent": "Murciano / Murciana",
+      "intro": {
+        "file": "region-de-murcia/00-presentacion.mp3",
+        "text": "Esta es REGIÓN DE MURCIA. Sus habitantes se llaman Murciano / Murciana."
+      },
+      "facts": [
+        {
+          "number": 1,
+          "file": "region-de-murcia/01.mp3",
+          "text": "La llaman \"La Huerta de Europa\" porque cultiva lechugas, limones y melones para medio mundo."
+        },
+        {
+          "number": 2,
+          "file": "region-de-murcia/02.mp3",
+          "text": "Es la comunidad más seca de España, llueve muy poquitos días al año."
+        },
+        {
+          "number": 3,
+          "file": "region-de-murcia/03.mp3",
+          "text": "Tiene el Mar Menor, una laguna de agua salada gigante junto al mar Mediterráneo."
+        },
+        {
+          "number": 4,
+          "file": "region-de-murcia/04.mp3",
+          "text": "Es la comunidad peninsular donde nacen más bebés y tiene la población más joven."
+        },
+        {
+          "number": 5,
+          "file": "region-de-murcia/05.mp3",
+          "text": "Hace muchísimo sol, más de 3.000 horas al año."
+        },
+        {
+          "number": 6,
+          "file": "region-de-murcia/06.mp3",
+          "text": "En Cartagena se construyen los submarinos de la Armada Española."
+        },
+        {
+          "number": 7,
+          "file": "region-de-murcia/07.mp3",
+          "text": "Los árabes construyeron aquí hace siglos canales de agua (acequias) que aún funcionan hoy."
+        },
+        {
+          "number": 8,
+          "file": "region-de-murcia/08.mp3",
+          "text": "En Cartagena hay un teatro romano muy antiguo descubierto hace pocos años."
+        },
+        {
+          "number": 9,
+          "file": "region-de-murcia/09.mp3",
+          "text": "Su pastel de carne y los paparajotes (hojas de limonero fritas con azúcar) son postres muy típicos."
+        },
+        {
+          "number": 10,
+          "file": "region-de-murcia/10.mp3",
+          "text": "Tiene una costa muy bonita llamada la Costa Cálida."
+        }
+      ]
+    },
+    {
+      "id": "comunidad-foral-de-navarra",
+      "name": "COMUNIDAD FORAL DE NAVARRA",
+      "gent": "Navarro / Navarra",
+      "intro": {
+        "file": "comunidad-foral-de-navarra/00-presentacion.mp3",
+        "text": "Esta es COMUNIDAD FORAL DE NAVARRA. Sus habitantes se llaman Navarro / Navarra."
+      },
+      "facts": [
+        {
+          "number": 1,
+          "file": "comunidad-foral-de-navarra/01.mp3",
+          "text": "Es mundialmente famosa por los Sanfermines de Pamplona, donde la gente corre delante de los toros vestida de blanco y rojo."
+        },
+        {
+          "number": 2,
+          "file": "comunidad-foral-de-navarra/02.mp3",
+          "text": "Es una de las comunidades más ricas y con mejor calidad de vida de España."
+        },
+        {
+          "number": 3,
+          "file": "comunidad-foral-de-navarra/03.mp3",
+          "text": "Tiene leyes propias para cobrar sus propios impuestos y pagar sus escuelas y hospitales."
+        },
+        {
+          "number": 4,
+          "file": "comunidad-foral-de-navarra/04.mp3",
+          "text": "En un espacio pequeño tiene bosques súper verdes (Selva de Irati) y un desierto con formas raras (Bardenas Reales)."
+        },
+        {
+          "number": 5,
+          "file": "comunidad-foral-de-navarra/05.mp3",
+          "text": "Por aquí entran a España los peregrinos de Europa que hacen el Camino de Santiago."
+        },
+        {
+          "number": 6,
+          "file": "comunidad-foral-de-navarra/06.mp3",
+          "text": "Fue un reino independiente muy importante durante la Edad Media."
+        },
+        {
+          "number": 7,
+          "file": "comunidad-foral-de-navarra/07.mp3",
+          "text": "En el norte se habla también euskera junto con el español."
+        },
+        {
+          "number": 8,
+          "file": "comunidad-foral-de-navarra/08.mp3",
+          "text": "Es famosa por sus verduras riquísimas, como los espárragos y los pimientos rojos."
+        },
+        {
+          "number": 9,
+          "file": "comunidad-foral-de-navarra/09.mp3",
+          "text": "Tiene muchos molinos modernos que producen electricidad con el viento."
+        },
+        {
+          "number": 10,
+          "file": "comunidad-foral-de-navarra/10.mp3",
+          "text": "Tiene castillos preciosos como el Palacio Real de Olite, que parece de cuento de hadas."
+        }
+      ]
+    },
+    {
+      "id": "pais-vasco-euskadi",
+      "name": "PAÍS VASCO / EUSKADI",
+      "gent": "Vasco / Vasca",
+      "intro": {
+        "file": "pais-vasco-euskadi/00-presentacion.mp3",
+        "text": "Esta es PAÍS VASCO / EUSKADI. Sus habitantes se llaman Vasco / Vasca."
+      },
+      "facts": [
+        {
+          "number": 1,
+          "file": "pais-vasco-euskadi/01.mp3",
+          "text": "Aquí se habla euskera, ¡el idioma vivo más antiguo de toda Europa!"
+        },
+        {
+          "number": 2,
+          "file": "pais-vasco-euskadi/02.mp3",
+          "text": "Es una de las comunidades más ricas y con más fábricas de máquinas y trenes de España."
+        },
+        {
+          "number": 3,
+          "file": "pais-vasco-euskadi/03.mp3",
+          "text": "Tiene sus propias normas para gestionar su dinero y sus impuestos."
+        },
+        {
+          "number": 4,
+          "file": "pais-vasco-euskadi/04.mp3",
+          "text": "En Bilbao está el Museo Guggenheim, un edificio brillante con forma de barco y un perro gigante de flores en la puerta."
+        },
+        {
+          "number": 5,
+          "file": "pais-vasco-euskadi/05.mp3",
+          "text": "Es famosa en todo el mundo por su comida deliciosa y sus \"pintxos\"."
+        },
+        {
+          "number": 6,
+          "file": "pais-vasco-euskadi/06.mp3",
+          "text": "Es muy pequeñita en tamaño, pero vive mucha gente en sus ciudades."
+        },
+        {
+          "number": 7,
+          "file": "pais-vasco-euskadi/07.mp3",
+          "text": "Llueve bastante, especialmente en San Sebastián, que tiene una playa con forma de concha."
+        },
+        {
+          "number": 8,
+          "file": "pais-vasco-euskadi/08.mp3",
+          "text": "Sus deportes tradicionales son muy fuertes, como levantar piedras gigantes o cortar troncos."
+        },
+        {
+          "number": 9,
+          "file": "pais-vasco-euskadi/09.mp3",
+          "text": "Tienen un personaje navideño muy querido llamado Olentzero, un carbonero que trae regalos."
+        },
+        {
+          "number": 10,
+          "file": "pais-vasco-euskadi/10.mp3",
+          "text": "Es la comunidad que más dinero invierte en ciencia e inventos nuevos."
+        }
+      ]
+    },
+    {
+      "id": "la-rioja",
+      "name": "LA RIOJA",
+      "gent": "Riojano / Riojana",
+      "intro": {
+        "file": "la-rioja/00-presentacion.mp3",
+        "text": "Esta es LA RIOJA. Sus habitantes se llaman Riojano / Riojana."
+      },
+      "facts": [
+        {
+          "number": 1,
+          "file": "la-rioja/01.mp3",
+          "text": "Es la comunidad más pequeña de la península y donde vive menos gente de toda España."
+        },
+        {
+          "number": 2,
+          "file": "la-rioja/02.mp3",
+          "text": "Aquí nacieron las primeras palabras escritas en idioma español hace más de mil años, en unos monasterios."
+        },
+        {
+          "number": 3,
+          "file": "la-rioja/03.mp3",
+          "text": "Es famosa en todo el planeta por sus campos de uvas y su vino de Rioja."
+        },
+        {
+          "number": 4,
+          "file": "la-rioja/04.mp3",
+          "text": "Tiene miles de huellas de dinosaurios marcadas en las rocas en la zona de Enciso."
+        },
+        {
+          "number": 5,
+          "file": "la-rioja/05.mp3",
+          "text": "Su clima es muy agradable gracias a unas montañas que la protegen del viento frío del norte."
+        },
+        {
+          "number": 6,
+          "file": "la-rioja/06.mp3",
+          "text": "El Camino de Santiago pasa por el medio de sus pueblos y ciudades."
+        },
+        {
+          "number": 7,
+          "file": "la-rioja/07.mp3",
+          "text": "En Arnedo se fabrican muchísimos zapatos para niños y mayores."
+        },
+        {
+          "number": 8,
+          "file": "la-rioja/08.mp3",
+          "text": "Cultiva muchísimos champiñones y setas."
+        },
+        {
+          "number": 9,
+          "file": "la-rioja/09.mp3",
+          "text": "Es una comunidad pequeña pero con un nivel de vida alto y muy tranquila."
+        },
+        {
+          "number": 10,
+          "file": "la-rioja/10.mp3",
+          "text": "Por aquí pasa el río Ebro regando sus huertas."
+        }
+      ]
+    },
+    {
+      "id": "ceuta",
+      "name": "CIUDAD AUTÓNOMA DE CEUTA",
+      "gent": "Ceutí",
+      "intro": {
+        "file": "ceuta/00-presentacion.mp3",
+        "text": "Esta es CIUDAD AUTÓNOMA DE CEUTA. Sus habitantes se llaman Ceutí."
+      },
+      "facts": [
+        {
+          "number": 1,
+          "file": "ceuta/01.mp3",
+          "text": "No está en Europa, ¡está en el norte de África, cruzando el Estrecho de Gibraltar en barco o helicóptero!"
+        },
+        {
+          "number": 2,
+          "file": "ceuta/02.mp3",
+          "text": "Tiene frontera terrestre con otro país: Marruecos."
+        },
+        {
+          "number": 3,
+          "file": "ceuta/03.mp3",
+          "text": "Es súper pequeñita, mide menos de 20 kilómetros cuadrados."
+        },
+        {
+          "number": 4,
+          "file": "ceuta/04.mp3",
+          "text": "Conviven en paz cuatro culturas y religiones: cristianos, musulmanes, judíos e hindúes."
+        },
+        {
+          "number": 5,
+          "file": "ceuta/05.mp3",
+          "text": "Tiene unas murallas antiguas con un foso lleno de agua de mar por donde pueden navegar barcos."
+        },
+        {
+          "number": 6,
+          "file": "ceuta/06.mp3",
+          "text": "Junto con Gibraltar, los antiguos griegos la llamaban las \"Columnas de Hércules\", el fin del mundo conocido."
+        },
+        {
+          "number": 7,
+          "file": "ceuta/07.mp3",
+          "text": "No se paga el impuesto del IVA como en la península, por eso muchas cosas son más baratas."
+        },
+        {
+          "number": 8,
+          "file": "ceuta/08.mp3",
+          "text": "Tiene playas tanto en el mar Mediterráneo como cerca del océano Atlántico."
+        },
+        {
+          "number": 9,
+          "file": "ceuta/09.mp3",
+          "text": "Hace siglos perteneció a Portugal, y por eso su bandera y escudo se parecen a los portugueses."
+        },
+        {
+          "number": 10,
+          "file": "ceuta/10.mp3",
+          "text": "Su puerto es muy importante para que los barcos grandes reposten gasolina."
+        }
+      ]
+    },
+    {
+      "id": "melilla",
+      "name": "CIUDAD AUTÓNOMA DE MELILLA",
+      "gent": "Melillense",
+      "intro": {
+        "file": "melilla/00-presentacion.mp3",
+        "text": "Esta es CIUDAD AUTÓNOMA DE MELILLA. Sus habitantes se llaman Melillense."
+      },
+      "facts": [
+        {
+          "number": 1,
+          "file": "melilla/01.mp3",
+          "text": "Es el territorio más pequeñito de toda España y también está en el norte de África."
+        },
+        {
+          "number": 2,
+          "file": "melilla/02.mp3",
+          "text": "Tiene la población más joven de toda España, ¡es donde hay más niños y jóvenes!"
+        },
+        {
+          "number": 3,
+          "file": "melilla/03.mp3",
+          "text": "Tiene una muralla antigua sobre una roca junto al mar llamada Melilla La Vieja."
+        },
+        {
+          "number": 4,
+          "file": "melilla/04.mp3",
+          "text": "Es la segunda ciudad de España con más edificios modernistas llenos de adornos y colores, después de Barcelona."
+        },
+        {
+          "number": 5,
+          "file": "melilla/05.mp3",
+          "text": "También conviven cuatro culturas: cristiana, musulmana, judía e hindú."
+        },
+        {
+          "number": 6,
+          "file": "melilla/06.mp3",
+          "text": "Forma parte de España desde el año 1497, hace más de 500 años."
+        },
+        {
+          "number": 7,
+          "file": "melilla/07.mp3",
+          "text": "Tiene frontera terrestre con Marruecos, siendo una puerta de entrada a Europa en África."
+        },
+        {
+          "number": 8,
+          "file": "melilla/08.mp3",
+          "text": "Tampoco paga el impuesto del IVA, tiene impuestos especiales más bajos."
+        },
+        {
+          "number": 9,
+          "file": "melilla/09.mp3",
+          "text": "No tiene campos ni fábricas grandes; casi todos trabajan en tiendas, puertos o servicios públicos."
+        },
+        {
+          "number": 10,
+          "file": "melilla/10.mp3",
+          "text": "Frente a sus costas hay unas islas pequeñas llamadas Chafarinas donde viven aves marinas muy raras."
+        }
+      ]
+    }
+  ]
+}
