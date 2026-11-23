@@ -1656,9 +1656,9 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 ### Estado
 
-- **Publicado el 23/11/2026 en GitHub Pages en `d6ed38c`** y verificado, **solo para Mireia y Guest**: la tarjeta de Juegos no aparece para Sofia y su perfil no tiene acceso. Las medidas de América de las secciones del 20/11 y 21/11 quedan obsoletas: ahora son Norteamérica 536×702 y Sudamérica 657×702 a 1280×900.
+- **Publicado el 23/11/2026 en GitHub Pages en `f2bdc83`** y verificado, **solo para Mireia y Guest**: la tarjeta de Juegos no aparece para Sofia y su perfil no tiene acceso. Las medidas de América de las secciones del 20/11 y 21/11 quedan obsoletas: ahora son Norteamérica 536×702 y Sudamérica 657×702 a 1280×900.
 
 ### Publicación
 
-- Publicado en `main` el 23/11/2026 en `d6ed38c` y verificado en GitHub Pages: `https://msm-srm.github.io/Aprender-es-divertido-/peques/banderas-mundo.html?profile=mireia`. Se publican los 6 mapas (1.454.468 B), las 184 banderas, los 184 audios y el mapamundi de portada.
+- Publicado en `main` el 23/11/2026 en `f2bdc83` y verificado en GitHub Pages: `https://msm-srm.github.io/Aprender-es-divertido-/peques/banderas-mundo.html?profile=mireia`. Se publican los 6 mapas (1.454.468 B), las 184 banderas, los 184 audios y el mapamundi de portada.
 - Acceso restringido a Mireia y Guest: en `peques/areas-test.html` el módulo `banderas-mundo` tiene `profiles:['mireia','guest']` y `newFor:['mireia','guest']`; Sofia ya no ve la tarjeta ni la etiqueta NEW.
