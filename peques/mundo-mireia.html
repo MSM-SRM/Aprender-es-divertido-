@@ -69,25 +69,11 @@ body{margin:0;background:#071d37;color:#fff;font-family:"Trebuchet MS",system-ui
 .notice{position:absolute;left:50%;bottom:2%;transform:translateX(-50%);padding:.5em 1em;border-radius:99px;background:#10244ddd;border:1px solid #ffffff90;font-weight:800;font-size:clamp(10px,1.05vw,15px);opacity:0;transition:opacity .2s;pointer-events:none}.notice.show{opacity:1}
 .zone-future{left:72%;top:91%;width:12.5%;height:5.5%;font-size:clamp(7px,1vw,14px);font-weight:1000;color:#573700;border-color:#ffde79;background:linear-gradient(#fff5cb,#ffc64b);box-shadow:0 4px 9px #08295066;text-shadow:0 1px 0 #fff;border-radius:999px}.zone-future:hover{filter:brightness(1.08)}
 @media(min-width:1101px){.zone-future{min-height:44px}}
-/* Acceso Real Madrid: placa con escudo en el hueco al sur de Ciencias (junto a Mitología Griega) */
-.zone-rm{left:16%;top:73%;width:18%;height:auto;border:0;background:transparent;border-radius:0;font-size:0;padding:0}
-.zone-rm .rm-card{display:flex;align-items:center;justify-content:center;gap:5px;width:100%;box-sizing:border-box;padding:4px 8px 4px 6px;border-radius:16px;background:linear-gradient(160deg,#ffffff,#e9f1fb 55%,#d7e5f7);border:2px solid #f2c14e;box-shadow:0 6px 16px #06254d66,inset 0 0 0 2px #fff;color:#123d73;text-align:left}
-.zone-rm .rm-crest{flex:0 0 auto;width:clamp(22px,2.4vw,34px);height:auto;filter:drop-shadow(0 1px 2px #0003)}
-.zone-rm .rm-txt{display:flex;flex-direction:column;line-height:1.05;min-width:0}
-.zone-rm .rm-name{font-size:clamp(9px,1.05vw,14px);font-weight:1000;letter-spacing:.04em;white-space:nowrap;color:#123d73}
-.zone-rm .rm-sub{font-size:clamp(6.5px,.68vw,9px);font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#b07a12;white-space:nowrap}
-@media(min-width:1101px){.zone-rm{min-height:0}}
-@media(max-width:1100px){
-  .zone-rm .rm-sub{display:none}
-  .zone-rm .rm-name{font-size:9.5px}
-  .zone-rm .rm-crest{width:24px}
-  .zone-rm .rm-card{gap:3px;padding:4px 5px}
-}
+/* Acceso Real Madrid: escudo girando sobre la isla (GIF sin marca de agua, ~1,5 cm) */
+.zone-rm{left:16%;top:73%;width:1.5cm;height:2.01cm;border:0;background:transparent;border-radius:12px;padding:0;box-shadow:0 4px 10px #06254d80}
+.zone-rm .rm-gif{display:block;width:100%;height:100%;border-radius:12px;background:#fff}
 @media(max-width:600px){
-  .zone-rm .rm-card{flex-direction:column;gap:1px;padding:3px 2px;border-radius:12px}
-  .zone-rm .rm-crest{width:24px}
-  .zone-rm .rm-txt{align-items:center}
-  .zone-rm .rm-name{font-size:8px;white-space:normal;text-align:center;line-height:1}
+  .zone-rm{width:1.35cm;height:1.81cm}
 }
 /* Lista móvil de zonas (se rellena por JS desde las zonas del mapa) */
 .mobile-zones{display:none}
@@ -125,17 +111,8 @@ body{margin:0;background:#071d37;color:#fff;font-family:"Trebuchet MS",system-ui
   <button class="zone" aria-label="Mitología Griega" title="Mitología Griega" style="left:34.8%;top:72%;width:19.2%" onclick="location.href='areas-test.html?area=mitologia-griega&profile='+encodeURIComponent(profileId)"></button>
   <button class="zone" aria-label="Mitología India" title="Mitología India" style="left:63.6%;top:83%;width:19.2%" onclick="location.href='areas-test.html?area=mitologia-india&profile='+encodeURIComponent(profileId)"></button>
   <button class="zone" aria-label="Juegos" title="Juegos" style="left:84.0%;top:61%;width:14.4%" onclick="location.href='areas-test.html?area=juegos&profile='+encodeURIComponent(profileId)"></button>
-  <button class="zone zone-rm" aria-label="Real Madrid · Cromos y juegos" title="Real Madrid · Cromos y juegos" style="left:16%;top:73%;width:18%" onclick="location.href='areas-test.html?area=real-madrid&profile='+encodeURIComponent(profileId)">
-   <span class="rm-card">
-    <svg class="rm-crest" viewBox="0 0 44 52" aria-hidden="true" focusable="false">
-     <path d="M8 15c1-5 4-8 8-9l-2-4 3-1 2 4h4l2-4 3 1-2 4c4 1 7 4 8 9z" fill="#f2c14e" stroke="#c8961e" stroke-width="1"/>
-     <circle cx="22" cy="31" r="16.5" fill="#ffffff" stroke="#f2c14e" stroke-width="2.6"/>
-     <path d="M13 22h18M8 14l14-6 14 6" fill="none" stroke="#f2c14e" stroke-width="2"/>
-     <path d="M16 24v14M20 22v18M24 22v6M28 24v14" stroke="#1b4c9c" stroke-width="2.2" stroke-linecap="round"/>
-     <path d="M12 38c6 4 14 4 20 0" fill="none" stroke="#1b4c9c" stroke-width="2.2"/>
-    </svg>
-    <span class="rm-txt"><span class="rm-name">Real Madrid</span><span class="rm-sub">Cromos y juegos</span></span>
-   </span>
+  <button class="zone zone-rm" aria-label="Real Madrid · Cromos y juegos" title="Real Madrid · Cromos y juegos" onclick="location.href='areas-test.html?area=real-madrid&profile='+encodeURIComponent(profileId)">
+   <img class="rm-gif" src="imagenes/real-madrid/escudo-girando.gif" alt="" width="120" height="161" loading="lazy" decoding="async">
   </button>
   <button class="zone zone-future" aria-label="Área en construcción" title="Área en construcción" style="left:86.4%;top:91%;width:15%;height:5.5%" onclick="notice('Área en construcción: nuevos mundos pronto')">🔨 Área en construcción</button>
  </section>
