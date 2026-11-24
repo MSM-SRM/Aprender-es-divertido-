@@ -1662,3 +1662,23 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 - Publicado en `main` el 23/11/2026 en `f2bdc83` y verificado en GitHub Pages: `https://msm-srm.github.io/Aprender-es-divertido-/peques/banderas-mundo.html?profile=mireia`. Se publican los 6 mapas (1.454.468 B), las 184 banderas, los 184 audios y el mapamundi de portada.
 - Acceso restringido a Mireia y Guest: en `peques/areas-test.html` el módulo `banderas-mundo` tiene `profiles:['mireia','guest']` y `newFor:['mireia','guest']`; Sofia ya no ve la tarjeta ni la etiqueta NEW.
+
+## Actualización 24/11/2026 - Isla Real Madrid: escudo giratorio con transparencia
+
+### Cambio
+
+- A petición del usuario, la **placa-recuadro** de «Real Madrid» del mapa se sustituye por el **escudo girando** del GIF de gifs-animados.net, sin la marca de agua del sitio y con el **fondo transparente**.
+- Origen: 292×411, 18 fotogramas de 0,14 s, 32 colores por fotograma. Se recorta la franja inferior (292×392), se rellena desde los cuatro bordes **solo el blanco exterior** (los blancos internos del escudo se conservan) y se reduce a 120×161 con media de área y alfa suave.
+- Se publica como **WebP animado** `peques/imagenes/real-madrid/escudo-girando.webp` (85.384 B) con **PNG de reserva** `escudo-girando.png` (19.429 B) dentro de un `<picture>`; el GIF con fondo blanco queda en el repositorio sin uso.
+- `peques/mundo-mireia.html`: `.zone-rm` mantiene el centro (16 %, 73 %), mide 1,5 × 2,01 cm (1,35 × 1,81 cm en ≤600 px) y la sombra pasa a `filter: drop-shadow`.
+- Herramientas locales (no publicadas): `qa/herramientas/escudo-webp.ps1` (fotogramas + `img2webp`) y `qa/herramientas/escudo-transparente.ps1` (prueba en GIF, descartada).
+
+### Verificación local (1280 y 390 px)
+
+- El mapa se ve detrás del escudo, sin halo blanco ni tarjeta; el escudo gira (dos capturas separadas 0,65 s cambian).
+- Clic → `areas-test.html?area=real-madrid&profile=guest`; entrada «Real Madrid · Cromos y juegos» (⚽) en la lista móvil; sin desbordamiento horizontal ni errores de consola.
+- Capturas: `qa/shots/isla-rm-contexto-1280.png`, `isla-rm-x1.png`, `isla-rm-x2.png` e `isla-rm-390.png`.
+
+### Estado
+
+- En `main` en `df87060`, **sin publicar**, pendiente de autorización del usuario.
