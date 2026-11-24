@@ -69,9 +69,10 @@ body{margin:0;background:#071d37;color:#fff;font-family:"Trebuchet MS",system-ui
 .notice{position:absolute;left:50%;bottom:2%;transform:translateX(-50%);padding:.5em 1em;border-radius:99px;background:#10244ddd;border:1px solid #ffffff90;font-weight:800;font-size:clamp(10px,1.05vw,15px);opacity:0;transition:opacity .2s;pointer-events:none}.notice.show{opacity:1}
 .zone-future{left:72%;top:91%;width:12.5%;height:5.5%;font-size:clamp(7px,1vw,14px);font-weight:1000;color:#573700;border-color:#ffde79;background:linear-gradient(#fff5cb,#ffc64b);box-shadow:0 4px 9px #08295066;text-shadow:0 1px 0 #fff;border-radius:999px}.zone-future:hover{filter:brightness(1.08)}
 @media(min-width:1101px){.zone-future{min-height:44px}}
-/* Acceso Real Madrid: escudo girando sobre la isla (GIF sin marca de agua, ~1,5 cm) */
-.zone-rm{left:16%;top:73%;width:1.5cm;height:2.01cm;border:0;background:transparent;border-radius:12px;padding:0;box-shadow:0 4px 10px #06254d80}
-.zone-rm .rm-gif{display:block;width:100%;height:100%;border-radius:12px;background:#fff}
+/* Acceso Real Madrid: escudo girando sobre la isla (WebP animado con transparencia, ~1,5 cm) */
+.zone-rm{left:16%;top:73%;width:1.5cm;height:2.01cm;border:0;background:transparent;border-radius:0;padding:0;box-shadow:none}
+.zone-rm .rm-gif{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 2px 2px #06254d99)}
+.zone-rm picture{display:block;width:100%;height:100%}
 @media(max-width:600px){
   .zone-rm{width:1.35cm;height:1.81cm}
 }
@@ -112,7 +113,10 @@ body{margin:0;background:#071d37;color:#fff;font-family:"Trebuchet MS",system-ui
   <button class="zone" aria-label="Mitología India" title="Mitología India" style="left:63.6%;top:83%;width:19.2%" onclick="location.href='areas-test.html?area=mitologia-india&profile='+encodeURIComponent(profileId)"></button>
   <button class="zone" aria-label="Juegos" title="Juegos" style="left:84.0%;top:61%;width:14.4%" onclick="location.href='areas-test.html?area=juegos&profile='+encodeURIComponent(profileId)"></button>
   <button class="zone zone-rm" aria-label="Real Madrid · Cromos y juegos" title="Real Madrid · Cromos y juegos" onclick="location.href='areas-test.html?area=real-madrid&profile='+encodeURIComponent(profileId)">
-   <img class="rm-gif" src="imagenes/real-madrid/escudo-girando.gif" alt="" width="120" height="161" loading="lazy" decoding="async">
+   <picture>
+    <source type="image/webp" srcset="imagenes/real-madrid/escudo-girando.webp">
+    <img class="rm-gif" src="imagenes/real-madrid/escudo-girando.png" alt="" width="120" height="161" loading="lazy" decoding="async">
+   </picture>
   </button>
   <button class="zone zone-future" aria-label="Área en construcción" title="Área en construcción" style="left:86.4%;top:91%;width:15%;height:5.5%" onclick="notice('Área en construcción: nuevos mundos pronto')">🔨 Área en construcción</button>
  </section>
