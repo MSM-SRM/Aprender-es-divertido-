@@ -1679,6 +1679,6 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 - Clic → `areas-test.html?area=real-madrid&profile=guest`; entrada «Real Madrid · Cromos y juegos» (⚽) en la lista móvil; sin desbordamiento horizontal ni errores de consola.
 - Capturas: `qa/shots/isla-rm-contexto-1280.png`, `isla-rm-x1.png`, `isla-rm-x2.png` e `isla-rm-390.png`.
 
-### Estado
+### Publicación
 
-- En `main` en `df87060`, **sin publicar**, pendiente de autorización del usuario.
+- Publicado en `main` el 24/11/2026 en `5e0aa8b` y verificado en GitHub Pages: `https://msm-srm.github.io/Aprender-es-divertido-/peques/mundo-mireia.html?profile=guest`. Los assets `escudo-girando.webp` (85.384 B) y `escudo-girando.png` (19.429 B) responden 200; el WebP se usa en el mapa, gira, el clic abre el área y no hay errores de consola. Captura: `qa/shots/produccion-isla-rm-1280.png`.
