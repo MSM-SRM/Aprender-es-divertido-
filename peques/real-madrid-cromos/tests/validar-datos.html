@@ -243,27 +243,75 @@ pre{margin:0;padding:14px 16px;overflow:auto;font-size:.78rem;line-height:1.45;b
       badZeros.length ? 'Ceros no permitidos: ' + badZeros.map(function (i) { return i.path; }).join(', ')
         : zeros.length + ' ceros reales: ' + zeros.map(function (i) { return i.ctx + ' · ' + i.stat.label; }).join(' | '));
 
-    /* 8 · dorsal solo para Cristiano */
+    /* 8 · dorsales de las cartas con imagen */
     var withNumber = players.filter(function (p) { return p.number !== null && p.number !== undefined; });
-    var numberOk = withNumber.length === 1 && withNumber[0].id === 'cristiano-ronaldo' && String(withNumber[0].number) === '07';
-    add('Dorsal distinto de null solo para Cristiano («07»)', numberOk,
+    var cr7 = byId(players, 'cristiano-ronaldo');
+    var diStefano = byId(players, 'alfredo-di-stefano');
+    var raul = byId(players, 'raul-gonzalez');
+    var numberOk = withNumber.length === 3 &&
+      String(cr7 && cr7.number) === '07' &&
+      String(diStefano && diStefano.number) === '9' &&
+      String(raul && raul.number) === '7';
+    add('Dorsales de las cartas con imagen (CR7 07, Di Stéfano 9, Raúl 7)', numberOk,
       withNumber.length ? withNumber.map(function (p) { return p.name + ' = ' + p.number; }).join(' · ') : 'Ningún dorsal declarado.');
 
-    /* 9 · imagen solo para Cristiano */
+    /* 9 · imágenes: CR7 una cara; Raúl y Di Stéfano anverso + reverso */
     var withImage = players.filter(function (p) { return p.cardImage !== null && p.cardImage !== undefined; });
+    var withFaces = players.filter(function (p) {
+      return (p.cardImageFront !== null && p.cardImageFront !== undefined) ||
+        (p.cardImageBack !== null && p.cardImageBack !== undefined);
+    });
+    var paresOk = withFaces.length === 2 && withFaces.every(function (p) {
+      return p.cardImageFront && p.cardImageBack && !p.cardImage;
+    });
     var imageOk = withImage.length === 1 && withImage[0].id === 'cristiano-ronaldo' &&
-      withImage[0].cardImage === '../CR7_DIAMANTE_MADRID_vista_previa.png';
-    add('cardImage distinto de null solo para Cristiano', imageOk,
-      withImage.length ? withImage.map(function (p) { return p.name + ' = ' + p.cardImage; }).join(' · ') : 'Ninguna imagen declarada.');
+      withImage[0].cardImage === '../CR7_DIAMANTE_MADRID_vista_previa.png' && paresOk &&
+      withFaces.some(function (p) { return p.id === 'raul-gonzalez'; }) &&
+      withFaces.some(function (p) { return p.id === 'alfredo-di-stefano'; });
+    add('Imágenes: CR7 una cara; Raúl y Di Stéfano con anverso y reverso', imageOk,
+      withImage.length ? withImage.map(function (p) { return p.name + ' = ' + p.cardImage; }).join(' · ') +
+        ' | ' + withFaces.map(function (p) { return p.name + ' = ' + p.cardImageFront + ' + ' + p.cardImageBack; }).join(' · ')
+        : 'Ninguna imagen declarada.');
 
     /* 10 · coherencia de assets pendientes */
     var pendingOk = players.every(function (p) {
-      return p.cardImage ? p.assetPending === false : p.assetPending === true;
+      var tieneCarta = !!(p.cardImage || (p.cardImageFront && p.cardImageBack));
+      return tieneCarta ? p.assetPending === false : p.assetPending === true;
     });
-    add('Coherencia de assets: sin imagen ⇒ assetPending true', pendingOk,
-      pendingOk ? 'Cristiano usa la carta aprobada; los otros 9 quedan marcados como pendientes.' : 'Hay jugadores sin imagen no marcados como pendientes, o al contrario.');
+    add('Coherencia de assets: con carta ⇒ assetPending false; sin carta ⇒ true', pendingOk,
+      pendingOk ? 'CR7, Di Stéfano y Raúl usan cartas aprobadas; los otros 7 quedan marcados como pendientes.' : 'Hay jugadores con carta no marcados como listos, o sin carta marcados como listos.');
 
     return { results: results, stats: allStats.length, faces: faces, players: players.length };
+  }
+
+  /* 11 · las imágenes declaradas existen y las caras de dos lados están completas */
+  function checkImages(players) {
+    var checks = [];
+    players.forEach(function (p) {
+      if (p.cardImage) { checks.push({ player: p.name, cara: 'carta', url: p.cardImage, two: false }); }
+      if (p.cardImageFront) { checks.push({ player: p.name, cara: 'anverso', url: p.cardImageFront, two: true }); }
+      if (p.cardImageBack) { checks.push({ player: p.name, cara: 'reverso', url: p.cardImageBack, two: true }); }
+    });
+    return Promise.all(checks.map(function (c) {
+      return new Promise(function (resolve) {
+        var img = new Image();
+        img.onload = function () {
+          var ok = img.naturalWidth > 0 && (!c.two || (img.naturalWidth === 752 && img.naturalHeight === 1008));
+          resolve({ label: c.player + ' · ' + c.cara, ok: ok, size: img.naturalWidth + '×' + img.naturalHeight });
+        };
+        img.onerror = function () { resolve({ label: c.player + ' · ' + c.cara, ok: false, size: 'no carga' }); };
+        img.src = new URL(c.url, new URL('../data/players.json', location.href)).href;
+      });
+    })).then(function (loaded) {
+      var bad = loaded.filter(function (x) { return !x.ok; });
+      return {
+        name: 'Las imágenes declaradas cargan (anverso y reverso completos, 752×1008)',
+        ok: loaded.length > 0 && bad.length === 0,
+        detail: bad.length
+          ? 'Revisar: ' + bad.map(function (x) { return x.label + ' (' + x.size + ')'; }).join(' · ')
+          : loaded.map(function (x) { return x.label + ' ' + x.size; }).join(' · ')
+      };
+    });
   }
 
   function render(outcome) {
@@ -306,9 +354,12 @@ pre{margin:0;padding:14px 16px;overflow:auto;font-size:.78rem;line-height:1.45;b
       .then(function (text) {
         var data = JSON.parse(text);
         var outcome = run(data, text);
-        render(outcome);
         var dump = document.getElementById('dump');
         dump.textContent = JSON.stringify(data, null, 2);
+        checkImages(data.players || []).then(function (extra) {
+          outcome.results.push(extra);
+          render(outcome);
+        });
       })
       .catch(function (error) {
         var badgeFail = document.getElementById('globalBadge');

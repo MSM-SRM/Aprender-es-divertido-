@@ -79,3 +79,11 @@ El cambio de cara ya no es instantáneo: al pulsar **MADRID** o **TODOS** la car
 - **Verificado**: MADRID → TODOS → MADRID, cambio de carta con una cara activa, Escape a la portada, sin recortes ni saltos, sin errores de consola y sin desbordes a 817/390/320 px.
 
 Cuando lleguen los diseños del usuario (CR7, Di Stéfano y Raúl, dos caras), cada cara mostrará su imagen real (`cardImageFront` / `cardImageBack`) dentro del mismo escenario giratorio.
+
+## 9. Integración de las cartas reales (25/11/2026)
+
+- **Raúl y Di Stéfano ya están integrados.** El usuario aportó `Raul.jpeg` y `Di stefano.jpeg` (1536×1024, anverso + reverso en la misma imagen, fondo blanco).
+- Las dos caras se separaron por el hueco central con el encuadre exacto de cada carta: **752×1008 px** cada una (margen exterior de 8 px, hueco central de 16 px), sin recortar nada del diseño. Se guardan como JPEG de calidad 95 en `assets/players/<id>/anverso.jpg` y `reverso.jpg`.
+- El anverso se muestra en **MADRID** y el reverso en **TODOS**, sin placas ni datos HTML superpuestos: la imagen es la carta completa.
+- El panel HTML de carrera (`#backPanel`) se conserva para CR7 y para las cartas que aún no tienen diseño; en las cartas de dos caras se oculta y se muestra `#backPhoto`.
+- **CR7 sigue pendiente**: su `cardImage` actual es de una sola cara. Cuando llegue su diseño doble se aplicará el mismo tratamiento.

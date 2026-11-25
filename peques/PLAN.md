@@ -1682,3 +1682,28 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 ### Publicación
 
 - Publicado en `main` el 24/11/2026 en `5e0aa8b` y verificado en GitHub Pages: `https://msm-srm.github.io/Aprender-es-divertido-/peques/mundo-mireia.html?profile=guest`. Los assets `escudo-girando.webp` (85.384 B) y `escudo-girando.png` (19.429 B) responden 200; el WebP se usa en el mapa, gira, el clic abre el área y no hay errores de consola. Captura: `qa/shots/produccion-isla-rm-1280.png`.
+
+## Actualización 25/11/2026 - Real Madrid Cromos: cartas de dos caras de Raúl y Di Stéfano
+
+### Diseño aportado
+
+- El usuario envió `Raul.jpeg` y `Di stefano.jpeg` (1536×1024, dos caras en la misma imagen, fondo blanco) con la instrucción de mostrarlas tal cual: «ni un porciento menos ni diferente».
+- Cada imagen contiene dos cartas de 752×1008 px: margen exterior de 8 px, hueco central blanco de 16 px y margen derecho de 8 px. Se recortan por ese hueco con el encuadre exacto de cada carta, sin perder ningún píxel del diseño.
+- Se guardan como JPEG de calidad 95 en `peques/real-madrid-cromos/assets/players/raul-gonzalez/anverso.jpg` (324,6 KB) y `reverso.jpg` (302,4 KB), y en `.../alfredo-di-stefano/anverso.jpg` (369,8 KB) y `reverso.jpg` (351,5 KB).
+
+### Integración
+
+- `data/players.json`: `cardImageFront` y `cardImageBack` para Raúl (dorsal 7) y Di Stéfano (dorsal 9); `assetPending: false`.
+- `index.html`: las cartas con las dos imágenes se marcan `is-two-sided`; el anverso ocupa la cara MADRID y el reverso la cara TODOS. No se superpone ninguna placa ni dato HTML: la imagen es la carta completa. El panel HTML de carrera se conserva para CR7 y las cartas pendientes y se oculta en las de dos caras (`#backPhoto`).
+- La altura del escenario se toma del alto real de la imagen; el ancho de carta pasa a `--cromo-w` para que anverso, reverso y la regla de pantallas bajas (≤820 px de alto) usen exactamente el mismo tamaño.
+- Se mantiene el giro 3D, `inert`/`aria-hidden` en la cara oculta y `prefers-reduced-motion`.
+
+### QA
+
+- `tests/validar-datos.html`: 11 reglas, 11 PASS. Se actualizan dorsales, imágenes (CR7 una cara; Raúl y Di Stéfano anverso + reverso) y se añade la carga real de cada imagen comprobando 752×1008.
+- Navegador: recorrido 10→1 hasta Raúl (03) y Di Stéfano (02), giro MADRID ↔ TODOS, mismo tamaño de anverso y reverso, sin recortes, sin desbordamiento horizontal y sin errores de consola a 1280×1000, 1280×900, 390 y 320 px.
+- Capturas: `qa/shots/carta-raul-anverso-1280x1000.png`, `carta-raul-reverso-1280x1000.png`, `carta-di-stefano-anverso-1280.png`, `carta-di-stefano-reverso-1280.png`, `carta-raul-anverso-390.png` y `carta-raul-reverso-390.png`.
+
+### Estado
+
+- En `main`, **en local pendiente de publicar**. Falta el diseño doble de CR7 (solo existe la carta de una cara) y las otras 7 cartas.

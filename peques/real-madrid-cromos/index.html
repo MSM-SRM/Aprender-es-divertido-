@@ -109,7 +109,7 @@ button.ghost:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:n
 }
 
 /* ---------- Vista de carta ---------- */
-.card-stage{display:flex;flex-direction:column;align-items:center;gap:10px}
+.card-stage{display:flex;flex-direction:column;align-items:center;gap:10px;--cromo-w:min(100%,390px)}
 .card-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin:0 auto}
 
 /* ---------- Giro 3D entre las dos caras ---------- */
@@ -144,7 +144,7 @@ button.ghost:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:n
 }
 .ghost:hover{background:#fff}
 
-.cromo{width:min(100%,390px)}
+.cromo{width:var(--cromo-w)}
 #cromoHolder{display:flex;justify-content:center;width:100%}
 .cromo-frame{
   position:relative;padding:clamp(9px,2.6vw,14px);border-radius:20px;
@@ -205,6 +205,11 @@ button.ghost:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:n
 .cromo.is-photo .cromo-frame{padding:0;background:none;box-shadow:0 18px 38px #14263c5c}
 .cromo.is-photo .cromo-frame::before,.cromo.is-photo .cromo-frame::after{display:none}
 .cromo.is-photo img{display:block;width:100%;height:auto;border-radius:18px;box-shadow:0 0 0 2px #fff,0 0 0 4px #d7e0e9}
+/* Cartas de dos caras: la imagen es el diseño completo, sin marco añadido */
+.cromo.is-photo.is-two-sided .cromo-frame{box-shadow:none}
+.cromo.is-photo.is-two-sided img{border-radius:16px;box-shadow:0 16px 32px #14263c4d}
+.back-photo{width:var(--cromo-w)}
+.back-photo img{display:block;width:100%;height:auto;border-radius:16px;box-shadow:0 16px 32px #14263c4d}
 
 /* ---------- Selector MADRID / TODOS ---------- */
 .toggle{
@@ -283,7 +288,7 @@ button.ghost:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:n
 .load-error code{font-size:.85em;background:#fff3d0;padding:2px 5px;border-radius:6px}
 
 @media(max-height:820px) and (min-width:761px){
-  .cromo{width:min(100%,320px)}
+  .card-stage{--cromo-w:min(100%,320px)}
 }
 @media(max-width:420px){
   .toggle button{padding:8px 13px;font-size:.78rem}
@@ -360,6 +365,7 @@ button.ghost:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:n
             </div>
 
             <div class="flip-face flip-back" id="flipBack">
+              <div class="back-photo" id="backPhoto" hidden></div>
               <section class="back-panel" id="backPanel" aria-labelledby="panelTitle">
                 <div class="panel-head">
                   <p class="kicker">TODOS · carrera completa</p>
@@ -412,6 +418,7 @@ button.ghost:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:n
   var flipInner = $('flipInner');
   var flipFront = $('flipFront');
   var flipBack = $('flipBack');
+  var backPhoto = $('backPhoto');
 
   var CREST = '<svg class="crest" viewBox="0 0 120 150" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"><path d="M20 48h80l-5 58a35 35 0 0 1-35 28 35 35 0 0 1-35-28z"/><path d="M20 48 30 36l13 9 17-16 17 16 13-9 10 12"/><circle cx="60" cy="94" r="24"/><path d="M49 105V85l11 11 11-11v20"/></svg>';
   var SIL = '<svg class="sil" viewBox="0 0 200 260" aria-hidden="true" focusable="false"><circle cx="100" cy="82" r="44" fill="currentColor" opacity=".95"/><path d="M100 134c-44 0-72 26-77 66l-3 60h160l-3-60c-5-40-33-66-77-66z" fill="currentColor" opacity=".9"/></svg>';
@@ -458,7 +465,17 @@ button.ghost:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:n
     return '<div class="metric"><strong>' + esc(stat.value) + (stat.asterisk ? '<sup aria-hidden="true">*</sup>' : '') + '</strong><small>' + label + '</small></div>';
   }
 
+  function isTwoSided(player) {
+    return !!(player && player.cardImageFront && player.cardImageBack);
+  }
+
   function buildCromo(player) {
+    if (isTwoSided(player)) {
+      var front = assetURL(player.cardImageFront);
+      return '<article class="cromo is-photo is-two-sided">' +
+        '<div class="cromo-frame"><img src="' + attr(front) + '" width="752" height="1008" alt="Anverso de la carta Diamante de ' + attr(player.name) + ': retrato y datos en el Real Madrid"></div>' +
+        '</article>';
+    }
     if (player.cardImage) {
       var src = assetURL(player.cardImage);
       return '<article class="cromo is-photo">' +
@@ -687,7 +704,32 @@ button.ghost:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:n
     if (state.face === 'todos') { sizeStage(); }
   }
 
+  /* Reverso: las cartas nuevas muestran su propia imagen; el resto, el panel de datos. */
+  function renderBack(player) {
+    if (isTwoSided(player)) {
+      var back = assetURL(player.cardImageBack);
+      backPhoto.innerHTML = '<img src="' + attr(back) + '" width="752" height="1008" alt="Reverso de la carta Diamante de ' + attr(player.name) + ': trayectoria profesional, clubes, selecciones y laureles">';
+      backPhoto.hidden = false;
+      backPanel.hidden = true;
+      dataNotes.hidden = true;
+      panelScroll.innerHTML = '';
+      return;
+    }
+    backPhoto.innerHTML = '';
+    backPhoto.hidden = true;
+    backPanel.hidden = false;
+    dataNotes.hidden = false;
+    renderPanel(player);
+    renderNotes(player);
+  }
+
   function sizeStage() {
+    if (isTwoSided(state.current)) {
+      var photo = cromoHolder.querySelector('img');
+      var alto = photo ? photo.getBoundingClientRect().height : 0;
+      flipStage.style.height = Math.max(Math.round(alto), 300) + 'px';
+      return;
+    }
     var h = state.face === 'todos'
       ? (backPanel.offsetHeight || 420)
       : (flipFront.scrollHeight || 420);
@@ -708,9 +750,11 @@ button.ghost:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:n
       flipFront.setAttribute('inert', '');
       flipBack.removeAttribute('inert');
     }
-    toggleHint.textContent = isMadrid
-      ? 'Cara MADRID: su historia en el club.'
-      : 'Cara TODOS: sus clubes y selecciones.';
+    toggleHint.textContent = isTwoSided(state.current)
+      ? (isMadrid ? 'Cara MADRID: el anverso de la carta.' : 'Cara TODOS: el reverso de la carta.')
+      : (isMadrid
+        ? 'Cara MADRID: su historia en el club.'
+        : 'Cara TODOS: sus clubes y selecciones.');
     sizeStage();
   }
 
@@ -731,8 +775,7 @@ button.ghost:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:n
     state.current = player;
     state.lastId = id;
     cromoHolder.innerHTML = buildCromo(player);
-    renderPanel(player);
-    renderNotes(player);
+    renderBack(player);
     cardPill.textContent = 'Carta ' + ('0' + player.order).slice(-2) + ' · ' + player.name;
     countBadge.textContent = ('0' + player.order).slice(-2);
     var hasPrev = player.order < state.players.length;

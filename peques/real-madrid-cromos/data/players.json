@@ -203,9 +203,11 @@
       "nationality": "Argentina / España",
       "flag": "ar",
       "flagLabel": "Argentina",
-      "number": null,
+      "number": 9,
       "cardImage": null,
-      "assetPending": true,
+      "cardImageFront": "../assets/players/alfredo-di-stefano/anverso.jpg",
+      "cardImageBack": "../assets/players/alfredo-di-stefano/reverso.jpg",
+      "assetPending": false,
       "realMadridPeriod": { "from": 1953, "to": 1964, "label": "1953–1964" },
       "faces": {
         "madrid": {
@@ -336,9 +338,11 @@
       "nationality": "España",
       "flag": "es",
       "flagLabel": "España",
-      "number": null,
+      "number": 7,
       "cardImage": null,
-      "assetPending": true,
+      "cardImageFront": "../assets/players/raul-gonzalez/anverso.jpg",
+      "cardImageBack": "../assets/players/raul-gonzalez/reverso.jpg",
+      "assetPending": false,
       "realMadridPeriod": { "from": 1994, "to": 2010, "label": "1994–2010" },
       "faces": {
         "madrid": {
