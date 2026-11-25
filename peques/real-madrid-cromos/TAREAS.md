@@ -1,6 +1,6 @@
 # Real Madrid Cromos — tareas abiertas
 
-> Actualizado: 25/11/2026 · Estado: publicado en `907da70` y verificado en GitHub Pages (juego, datos, portada, QA, mapa y área); cara TODOS visual, cuenta atrás 10→1, giro 3D. El 24/11 la placa del mapa se sustituyó por el escudo giratorio con fondo transparente, publicado y verificado en GitHub Pages en `5e0aa8b`. El 25/11 se integraron las cartas de dos caras de Raúl y Di Stéfano (anverso y reverso reales), en local pendiente de publicar.
+> Actualizado: 25/11/2026 · Estado: publicado en `907da70` y verificado en GitHub Pages (juego, datos, portada, QA, mapa y área); cara TODOS visual, cuenta atrás 10→1, giro 3D. El 24/11 la placa del mapa se sustituyó por el escudo giratorio con fondo transparente, publicado y verificado en GitHub Pages en `5e0aa8b`. El 25/11 se publicaron y verificaron en GitHub Pages en `bc15fd4` las cartas de dos caras de Raúl y Di Stéfano (anverso y reverso reales).
 
 ## Bloqueantes para publicar
 
@@ -32,8 +32,8 @@
 
 ## Assets
 
-- [ ] **9 cartas Diamante** (Di Stéfano, Raúl, Modrić, Benzema, Puskás, Zidane, Gento, Ramos, Casillas): **nuevo formato v2** — generar cada cara por separado siguiendo la referencia doble de Di Stéfano (`REFERENCIA-CARTA-DOSTRARES.md`): anverso con mosaico arcoíris y placa dorada; reverso «Trayectoria profesional» con bandera + escudo + años por club y laureles individuales. Sin «N/D» (regla del proyecto). **Hecho para Di Stéfano y Raúl** con los diseños del usuario (25/11, en local): `assets/players/<id>/anverso.jpg` + `reverso.jpg`, `cardImageFront`/`cardImageBack`, `number` (9 y 7) y `assetPending: false`. **Pendientes los otros 7** (y el diseño doble de CR7): al tenerlos, mismo tratamiento y QA.
-- [x] **Cartas de dos caras de Raúl y Di Stéfano (25/11):** recortadas de `Raul.jpeg` y `Di stefano.jpeg` (1536×1024) en dos caras exactas de 752×1008 sin tocar el diseño; el giro MADRID ↔ TODOS muestra anverso y reverso reales. QA `tests/validar-datos.html` ampliado a 11 reglas (imágenes cargan y miden 752×1008) con 11 PASS. Verificado a 1280×1000, 1280×900, 390 y 320 px, sin errores de consola ni desbordes. En local, pendiente de publicar.
+- [ ] **9 cartas Diamante** (Di Stéfano, Raúl, Modrić, Benzema, Puskás, Zidane, Gento, Ramos, Casillas): **nuevo formato v2** — generar cada cara por separado siguiendo la referencia doble de Di Stéfano (`REFERENCIA-CARTA-DOSTRARES.md`): anverso con mosaico arcoíris y placa dorada; reverso «Trayectoria profesional» con bandera + escudo + años por club y laureles individuales. Sin «N/D» (regla del proyecto). **Hecho para Di Stéfano y Raúl** con los diseños del usuario (25/11, publicado en `bc15fd4`): `assets/players/<id>/anverso.jpg` + `reverso.jpg`, `cardImageFront`/`cardImageBack`, `number` (9 y 7) y `assetPending: false`. **Pendientes los otros 7** (y el diseño doble de CR7): al tenerlos, mismo tratamiento y QA.
+- [x] **Cartas de dos caras de Raúl y Di Stéfano (25/11, `bc15fd4`, publicado y verificado):** recortadas de `Raul.jpeg` y `Di stefano.jpeg` (1536×1024) en dos caras exactas de 752×1008 sin tocar el diseño; el giro MADRID ↔ TODOS muestra anverso y reverso reales. QA `tests/validar-datos.html` ampliado a 11 reglas (imágenes cargan y miden 752×1008) con 11 PASS. Verificado a 1280×1000, 1280×900, 390 y 320 px, sin errores de consola ni desbordes. Publicado y verificado en GitHub Pages.
 - [ ] Pedir al usuario el archivo original de la carta doble de Di Stéfano (solo la pegó en el chat) y guardarlo como `REFERENCIA_DOBLE_DiStefano.png` en `assets/`.
 - [ ] Dorsales históricos elegidos (9/7/10/9/10/5/11/4/1) — integrados el 9 (Di Stéfano) y el 7 (Raúl) con sus cartas; pendientes los otros 7 junto a sus diseños.
 - [ ] Escudos oficiales de clubes (ahora SVG provisionales con colores e iniciales) y trofeos/banderas como imágenes reales si el usuario quiere (sujeto a licencias).
@@ -50,7 +50,7 @@
 - [x] **Escudo giratorio con transparencia (24/11, `5e0aa8b`, publicado y verificado):** la placa se sustituye por el escudo del GIF de gifs-animados.net girando, con el blanco exterior recortado (los blancos internos se conservan) en WebP animado + PNG de reserva, en el mismo punto y a 1,5 cm. Verificado a 1280 y 390 px, clic y lista móvil. Ver `ESTADO-PROYECTO.md` (H42).
 - [ ] **Valorar con el usuario el coste de una imagen de mapa mejor** (más resolución y más huecos para islas/juegos) y, si se aprueba, sustituir la placa por la isla generada. La placa actual es la solución «de momento».
 - [x] **Giro 3D entre caras (18/11):** el cambio MADRID ↔ TODOS gira la carta 180° (`rotateY`, 0,62 s), con altura animada y sincronizada, `inert`/`aria-hidden` en la cara oculta y respeto a `prefers-reduced-motion`. Verificado a 817/390/320 px.
-- [x] **Cartas de dos caras (25/11, en local):** Raúl y Di Stéfano usan sus diseños reales (anverso 752×1008 + reverso 752×1008) en `cardImageFront`/`cardImageBack`; CR7 conserva la carta de una cara y el panel HTML. Falta el diseño doble de CR7 y las otras 7 cartas.
+- [x] **Cartas de dos caras (25/11, `bc15fd4`, publicado y verificado):** Raúl y Di Stéfano usan sus diseños reales (anverso 752×1008 + reverso 752×1008) en `cardImageFront`/`cardImageBack`; CR7 conserva la carta de una cara y el panel HTML. Falta el diseño doble de CR7 y las otras 7 cartas.
 - [ ] Traducciones ES/EN/CA/DE si se integra en el sitio multilingüe (fallback: castellano).
 
 ## Verificación pendiente de esta fase

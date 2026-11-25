@@ -1706,4 +1706,5 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 ### Estado
 
-- En `main`, **en local pendiente de publicar**. Falta el diseño doble de CR7 (solo existe la carta de una cara) y las otras 7 cartas.
+- Publicado en `main` el 25/11/2026 en `bc15fd4` y verificado en GitHub Pages: las 4 imágenes responden 200; con Guest, Raúl (03) y Di Stéfano (02) giran con anverso y reverso de 752×1008 al mismo tamaño y sin errores de consola. Capturas: `qa/shots/produccion-carta-*-1280.png`.
+- Falta el diseño doble de CR7 (solo existe la carta de una cara) y las otras 7 cartas.

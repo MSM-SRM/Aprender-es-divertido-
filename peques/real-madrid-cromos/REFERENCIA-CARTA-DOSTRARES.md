@@ -87,3 +87,4 @@ Cuando lleguen los diseños del usuario (CR7, Di Stéfano y Raúl, dos caras), c
 - El anverso se muestra en **MADRID** y el reverso en **TODOS**, sin placas ni datos HTML superpuestos: la imagen es la carta completa.
 - El panel HTML de carrera (`#backPanel`) se conserva para CR7 y para las cartas que aún no tienen diseño; en las cartas de dos caras se oculta y se muestra `#backPhoto`.
 - **CR7 sigue pendiente**: su `cardImage` actual es de una sola cara. Cuando llegue su diseño doble se aplicará el mismo tratamiento.
+- **Publicado** el 25/11/2026 en GitHub Pages en `bc15fd4` y verificado en producción (4 imágenes 200; Raúl y Di Stéfano giran con anverso y reverso 752×1008, sin errores de consola).
