@@ -5,12 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>El mundo mágico de Mireia</title>
 <script src="auth-guard.js"></script>
+<script src="exit-confirm.js" defer></script>
 <script src="halloween-new.js"></script>
 <script>
 (function () {
   try {
     if (new URLSearchParams(location.search).get("profile") === "sofia") {
-      location.replace("index.html");
+      location.replace("index.html?profile=sofia");
     }
   } catch (e) {}
 })();
@@ -155,7 +156,7 @@ body{margin:0;background:#071d37;color:#fff;font-family:"Trebuchet MS",system-ui
     </div>
   </aside>
  </div>
- <button class="logout" onclick="logoutProfile()">⇦ Salir</button>
+ <button class="logout" onclick="logoutProfile()">👧 Cambiar perfil</button>
   <div id="notice" class="notice" role="status"></div>
 </main>
 <script>
@@ -172,7 +173,13 @@ if(profileId==='guest'){
   document.querySelector('.avatar-photo').style.display='none';
   document.getElementById('mireiaAge').style.display='none';
 }
-window.logoutProfile=()=>{try{localStorage.removeItem('mundoAprendizajeSession_'+profileId)}catch(e){}location.href='index.html'};
+window.logoutProfile=async()=>{
+  const ask=window.confirmarSalida||function(opts){return Promise.resolve(window.confirm((opts&&opts.title)||'¿Quieres cambiar de perfil?'))};
+  const ok=await ask({title:'¿Quieres cambiar de perfil?',text:'Volverás a la pantalla de selección y tendrás que poner el PIN para entrar de nuevo.',yes:'Sí, cambiar',no:'No, seguir aquí'});
+  if(!ok)return;
+  try{localStorage.removeItem('mundoAprendizajeSession_'+profileId)}catch(e){}
+  location.href='index.html';
+};
 const progressKey='mundoAprendizajeProgressV3_'+profileId;
 function updateProfileScores(){
   let data={byArea:{}};try{data=JSON.parse(localStorage.getItem('mundoAprendizajeProgressV3_'+profileId))||data}catch(e){}

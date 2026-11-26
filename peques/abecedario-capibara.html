@@ -6,6 +6,7 @@
 <meta name="theme-color" content="#72ad3e">
 <title>El abecedario de Capi · Mi Mundo de Aprendizaje</title>
 <script src="auth-guard.js"></script>
+<script src="exit-confirm.js" defer></script>
 <script>
 (()=>{const params=new URLSearchParams(location.search),profile=params.get('profile')||'mireia',englishOnly=['mireia','guest'].includes(profile)&&params.get('uiLang')==='en',allowed=profile==='sofia'||englishOnly;if(!allowed){location.replace(`areas-test.html?area=juegos&profile=${encodeURIComponent(profile)}`);return}if(englishOnly)document.documentElement.dataset.alphabetProfile='english-only'})();
 </script>
@@ -58,7 +59,7 @@ h1{margin:0;text-align:center;color:#245a31;font-size:clamp(1.7rem,5vw,3rem);tex
 <body>
 <main class="wrap">
   <header class="top">
-    <a class="back" id="back" href="index.html?profile=sofia">← Volver a Juegos</a>
+    <a class="back" id="back" href="index.html?profile=sofia" data-confirm-exit data-exit-return data-exit-title="¿Quieres salir del juego?" data-exit-text="Volverás a tu página de inicio." data-exit-yes="Sí, salir" data-exit-no="No, seguir jugando">← Volver a Juegos</a>
     <h1>🔤 El abecedario de Capi</h1>
     <nav class="langs" aria-label="Cambiar idioma"></nav>
   </header>

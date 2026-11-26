@@ -395,7 +395,7 @@ body.language-changing .app{animation:languageTumble .82s cubic-bezier(.22,.72,.
   </div>
 </div>
 <section class="screen" id="screen">
-  <button class="back" id="back">← Volver al menú</button>
+  <button class="back" id="back" data-confirm-exit data-exit-title="¿Quieres salir del juego?" data-exit-text="Volverás al menú de actividades." data-exit-yes="Sí, volver" data-exit-no="No, seguir jugando">← Volver al menú</button>
   <h2 id="gameTitle">Juego</h2>
   <p class="muted" id="gameInstruction">¡Vamos allá!</p>
   <div id="gameArea"></div>
@@ -664,6 +664,7 @@ async function selectProfile(profile) {
   const loginOK = await loginWithPin(profile);
   if(!loginOK) return;
   if(profile === "sofia") {
+    try { history.replaceState({profile:"sofia"}, "", "index.html?profile=sofia"); } catch(e) {}
     showSofiaHome();
     return;
   }
@@ -674,7 +675,17 @@ async function selectProfile(profile) {
   location.href = "mundo-mireia.html?profile=" + encodeURIComponent(profile);
 }
 
-function switchProfile() {
+async function switchProfile() {
+  const ask = window.confirmarSalida || function(opts) {
+    return Promise.resolve(window.confirm((opts && opts.title) || "¿Quieres cambiar de perfil?"));
+  };
+  const ok = await ask({
+    title: "¿Quieres cambiar de perfil?",
+    text: "Volverás a la pantalla de selección y tendrás que poner el PIN para entrar de nuevo.",
+    yes: "Sí, cambiar",
+    no: "No, seguir aquí"
+  });
+  if(!ok) return;
   if("speechSynthesis" in window) window.speechSynthesis.cancel();
   try { sessionStorage.removeItem("mundoAprendizajeReturnSofia"); } catch(e) {}
   if(currentProfile) {
@@ -682,6 +693,7 @@ function switchProfile() {
   }
   currentProfile = null;
   currentSessionToken = null;
+  try { history.replaceState(null, "", location.pathname); } catch(e) {}
   $("appContent").classList.add("hide");
   $("profileChooser").classList.remove("hide");
 }
@@ -1742,19 +1754,27 @@ function flipCard(i,b) {
 (()=>{
   const returnKey='mundoAprendizajeReturnSofia';
   const params=new URLSearchParams(location.search);
+  const wantsSofia=params.get('profile')==='sofia';
+  let returning=false;
   try{
-    if(params.get('profile')==='sofia'&&sessionStorage.getItem(returnKey)==='1'){
-      sessionStorage.removeItem(returnKey);
-      showSofiaHome();
-    }else if(sessionStorage.getItem(returnKey)==='1'){
-      sessionStorage.removeItem(returnKey);
-    }
+    returning=sessionStorage.getItem(returnKey)==='1';
+    sessionStorage.removeItem(returnKey);
   }catch(error){}
-  window.addEventListener('pageshow',event=>{
-    if(event.persisted){
-      try{sessionStorage.removeItem(returnKey)}catch(error){}
-    }
-  });
+
+  function hasValidSession(){
+    try{
+      const saved=JSON.parse(localStorage.getItem('mundoAprendizajeSession_sofia')||'null');
+      return !!(saved&&saved.token&&saved.expiresAt&&Number(saved.expiresAt)>Math.floor(Date.now()/1000));
+    }catch(error){ return false; }
+  }
+
+  // Solo se recupera la portada al volver de un juego dentro de la misma
+  // sesión. Al entrar desde el selector de perfiles el PIN se pide siempre.
+  function restoreSofiaHome(){
+    if(wantsSofia&&returning&&hasValidSession()) showSofiaHome();
+  }
+
+  restoreSofiaHome();
 })();
 </script>
 

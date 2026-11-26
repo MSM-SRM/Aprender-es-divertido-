@@ -698,6 +698,13 @@ hr{border:0;border-top:2px dashed #f3c4bf;margin:20px 0 4px}
       back.href = 'index.html?profile=guest';
       back.textContent = '← Volver al inicio';
       back.setAttribute('aria-label', 'Volver al inicio, perfil invitado');
+    } else if (profile === 'sofia') {
+      back.href = 'index.html?profile=sofia';
+      back.textContent = '← Volver al inicio';
+      back.setAttribute('aria-label', 'Volver al inicio, perfil Sofía');
+      back.addEventListener('click', function () {
+        try { sessionStorage.setItem('mundoAprendizajeReturnSofia', '1'); } catch (e) {}
+      });
     } else {
       back.href = 'mundo-mireia.html?avatar=restored&profile=' + encodeURIComponent(profile);
       back.textContent = '← Volver al mapa';

@@ -76,4 +76,17 @@
     persist: persist,
     area: area
   };
+
+  // Popup compartido de confirmación de salida. Se carga aquí para que todas
+  // las páginas que ya usan este módulo lo tengan disponible sin tocar su HTML.
+  (function loadExitConfirm() {
+    var current = document.currentScript;
+    if (!current || !current.src) return;
+    if (document.querySelector('script[data-exit-confirm-loader]')) return;
+    var script = document.createElement('script');
+    script.src = new URL('exit-confirm.js', current.src).href;
+    script.defer = true;
+    script.setAttribute('data-exit-confirm-loader', '1');
+    document.head.appendChild(script);
+  })();
 })(window);
