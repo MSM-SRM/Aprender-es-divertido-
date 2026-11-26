@@ -1728,5 +1728,5 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 ### Publicación
 
-- Publicado en `main` el 26/11/2026 en `4cbfec9` (popup y flujo) y `cefbe80` (carga con `defer` en las páginas afectadas); verificado en GitHub Pages: el popup aparece en el primer clic, «No» permanece, «Sí» vuelve a la portada sin PIN, sin flag se muestra el selector y no hay errores de consola.
+- Publicado en `main` el 26/11/2026 en `4cbfec9` (popup y flujo), `cefbe80` (carga con `defer` en las páginas afectadas) y `9082319` (los cuatro juegos del hub «¿Qué hora es?»); verificado en GitHub Pages: el popup aparece en el primer clic, «No» permanece, «Sí» vuelve a la portada sin PIN, sin flag se muestra el selector y no hay errores de consola.
 - El flujo con PIN real solo puede probarse con el PIN del usuario; las pruebas automatizadas usan sesiones locales de revisión.
