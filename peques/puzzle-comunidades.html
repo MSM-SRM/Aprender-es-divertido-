@@ -52,7 +52,7 @@ const $=s=>document.querySelector(s);
 const shuffle=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
 function project(p){const [lon,lat]=p;
  if(lon < -10) return [38+(lon+18.5)/5.5*160,548-(lat-27)/3*88];
- if(lon > .5 && lat > 37) return [800+(lon-.5)/4.1*128,292-(lat-38)/3.2*112];
+ if(lon > .5 && lat < 40.3) return [800+(lon-.5)/4.1*128,292-(lat-38)/3.2*112];
  return [210+(lon+9.6)/14.5*570,435-(lat-35.2)/8.7*390];
 }
 function pathForFeature(feature,projector){let d="";for(const poly of feature.geometry.coordinates){for(const ring of poly){if(!ring.length)continue;const pts=ring.map(projector);d+="M"+pts.map(p=>p.map(v=>v.toFixed(1)).join(",")).join("L")+"Z";}}return d;}
