@@ -7,6 +7,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E">
 <title>Un día en la vida de Sakura · Mi Mundo de Aprendizaje</title>
 <script src="auth-guard.js"></script>
+<script src="exit-confirm.js" defer></script>
 <style>
 *{box-sizing:border-box}
 :root{
@@ -257,7 +258,7 @@ a{color:inherit}
 <div class="page">
 
   <header class="top">
-    <a class="back" id="backToHub" href="que-hora-es.html?profile=mireia">← Los 4 juegos</a>
+    <a class="back" id="backToHub" href="que-hora-es.html?profile=mireia" data-confirm-exit>← Los 4 juegos</a>
     <div class="heading">
       <h1>Un día en la vida de Sakura</h1>
       <p id="statusLine">Portada</p>
@@ -346,7 +347,7 @@ a{color:inherit}
     <p id="finishText">Has puesto la hora correcta en los 19 momentos del día.</p>
     <div class="modal-actions">
       <button type="button" id="repeatDay">Repetir el día</button>
-      <button type="button" id="backToGames">Volver a los juegos</button>
+      <button type="button" id="backToGames" data-confirm-exit>Volver a los juegos</button>
     </div>
   </div>
 </div>

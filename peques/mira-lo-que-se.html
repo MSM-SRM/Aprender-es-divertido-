@@ -7,6 +7,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%95%92%3C/text%3E%3C/svg%3E">
 <title>Mira lo que se · Mi Mundo de Aprendizaje</title>
 <script src="auth-guard.js"></script>
+<script src="exit-confirm.js" defer></script>
 <style>
 *{box-sizing:border-box}
 :root{
@@ -256,7 +257,7 @@ a{color:inherit}
 <div class="page">
 
   <header class="top">
-    <a class="back" id="backToHub" href="que-hora-es.html?profile=mireia">← Los 4 juegos</a>
+    <a class="back" id="backToHub" href="que-hora-es.html?profile=mireia" data-confirm-exit>← Los 4 juegos</a>
     <div class="heading">
       <h1>Mira lo que se</h1>
       <p id="statusLine">Pregunta 1 de 20</p>
@@ -301,7 +302,7 @@ a{color:inherit}
     <p id="finishText">Has acertado 0 de 20.</p>
     <div class="modal-actions">
       <button type="button" id="repeatGame">Repetir el reto</button>
-      <button type="button" id="backToGames">Volver a los juegos</button>
+      <button type="button" id="backToGames" data-confirm-exit>Volver a los juegos</button>
     </div>
   </div>
 </div>

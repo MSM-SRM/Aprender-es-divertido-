@@ -7,6 +7,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%95%92%3C/text%3E%3C/svg%3E">
 <title>¿Qué hora es? · Mi Mundo de Aprendizaje</title>
 <script src="auth-guard.js"></script>
+<script src="exit-confirm.js" defer></script>
 <style>
 *{box-sizing:border-box}
 :root{
@@ -302,7 +303,7 @@ a{color:inherit}
   <!-- ===== Portada del juego ===== -->
   <section id="homeView" class="view" aria-labelledby="homeTitle">
     <header class="top">
-      <a class="back" id="backToArea" href="areas-test.html?area=ciencias&amp;profile=mireia">← Ciencias</a>
+      <a class="back" id="backToArea" href="areas-test.html?area=ciencias&amp;profile=mireia" data-confirm-exit>← Ciencias</a>
       <div class="brand">
         <h1 id="homeTitle">¿Qué hora es?</h1>
         <p>Aprende a leer el reloj con Kakashi sensei</p>
@@ -381,7 +382,7 @@ a{color:inherit}
   <!-- ===== Lección ===== -->
   <section id="lessonView" class="view" aria-labelledby="lessonTitle" hidden>
     <header class="lesson-top">
-      <button type="button" class="back" id="backToHub">← Los 4 juegos</button>
+      <button type="button" class="back" id="backToHub" data-confirm-exit>← Los 4 juegos</button>
       <div class="lesson-heading">
         <h1 id="lessonTitle" tabindex="-1">Aprende con Kakashi sensei</h1>
         <p class="counter" id="counter">Concepto 1 de 15</p>
@@ -437,7 +438,7 @@ a{color:inherit}
       <p id="finishText">Has completado los 15 conceptos con Kakashi sensei.</p>
       <div class="modal-actions">
         <button type="button" id="repeatLesson">Repetir lección</button>
-        <button type="button" id="backToGames">Volver a los juegos</button>
+        <button type="button" id="backToGames" data-confirm-exit>Volver a los juegos</button>
       </div>
     </div>
   </div>
