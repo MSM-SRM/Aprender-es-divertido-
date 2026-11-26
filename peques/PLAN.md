@@ -1708,3 +1708,25 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 - Publicado en `main` el 25/11/2026 en `bc15fd4` y verificado en GitHub Pages: las 4 imágenes responden 200; con Guest, Raúl (03) y Di Stéfano (02) giran con anverso y reverso de 752×1008 al mismo tamaño y sin errores de consola. Capturas: `qa/shots/produccion-carta-*-1280.png`.
 - Falta el diseño doble de CR7 (solo existe la carta de una cara) y las otras 7 cartas.
+
+## Actualización 26/11/2026 - Navegación de perfiles: confirmación de salida y PIN al entrar
+
+### Cambio
+
+- Nuevo `peques/exit-confirm.js`: popup propio (no `confirm()` nativo) con `role="alertdialog"`, «Sí» a la izquierda y «No» a la derecha en botones separados (18 px de hueco, 52 px de alto), foco inicial en «No», Escape o fondo responden «No» y el tabulador queda atrapado entre ambos. Expone `window.confirmarSalida(opciones)` y actúa sobre los controles marcados con `data-confirm-exit`, repitiendo el clic original tras confirmar.
+- `peques/progress-shared.js` inyecta el popup con `new URL('exit-confirm.js', document.currentScript.src)`, de modo que funciona también en subcarpetas. Además, las 13 páginas con controles de vuelta lo cargan con `<script src="exit-confirm.js" defer>` (en `real-madrid-cromos`, `../exit-confirm.js`); `evento-especial.html` no lo cargaba de ninguna forma. Una guarda de idempotencia evita duplicar manejadores cuando coinciden la carga directa y la dinámica.
+- Al confirmar la salida de un juego de Sofía se escribe `sessionStorage['mundoAprendizajeReturnSofia']` solo si la página tiene `profile=sofia`; `index.html` restaura su portada sin PIN únicamente con ese flag y una sesión local válida. Sin flag, `index.html?profile=sofia` muestra el selector y pide el PIN.
+- Tras el login de Sofía, `history.replaceState` deja la URL en `index.html?profile=sofia`; `switchProfile` limpia la URL y la sesión. El botón «👧 Cambiar perfil» de `mundo-mireia.html` y el cambio de perfil del index piden confirmación. `mundo-mireia.html?profile=sofia` redirige a `index.html?profile=sofia`.
+- La vuelta de `mi-progreso.html` para Sofía marca el flag al pulsar «Volver al inicio».
+
+### Verificación local
+
+- Popup: «Sí» en x 310–491 y «No» en x 509–690 (hueco 18 px, alto 52 px), foco inicial en «No»; Escape y fondo cierran sin salir.
+- Abecedario y aventura de Sofía: «No» permanece; «Sí» vuelve a `index.html?profile=sofia` con la portada y sin PIN. Con sesión válida pero sin flag se muestra el selector.
+- Juegos internos del index, `areas-test.html`, `mi-escritura.html`, `evento-especial.html`, `mundo-mireia.html` y `real-madrid-cromos`: popup correcto y 0 errores de consola.
+- Un juego abierto con Mireia no escribe el flag de Sofía.
+
+### Publicación
+
+- Publicado en `main` el 26/11/2026 en `4cbfec9` (popup y flujo) y `cefbe80` (carga con `defer` en las páginas afectadas); verificado en GitHub Pages: el popup aparece en el primer clic, «No» permanece, «Sí» vuelve a la portada sin PIN, sin flag se muestra el selector y no hay errores de consola.
+- El flujo con PIN real solo puede probarse con el PIN del usuario; las pruebas automatizadas usan sesiones locales de revisión.
