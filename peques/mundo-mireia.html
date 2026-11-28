@@ -81,7 +81,8 @@ body{margin:0;background:#071d37;color:#fff;font-family:"Trebuchet MS",system-ui
 .music-guitar{position:absolute;left:41.8%;top:39.1%;width:14.8%;aspect-ratio:200/122;transform:translate(-50%,-50%);overflow:hidden;z-index:1;pointer-events:none}
 .mg-strip{width:900%;height:100%;background:url(imagenes/musica/guitarra-sprite.png) 0 0/100% 100%;animation:mgplay .9s steps(9) infinite}
 @keyframes mgplay{from{transform:translateX(0)}to{transform:translateX(-100%)}}
-@media (prefers-reduced-motion:reduce){.mg-strip{animation:none}}
+/* Con movimiento reducido se mantiene la animacion (pedida por el usuario), pero mas lenta */
+@media (prefers-reduced-motion:reduce){.mg-strip{animation-duration:2.7s}}
 /* Lista móvil de zonas (se rellena por JS desde las zonas del mapa) */
 .mobile-zones{display:none}
 .mobile-zone{min-height:48px;display:flex;align-items:center;gap:8px;padding:10px 12px;border:2px solid #fff;border-radius:14px;background:linear-gradient(145deg,#fff,#eaf3ff);color:#123d73;font-weight:900;font-size:13px;text-align:left;box-shadow:0 3px 9px #001c5c55}
