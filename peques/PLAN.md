@@ -1730,3 +1730,15 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 - Publicado en `main` el 26/11/2026 en `4cbfec9` (popup y flujo), `cefbe80` (carga con `defer` en las páginas afectadas) y `9082319` (los cuatro juegos del hub «¿Qué hora es?»); verificado en GitHub Pages: el popup aparece en el primer clic, «No» permanece, «Sí» vuelve a la portada sin PIN, sin flag se muestra el selector y no hay errores de consola.
 - El flujo con PIN real solo puede probarse con el PIN del usuario; las pruebas automatizadas usan sesiones locales de revisión.
+
+---
+
+## Guitarra de fuego en el mapa de Mireia (27-28/11/2026)
+
+El cartel rosa «Música» del mapa estaba pintado dentro de `fondomundomireia` (píldora magenta en x 424-606, y 414-546, más la nota musical grande). El botón `.zone` de Música es transparente, así que el texto visible era parte de la imagen.
+
+- Recorte de la guitarra en el navegador (canvas): fotograma 0 del GIF del usuario (302x184), marca de agua borrada, fondo separado con flood fill desde los bordes (umbral de luminancia 112), alfa suavizado 2 pasadas, borde exterior difuminado 11 px y dilatación de color 4 pasadas para quitar el halo negro. Resultado: `qa/guitar/guitarra-final.png`.
+- El relleno por inpainting se descartó tras probar relleno direccional, IDW, armónico y síntesis de parches: todos dejaban vetas o una mancha rectangular.
+- Solución: la guitarra se compone sobre un resplandor de brasas (tres elipses con ruido suave) que tapa el cartel y la insignia. Guitarra de 228x139 px naturales centrada en (522, 500).
+- Regenerados `peques/fondomundomireia-fallback.jpg` (JPEG q0.92) y `peques/imagenes/fondomundomireia-{1280,960,640}.webp` (WebP q0.93). Originales en `qa/guitar/backup/`.
+- Verificado en local a 832, 390 y 320 px: sin rastro del cartel rosa, clic correcto a `areas-test.html?area=musica` y 0 errores de consola.
