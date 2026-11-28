@@ -9,6 +9,7 @@ Sitio educativo estático en español para Mireia y Sofía: perfiles, juegos, cu
 - **Mira lo que se:** juego 2 de «¿Qué hora es?» (`peques/mira-lo-que-se.html`), con Naruto grande, burbuja al pie de la viñeta sin tapar la cara, 20 preguntas aleatorias con la hora en palabras y cuatro relojes analógicos por pregunta (2 AM y 2 PM). Al fallar, el reloj correcto se rodea de verde. Publicado y verificado en GitHub Pages en `2f840d1`.
 - **Un día en la vida de Sakura:** juego 3 de «¿Qué hora es?» (`peques/sakura-day.html`), con 19 eventos del día, reloj de 12 h manipulable, AM/PM, música en bucle con botón de silencio por perfil y estrella final. Publicado y verificado en GitHub Pages en `aee3daf`.
 - **¿Qué haces, Mireia?:** juego 4 de «¿Qué hora es?» (`peques/que-haces-mireia.html`), con 20 rutinas diarias de 6:45 a 21:40, reloj analógico grande, insignia de mañana/mediodía/tarde/noche, tres opciones por pregunta y estrella final en `ciencias`. **Publicado y verificado en GitHub Pages en `8aa0bfd`.**
+- **Mapa de Mireia:** la guitarra de fuego **animada** (sprite de 9 fotogramas movido con CSS) está encima del palacio de Música, sin tapar el rótulo «Música» ni el escudo giratorio del Real Madrid (`peques/mundo-mireia.html`). Publicada y verificada en `3390c1d` y `84a70d6`.
 - **Estado y tareas:** [ESTADO-PROYECTO.md](ESTADO-PROYECTO.md)
 - **Historial técnico:** [peques/PLAN.md](peques/PLAN.md)
 

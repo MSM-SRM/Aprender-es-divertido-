@@ -1742,3 +1742,4 @@ El rótulo rosa «Música» está pintado dentro de `fondomundomireia` (nota mus
 - CSS: `.music-guitar` (14,8 % de ancho, `aspect-ratio:200/122`, centro 41,8 % / 39,1 %, `overflow:hidden`, `pointer-events:none`) con `.mg-strip` al 900 % y `animation:mgplay .9s steps(9) infinite` (`translateX(0 → -100%)`). Se ralentiza a 2,7 s con `prefers-reduced-motion` (no se desactiva).
 - Descartados: `mix-blend-mode:screen` (lava el mapa) y el PNG estático anterior `musica-guitarra.png` (se conserva como respaldo).
 - Verificado en local: sprite 1800x122 cargado, 120,9 px por paso (fotogramas 1 a 9), 0 errores de consola, clic a `areas-test.html?area=musica` intacto y rótulo libre (la guitarra acaba 5 px CSS por encima de la píldora).
+- Publicado en `main` en `3390c1d` (sprite animado) y `84a70d6` (movimiento reducido ralentizado a 2,7 s) y verificado en GitHub Pages el 28/11: HTML y sprite (`381.024 B`) en 200, animación activa, zona clicable y 0 errores de consola.
