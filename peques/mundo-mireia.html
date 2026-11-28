@@ -77,8 +77,11 @@ body{margin:0;background:#071d37;color:#fff;font-family:"Trebuchet MS",system-ui
 @media(max-width:600px){
   .zone-rm{width:1.35cm;height:1.81cm}
 }
-/* Guitarra de fuego sobre el rotulo «Musica» del mapa (PNG con transparencia) */
-.music-guitar{position:absolute;left:40.8%;top:48.8%;width:15.2%;height:auto;transform:translate(-50%,-50%);z-index:1;pointer-events:none}
+/* Guitarra de fuego animada sobre el palacio de Musica (sprite de 9 fotogramas) */
+.music-guitar{position:absolute;left:41.8%;top:39.1%;width:14.8%;aspect-ratio:200/122;transform:translate(-50%,-50%);overflow:hidden;z-index:1;pointer-events:none}
+.mg-strip{width:900%;height:100%;background:url(imagenes/musica/guitarra-sprite.png) 0 0/100% 100%;animation:mgplay .9s steps(9) infinite}
+@keyframes mgplay{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+@media (prefers-reduced-motion:reduce){.mg-strip{animation:none}}
 /* Lista móvil de zonas (se rellena por JS desde las zonas del mapa) */
 .mobile-zones{display:none}
 .mobile-zone{min-height:48px;display:flex;align-items:center;gap:8px;padding:10px 12px;border:2px solid #fff;border-radius:14px;background:linear-gradient(145deg,#fff,#eaf3ff);color:#123d73;font-weight:900;font-size:13px;text-align:left;box-shadow:0 3px 9px #001c5c55}
@@ -111,7 +114,7 @@ body{margin:0;background:#071d37;color:#fff;font-family:"Trebuchet MS",system-ui
   <button class="zone" aria-label="Alemán" title="Alemán" style="left:92.4%;top:52%;width:14.4%" onclick="location.href='idiomas.html?lang=de&profile='+encodeURIComponent(profileId)"></button>
   <button class="zone" aria-label="Ciencias" title="Ciencias" style="left:15.6%;top:49%;width:14.4%" onclick="location.href='areas-test.html?area=ciencias&profile='+encodeURIComponent(profileId)"></button>
   <button class="zone" aria-label="Música" title="Música" style="left:40.8%;top:51%;width:14.4%" onclick="location.href='areas-test.html?area=musica&profile='+encodeURIComponent(profileId)"></button>
-  <img class="music-guitar" src="imagenes/musica/musica-guitarra.png" alt="" aria-hidden="true" width="302" height="184">
+  <div class="music-guitar" aria-hidden="true"><div class="mg-strip"></div></div>
   <button class="zone" aria-label="Biblioteca Cuentos" title="Biblioteca Cuentos" style="left:56.4%;top:60%;width:18.0%" onclick="location.href='areas-test.html?area=biblioteca&profile='+encodeURIComponent(profileId)"></button>
   <button class="zone" aria-label="Mitología Griega" title="Mitología Griega" style="left:34.8%;top:72%;width:19.2%" onclick="location.href='areas-test.html?area=mitologia-griega&profile='+encodeURIComponent(profileId)"></button>
   <button class="zone" aria-label="Mitología India" title="Mitología India" style="left:63.6%;top:83%;width:19.2%" onclick="location.href='areas-test.html?area=mitologia-india&profile='+encodeURIComponent(profileId)"></button>

@@ -1733,12 +1733,12 @@ Los periodos anteriores son los acordados para la disponibilidad especial; no mo
 
 ---
 
-## Guitarra de fuego en el mapa de Mireia (27-28/11/2026)
+## Guitarra de fuego animada en el mapa de Mireia (27-28/11/2026)
 
-El cartel rosa «Música» del mapa estaba pintado dentro de `fondomundomireia` (píldora magenta en x 424-606, y 414-546, más la nota musical grande). El botón `.zone` de Música es transparente, así que el texto visible era parte de la imagen.
+El rótulo rosa «Música» está pintado dentro de `fondomundomireia` (nota musical en x 445-495, y 422-465, y píldora magenta en x 424-606, y 466-546); el botón `.zone` de Música es transparente, así que el texto visible es parte de la imagen. El usuario la quiere **sin tapar** y con la guitarra de fuego **encima del palacio de música** (x 450-620, y 355-470) y **animada**.
 
-- Recorte de la guitarra en el navegador (canvas): fotograma 0 del GIF del usuario (302x184), marca de agua borrada, fondo separado con flood fill desde los bordes (umbral de luminancia 112), alfa suavizado 2 pasadas, borde exterior difuminado 11 px y dilatación de color 4 pasadas para quitar el halo negro. Resultado: `qa/guitar/guitarra-final.png`.
-- El relleno por inpainting se descartó tras probar relleno direccional, IDW, armónico y síntesis de parches: todos dejaban vetas o una mancha rectangular.
-- Solución: la guitarra se compone sobre un resplandor de brasas (tres elipses con ruido suave) que tapa el cartel y la insignia. Guitarra de 228x139 px naturales centrada en (522, 500).
-- Regenerados `peques/fondomundomireia-fallback.jpg` (JPEG q0.92) y `peques/imagenes/fondomundomireia-{1280,960,640}.webp` (WebP q0.93). Originales en `qa/guitar/backup/`.
-- Verificado en local a 832, 390 y 320 px: sin rastro del cartel rosa, clic correcto a `areas-test.html?area=musica` y 0 errores de consola.
+- Primer intento (descartado): sustituir el cartel por la guitarra sobre un resplandor de brasas; el usuario lo rechazó. El mapa volvió al original en `ec9df5c` (JPEG y los tres WebP restaurados desde `qa/guitar/backup/`); el escudo del Real Madrid no se tocó.
+- No hay codificador de GIF/WebP animado en el sistema (sin `magick`, `cwebp`, `ffmpeg`, `node` ni `python`), así que la animación se hace con un **sprite horizontal**: 9 fotogramas de 200x122 con alfa real en `peques/imagenes/musica/guitarra-sprite.png` (1800x122, 381.024 B). Extraído en el navegador con `ImageDecoder` del GIF original (`qa/guitar/guitar.gif`, 302x184, fondo negro): marca de agua borrada, fondo separado con flood fill desde los bordes (umbral 112), alfa suavizado 2 pasadas, borde 10 px y dilatación de color 4 pasadas.
+- CSS: `.music-guitar` (14,8 % de ancho, `aspect-ratio:200/122`, centro 41,8 % / 39,1 %, `overflow:hidden`, `pointer-events:none`) con `.mg-strip` al 900 % y `animation:mgplay .9s steps(9) infinite` (`translateX(0 → -100%)`). Se respeta `prefers-reduced-motion`.
+- Descartados: `mix-blend-mode:screen` (lava el mapa) y el PNG estático anterior `musica-guitarra.png` (se conserva como respaldo).
+- Verificado en local: sprite 1800x122 cargado, 120,9 px por paso (fotogramas 1 a 9), 0 errores de consola, clic a `areas-test.html?area=musica` intacto y rótulo libre (la guitarra acaba 5 px CSS por encima de la píldora).
